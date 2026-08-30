@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>能源企业技术合同登记自检 — 你的研发费用加计扣除，数据链条完整吗？</title>
+<meta name="description" content="2026年工信部新规，全国技术合同登记系统联网+跨部门数据共享。技术合同漏登直接影响研发费用加计扣除。3分钟自检你的技术合同登记覆盖率。">
+<style>
+:root {
+  --color-bg: #F3F7FB;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #EDF2F7;
+  --color-primary: #071B3A;
+  --color-primary-light: #0F2D5C;
+  --color-gold: #D5A84D;
+  --color-gold-dark: #B8923E;
+  --color-text: #102033;
+  --color-text-secondary: #65758A;
+  --color-border: #D8E0EA;
+  --color-danger: #D94452;
+  --color-danger-bg: #FFF0F1;
+  --color-warning: #E6930A;
+  --color-warning-bg: #FFF8EC;
+  --color-success: #1A8A5C;
+  --color-success-bg: #EEFBF4;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-size-base: 16px;
+  --line-height-body: 1.65;
+  --max-content: 720px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 20px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 64px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: var(--font-size-base); scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+.page-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ====== HERO ====== */
+.hero {
+  background: linear-gradient(160deg, var(--color-primary) 0%, var(--color-primary-light) 60%, #1A3A6B 100%);
+  color: #FFFFFF;
+  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(213,168,77,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(213,168,77,0.15);
+  border: 1px solid rgba(213,168,77,0.3);
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.02em;
+}
+.hero-badge svg { flex-shrink: 0; }
+.hero h1 {
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.01em;
+}
+.hero h1 .highlight {
+  color: var(--color-gold);
+}
+.hero-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  max-width: 560px;
+}
+.hero-stat {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-lg);
+}
+.hero-stat-item {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  flex: 1;
+  min-width: 140px;
+}
+.hero-stat-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  line-height: 1.2;
+}
+.hero-stat-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 2px;
+}
+.hero-policy {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  border-left: 3px solid rgba(213,168,77,0.4);
+  padding-left: var(--spacing-sm);
+  line-height: 1.5;
+}
+.hero-policy strong {
+  color: rgba(255,255,255,0.75);
+}
+
+/* ====== SECTION COMMON ====== */
+.section {
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+.section-inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--spacing-xs);
+}
+.section-title {
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+.section-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+/* ====== RISK SCENARIOS ====== */
+.risk-section {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.risk-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+@media (min-width: 600px) {
+  .risk-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.risk-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  position: relative;
+}
+.risk-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.risk-card:nth-child(1)::before { background: var(--color-danger); }
+.risk-card:nth-child(2)::before { background: var(--color-warning); }
+.risk-card:nth-child(3)::before { background: var(--color-primary); }
+.risk-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.3rem;
+}
+.risk-card:nth-child(1) .risk-icon { background: var(--color-danger-bg); }
+.risk-card:nth-child(2) .risk-icon { background: var(--color-warning-bg); }
+.risk-card:nth-child(3) .risk-icon { background: rgba(7,27,58,0.08); }
+.risk-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+}
+.risk-text {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+.risk-text strong {
+  color: var(--color-text);
+}
+
+/* ====== SELF CHECK ====== */
+.check-section {
+  background: var(--color-bg);
+}
+.check-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 12px rgba(7,27,58,0.04);
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: var(--radius-sm);
+  margin: 0 -8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.check-item:last-of-type { border-bottom: none; }
+.check-item:hover { background: var(--color-bg); }
+.check-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--color-border);
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+.check-item input[type="checkbox"]:checked {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+}
+.check-item input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+.check-item input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+.check-label {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  user-select: none;
+}
+.check-label small {
+  display: block;
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+.check-result {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  display: none;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  animation: fadeSlide 0.3s ease;
+}
+.check-result.visible { display: block; }
+.check-result.high {
+  background: var(--color-danger-bg);
+  border: 1px solid rgba(217,68,82,0.2);
+  color: #8B1A23;
+}
+.check-result.medium {
+  background: var(--color-warning-bg);
+  border: 1px solid rgba(230,147,10,0.2);
+  color: #6B4500;
+}
+.check-result.low {
+  background: var(--color-success-bg);
+  border: 1px solid rgba(26,138,92,0.2);
+  color: #0D5C3A;
+}
+.check-result strong { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== DATA CHAIN ====== */
+.chain-section {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.chain-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: var(--spacing-lg);
+}
+.chain-step {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  position: relative;
+}
+.chain-node {
+  flex: 1;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: center;
+}
+.chain-node-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 2px;
+}
+.chain-node-desc {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+.chain-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  padding: 4px 0;
+}
+.chain-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+.chain-node.active {
+  background: rgba(213,168,77,0.1);
+  border-color: var(--color-gold);
+}
+.chain-node.broken {
+  background: var(--color-danger-bg);
+  border-color: rgba(217,68,82,0.3);
+}
+.chain-node.broken .chain-node-title { color: var(--color-danger); }
+
+.chain-insight {
+  background: var(--color-bg);
+  border-left: 3px solid var(--color-gold);
+  padding: var(--spacing-md);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+.chain-insight strong { color: var(--color-primary); }
+
+/* ====== SOLUTIONS ====== */
+.solution-section {
+  background: var(--color-bg);
+}
+.solution-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+.solution-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+}
+.solution-num {
+  width: 36px;
+  height: 36px;
+  background: var(--color-primary);
+  color: var(--color-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.solution-content { flex: 1; }
+.solution-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+.solution-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+.solution-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+}
+.solution-tag.free {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+.solution-tag.paid {
+  background: rgba(213,168,77,0.12);
+  color: var(--color-gold-dark);
+}
+
+/* ====== CTA / EXHIBITION ====== */
+.cta-section {
+  background: linear-gradient(160deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: #FFFFFF;
+  text-align: center;
+}
+.cta-section .section-title { color: #FFFFFF; }
+.cta-section .section-desc { color: rgba(255,255,255,0.7); }
+.cta-inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+}
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(213,168,77,0.15);
+  border: 1px solid rgba(213,168,77,0.3);
+  color: var(--color-gold);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 24px;
+  margin-bottom: var(--spacing-lg);
+}
+.cta-offers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .cta-offers { grid-template-columns: 1fr 1fr; }
+}
+.cta-offer {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.cta-offer-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(213,168,77,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-gold);
+  font-size: 0.9rem;
+}
+.cta-offer-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.cta-offer-text strong { color: var(--color-gold); }
+.cta-contact {
+  margin-top: var(--spacing-md);
+}
+.cta-phone-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-gold);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 32px;
+  border-radius: 30px;
+}
+.cta-wechat {
+  margin-top: var(--spacing-sm);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+}
+.cta-wechat span {
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+}
+.cta-scarcity {
+  margin-top: var(--spacing-md);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+}
+
+/* ====== FAQ ====== */
+.faq-section {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  user-select: none;
+}
+.faq-q::before {
+  content: 'Q';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--color-bg);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-gold-dark);
+  flex-shrink: 0;
+}
+.faq-q::after {
+  content: '';
+  margin-left: auto;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--color-text-secondary);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.faq-item.open .faq-q::after { transform: rotate(180deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.2s ease;
+}
+.faq-item.open .faq-a {
+  max-height: 300px;
+  padding-bottom: var(--spacing-md);
+}
+.faq-a-inner {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  padding-left: 36px;
+}
+
+/* ====== FOOTER ====== */
+.page-footer {
+  text-align: center;
+  padding: var(--spacing-lg) var(--spacing-md);
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  background: var(--color-bg);
+}
+.page-footer a {
+  color: var(--color-gold-dark);
+  text-decoration: none;
+}
+.page-footer a:hover { text-decoration: underline; }
+
+/* ====== PRINT ====== */
+@media print {
+  .hero { background: var(--color-primary) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cta-section { background: var(--color-primary) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .check-result { display: none !important; }
+  .faq-a { max-height: none !important; padding-bottom: var(--spacing-md) !important; }
+  .cta-contact a { border: 2px solid var(--color-gold); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ====== HERO ====== -->
+  <header class="hero" role="banner">
+    <div class="hero-inner">
+      <div class="hero-badge" aria-label="政策更新提醒">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        2026年工信部新规生效
+      </div>
+      <h1>你的<span class="highlight">研发费用加计扣除</span>，<br>数据链条完整吗？</h1>
+      <p class="hero-sub">很多能源企业只知道申报加计扣除，却不知道技术合同那一端没登记——数据链条一断，税务核查就是裸奔。</p>
+      <div class="hero-stat" role="list">
+        <div class="hero-stat-item" role="listitem">
+          <div class="hero-stat-num">500万+</div>
+          <div class="hero-stat-label">大额合同需30工作日审核</div>
+        </div>
+        <div class="hero-stat-item" role="listitem">
+          <div class="hero-stat-num">全国联网</div>
+          <div class="hero-stat-label">跨部门数据共享已启动</div>
+        </div>
+      </div>
+      <p class="hero-policy"><strong>政策依据：</strong>工信部科〔2026〕18号《技术合同认定登记管理办法》，2026年3月1日起施行。第十七条建设全国登记管理系统，第二十八条明确跨部门协作共享。</p>
+    </div>
+  </header>
+
+  <main>
+  <!-- ====== RISK SCENARIOS ====== -->
+  <section class="section risk-section" aria-labelledby="risk-title">
+    <div class="section-inner">
+      <div class="section-label" aria-hidden="true">⚠ 三种典型漏登</div>
+      <h2 class="section-title" id="risk-title">能源企业最容易踩的坑</h2>
+      <div class="risk-grid">
+        <article class="risk-card">
+          <div class="risk-icon" aria-hidden="true">🔬</div>
+          <h3 class="risk-title">委托研发没登记</h3>
+          <p class="risk-text">老张签了<strong>3份委托开发合同</strong>，研发费加计扣除报了200万。但技术合同一份都没登记——技术交易额没有官方背书，<strong>数据链条从源头就断了</strong>。</p>
+        </article>
+        <article class="risk-card">
+          <div class="risk-icon" aria-hidden="true">📄</div>
+          <h3 class="risk-title">技术转让没认定</h3>
+          <p class="risk-text">老李把一项节能专利<strong>转让给了合作方</strong>，合同金额180万。没做认定登记，不仅技术转让所得<strong>500万免税</strong>用不上，研发费用归集也缺关键佐证。</p>
+        </article>
+        <article class="risk-card">
+          <div class="risk-icon" aria-hidden="true">🤝</div>
+          <h3 class="risk-title">合作研发数据对不上</h3>
+          <p class="risk-text">老王和另一家企业<strong>联合做研发</strong>，各报各的。新规下各方分别登记、数据自动可查——<strong>两边数据一比对，差异就露馅</strong>。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SELF CHECK ====== -->
+  <section class="section check-section" aria-labelledby="check-title">
+    <div class="section-inner">
+      <div class="section-label" aria-hidden="true">✓ 3分钟自检</div>
+      <h2 class="section-title" id="check-title">你的技术合同，登记了吗？</h2>
+      <p class="section-desc">勾选符合你企业情况的选项，看看技术合同登记的覆盖缺口有多大。</p>
+      <div class="check-box" role="group" aria-label="自检清单">
+        <label class="check-item">
+          <input type="checkbox" name="check" value="1">
+          <span class="check-label">过去12个月签过<strong>委托研发合同</strong><small>委托其他单位做技术研发、工艺改进、产品开发</small></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="check" value="2">
+          <span class="check-label">有<strong>技术转让或许可合同</strong><small>专利权转让、技术秘密转让、专利实施许可等</small></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="check" value="3">
+          <span class="check-label">有<strong>合作研发合同</strong><small>与其他企业或科研机构联合研发</small></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="check" value="4">
+          <span class="check-label">签过<strong>技术咨询或服务合同</strong><small>可行性论证、技术分析、工程指导等</small></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="check" value="5">
+          <span class="check-label">正在申报或准备申报<strong>高新技术企业</strong><small>高企认定需要科技成果转化证明</small></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="check" value="6">
+          <span class="check-label">年度<strong>研发费用超过100万</strong><small>研发费用越高，数据链条断裂风险越大</small></span>
+        </label>
+        <div class="check-result" id="checkResult" role="alert" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DATA CHAIN ====== -->
+  <section class="section chain-section" aria-labelledby="chain-title">
+    <div class="section-inner">
+      <div class="section-label" aria-hidden="true">→ 数据链条</div>
+      <h2 class="section-title" id="chain-title">断裂在哪一步？损失就在哪一步</h2>
+      <p class="section-desc">从技术合同到研发费用加计扣除，是一条完整的数据链。任何一环断裂，后面全部受影响。</p>
+      <div class="chain-flow" role="img" aria-label="数据链条流程图：技术合同 → 合同认定登记 → 技术交易额确认 → 研发费用归集 → 加计扣除申报">
+        <div class="chain-step">
+          <div class="chain-node active">
+            <div class="chain-node-title">① 技术合同</div>
+            <div class="chain-node-desc">委托开发 / 合作开发 / 转让 / 许可</div>
+          </div>
+        </div>
+        <div class="chain-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="chain-step">
+          <div class="chain-node active">
+            <div class="chain-node-title">② 合同认定登记</div>
+            <div class="chain-node-desc">登记机构审核 → 出具登记证明</div>
+          </div>
+        </div>
+        <div class="chain-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="chain-step">
+          <div class="chain-node active">
+            <div class="chain-node-title">③ 技术交易额确认</div>
+            <div class="chain-node-desc">官方背书 · 全国联网可查</div>
+          </div>
+        </div>
+        <div class="chain-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="chain-step">
+          <div class="chain-node broken">
+            <div class="chain-node-title">④ 研发费用归集 ⚠</div>
+            <div class="chain-node-desc">委托研发/合作研发数据需与登记一致</div>
+          </div>
+        </div>
+        <div class="chain-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="chain-step">
+          <div class="chain-node">
+            <div class="chain-node-title">⑤ 加计扣除申报</div>
+            <div class="chain-node-desc">享受税收优惠 · 需完整数据链支撑</div>
+          </div>
+        </div>
+      </div>
+      <div class="chain-insight">
+        <strong>关键洞察：</strong>2026年新规下，全国技术合同登记系统联网、跨部门数据共享。技术合同登记的技术交易额，将与研发费用加计扣除的委托研发金额自动对碰——<strong>数据不一致就是风险点。</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SOLUTIONS ====== -->
+  <section class="section solution-section" aria-labelledby="solution-title">
+    <div class="section-inner">
+      <div class="section-label" aria-hidden="true">★ 守信财税解决方案</div>
+      <h2 class="section-title" id="solution-title">从登记到合规，一站式解决</h2>
+      <div class="solution-list">
+        <article class="solution-card">
+          <div class="solution-num">1</div>
+          <div class="solution-content">
+            <h3 class="solution-title">技术合同登记情况初筛</h3>
+            <p class="solution-desc">梳理企业现有合同，判断哪些需要做技术合同认定登记，预估可登记的技术交易额。15分钟出结果。</p>
+            <span class="solution-tag free">限时免费</span>
+          </div>
+        </article>
+        <article class="solution-card">
+          <div class="solution-num">2</div>
+          <div class="solution-content">
+            <h3 class="solution-title">技术合同认定登记代办</h3>
+            <p class="solution-desc">材料准备 → 提交登记 → 跟进审核 → 取得证明，全程代办。一般合同10个工作日内完成。</p>
+            <span class="solution-tag paid">¥3,000-8,000/次</span>
+          </div>
+        </article>
+        <article class="solution-card">
+          <div class="solution-num">3</div>
+          <div class="solution-content">
+            <h3 class="solution-title">技术合同+研发费用一致性校验</h3>
+            <p class="solution-desc">确保技术合同登记的技术交易额与研发费用归集数据完全匹配，出具校验报告留档。堵住税务核查的最大风险点。</p>
+            <span class="solution-tag paid">年度服务包</span>
+          </div>
+        </article>
+        <article class="solution-card">
+          <div class="solution-num">4</div>
+          <div class="solution-content">
+            <h3 class="solution-title">技术合同台账管理+税务筹划</h3>
+            <p class="solution-desc">年度技术合同台账建立与维护，技术交易结构设计，技术转让所得免税筹划。金级会员专属。</p>
+            <span class="solution-tag paid">金级会员专属</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA ====== -->
+  <section class="section cta-section" aria-labelledby="cta-title">
+    <div class="cta-inner">
+      <div class="cta-badge">🏛 2026太原能源博览会 · 展位专属福利</div>
+      <h2 class="section-title" id="cta-title">展会现场预约，享专属优惠</h2>
+      <p class="section-desc">9月3-6日，山西潇河国际会议会展中心。凭此页面到展位，享受以下专属权益：</p>
+      <div class="cta-offers">
+        <div class="cta-offer">
+          <div class="cta-offer-icon" aria-hidden="true">🎁</div>
+          <div class="cta-offer-text">预约企业 <strong>免费</strong> 获得<br>技术合同登记情况初筛一份</div>
+        </div>
+        <div class="cta-offer">
+          <div class="cta-offer-icon" aria-hidden="true">💰</div>
+          <div class="cta-offer-text">现场签约代办服务<br>享 <strong>首单8折</strong> 优惠</div>
+        </div>
+        <div class="cta-offer">
+          <div class="cta-offer-icon" aria-hidden="true">📋</div>
+          <div class="cta-offer-text">签约年度合规包<br>赠送 <strong>稽查风险自评</strong> 工具</div>
+        </div>
+        <div class="cta-offer">
+          <div class="cta-offer-icon" aria-hidden="true">⭐</div>
+          <div class="cta-offer-text">现场升级银级/金级会员<br>享 <strong>额外工具礼包</strong></div>
+        </div>
+      </div>
+      <div class="cta-contact">
+        <div class="cta-phone-btn" role="img" aria-label="预约电话 186-0129-4989">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          立即预约 · 186-0129-4989
+        </div>
+        <p class="cta-wechat">微信：<span>hongchunyu042896</span>（洪淳宇）</p>
+      </div>
+      <p class="cta-scarcity">展会期间每日限接5家企业预约，约满即止</p>
+    </div>
+  </section>
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="page-footer">
+    <p>© 2026 守信财税 · 北京乾坤生会计师事务所</p>
+    <p style="margin-top:4px;">18年财税实战 · 专注能源企业税务合规</p>
+    <p style="margin-top:8px;">186-0129-4989 · reguy006@outlook.com</p>
+  </footer>
+
+</div>
+
+<script>
+// Self-check logic
+(function() {
+  var checkboxes = document.querySelectorAll('.check-box input[type="checkbox"]');
+  var result = document.getElementById('checkResult');
+
+  function update() {
+    var count = 0;
+    for (var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) count++;
+    }
+    if (count === 0) {
+      result.className = 'check-result';
+      result.innerHTML = '';
+      return;
+    }
+    var html = '';
+    if (count >= 4) {
+      html = '<strong>⚠ 高风险：你大概率有未登记的技术合同</strong>'
+        + count + '项指标命中，说明你的企业在技术交易方面活动频繁。如果没有做技术合同认定登记，<strong>研发费用加计扣除的数据链条很可能是断裂的</strong>。<br><br>'
+        + '建议：立即联系守信财税做一次免费初筛，在能源博览会现场预约可享专属优惠。';
+      result.className = 'check-result visible high';
+    } else if (count >= 2) {
+      html = '<strong>⚡ 中风险：存在登记缺口</strong>'
+        + count + '项指标命中，你的企业可能存在需要登记但未登记的技术合同。新规下全国联网+跨部门共享，<strong>数据对碰只是时间问题</strong>。<br><br>'
+        + '建议：做一次免费初筛，确认哪些合同需要登记、漏登了多少。';
+      result.className = 'check-result visible medium';
+    } else {
+      html = '<strong>✓ 初步安全，但仍建议确认</strong>'
+        + count + '项指标命中，风险相对较低。但技术合同类型多样（开发、转让、许可、咨询、服务），<strong>部分类型容易被忽视</strong>。<br><br>'
+        + '建议：做一次免费初筛，15分钟确认是否有遗漏。';
+      result.className = 'check-result visible low';
+    }
+    result.innerHTML = html;
+  }
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener('change', update);
+  }
+})();
+
+// FAQ accordion
+(function() {
+  var items = document.querySelectorAll('.faq-item');
+  for (var i = 0; i < items.length; i++) {
+    (function(item) {
+      var q = item.querySelector('.faq-q');
+      function toggle() {
+        var isOpen = item.classList.contains('open');
+        for (var j = 0; j < items.length; j++) {
+          items[j].classList.remove('open');
+          items[j].querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        }
+        if (!isOpen) {
+          item.classList.add('open');
+          q.setAttribute('aria-expanded', 'true');
+        }
+      }
+      q.addEventListener('click', toggle);
+      q.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    })(items[i]);
+  }
+})();
+</script>
+</body>
+</html>
