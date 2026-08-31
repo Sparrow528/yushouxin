@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>增值税25号公告今日施行 · 案例拆解 — 守信财税</title>
+<meta name="description" content="财政部税务总局公告2026年第25号案例化解读，白名单6类进项可抵，黑名单4类必须转出，2026年9月1日施行。">
+<style>
+:root {
+  --navy: #071B3A;
+  --navy-light: #0D2B55;
+  --gold: #D5A84D;
+  --gold-light: #E8C97A;
+  --gold-dark: #B8912E;
+  --teal: #2BC4B6;
+  --bg: #F3F7FB;
+  --bg-white: #FFFFFF;
+  --text: #102033;
+  --text-secondary: #65758A;
+  --text-light: #8A97A8;
+  --green: #1A8A5C;
+  --green-bg: #E8F5EE;
+  --green-border: #2EAD6D;
+  --red: #C0392B;
+  --red-bg: #FDEEEC;
+  --red-border: #E74C3C;
+  --amber: #D4840A;
+  --amber-bg: #FFF8EC;
+  --amber-border: #F0A020;
+  --border: #D6DEE8;
+  --shadow-sm: 0 1px 3px rgba(7,27,58,0.06);
+  --shadow-md: 0 4px 16px rgba(7,27,58,0.08);
+  --shadow-lg: 0 8px 32px rgba(7,27,58,0.12);
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-stack: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", "Consolas", monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-stack);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover { color: var(--gold-light); }
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+  background: linear-gradient(165deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: #fff;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(213,168,77,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(213,168,77,0.15);
+  border: 1px solid rgba(213,168,77,0.3);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.header-badge svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--gold);
+}
+
+h1 {
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+h1 .gold { color: var(--gold); }
+
+.header-subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.header-summary {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 16px;
+}
+
+.header-summary strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.header-source {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+
+.header-source a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ===== NAV ===== */
+.anchor-nav {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-inner a {
+  display: block;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.nav-inner a:hover {
+  color: var(--navy);
+  border-bottom-color: var(--gold);
+}
+
+/* ===== MAIN ===== */
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== SECTION ===== */
+.section {
+  padding: 48px 0 24px;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold-dark);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.section-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  max-width: 720px;
+}
+
+/* ===== HERO CASE (引子案例) ===== */
+.hero-case {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 32px;
+  margin-top: -20px;
+  margin-bottom: 16px;
+  position: relative;
+  border: 1px solid var(--border);
+}
+
+.hero-case-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.hero-case h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .compare-grid { grid-template-columns: 1fr; }
+}
+
+.compare-card {
+  border-radius: var(--radius);
+  padding: 20px;
+  position: relative;
+}
+
+.compare-card.old {
+  background: var(--red-bg);
+  border: 1px solid rgba(192,57,43,0.2);
+}
+
+.compare-card.new {
+  background: var(--green-bg);
+  border: 1px solid rgba(26,138,92,0.2);
+}
+
+.compare-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.compare-card.old .compare-tag {
+  background: rgba(192,57,43,0.15);
+  color: var(--red);
+}
+
+.compare-card.new .compare-tag {
+  background: rgba(26,138,92,0.15);
+  color: var(--green);
+}
+
+.compare-card p {
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+.compare-amount {
+  font-size: 28px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  margin: 8px 0;
+}
+
+.compare-card.old .compare-amount { color: var(--red); }
+.compare-card.new .compare-amount { color: var(--green); }
+
+.compare-arrow {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ===== CASE CARDS ===== */
+.case-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.case-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.case-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.case-card-header {
+  padding: 20px 24px 0;
+}
+
+.case-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.case-card.white .case-card-header { border-top: 4px solid var(--green-border); }
+.case-card.black .case-card-header { border-top: 4px solid var(--red-border); }
+.case-card.white .case-number { background: var(--green-bg); color: var(--green); }
+.case-card.black .case-number { background: var(--red-bg); color: var(--red); }
+
+.case-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.case-card-body {
+  padding: 0 24px 24px;
+}
+
+.case-scenario {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.case-amount-box {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+
+.case-amount-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.case-amount-value {
+  font-size: 26px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--gold-dark);
+}
+
+.case-conclusion {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.case-card.white .case-conclusion {
+  background: var(--green-bg);
+  border: 1px solid rgba(46,173,109,0.2);
+  color: var(--green);
+}
+
+.case-card.black .case-conclusion {
+  background: var(--red-bg);
+  border: 1px solid rgba(231,76,60,0.2);
+  color: var(--red);
+}
+
+.case-conclusion svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.case-card.white .case-conclusion svg { fill: var(--green); }
+.case-card.black .case-conclusion svg { fill: var(--red); }
+
+.case-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--amber-bg);
+  border: 1px solid rgba(240,160,32,0.2);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--amber);
+}
+
+.case-tip svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  fill: var(--amber);
+}
+
+/* ===== SUPPLEMENTARY SECTION ===== */
+.supplement-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.supplement-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.supplement-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.supplement-body {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+@media (max-width: 540px) {
+  .compare-row { grid-template-columns: 1fr; }
+}
+
+.compare-item {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.compare-item.correct {
+  background: var(--green-bg);
+  border-left: 3px solid var(--green);
+}
+
+.compare-item.wrong {
+  background: var(--red-bg);
+  border-left: 3px solid var(--red);
+}
+
+.compare-item .label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.compare-item.correct .label { color: var(--green); }
+.compare-item.wrong .label { color: var(--red); }
+
+/* ===== TRANSITION ===== */
+.transition-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  color: #fff;
+  margin: 32px 0 16px;
+}
+
+.transition-box h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--gold);
+}
+
+.transition-list {
+  list-style: none;
+}
+
+.transition-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.9);
+}
+
+.transition-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* ===== ACTION CARDS ===== */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .action-grid { grid-template-columns: 1fr; }
+}
+
+.action-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.action-card.urgent::before { background: var(--red); }
+.action-card.refund::before { background: var(--green); }
+.action-card.correct::before { background: var(--amber); }
+
+.action-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.action-card.urgent .action-icon { background: rgba(192,57,43,0.1); }
+.action-card.refund .action-icon { background: rgba(26,138,92,0.1); }
+.action-card.correct .action-icon { background: rgba(212,132,10,0.1); }
+
+.action-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.action-card.urgent .action-icon svg { fill: var(--red); }
+.action-card.refund .action-icon svg { fill: var(--green); }
+.action-card.correct .action-icon svg { fill: var(--amber); }
+
+.action-step {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.action-card.urgent .action-step { color: var(--red); }
+.action-card.refund .action-step { color: var(--green); }
+.action-card.correct .action-step { color: var(--amber); }
+
+.action-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.action-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  padding: 40px 24px;
+  margin-top: 48px;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-brand-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(213,168,77,0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-brand-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--gold);
+}
+
+.footer-brand-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.footer-brand-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 20px 0;
+}
+
+.footer-source {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.footer-source a {
+  color: var(--gold);
+}
+
+.footer-disclaimer {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ===== PRINT ===== */
+@media print {
+  .anchor-nav { display: none; }
+  .site-header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .case-card, .supplement-card, .action-card, .hero-case, .transition-box {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+  body { background: #fff; font-size: 12pt; }
+  .section { padding: 24pt 0 12pt; }
+  .compare-amount, .case-amount-value { font-size: 20pt; }
+}
+
+/* ===== UTILS ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-badge">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      守信财税 · 政策速递
+    </div>
+    <h1>增值税25号公告今日施行<br><span class="gold">案例拆解</span></h1>
+    <p class="header-subtitle">财政部 税务总局公告2026年第25号 &nbsp;|&nbsp; 2026年9月1日正式施行</p>
+    <div class="header-summary">
+      过去<strong>"不征税收入对应的进项要不要转出"</strong>各地口径不一，现在全国统一——<strong>白名单6类进项可抵，黑名单4类必须转出</strong>。本文用10个真实商业场景+具体金额，帮你一次看懂。
+    </div>
+    <p class="header-source">
+      政策原文来源：<a href="https://finance.sina.com.cn/wm/2026-08-28/doc-inipwhrr4526310.shtml" target="_blank" rel="noopener noreferrer">新浪财经 · 财政部官网转载</a>
+    </p>
+  </div>
+</header>
+
+<!-- ===== NAV ===== -->
+<nav class="anchor-nav" aria-label="页面导航">
+  <div class="nav-inner">
+    <a href="#intro">引子案例</a>
+    <a href="#whitelist">✅ 白名单</a>
+    <a href="#blacklist">❌ 黑名单</a>
+    <a href="#supplement">📋 配套规则</a>
+    <a href="#transition">过渡期</a>
+    <a href="#action">🎯 行动清单</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== 引子案例 ===== -->
+<section class="section" id="intro">
+  <div class="hero-case">
+    <div class="hero-case-label">💡 先看一个案例</div>
+    <h2>北京某制造企业，厂房出险获保险赔付200万，维修费150万（进项19.5万）——进项转不转？</h2>
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <span class="compare-tag">旧做法（各地口径不一）</span>
+        <p>保险赔付不征增值税 → 对应的维修进项<strong>一律转出</strong></p>
+        <div class="compare-amount">−19.5万</div>
+        <p class="compare-arrow">企业白白多交了19.5万税款 💸</p>
+      </div>
+      <div class="compare-card new">
+        <span class="compare-tag">新规则（25号公告）</span>
+        <p>保险赔付属于<strong>白名单</strong> → 进项<strong>正常抵扣</strong>，无需转出</p>
+        <div class="compare-amount">+19.5万</div>
+        <p class="compare-arrow">企业直接省下19.5万 ✅</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 白名单 ===== -->
+<section class="section" id="whitelist">
+  <div class="section-label">WHITE LIST</div>
+  <h2 class="section-title">✅ 白名单：6类非应税交易，进项可正常抵扣</h2>
+  <p class="section-desc">以下6类不征增值税的交易，企业为取得这些收入或发生这些行为而采购所产生的进项税额，可以正常抵扣，无需做进项转出。</p>
+
+  <div class="case-grid">
+
+    <!-- 白名单案例1：保险赔付 -->
+    <article class="case-card white">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">1</span>
+          保险赔付
+        </div>
+        <div class="case-scenario">
+          北京某精密机械加工厂，厂房和精密设备投保了财产险，年保费12万。2026年因电路故障发生火灾，厂房维修费150万、设备修复费80万，保险公司理赔200万。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">可抵扣进项税额</div>
+          <div class="case-amount-value">26.5万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">维修+修复进项 = (150+80) ÷ 1.13 × 13% ≈ 26.5万</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          <span>保险赔付虽不征增值税，但维修费对应的<strong>26.5万进项税额正常抵扣</strong>，无需转出。</span>
+        </div>
+        <div class="case-tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span><strong>踩坑提醒：</strong>很多老会计看到"保险赔付不征税"就习惯性全额进项转出，新规后千万别这么做了。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 白名单案例2：接受捐赠 -->
+    <article class="case-card white">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">2</span>
+          接受捐赠
+        </div>
+        <div class="case-scenario">
+          北京某科技公司收到一家公益基金会捐赠的研发设备5台，公允价值60万元。公司为这批设备做了安装调试，发生安装服务费3万（进项0.39万），运输费0.5万（进项0.045万）。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">可抵扣进项税额</div>
+          <div class="case-amount-value">0.435万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">安装调试 0.39万 + 运输 0.045万 = 0.435万</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          <span>接受捐赠本身不属于应税交易，但受赠方为接收捐赠发生的采购进项<strong>0.435万可以正常抵扣</strong>。</span>
+        </div>
+        <div class="case-tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span><strong>踩坑提醒：</strong>接受捐赠的进项转出是老问题，新规明确不用转出。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 白名单案例3：合同违约金 -->
+    <article class="case-card white">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">3</span>
+          合同违约金
+        </div>
+        <div class="case-scenario">
+          河北某建材贸易商与下游客户签订500万元钢材购销合同。签约后因客户原因合同取消，未发生任何货物交易。按合同约定，建材商收取违约金15万元。同期该建材商有办公租赁费进项1.2万、差旅费进项0.3万。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">可抵扣进项税额</div>
+          <div class="case-amount-value">1.5万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">办公租赁 1.2万 + 差旅 0.3万 = 1.5万</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          <span>合同未履行且未发生应税交易，违约金15万不征增值税，相关进项<strong>1.5万正常抵扣</strong>。</span>
+        </div>
+        <div class="case-tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span><strong>关键区分：</strong>如果合同已履行、只是延迟付款的违约金 → 属于价外费用，要缴增值税。只有"<strong>合同未履行 + 未发生应税交易</strong>"双条件同时满足才适用白名单。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 白名单案例4：无偿提供服务 -->
+    <article class="case-card white">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">4</span>
+          无偿提供服务
+        </div>
+        <div class="case-scenario">
+          某集团公司总部为子公司免费提供管理咨询服务（非金融），总部发生咨询团队差旅费8万（进项1.04万）、外聘专家费5万（进项0.28万）。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">可抵扣进项税额</div>
+          <div class="case-amount-value">1.32万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">差旅 1.04万 + 外聘专家 0.28万 = 1.32万</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          <span>无偿提供服务（不含金融商品转让）属于白名单，总部发生的<strong>1.32万进项正常抵扣</strong>。</span>
+        </div>
+        <div class="case-tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span><strong>例外提醒：</strong>如果是无偿转让金融商品（如无偿转让股权/债券），则不适用白名单，进项不得抵扣。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 白名单案例5：应收账款债权转让 -->
+    <article class="case-card white">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">5</span>
+          应收账款债权转让
+        </div>
+        <div class="case-scenario">
+          北京某软件公司完成一个300万的软件开发项目（已开票缴税），形成应收账款300万。因资金周转需要，将应收账款以285万元转让给某商业保理公司。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">转让行为不产生增值税；催收相关可抵扣进项</div>
+          <div class="case-amount-value">0.11万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">催收该应收款发生律师费2万 → 进项 2÷1.06×6% ≈ 0.11万</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          <span>转让自身应税交易产生的应收账款债权，不征增值税，<strong>相关进项可抵扣</strong>。</span>
+        </div>
+        <div class="case-tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span><strong>注意区分：</strong>转让"有价证券"（如股票、债券）不适用白名单，属于增值税应税行为。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 白名单案例6：不挂钩财政补贴 -->
+    <article class="case-card white">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">6</span>
+          不挂钩财政补贴
+        </div>
+        <div class="case-scenario">
+          北京市某区向辖区内高新技术企业发放"创新发展引导基金"200万元，该补贴不与企业的销售收入或销售数量直接挂钩，而是用于支持企业研发能力建设。企业当年有研发设备采购进项18万。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">可抵扣进项税额</div>
+          <div class="case-amount-value">18万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">研发设备采购进项 = 18万</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          <span>不挂钩的财政补贴不征增值税，企业采购进项<strong>18万正常抵扣</strong>。</span>
+        </div>
+        <div class="case-tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span><strong>判断标准：</strong>补贴与销售收入/数量<strong>不直接挂钩</strong> → 白名单，可抵扣；<strong>直接挂钩</strong> → 应税收入，需缴增值税。</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== 黑名单 ===== -->
+<section class="section" id="blacklist">
+  <div class="section-label">BLACK LIST</div>
+  <h2 class="section-title">❌ 黑名单：4类非应税交易，进项不得抵扣</h2>
+  <p class="section-desc">以下4类交易不属于增值税应税范围，企业为此发生的进项税额不得从销项税额中抵扣，已抵扣的必须做进项转出。</p>
+
+  <div class="case-grid">
+
+    <!-- 黑名单案例1：非境内应税交易 -->
+    <article class="case-card black">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">1</span>
+          非境内应税交易
+        </div>
+        <div class="case-scenario">
+          北京某咨询公司受境外客户委托，为其提供完全在境外发生的市场调研服务，收取服务费50万。为完成该项目发生差旅费6万（进项0.78万）、翻译费2万（进项0.11万）。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">不得抵扣进项税额</div>
+          <div class="case-amount-value" style="color:var(--red);">0.89万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">差旅 0.78万 + 翻译 0.11万 = 0.89万，必须转出</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+          <span>交易不属于境内应税交易，进项<strong>0.89万不得抵扣，必须转出</strong>。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 黑名单案例2：有偿转让股权 -->
+    <article class="case-card black">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">2</span>
+          有偿转让股权
+        </div>
+        <div class="case-scenario">
+          北京某民营企业老板将其持有的某有限责任公司30%股权以800万元转让给新投资方。为完成股权转让，支付了审计费15万（进项0.85万）、评估费10万（进项0.57万）、律师费20万（进项1.13万）。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">不得抵扣进项税额</div>
+          <div class="case-amount-value" style="color:var(--red);">2.55万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">审计 0.85万 + 评估 0.57万 + 律师 1.13万 = 2.55万，全部转出</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+          <span>转让非上市公司股权属于黑名单，审计+评估+律师费进项<strong>2.55万不得抵扣！</strong></span>
+        </div>
+        <div class="case-tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span><strong>高频踩坑：</strong>这是最常见的错误。很多企业的审计费、评估费、律师费进项都违规抵扣了，<strong>接下来税务稽查必查这个</strong>。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 黑名单案例3：股息红利 -->
+    <article class="case-card black">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">3</span>
+          股息红利
+        </div>
+        <div class="case-scenario">
+          某投资公司持有A公司40%股权，2026年收到股息红利分红500万元。为持有和管理该股权投资发生基金管理费3万（进项0.17万）、托管费1万（进项0.06万）。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">不得抵扣进项税额</div>
+          <div class="case-amount-value" style="color:var(--red);">0.23万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">基金管理费 0.17万 + 托管费 0.06万 = 0.23万</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+          <span>持有股权取得的股息红利属于黑名单，对应进项<strong>0.23万不得抵扣</strong>。</span>
+        </div>
+        <div class="case-tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span><strong>注意：</strong>上市公司普通股分红同样在黑名单内，无论持有哪种形式的股权分红，对应进项均不得抵扣。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 黑名单案例4：货物期货交易 -->
+    <article class="case-card black">
+      <div class="case-card-header"></div>
+      <div class="case-card-body">
+        <div class="case-title">
+          <span class="case-number">4</span>
+          货物期货交易
+        </div>
+        <div class="case-scenario">
+          某期货公司在上海期货交易所进行铜期货交易，2026年8月开仓买入100手铜期货合约，9月平仓获利50万（非实物交割）。交易过程中支付交易所手续费2万（进项0.11万）、信息费0.5万（进项0.03万）。
+        </div>
+        <div class="case-amount-box">
+          <div class="case-amount-label">不得抵扣进项税额</div>
+          <div class="case-amount-value" style="color:var(--red);">0.14万</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">手续费 0.11万 + 信息费 0.03万 = 0.14万</div>
+        </div>
+        <div class="case-conclusion">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+          <span>货物期货交易非实物交割环节属于黑名单，进项<strong>0.14万不得抵扣</strong>。</span>
+        </div>
+        <div class="case-tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span><strong>关键界限：</strong>只有<strong>实物交割环节</strong>才属于增值税应税范围。期货平仓差价不征增值税，对应进项需转出。</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== 配套规则 ===== -->
+<section class="section" id="supplement">
+  <div class="section-label">KEY CHANGES</div>
+  <h2 class="section-title">📋 其他关键变化</h2>
+  <p class="section-desc">除白名单/黑名单外，25号公告还有几项直接影响日常开票和税务处理的配套规则变化。</p>
+
+  <!-- 场景A：折扣开票新规 -->
+  <div class="supplement-card">
+    <div class="supplement-label">场景 A</div>
+    <div class="supplement-title">折扣开票新规 —— 备注栏折扣无效</div>
+    <div class="supplement-body">
+      <p><strong>案例：</strong>某电器经销商开展促销活动，商品原价10万（不含税），给予客户10%折扣即9万。</p>
+      <div class="compare-row">
+        <div class="compare-item correct">
+          <div class="label">✅ 正确做法</div>
+          在同一张发票<strong>"金额"栏</strong>分别注明原价10万和折扣1万 → 按<strong>9万</strong>计缴增值税
+        </div>
+        <div class="compare-item wrong">
+          <div class="label">❌ 错误做法</div>
+          只在备注栏写折扣信息 → 按<strong>10万</strong>全额计缴增值税，多交<strong>0.13万</strong>税
+        </div>
+      </div>
+      <p style="margin-top:8px;color:var(--text-secondary);font-size:14px;"><strong>变化要点：</strong>明确"不含税价款"为销售额计算基准；备注栏折扣无效。</p>
+    </div>
+  </div>
+
+  <!-- 场景B：电信服务赠品 -->
+  <div class="supplement-card">
+    <div class="supplement-label">场景 B</div>
+    <div class="supplement-title">电信服务赠品 —— 全部价款拆分核算</div>
+    <div class="supplement-body">
+      <p><strong>案例：</strong>某运营商推出套餐，月费199元（电信服务），赠送手机一部（市场价800元）。</p>
+      <div class="compare-row">
+        <div class="compare-item correct">
+          <div class="label">✅ 新规处理</div>
+          全部价款分开核算：电信服务199元按<strong>9%</strong>计税，手机按<strong>13%</strong>计税
+        </div>
+        <div class="compare-item wrong">
+          <div class="label">❌ 旧规做法</div>
+          手机作为"价外费用"并入电信服务统一按9%计税
+        </div>
+      </div>
+      <p style="margin-top:8px;color:var(--text-secondary);font-size:14px;"><strong>变化要点：</strong>删除了"价外费用"表述，直接按全部价款拆分核算，各适用各自税率。</p>
+    </div>
+  </div>
+
+  <!-- 场景C：放弃增值税优惠 -->
+  <div class="supplement-card">
+    <div class="supplement-label">场景 C</div>
+    <div class="supplement-title">放弃增值税优惠 —— 灵活选择起始时点</div>
+    <div class="supplement-body">
+      <p><strong>案例：</strong>某养老机构此前享受免征增值税优惠，因业务调整决定放弃优惠。</p>
+      <div class="compare-row">
+        <div class="compare-item wrong">
+          <div class="label">旧规则</div>
+          提交备案后<strong>次月起</strong>才停止享受优惠
+        </div>
+        <div class="compare-item correct">
+          <div class="label">✅ 新规则</div>
+          可自行选择放弃优惠的起始时点（<strong>当月即可</strong>），灵活性大幅提升
+        </div>
+      </div>
+      <p style="margin-top:8px;color:var(--text-secondary);font-size:14px;"><strong>变化要点：</strong>不再受"次月生效"的限制，企业可根据实际业务需要自行选择放弃优惠的起始月份。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 过渡期提示 ===== -->
+<section id="transition">
+  <div class="transition-box">
+    <h3>⏰ 过渡期提示</h3>
+    <ul class="transition-list">
+      <li><strong>2026年9月1日起</strong>正式执行，所有纳税人按新规处理增值税进项抵扣</li>
+      <li><strong>2026年1月1日至8月31日</strong>已发生但尚未处理的事项，可按25号公告<strong>追溯执行</strong></li>
+      <li>上半年做错的企业有<strong>更正窗口</strong>——白名单做了进项转出的可以更正回来，黑名单没转出的赶紧转出</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 行动清单 ===== -->
+<section class="section" id="action">
+  <div class="section-label">ACTION ITEMS</div>
+  <h2 class="section-title">🎯 行动清单</h2>
+  <p class="section-desc">三件事，本周内完成：</p>
+
+  <div class="action-grid">
+    <div class="action-card urgent">
+      <div class="action-icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <div class="action-step">STEP 1</div>
+      <div class="action-title">立即梳理</div>
+      <div class="action-desc">梳理上半年保险理赔、政府补贴、违约金、股权转让、股息红利的进项处理，逐一对照白名单和黑名单。</div>
+    </div>
+
+    <div class="action-card refund">
+      <div class="action-icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.94s4.18 1.36 4.18 3.85c0 1.89-1.44 2.98-3.12 3.19z"/></svg>
+      </div>
+      <div class="action-step">STEP 2</div>
+      <div class="action-title">该追回的追回</div>
+      <div class="action-desc">白名单业务之前做了进项转出的，1-8月可<strong>追溯更正</strong>，把多交的税要回来。</div>
+    </div>
+
+    <div class="action-card correct">
+      <div class="action-icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+      </div>
+      <div class="action-step">STEP 3</div>
+      <div class="action-title">该转出的转出</div>
+      <div class="action-desc">黑名单业务的进项还挂着抵扣的，<strong>立即做进项转出</strong>，避免后续税务稽查风险。</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+      </div>
+      <div>
+        <div class="footer-brand-name">守信财税</div>
+        <div class="footer-brand-sub">18年财税合规经验</div>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <p class="footer-source">
+      政策原文来源：<a href="https://finance.sina.com.cn/wm/2026-08-28/doc-inipwhrr4526310.shtml" target="_blank" rel="noopener noreferrer">新浪财经 · 财政部网站</a>
+    </p>
+    <p class="footer-disclaimer">
+      免责声明：本页面内容仅供学习参考，不构成税务或法律建议。具体税务处理请以财政部、税务总局发布的正式文件为准，并结合企业实际情况咨询专业税务顾问。文中案例为说明性场景，具体金额仅为演示计算。
+    </p>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll for anchor navigation with offset
+document.querySelectorAll('.anchor-nav a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(e) {
+    var targetId = this.getAttribute('href').slice(1);
+    var target = document.getElementById(targetId);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
