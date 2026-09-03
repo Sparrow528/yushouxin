@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新CAS30利润表变革 — 过渡期准备指南</title>
+<style>
+:root {
+  --deep-blue: #071B3A;
+  --bg: #F3F7FB;
+  --gold: #D5A84D;
+  --gold-light: #F5EDD8;
+  --cyan: #2BC4B6;
+  --cyan-bg: #E6F9F6;
+  --text: #102033;
+  --sub: #65758A;
+  --white: #FFFFFF;
+  --risk-red: #E74C3C;
+  --risk-red-bg: #FDEAEA;
+  --safe-green: #27AE60;
+  --safe-green-bg: #E8F8EF;
+  --warn-orange: #E67E22;
+  --warn-orange-bg: #FEF5E7;
+  --border: #D8E3EE;
+  --card-shadow: 0 2px 12px rgba(7,27,58,0.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', 'IBM Plex Sans', 'Avenir', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ── Header ── */
+.page-header {
+  background: linear-gradient(135deg, var(--deep-blue) 0%, #0E2F5C 100%);
+  color: var(--white);
+  padding: 40px 32px 36px;
+}
+.page-header h1 { font-size: 1.7rem; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 8px; }
+.page-header .subtitle { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+.policy-badge {
+  display: inline-block; background: var(--gold); color: var(--deep-blue);
+  font-weight: 700; font-size: 0.88rem; padding: 4px 14px; border-radius: 4px; margin-top: 12px;
+}
+
+/* ── Container ── */
+.container { max-width: 1000px; margin: 0 auto; padding: 32px 24px 48px; }
+.section-title {
+  font-size: 1.15rem; font-weight: 700; color: var(--deep-blue);
+  margin-bottom: 20px; padding-left: 12px; border-left: 3px solid var(--gold);
+}
+
+/* ── Alert Box ── */
+.alert-box {
+  background: var(--risk-red-bg); border-left: 4px solid var(--risk-red); border-radius: 0 8px 8px 0;
+  padding: 16px 20px; margin-bottom: 24px; font-size: 0.88rem; box-shadow: var(--card-shadow);
+}
+.alert-box strong { color: var(--risk-red); }
+
+/* ── Note Box ── */
+.note-box {
+  background: var(--white); border-left: 4px solid var(--gold); border-radius: 0 8px 8px 0;
+  padding: 16px 20px; margin-bottom: 24px; font-size: 0.88rem; color: var(--sub); box-shadow: var(--card-shadow);
+}
+.note-box strong { color: var(--text); }
+
+/* ── Structure Comparison ── */
+.struct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+.struct-card {
+  background: var(--white); border-radius: 10px; padding: 20px;
+  box-shadow: var(--card-shadow); font-size: 0.88rem;
+}
+.struct-card h3 {
+  font-size: 0.95rem; margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+.struct-card.old h3 { color: var(--sub); }
+.struct-card.new h3 { color: var(--deep-blue); }
+.struct-line { padding: 4px 0; color: var(--sub); font-size: 0.85rem; }
+.struct-line.highlight { font-weight: 700; color: var(--text); }
+.struct-line.gone { color: var(--risk-red); text-decoration: line-through; }
+.struct-line.added { color: var(--safe-green); font-weight: 600; }
+.struct-subtotal {
+  padding: 6px 10px; margin: 6px 0; border-radius: 4px; font-weight: 700; font-size: 0.85rem;
+}
+.struct-subtotal.gold { background: var(--gold-light); color: var(--deep-blue); }
+.struct-subtotal.cyan { background: var(--cyan-bg); color: #0D5E56; }
+
+/* ── Mapping Table ── */
+.mapping-table {
+  width: 100%; border-collapse: collapse; background: var(--white);
+  border-radius: 10px; overflow: hidden; box-shadow: var(--card-shadow); font-size: 0.85rem;
+  margin-bottom: 24px;
+}
+.mapping-table thead th {
+  background: var(--deep-blue); color: var(--white);
+  padding: 10px 14px; text-align: left; font-weight: 600; font-size: 0.82rem;
+}
+.mapping-table tbody td {
+  padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top;
+}
+.mapping-table tbody tr:last-child td { border-bottom: none; }
+.mapping-table .cat-row td {
+  background: #F0F5FA; font-weight: 700; color: var(--deep-blue);
+  border-top: 2px solid var(--deep-blue); font-size: 0.88rem;
+}
+.mapping-table .arrow { color: var(--gold); font-weight: 700; }
+.tag {
+  display: inline-block; padding: 1px 8px; border-radius: 3px;
+  font-size: 0.75rem; font-weight: 600;
+}
+.tag-red { background: var(--risk-red-bg); color: var(--risk-red); }
+.tag-green { background: var(--safe-green-bg); color: var(--safe-green); }
+.tag-orange { background: var(--warn-orange-bg); color: var(--warn-orange); }
+.tag-blue { background: #EBF3FE; color: #1A5CAD; }
+
+/* ── Tax Gap Section ── */
+.gap-card {
+  background: var(--white); border-radius: 10px; padding: 20px;
+  box-shadow: var(--card-shadow); margin-bottom: 20px; font-size: 0.88rem;
+}
+.gap-card h3 { font-size: 0.95rem; color: var(--deep-blue); margin-bottom: 10px; }
+.gap-card ul { list-style: none; padding: 0; }
+.gap-card ul li {
+  padding: 6px 0 6px 16px; position: relative; font-size: 0.85rem; color: var(--sub);
+}
+.gap-card ul li::before {
+  content: '•'; position: absolute; left: 0; color: var(--gold); font-weight: 700;
+}
+
+/* ── Timeline ── */
+.timeline { position: relative; margin: 24px 0; padding-left: 28px; }
+.timeline::before {
+  content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+  width: 2px; background: var(--border);
+}
+.timeline-item { position: relative; margin-bottom: 24px; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -22px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--gold);
+  background: var(--white);
+}
+.timeline-item.active::before { background: var(--gold); }
+.timeline-item .tl-date {
+  font-size: 0.8rem; font-weight: 700; color: var(--gold); margin-bottom: 2px;
+}
+.timeline-item .tl-content {
+  background: var(--white); border-radius: 8px; padding: 14px 18px;
+  box-shadow: var(--card-shadow); font-size: 0.85rem;
+}
+.timeline-item .tl-content strong { color: var(--deep-blue); }
+
+/* ── Checklist ── */
+.check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+.check-card {
+  background: var(--white); border-radius: 10px; padding: 20px;
+  box-shadow: var(--card-shadow);
+}
+.check-card h3 { font-size: 0.92rem; color: var(--deep-blue); margin-bottom: 12px; }
+.check-card ul { list-style: none; padding: 0; }
+.check-card ul li {
+  padding: 7px 0 7px 22px; position: relative; font-size: 0.84rem;
+  color: var(--sub); border-bottom: 1px solid #F0F3F7;
+}
+.check-card ul li:last-child { border-bottom: none; }
+.check-card ul li::before {
+  content: '☐'; position: absolute; left: 0; color: var(--gold); font-weight: 700; font-size: 0.9rem;
+}
+
+/* ── Conclusion ── */
+.conclusion-box {
+  background: var(--white); border-left: 4px solid var(--safe-green); border-radius: 0 8px 8px 0;
+  padding: 16px 20px; margin-bottom: 24px; font-size: 0.88rem; box-shadow: var(--card-shadow);
+}
+
+/* ── Footer ── */
+.page-footer {
+  text-align: center; padding: 20px; font-size: 0.78rem; color: var(--sub);
+  border-top: 1px solid var(--border); margin-top: 20px;
+}
+
+@media (max-width: 680px) {
+  .struct-grid, .check-grid { grid-template-columns: 1fr; }
+  .page-header { padding: 28px 20px 24px; }
+  .container { padding: 20px 16px 36px; }
+  .mapping-table { font-size: 0.78rem; }
+  .mapping-table thead th, .mapping-table tbody td { padding: 7px 8px; }
+}
+@media print {
+  body { background: #fff; }
+  .struct-card, .mapping-table, .gap-card, .check-card, .note-box, .conclusion-box, .alert-box, .timeline-item .tl-content {
+    box-shadow: none; border: 1px solid #ddd;
+  }
+  .page-header { background: var(--deep-blue) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>新CAS30利润表变革 · 过渡期准备指南</h1>
+  <div class="subtitle">依据：财会〔2026〕11号《企业会计准则第30号——财务报表列报》修订版</div>
+  <div class="policy-badge">新旧科目映射 · 税务衔接分析 · 过渡期清单</div>
+</header>
+
+<main class="container">
+
+  <!-- ── 核心结论 ── -->
+  <div class="alert-box" style="margin-top: 4px;">
+    <strong>⚠ 关键判断：</strong>截至目前（2026年9月），国家税务总局<strong>尚未发布</strong>与企业所得税年度纳税申报表配套新CAS30五分类结构的修订公告。现行A100000主表及A101010/A102010等附表仍沿用旧利润表行次结构（含"营业外收入""营业外支出""资产处置收益"等）。<strong>税务申报表与会计报表之间将出现口径断层</strong>，过渡期内企业需要自行建立映射调节机制。
+  </div>
+
+  <!-- ── 新旧结构对比 ── -->
+  <h2 class="section-title">利润表结构对比：旧表 vs 新表</h2>
+  <div class="struct-grid">
+    <div class="struct-card old">
+      <h3>旧利润表（现行）</h3>
+      <div class="struct-line">一、营业收入</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;减：营业成本</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;税金及附加</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售费用</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理费用</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研发费用</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;财务费用</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;加：其他收益 / 投资收益 …</div>
+      <div class="struct-subtotal gold">营业利润</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;加：营业外收入</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;减：营业外支出</div>
+      <div class="struct-subtotal gold">利润总额</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;减：所得税费用</div>
+      <div class="struct-subtotal gold">净利润</div>
+    </div>
+    <div class="struct-card new">
+      <h3>新利润表（五分类）</h3>
+      <div class="struct-line highlight">一、经营类别</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;经营收入 / 经营成本 / 税金 …</div>
+      <div class="struct-subtotal cyan">经营利润（新增）</div>
+      <div class="struct-line highlight">二、投资类别</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;利息收入 / 投资收益 / 公允价值变动 …</div>
+      <div class="struct-subtotal cyan">经营及投资利润（新增）</div>
+      <div class="struct-line highlight">三、筹资类别</div>
+      <div class="struct-line">&nbsp;&nbsp;&nbsp;利息费用 / 汇兑损益（筹资部分）</div>
+      <div class="struct-subtotal cyan">持续经营利润总额（新增）</div>
+      <div class="struct-line highlight">四、终止经营</div>
+      <div class="struct-line">五、所得税费用</div>
+      <div class="struct-subtotal gold">利润总额</div>
+      <div class="struct-subtotal gold">净利润</div>
+    </div>
+  </div>
+  <div class="note-box">
+    <strong>核心变化：</strong>新表取消了"营业利润""营业外收入""营业外支出"三个行项目，代之以"经营利润→经营及投资利润→持续经营利润总额"三个递进小计。<strong>净利润数字不变，变的是利润来源的结构展示。</strong>
+    <br><br>
+    <strong>同时消失的行项目：</strong>财务费用（拆为利息收入/利息费用/汇兑损益）、公允价值变动损益（按类别拆分归入经营或投资）。
+  </div>
+
+  <!-- ── 新旧科目映射表 ── -->
+  <h2 class="section-title">新旧利润表科目映射表</h2>
+  <div class="note-box">
+    <strong>分类规则：</strong>经营类别为<strong>排除法</strong>——不属于投资、筹资、所得税费用、终止经营的损益，全部归入经营类别。特定主要业务活动企业（如银行、物业公司）有特殊规则。
+  </div>
+  <table class="mapping-table">
+    <caption style="text-align:left;font-weight:600;padding:12px 14px;color:var(--deep-blue);caption-side:top;font-size:0.9rem;">新旧利润表科目逐行映射</caption>
+    <thead>
+      <tr>
+        <th style="width:30%;">旧利润表项目</th>
+        <th style="width:10%;">状态</th>
+        <th style="width:15%;">新表类别</th>
+        <th style="width:45%;">新表列示项目 / 说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 经营类别 -->
+      <tr class="cat-row"><td colspan="4">▎经营类别 → 小计：经营利润</td></tr>
+      <tr>
+        <td>营业收入</td>
+        <td><span class="tag tag-orange">更名</span></td>
+        <td>经营</td>
+        <td>→ <strong>经营收入</strong>（名称变更，内容不变）</td>
+      </tr>
+      <tr>
+        <td>营业成本</td>
+        <td><span class="tag tag-orange">更名</span></td>
+        <td>经营</td>
+        <td>→ <strong>经营成本</strong>（名称变更，内容不变）</td>
+      </tr>
+      <tr>
+        <td>税金及附加</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>经营</td>
+        <td>不变，仍在经营类别内列示</td>
+      </tr>
+      <tr>
+        <td>销售费用</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>经营</td>
+        <td>不变</td>
+      </tr>
+      <tr>
+        <td>管理费用</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>经营</td>
+        <td>不变</td>
+      </tr>
+      <tr>
+        <td>研发费用</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>经营</td>
+        <td>不变</td>
+      </tr>
+      <tr>
+        <td>其他收益</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>经营</td>
+        <td>不变（政府补助等与日常活动相关的收益）</td>
+      </tr>
+      <tr>
+        <td>信用减值损失</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>经营</td>
+        <td>不变（经营性应收的减值）</td>
+      </tr>
+      <tr>
+        <td>资产减值损失</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>经营</td>
+        <td>不变（经营性资产的减值）</td>
+      </tr>
+      <tr>
+        <td>资产处置收益</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>经营</td>
+        <td>不变（非流动资产的常规处置损益）</td>
+      </tr>
+      <tr>
+        <td>公允价值变动损益<br><small>（经营相关部分）</small></td>
+        <td><span class="tag tag-red">拆分</span></td>
+        <td>经营</td>
+        <td>→ 归入"其他经营类收益（损失）"。原"公允价值变动损益"行项目取消，按所属类别拆分</td>
+      </tr>
+      <tr>
+        <td>营业外收入<br><small>（罚款/捐赠/盘盈/非常损失补偿等）</small></td>
+        <td><span class="tag tag-red">取消</span></td>
+        <td>经营</td>
+        <td>→ 归入"其他经营类收益"。经营类别为排除法兜底，非投资/筹资/终止经营的利得全部归入经营</td>
+      </tr>
+      <tr>
+        <td>营业外支出<br><small>（罚款/捐赠/非常损失/盘亏等）</small></td>
+        <td><span class="tag tag-red">取消</span></td>
+        <td>经营</td>
+        <td>→ 归入"其他经营类费用"。同上逻辑，排除法兜底归入经营</td>
+      </tr>
+      <!-- 投资类别 -->
+      <tr class="cat-row"><td colspan="4">▎投资类别 → 小计：经营及投资利润</td></tr>
+      <tr>
+        <td>投资收益</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>投资</td>
+        <td>不变（联营合营权益法收益、股息、处置投资损益等）</td>
+      </tr>
+      <tr>
+        <td>公允价值变动损益<br><small>（投资相关部分）</small></td>
+        <td><span class="tag tag-red">拆分</span></td>
+        <td>投资</td>
+        <td>→ 以公允价值计量的投资资产（交易性金融资产等）的变动归入投资类别</td>
+      </tr>
+      <tr>
+        <td>财务费用中的利息收入<br><small>（非主业企业）</small></td>
+        <td><span class="tag tag-red">拆分</span></td>
+        <td>投资</td>
+        <td>→ 单独列示为"利息收入"，归入投资类别。<strong>例外：</strong>银行等主业企业归经营</td>
+      </tr>
+      <!-- 筹资类别 -->
+      <tr class="cat-row"><td colspan="4">▎筹资类别 → 小计：持续经营利润总额</td></tr>
+      <tr>
+        <td>财务费用中的利息费用</td>
+        <td><span class="tag tag-red">拆分</span></td>
+        <td>筹资</td>
+        <td>→ 单独列示为"利息费用"，归入筹资类别</td>
+      </tr>
+      <tr>
+        <td>财务费用中的汇兑损益<br><small>（筹资相关部分）</small></td>
+        <td><span class="tag tag-red">拆分</span></td>
+        <td>筹资</td>
+        <td>→ 外币借款等筹资活动产生的汇兑差额归入筹资。<strong>注意：汇兑跟项目走</strong></td>
+      </tr>
+      <tr>
+        <td>财务费用中的汇兑损益<br><small>（经营相关部分）</small></td>
+        <td><span class="tag tag-red">拆分</span></td>
+        <td>经营</td>
+        <td>→ 外币应收/应付等经营活动产生的汇兑差额归入经营</td>
+      </tr>
+      <tr>
+        <td>财务费用中的汇兑损益<br><small>（投资相关部分）</small></td>
+        <td><span class="tag tag-red">拆分</span></td>
+        <td>投资</td>
+        <td>→ 外币存款等投资活动产生的汇兑差额归入投资</td>
+      </tr>
+      <!-- 终止经营 -->
+      <tr class="cat-row"><td colspan="4">▎终止经营类别</td></tr>
+      <tr>
+        <td>原在营业利润/营业外中混合列示</td>
+        <td><span class="tag tag-blue">独立</span></td>
+        <td>终止经营</td>
+        <td>→ 单独隔离列示，不再与其他损益混合</td>
+      </tr>
+      <!-- 所得税 -->
+      <tr class="cat-row"><td colspan="4">▎所得税费用类别</td></tr>
+      <tr>
+        <td>所得税费用</td>
+        <td><span class="tag tag-green">保留</span></td>
+        <td>所得税</td>
+        <td>不变，单独列示</td>
+      </tr>
+      <!-- 小计项变化 -->
+      <tr class="cat-row"><td colspan="4">▎合计项目变化</td></tr>
+      <tr>
+        <td><strong>营业利润</strong></td>
+        <td><span class="tag tag-red">取消</span></td>
+        <td>—</td>
+        <td>→ 被"经营利润"替代，口径不同（经营利润不含投资收益和投资性公允价值变动）</td>
+      </tr>
+      <tr>
+        <td><strong>营业外收入</strong></td>
+        <td><span class="tag tag-red">取消</span></td>
+        <td>—</td>
+        <td>→ 行项目取消，内容归入经营类"其他经营类收益"</td>
+      </tr>
+      <tr>
+        <td><strong>营业外支出</strong></td>
+        <td><span class="tag tag-red">取消</span></td>
+        <td>—</td>
+        <td>→ 行项目取消，内容归入经营类"其他经营类费用"</td>
+      </tr>
+      <tr>
+        <td><strong>财务费用</strong></td>
+        <td><span class="tag tag-red">取消</span></td>
+        <td>—</td>
+        <td>→ 行项目取消，拆为利息收入（投资）、利息费用（筹资）、汇兑损益（跟项目走）</td>
+      </tr>
+      <tr>
+        <td><strong>公允价值变动损益</strong></td>
+        <td><span class="tag tag-red">取消</span></td>
+        <td>—</td>
+        <td>→ 行项目取消，按性质归入经营或投资</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── 税务报表衔接分析 ── -->
+  <h2 class="section-title">税务报表衔接现状分析</h2>
+  <div class="alert-box">
+    <strong>结论：税务申报表尚未同步更新。</strong>
+    <br><br>
+    截至2026年9月，企业所得税年度纳税申报表（A系列表单）仍执行国家税务总局2025年第1号公告修订版本，主表A100000中仍保留"营业外收入"（第17行）、"营业外支出"（第18行）、"资产处置收益"（第14行）等旧利润表行次。
+  </div>
+
+  <div class="gap-card">
+    <h3>断层点 1：利润总额的计算口径不同</h3>
+    <ul>
+      <li>税务主表A100000的"利润总额"（第19行）= 营业利润 + 营业外收入 − 营业外支出（旧口径）</li>
+      <li>新会计利润表仍保留"利润总额"概念（= 持续经营利润总额 + 终止经营），但内部结构完全不同</li>
+      <li><strong>影响：</strong>企业财务报表的"利润总额"与税务申报表的"利润总额"理论上应一致（均为税前会计利润），但取数路径变了——新表中没有"营业外收入""营业外支出"这两个中间站</li>
+    </ul>
+  </div>
+
+  <div class="gap-card">
+    <h3>断层点 2：附表填报口径不匹配</h3>
+    <ul>
+      <li><strong>A101010 一般企业收入明细表：</strong>仍按旧利润表行次填报，含"营业外收入"分项</li>
+      <li><strong>A102010 一般企业成本支出明细表：</strong>仍含"营业外支出"分项</li>
+      <li><strong>A105000 纳税调整明细表：</strong>部分行次引用旧利润表项目</li>
+      <li><strong>A105080 资产折旧摊销及纳税调整表：</strong>与"资产处置损益"的衔接需关注</li>
+    </ul>
+  </div>
+
+  <div class="gap-card">
+    <h3>断层点 3：金税四期自动比对逻辑</h3>
+    <ul>
+      <li>金税四期已实现财务报表与税务申报表的自动交叉比对</li>
+      <li>过渡期内，企业提交给税务的财务报表如果已切换新格式，与申报表旧格式的行次无法直接自动对应</li>
+      <li><strong>实操预判：</strong>税务总局大概率会在某批企业强制执行新报表前发布申报表的配套修订公告和填报口径说明，但目前尚未出台</li>
+    </ul>
+  </div>
+
+  <div class="note-box">
+    <strong>对审计的影响：</strong>过渡期内，会计师事务所在审计报告中引用的财务报表格式将与客户执行准则版本挂钩。2027年起审计A+H股客户时使用新表，2029年扩展至全部上市客户，2030年覆盖所有企业会计准则客户。<strong>审计底稿模板需要同步更新</strong>。
+  </div>
+
+  <!-- ── 过渡期时间线 ── -->
+  <h2 class="section-title" style="margin-top:32px;">过渡期时间线与行动清单</h2>
+  <div class="timeline">
+    <div class="timeline-item active">
+      <div class="tl-date">2026年9月（当前）</div>
+      <div class="tl-content">
+        <strong>认知统一阶段</strong>
+        <ul style="margin-top:8px;list-style:none;padding:0;">
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 完成新CAS30准则全文学习</li>
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 关注税务总局是否发布申报表配套修订公告</li>
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 梳理事务所客户清单中哪些属于A+H股/境外上市（2027年第一批执行）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">2026年Q4</div>
+      <div class="tl-content">
+        <strong>底稿与系统准备</strong>
+        <ul style="margin-top:8px;list-style:none;padding:0;">
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 更新审计底稿模板中的利润表结构</li>
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 建立新旧利润表科目映射工作底稿</li>
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 为客户制定分类政策（尤其是汇兑损益跟项目走的拆分规则）</li>
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 评估ERP/财务系统升级需求</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">2027年1月1日</div>
+      <div class="tl-content">
+        <strong>第一批：A+H股 / 境外上市企业强制执行</strong>
+        <ul style="margin-top:8px;list-style:none;padding:0;">
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 2027年度报表（含季报）全部使用新格式</li>
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• <strong>需同时提供2026年重述后的对比报表</strong>（追溯调整）</li>
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 税务申报仍用旧表 → 需要建立"新报表→旧申报表"的调节表</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">2029年1月1日</div>
+      <div class="tl-content">
+        <strong>第二批：普通A股上市公司</strong>
+        <ul style="margin-top:8px;list-style:none;padding:0;">
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 预计此时税务申报表已完成配套修订</li>
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 需提供2028年重述对比数据</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">2030年1月1日</div>
+      <div class="tl-content">
+        <strong>第三批：非上市企业会计准则客户</strong>
+        <ul style="margin-top:8px;list-style:none;padding:0;">
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 全面覆盖，包括执行企业会计准则的所有非上市企业</li>
+          <li style="padding:3px 0;font-size:0.84rem;color:var(--sub);">• 执行小企业会计准则的企业不受影响（仍用旧结构）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 事务所准备清单 ── -->
+  <h2 class="section-title">事务所过渡期准备清单</h2>
+  <div class="check-grid">
+    <div class="check-card">
+      <h3>📋 准则学习</h3>
+      <ul>
+        <li>全所学习财会〔2026〕11号全文及官方解读</li>
+        <li>明确五分类规则：经营/投资/筹资/所得税/终止经营</li>
+        <li>理解"排除法"分类逻辑——经营类别为兜底</li>
+        <li>掌握"特定主要业务活动"的例外规则（银行利息归经营）</li>
+        <li>学习MPM（管理层业绩指标）披露要求</li>
+        <li>掌握新旧衔接的追溯重述方法</li>
+      </ul>
+    </div>
+    <div class="check-card">
+      <h3>📊 底稿模板更新</h3>
+      <ul>
+        <li>更新利润表审计底稿模板（新旧两版并存）</li>
+        <li>新增五分类复核底稿——逐类核对分类准确性</li>
+        <li>新增"财务费用拆分"底稿——利息收入/利息费用/汇兑损益各归各类</li>
+        <li>新增"汇兑损益跟项目走"复核表</li>
+        <li>更新重要性判断标准（新增"模糊处理"维度）</li>
+        <li>附注披露模板更新（MPM调节表、分类明细等）</li>
+      </ul>
+    </div>
+    <div class="check-card">
+      <h3>🔗 税会差异衔接</h3>
+      <ul>
+        <li>建立"新利润表→旧税务申报表"映射工作底稿</li>
+        <li>重点关注：新表"利润总额"与A100000第19行的一致性校验</li>
+        <li>建立营业外收支分拆台账（哪些归经营，附注备查）</li>
+        <li>关注税务总局后续申报表修订动态</li>
+        <li>准备过渡期所得税汇算清缴的调节说明</li>
+        <li>评估金税四期自动比对对新旧口径切换的预警风险</li>
+      </ul>
+    </div>
+    <div class="check-card">
+      <h3>👥 客户沟通与分类</h3>
+      <ul>
+        <li>盘点客户清单：标注A+H股/境外上市/普通A股/非上市</li>
+        <li>对第一批（2027年）客户提前发出通知函</li>
+        <li>协助客户制定分类会计政策（尤其是汇兑损益归属）</li>
+        <li>辅导客户完成2026年数据的重述准备工作</li>
+        <li>确认客户ERP/财务系统的升级时间表</li>
+        <li>评估提前执行的客户（自愿提前执行）的审计影响</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── 汇兑损益拆分专项 ── -->
+  <h2 class="section-title">重点难点：汇兑损益"跟项目走"拆分</h2>
+  <div class="note-box">
+    这是新准则中最容易被忽视也最容易出错的地方。同一家企业、同一笔出口业务涉及的多个账户，汇兑损益可能分别归入三个类别。
+  </div>
+  <table class="mapping-table" style="margin-bottom:24px;">
+    <caption style="text-align:left;font-weight:600;padding:12px 14px;color:var(--deep-blue);caption-side:top;font-size:0.9rem;">汇兑损益按项目归属类别拆分</caption>
+    <thead>
+      <tr>
+        <th>产生汇兑差额的项目</th>
+        <th>归属类别</th>
+        <th>新表列示位置</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>外币应收账款 / 应付账款（经营活动产生）</td>
+        <td><strong>经营</strong></td>
+        <td>经营利润之上</td>
+      </tr>
+      <tr>
+        <td>外币银行存款（投资活动持有）</td>
+        <td><strong>投资</strong></td>
+        <td>经营利润之后、经营及投资利润之前</td>
+      </tr>
+      <tr>
+        <td>外币借款（筹资活动产生）</td>
+        <td><strong>筹资</strong></td>
+        <td>经营及投资利润之后、持续经营利润之前</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── 结论 ── -->
+  <h2 class="section-title">总结</h2>
+  <div class="conclusion-box">
+    <strong>1. 营业外收支确实被取消了</strong>——作为利润表独立行项目，被五分类体系吸收。内容未消失，只是归类方式变了。
+    <br><br>
+    <strong>2. 税务申报表尚未同步更新</strong>——这是过渡期内最大的实操风险。预计税务总局会在第一批企业（2027年）执行前发布配套修订，但目前无时间表。
+    <br><br>
+    <strong>3. 事务所现在就应该开始准备</strong>——底稿模板、科目映射、客户分类、汇兑拆分规则，这些工作量不小。建议2026年Q4完成内部培训和模板开发，2027年Q1起对第一批客户实战应用。
+    <br><br>
+    <strong>4. 净利润不变，利润结构变了</strong>——新准则不影响确认和计量，只改变列报和披露。审计师的核心工作从"数对不对"扩展到"分类对不对"。
+  </div>
+
+  <div class="note-box">
+    <strong>信息来源：</strong>
+    <br>• 财政部《企业会计准则第30号——财务报表列报》（<a href="https://c.m.163.com/news/a/L4JRBI810519BIO4.html" target="_blank" rel="noopener noreferrer">财会〔2026〕11号</a>，2026-07-24印发）
+    <br>• <a href="http://caijing.chinadaily.com.cn/a/202608/06/WS6a73f4a1a310d709c2fc1cda.html" target="_blank" rel="noopener noreferrer">财政部会计司官方解读</a>（2026-08-05）
+    <br>• <a href="https://cj.sina.cn/articles/view/2537998230/9746c79600101bl2a" target="_blank" rel="noopener noreferrer">致同研究·新旧对比</a>（2026-08-08）
+    <br>• <a href="https://www.shui5.cn/article/c0/10103.html" target="_blank" rel="noopener noreferrer">企税汇算申报表填报规范</a>·税屋（2026-03-02）
+    <br>• 国家税务总局公告2025年第1号（企业所得税年度纳税申报表现行版本）
+  </div>
+
+</main>
+
+<footer class="page-footer">
+  内部参考 · 2026年9月3日 · 北京乾坤生会计师事务所 · 娜美
+</footer>
+
+</body>
+</html>
