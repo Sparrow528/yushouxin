@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外籍股息红利免税终结 · 深度分析 | 守信财税</title>
+<meta name="description" content="财政部 税务总局公告2026年第27号深度拆解：32年外籍个人股息红利免税政策正式终结，四类人群影响分析与应对规划">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--c-navy:#071B3A;--c-navy-light:#0F2A52;--c-navy-mid:#162E50;
+--c-gold:#D5A84D;--c-gold-light:#E8C87A;--c-gold-dark:#B8912E;
+--c-cyan:#2BC4B6;--c-cyan-light:#3DE0D0;
+--c-bg:#F3F7FB;--c-bg-card:#FFFFFF;--c-bg-dark:#E8EEF5;
+--c-text:#102033;--c-text-sec:#65758A;--c-text-light:#8A96A8;
+--c-border:#D6DEE9;--c-border-light:#E8EEF5;
+--c-danger:#D64040;--c-danger-bg:#FEF2F2;
+--c-success:#1A8A5C;--c-success-bg:#ECFDF5;
+--c-warning:#C07800;--c-warning-bg:#FFFBEB;
+--font-stack:system-ui,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+--font-mono:"JetBrains Mono","Fira Code","SF Mono",monospace;
+--radius:10px;--radius-lg:16px;--radius-sm:6px;
+--shadow-sm:0 1px 3px rgba(7,27,58,.06);
+--shadow-md:0 4px 12px rgba(7,27,58,.08);
+--shadow-lg:0 8px 32px rgba(7,27,58,.12);
+--shadow-gold:0 4px 20px rgba(213,168,77,.18);
+--max-w:1120px;
+--section-gap:4rem;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-stack);color:var(--c-text);background:var(--c-bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--c-gold-dark);text-decoration:none;transition:color .2s}
+a:hover,a:focus{color:var(--c-gold);text-decoration:underline}
+a:focus-visible{outline:2px solid var(--c-gold);outline-offset:2px;border-radius:2px}
+img,svg{max-width:100%;display:block}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* === NAV === */
+.top-nav{position:sticky;top:0;z-index:100;background:var(--c-navy);border-bottom:1px solid rgba(213,168,77,.2);backdrop-filter:blur(12px)}
+.top-nav__inner{max-width:var(--max-w);margin:0 auto;padding:.55rem 1.5rem;display:flex;align-items:center;gap:1rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.top-nav__brand{font-weight:700;color:var(--c-gold);font-size:.95rem;white-space:nowrap;flex-shrink:0;letter-spacing:.04em}
+.top-nav__links{display:flex;gap:.25rem;flex-shrink:0}
+.top-nav__links a{color:rgba(255,255,255,.7);font-size:.8rem;padding:.35rem .7rem;border-radius:var(--radius-sm);white-space:nowrap;transition:all .2s}
+.top-nav__links a:hover,.top-nav__links a:focus{color:#fff;background:rgba(213,168,77,.15);text-decoration:none}
+
+/* === HERO === */
+.hero{background:linear-gradient(168deg,var(--c-navy) 0%,#0D2448 60%,#122D55 100%);color:#fff;padding:4rem 1.5rem 3.5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(213,168,77,.08) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--c-gold),transparent)}
+.hero__inner{max-width:var(--max-w);margin:0 auto;position:relative}
+.hero__badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(213,168,77,.12);border:1px solid rgba(213,168,77,.3);border-radius:20px;padding:.3rem 1rem;font-size:.8rem;color:var(--c-gold-light);margin-bottom:1.5rem}
+.hero__badge svg{width:16px;height:16px;flex-shrink:0}
+.hero h1{font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:800;line-height:1.25;margin-bottom:1rem;letter-spacing:-.01em}
+.hero h1 span{color:var(--c-gold)}
+.hero__subtitle{font-size:clamp(.9rem,2vw,1.05rem);color:rgba(255,255,255,.7);margin-bottom:1.5rem;max-width:680px}
+.hero__verdict{background:rgba(213,168,77,.1);border-left:3px solid var(--c-gold);padding:1rem 1.25rem;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:.95rem;color:rgba(255,255,255,.9);line-height:1.6;max-width:720px}
+.hero__verdict strong{color:var(--c-gold-light)}
+.hero__meta{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:2rem;font-size:.82rem;color:rgba(255,255,255,.5)}
+.hero__meta span{display:flex;align-items:center;gap:.4rem}
+.hero__meta svg{width:14px;height:14px;color:var(--c-gold)}
+
+/* === MAIN === */
+.main{max-width:var(--max-w);margin:0 auto;padding:0 1.5rem var(--section-gap)}
+
+/* === SECTION === */
+.section{margin-top:var(--section-gap)}
+.section__label{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--c-gold-dark);margin-bottom:.75rem}
+.section__label svg{width:18px;height:18px}
+.section__title{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;color:var(--c-navy);line-height:1.3;margin-bottom:.75rem}
+.section__desc{font-size:.95rem;color:var(--c-text-sec);max-width:680px;margin-bottom:2rem;line-height:1.7}
+
+/* === TIMELINE === */
+.timeline{position:relative;padding-left:2.5rem}
+.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--c-gold),var(--c-cyan),var(--c-border))}
+.tl-item{position:relative;padding-bottom:2rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-2.5rem;top:2px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.tl-dot--old{background:var(--c-bg-dark);border:2px solid var(--c-border)}
+.tl-dot--old::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--c-text-light)}
+.tl-dot--warn{background:var(--c-warning-bg);border:2px solid var(--c-warning)}
+.tl-dot--warn::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--c-warning)}
+.tl-dot--new{background:rgba(213,168,77,.15);border:2px solid var(--c-gold);box-shadow:0 0 0 4px rgba(213,168,77,.1)}
+.tl-dot--new::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--c-gold)}
+.tl-dot--critical{background:rgba(214,64,64,.1);border:2px solid var(--c-danger);box-shadow:0 0 0 4px rgba(214,64,64,.08)}
+.tl-dot--critical::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--c-danger)}
+.tl-date{font-size:.8rem;font-weight:700;color:var(--c-text-sec);margin-bottom:.25rem}
+.tl-title{font-size:1rem;font-weight:700;color:var(--c-navy);margin-bottom:.35rem}
+.tl-text{font-size:.88rem;color:var(--c-text-sec);line-height:1.65}
+.tl-tag{display:inline-block;font-size:.7rem;font-weight:600;padding:.15rem .5rem;border-radius:3px;margin-top:.4rem}
+.tl-tag--repeal{background:var(--c-danger-bg);color:var(--c-danger)}
+.tl-tag--active{background:rgba(213,168,77,.12);color:var(--c-gold-dark)}
+.tl-tag--propose{background:var(--c-bg-dark);color:var(--c-text-sec)}
+
+.insight-box{background:linear-gradient(135deg,rgba(7,27,58,.03),rgba(43,196,182,.04));border:1px solid var(--c-border-light);border-radius:var(--radius);padding:1.5rem;margin-top:1.5rem}
+.insight-box__title{font-size:.85rem;font-weight:700;color:var(--c-navy);display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem}
+.insight-box__title svg{color:var(--c-cyan);width:18px;height:18px}
+.insight-box p{font-size:.88rem;color:var(--c-text-sec);line-height:1.7}
+
+/* === REASONS === */
+.reasons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.reason-card{background:var(--c-bg-card);border:1px solid var(--c-border-light);border-radius:var(--radius);padding:1.5rem;transition:box-shadow .2s,border-color .2s}
+.reason-card:hover{box-shadow:var(--shadow-md);border-color:var(--c-gold)}
+.reason-card__num{font-size:.75rem;font-weight:800;color:var(--c-gold-dark);background:rgba(213,168,77,.1);width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;margin-bottom:1rem}
+.reason-card__title{font-size:1.05rem;font-weight:700;color:var(--c-navy);margin-bottom:.5rem}
+.reason-card__text{font-size:.88rem;color:var(--c-text-sec);line-height:1.7}
+
+/* === CASE CARDS === */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.case-card{background:var(--c-bg-card);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--c-border-light);transition:box-shadow .3s}
+.case-card:hover{box-shadow:var(--shadow-lg)}
+.case-card--danger{border-top:3px solid var(--c-danger)}
+.case-card--warn{border-top:3px solid var(--c-warning)}
+.case-card--info{border-top:3px solid var(--c-cyan)}
+.case-card--gold{border-top:3px solid var(--c-gold)}
+.case-card__head{padding:1.5rem 1.5rem 1rem}
+.case-card__tag{font-size:.7rem;font-weight:700;padding:.2rem .6rem;border-radius:3px;display:inline-block;margin-bottom:.75rem}
+.case-card--danger .case-card__tag{background:var(--c-danger-bg);color:var(--c-danger)}
+.case-card--warn .case-card__tag{background:var(--c-warning-bg);color:var(--c-warning)}
+.case-card--info .case-card__tag{background:rgba(43,196,182,.1);color:#1a8a7e}
+.case-card--gold .case-card__tag{background:rgba(213,168,77,.1);color:var(--c-gold-dark)}
+.case-card__name{font-size:1.1rem;font-weight:700;color:var(--c-navy);margin-bottom:.35rem}
+.case-card__desc{font-size:.85rem;color:var(--c-text-sec);line-height:1.65}
+.case-card__body{padding:0 1.5rem 1.5rem}
+.case-card__scenario{background:var(--c-bg);border-radius:var(--radius-sm);padding:1rem;margin-bottom:1rem}
+.case-card__scenario-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--c-text-light);margin-bottom:.5rem}
+.case-card__amount{font-size:1.5rem;font-weight:800;font-family:var(--font-mono);letter-spacing:-.02em}
+.case-card__amount--danger{color:var(--c-danger)}
+.case-card__amount--warn{color:var(--c-warning)}
+.case-card__amount--success{color:var(--c-success)}
+.case-card__amount--gold{color:var(--c-gold-dark)}
+.case-card__amount small{font-size:.7em;font-weight:600;color:var(--c-text-sec)}
+.case-card__detail{font-size:.82rem;color:var(--c-text-sec);margin-top:.5rem;line-height:1.6}
+.case-card__result{border-top:1px solid var(--c-border-light);padding-top:1rem}
+.case-card__result-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--c-text-light);margin-bottom:.5rem}
+.case-card__comparison{display:flex;gap:1rem;flex-wrap:wrap}
+.comp-item{flex:1;min-width:120px;background:var(--c-bg);border-radius:var(--radius-sm);padding:.75rem;text-align:center}
+.comp-item__label{font-size:.72rem;color:var(--c-text-light);margin-bottom:.25rem}
+.comp-item__value{font-size:1.15rem;font-weight:800;font-family:var(--font-mono)}
+.comp-item__value--old{color:var(--c-success)}
+.comp-item__value--new{color:var(--c-danger)}
+.comp-arrow{display:flex;align-items:center;color:var(--c-text-light);font-size:1.2rem;flex-shrink:0}
+
+/* === ACTION === */
+.action-section{margin-top:2rem}
+.action-block{background:var(--c-bg-card);border:1px solid var(--c-border-light);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:1.5rem}
+.action-block__head{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;border-bottom:1px solid var(--c-border-light)}
+.action-block__icon{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.action-block__icon--urgent{background:var(--c-danger-bg);color:var(--c-danger)}
+.action-block__icon--important{background:rgba(213,168,77,.1);color:var(--c-gold-dark)}
+.action-block__icon--plan{background:rgba(43,196,182,.1);color:#1a8a7e}
+.action-block__icon svg{width:20px;height:20px}
+.action-block__title{font-size:1.05rem;font-weight:700;color:var(--c-navy)}
+.action-block__subtitle{font-size:.82rem;color:var(--c-text-sec);margin-top:.2rem}
+.action-block__body{padding:1.5rem}
+.action-list{list-style:none;padding:0}
+.action-list li{position:relative;padding:.5rem 0 .5rem 1.5rem;font-size:.88rem;color:var(--c-text);line-height:1.6;border-bottom:1px solid var(--c-border-light)}
+.action-list li:last-child{border-bottom:none}
+.action-list li::before{content:'';position:absolute;left:0;top:.95rem;width:8px;height:8px;border-radius:50%;background:var(--c-gold)}
+
+.calc-box{background:var(--c-bg);border-radius:var(--radius);padding:1.25rem;margin:1rem 0}
+.calc-box__title{font-size:.82rem;font-weight:700;color:var(--c-navy);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.calc-box__title svg{width:16px;height:16px;color:var(--c-gold)}
+.calc-row{display:flex;align-items:center;gap:.5rem;font-size:.88rem;padding:.3rem 0;font-family:var(--font-mono)}
+.calc-row span{color:var(--c-text-sec)}
+.calc-row strong{color:var(--c-navy)}
+.calc-row--result{border-top:1px dashed var(--c-border);padding-top:.6rem;margin-top:.3rem}
+.calc-row--result strong{color:var(--c-danger);font-size:1.05rem}
+
+/* === TABLE === */
+.data-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--c-border-light);border-radius:var(--radius);margin:1rem 0}
+.data-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.data-table th{background:var(--c-navy);color:#fff;font-weight:600;padding:.75rem 1rem;text-align:left;white-space:nowrap}
+.data-table td{padding:.75rem 1rem;border-bottom:1px solid var(--c-border-light);vertical-align:top}
+.data-table tbody tr:hover{background:rgba(213,168,77,.03)}
+.data-table .num{font-family:var(--font-mono);font-weight:600;text-align:right}
+.data-table .highlight{color:var(--c-gold-dark);font-weight:700}
+
+/* === STRATEGY === */
+.strategy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:1.5rem}
+.strategy-card{background:var(--c-bg-card);border:1px solid var(--c-border-light);border-radius:var(--radius-lg);padding:1.5rem;position:relative;overflow:hidden}
+.strategy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c-gold),var(--c-cyan))}
+.strategy-card__num{font-size:.7rem;font-weight:800;color:var(--c-cyan);background:rgba(43,196,182,.1);width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;margin-bottom:.75rem}
+.strategy-card__title{font-size:1.05rem;font-weight:700;color:var(--c-navy);margin-bottom:.5rem}
+.strategy-card__text{font-size:.88rem;color:var(--c-text-sec);line-height:1.7}
+
+/* === TREND === */
+.trend-box{background:linear-gradient(135deg,var(--c-navy),#0D2448);border-radius:var(--radius-lg);padding:2rem;color:#fff;margin-top:1.5rem;position:relative;overflow:hidden}
+.trend-box::before{content:'';position:absolute;top:-30%;right:-15%;width:300px;height:300px;background:radial-gradient(circle,rgba(213,168,77,.1),transparent 70%);pointer-events:none}
+.trend-box__title{font-size:1.1rem;font-weight:700;color:var(--c-gold-light);margin-bottom:1rem}
+.trend-list{list-style:none;padding:0}
+.trend-list li{padding:.6rem 0 .6rem 1.5rem;position:relative;font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.65;border-bottom:1px solid rgba(255,255,255,.08)}
+.trend-list li:last-child{border-bottom:none}
+.trend-list li::before{content:'';position:absolute;left:0;top:1rem;width:6px;height:6px;border-radius:50%;background:var(--c-gold)}
+
+/* === SERVICES === */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:1.5rem}
+.service-card{background:var(--c-bg-card);border:1px solid var(--c-border-light);border-radius:var(--radius);padding:1.5rem;display:flex;gap:1rem;transition:box-shadow .2s,border-color .2s}
+.service-card:hover{box-shadow:var(--shadow-md);border-color:var(--c-gold)}
+.service-card__icon{width:44px;height:44px;background:linear-gradient(135deg,var(--c-navy),var(--c-navy-light));border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.service-card__icon svg{width:22px;height:22px;color:var(--c-gold)}
+.service-card__title{font-size:.95rem;font-weight:700;color:var(--c-navy);margin-bottom:.35rem}
+.service-card__text{font-size:.82rem;color:var(--c-text-sec);line-height:1.6}
+
+/* === FOOTER === */
+.footer{background:var(--c-navy);color:rgba(255,255,255,.6);padding:2.5rem 1.5rem;margin-top:4rem}
+.footer__inner{max-width:var(--max-w);margin:0 auto}
+.footer__sources{margin-bottom:1.5rem}
+.footer__sources-title{font-size:.82rem;font-weight:700;color:var(--c-gold-light);margin-bottom:.75rem}
+.footer__sources ol{list-style:decimal;padding-left:1.5rem;font-size:.8rem;line-height:1.8}
+.footer__sources a{color:rgba(255,255,255,.5);text-decoration:underline;text-underline-offset:2px}
+.footer__sources a:hover{color:var(--c-gold)}
+.footer__disclaimer{font-size:.78rem;line-height:1.7;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4)}
+.footer__brand{display:flex;align-items:center;gap:.75rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08)}
+.footer__brand-name{font-size:.9rem;font-weight:700;color:var(--c-gold)}
+.footer__brand-sub{font-size:.75rem;color:rgba(255,255,255,.35)}
+
+/* === RESPONSIVE === */
+@media(max-width:768px){
+  :root{--section-gap:2.5rem}
+  .hero{padding:2.5rem 1.25rem 2rem}
+  .main{padding:0 1.25rem var(--section-gap)}
+  .top-nav__inner{padding:.5rem 1rem}
+  .case-grid{grid-template-columns:1fr}
+  .case-card__comparison{flex-direction:column}
+  .comp-arrow{transform:rotate(90deg);justify-content:center}
+  .strategy-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .reasons-grid{grid-template-columns:1fr}
+  .data-table{font-size:.82rem}
+  .data-table th,.data-table td{padding:.6rem .75rem}
+  .trend-box{padding:1.5rem}
+  .action-block__head{flex-direction:column;gap:.75rem}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.5rem}
+  .hero__verdict{padding:.75rem 1rem;font-size:.88rem}
+  .timeline{padding-left:2rem}
+  .tl-dot{left:-2rem;width:20px;height:20px}
+  .tl-dot::after{width:6px;height:6px}
+  .timeline::before{left:9px}
+}
+
+/* === PRINT === */
+@media print{
+  .top-nav{display:none}
+  .hero{background:var(--c-navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:2rem 1.5rem}
+  body{font-size:11pt;line-height:1.5}
+  .section{margin-top:2rem;page-break-inside:avoid}
+  .case-card,.action-block,.strategy-card,.service-card{page-break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  .trend-box{background:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a[href]::after{content:" (" attr(href) ")";font-size:.8em;color:#666}
+  .footer__sources a[href]::after{content:" (" attr(href) ")"}
+  .case-card:hover,.strategy-card:hover,.service-card:hover{box-shadow:none}
+}
+
+/* === SCROLL PADDING === */
+section[id]{scroll-margin-top:60px}
+
+/* === ANIMATIONS === */
+@media(prefers-reduced-motion:no-preference){
+  .case-card,.reason-card,.strategy-card,.service-card,.action-block{transition:transform .2s ease,box-shadow .3s ease}
+  .case-card:hover,.strategy-card:hover{transform:translateY(-2px)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .case-card,.reason-card,.strategy-card,.service-card,.action-block{transition:none!important}
+  .case-card:hover,.strategy-card:hover{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="top-nav" aria-label="页面导航">
+  <div class="top-nav__inner">
+    <span class="top-nav__brand">守信财税</span>
+    <div class="top-nav__links">
+      <a href="#background">政策背景</a>
+      <a href="#reasons">取消原因</a>
+      <a href="#impact">影响人群</a>
+      <a href="#action">紧急应对</a>
+      <a href="#strategy">布局规划</a>
+      <a href="#trend">趋势研判</a>
+      <a href="#services">专业服务</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero__inner">
+    <div class="hero__badge">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M3.6 18h16.8c.84 0 1.26 0 1.56-.24a1 1 0 00.24-.58c.06-.38-.12-.78-.72-1.58L16.8 8.4c-.42-.56-.63-.84-.9-.98a2 2 0 00-1.8 0c-.27.14-.48.42-.9.98L8.52 15.6c-.6.8-.78 1.2-.72 1.58a1 1 0 00.24.58c.3.24.72.24 1.56.24z"/></svg>
+      深度分析报告
+    </div>
+    <h1>外籍股息红利免税终结<br><span>· 深度分析</span></h1>
+    <p class="hero__subtitle">财政部 税务总局公告2026年第27号 · 2026年9月1日起施行</p>
+    <div class="hero__verdict">
+      <strong>32年免税政策正式终结。</strong>外籍个人从外商投资企业取得的股息红利所得，自此按"利息、股息、红利所得"缴纳<strong>20%个人所得税</strong>。内外籍个人股息红利个税全面统一，<strong>"身份套利"空间彻底关闭</strong>。
+    </div>
+    <div class="hero__meta">
+      <span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        2026年9月1日执行
+      </span>
+      <span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        财政部 税务总局公告2026年第27号
+      </span>
+      <span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        废止：财税字〔1994〕20号第二条第（八）项
+      </span>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+<!-- ============ SECTION 1: TIMELINE ============ -->
+<section id="background" class="section">
+  <div class="section__label">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+    政策背景
+  </div>
+  <h2 class="section__title">从1994到2026：一项税收优惠的始末</h2>
+  <p class="section__desc">32年间，外籍个人股息红利免税政策从吸引外资的利器，到逐步被质疑公平性，最终在2026年画上句号。</p>
+
+  <div class="timeline" role="list" aria-label="政策演变时间线">
+    <div class="tl-item" role="listitem">
+      <div class="tl-dot tl-dot--old" aria-hidden="true"></div>
+      <div class="tl-date">1994年</div>
+      <div class="tl-title">财税字〔1994〕20号出台</div>
+      <div class="tl-text">《财政部、国家税务总局关于个人所得税若干政策问题的通知》发布，第二条第（八）项规定：外籍个人从外商投资企业取得的股息、红利所得，暂免征收个人所得税。初衷是在改革开放初期吸引外资、鼓励外商直接投资。</div>
+      <span class="tl-tag tl-tag--propose">政策起源</span>
+    </div>
+
+    <div class="tl-item" role="listitem">
+      <div class="tl-dot tl-dot--old" aria-hidden="true"></div>
+      <div class="tl-date">2013年</div>
+      <div class="tl-title">国务院首提"取消免征"</div>
+      <div class="tl-text">国务院深化收入分配制度改革文件中首次写入"取消对外籍个人从外商投资企业取得的股息红利所得免征个人所得税"，但因种种原因未能实际落地执行。</div>
+      <span class="tl-tag tl-tag--propose">提出未执行</span>
+    </div>
+
+    <div class="tl-item" role="listitem">
+      <div class="tl-dot tl-dot--warn" aria-hidden="true"></div>
+      <div class="tl-date">2026年7月24日</div>
+      <div class="tl-title">21号公告：离岸信托个税穿透征税</div>
+      <div class="tl-text">财政部 税务总局发布2026年第21号公告，明确受控外国企业（CFC）规则在个人所得税领域的适用，堵住了通过境外实体持有境内资产以规避个税的路径。</div>
+      <span class="tl-tag tl-tag--active">已执行</span>
+    </div>
+
+    <div class="tl-item" role="listitem">
+      <div class="tl-dot tl-dot--warn" aria-hidden="true"></div>
+      <div class="tl-date">2026年8月28日</div>
+      <div class="tl-title">26号公告：限售股个税规范</div>
+      <div class="tl-text">财政部 税务总局发布2026年第26号公告，对个人转让限售股所得的个人所得税征收进行规范，进一步明确财产转让所得的计税口径。</div>
+      <span class="tl-tag tl-tag--active">已执行</span>
+    </div>
+
+    <div class="tl-item" role="listitem">
+      <div class="tl-dot tl-dot--critical" aria-hidden="true"></div>
+      <div class="tl-date">2026年9月1日</div>
+      <div class="tl-title">27号公告发布并当日执行</div>
+      <div class="tl-text">外籍个人从外商投资企业取得的股息红利所得，正式按"利息、股息、红利所得"缴纳20%个人所得税。财税字〔1994〕20号第二条第（八）项同步废止，32年免税政策终结。</div>
+      <span class="tl-tag tl-tag--repeal">免税废止</span>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="insight-box__title">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
+      关键逻辑：三连击，全面拉平
+    </div>
+    <p>21号+26号+27号三连击，把财产与投资收益类个税口径全面拉平。<strong>21号</strong>堵住境外实体路径（CFC穿透），<strong>27号</strong>堵住外籍个人直接持股路径（20%征税）——两条套利通道同时关闭。这不是孤立事件，而是系统性制度重构的一部分。</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 2: REASONS ============ -->
+<section id="reasons" class="section">
+  <div class="section__label">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+    深度分析
+  </div>
+  <h2 class="section__title">四大取消原因</h2>
+  <p class="section__desc">免税政策废止并非突然之举，背后是税制公平、套利封堵、主权维护与政策协同的多重驱动力。</p>
+
+  <div class="reasons-grid">
+    <div class="reason-card">
+      <div class="reason-card__num">1</div>
+      <h3 class="reason-card__title">税制公平：同投资不同税负</h3>
+      <p class="reason-card__text">同样是中国企业的投资者，中国公民取得股息红利需缴纳20%个税，外籍个人却可以全额免税——这构成了制度性的税收不公平。北京大学刘怡教授曾明确指出：外籍个人免税而中国公民纳税，违反了税收中性与公平原则。在共同富裕的大背景下，这种制度性差异必须消除。</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-card__num">2</div>
+      <h3 class="reason-card__title">堵塞套利漏洞：曲线享免税</h3>
+      <p class="reason-card__text">部分境内企业家通过注册BVI、开曼壳公司，将内资企业变更为外商投资企业，再以"外籍个人"身份享受免税分红。这条"曲线老板"路径技术门槛低、套利效果显著，实质上侵蚀了税基。免税政策的设计初衷——吸引真实外资——已被严重扭曲。</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-card__num">3</div>
+      <h3 class="reason-card__title">维护税收主权：单方面让渡权益</h3>
+      <p class="reason-card__text">在全球征税制度下（如美国、德国），外籍个人在中国取得的股息红利免税后，回母国仍需补缴税款。这意味着中国单方面放弃了税收权益，而外籍个人的实际税负并未因此减轻——中国的免税让利等于"白送"给了对方国库。</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-card__num">4</div>
+      <h3 class="reason-card__title">配合21号公告：封堵替代路径</h3>
+      <p class="reason-card__text">21号公告实施CFC穿透征税后，有人尝试绕过境外实体路径，直接以"外籍个人"身份持股，继续享受免税分红。27号公告堵住了这条替代路径，使得21号的穿透规则与27号的直接征税形成闭环，不留制度缝隙。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3: IMPACT ============ -->
+<section id="impact" class="section">
+  <div class="section__label">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+    影响分析
+  </div>
+  <h2 class="section__title">四类受影响人群 · 案例化拆解</h2>
+  <p class="section__desc">不同人群受新政影响的程度差异巨大。以下通过真实场景还原，量化税负变化。</p>
+
+  <div class="case-grid">
+    <!-- Case 1 -->
+    <article class="case-card case-card--danger">
+      <div class="case-card__head">
+        <span class="case-card__tag">受影响最大</span>
+        <h3 class="case-card__name">人群1：「曲线老板」</h3>
+        <p class="case-card__desc">实际控制人是中国公民，通过BVI/开曼/新加坡设壳公司，以境外公司名义投资国内→企业变更为"外商投资企业"→自己取得外籍身份后享受免税分红。</p>
+      </div>
+      <div class="case-card__body">
+        <div class="case-card__scenario">
+          <div class="case-card__scenario-label">案例场景</div>
+          <p>某制造业老板张总，2015年在BVI注册壳公司持股国内工厂，后取得瓦努阿图护照，企业变更为外商独资企业。每年从企业分红<strong>500万元</strong>，此前<strong>全额免税</strong>。</p>
+        </div>
+        <div class="case-card__result">
+          <div class="case-card__result-label">新规影响</div>
+          <p style="font-size:.85rem;color:var(--c-text-sec);margin-bottom:.75rem"><strong>21号公告</strong>：CFC穿透（走境外实体路径→穿透征税）<br><strong>27号公告</strong>：外籍个人路径→20%征税<br>两条路都堵死。</p>
+          <div class="case-card__comparison">
+            <div class="comp-item">
+              <div class="comp-item__label">旧政策</div>
+              <div class="comp-item__value comp-item__value--old">0 元</div>
+            </div>
+            <div class="comp-arrow" aria-hidden="true">→</div>
+            <div class="comp-item">
+              <div class="comp-item__label">新政策</div>
+              <div class="comp-item__value comp-item__value--new">100 万</div>
+            </div>
+          </div>
+          <div class="calc-box">
+            <div class="calc-box__title">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg>
+              计算过程
+            </div>
+            <div class="calc-row"><span>年分红</span> <strong>5,000,000 元</strong></div>
+            <div class="calc-row"><span>× 税率</span> <strong>20%</strong></div>
+            <div class="calc-row calc-row--result"><span>应缴个税</span> <strong>1,000,000 元/年</strong></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 2 -->
+    <article class="case-card case-card--info">
+      <div class="case-card__head">
+        <span class="case-card__tag">影响有限</span>
+        <h3 class="case-card__name">人群2：真实外籍投资人（欧美籍）</h3>
+        <p class="case-card__desc">欧美国家税收居民，在中国外商投资企业持股的真实外籍高管或投资人。</p>
+      </div>
+      <div class="case-card__body">
+        <div class="case-card__scenario">
+          <div class="case-card__scenario-label">案例场景</div>
+          <p>德国籍工程师Hans，持有某中外合资企业15%股权，年分红<strong>80万元</strong>。</p>
+        </div>
+        <div class="case-card__result">
+          <div class="case-card__result-label">新规影响</div>
+          <p style="font-size:.85rem;color:var(--c-text-sec);margin-bottom:.75rem">中国扣缴20%个税→回德国可申请<strong>税收抵免</strong>→实际税负不变（德国个税税率高达45%）。关键影响在于<strong>合规流程必须更新</strong>。</p>
+          <div class="case-card__comparison">
+            <div class="comp-item">
+              <div class="comp-item__label">中国缴税</div>
+              <div class="comp-item__value" style="color:var(--c-navy)">16 万</div>
+            </div>
+            <div class="comp-arrow" aria-hidden="true">→</div>
+            <div class="comp-item">
+              <div class="comp-item__label">德国抵免</div>
+              <div class="comp-item__value" style="color:var(--c-success)">可抵免</div>
+            </div>
+          </div>
+          <div class="calc-box">
+            <div class="calc-box__title">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg>
+              计算过程
+            </div>
+            <div class="calc-row"><span>年分红</span> <strong>800,000 元</strong></div>
+            <div class="calc-row"><span>× 中国税率</span> <strong>20%</strong></div>
+            <div class="calc-row"><span>中国个税</span> <strong>160,000 元</strong></div>
+            <div class="calc-row calc-row--result"><span>实际总税负</span> <strong>≈ 不变（抵免后）</strong></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 3 -->
+    <article class="case-card case-card--warn">
+      <div class="case-card__head">
+        <span class="case-card__tag">影响显著</span>
+        <h3 class="case-card__name">人群3：港澳籍自然人股东</h3>
+        <p class="case-card__desc">香港/澳门居民持有内地外资、合资企业股权的自然人。</p>
+      </div>
+      <div class="case-card__body">
+        <div class="case-card__scenario">
+          <div class="case-card__scenario-label">案例场景</div>
+          <p>香港居民李先生，持有深圳某合资企业30%股权，年分红<strong>300万元</strong>。</p>
+        </div>
+        <div class="case-card__result">
+          <div class="case-card__result-label">新规影响</div>
+          <p style="font-size:.85rem;color:var(--c-text-sec);margin-bottom:.75rem">公告使用"外籍个人"表述，港澳台居民适用问题待进一步明确，但市场<strong>普遍解读为同步适用</strong>。</p>
+          <div class="case-card__comparison">
+            <div class="comp-item">
+              <div class="comp-item__label">旧政策</div>
+              <div class="comp-item__value comp-item__value--old">0 元</div>
+            </div>
+            <div class="comp-arrow" aria-hidden="true">→</div>
+            <div class="comp-item">
+              <div class="comp-item__label">新政策</div>
+              <div class="comp-item__value comp-item__value--new">60 万</div>
+            </div>
+          </div>
+          <div class="calc-box">
+            <div class="calc-box__title">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg>
+              计算过程
+            </div>
+            <div class="calc-row"><span>年分红</span> <strong>3,000,000 元</strong></div>
+            <div class="calc-row"><span>× 税率</span> <strong>20%</strong></div>
+            <div class="calc-row calc-row--result"><span>应缴个税</span> <strong>600,000 元/年</strong></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 4 -->
+    <article class="case-card case-card--gold">
+      <div class="case-card__head">
+        <span class="case-card__tag">身份节税终结</span>
+        <h3 class="case-card__name">人群4：跨境架构筹划人群</h3>
+        <p class="case-card__desc">专门办理外籍身份、依托免税政策做合规节税的高净值人群。</p>
+      </div>
+      <div class="case-card__body">
+        <div class="case-card__scenario">
+          <div class="case-card__scenario-label">案例场景</div>
+          <p>某企业家取得格林纳达护照，以个人身份直接持股国内企业，年分红<strong>1,000万元</strong>，此前免税。</p>
+        </div>
+        <div class="case-card__result">
+          <div class="case-card__result-label">新规影响</div>
+          <p style="font-size:.85rem;color:var(--c-text-sec);margin-bottom:.75rem"><strong>身份节税通道彻底关闭。</strong>无论持有什么国籍，外籍个人从外商投资企业取得股息红利均需缴纳20%个税。</p>
+          <div class="case-card__comparison">
+            <div class="comp-item">
+              <div class="comp-item__label">旧政策</div>
+              <div class="comp-item__value comp-item__value--old">0 元</div>
+            </div>
+            <div class="comp-arrow" aria-hidden="true">→</div>
+            <div class="comp-item">
+              <div class="comp-item__label">新政策</div>
+              <div class="comp-item__value comp-item__value--new">200 万</div>
+            </div>
+          </div>
+          <div class="calc-box">
+            <div class="calc-box__title">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg>
+              计算过程
+            </div>
+            <div class="calc-row"><span>年分红</span> <strong>10,000,000 元</strong></div>
+            <div class="calc-row"><span>× 税率</span> <strong>20%</strong></div>
+            <div class="calc-row calc-row--result"><span>应缴个税</span> <strong>2,000,000 元/年</strong></div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION 4: ACTION ============ -->
+<section id="action" class="section">
+  <div class="section__label">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    紧急应对
+  </div>
+  <h2 class="section__title">现有企业紧急应对规划</h2>
+  <p class="section__desc">27号公告已于2026年9月1日生效。企业需立即行动，从分红节奏、代扣代缴、税收协定到架构调整进行全面排查。</p>
+
+  <!-- 5.1 分红节奏排查 -->
+  <div class="action-block">
+    <div class="action-block__head">
+      <div class="action-block__icon action-block__icon--urgent">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+      </div>
+      <div>
+        <h3 class="action-block__title">5.1 立即做：分红节奏排查</h3>
+        <p class="action-block__subtitle">以实际支付日为准，9月1日后支付即适用20%新规</p>
+      </div>
+    </div>
+    <div class="action-block__body">
+      <ul class="action-list">
+        <li><strong>关键时间节点：</strong>以实际支付日为准，而非分红决议日。9月1日后实际支付即适用20%税率。</li>
+        <li><strong>常见误区：</strong>8月31日前做出分红决议，但9月5日才实际支付→仍适用20%新规，不能享受免税。</li>
+        <li><strong>唯一例外：</strong>仅当支付程序在9月1日前全部完成、仅因银行处理延迟导致到账滞后→才有可能适用旧政策。</li>
+        <li><strong>立即行动：</strong>排查所有待支付的外籍股东分红，与主管税务机关沟通确认适用口径。</li>
+      </ul>
+      <div class="calc-box">
+        <div class="calc-box__title">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg>
+          时间判定案例
+        </div>
+        <div class="calc-row"><span>分红决议日</span> <strong>2026年8月25日</strong></div>
+        <div class="calc-row"><span>实际支付日</span> <strong>2026年9月5日</strong></div>
+        <div class="calc-row calc-row--result"><span>适用政策</span> <strong>20%新规（以支付日为准）</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.2 代扣代缴 -->
+  <div class="action-block">
+    <div class="action-block__head">
+      <div class="action-block__icon action-block__icon--important">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <div>
+        <h3 class="action-block__title">5.2 合规改造：代扣代缴流程</h3>
+        <p class="action-block__subtitle">企业成为法定扣缴义务人，需全面更新财务流程</p>
+      </div>
+    </div>
+    <div class="action-block__body">
+      <ul class="action-list">
+        <li><strong>法定义务：</strong>外商投资企业向外籍个人支付股息红利时，应当代扣代缴税款。</li>
+        <li><strong>申报时限：</strong>于支付所得的<strong>次月15日内</strong>申报纳税。</li>
+        <li><strong>未扣缴后果：</strong>企业未扣缴税款的，外籍个人应在次年6月30日前自行缴纳；税务机关可限期缴纳。</li>
+        <li><strong>系统更新：</strong>将外籍股东分红纳入代扣代缴流程，更新财务系统设置。</li>
+        <li><strong>凭证留存：</strong>分红决议 + 银行支付凭证 + 完税记录，三类缺一不可。</li>
+      </ul>
+      <div class="calc-box">
+        <div class="calc-box__title">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg>
+          代扣代缴计算示例
+        </div>
+        <div class="calc-row"><span>分红金额</span> <strong>1,000,000 元</strong></div>
+        <div class="calc-row"><span>代扣个税（20%）</span> <strong>-200,000 元</strong></div>
+        <div class="calc-row calc-row--result"><span>实际支付外籍股东</span> <strong>800,000 元</strong></div>
+        <div class="calc-row"><span>申报截止</span> <strong>次月15日前</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.3 税收协定优化 -->
+  <div class="action-block">
+    <div class="action-block__head">
+      <div class="action-block__icon action-block__icon--important">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <div>
+        <h3 class="action-block__title">5.3 税收协定优化（重点）</h3>
+        <p class="action-block__subtitle">27号公告规定20%，但税收协定可能提供更优惠税率</p>
+      </div>
+    </div>
+    <div class="action-block__body">
+      <p style="font-size:.9rem;color:var(--c-text-sec);margin-bottom:1rem">虽然国内法规定税率为20%，但中国已与多国签订税收协定，部分协定的股息预提税率<strong>显著低于20%</strong>。企业应主动评估适用可能性。</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <caption class="sr-only">常见税收协定股息税率</caption>
+          <thead>
+            <tr>
+              <th scope="col">缔约国/地区</th>
+              <th scope="col">协定股息税率</th>
+              <th scope="col">对比20%节省</th>
+              <th scope="col">适用条件</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>新加坡、日本、美国、英国、德国</td>
+              <td class="num highlight">10%</td>
+              <td class="num">节省50%</td>
+              <td>受益所有人为缔约国税收居民</td>
+            </tr>
+            <tr>
+              <td>科威特、蒙古、毛里求斯、南非</td>
+              <td class="num highlight">5%</td>
+              <td class="num">节省75%</td>
+              <td>满足持股等特定条件</td>
+            </tr>
+            <tr>
+              <td>中国香港（安排）</td>
+              <td class="num highlight">5%/10%</td>
+              <td class="num">节省50%-75%</td>
+              <td>持股≥25%适用5%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="calc-box">
+        <div class="calc-box__title">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg>
+          税收协定节税案例：德国籍股东
+        </div>
+        <div class="calc-row"><span>分红金额</span> <strong>1,000,000 元</strong></div>
+        <div class="calc-row"><span>国内法税率 20%</span> <strong>→ 200,000 元</strong></div>
+        <div class="calc-row"><span>中德协定税率 10%</span> <strong>→ 100,000 元</strong></div>
+        <div class="calc-row calc-row--result"><span>节税金额</span> <strong style="color:var(--c-success)">100,000 元</strong></div>
+      </div>
+
+      <ul class="action-list" style="margin-top:1rem">
+        <li><strong>前提条件：</strong>证明是缔约国税收居民 + 证明是"实质受益所有人"（非代持/通道公司）。</li>
+        <li><strong>实操步骤：</strong>提前做协定适用条件论证，准备备案材料，与主管税务机关沟通确认。</li>
+        <li><strong>注意：</strong>协定优惠并非自动适用，需主动申请并完成备案程序。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 5.4 架构调整 -->
+  <div class="action-block">
+    <div class="action-block__head">
+      <div class="action-block__icon action-block__icon--plan">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+      </div>
+      <div>
+        <h3 class="action-block__title">5.4 存量架构调整方案</h3>
+        <p class="action-block__subtitle">自然人持股 vs 境外公司持股，税负差异显著</p>
+      </div>
+    </div>
+    <div class="action-block__body">
+      <p style="font-size:.9rem;color:var(--c-text-sec);margin-bottom:1rem">存量架构面临重新评估。核心决策点：<strong>自然人直接持股</strong> vs <strong>转为境外公司持股</strong>。两种路径税负差异显著。</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <caption class="sr-only">持股架构税负对比</caption>
+          <thead>
+            <tr>
+              <th scope="col">持股方式</th>
+              <th scope="col">分红金额</th>
+              <th scope="col">适用税率</th>
+              <th scope="col">应纳税额</th>
+              <th scope="col">税后所得</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>自然人直接持股</strong><br><span style="font-size:.78rem;color:var(--c-text-sec)">（新政策下）</span></td>
+              <td class="num">1,000 万</td>
+              <td class="num">20% 个税</td>
+              <td class="num" style="color:var(--c-danger);font-weight:700">200 万</td>
+              <td class="num">800 万</td>
+            </tr>
+            <tr style="background:rgba(213,168,77,.04)">
+              <td><strong>境外公司持股</strong><br><span style="font-size:.78rem;color:var(--c-text-sec)">（预提企业所得税）</span></td>
+              <td class="num">1,000 万</td>
+              <td class="num">10% 预提税</td>
+              <td class="num" style="color:var(--c-success);font-weight:700">100 万</td>
+              <td class="num">900 万</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="calc-box">
+        <div class="calc-box__title">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg>
+          节税测算
+        </div>
+        <div class="calc-row"><span>自然人持股税负</span> <strong>2,000,000 元</strong></div>
+        <div class="calc-row"><span>境外公司持股税负</span> <strong>1,000,000 元</strong></div>
+        <div class="calc-row calc-row--result"><span>潜在节税</span> <strong style="color:var(--c-success)">1,000,000 元（节省50%）</strong></div>
+      </div>
+
+      <div style="background:var(--c-warning-bg);border-radius:var(--radius-sm);padding:1rem;margin-top:1rem;border-left:3px solid var(--c-warning)">
+        <p style="font-size:.85rem;color:var(--c-warning);font-weight:700;margin-bottom:.25rem">⚠️ 重要提醒</p>
+        <p style="font-size:.85rem;color:var(--c-text-sec);line-height:1.65">架构调整须同时考虑<strong>21号公告CFC穿透规则</strong>。若境外公司被认定为受控外国企业且无合理经营需要，利润仍可能被穿透征税。建议在专业税务顾问指导下进行架构调整。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 5: STRATEGY ============ -->
+<section id="strategy" class="section">
+  <div class="section__label">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0020 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+    战略布局
+  </div>
+  <h2 class="section__title">未来企业布局规划</h2>
+  <p class="section__desc">免税终结后，外资企业的持股架构、利润分配和资金回流路径需要全面重新设计。</p>
+
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <div class="strategy-card__num">01</div>
+      <h3 class="strategy-card__title">新设外资企业持股架构选择</h3>
+      <p class="strategy-card__text">
+        <strong>自然人直接持股：</strong>20%个税，无优化空间。<br>
+        <strong>境外法人持股：</strong>10%预提企业所得税，税负更优。<br><br>
+        应根据投资国、分红预期、资金回流需求综合选择。新设企业建议优先考虑境外法人持股架构，但须满足实质经营要求，避免空壳架构被穿透。
+      </p>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-card__num">02</div>
+      <h3 class="strategy-card__title">税收协定网络利用</h3>
+      <p class="strategy-card__text">
+        选择与中国有优惠税率协定的国家/地区设立持股平台：<br><br>
+        <strong>中国香港→内地：</strong>股息预提税5%（持股≥25%）或10%<br>
+        <strong>新加坡→内地：</strong>10%<br><br>
+        但需满足"实质经营"要求，不能是壳公司。协定利益需有真实商业实质支撑。
+      </p>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-card__num">03</div>
+      <h3 class="strategy-card__title">利润分配策略调整</h3>
+      <p class="strategy-card__text">
+        分红税务成本上升后，需重新测算<strong>不分红 vs 分红</strong>的经济效益。<br><br>
+        利润留存企业用于再投资的税务效率可能更优。合理利用免税收入（如国债利息等）优化整体税负结构。需综合评估资金时间价值与企业发展需求。
+      </p>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-card__num">04</div>
+      <h3 class="strategy-card__title">跨境资金流动合规路径</h3>
+      <p class="strategy-card__text">
+        合规路径：<strong>分红 → 代扣代缴 → 完税 → 外汇汇出</strong>。<br><br>
+        可评估特许权使用费、技术服务费等替代路径的合规性与税负效率。但须注意：替代路径需有真实业务支撑，不能是变相分红的通道安排。
+      </p>
+    </div>
+  </div>
+
+  <!-- Decision Matrix -->
+  <div style="margin-top:2rem">
+    <h3 style="font-size:1.05rem;font-weight:700;color:var(--c-navy);margin-bottom:1rem">持股架构决策参考矩阵</h3>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <caption class="sr-only">持股架构决策矩阵</caption>
+        <thead>
+          <tr>
+            <th scope="col">评估维度</th>
+            <th scope="col">自然人直接持股</th>
+            <th scope="col">境外公司持股</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>分红税负</strong></td>
+            <td class="num">20% 个税</td>
+            <td class="num highlight">10% 预提税</td>
+          </tr>
+          <tr>
+            <td><strong>合规复杂度</strong></td>
+            <td>较低</td>
+            <td class="highlight">较高（需满足实质经营）</td>
+          </tr>
+          <tr>
+            <td><strong>CFC穿透风险</strong></td>
+            <td style="color:var(--c-success)">无</td>
+            <td style="color:var(--c-danger)">存在（21号公告）</td>
+          </tr>
+          <tr>
+            <td><strong>资金灵活性</strong></td>
+            <td>分红后直接支配</td>
+            <td class="highlight">境外留存再投资灵活</td>
+          </tr>
+          <tr>
+            <td><strong>适用场景</strong></td>
+            <td>小额分红、简单架构</td>
+            <td>大额分红、多层级架构</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 6: TREND ============ -->
+<section id="trend" class="section">
+  <div class="section__label">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/><polyline points="17,6 23,6 23,12"/></svg>
+    趋势研判
+  </div>
+  <h2 class="section__title">政策信号与未来走向</h2>
+
+  <div class="trend-box">
+    <h3 class="trend-box__title">系统性制度重构，而非单一政策调整</h3>
+    <ul class="trend-list">
+      <li><strong>21号（离岸信托穿透）+ 26号（限售股）+ 27号（外籍分红）</strong> = 财产与投资收益个税全面拉平。三大公告构成一个完整的制度闭环，标志着中国个人所得税从"分类征收"向"综合与分类相结合"的进一步深入。</li>
+      <li><strong>党的二十届三中全会</strong>明确提出："规范税收优惠政策""健全有利于高质量发展的税收制度体系"。这为后续政策调整提供了顶层设计的方向指引。</li>
+      <li><strong>财政部副部长廖岷</strong>8月21日公开表态："该停止的要停止，该优化的要及时优化。"这一表态直接回应了市场对税收优惠政策清理的预期。</li>
+      <li><strong>预判后续走向：</strong>可能继续清理其他涉外税收优惠，包括但不仅限于特定区域的税收减免。境外保险收益、离岸信托分配等争议性税务口径也有待进一步明确。</li>
+      <li><strong>对企业的启示：</strong>依赖单一税收优惠政策的商业模式和架构设计面临根本性风险。企业应建立"政策变动弹性"，避免将所有税务规划押注于单一优惠政策。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SECTION 7: SERVICES ============ -->
+<section id="services" class="section">
+  <div class="section__label">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+    专业服务
+  </div>
+  <h2 class="section__title">守信财税可以提供的服务</h2>
+  <p class="section__desc">面对27号公告带来的系统性变化，守信财税为企业提供以下专项服务：</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-card__icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <h3 class="service-card__title">外籍股东分红合规排查</h3>
+        <p class="service-card__text">排查待支付分红，评估政策适用口径，调整代扣代缴流程，确保9月1日起全面合规。</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-card__icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+      </div>
+      <div>
+        <h3 class="service-card__title">跨境持股架构优化方案</h3>
+        <p class="service-card__text">自然人持股 vs 境外公司持股全面税负测算，量身定制最优架构方案。</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-card__icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      </div>
+      <div>
+        <h3 class="service-card__title">税收协定优惠申请</h3>
+        <p class="service-card__text">协定适用条件论证、备案材料准备、与主管税务机关沟通协调，争取最优协定税率。</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-card__icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+      </div>
+      <div>
+        <h3 class="service-card__title">存量架构调整专项</h3>
+        <p class="service-card__text">BVI/开曼架构重组方案设计，返程投资架构优化，兼顾21号CFC穿透规则。</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-card__icon">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <div>
+        <h3 class="service-card__title">21号+27号联合影响评估</h3>
+        <p class="service-card__text">CFC穿透规则与外籍分红征税的综合影响分析，识别双重征税风险与优化空间。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__sources">
+      <h3 class="footer__sources-title">信息来源</h3>
+      <ol>
+        <li><a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5252107/content.html" target="_blank" rel="noopener noreferrer">国家税务总局法规库 · 27号公告原文</a></li>
+        <li><a href="https://szs.mof.gov.cn/zhengcefabu/202609/t20260901_3996442.htm" target="_blank" rel="noopener noreferrer">财政部税政司 · 政策发布页面</a></li>
+        <li><a href="http://www.xinhuanet.com/20260901/2898a7747b724781820e60b1d276e0ed/c.html" target="_blank" rel="noopener noreferrer">新华社 · 政策报道</a></li>
+        <li><a href="https://stock.stockstar.com/IG2026090200009299.shtml" target="_blank" rel="noopener noreferrer">证券之星 · 深度分析</a></li>
+      </ol>
+    </div>
+    <div class="footer__disclaimer">
+      <strong>免责声明：</strong>本分析报告仅供参考，不构成任何税务筹划建议。具体操作请以财政部、国家税务总局正式发布的文件及主管税务机关的口径为准。税收政策可能随时调整，建议在做出任何决策前咨询专业税务顾问。
+    </div>
+    <div class="footer__brand">
+      <span class="footer__brand-name">守信财税</span>
+      <span class="footer__brand-sub">专业 · 合规 · 值得信赖</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL JS -->
+<script>
+(function(){
+  // Smooth scroll for anchor links
+  document.querySelectorAll('.top-nav__links a[href^="#"]').forEach(function(link){
+    link.addEventListener('click',function(e){
+      var target=document.querySelector(this.getAttribute('href'));
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+
+  // Active nav highlight on scroll
+  var sections=document.querySelectorAll('section[id]');
+  var navLinks=document.querySelectorAll('.top-nav__links a');
+  function onScroll(){
+    var scrollPos=window.scrollY+80;
+    sections.forEach(function(section){
+      var top=section.offsetTop;
+      var bottom=top+section.offsetHeight;
+      var id=section.getAttribute('id');
+      navLinks.forEach(function(link){
+        if(link.getAttribute('href')==='#'+id){
+          if(scrollPos>=top&&scrollPos<bottom){
+            link.style.color='#fff';
+            link.style.background='rgba(213,168,77,.2)';
+          }else{
+            link.style.color='';
+            link.style.background='';
+          }
+        }
+      });
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
