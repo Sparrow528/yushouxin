@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第二期活动主题投票 — 朝企联·协会学习小组</title>
+<style>
+:root {
+  --bg: #F6F8FB;
+  --surface: #FFFFFF;
+  --text: #152033;
+  --text-secondary: #637089;
+  --accent: #2F6BFF;
+  --accent-light: #E8F0FF;
+  --success: #16A37B;
+  --success-light: #E6F7F2;
+  --warning: #D97706;
+  --warning-light: #FFF4E5;
+  --danger: #E5484D;
+  --border: #E6EAF2;
+  --radius: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: clamp(16px, 4vw, 48px);
+}
+.container { max-width: 800px; margin: 0 auto; }
+
+/* Header */
+.vote-header {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.vote-header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--success));
+}
+.vote-org { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+.vote-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.vote-subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; }
+.vote-meta {
+  display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+  font-size: 13px; color: var(--text-secondary);
+}
+
+/* Step 指示器 */
+.steps {
+  display: flex; justify-content: center; gap: 8px; margin-bottom: 20px;
+}
+.step-dot {
+  width: 32px; height: 6px; border-radius: 3px; background: var(--border);
+  transition: all .3s;
+}
+.step-dot.active { background: var(--accent); }
+.step-dot.done { background: var(--success); }
+
+/* Section */
+.vote-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+.section-header { margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.section-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.section-desc { font-size: 13px; color: var(--text-secondary); }
+
+/* 表单 */
+.form-group { margin-bottom: 18px; }
+.form-label { font-size: 13px; font-weight: 600; margin-bottom: 6px; display: block; }
+.form-label .req { color: var(--danger); margin-left: 2px; }
+.form-input {
+  width: 100%; padding: 11px 14px;
+  border: 1px solid var(--border); border-radius: 6px;
+  font-size: 14px; font-family: inherit; color: var(--text);
+  transition: border .2s;
+}
+.form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(47,107,255,.1); }
+.form-hint { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+/* 选项 */
+.vote-grid { display: grid; gap: 12px; }
+.vote-option {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 18px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.vote-option:hover { border-color: var(--accent); background: var(--accent-light); }
+.vote-option.selected {
+  border-color: var(--accent); background: var(--accent-light);
+  box-shadow: 0 0 0 2px rgba(47, 107, 255, 0.15);
+}
+.vote-option.green { border-left-color: var(--success); }
+.vote-option.green:hover, .vote-option.green.selected {
+  border-color: var(--success); border-left-color: var(--success);
+  background: var(--success-light); box-shadow: 0 0 0 2px rgba(22,163,123,.15);
+}
+.vote-option.orange { border-left-color: var(--warning); }
+.vote-option.orange:hover, .vote-option.orange.selected {
+  border-color: var(--warning); border-left-color: var(--warning);
+  background: var(--warning-light); box-shadow: 0 0 0 2px rgba(217,119,6,.15);
+}
+.vote-checkbox {
+  width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 4px;
+  flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center; transition: all .2s;
+}
+.vote-option.selected .vote-checkbox { background: var(--accent); border-color: var(--accent); }
+.vote-option.green.selected .vote-checkbox { background: var(--success); border-color: var(--success); }
+.vote-option.orange.selected .vote-checkbox { background: var(--warning); border-color: var(--warning); }
+.vote-option.selected .vote-checkbox::after { content: "✓"; color: white; font-size: 14px; font-weight: 700; }
+.vote-content { flex: 1; }
+.vote-option-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.vote-option-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.vote-option-tags { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.vote-tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.vote-tag.blue { background: var(--accent-light); color: var(--accent); }
+.vote-tag.green { background: var(--success-light); color: var(--success); }
+.vote-tag.orange { background: var(--warning-light); color: var(--warning); }
+.other-input {
+  width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 4px;
+  font-size: 13px; font-family: inherit; margin-top: 8px;
+}
+.other-input:focus { outline: none; border-color: var(--accent); }
+
+/* 选择计数 */
+.selected-count {
+  position: sticky; bottom: 16px;
+  background: var(--surface); border: 1px solid var(--accent);
+  border-radius: 999px; padding: 10px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+  margin-top: 20px;
+}
+.selected-count .cnt { font-weight: 700; color: var(--accent); }
+.selected-count .cnt.full { color: var(--success); }
+
+/* 按钮 */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 28px; border-radius: 8px; border: none;
+  font-size: 15px; font-weight: 600; font-family: inherit;
+  cursor: pointer; transition: all .2s;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: #2459e0; }
+.btn-primary:disabled { background: #a8bff5; cursor: not-allowed; }
+.btn-block { width: 100%; }
+.btn-ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+.btn-ghost:hover { background: var(--accent-light); }
+
+/* 统计 */
+.stat-summary {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px;
+}
+.stat-card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  padding: 16px; text-align: center;
+}
+.stat-card .num { font-size: 28px; font-weight: 800; color: var(--accent); }
+.stat-card .label { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+.stat-bar-row { margin-bottom: 16px; }
+.stat-bar-head { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; }
+.stat-bar-head .name { font-weight: 600; }
+.stat-bar-head .val { color: var(--text-secondary); }
+.stat-bar-track { height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden; }
+.stat-bar-fill { height: 100%; border-radius: 5px; background: var(--accent); transition: width .5s; }
+.stat-bar-fill.green { background: var(--success); }
+.stat-bar-fill.orange { background: var(--warning); }
+.stat-bar-row.rank-1 .stat-bar-fill { background: var(--warning); }
+
+.voter-list { font-size: 13px; }
+.voter-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 12px; border-bottom: 1px solid var(--border);
+}
+.voter-item:last-child { border-bottom: none; }
+.voter-name { font-weight: 600; }
+.voter-choices { color: var(--text-secondary); font-size: 12px; }
+
+/* Footer */
+.vote-footer {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px 28px; text-align: center;
+}
+.vote-footer p { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+.vote-footer .highlight { color: var(--accent); font-weight: 600; }
+
+.hidden { display: none !important; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .vote-header { padding: 24px 20px; }
+  .vote-section { padding: 18px 16px; }
+  .vote-title { font-size: 20px; }
+  .vote-meta { flex-direction: column; gap: 8px; }
+  .stat-summary { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+}
+</style>
+</head>
+<body>
+<main class="container">
+
+<header class="vote-header">
+  <div class="vote-org">朝企联 · 协会学习小组</div>
+  <h1 class="vote-title">第二期活动主题投票</h1>
+  <p class="vote-subtitle">第一期活动圆满结束，第二期我们将深入 Agent 应用与搭建</p>
+  <div class="vote-meta">
+    <span>活动日期：2026年10月29日（周四）</span>
+    <span>时间：14:00 — 17:00</span>
+    <span>限10人精品小班</span>
+  </div>
+</header>
+
+<!-- 步骤指示 -->
+<div class="steps" id="steps">
+  <div class="step-dot active" id="dot1"></div>
+  <div class="step-dot" id="dot2"></div>
+  <div class="step-dot" id="dot3"></div>
+</div>
+
+<!-- Step 1: 会员身份录入 -->
+<section class="vote-section" id="step1">
+  <div class="section-header">
+    <h2 class="section-title">① 身份录入</h2>
+    <p class="section-desc">请先填写你的信息，录入后才能参与投票</p>
+  </div>
+  <div class="form-group">
+    <label class="form-label">会员姓名<span class="req">*</span></label>
+    <input type="text" class="form-input" id="inputName" placeholder="请输入你的姓名" autocomplete="name">
+  </div>
+  <div class="form-group">
+    <label class="form-label">手机号</label>
+    <input type="tel" class="form-input" id="inputPhone" placeholder="选填，用于后续联系确认" autocomplete="tel">
+  </div>
+  <div class="form-group">
+    <label class="form-label">微信号</label>
+    <input type="text" class="form-input" id="inputWechat" placeholder="选填，用于后续拉群确认">
+  </div>
+  <button class="btn btn-primary btn-block" id="btnEnter">进入投票</button>
+</section>
+
+<!-- Step 2: 投票选择 -->
+<section class="vote-section hidden" id="step2">
+  <div class="section-header">
+    <h2 class="section-title">② 选择你感兴趣的 3 个方向</h2>
+    <p class="section-desc">请从以下 11 个 Agent 应用方向中，选择你最感兴趣的 3 个（必须选满 3 个）</p>
+  </div>
+  <div class="vote-grid" id="voteGrid"></div>
+  <div class="selected-count" id="selectedBar">
+    <span>已选择 <span class="cnt" id="selectedNum">0</span> / 3 个方向</span>
+    <button class="btn btn-primary" id="btnSubmit" disabled>提交投票</button>
+  </div>
+</section>
+
+<!-- Step 3: 统计结果 -->
+<section class="vote-section hidden" id="step3">
+  <div class="section-header">
+    <h2 class="section-title">③ 投票统计</h2>
+    <p class="section-desc">实时统计 · 刷新页面可查看最新结果</p>
+  </div>
+  <div class="stat-summary">
+    <div class="stat-card"><div class="num" id="statVoters">0</div><div class="label">已投票人数</div></div>
+    <div class="stat-card"><div class="num" id="statBallots">0</div><div class="label">总票数</div></div>
+    <div class="stat-card"><div class="num" id="statTop">—</div><div class="label">暂列第一</div></div>
+  </div>
+  <div class="section-header" style="margin-top:8px;">
+    <h2 class="section-title" style="font-size:15px;">各方向得票排行</h2>
+  </div>
+  <div id="statBars"></div>
+  <div class="section-header" style="margin-top:8px;">
+    <h2 class="section-title" style="font-size:15px;">投票明细</h2>
+  </div>
+  <div class="voter-list" id="voterList"></div>
+  <div style="margin-top:16px; display:flex; gap:12px;">
+    <button class="btn btn-ghost" id="btnExport">导出 CSV</button>
+    <button class="btn btn-ghost" id="btnBackVote">再投一票（管理员测试）</button>
+  </div>
+</section>
+
+<footer class="vote-footer">
+  <p>投票方式：从以上方向中选择 <span class="highlight">3 个</span> 最感兴趣的话题</p>
+  <p>投票结果将决定第二期活动的核心内容，请认真选择</p>
+  <p style="margin-top: 12px; font-size: 12px;">投票截止时间：2026年10月15日</p>
+</footer>
+
+</main>
+
+<script>
+// ============ 数据层（demo 用 localStorage，后续可切 Supabase） ============
+const STORAGE_KEY = "chaoqilian_vote_2nd";
+const Storage = {
+  load() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : { votes: [] };
+    } catch (e) { return { votes: [] }; }
+  },
+  save(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+};
+
+// ============ 投票选项 ============
+const OPTIONS = [
+  { id: "video",    name: "Agent 制作视频", desc: "自动化视频脚本生成、分镜设计、素材匹配、视频剪辑辅助", tags: ["短视频制作","脚本生成","素材匹配"] },
+  { id: "image",    name: "Agent 制作图片", desc: "海报设计、封面图生成、宣传物料制作、品牌视觉统一", tags: ["海报设计","封面生成","品牌视觉"] },
+  { id: "plan",     name: "Agent 制作方案", desc: "商业计划书、项目策划方案、活动策划、营销方案设计", tags: ["商业计划","项目策划","营销方案"] },
+  { id: "data",     name: "Agent 数据分析", desc: "财务报表分析、业务数据可视化、趋势预测、决策建议生成", tags: ["数据分析","可视化","趋势预测"] },
+  { id: "content",  name: "Agent 内容创作", desc: "公众号文章、营销文案、短视频脚本、行业分析报告撰写", tags: ["文案撰写","内容营销","报告生成"] },
+  { id: "customer", name: "Agent 客户管理", desc: "客户资料整理、跟进提醒、沟通话术生成、客户分级管理", tags: ["客户跟进","CRM管理","话术生成"] },
+  { id: "policy",   name: "Agent 政策追踪", desc: "财税政策监控、政策解读摘要、合规检查、风险预警提醒", tags: ["政策监控","合规检查","风险预警"] },
+  { id: "schedule", name: "Agent 日程管理", desc: "日程安排、任务提醒、会议协调、时间管理优化", tags: ["日程安排","任务提醒","时间管理"] },
+  { id: "knowledge",name: "Agent 知识整理", desc: "文档归档、知识库建设、资料检索、经验沉淀管理", tags: ["文档归档","知识库","经验沉淀"] },
+  { id: "build",    name: "Agent 搭建入门", desc: "从零搭建第一个Agent、平台选择、基础配置、调试运行", tags: ["零基础入门","实战搭建","问题排查"] },
+  { id: "other",    name: "其他方向", desc: "以上方向都不感兴趣？写下你希望学习的 Agent 应用方向", tags: [], custom: true },
+];
+const COLOR_CLASSES = ["", "green", "orange"];
+
+// ============ 状态 ============
+let selected = [];  // 存储选中的 option id
+let customText = "";
+
+// ============ 渲染 ============
+function renderOptions() {
+  const grid = document.getElementById("voteGrid");
+  grid.innerHTML = "";
+  OPTIONS.forEach((opt, i) => {
+    const colorClass = opt.custom ? "" : COLOR_CLASSES[i % 3];
+    const label = document.createElement("label");
+    label.className = "vote-option " + colorClass;
+    label.dataset.id = opt.id;
+    if (opt.custom) label.style.borderLeftColor = "var(--text-secondary)";
+    label.innerHTML = `
+      <div class="vote-checkbox"></div>
+      <div class="vote-content">
+        <div class="vote-option-title">${opt.name}</div>
+        <div class="vote-option-desc">${opt.desc}</div>
+        ${opt.tags.length ? `<div class="vote-option-tags">${opt.tags.map(t => `<span class="vote-tag ${colorClass}">${t}</span>`).join("")}</div>` : ""}
+        ${opt.custom ? `<input type="text" class="other-input" id="otherInput" placeholder="请填写你感兴趣的方向..." onclick="event.stopPropagation()">` : ""}
+      </div>
+    `;
+    label.addEventListener("click", (e) => {
+      if (e.target.id === "otherInput") return;
+      toggleOption(opt.id);
+    });
+    grid.appendChild(label);
+  });
+  const otherInput = document.getElementById("otherInput");
+  if (otherInput) otherInput.addEventListener("input", (e) => { customText = e.target.value; });
+}
+
+function toggleOption(id) {
+  if (selected.includes(id)) {
+    selected = selected.filter(x => x !== id);
+  } else if (selected.length < 3) {
+    selected.push(id);
+  } else {
+    alert("最多只能选择 3 个方向");
+    return;
+  }
+  updateSelection();
+}
+
+function updateSelection() {
+  document.querySelectorAll(".vote-option").forEach(el => {
+    const id = el.dataset.id;
+    if (selected.includes(id)) el.classList.add("selected");
+    else el.classList.remove("selected");
+  });
+  const num = selected.length;
+  document.getElementById("selectedNum").textContent = num;
+  document.getElementById("selectedNum").className = "cnt" + (num === 3 ? " full" : "");
+  document.getElementById("btnSubmit").disabled = num !== 3;
+}
+
+// ============ 步骤切换 ============
+function showStep(n) {
+  ["step1","step2","step3"].forEach((id, i) => {
+    document.getElementById(id).classList.toggle("hidden", i + 1 !== n);
+  });
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById("dot" + i);
+    dot.className = "step-dot" + (i < n ? " done" : i === n ? " active" : "");
+  }
+}
+
+// ============ Step 1: 录入 ============
+document.getElementById("btnEnter").addEventListener("click", () => {
+  const name = document.getElementById("inputName").value.trim();
+  if (!name) { alert("请填写会员姓名"); return; }
+  const data = Storage.load();
+  if (data.votes.some(v => v.name === name)) {
+    alert("该姓名已投过票，不能重复投票");
+    return;
+  }
+  // 暂存身份信息
+  window._voter = {
+    name,
+    phone: document.getElementById("inputPhone").value.trim(),
+    wechat: document.getElementById("inputWechat").value.trim()
+  };
+  showStep(2);
+});
+
+// ============ Step 2: 提交 ============
+document.getElementById("btnSubmit").addEventListener("click", () => {
+  if (selected.length !== 3) { alert("请选满 3 个方向"); return; }
+  if (selected.includes("other") && !customText.trim()) {
+    alert("选择「其他方向」时，请填写具体内容");
+    return;
+  }
+  const data = Storage.load();
+  if (data.votes.some(v => v.name === window._voter.name)) {
+    alert("该姓名已投过票，不能重复投票");
+    return;
+  }
+  const choices = selected.map(id => id === "other" ? ("其他：" + customText.trim()) : id);
+  data.votes.push({
+    name: window._voter.name,
+    phone: window._voter.phone,
+    wechat: window._voter.wechat,
+    choices,
+    time: new Date().toISOString()
+  });
+  Storage.save(data);
+  selected = [];
+  customText = "";
+  updateSelection();
+  renderStats();
+  showStep(3);
+});
+
+// ============ Step 3: 统计 ============
+function getOptionName(id) {
+  const opt = OPTIONS.find(o => o.id === id);
+  return opt ? opt.name : id;
+}
+
+function renderStats() {
+  const data = Storage.load();
+  const votes = data.votes;
+  const totalVoters = votes.length;
+
+  // 统计每个选项的票数
+  const counts = {};
+  OPTIONS.forEach(o => counts[o.id] = 0);
+  let totalBallots = 0;
+  votes.forEach(v => {
+    v.choices.forEach(c => {
+      totalBallots++;
+      if (c.startsWith("其他：")) {
+        counts["other"]++;
+      } else if (counts[c] !== undefined) {
+        counts[c]++;
+      }
+    });
+  });
+
+  document.getElementById("statVoters").textContent = totalVoters;
+  document.getElementById("statBallots").textContent = totalBallots;
+
+  // 排行榜
+  const ranked = OPTIONS.map(o => ({ id: o.id, name: o.name, count: counts[o.id] }))
+    .sort((a, b) => b.count - a.count);
+  document.getElementById("statTop").textContent = ranked[0].count > 0 ? ranked[0].name.replace("Agent ", "") : "—";
+
+  // 柱状图
+  const barsEl = document.getElementById("statBars");
+  barsEl.innerHTML = "";
+  const maxCount = Math.max(1, ...ranked.map(r => r.count));
+  ranked.forEach((r, i) => {
+    const pct = totalBallots > 0 ? ((r.count / totalBallots) * 100).toFixed(1) : "0.0";
+    const colorClass = COLOR_CLASSES[i % 3];
+    const row = document.createElement("div");
+    row.className = "stat-bar-row" + (i === 0 && r.count > 0 ? " rank-1" : "");
+    row.innerHTML = `
+      <div class="stat-bar-head">
+        <span class="name">${r.name}</span>
+        <span class="val">${r.count} 票 · ${pct}%</span>
+      </div>
+      <div class="stat-bar-track">
+        <div class="stat-bar-fill ${colorClass}" style="width: ${(r.count / maxCount) * 100}%"></div>
+      </div>
+    `;
+    barsEl.appendChild(row);
+  });
+
+  // 投票明细
+  const listEl = document.getElementById("voterList");
+  listEl.innerHTML = "";
+  if (votes.length === 0) {
+    listEl.innerHTML = '<div style="text-align:center;color:var(--text-secondary);padding:16px;">暂无投票</div>';
+  } else {
+    votes.slice().reverse().forEach(v => {
+      const item = document.createElement("div");
+      item.className = "voter-item";
+      const choiceText = v.choices.map(c => getOptionName(c.startsWith("其他：") ? "other" : c)).join("、");
+      item.innerHTML = `<span class="voter-name">${v.name}</span><span class="voter-choices">${choiceText}</span>`;
+      listEl.appendChild(item);
+    });
+  }
+}
+
+// ============ 导出 CSV ============
+document.getElementById("btnExport").addEventListener("click", () => {
+  const data = Storage.load();
+  const rows = [["姓名","手机号","微信号","选择1","选择2","选择3","投票时间"]];
+  data.votes.forEach(v => {
+    const choices = v.choices.map(c => c.startsWith("其他：") ? c.replace("其他：","其他-") : getOptionName(c));
+    while (choices.length < 3) choices.push("");
+    rows.push([v.name, v.phone || "", v.wechat || "", ...choices, v.time]);
+  });
+  const csv = rows.map(r => r.map(c => `"${(c||"").replace(/"/g,'""')}"`).join(",")).join("\n");
+  const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "朝企联第二期投票数据.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("btnBackVote").addEventListener("click", () => {
+  showStep(1);
+});
+
+// ============ 初始化 ============
+renderOptions();
+updateSelection();
+showStep(1);
+</script>
+</body>
+</html>
