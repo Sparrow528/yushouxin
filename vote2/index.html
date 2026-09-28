@@ -327,16 +327,16 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 // ============ 数据层（Supabase 云端数据库） ============
 const SUPABASE_URL = "https://xvvwdiqxbhhkgnibhbxi.supabase.co";
 const SUPABASE_KEY = "sb_publishable_E5fa74SZ-2GmAWWv4T4BdA_P5TS9cm_";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const Storage = {
   async load() {
-    const { data, error } = await supabase.from("votes").select("*").order("created_at", { ascending: false });
+    const { data, error } = await sb.from("votes").select("*").order("created_at", { ascending: false });
     if (error) { console.error("加载失败:", error); return { votes: [] }; }
     return { votes: data || [] };
   },
   async save(vote) {
-    const { error } = await supabase.from("votes").insert([vote]);
+    const { error } = await sb.from("votes").insert([vote]);
     if (error) { console.error("保存失败:", error); return false; }
     return true;
   }
