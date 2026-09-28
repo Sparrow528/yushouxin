@@ -306,18 +306,23 @@ body {
 
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ============ 数据层（demo 用 localStorage，后续可切 Supabase） ============
-const STORAGE_KEY = "chaoqilian_vote_2nd";
+// ============ 数据层（Supabase 云端数据库） ============
+const SUPABASE_URL = "https://xvvwdiqxbhhkgnibhbxi.supabase.co";
+const SUPABASE_KEY = "sb_publishable_E5fa74SZ-2GmAWWv4T4BdA_P5TS9cm_";
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 const Storage = {
-  load() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : { votes: [] };
-    } catch (e) { return { votes: [] }; }
+  async load() {
+    const { data, error } = await supabase.from("votes").select("*").order("created_at", { ascending: false });
+    if (error) { console.error("加载失败:", error); return { votes: [] }; }
+    return { votes: data || [] };
   },
-  save(data) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  async save(vote) {
+    const { error } = await supabase.from("votes").insert([vote]);
+    if (error) { console.error("保存失败:", error); return false; }
+    return true;
   }
 };
 
@@ -406,10 +411,10 @@ function showStep(n) {
 }
 
 // ============ Step 1: 录入 ============
-document.getElementById("btnEnter").addEventListener("click", () => {
+document.getElementById("btnEnter").addEventListener("click", async () => {
   const name = document.getElementById("inputName").value.trim();
   if (!name) { alert("请填写会员姓名"); return; }
-  const data = Storage.load();
+  const data = await Storage.load();
   if (data.votes.some(v => v.name === name)) {
     alert("该姓名已投过票，不能重复投票");
     return;
@@ -424,30 +429,29 @@ document.getElementById("btnEnter").addEventListener("click", () => {
 });
 
 // ============ Step 2: 提交 ============
-document.getElementById("btnSubmit").addEventListener("click", () => {
+document.getElementById("btnSubmit").addEventListener("click", async () => {
   if (selected.length !== 3) { alert("请选满 3 个方向"); return; }
   if (selected.includes("other") && !customText.trim()) {
     alert("选择「其他方向」时，请填写具体内容");
     return;
   }
-  const data = Storage.load();
+  const data = await Storage.load();
   if (data.votes.some(v => v.name === window._voter.name)) {
     alert("该姓名已投过票，不能重复投票");
     return;
   }
   const choices = selected.map(id => id === "other" ? ("其他：" + customText.trim()) : id);
-  data.votes.push({
+  const ok = await Storage.save({
     name: window._voter.name,
     phone: window._voter.phone,
     wechat: window._voter.wechat,
-    choices,
-    time: new Date().toISOString()
+    choices
   });
-  Storage.save(data);
+  if (!ok) { alert("提交失败，请重试"); return; }
   selected = [];
   customText = "";
   updateSelection();
-  renderStats();
+  await renderStats();
   showStep(3);
 });
 
@@ -457,8 +461,8 @@ function getOptionName(id) {
   return opt ? opt.name : id;
 }
 
-function renderStats() {
-  const data = Storage.load();
+async function renderStats() {
+  const data = await Storage.load();
   const votes = data.votes;
   const totalVoters = votes.length;
 
@@ -523,13 +527,13 @@ function renderStats() {
 }
 
 // ============ 导出 CSV ============
-document.getElementById("btnExport").addEventListener("click", () => {
-  const data = Storage.load();
+document.getElementById("btnExport").addEventListener("click", async () => {
+  const data = await Storage.load();
   const rows = [["姓名","手机号","微信号","选择1","选择2","选择3","投票时间"]];
   data.votes.forEach(v => {
     const choices = v.choices.map(c => c.startsWith("其他：") ? c.replace("其他：","其他-") : getOptionName(c));
     while (choices.length < 3) choices.push("");
-    rows.push([v.name, v.phone || "", v.wechat || "", ...choices, v.time]);
+    rows.push([v.name, v.phone || "", v.wechat || "", ...choices, v.created_at]);
   });
   const csv = rows.map(r => r.map(c => `"${(c||"").replace(/"/g,'""')}"`).join(",")).join("\n");
   const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" });
