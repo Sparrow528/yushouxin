@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP项目 · 文件总目录</title>
+<style>
+:root{--primary:#1A237E;--primary-l:#3949AB;--green:#2E7D32;--green-l:#43A047;--amber:#E65100;--ink:#1b2430;--muted:#5b6675;--line:#e6eaf0;--bg:#f4f6fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.hero{background:linear-gradient(135deg,#1A237E 0%,#283593 55%,#2E7D32 100%);color:#fff;padding:56px 40px 64px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-100px;top:-100px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%)}
+.hero h1{font-size:32px;font-weight:800;letter-spacing:-.5px;position:relative}
+.hero p{margin-top:10px;font-size:15px;color:rgba(255,255,255,.82);position:relative;max-width:720px}
+.hero .stats{margin-top:20px;display:flex;gap:20px;flex-wrap:wrap;position:relative}
+.hero .stats div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:8px 16px;font-size:13px}
+.hero .stats b{font-size:20px;display:block;color:#A5D6A7}
+.wrap{max-width:1100px;margin:-30px auto 60px;padding:0 20px;position:relative}
+.group{background:#fff;border-radius:12px;box-shadow:0 4px 18px rgba(26,35,126,.07);padding:22px 24px;margin-bottom:20px;border:1px solid var(--line)}
+.group-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid var(--line)}
+.group-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0}
+.g1 .group-icon{background:linear-gradient(135deg,#1A237E,#3949AB)}
+.g2 .group-icon{background:linear-gradient(135deg,#2E7D32,#66BB6A)}
+.g3 .group-icon{background:linear-gradient(135deg,#6A1B9A,#AB47BC)}
+.g4 .group-icon{background:linear-gradient(135deg,#E65100,#FFA726)}
+.g5 .group-icon{background:linear-gradient(135deg,#0D47A1,#42A5F5)}
+.g6 .group-icon{background:linear-gradient(135deg,#455A64,#78909C)}
+.group-head h2{font-size:17px;color:var(--primary);font-weight:700}
+.group-head span{font-size:12px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{background:#EEF1F8;color:var(--primary);font-weight:700;text-align:left;padding:8px 10px;font-size:12px}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafbfe}
+.fname{font-weight:600;color:var(--ink)}
+.fname a{color:var(--primary);text-decoration:none;transition:color .2s}
+.fname a:hover{color:var(--green);text-decoration:underline}
+.fmt{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:12px}
+.fmt.docx{background:#E3F2FD;color:#1565C0}
+.fmt.xlsx{background:#E8F5E9;color:#2E7D32}
+.fmt.html{background:#FFF3E0;color:#E65100}
+.fmt.pptx{background:#FCE4EC;color:#AD1457}
+.fmt.zip{background:#F3E5F5;color:#6A1B9A}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;font-weight:700}
+.tag.new{background:#E8F5E9;color:#2E7D32}
+.tag.old{background:#ECEFF1;color:#546E7A}
+.tag.core{background:#E3F2FD;color:#1565C0}
+.note-box{background:#FFFDE7;border:1px solid #FFF59D;border-left:4px solid var(--amber);border-radius:8px;padding:12px 16px;font-size:13px;color:#5d5220;margin-bottom:18px}
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.toc-card{background:#fff;border-radius:12px;border:1px solid var(--line);padding:16px 20px;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
+.toc-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(26,35,126,.1)}
+.toc-card h3{font-size:14px;color:var(--primary);margin-bottom:6px;font-weight:700}
+.toc-card p{font-size:12.5px;color:var(--muted);margin-bottom:8px;line-height:1.5}
+.toc-card .links{display:flex;gap:8px;flex-wrap:wrap}
+.toc-card .links a{font-size:11px;padding:3px 10px;border-radius:6px;text-decoration:none;font-weight:600;transition:opacity .2s}
+.toc-card .links a:hover{opacity:.8}
+.toc-card .links .btn-html{background:var(--primary);color:#fff}
+.toc-card .links .btn-docx{background:#1565C0;color:#fff}
+.toc-card .links .btn-zip{background:#6A1B9A;color:#fff}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:16px 0}
+@media(max-width:768px){.hero{padding:36px 20px 48px}.group{padding:16px}.toc{grid-template-columns:1fr}table{font-size:12px}th,td{padding:6px 8px}}
+@media print{.hero::before{display:none}.group{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>DPP项目 · 文件总目录</h1>
+  <p>欧盟数字产品护照（DPP）业务线全部文件索引，点击文件名即可打开。所有定价为空白期×10定价体系。</p>
+  <div class="stats">
+    <div><b>6</b>份手册文档</div>
+    <div><b>6</b>份Word版</div>
+    <div><b>37</b>个工具箱文件</div>
+    <div><b>2</b>个工具包</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="note-box">
+    <strong>使用说明：</strong>点击蓝色文件名可直接打开/下载对应文件。HTML文件在浏览器中打开；DOCX/XLSX/PPTX文件会下载后打开。工具箱ZIP包可整体下载。
+  </div>
+
+  <!-- 快速导航 -->
+  <h2 style="font-size:16px;color:var(--primary);margin-bottom:14px;font-weight:700">📌 快速导航</h2>
+  <div class="toc">
+    <div class="toc-card">
+      <h3>00 · 服务框架</h3>
+      <p>DPP整体服务体系全景，引流层+四大核心服务+定价汇总</p>
+      <div class="links">
+        <a href="./DPP手册/00_DPP服务框架.html" class="btn-html">HTML</a>
+        <a href="./DPP手册/00_DPP服务框架.docx" class="btn-docx">DOCX</a>
+      </div>
+    </div>
+    <div class="toc-card">
+      <h3>01 · 差距评估</h3>
+      <p>告诉客户"差什么"，¥8-80万，含产品手册+20个工具箱文件</p>
+      <div class="links">
+        <a href="./DPP手册/01_差距评估_产品手册.html" class="btn-html">HTML</a>
+        <a href="./DPP手册/01_差距评估_产品手册.docx" class="btn-docx">DOCX</a>
+        <a href="./DPP差距评估工具箱_v2.0.zip" class="btn-zip">工具箱ZIP</a>
+      </div>
+    </div>
+    <div class="toc-card">
+      <h3>02 · 数据建设</h3>
+      <p>帮客户"补数据"，¥20万-45万，含产品手册+15个工具箱文件</p>
+      <div class="links">
+        <a href="./DPP手册/02_数据建设_产品手册.html" class="btn-html">HTML</a>
+        <a href="./DPP手册/02_数据建设_产品手册.docx" class="btn-docx">DOCX</a>
+        <a href="./DPP数据建设工具箱_v1.0.zip" class="btn-zip">工具箱ZIP</a>
+      </div>
+    </div>
+    <div class="toc-card">
+      <h3>03 · 注册上线</h3>
+      <p>帮客户"上线"，¥30-60万+第三方费用，含产品手册</p>
+      <div class="links">
+        <a href="./DPP手册/03_注册上线_产品手册.html" class="btn-html">HTML</a>
+        <a href="./DPP手册/03_注册上线_产品手册.docx" class="btn-docx">DOCX</a>
+      </div>
+    </div>
+    <div class="toc-card">
+      <h3>04 · 年度托管</h3>
+      <p>持续合规，¥8-50万/年，含产品手册</p>
+      <div class="links">
+        <a href="./DPP手册/04_年度托管_产品手册.html" class="btn-html">HTML</a>
+        <a href="./DPP手册/04_年度托管_产品手册.docx" class="btn-docx">DOCX</a>
+      </div>
+    </div>
+    <div class="toc-card">
+      <h3>05 · 员工手册</h3>
+      <p>内部培训与业务规范，含员工手册</p>
+      <div class="links">
+        <a href="./DPP手册/05_DPP业务线_员工手册.html" class="btn-html">HTML</a>
+        <a href="./DPP手册/05_DPP业务线_员工手册.docx" class="btn-docx">DOCX</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 详细目录 -->
+  <h2 style="font-size:16px;color:var(--primary);margin:28px 0 14px;font-weight:700">📂 详细文件清单</h2>
+
+  <!-- 第一组：法规基础 -->
+  <div class="group g1">
+    <div class="group-head">
+      <div class="group-icon">📜</div>
+      <div><h2>法规基础</h2><span>核心政策依据</span></div>
+    </div>
+    <table>
+      <thead><tr><th>文件名</th><th style="width:60px">格式</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="fname"><a href="./DPP手册/00_欧盟电池法规核心条款.html">00_欧盟电池法规核心条款.html</a></td><td><span class="fmt html">HTML</span></td><td>12章+3附录，71数据点表格，时间线2023-2036</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第二组：服务框架 -->
+  <div class="group g1">
+    <div class="group-head">
+      <div class="group-icon">🏗</div>
+      <div><h2>00 · 服务框架</h2><span>整体服务体系全景</span></div>
+    </div>
+    <table>
+      <thead><tr><th>文件名</th><th style="width:60px">格式</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="fname"><a href="./DPP手册/00_DPP服务框架.html">00_DPP服务框架.html</a></td><td><span class="fmt html">HTML</span></td><td>引流层+①②③④全景，客户旅程，收费汇总</td></tr>
+        <tr><td class="fname"><a href="./DPP手册/00_DPP服务框架.docx">00_DPP服务框架.docx</a></td><td><span class="fmt docx">DOCX</span></td><td>Word版本</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第三组：差距评估 -->
+  <div class="group g2">
+    <div class="group-head">
+      <div class="group-icon">①</div>
+      <div><h2>01 · 差距评估</h2><span>告诉客户"差什么" · ¥8万-80万</span></div>
+    </div>
+    <table>
+      <thead><tr><th>文件名</th><th style="width:60px">格式</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="fname"><a href="./DPP手册/01_差距评估_产品手册.html">01_差距评估_产品手册.html</a></td><td><span class="fmt html">HTML</span></td><td>细节版，71数据点+32核查项+S1-S7全流程</td></tr>
+        <tr><td class="fname"><a href="./DPP手册/01_差距评估_产品手册.docx">01_差距评估_产品手册.docx</a></td><td><span class="fmt docx">DOCX</span></td><td>Word版本（23页）</td></tr>
+        <tr><td class="fname" colspan="3" style="color:var(--muted);font-size:12px;padding-top:12px">📦 配套工具箱（20个文件）：</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/01_NDA保密协议_中英双语.docx">01_NDA保密协议_中英双语</a></td><td><span class="fmt docx">DOCX</span></td><td>中英双语保密协议</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/02_服务协议与报价单.docx">02_服务协议与报价单</a></td><td><span class="fmt docx">DOCX</span></td><td>九条正文+三档报价单</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/03_项目启动书.docx">03_项目启动书</a></td><td><span class="fmt docx">DOCX</span></td><td>目标/范围/项目组/里程碑</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/04_资料准备清单与数据采集指引.docx">04_资料准备清单与采集指引</a></td><td><span class="fmt docx">DOCX</span></td><td>客户需准备的资料</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/05_客户信息采集表.xlsx">05_客户信息采集表</a></td><td><span class="fmt xlsx">XLSX</span></td><td>5个Sheet，企业/产品/认证/供应链/需求</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/06_电池类型判定表.xlsx">06_电池类型判定表</a></td><td><span class="fmt xlsx">XLSX</span></td><td>判定流程+类型对照+记录表</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/07_访谈提纲.docx">07_访谈提纲</a></td><td><span class="fmt docx">DOCX</span></td><td>6部门各10题，含记录区</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/08_法规适配矩阵.xlsx">08_法规适配矩阵</a></td><td><span class="fmt xlsx">XLSX</span></td><td>电池类型×适用条款矩阵</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/09_32项核查清单_内部工作版.xlsx">09_32项核查清单_内部工作版</a></td><td><span class="fmt xlsx">XLSX</span></td><td>A1-F4六维度32项+评级标准</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/10_71数据项标准清单.xlsx">10_71数据项标准清单</a></td><td><span class="fmt xlsx">XLSX</span></td><td>71数据字段字典</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/11_证据收集索引表.xlsx">11_证据收集索引表</a></td><td><span class="fmt xlsx">XLSX</span></td><td>32项证据跟踪台账</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/12_差距分级与评分模型.xlsx">12_差距分级与评分模型</a></td><td><span class="fmt xlsx">XLSX</span></td><td>六维加权自动评分</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/13_差距评估报告模板.docx">13_差距评估报告模板</a></td><td><span class="fmt docx">DOCX</span></td><td>9章+附录，核心交付物</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/14_71项核查工作表.xlsx">14_71项核查工作表</a></td><td><span class="fmt xlsx">XLSX</span></td><td>预填71项，逐项标注</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/15_差距分级明细表.xlsx">15_差距分级明细表</a></td><td><span class="fmt xlsx">XLSX</span></td><td>红/黄/绿分级+六维评分</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/16_整改路线图模板.xlsx">16_整改路线图模板</a></td><td><span class="fmt xlsx">XLSX</span></td><td>三阶段行动计划</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/17_下一步服务建议书.docx">17_下一步服务建议书</a></td><td><span class="fmt docx">DOCX</span></td><td>②③④组合方案+报价</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/18_关键日期速查卡.html">18_关键日期速查卡</a></td><td><span class="fmt html">HTML</span></td><td>A4可打印</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/19_汇报PPT模板.pptx">19_汇报PPT模板</a></td><td><span class="fmt pptx">PPTX</span></td><td>评估结果汇报</td></tr>
+        <tr><td class="fname"><a href="./DPP差距评估_工具箱/20_交付物验收确认单.docx">20_交付物验收确认单</a></td><td><span class="fmt docx">DOCX</span></td><td>5项交付物逐项验收</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第四组：数据建设 -->
+  <div class="group g3">
+    <div class="group-head">
+      <div class="group-icon">②</div>
+      <div><h2>02 · 数据建设</h2><span>帮客户"补数据" · ¥20万-45万</span></div>
+    </div>
+    <table>
+      <thead><tr><th>文件名</th><th style="width:60px">格式</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="fname"><a href="./DPP手册/02_数据建设_产品手册.html">02_数据建设_产品手册.html</a></td><td><span class="fmt html">HTML</span></td><td>细节版，35字段+9步流程+三级核验</td></tr>
+        <tr><td class="fname"><a href="./DPP手册/02_数据建设_产品手册.docx">02_数据建设_产品手册.docx</a></td><td><span class="fmt docx">DOCX</span></td><td>Word版本（17页）</td></tr>
+        <tr><td class="fname" colspan="3" style="color:var(--muted);font-size:12px;padding-top:12px">📦 配套工具箱（15个文件）：</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/01_NDA保密协议_中英双语.docx">01_NDA保密协议_中英双语</a></td><td><span class="fmt docx">DOCX</span></td><td>中英双语保密协议</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/02_服务协议与报价单.docx">02_服务协议与报价单</a></td><td><span class="fmt docx">DOCX</span></td><td>标准版/旗舰版两档定价</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/03_项目启动书.docx">03_项目启动书</a></td><td><span class="fmt docx">DOCX</span></td><td>范围+项目组+6里程碑</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/04_供应商清单模板.xlsx">04_供应商清单模板</a></td><td><span class="fmt xlsx">XLSX</span></td><td>13列含配合度评级</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/05_供应商数据问卷_中英双语.docx">05_供应商数据问卷_中英双语</a></td><td><span class="fmt docx">DOCX</span></td><td>Part A-G共7部分</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/06_催收管理台账.xlsx">06_催收管理台账</a></td><td><span class="fmt xlsx">XLSX</span></td><td>14列含催收节奏</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/07_数据采集指引.docx">07_数据采集指引</a></td><td><span class="fmt docx">DOCX</span></td><td>客户需准备的资料</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/08_数据卡模板.xlsx">08_数据卡模板</a></td><td><span class="fmt xlsx">XLSX</span></td><td>35字段×N型号</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/09_数据缺口分析报告模板.xlsx">09_数据缺口分析报告模板</a></td><td><span class="fmt xlsx">XLSX</span></td><td>初始→采集后→最终对比</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/10_数据核验记录表.xlsx">10_数据核验记录表</a></td><td><span class="fmt xlsx">XLSX</span></td><td>L1/L2/L3三级核验</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/11_采集计划与进度表.xlsx">11_采集计划与进度表</a></td><td><span class="fmt xlsx">XLSX</span></td><td>里程碑+任务+责任</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/12_数据手册模板.xlsx">12_数据手册模板</a></td><td><span class="fmt xlsx">XLSX</span></td><td>核心交付物，5个Sheet</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/13_数据合规性报告模板.docx">13_数据合规性报告模板</a></td><td><span class="fmt docx">DOCX</span></td><td>71项合规性检查</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/14_数据维护计划模板.docx">14_数据维护计划模板</a></td><td><span class="fmt docx">DOCX</span></td><td>动态更新+年度审核</td></tr>
+        <tr><td class="fname"><a href="./DPP数据建设_工具箱/15_交付物验收确认单.docx">15_交付物验收确认单</a></td><td><span class="fmt docx">DOCX</span></td><td>5项交付物验收</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第五组：注册上线 -->
+  <div class="group g4">
+    <div class="group-head">
+      <div class="group-icon">③</div>
+      <div><h2>03 · 注册上线</h2><span>帮客户"上线" · ¥30-60万+第三方€6,500-21,000</span></div>
+    </div>
+    <table>
+      <thead><tr><th>文件名</th><th style="width:60px">格式</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="fname"><a href="./DPP手册/03_注册上线_产品手册.html">03_注册上线_产品手册.html</a></td><td><span class="fmt html">HTML</span></td><td>eIDAS+欧代+注册中心，8步流程</td></tr>
+        <tr><td class="fname"><a href="./DPP手册/03_注册上线_产品手册.docx">03_注册上线_产品手册.docx</a></td><td><span class="fmt docx">DOCX</span></td><td>Word版本（12页）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第六组：年度托管 -->
+  <div class="group g5">
+    <div class="group-head">
+      <div class="group-icon">④</div>
+      <div><h2>04 · 年度托管</h2><span>持续合规 · ¥8-50万+/年</span></div>
+    </div>
+    <table>
+      <thead><tr><th>文件名</th><th style="width:60px">格式</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="fname"><a href="./DPP手册/04_年度托管_产品手册.html">04_年度托管_产品手册.html</a></td><td><span class="fmt html">HTML</span></td><td>数据维护+法规跟踪+应急支持</td></tr>
+        <tr><td class="fname"><a href="./DPP手册/04_年度托管_产品手册.docx">04_年度托管_产品手册.docx</a></td><td><span class="fmt docx">DOCX</span></td><td>Word版本</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第七组：员工手册 -->
+  <div class="group g6">
+    <div class="group-head">
+      <div class="group-icon">👥</div>
+      <div><h2>05 · 员工手册</h2><span>内部培训与业务规范</span></div>
+    </div>
+    <table>
+      <thead><tr><th>文件名</th><th style="width:60px">格式</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="fname"><a href="./DPP手册/05_DPP业务线_员工手册.html">05_DPP业务线_员工手册.html</a></td><td><span class="fmt html">HTML</span></td><td>服务体系+组织架构+协作规则+绩效考核</td></tr>
+        <tr><td class="fname"><a href="./DPP手册/05_DPP业务线_员工手册.docx">05_DPP业务线_员工手册.docx</a></td><td><span class="fmt docx">DOCX</span></td><td>Word版本</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第八组：规划文档 -->
+  <div class="group g6">
+    <div class="group-head">
+      <div class="group-icon">📋</div>
+      <div><h2>规划与方案文档</h2><span>项目前期规划材料</span></div>
+    </div>
+    <table>
+      <thead><tr><th>文件名</th><th style="width:60px">格式</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td class="fname"><a href="./DPP服务反推执行规划.html">DPP服务反推执行规划</a></td><td><span class="fmt html">HTML</span></td><td>反推思维执行规划</td></tr>
+        <tr><td class="fname"><a href="./DPP欧盟数字产品护照-项目全景.html">DPP欧盟数字产品护照-项目全景</a></td><td><span class="fmt html">HTML</span></td><td>项目全景图</td></tr>
+        <tr><td class="fname"><a href="./DPP痛点与解决方案全景整理.html">DPP痛点与解决方案全景整理</a></td><td><span class="fmt html">HTML</span></td><td>痛点+方案梳理</td></tr>
+        <tr><td class="fname"><a href="./DPP从方案到准备内容拆解.html">DPP从方案到准备内容拆解</a></td><td><span class="fmt html">HTML</span></td><td>方案拆解</td></tr>
+        <tr><td class="fname"><a href="./DPP正向与反向思维对比简报.html">DPP正向与反向思维对比简报</a></td><td><span class="fmt html">HTML</span></td><td>思维对比</td></tr>
+        <tr><td class="fname"><a href="./DPP业务线合伙人谈判提纲.html">DPP业务线合伙人谈判提纲</a></td><td><span class="fmt html">HTML</span></td><td>合伙人会议材料</td></tr>
+        <tr><td class="fname"><a href="./守信财税DPP服务产品方案.html">守信财税DPP服务产品方案</a></td><td><span class="fmt html">HTML</span></td><td>服务产品方案</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>守信财税 · DPP业务线 | 文件总目录 v1.0 | 2026年9月</footer>
+</div>
+
+</body>
+</html>
