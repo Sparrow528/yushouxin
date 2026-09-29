@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP服务反推规划 — 从结果物到执行路径</title>
+<style>
+  :root {
+    --navy: #0c1f3d;
+    --navy-2: #142d54;
+    --accent: #1a6b5a;
+    --accent-light: #e8f5f0;
+    --gold: #b8860b;
+    --gold-light: #fdf6e3;
+    --gold-border: #e8d48b;
+    --red: #b3382c;
+    --red-light: #fbe9e7;
+    --blue: #2b5fa8;
+    --blue-light: #e9f0fa;
+    --bg: #f5f4f0;
+    --card: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #6b6560;
+    --border: #e4dfd8;
+    --radius: 8px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.05);
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .page { max-width: 900px; margin: 0 auto; padding: clamp(20px, 4vw, 40px) clamp(14px, 3vw, 28px); }
+
+  /* Header */
+  .header { border-bottom: 3px solid var(--accent); padding-bottom: 18px; margin-bottom: 28px; }
+  .header-meta { font-size: 12px; color: var(--muted); letter-spacing: 0.03em; margin-bottom: 6px; }
+  .header h1 { font-size: clamp(20px, 4vw, 26px); font-weight: 800; line-height: 1.35; color: var(--navy); }
+  .header h1 em { font-style: normal; color: var(--accent); }
+  .header-sub { margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+  /* Logic explanation */
+  .logic-box { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 20px 24px; margin-bottom: 32px; }
+  .logic-box h2 { font-size: 16px; color: #d4af37; margin-bottom: 10px; font-weight: 700; }
+  .logic-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+  .logic-step { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 8px 14px; color: #fff; font-weight: 600; }
+  .logic-step.active { background: var(--accent); border-color: var(--accent); }
+  .logic-arrow { color: var(--gold); font-weight: 800; font-size: 18px; }
+
+  /* Section */
+  section { margin-bottom: 32px; }
+  .sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .sec-num { display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; font-weight: 800; align-items: center; justify-content: center; flex-shrink: 0; }
+  .sec-head h2 { font-size: 18px; font-weight: 800; color: var(--navy); }
+
+  /* Reverse mapping table */
+  .map-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 12px 0; background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .map-table th { background: var(--navy); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12.5px; white-space: nowrap; }
+  .map-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .map-table tr:last-child td { border-bottom: none; }
+  .map-table tr:nth-child(even) td { background: #fafaf8; }
+  .svc-name { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .tag { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .tag-red { background: var(--red-light); color: var(--red); }
+  .tag-green { background: var(--accent-light); color: var(--accent); }
+  .tag-gold { background: var(--gold-light); color: var(--gold); }
+  .tag-blue { background: var(--blue-light); color: var(--blue); }
+
+  /* Prepare cards */
+  .prep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 12px 0; }
+  @media (max-width: 600px) { .prep-grid { grid-template-columns: 1fr; } }
+  .prep-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+  .prep-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .prep-card h3 .icon { font-size: 18px; }
+  .prep-card ul { list-style: none; font-size: 13.5px; color: var(--ink); }
+  .prep-card ul li { padding: 4px 0 4px 18px; position: relative; }
+  .prep-card ul li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .prep-card .note { font-size: 12.5px; color: var(--muted); margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }
+
+  /* Partner table */
+  .partner-tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 12px 0; background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .partner-tbl th { background: var(--accent); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12.5px; }
+  .partner-tbl td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .partner-tbl tr:nth-child(even) td { background: #f8faf9; }
+  .partner-tbl tr:last-child td { border-bottom: none; }
+
+  /* Callout */
+  .callout { border-radius: var(--radius); padding: 14px 18px; margin: 14px 0; font-size: 13.5px; display: flex; gap: 10px; align-items: flex-start; }
+  .callout .ci { font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+  .callout.warn { background: var(--red-light); border: 1px solid rgba(179,56,44,0.25); color: #6e241d; }
+  .callout.tip { background: var(--gold-light); border: 1px solid var(--gold-border); color: #6b5410; }
+  .callout.info { background: var(--accent-light); border: 1px solid rgba(26,107,90,0.25); color: #0e4a3e; }
+  .callout b { color: inherit; }
+
+  /* Timeline */
+  .phase-timeline { display: flex; flex-direction: column; gap: 0; margin: 14px 0; position: relative; padding-left: 24px; }
+  .phase-timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 3px; background: linear-gradient(var(--accent), var(--gold)); border-radius: 2px; }
+  .phase-item { position: relative; padding: 0 0 16px 20px; }
+  .phase-item::before { content: ""; position: absolute; left: -20px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); border: 2px solid var(--card); }
+  .phase-item.hot::before { background: var(--red); }
+  .phase-item.next::before { background: var(--gold); }
+  .phase-date { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .phase-item.hot .phase-date { color: var(--red); }
+  .phase-body { font-size: 13.5px; color: var(--ink); margin-top: 2px; }
+  .phase-body .muted { color: var(--muted); font-size: 12px; }
+
+  /* Pain mapping */
+  .pain-map { display: grid; gap: 10px; margin: 12px 0; }
+  .pain-row { display: grid; grid-template-columns: 180px 1fr auto; gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; box-shadow: var(--shadow); }
+  @media (max-width: 600px) { .pain-row { grid-template-columns: 1fr; gap: 6px; } }
+  .pain-row .pain-label { font-weight: 700; color: var(--navy); font-size: 13.5px; }
+  .pain-row .pain-desc { font-size: 13px; color: var(--muted); }
+  .pain-row .svc-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  /* Footer */
+  footer { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); text-align: center; }
+
+  @media print {
+    body { background: #fff; font-size: 11px; }
+    .page { max-width: 100%; padding: 0; }
+    section { page-break-inside: avoid; }
+    .prep-grid { grid-template-columns: 1fr 1fr; }
+    .logic-box { background: #fff; color: var(--navy); border: 2px solid var(--accent); }
+    .logic-box h2 { color: var(--accent); }
+    .logic-step { background: #f0f0f0; color: var(--navy); border-color: #ccc; }
+    .logic-step.active { background: var(--accent); color: #fff; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="header-meta">DPP业务线 · 反推执行规划</div>
+    <h1>从<em>服务方案</em>反推执行路径<br>——我们需要准备什么、客户需要提供什么</h1>
+    <div class="header-sub">基于DPP服务产品方案，逆向拆解每一项交付物的前置条件</div>
+  </header>
+
+  <div class="logic-box">
+    <h2>🔄 反推逻辑说明</h2>
+    <div class="logic-flow">
+      <span class="logic-step active">结果物：服务方案</span>
+      <span class="logic-arrow">→</span>
+      <span class="logic-step active">反推：需要准备什么</span>
+      <span class="logic-arrow">→</span>
+      <span class="logic-step">客户需要提供什么</span>
+      <span class="logic-arrow">→</span>
+      <span class="logic-step">解决了什么痛点</span>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:rgba(255,255,255,0.75)">常规逻辑是"痛点→方案→结果物"。本报告反过来，从10项服务交付物出发，逐项倒推：① 团队内部需要准备什么（软件/硬件/人员/知识）；② 客户侧需要提供什么配合；③ 每项服务分别解决了哪个客户痛点。</p>
+  </div>
+
+  <!-- Part 1: 10项服务反推 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">1</span>
+      <h2>10项服务逐项反推：交付物 → 内部准备 → 客户配合 → 痛点</h2>
+    </div>
+
+    <div class="map-table" style="display:block;overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30px">#</th>
+            <th style="width:140px">服务项 / 交付物</th>
+            <th>团队内部需要准备什么</th>
+            <th>客户需要提供/配合什么</th>
+            <th style="width:100px">解决的痛点</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-red">敲门砖</span></td>
+            <td class="svc-name">DPP差距评估<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 《差距评估报告》</span></td>
+            <td>• 法规条款知识库（ESPR + 行业法案逐条拆解）<br>• 差距评估模板与评分体系<br>• 行业差异化评估checklist（电池/纺织/电子等）<br>• 有经验的DPP法规顾问</td>
+            <td>• 产品SKU清单<br>• 现有CE/ISO证书<br>• 欧盟客户名单及出口额<br>• 现有供应链数据现状</td>
+            <td><span class="tag tag-red">痛点③</span><span class="tag tag-gold">痛点④</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">引流</span></td>
+            <td class="svc-name">合规自查工具<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 《自查报告》（自动出具）</span></td>
+            <td>• <b>在线工具开发</b>（Web端问卷+自动评分引擎）<br>• 行业差异化题库<br>• 报告模板自动生成<br>• 后台线索管理系统</td>
+            <td>• 填写问卷（行业/产品/电池含量/欧盟客户占比/现有认证）<br>• 约5-10分钟</td>
+            <td><span class="tag tag-red">痛点①</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-blue">核心</span></td>
+            <td class="svc-name">DPP数据规划与手册<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 《DPP数据手册》+ 采集台账模板</span></td>
+            <td>• 各行业DPP数据项标准模板<br>• SKU级数据梳理方法论<br>• 碳足迹核算基础知识（ISO 14067/PEF）<br>• 数据手册编制工具</td>
+            <td>• 产品BOM表（物料清单）<br>• 各材料用量及来源<br>• 生产工艺流程<br>• 能耗数据<br>• 指定内部对接人</td>
+            <td><span class="tag tag-red">痛点①</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-blue">核心</span></td>
+            <td class="svc-name">供应商数据收集辅导<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 供应商数据回收台账 + 合格数据包</span></td>
+            <td>• 供应商问卷模板（中英双语）<br>• 数据催收SOP与话术<br>• 数据核验标准<br>• 多级供应链穿透方法</td>
+            <td>• 供应商清单（含联系方式）<br>• 采购关系与层级信息<br>• 协调供应商配合填报<br>• 对不配合供应商的决策权</td>
+            <td><span class="tag tag-red">痛点②</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-red">核心</span></td>
+            <td class="svc-name">欧盟注册中心注册辅导<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 注册账户 + 注册确认函 + 清关指引</span></td>
+            <td>• 欧盟Registry平台操作能力<br>• eIDAS电子签章对接渠道<br>• 注册流程SOP<br>• 清关核验指引文档</td>
+            <td>• 企业资质材料<br>• <b>办理eIDAS合格电子印章</b>（通过QTSP）<br>• 欧盟授权代表签约<br>• 产品技术参数</td>
+            <td><span class="tag tag-gold">痛点⑤</span><span class="tag tag-red">痛点③</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-gold">增值</span></td>
+            <td class="svc-name">碳足迹数据对接<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 碳足迹数据对接方案 + 核算报告</span></td>
+            <td>• <b>合作LCA机构</b>（至少2-3家已签约）<br>• 碳足迹基础核算能力<br>• DPP碳字段与核算报告的映射关系</td>
+            <td>• 能源消耗数据（电/气/水）<br>• 原材料运输数据<br>• 生产工艺能耗明细<br>• 配合第三方机构现场核查</td>
+            <td><span class="tag tag-red">痛点①</span><span class="tag tag-gold">痛点④</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-gold">增值</span></td>
+            <td class="svc-name">CE+DPP衔接辅导<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 《CE-DPP数据对照复用表》</span></td>
+            <td>• CE技术文件与DPP数据项的映射知识<br>• 差异分析与补做清单模板<br>• 跨领域合规整合能力</td>
+            <td>• 现有CE技术文件全套<br>• CE认证机构联系方式<br>• 历史检测报告</td>
+            <td><span class="tag tag-gold">痛点④</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-blue">内训</span></td>
+            <td class="svc-name">DPP企业内训<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 培训课件 + 考核问卷</span></td>
+            <td>• 分行业培训课件（老板版/操作版）<br>• 培训讲师<br>• 考核题库</td>
+            <td>• 组织相关部门人员参训<br>• 提供企业内部流程资料</td>
+            <td><span class="tag tag-red">痛点①</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">渠道</span></td>
+            <td class="svc-name">经销商DPP导入辅导<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 经销商DPP操作指引（中英双语）</span></td>
+            <td>• 中英双语操作指引模板<br>• 扫码演示系统<br>• 常见问题FAQ库</td>
+            <td>• 海外经销商名单<br>• 经销商沟通渠道<br>• 品牌方DPP要求文件</td>
+            <td><span class="tag tag-blue">痛点⑥</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">绑定</span></td>
+            <td class="svc-name">数据托管年度维护<br><span style="font-weight:400;font-size:12px;color:var(--muted)">→ 年度维护报告 + 季度法规简报 + 看板</span></td>
+            <td>• <b>DPP数据管理平台/SaaS</b><br>• 法规变更跟踪机制<br>• 客户数据看板系统<br>• 年度维护SOP<br>• 海关查验应急流程</td>
+            <td>• 数据变更及时通知<br>• 新产品上线信息<br>• 配合年度数据更新<br>• 年度续费</td>
+            <td><span class="tag tag-blue">痛点⑥</span><span class="tag tag-gold">痛点④</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Part 2: 内部准备清单 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">2</span>
+      <h2>内部准备总清单：软件 · 硬件 · 人员 · 知识</h2>
+    </div>
+
+    <div class="prep-grid">
+      <div class="prep-card" style="border-top: 4px solid var(--accent);">
+        <h3><span class="icon">🧠</span> 知识与能力建设</h3>
+        <ul>
+          <li><b>法规知识体系</b>：ESPR总法 + 7部行业法案精读、数据项拆解、时间节点梳理</li>
+          <li><b>技术标准掌握</b>：JSON-LD数据格式、GS1 Digital Link编码、FprEN 18221标签标准</li>
+          <li><b>欧盟Registry平台</b>：注册流程实操、API对接逻辑、eIDAS核验机制</li>
+          <li><b>碳足迹核算基础</b>：ISO 14067 / PEF方法论（不需要自己算，但要能对接和审核）</li>
+          <li><b>CE-DPP数据映射</b>：CE技术文件哪些字段可复用到DPP，差异在哪</li>
+        </ul>
+        <div class="note">🔑 这是最核心的准备工作——团队必须成为"DPP翻译官"，把欧盟法规翻译成企业听得懂的操作步骤</div>
+      </div>
+
+      <div class="prep-card" style="border-top: 4px solid var(--gold);">
+        <h3><span class="icon">💻</span> 软件与平台</h3>
+        <ul>
+          <li><b>在线自查工具</b>：Web端问卷 + 自动评分引擎 + 报告生成（引流层核心）</li>
+          <li><b>DPP数据管理平台</b>：客户产品数据存储、DPP数据包生成、Registry对接（绑定层核心）</li>
+          <li><b>供应商问卷系统</b>：在线发放、自动催收、数据核验（核心层支撑）</li>
+          <li><b>评估工具模板库</b>：差距评估模板、数据手册模板、各类checklist</li>
+          <li><b>客户数据看板</b>：访问量、查验记录、合规状态可视化（托管增值服务）</li>
+          <li><b>线索管理系统</b>：自查工具 → 线索沉淀 → 跟进管理</li>
+        </ul>
+        <div class="note">💡 IT合伙人（做网站出身）是最大优势——自查工具和数据管理平台可以自研，降低外采成本</div>
+      </div>
+
+      <div class="prep-card" style="border-top: 4px solid var(--blue);">
+        <h3><span class="icon">🖨️</span> 硬件（轻量级）</h3>
+        <ul>
+          <li><b>标签打印测试设备</b>：热敏/激光打印机，用于DPP二维码标签打样</li>
+          <li><b>NFC/RFID读写器</b>：测试NFC标签的耐久性和扫码可达性</li>
+          <li><b>样品展示套件</b>：不同材质标签样品（耐候/耐磨/防伪），给客户展示选择</li>
+        </ul>
+        <div class="note">📌 硬件投入极轻——团队定位是咨询服务，赋码硬件由合作供应商提供，自购设备仅用于演示和测试</div>
+      </div>
+
+      <div class="prep-card" style="border-top: 4px solid var(--red);">
+        <h3><span class="icon">👥</span> 人员配置</h3>
+        <ul>
+          <li><b>DPP法规顾问</b>（先生亲自主导）：法规研究、评估方案、客户沟通</li>
+          <li><b>技术开发</b>（IT合伙人）：自查工具、数据管理平台、Registry API对接</li>
+          <li><b>市场拓展</b>（市场合伙人）：客户开发、商协会对接、内容营销</li>
+          <li><b>项目交付顾问</b>（需招聘/培养1-2人）：数据手册编制、供应商辅导、注册代办</li>
+          <li><b>内容运营</b>（兼职或外包）：科普短视频、直播、公众号文章</li>
+        </ul>
+        <div class="note">⚡ 初期最小团队：3位合伙人 + 1名交付顾问即可启动。中性规模（40客户/年）需增至3-4人DPP专项小组</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 3: 外部合作伙伴 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">3</span>
+      <h2>外部合作伙伴：必须提前锁定的4类机构</h2>
+    </div>
+
+    <div class="callout info">
+      <span class="ci">💡</span>
+      <div>团队核心定位是<strong>"合规咨询+数据托管"</strong>，不是所有事都自己做。以下4类外部合作伙伴是服务交付的关键支撑——需要在正式获客前完成筛选和合作框架签署。</div>
+    </div>
+
+    <table class="partner-tbl">
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th style="width:140px">合作机构类型</th>
+          <th>合作内容</th>
+          <th>对应服务项</th>
+          <th>优先级</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="svc-name">碳足迹核算机构（LCA）</td>
+          <td>产品碳足迹核算、出具认证报告、对接DPP碳字段</td>
+          <td>服务⑥ 碳足迹数据对接</td>
+          <td><span class="tag tag-red">最优先</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="svc-name">欧盟授权代表（欧代）</td>
+          <td>提供eIDAS电子签章、代理身份核验、协助Registry注册</td>
+          <td>服务⑤ 注册辅导</td>
+          <td><span class="tag tag-red">最优先</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="svc-name">赋码/标签技术供应商</td>
+          <td>DPP二维码/NFC/RFID标签设计、打印、产线赋码方案</td>
+          <td>核心层数据载体配置</td>
+          <td><span class="tag tag-gold">次优先</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="svc-name">检测/认证机构</td>
+          <td>CE认证、材料测试、有害物质检测等（乐观规模下外包交付）</td>
+          <td>服务⑦ CE+DPP衔接</td>
+          <td><span class="tag tag-blue">按需</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Part 4: 痛点反推图 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">4</span>
+      <h2>痛点反推图：哪个痛点靠哪些服务解决</h2>
+    </div>
+
+    <div class="pain-map">
+      <div class="pain-row">
+        <div>
+          <div class="pain-label">痛点① 数据能力断层</div>
+          <div class="pain-desc">不会算碳足迹、没有材料数据、BOM不完整</div>
+        </div>
+        <div class="svc-tags">
+          <span class="tag tag-blue">②自查工具</span>
+          <span class="tag tag-blue">③数据手册</span>
+          <span class="tag tag-gold">⑥碳足迹对接</span>
+          <span class="tag tag-blue">⑧企业内训</span>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div>
+          <div class="pain-label">痛点② 供应链协同难</div>
+          <div class="pain-desc">上游小厂不配合、数据收不齐</div>
+        </div>
+        <div class="svc-tags">
+          <span class="tag tag-blue">④供应商辅导</span>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div>
+          <div class="pain-label">痛点③ 时间窗口极紧</div>
+          <div class="pain-desc">电池行业只剩5个月，等不起</div>
+        </div>
+        <div class="svc-tags">
+          <span class="tag tag-red">①差距评估</span>
+          <span class="tag tag-red">⑤注册辅导</span>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div>
+          <div class="pain-label">痛点④ 成本压力大</div>
+          <div class="pain-desc">系统改造+认证+注册+专人，四笔新账</div>
+        </div>
+        <div class="svc-tags">
+          <span class="tag tag-red">①差距评估</span>
+          <span class="tag tag-gold">⑥碳足迹对接</span>
+          <span class="tag tag-gold">⑦CE+DPP衔接</span>
+          <span class="tag tag-green">⑩年度托管</span>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div>
+          <div class="pain-label">痛点⑤ 准入门槛升级</div>
+          <div class="pain-desc">注册是清关前置，客户合同也有DPP条款</div>
+        </div>
+        <div class="svc-tags">
+          <span class="tag tag-red">⑤注册辅导</span>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div>
+          <div class="pain-label">痛点⑥ 竞争格局重塑</div>
+          <div class="pain-desc">早合规拿门票，晚合规丢订单</div>
+        </div>
+        <div class="svc-tags">
+          <span class="tag tag-green">⑩年度托管</span>
+          <span class="tag tag-green">⑨经销商导入</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 5: 执行优先级 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">5</span>
+      <h2>执行优先级：先做什么、后做什么</h2>
+    </div>
+
+    <div class="callout warn">
+      <span class="ci">⏰</span>
+      <div>电池护照 <b>2027.2.18</b> 强制执行，距今仅剩约5个月。所有准备工作必须围绕这个死线倒排。</div>
+    </div>
+
+    <div class="phase-timeline">
+      <div class="phase-item hot">
+        <div class="phase-date">Phase 1：立即启动（本周 → 2周内）</div>
+        <div class="phase-body">
+          <b>知识建设 + 合作伙伴签约</b><br>
+          ① 团队精读ESPR + 电池法规，形成内部知识库<br>
+          ② 联系并签约 1-2家LCA碳足迹核算机构<br>
+          ③ 联系并签约 1-2家欧盟授权代表机构（eIDAS电子签章）<br>
+          ④ 梳理现有外贸客户名单，标记电池/纺织/电子类出口企业<br>
+          <span class="muted">——这是地基，没有这些后面全做不了</span>
+        </div>
+      </div>
+      <div class="phase-item hot">
+        <div class="phase-date">Phase 2：2-4周</div>
+        <div class="phase-body">
+          <b>工具开发 + 内容制作</b><br>
+          ① IT合伙人启动在线自查工具开发（问卷+评分+报告自动生成）<br>
+          ② 完成差距评估模板、供应商问卷模板、数据手册模板<br>
+          ③ 制作科普内容（短视频脚本、公众号文章、信息图）<br>
+          ④ 联系赋码/标签供应商，了解技术方案和报价<br>
+          <span class="muted">——先生负责模板和方法论，IT合伙人负责工具开发，市场合伙人负责内容分发渠道</span>
+        </div>
+      </div>
+      <div class="phase-item next">
+        <div class="phase-date">Phase 3：1-2个月</div>
+        <div class="phase-body">
+          <b>获客启动 + 首批签约</b><br>
+          ① 通过存量客户、商协会、园区渠道推广自查工具<br>
+          ② 举办首场DPP科普直播/宣讲会<br>
+          ③ 对A类客户进行首访，用差距评估做敲门砖<br>
+          ④ 签约首批2-3个种子客户，跑通完整交付流程<br>
+          <span class="muted">——首批客户不追求利润，追求跑通流程和积累案例</span>
+        </div>
+      </div>
+      <div class="phase-item">
+        <div class="phase-date">Phase 4：3-6个月</div>
+        <div class="phase-body">
+          <b>规模化复制 + 托管绑定</b><br>
+          ① 首批客户交付完成，沉淀SOP和案例<br>
+          ② 用首批案例做背书，批量获客<br>
+          ③ 交付时即锁定年度托管签约<br>
+          ④ DPP数据管理平台上线（如果Phase 2未完成）<br>
+          <span class="muted">——从"做项目"升级为"做产品"，标准化交付提高效率</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 6: 三人分工建议 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">6</span>
+      <h2>三人核心团队分工建议</h2>
+    </div>
+
+    <div class="prep-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="prep-card" style="border-top: 4px solid var(--accent); text-align:center;">
+        <h3 style="justify-content:center;">🔧 先生（洪淳宇）</h3>
+        <p style="font-size:12px;color:var(--accent);font-weight:700;margin-bottom:8px;">法规 + 技术 + 交付</p>
+        <ul style="text-align:left;">
+          <li>DPP法规研究与知识库建设</li>
+          <li>差距评估方法论与模板</li>
+          <li>客户方案设计与交付</li>
+          <li>合作伙伴（LCA/欧代）筛选</li>
+          <li>重点客户首访与方案讲解</li>
+        </ul>
+      </div>
+      <div class="prep-card" style="border-top: 4px solid var(--gold); text-align:center;">
+        <h3 style="justify-content:center;">📢 市场合伙人</h3>
+        <p style="font-size:12px;color:var(--gold);font-weight:700;margin-bottom:8px;">获客 + 商务 + 渠道</p>
+        <ul style="text-align:left;">
+          <li>客户名单筛选与分级</li>
+          <li>商协会/园区渠道拓展</li>
+          <li>科普内容分发（直播/短视频）</li>
+          <li>客户拜访与签约推进</li>
+          <li>客户维护与转介绍</li>
+        </ul>
+      </div>
+      <div class="prep-card" style="border-top: 4px solid var(--blue); text-align:center;">
+        <h3 style="justify-content:center;">💻 IT合伙人</h3>
+        <p style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:8px;">平台 + 工具 + 数据</p>
+        <ul style="text-align:left;">
+          <li>在线自查工具开发</li>
+          <li>DPP数据管理平台/SaaS</li>
+          <li>Registry API对接</li>
+          <li>供应商问卷系统开发</li>
+          <li>客户数据看板</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout tip" style="margin-top:16px;">
+      <span class="ci">💡</span>
+      <div>这个三角架构的核心优势：<b>法规能力（先生）× 客户资源（市场）× 技术实现（IT）</b>，三个维度恰好覆盖DPP咨询的全部关键环节。初期不需要额外招人，3位合伙人即可启动。等签约客户超过5家，再招1-2名交付顾问。</div>
+    </div>
+  </section>
+
+  <footer>
+    DPP业务线反推执行规划 · 2026.9.16 · 内部使用
+  </footer>
+
+</div>
+</body>
+</html>

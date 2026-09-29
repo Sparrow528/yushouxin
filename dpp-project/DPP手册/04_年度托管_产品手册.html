@@ -1,0 +1,1743 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP年度托管服务 · 产品手册 — 守信财税</title>
+<meta name="description" content="让电池护照持续合规——数据维护、法规跟踪、应急支持三位一体年度托管服务，¥8-50万+/年，守信财税DPP业务线">
+<style>
+:root {
+  --c-primary: #1A237E;
+  --c-primary-light: #283593;
+  --c-primary-lighter: #3949AB;
+  --c-primary-bg: #E8EAF6;
+  --c-primary-bg-light: #F5F6FA;
+  --c-accent: #2E7D32;
+  --c-accent-light: #43A047;
+  --c-accent-bg: #E8F5E9;
+  --c-accent-bg-light: #F1F8E9;
+  --c-amber: #E65100;
+  --c-amber-bg: #FFF3E0;
+  --c-amber-bg-light: #FFF8E1;
+  --c-red: #B71C1C;
+  --c-red-bg: #FFEBEE;
+  --c-info: #0D47A1;
+  --c-info-bg: #E3F2FD;
+  --c-canvas: #FFFFFF;
+  --c-surface: #FAFAFA;
+  --c-surface-alt: #F5F5F5;
+  --c-text: #212121;
+  --c-text-sec: #546E7A;
+  --c-text-muted: #78909C;
+  --c-border: #E0E0E0;
+  --c-border-light: #EEEEEE;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1.0625rem;
+  --fs-md: 1.15rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+  --fs-3xl: 2.5rem;
+  --fs-hero: clamp(1.9rem, 3.6vw, 2.9rem);
+  --lh-tight: 1.2;
+  --lh-body: 1.7;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+  --sidebar-w: 270px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--c-text);
+  background: var(--c-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Layout ===== */
+.page-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--c-primary);
+  color: #fff;
+  padding: var(--space-xl) 0 var(--space-2xl);
+  z-index: 100;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar-brand {
+  padding: 0 var(--space-lg);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: var(--space-lg);
+}
+
+.sidebar-brand h2 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 2px;
+}
+
+.sidebar-brand span { font-size: var(--fs-xs); color: rgba(255,255,255,0.5); }
+
+.sidebar nav { padding: 0 var(--space-sm); }
+
+.sidebar nav a {
+  display: block;
+  padding: 6px var(--space-md);
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+  line-height: 1.35;
+}
+
+.sidebar nav a.nav-sub {
+  padding-left: var(--space-xl);
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.58);
+}
+
+.sidebar nav a:hover,
+.sidebar nav a:focus-visible {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  padding-left: calc(var(--space-md) + 4px);
+}
+
+.sidebar nav a.nav-sub:hover { padding-left: calc(var(--space-xl) + 4px); }
+
+.sidebar nav a.active {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-weight: 600;
+  border-left: 3px solid var(--c-accent-light);
+  padding-left: calc(var(--space-md) - 3px);
+}
+.sidebar nav a.nav-sub.active { padding-left: calc(var(--space-xl) - 3px); }
+
+.nav-group {
+  display: block;
+  padding: var(--space-md) var(--space-md) var(--space-xs);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: rgba(255,255,255,0.38);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ===== Main ===== */
+.main {
+  padding: var(--space-2xl) clamp(var(--space-xl), 4vw, var(--space-3xl));
+  max-width: 1160px;
+}
+
+/* ===== Cover ===== */
+.cover {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 52%, var(--c-accent) 100%);
+  color: #fff;
+  padding: var(--space-3xl) var(--space-2xl);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -10%;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: coverPulse 9s ease-in-out infinite;
+}
+
+@keyframes coverPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -30%; left: -5%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(46,125,50,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cover-content { position: relative; z-index: 2; }
+
+.cover h1 {
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+
+.cover .subtitle {
+  font-size: var(--fs-lg);
+  color: rgba(255,255,255,0.92);
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+}
+
+.cover .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.72);
+}
+
+.cover-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 40px;
+  font-size: var(--fs-sm);
+  margin-top: var(--space-xl);
+  backdrop-filter: blur(4px);
+}
+
+.cover-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.cover-stat {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.cover-stat .cs-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  display: block;
+}
+
+.cover-stat .cs-label {
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.7);
+}
+
+/* ===== Section ===== */
+.section {
+  margin-bottom: var(--space-3xl);
+  padding-top: var(--space-xl);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: var(--space-lg);
+  line-height: var(--lh-tight);
+}
+
+.section-desc {
+  font-size: var(--fs-base);
+  color: var(--c-text-sec);
+  margin-bottom: var(--space-xl);
+  max-width: 760px;
+}
+
+h3.sub-title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--c-primary-light);
+  margin: var(--space-2xl) 0 var(--space-md);
+  line-height: var(--lh-tight);
+}
+
+h4.mini-title {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+p { margin-bottom: var(--space-md); }
+
+/* ===== Cards ===== */
+.problem-grid,
+.value-grid,
+.why-grid,
+.deliverable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.problem-card,
+.value-card,
+.why-card,
+.deliverable-card {
+  padding: var(--space-xl);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.problem-card:hover,
+.value-card:hover,
+.why-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.deliverable-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--c-canvas);
+}
+
+.deliverable-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+}
+
+.deliverable-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.deliverable-card .del-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary-bg);
+  position: absolute;
+  top: var(--space-md); right: var(--space-lg);
+}
+
+.deliverable-card h3 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+  position: relative;
+}
+
+.deliverable-card p {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.card-icon { font-size: 2rem; margin-bottom: var(--space-md); display: block; }
+
+.problem-card h3,
+.value-card h3,
+.why-card h3 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.problem-card p,
+.value-card p,
+.why-card p {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+.card-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-accent);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.03em;
+}
+
+/* ===== Value statement ===== */
+.value-statement {
+  background: linear-gradient(135deg, var(--c-primary-bg-light), var(--c-accent-bg-light));
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  margin: var(--space-xl) 0;
+  border-left: 5px solid var(--c-accent);
+}
+
+.value-statement p {
+  font-size: var(--fs-lg);
+  color: var(--c-primary);
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== Service Pillars (big cards) ===== */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.pillar-card {
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+}
+
+.pillar-card:nth-child(1)::before { background: linear-gradient(90deg, var(--c-primary), var(--c-primary-lighter)); }
+.pillar-card:nth-child(2)::before { background: linear-gradient(90deg, var(--c-accent), var(--c-accent-light)); }
+.pillar-card:nth-child(3)::before { background: linear-gradient(90deg, var(--c-amber), #F57C00); }
+
+.pillar-icon {
+  width: 56px; height: 56px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: var(--space-lg);
+}
+
+.pillar-card:nth-child(1) .pillar-icon { background: var(--c-primary-bg); }
+.pillar-card:nth-child(2) .pillar-icon { background: var(--c-accent-bg); }
+.pillar-card:nth-child(3) .pillar-icon { background: var(--c-amber-bg); }
+
+.pillar-card h3 {
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.pillar-card .pillar-desc {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.65;
+  margin-bottom: var(--space-md);
+}
+
+.pillar-card ul {
+  margin: 0;
+  padding-left: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.7;
+}
+
+.pillar-card li { margin-bottom: var(--space-xs); }
+
+.pillar-freq {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--c-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ===== Process Timeline ===== */
+.phase-block {
+  margin: var(--space-xl) 0;
+}
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.phase-badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-lg);
+  border-radius: 20px;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.phase-1 .phase-badge { background: var(--c-primary); }
+.phase-2 .phase-badge { background: var(--c-accent); }
+.phase-3 .phase-badge { background: var(--c-info); }
+
+.phase-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--c-primary);
+}
+
+.phase-time {
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+  font-family: var(--font-mono);
+}
+
+.process-timeline { position: relative; margin: var(--space-xl) 0; }
+
+.process-step { display: flex; gap: var(--space-xl); position: relative; }
+
+.process-step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 56px;
+}
+
+.process-dot {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: #fff;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.process-line { width: 2px; flex: 1; min-height: 24px; }
+
+.process-step:nth-child(1) .process-dot { background: var(--c-primary); }
+.process-step:nth-child(1) .process-line { background: linear-gradient(to bottom, var(--c-primary), var(--c-primary-lighter)); }
+.process-step:nth-child(2) .process-dot { background: var(--c-primary-lighter); }
+.process-step:nth-child(2) .process-line { background: linear-gradient(to bottom, var(--c-primary-lighter), #3F51B5); }
+.process-step:nth-child(3) .process-dot { background: #3F51B5; }
+
+.process-content { padding-bottom: var(--space-xl); flex: 1; min-width: 0; }
+
+.process-content h4 {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.process-content .step-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: #fff;
+  background: var(--c-primary-bg);
+  color: var(--c-primary);
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+}
+
+.step-detail {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-light);
+  border-left: 3px solid var(--c-primary-lighter);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-sm) 0;
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+}
+
+.step-detail ul { margin: 0 0 0 var(--space-lg); font-size: var(--fs-sm); }
+.step-detail li { margin-bottom: 2px; }
+
+/* ===== Pricing ===== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+  align-items: stretch;
+}
+
+.pricing-card {
+  padding: var(--space-2xl);
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.pricing-card.recommended {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 2px var(--c-accent), var(--shadow-md);
+  background: linear-gradient(to bottom, #fff, var(--c-accent-bg-light));
+}
+
+.pricing-card.recommended::after {
+  content: '⭐ 推荐';
+  position: absolute;
+  top: -13px; right: 16px;
+  background: linear-gradient(135deg, var(--c-accent), var(--c-accent-light));
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(46,125,50,0.3);
+}
+
+.plan-name {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xs);
+}
+
+.plan-title { font-size: var(--fs-xl); font-weight: 800; color: var(--c-primary); margin-bottom: var(--space-sm); }
+.plan-suitable { font-size: var(--fs-sm); color: var(--c-text-sec); margin-bottom: var(--space-lg); }
+
+.plan-price {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: var(--space-xl);
+  line-height: 1.1;
+}
+
+.plan-price span { font-size: var(--fs-sm); font-weight: 400; color: var(--c-text-muted); }
+
+.pricing-card ul { margin: 0; padding-left: var(--space-lg); font-size: var(--fs-sm); color: var(--c-text-sec); }
+.pricing-card li { margin-bottom: var(--space-sm); line-height: 1.5; }
+
+/* ===== CTA ===== */
+.cta-section {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 60%, var(--c-accent) 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3xl) var(--space-2xl);
+  text-align: center;
+  color: #fff;
+  margin: var(--space-2xl) 0;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -40%; right: -10%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-section h2 { font-size: var(--fs-2xl); font-weight: 800; margin-bottom: var(--space-md); position: relative; }
+.cta-section > p { font-size: var(--fs-base); color: rgba(255,255,255,0.9); margin-bottom: var(--space-xl); position: relative; }
+
+.cta-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  position: relative;
+}
+
+.cta-step { text-align: center; font-size: var(--fs-sm); color: rgba(255,255,255,0.82); }
+
+.cta-step .step-num {
+  display: block;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  line-height: 34px;
+  margin: 0 auto var(--space-sm);
+}
+
+/* ===== FAQ ===== */
+.faq-list { margin: var(--space-xl) 0; }
+
+.faq-item {
+  margin: var(--space-sm) 0;
+  border: 1px solid var(--c-border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: var(--space-md) var(--space-lg);
+  font-weight: 600;
+  color: var(--c-primary);
+  cursor: pointer;
+  background: var(--c-surface);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: background 0.2s ease;
+  font-size: var(--fs-base);
+}
+
+.faq-item summary:hover { background: var(--c-primary-bg-light); }
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::before {
+  content: '▸';
+  font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.faq-item[open] summary::before { transform: rotate(90deg); }
+
+.faq-answer {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.75;
+  border-top: 1px solid var(--c-border-light);
+}
+
+.faq-answer p:last-child { margin-bottom: 0; }
+
+/* ===== Appendix ===== */
+.appendix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.appendix-block {
+  padding: var(--space-lg);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+}
+
+.appendix-block h4 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--c-primary-bg);
+}
+
+.appendix-block table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.appendix-block th {
+  text-align: left; font-weight: 700; color: var(--c-primary);
+  padding: var(--space-xs) var(--space-sm); border-bottom: 1px solid var(--c-border); font-size: var(--fs-xs);
+}
+.appendix-block td { padding: var(--space-xs) var(--space-sm); border-bottom: 1px solid var(--c-border-light); vertical-align: top; }
+.appendix-block tbody tr:last-child td { border-bottom: none; }
+
+.date-val { font-family: var(--font-mono); font-weight: 700; color: var(--c-amber); white-space: nowrap; }
+
+.def-list { margin: 0; }
+.def-list dt { font-weight: 700; color: var(--c-primary); font-size: var(--fs-sm); margin-top: var(--space-sm); }
+.def-list dt:first-child { margin-top: 0; }
+.def-list dd { font-size: var(--fs-sm); color: var(--c-text-sec); margin: 2px 0 0; }
+
+.about-block {
+  padding: var(--space-xl);
+  background: var(--c-primary-bg-light);
+  border-radius: var(--radius-md);
+  margin: var(--space-xl) 0;
+}
+
+.about-block h4 { font-size: var(--fs-lg); font-weight: 700; color: var(--c-primary); margin-bottom: var(--space-md); }
+.about-block p { font-size: var(--fs-sm); color: var(--c-text-sec); line-height: 1.7; }
+
+/* ===== Callout ===== */
+.callout {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  margin: var(--space-lg) 0;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+}
+
+.callout-title {
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.callout p:last-child { margin-bottom: 0; }
+.callout-check { background: var(--c-accent-bg); border-left: 4px solid var(--c-accent); color: #1B5E20; }
+.callout-info { background: var(--c-info-bg); border-left: 4px solid var(--c-info); color: var(--c-info); }
+.callout-warn { background: var(--c-red-bg); border-left: 4px solid var(--c-red); color: var(--c-red); }
+
+/* ===== Emergency Flow ===== */
+.emergency-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+  margin: var(--space-lg) 0;
+  padding: var(--space-lg);
+  background: var(--c-red-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(183,28,28,0.15);
+}
+
+.em-step {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--c-primary);
+  text-align: center;
+}
+
+.em-step.em-active {
+  background: var(--c-primary);
+  color: #fff;
+  border-color: var(--c-primary);
+}
+
+.em-step.em-green {
+  background: var(--c-accent);
+  color: #fff;
+  border-color: var(--c-accent);
+}
+
+.em-arrow {
+  font-size: var(--fs-lg);
+  color: var(--c-text-muted);
+  flex-shrink: 0;
+}
+
+/* ===== Footer ===== */
+.doc-footer {
+  margin-top: var(--space-3xl);
+  padding: var(--space-xl) 0;
+  border-top: 2px solid var(--c-primary-bg);
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+  text-align: center;
+}
+
+/* ===== Mobile ===== */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 200;
+  background: var(--c-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.42); z-index: 99; }
+.sidebar-overlay.open { display: block; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--c-primary-lighter);
+  outline-offset: 2px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    position: fixed;
+    width: 290px;
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .page-layout { grid-template-columns: 1fr; }
+  .menu-toggle { display: block; }
+  .main { padding: var(--space-xl) var(--space-lg); padding-top: calc(var(--space-xl) + 52px); }
+  .cover { padding: var(--space-2xl) var(--space-lg); }
+  .cover h1 { font-size: var(--fs-2xl); }
+  .pricing-grid, .deliverable-grid, .pillar-grid { grid-template-columns: 1fr; }
+  .cta-steps { gap: var(--space-md); }
+  .process-step { gap: var(--space-md); }
+  .process-step-marker { width: 44px; }
+  .process-dot { width: 40px; height: 40px; font-size: var(--fs-xs); }
+  .emergency-flow { flex-direction: column; align-items: flex-start; }
+  .em-arrow { transform: rotate(90deg); }
+}
+
+/* ===== Print ===== */
+@media print {
+  .sidebar, .menu-toggle, .sidebar-overlay { display: none !important; }
+  .page-layout { grid-template-columns: 1fr; }
+  .main { padding: 0; max-width: none; }
+  .cover {
+    break-after: page;
+    background: var(--c-primary) !important;
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cover::before, .cover::after { display: none; }
+  .section { break-inside: auto; padding-top: 1rem; }
+  h3.sub-title { break-after: avoid; }
+  .pricing-card, .deliverable-card, .pillar-card, .callout { break-inside: avoid; }
+  .faq-item { break-inside: avoid; }
+  .cta-section { background: var(--c-primary) !important; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { text-decoration: none; color: inherit; }
+}
+
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cover::before { animation: none; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" aria-label="打开导航菜单" onclick="toggleSidebar()">☰ 目录</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="page-layout">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <h2>产品手册</h2>
+    <span>DPP年度托管服务 v1.0</span>
+  </div>
+  <nav aria-label="章节导航">
+    <a href="#cover">封面</a>
+
+    <span class="nav-group">核心内容</span>
+    <a href="#problem">① 您面对的问题</a>
+    <a href="#solution">② 我们能帮您做什么</a>
+    <a href="#pillars">③ 三项持续服务</a>
+    <a class="nav-sub" href="#pillar-data">数据维护</a>
+    <a class="nav-sub" href="#pillar-law">法规跟踪</a>
+    <a class="nav-sub" href="#pillar-emergency">应急支持</a>
+    <a href="#process">④ 我们具体怎么工作</a>
+    <a class="nav-sub" href="#phase1">Phase 1 服务启动</a>
+    <a class="nav-sub" href="#phase2">Phase 2 持续服务</a>
+    <a class="nav-sub" href="#phase3">Phase 3 年度复盘</a>
+    <a href="#deliverables">⑤ 您会收到什么</a>
+    <a href="#pricing">⑥ 服务定价</a>
+    <a href="#why-us">⑦ 为什么选择我们</a>
+    <a href="#faq">⑧ 常见问题</a>
+    <a href="#cta">⑨ 立即开始</a>
+
+    <span class="nav-group">附录</span>
+    <a href="#app-dates">关键法规日期</a>
+    <a href="#app-emergency">应急响应流程</a>
+    <a href="#app-glossary">术语简表</a>
+    <a href="#app-about">关于我们</a>
+  </nav>
+</aside>
+
+<main class="main">
+
+<!-- ===== COVER ===== -->
+<section class="cover" id="cover">
+  <div class="cover-content">
+    <h1>DPP年度托管服务</h1>
+    <p class="subtitle">让电池护照持续合规，我们帮您管好每一天</p>
+    <div class="meta">
+      <span>v1.0 · 2026年9月</span>
+      <span>守信财税 · DPP业务线</span>
+    </div>
+    <div class="cover-badge">🔋 专注欧盟电池法规 (EU) 2023/1542 合规服务</div>
+    <div class="cover-stats">
+      <div class="cover-stat"><span class="cs-num">3</span><span class="cs-label">大核心服务模块</span></div>
+      <div class="cover-stat"><span class="cs-num">8</span><span class="cs-label">步标准服务流程</span></div>
+      <div class="cover-stat"><span class="cs-num">1h</span><span class="cs-label">监管查验极速响应</span></div>
+      <div class="cover-stat"><span class="cs-num">365天</span><span class="cs-label">持续合规守护</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第一部分：您面对的问题 ===== -->
+<section class="section" id="problem">
+  <div class="section-label">Part 01</div>
+  <h2 class="section-title">您面对的问题</h2>
+  <p class="section-desc">电池护照上线不是终点——而是合规维护的起点。数据在变、法规在变、监管在收紧，任何一个环节疏忽都可能让您的合规投入归零。</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <span class="card-icon">📊</span>
+      <h3>数据需要持续更新</h3>
+      <p>SoH（健康状态）、循环次数、温度历史等动态数据实时变化，必须按法规要求定期录入和更新。静态数据（材料变更、供应商变更、认证到期）也需及时同步，否则数据手册将逐渐失去准确性。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">📜</span>
+      <h3>法规在不断变化</h3>
+      <p>欧盟电池法规体系仍在持续完善——新的授权法案(Delegated Regulations)、实施指南、Annex XIII数据点修订、碳足迹阈值调整随时可能发布。每一次变化都可能影响已建立的合规体系。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">🔍</span>
+      <h3>监管查验随时可能发生</h3>
+      <p>根据Art.74-76，各成员国主管当局有权对市场电池进行监督抽查。收到查验通知后需在合理期限内配合提供文件——没有专业团队快速响应，可能面临罚款、产品下架等严重后果。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">⚠️</span>
+      <h3>内部缺乏专人持续跟进</h3>
+      <p>多数电池企业没有专门的欧盟DPP合规岗位。数据更新靠临时安排、法规变化无人跟踪、查验来了手忙脚乱——这种被动状态是最大的合规隐患。</p>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-title">⚠️ 核心风险</div>
+    <p>某电池制造商投入¥80,000完成数据手册建立后停止维护，6个月后法规更新导致数据手册不合规，重新调整的成本超过前3年托管费总和。<strong>电池护照上线≠一劳永逸，持续维护才是合规的关键。</strong></p>
+  </div>
+</section>
+
+<!-- ===== 第二部分：我们能帮您做什么 ===== -->
+<section class="section" id="solution">
+  <div class="section-label">Part 02</div>
+  <h2 class="section-title">我们能帮您做什么</h2>
+
+  <div class="value-statement">
+    <p>提供持续的电池护照数据维护、法规跟踪和应急支持，让您的电池护照始终合规。</p>
+  </div>
+
+  <p class="section-desc" style="margin-top:var(--space-xl)">一句话：<strong>您专注业务，我们帮您管好电池护照的每一天。</strong></p>
+
+  <div class="value-grid">
+    <div class="value-card">
+      <span class="card-tag">VALUE 01</span>
+      <h3>不用自己盯着数据</h3>
+      <p>动态数据定期更新、静态数据变更管理、证据文件有效期跟踪——我们按约定频率持续维护，确保数据手册始终反映电池的真实状态。</p>
+    </div>
+    <div class="value-card">
+      <span class="card-tag">VALUE 02</span>
+      <h3>法规变化提前预警</h3>
+      <p>每日扫描欧盟法规动态，重大变更即时通知。您不需要自己跟踪EUR-Lex——我们的法规团队48小时内完成影响评估，告知您需要做什么。</p>
+    </div>
+    <div class="value-card">
+      <span class="card-tag">VALUE 03</span>
+      <h3>查验来了不慌</h3>
+      <p>监管机构查验时1小时内响应，快速调取数据手册、证据文件，协助撰写合规答复。从接到通知到查验关闭，全程专业支持。</p>
+    </div>
+    <div class="value-card">
+      <span class="card-tag">VALUE 04</span>
+      <h3>年费制，成本可控</h3>
+      <p>避免突发大额支出。年费制服务覆盖全年数据维护、法规跟踪和应急支持，预算清晰可预期。保护前期合规投入，避免中断导致重新建设的更大损失。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第三部分：三项持续服务 ===== -->
+<section class="section" id="pillars">
+  <div class="section-label">Part 03</div>
+  <h2 class="section-title">三项持续服务</h2>
+  <p class="section-desc">数据维护、法规跟踪、应急支持——三位一体，构成电池护照持续合规的完整保障体系。</p>
+
+  <div class="pillar-grid">
+    <!-- ① 数据维护 -->
+    <div class="pillar-card" id="pillar-data">
+      <div class="pillar-icon">📊</div>
+      <h3>① 数据维护</h3>
+      <p class="pillar-desc">确保电池护照数据手册始终准确、完整、与法规同步。</p>
+      <ul>
+        <li><strong>动态数据定期更新</strong>：SoH、循环次数、温度历史等，从BMS获取最新值并录入</li>
+        <li><strong>静态数据变更管理</strong>：材料变更、供应商变更、认证更新及时同步</li>
+        <li><strong>数据完整性持续检查</strong>：三级核验（自查→交叉核对→外部比对）</li>
+        <li><strong>数据备份与恢复</strong>：完整备份机制，数据丢失可快速恢复</li>
+        <li><strong>年度全面数据审核</strong>：全字段+全证据文件覆盖检查</li>
+      </ul>
+      <div class="pillar-freq">更新频率：基础版 半年/次 · 标准版 季度/次 · 旗舰版 月度/次</div>
+    </div>
+
+    <!-- ② 法规跟踪 -->
+    <div class="pillar-card" id="pillar-law">
+      <div class="pillar-icon">📜</div>
+      <h3>② 法规跟踪</h3>
+      <p class="pillar-desc">每日扫描欧盟法规动态，确保您的合规体系与最新法规同步。</p>
+      <ul>
+        <li><strong>每日法规扫描</strong>：EUR-Lex新发布授权法案和委托法规</li>
+        <li><strong>月度法规简报</strong>：1-2页中文，汇总法规变化+影响分析+行动建议</li>
+        <li><strong>重大变更即时预警</strong>：24小时内通知全部在管客户</li>
+        <li><strong>合规影响评估</strong>：48小时内完成书面影响评估</li>
+        <li><strong>应对建议与行动方案</strong>：不仅告知变化，更给出具体行动指引</li>
+      </ul>
+      <div class="pillar-freq">简报频率：基础版 季度 · 标准版 月度 · 旗舰版 月度+深度分析</div>
+    </div>
+
+    <!-- ③ 应急支持 -->
+    <div class="pillar-card" id="pillar-emergency">
+      <div class="pillar-icon">🚨</div>
+      <h3>③ 应急支持</h3>
+      <p class="pillar-desc">监管查验、数据异常、技术问题——突发情况专业应对。</p>
+      <ul>
+        <li><strong>监管查验响应</strong>：1小时内响应，调取全套文件，协助撰写答复</li>
+        <li><strong>数据异常排查与修复</strong>：发现数据不一致时快速定位原因并修正</li>
+        <li><strong>技术问题快速解决</strong>：护照平台对接问题、数据格式异常等</li>
+        <li><strong>合规争议协助处理</strong>：与主管当局沟通中的专业支持</li>
+        <li><strong>远程/现场支持</strong>：重大案件可安排专人现场协助</li>
+      </ul>
+      <div class="pillar-freq">响应时效：基础版 工作日 · 标准版 7×12h · 旗舰版 7×24h</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第四部分：我们具体怎么工作 ===== -->
+<section class="section" id="process">
+  <div class="section-label">Part 04</div>
+  <h2 class="section-title">我们具体怎么工作</h2>
+  <p class="section-desc">从服务启动到年度复盘，8个标准步骤贯穿全年，每一步都有明确的交付物和质量关口。</p>
+
+  <!-- Phase 1 -->
+  <div class="phase-block phase-1" id="phase1">
+    <div class="phase-header">
+      <span class="phase-badge">Phase 1</span>
+      <div>
+        <div class="phase-title">服务启动</div>
+        <div class="phase-time">第1个月</div>
+      </div>
+    </div>
+
+    <div class="process-timeline">
+      <div class="process-step">
+        <div class="process-step-marker">
+          <div class="process-dot">1</div>
+          <div class="process-line"></div>
+        </div>
+        <div class="process-content">
+          <h4>服务交接</h4>
+          <span class="step-tag">第1-2周</span>
+          <div class="step-detail">
+            <ul>
+              <li>从注册上线服务团队交接全部项目资料</li>
+              <li>确认数据基线：当前数据手册状态、证据文件清单</li>
+              <li>建立客户专属服务档案和沟通渠道</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-marker">
+          <div class="process-dot">2</div>
+          <div class="process-line"></div>
+        </div>
+        <div class="process-content">
+          <h4>监控体系搭建</h4>
+          <span class="step-tag">第2-3周</span>
+          <div class="step-detail">
+            <ul>
+              <li>设置数据监控规则：更新频率、完整性检查项、证据有效期跟踪</li>
+              <li>设置法规监控关键词：覆盖Art.77、Annex XIII、碳足迹等</li>
+              <li>建立应急响应流程和联系人清单</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-marker">
+          <div class="process-dot">3</div>
+          <div class="process-line"></div>
+        </div>
+        <div class="process-content">
+          <h4>首次服务报告</h4>
+          <span class="step-tag">第4周</span>
+          <div class="step-detail">
+            <ul>
+              <li>数据状态评估报告：当前合规状态与数据完整性评分</li>
+              <li>法规风险扫描：最新法规变化对客户的潜在影响</li>
+              <li>年度服务计划确认：数据更新排期、简报频率、应急联系方式</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase-block phase-2" id="phase2">
+    <div class="phase-header">
+      <span class="phase-badge">Phase 2</span>
+      <div>
+        <div class="phase-title">持续服务</div>
+        <div class="phase-time">第2-12个月</div>
+      </div>
+    </div>
+
+    <div class="process-timeline">
+      <div class="process-step">
+        <div class="process-step-marker">
+          <div class="process-dot">4</div>
+          <div class="process-line"></div>
+        </div>
+        <div class="process-content">
+          <h4>数据更新</h4>
+          <span class="step-tag">按约定频率持续执行</span>
+          <div class="step-detail">
+            <ul>
+              <li>按约定频率更新动态数据（SoH、循环次数、温度历史等）</li>
+              <li>处理静态数据变更请求（新型号、供应商变更、认证更新）</li>
+              <li>数据完整性检查：三级核验后录入，无证据标「待补」</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-marker">
+          <div class="process-dot">5</div>
+          <div class="process-line"></div>
+        </div>
+        <div class="process-content">
+          <h4>法规跟踪</h4>
+          <span class="step-tag">每日扫描 · 定期简报</span>
+          <div class="step-detail">
+            <ul>
+              <li>月度法规简报：当月法规变化汇总+影响分析+行动建议</li>
+              <li>重大变更即时通知：24小时内推送至全部在管客户</li>
+              <li>合规影响评估：48小时内形成书面评估报告</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-marker">
+          <div class="process-dot">6</div>
+          <div class="process-line"></div>
+        </div>
+        <div class="process-content">
+          <h4>应急响应</h4>
+          <span class="step-tag">随时待命</span>
+          <div class="step-detail">
+            <ul>
+              <li>监管查验支持：1小时内响应，2小时内组队，24小时内初步方案</li>
+              <li>数据异常处理：发现不一致时快速定位、修正、记录</li>
+              <li>技术问题排查：护照平台、数据格式、接口问题等</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase-block phase-3" id="phase3">
+    <div class="phase-header">
+      <span class="phase-badge">Phase 3</span>
+      <div>
+        <div class="phase-title">年度复盘</div>
+        <div class="phase-time">第12个月</div>
+      </div>
+    </div>
+
+    <div class="process-timeline">
+      <div class="process-step">
+        <div class="process-step-marker">
+          <div class="process-dot">7</div>
+          <div class="process-line"></div>
+        </div>
+        <div class="process-content">
+          <h4>年度服务报告</h4>
+          <span class="step-tag">第11-12个月</span>
+          <div class="step-detail">
+            <ul>
+              <li>数据维护记录汇总：全年更新次数、数据变化趋势、完整性评分</li>
+              <li>法规变化影响分析：本年度法规变化清单及对客户的影响评估</li>
+              <li>应急响应记录：查验支持、异常处理等全记录</li>
+              <li>下一年度服务建议：基于法规趋势和业务变化的优化方案</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-marker">
+          <div class="process-dot">8</div>
+        </div>
+        <div class="process-content">
+          <h4>续约评估</h4>
+          <span class="step-tag">到期前90天启动</span>
+          <div class="step-detail">
+            <ul>
+              <li>服务质量评估：客户满意度调查与改进建议</li>
+              <li>需求变化沟通：业务扩展、型号增加、供应链变化等</li>
+              <li>续约方案确认：档位调整、服务内容优化、新年度计划</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第五部分：您会收到什么 ===== -->
+<section class="section" id="deliverables">
+  <div class="section-label">Part 05</div>
+  <h2 class="section-title">您会收到什么</h2>
+  <p class="section-desc">每一项交付物都有明确的格式、频率和质量标准——让服务价值可量化、可追溯。</p>
+
+  <div class="deliverable-grid">
+    <div class="deliverable-card">
+      <span class="del-num">01</span>
+      <h3>数据维护记录</h3>
+      <p>每次数据更新的完整日志：更新时间、更新内容、数据来源、核验结果、操作人员。确保所有数据变更可追溯。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">02</span>
+      <h3>法规月度简报</h3>
+      <p>1-2页中文简报：当月欧盟电池法规动态汇总、对贵司的具体影响分析、建议行动项和截止时间。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">03</span>
+      <h3>重大变更预警通知</h3>
+      <p>发现重大法规变化后24小时内即时推送：变化内容、影响范围、需要采取的行动和时限。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">04</span>
+      <h3>应急响应记录</h3>
+      <p>每次应急处理的全过程记录：接报时间、响应时间、组队情况、应对方案、处理结果、关闭时间。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">05</span>
+      <h3>年度服务报告</h3>
+      <p>全年服务汇总：数据维护记录、法规变化影响分析、应急响应记录、服务质量评估、下一年度建议。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">06</span>
+      <h3>年度合规回顾</h3>
+      <p>全面回顾本年度法规变化、贵司合规状态演变、数据手册更新历史，以及下一年度法规趋势展望。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第六部分：服务定价 ===== -->
+<section class="section" id="pricing">
+  <div class="section-label">Part 06</div>
+  <h2 class="section-title">服务定价</h2>
+  <p class="section-desc">年费制，三档可选。保护您前期合规投入的最小支出——中断服务的重建成本远超全年托管费。</p>
+
+  <div class="pricing-grid">
+    <!-- 基础版 -->
+    <div class="pricing-card">
+      <div class="plan-name">基础版</div>
+      <div class="plan-title">基础托管方案</div>
+      <div class="plan-suitable">数据变化少、风险低的产品</div>
+      <div class="plan-price">¥80,000-200,000<span> /年</span></div>
+      <ul>
+        <li><strong>数据维护</strong>：半年更新1次</li>
+        <li><strong>法规简报</strong>：季度简报</li>
+        <li><strong>应急支持</strong>：工作日内响应（48小时内）</li>
+        <li>邮件支持为主</li>
+        <li>年度数据完整性检查</li>
+        <li>适用：年出口量&lt;1万只电池的初创/小型企业</li>
+        <li>型号数量：≤3个</li>
+      </ul>
+    </div>
+
+    <!-- 标准版 -->
+    <div class="pricing-card recommended">
+      <div class="plan-name">标准版</div>
+      <div class="plan-title">标准托管方案</div>
+      <div class="plan-suitable">主流产品、中等复杂度</div>
+      <div class="plan-price">¥200,000-350,000<span> /年</span></div>
+      <ul>
+        <li><strong>数据维护</strong>：季度更新</li>
+        <li><strong>法规简报</strong>：月度简报 + 即时预警</li>
+        <li><strong>应急支持</strong>：7×12小时响应</li>
+        <li>共享服务团队</li>
+        <li>年度全面审核 + 合规报告</li>
+        <li>适用：年出口量1-10万只电池的中型企业</li>
+        <li>型号数量：≤10个</li>
+      </ul>
+    </div>
+
+    <!-- 旗舰版 -->
+    <div class="pricing-card">
+      <div class="plan-name">旗舰版</div>
+      <div class="plan-title">旗舰托管方案</div>
+      <div class="plan-suitable">核心产品、高风险、复杂供应链</div>
+      <div class="plan-price">¥350,000-500,000+<span> /年</span></div>
+      <ul>
+        <li><strong>数据维护</strong>：月度更新</li>
+        <li><strong>法规简报</strong>：月度简报 + 即时预警 + 深度分析</li>
+        <li><strong>应急支持</strong>：7×24小时响应</li>
+        <li><strong>专属客户经理</strong></li>
+        <li>合伙人级别年度复盘</li>
+        <li>适用：年出口量&gt;10万只电池的大型企业</li>
+        <li>型号数量：不限</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">📌 定价说明</div>
+    <p>具体报价综合考虑：型号数量、供应商数量与地域分布、数据更新频率需求、是否有跨境合规需求等因素。批量折扣：同一客户3个以上型号享9折，5个以上享85折。首年签约可适当优惠，第二年起按标准价执行。</p>
+  </div>
+</section>
+
+<!-- ===== 第七部分：为什么选择我们 ===== -->
+<section class="section" id="why-us">
+  <div class="section-label">Part 07</div>
+  <h2 class="section-title">为什么选择我们</h2>
+  <p class="section-desc">不是被动响应，是主动守护。</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="card-icon">🔍</span>
+      <h3>持续监控，主动预警</h3>
+      <p>不是等问题发生再处理——每日法规扫描、数据完整性定期核查、证据有效期跟踪预警。在问题变成风险之前发现并解决。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">📜</span>
+      <h3>法规专业，深度跟踪</h3>
+      <p>每日跟踪EUR-Lex、欧盟环境总署、电池护照协作平台等官方来源。不只是搬运信息——48小时内完成影响评估，给出具体行动建议。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">⚡</span>
+      <h3>响应迅速，查验无忧</h3>
+      <p>监管查验1小时内响应，2小时内组建专业团队，24小时内形成应对方案。Art.80赋予合理期限——我们帮您充分利用规则窗口。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">💰</span>
+      <h3>成本可控，预算清晰</h3>
+      <p>年费制服务，费用明确可预期。保护前期合规投入——中断服务的重建成本远超全年托管费。批量折扣进一步降低单位成本。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">🔗</span>
+      <h3>全链条无缝衔接</h3>
+      <p>从差距评估①→数据建设②→供应商辅导③→注册上线④→年度托管⑤，评估成果在服务期内持续更新，不重复收费。一条线走到底，效率最高。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">🛡️</span>
+      <h3>数据安全，严格保密</h3>
+      <p>所有客户数据存储于加密服务器，三级权限管控。签署保密协议覆盖全部服务人员，数据传输使用加密通道，证据文件按客户隔离存储。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第八部分：FAQ ===== -->
+<section class="section" id="faq">
+  <div class="section-label">Part 08</div>
+  <h2 class="section-title">常见问题</h2>
+  <p class="section-desc">客户最关心的问题，我们提前解答。</p>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Q1：年度托管包含什么服务？</summary>
+      <div class="faq-answer">
+        <p>三大核心模块：①数据维护（动态数据更新+静态数据变更管理+年度全面审核）、②法规跟踪（每日扫描+定期简报+重大变更即时预警）、③应急支持（监管查验响应+数据异常排查+技术问题处理）。具体服务频率和内容取决于您选择的档位（基础版/标准版/旗舰版）。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q2：数据更新频率是多少？</summary>
+      <div class="faq-answer">
+        <p>按档位不同：基础版每半年更新1次，标准版每季度更新1次，旗舰版每月更新1次。动态数据（SoH、循环次数等）按约定频率从BMS采集并录入；静态数据（供应商变更、认证更新等）在发生变更时及时更新。所有数据更新均经过三级核验后才录入数据卡。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q3：法规简报多久一次？</summary>
+      <div class="faq-answer">
+        <p>基础版为季度简报，标准版和旗舰版为月度简报。此外，发现重大法规变化（如新授权法案发布、Annex XIII修订等）后，24小时内向全部在管客户发出即时预警通知。简报内容为1-2页中文，包含法规变化汇总、对贵司的具体影响分析和建议行动。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q4：如果监管机构查验，你们怎么支持？</summary>
+      <div class="faq-answer">
+        <p>接到贵司查验通知后1小时内响应，确认查验范围、涉及产品和截止日期。2小时内组建响应团队（服务经理+法规研究员+数据专员），24小时内形成初步应对方案。具体支持包括：调取数据手册和全套证据文件、协助撰写合规答复文件、必要时远程会议或现场支持，直至查验正式关闭。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q5：响应时效是怎样的？</summary>
+      <div class="faq-answer">
+        <p>按档位不同：基础版为工作日内响应（48小时内），标准版为7×12小时响应，旗舰版为7×24小时全天候响应。监管查验场景下所有档位均保证1小时内首次响应。应急响应标准流程：1小时响应→2小时组队→24小时初步方案→持续支持至关闭。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q6：年度托管费用怎么支付？</summary>
+      <div class="faq-answer">
+        <p>标准合同为一年期，签约后支付首年服务费。可一次性支付或分两期（半年度）支付。到期前90天启动续费沟通，到期前60天发送续费方案+年度价值报告。首年签约可适当优惠以建立合作关系，第二年起按标准价执行。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q7：可以中途升级或降级服务档位吗？</summary>
+      <div class="faq-answer">
+        <p>可以。合同期内可根据业务需求变化调整服务档位：升级立即生效，按差价补缴年费；降级在下一个计费周期生效。建议在年度复盘时评估是否需要调整——如果贵司出口量增长或新增型号，升级档位可获得更频繁的数据更新和更快的响应时效。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q8：如果数据发生重大变更怎么办？</summary>
+      <div class="faq-answer">
+        <p>日常变更（供应商更新、认证续期等）包含在年度托管费内。如果法规发生重大变化导致需要全面更新数据手册（如Annex XIII整体重写导致需要重新采集全部供应商数据），将单独报价，但会给予托管客户优惠价格（通常为正常报价的50-70%）。这种情况会在季度简报中提前预警，不会突然发生。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q9：年度托管结束后，数据归谁？</summary>
+      <div class="faq-answer">
+        <p>所有数据始终归客户所有。年度托管期间产生的数据手册、更新记录、法规简报、应急记录等全部交付物，客户均享有完整所有权。服务终止后，我们会将全套数据完整移交，并在确认后删除我方留存的副本（或按客户意愿保留）。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q10：和前面的服务一起签有优惠吗？</summary>
+      <div class="faq-answer">
+        <p>有。如果贵司尚未完成差距评估、数据建设、注册上线等前期服务，我们提供「从零到合规」全流程打包方案，整体签约享受打包优惠。即使前期服务由其他机构完成，签约年度托管时也可享受新客户首年优惠。具体优惠方案请联系我们商务团队。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 第九部分：立即开始 ===== -->
+<section class="section" id="cta">
+  <div class="section-label">Part 09</div>
+  <h2 class="section-title">立即开始</h2>
+
+  <div class="cta-section">
+    <h2>让电池护照持续合规</h2>
+    <p>签署年度托管协议 → 服务交接 → 持续守护您的合规成果</p>
+    <div class="cta-steps">
+      <div class="cta-step">
+        <span class="step-num">1</span>
+        签署协议
+      </div>
+      <div class="cta-step">
+        <span class="step-num">2</span>
+        服务交接<br><small>（第1个月）</small>
+      </div>
+      <div class="cta-step">
+        <span class="step-num">3</span>
+        持续服务<br><small>（365天守护）</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-check">
+    <div class="callout-title">☑ 前提条件</div>
+    <p>年度托管服务的前提是已完成电池护照注册上线（服务④），或同时签约注册上线服务。如果贵司还在差距评估阶段，建议直接签约全流程打包方案，确保从评估到托管无缝衔接。</p>
+  </div>
+
+  <div class="about-block" style="text-align:center;">
+    <h4>联系我们</h4>
+    <p>守信财税 · DPP业务线<br>
+    专注欧盟电池法规 (EU) 2023/1542 合规服务<br>
+    <strong>联系电话：</strong>请咨询商务团队<br>
+    <strong>邮箱：</strong>dpp@shouxincaishui.com</p>
+  </div>
+</section>
+
+<!-- ===== 附录 ===== -->
+<section class="section" id="app-dates">
+  <div class="section-label">附录</div>
+  <h2 class="section-title">附录</h2>
+
+  <div class="appendix-grid">
+    <div class="appendix-block">
+      <h4>关键法规日期速查</h4>
+      <table>
+        <tbody>
+          <tr><td>2027年8月18日</td><td class="date-val">碳足迹声明要求生效</td></tr>
+          <tr><td>2025年2月18日</td><td class="date-val">供应链尽职调查报告要求</td></tr>
+          <tr><td>2025年8月18日</td><td class="date-val">碳足迹性能等级标签要求</td></tr>
+          <tr><td>2027年2月18日</td><td class="date-val">电池护照强制生效（EV/LMT/工业&gt;2kWh）</td></tr>
+          <tr><td>2031年1月1日</td><td class="date-val">再生材料含量最低目标（第一阶段）</td></tr>
+          <tr><td>2035年</td><td class="date-val">再生材料含量最低目标（第二阶段）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="appendix-block" id="app-emergency">
+      <h4>应急响应流程</h4>
+      <div class="emergency-flow" style="background:var(--c-surface);border:none;padding:var(--space-md);">
+        <span class="em-step em-active">① 接到通知<br><small>1h内响应</small></span>
+        <span class="em-arrow">→</span>
+        <span class="em-step">② 了解范围<br><small>查验要求/产品</small></span>
+        <span class="em-arrow">→</span>
+        <span class="em-step">③ 准备材料<br><small>数据手册/证据</small></span>
+        <span class="em-arrow">→</span>
+        <span class="em-step">④ 协助回复<br><small>撰写答复</small></span>
+        <span class="em-arrow">→</span>
+        <span class="em-step em-green">⑤ 持续支持<br><small>至查验关闭</small></span>
+      </div>
+    </div>
+
+    <div class="appendix-block" id="app-glossary">
+      <h4>术语简表</h4>
+      <dl class="def-list">
+        <dt>DPP</dt>
+        <dd>Digital Product Passport，数字产品护照。欧盟法规要求的产品数字化身份信息载体。</dd>
+        <dt>SoH</dt>
+        <dd>State of Health，电池健康状态。反映电池当前性能与原始性能的比值。</dd>
+        <dt>Annex XIII</dt>
+        <dd>欧盟电池法规附件十三，规定电池护照应包含的数据元素及其详细程度。</dd>
+        <dt>BMS</dt>
+        <dd>Battery Management System，电池管理系统。采集电池运行数据的电子系统。</dd>
+        <dt>Delegated Regulation</dt>
+        <dd>授权法案/委托法规。欧盟委员会依据基础法规授权发布的补充性法规。</dd>
+        <dt>市场监督查验</dt>
+        <dd>成员国主管当局依据Art.74-76对市场上电池产品进行的合规抽查。</dd>
+      </dl>
+    </div>
+
+    <div class="appendix-block" id="app-about">
+      <h4>关于我们</h4>
+      <p style="font-size:var(--fs-sm);color:var(--c-text-sec);line-height:1.7;">
+        <strong>守信财税</strong>是专注电池企业欧盟合规的专业服务机构。我们拥有一支兼具财税、法规和供应链管理经验的团队，为电池企业提供从差距评估到护照上线到持续维护的全链条DPP合规服务。<br><br>
+        我们的核心理念：<strong>让合规成为竞争力，而不是负担。</strong><br><br>
+        服务范围覆盖：差距评估、DPP数据建设、供应商数据辅导、电池护照注册上线、年度合规托管等全流程服务。
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- Footer -->
+<footer class="doc-footer">
+  <p>© 2026 守信财税 · DPP业务线 | 产品手册 v1.0 | 2026年9月</p>
+  <p>专注欧盟电池法规 (EU) 2023/1542 合规服务</p>
+</footer>
+
+<script>
+// Sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+}
+
+// Active nav tracking
+(function() {
+  const links = document.querySelectorAll('.sidebar nav a');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href');
+    if (id && id.startsWith('#')) {
+      const el = document.getElementById(id.slice(1));
+      if (el) sections.push({ el, link });
+    }
+  });
+
+  function onScroll() {
+    const scrollY = window.scrollY + 80;
+    let current = sections[0];
+    for (const s of sections) {
+      if (s.el.offsetTop <= scrollY) current = s;
+    }
+    links.forEach(l => l.classList.remove('active'));
+    if (current) current.link.classList.add('active');
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Close sidebar on mobile after click
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 960) {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('open');
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

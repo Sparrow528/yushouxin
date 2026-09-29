@@ -1,0 +1,1808 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP服务体系 · 服务框架总览</title>
+<meta name="description" content="帮助中国电池企业合规进入欧盟市场——从差距评估到护照上线到持续维护的一站式服务全景">
+<style>
+:root {
+  --c-primary: #1A237E;
+  --c-primary-light: #283593;
+  --c-primary-bg: #E8EAF6;
+  --c-primary-bg-light: #F5F6FA;
+  --c-accent: #2E7D32;
+  --c-accent-light: #43A047;
+  --c-accent-bg: #E8F5E9;
+  --c-accent-bg-light: #F1F8E9;
+  --c-amber: #E65100;
+  --c-amber-bg: #FFF3E0;
+  --c-red: #B71C1C;
+  --c-red-bg: #FFEBEE;
+  --c-blue: #0D47A1;
+  --c-blue-bg: #E3F2FD;
+  --c-canvas: #FFFFFF;
+  --c-surface: #FAFAFA;
+  --c-text: #212121;
+  --c-text-sec: #546E7A;
+  --c-text-muted: #78909C;
+  --c-border: #E0E0E0;
+  --c-border-light: #EEEEEE;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+  --fs-3xl: 2.5rem;
+  --fs-hero: clamp(2rem, 4vw, 3.25rem);
+  --lh-tight: 1.2;
+  --lh-body: 1.7;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+  --sidebar-w: 240px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--c-text);
+  background: var(--c-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Layout ===== */
+.page-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--c-primary);
+  color: #fff;
+  padding: var(--space-xl) 0;
+  z-index: 100;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar-brand {
+  padding: 0 var(--space-lg);
+  margin-bottom: var(--space-xl);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: var(--space-lg);
+}
+
+.sidebar-brand h2 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 2px;
+}
+
+.sidebar-brand span {
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.5);
+}
+
+.sidebar nav { padding: 0 var(--space-sm); }
+
+.sidebar nav a {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+  line-height: 1.4;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a:focus-visible {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  padding-left: calc(var(--space-md) + 4px);
+}
+
+.sidebar nav a.active {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-weight: 600;
+  border-left: 3px solid var(--c-accent-light);
+  padding-left: calc(var(--space-md) - 3px);
+}
+
+.sidebar .nav-group {
+  display: block;
+  padding: var(--space-md) var(--space-md) var(--space-xs);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: rgba(255,255,255,0.38);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ===== Main ===== */
+.main {
+  padding: var(--space-2xl) clamp(var(--space-xl), 4vw, var(--space-3xl));
+  max-width: 1100px;
+}
+
+/* ===== Cover ===== */
+.cover {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 50%, var(--c-accent) 100%);
+  color: #fff;
+  padding: var(--space-4xl) var(--space-2xl);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 20s ease-in-out infinite;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(46,125,50,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -30px); }
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cover h1 {
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+
+.cover .subtitle {
+  font-size: var(--fs-lg);
+  color: rgba(255,255,255,0.9);
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+}
+
+.cover .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.7);
+}
+
+.cover-icon {
+  position: absolute;
+  right: var(--space-2xl);
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.15;
+  font-size: 120px;
+  line-height: 1;
+  z-index: 1;
+}
+
+/* ===== Section ===== */
+.section {
+  margin-bottom: var(--space-3xl);
+  padding-top: var(--space-xl);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: var(--space-lg);
+  line-height: var(--lh-tight);
+}
+
+.section-desc {
+  font-size: var(--fs-base);
+  color: var(--c-text-sec);
+  margin-bottom: var(--space-xl);
+  max-width: 720px;
+}
+
+/* ===== One-liner ===== */
+.oneliner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.oneliner-card {
+  padding: var(--space-xl);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--c-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.oneliner-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.oneliner-card h3 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-sm);
+}
+
+.oneliner-card p {
+  font-size: var(--fs-base);
+  color: var(--c-text);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.oneliner-card.urgent {
+  background: var(--c-amber-bg);
+  border-color: rgba(230,81,0,0.2);
+}
+
+.oneliner-card.urgent h3 {
+  color: var(--c-amber);
+}
+
+/* ===== Journey Timeline ===== */
+.journey {
+  background: linear-gradient(135deg, var(--c-primary-bg-light) 0%, #EDE7F6 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl) var(--space-xl);
+  margin-bottom: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.journey::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--c-text-muted), var(--c-primary), var(--c-blue), var(--c-accent), var(--c-accent-light));
+}
+
+.journey-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.journey-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+}
+
+.journey-node {
+  flex: 1;
+  min-width: 160px;
+  text-align: center;
+  position: relative;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.journey-node-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-md);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.journey-node:nth-child(1) .journey-node-icon { background: var(--c-text-muted); }
+.journey-node:nth-child(2) .journey-node-icon { background: var(--c-primary); }
+.journey-node:nth-child(3) .journey-node-icon { background: var(--c-blue); }
+.journey-node:nth-child(4) .journey-node-icon { background: var(--c-accent); }
+.journey-node:nth-child(5) .journey-node-icon { background: var(--c-accent-light); }
+
+.journey-node-label {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: 4px;
+}
+
+.journey-node-desc {
+  font-size: var(--fs-xs);
+  color: var(--c-text-sec);
+  line-height: 1.5;
+}
+
+.journey-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-xs);
+  color: var(--c-text-muted);
+  font-size: var(--fs-xl);
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: calc(var(--space-lg) + 18px);
+}
+
+/* ===== Service Cards ===== */
+.service-card {
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 5px;
+}
+
+.service-card.card-funnel::before { background: linear-gradient(to bottom, #78909C, #546E7A); }
+.service-card.card-1::before { background: linear-gradient(to bottom, var(--c-primary), var(--c-primary-light)); }
+.service-card.card-2::before { background: linear-gradient(to bottom, var(--c-blue), #1565C0); }
+.service-card.card-3::before { background: linear-gradient(to bottom, var(--c-accent), #388E3C); }
+.service-card.card-4::before { background: linear-gradient(to bottom, var(--c-accent-light), #43A047); }
+
+.service-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
+}
+
+.card-funnel .service-icon { background: linear-gradient(135deg, #ECEFF1, #CFD8DC); color: var(--c-text-muted); }
+.card-1 .service-icon { background: linear-gradient(135deg, var(--c-primary-bg), #C5CAE9); color: var(--c-primary); }
+.card-2 .service-icon { background: linear-gradient(135deg, var(--c-blue-bg), #BBDEFB); color: var(--c-blue); }
+.card-3 .service-icon { background: linear-gradient(135deg, var(--c-accent-bg), #C8E6C9); color: var(--c-accent); }
+.card-4 .service-icon { background: linear-gradient(135deg, var(--c-accent-bg-light), #DCEDC8); color: var(--c-accent-light); }
+
+.service-card-title {
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: 4px;
+  line-height: var(--lh-tight);
+  transition: color 0.2s ease;
+}
+
+.service-card:hover .service-card-title {
+  color: var(--c-accent);
+}
+
+.service-card-tagline {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  margin: 0;
+}
+
+/* Service meta grid */
+.service-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-xl) 0;
+  padding: var(--space-lg);
+  background: var(--c-surface);
+  border-radius: var(--radius-md);
+}
+
+.service-meta-item dt {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+
+.service-meta-item dd {
+  font-size: var(--fs-sm);
+  color: var(--c-text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Deliverables list */
+.deliverables {
+  margin: var(--space-lg) 0;
+}
+
+.deliverables h4 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.deliverables ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-xs) var(--space-md);
+}
+
+.deliverables li {
+  font-size: var(--fs-sm);
+  color: var(--c-text);
+  padding: var(--space-xs) 0;
+  padding-left: 1.2em;
+  position: relative;
+  line-height: 1.5;
+}
+
+.deliverables li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--c-accent);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+}
+
+/* Next step */
+.next-step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--c-primary-bg-light);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-xl);
+  font-size: var(--fs-sm);
+  color: var(--c-primary);
+}
+
+.next-step strong {
+  font-weight: 700;
+}
+
+/* ===== Pricing Tiers ===== */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+.tier-card {
+  padding: var(--space-lg);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  background: var(--c-canvas);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tier-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.tier-card.recommended {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 2px var(--c-accent), var(--shadow-md);
+  background: linear-gradient(to bottom, #fff, var(--c-accent-bg-light));
+}
+
+.tier-card.recommended::after {
+  content: '⭐ 推荐';
+  position: absolute;
+  top: -12px; right: 16px;
+  background: linear-gradient(135deg, var(--c-accent), var(--c-accent-light));
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(46,125,50,0.3);
+}
+
+.tier-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-xs);
+}
+
+.card-1 .tier-label { color: var(--c-primary); }
+.card-2 .tier-label { color: var(--c-blue); }
+.card-3 .tier-label { color: var(--c-accent); }
+.card-4 .tier-label { color: var(--c-accent-light); }
+
+.tier-card h5 {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: var(--space-sm);
+}
+
+.tier-price {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-md);
+}
+
+.tier-price span {
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  color: var(--c-text-muted);
+}
+
+.tier-card ul {
+  margin: 0;
+  padding-left: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+}
+
+.tier-card li {
+  margin-bottom: var(--space-xs);
+  line-height: 1.5;
+}
+
+/* ===== Funnel sub-cards ===== */
+.funnel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+.funnel-item {
+  padding: var(--space-lg);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  background: var(--c-surface);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.funnel-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--c-primary);
+}
+
+.funnel-item h4 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.funnel-item p {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  margin: 0 0 var(--space-sm);
+  line-height: 1.6;
+}
+
+.funnel-item .funnel-tag {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.tag-free { background: var(--c-accent-bg); color: var(--c-accent); }
+.tag-low { background: var(--c-blue-bg); color: var(--c-blue); }
+
+/* ===== Pricing Summary Table ===== */
+.price-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  margin: var(--space-lg) 0;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.price-table thead { background: var(--c-primary); }
+
+.price-table th {
+  text-align: left;
+  font-weight: 600;
+  color: #fff;
+  padding: var(--space-sm) var(--space-md);
+  white-space: nowrap;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.03em;
+}
+
+.price-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--c-border-light);
+  vertical-align: top;
+}
+
+.price-table tr:last-child td { border-bottom: none; }
+.price-table tbody tr { transition: background 0.2s ease; }
+.price-table tbody tr:hover { background: #F3F4F6; }
+
+.price-table .price-val {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--c-primary);
+  white-space: nowrap;
+}
+
+.max-value {
+  padding: var(--space-2xl) var(--space-xl);
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 60%, var(--c-accent) 100%);
+  border-radius: var(--radius-lg);
+  margin: var(--space-xl) 0;
+  text-align: center;
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.max-value::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.max-value .label {
+  font-size: var(--fs-base);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: var(--space-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.max-value .value {
+  font-family: var(--font-mono);
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Service Linking Flow ===== */
+.link-flow {
+  position: relative;
+  padding: var(--space-xl) 0;
+}
+
+.link-step {
+  display: flex;
+  gap: var(--space-lg);
+  margin-bottom: 0;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.link-step:hover {
+  transform: translateX(4px);
+}
+
+.link-step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 48px;
+}
+
+.link-dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.link-step:hover .link-dot {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.link-line {
+  width: 2px;
+  flex: 1;
+  min-height: 20px;
+}
+
+.link-step:nth-child(1) .link-dot { background: var(--c-text-muted); }
+.link-step:nth-child(1) .link-line { background: linear-gradient(to bottom, var(--c-text-muted), var(--c-primary)); }
+.link-step:nth-child(2) .link-dot { background: var(--c-primary); }
+.link-step:nth-child(2) .link-line { background: linear-gradient(to bottom, var(--c-primary), var(--c-blue)); }
+.link-step:nth-child(3) .link-dot { background: var(--c-blue); }
+.link-step:nth-child(3) .link-line { background: linear-gradient(to bottom, var(--c-blue), var(--c-accent)); }
+.link-step:nth-child(4) .link-dot { background: var(--c-accent); }
+.link-step:nth-child(4) .link-line { background: linear-gradient(to bottom, var(--c-accent), var(--c-accent-light)); }
+.link-step:nth-child(5) .link-dot { background: var(--c-accent-light); }
+
+.link-step-content {
+  padding-bottom: var(--space-xl);
+  flex: 1;
+  min-width: 0;
+}
+
+.link-step-content h4 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: 4px;
+}
+
+.link-step-content .link-output {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  margin-bottom: 4px;
+}
+
+.link-step-content .link-transfer {
+  font-size: var(--fs-xs);
+  font-family: var(--font-mono);
+  color: var(--c-accent);
+  font-weight: 600;
+  padding: 2px 8px;
+  background: var(--c-accent-bg);
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* ===== Customer Types ===== */
+.customer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+.customer-card {
+  padding: var(--space-lg);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.customer-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--c-primary);
+}
+
+.customer-card .cust-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+  transition: transform 0.3s ease;
+}
+
+.customer-card:hover .cust-icon {
+  transform: scale(1.15);
+}
+
+.customer-card h4 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: 4px;
+}
+
+.customer-card p {
+  font-size: var(--fs-xs);
+  color: var(--c-text-sec);
+  margin: 0;
+}
+
+/* ===== Appendix ===== */
+.appendix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.appendix-block {
+  padding: var(--space-lg);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+}
+
+.appendix-block h4 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--c-primary-bg);
+}
+
+.appendix-block table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.appendix-block th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--c-primary);
+  padding: var(--space-xs) var(--space-sm);
+  border-bottom: 1px solid var(--c-border);
+  font-size: var(--fs-xs);
+}
+
+.appendix-block td {
+  padding: var(--space-xs) var(--space-sm);
+  border-bottom: 1px solid var(--c-border-light);
+  vertical-align: top;
+}
+
+.appendix-block tr:last-child td { border-bottom: none; }
+
+.appendix-block .date-val {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--c-amber);
+  white-space: nowrap;
+}
+
+/* ===== Mobile ===== */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 200;
+  background: var(--c-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== Focus ===== */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
+  .sidebar.open { transform: translateX(0); }
+  .page-layout { grid-template-columns: 1fr; }
+  .menu-toggle { display: block; }
+  .main { padding: var(--space-xl) var(--space-lg); }
+  .cover { padding: var(--space-2xl) var(--space-lg); }
+  .cover h1 { font-size: var(--fs-2xl); }
+  .oneliner-grid { grid-template-columns: 1fr; }
+  .journey-flow { flex-direction: column; align-items: center; }
+  .journey-arrow { transform: rotate(90deg); margin: 0; padding: var(--space-xs) 0; align-self: center; }
+  .journey-node { min-width: auto; width: 100%; max-width: 280px; }
+  .service-card { padding: var(--space-lg); }
+  .service-card-header { flex-direction: column; gap: var(--space-md); }
+  .service-meta { grid-template-columns: 1fr 1fr; }
+  .tier-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .main { padding: var(--space-lg) var(--space-md); }
+  .cover { padding: var(--space-xl) var(--space-md); }
+  .cover h1 { font-size: var(--fs-xl); }
+  .section-title { font-size: var(--fs-xl); }
+  .service-meta { grid-template-columns: 1fr; }
+  .customer-grid { grid-template-columns: 1fr 1fr; }
+  .appendix-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== Print ===== */
+@media print {
+  .sidebar, .menu-toggle { display: none !important; }
+  .page-layout { grid-template-columns: 1fr; }
+  .main { padding: 0; max-width: none; }
+  .cover {
+    background: #fff !important;
+    color: var(--c-text) !important;
+    padding: var(--space-xl) 0;
+    border-bottom: 3px solid var(--c-primary);
+    border-radius: 0;
+    box-shadow: none !important;
+  }
+  .cover::before, .cover::after { display: none; }
+  .cover-icon { display: none !important; }
+  .cover h1 { color: var(--c-primary); text-shadow: none; }
+  .cover .subtitle { color: var(--c-text-sec); }
+  .cover .meta { color: var(--c-text-muted); }
+  .journey::before { display: none; }
+  .max-value { box-shadow: none !important; }
+  .max-value::before { display: none; }
+  .max-value { background: var(--c-primary-bg) !important; color: var(--c-primary) !important; }
+  .max-value .value { color: var(--c-primary) !important; text-shadow: none !important; }
+  .service-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+  .service-card:hover { transform: none; }
+  .tier-card { break-inside: avoid; }
+  .tier-card:hover { transform: none; }
+  .price-table-wrap { break-inside: avoid; }
+  .section { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; }
+  .link-flow { break-inside: avoid; }
+  .funnel-item:hover, .customer-card:hover, .oneliner-card:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="打开导航菜单">☰</button>
+
+<div class="page-layout">
+
+<!-- Sidebar -->
+<aside class="sidebar" role="navigation" aria-label="章节导航">
+  <div class="sidebar-brand">
+    <h2>DPP 服务体系</h2>
+    <span>服务框架总览</span>
+  </div>
+  <nav>
+    <a href="#overview" class="active">一句话说清楚</a>
+    <a href="#journey" >客户旅程</a>
+    <span class="nav-group">引流层</span>
+    <a href="#funnel">让客户找上我们</a>
+    <span class="nav-group">核心服务</span>
+    <a href="#s1">① 差距评估</a>
+    <a href="#s2">② 数据建设</a>
+    <a href="#s3">③ 注册上线</a>
+    <a href="#s4">④ 年度托管</a>
+    <span class="nav-group">汇总</span>
+    <a href="#pricing">收费全景</a>
+    <a href="#linkage">服务衔接逻辑</a>
+    <a href="#customers">适用客户</a>
+    <a href="#appendix">附录</a>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="main">
+
+<!-- Cover -->
+<header class="cover" id="top">
+  <div class="cover-icon" aria-hidden="true">🔋</div>
+  <div class="cover-content">
+    <h1>DPP服务体系</h1>
+    <p class="subtitle">帮助中国电池企业合规进入欧盟市场</p>
+    <div class="meta">
+      <div>v1.0 · 2026年9月</div>
+      <div>守信财税 · DPP业务线</div>
+    </div>
+  </div>
+</header>
+
+<!-- Section 1: One-liner -->
+<section class="section" id="overview">
+  <div class="section-label">Overview</div>
+  <h2 class="section-title">一句话说清楚</h2>
+
+  <div class="oneliner-grid">
+    <div class="oneliner-card">
+      <h3>我们做什么</h3>
+      <p>帮助中国电池及含电池产品企业，完成<strong>欧盟电池法规 (EU) 2023/1542</strong> 的合规要求——从评估差距到护照上线到持续维护，提供一站式服务。</p>
+    </div>
+    <div class="oneliner-card urgent">
+      <h3>为什么是现在</h3>
+      <p><strong>2027年2月18日起</strong>，电动汽车电池、轻型交通工具电池（E-bike等）、容量&gt;2kWh的工业电池，必须在欧盟注册中心持有有效的<strong>电池护照</strong>才能在欧盟市场销售。中国是全球最大电池生产国，时间紧迫。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Journey -->
+<section class="section" id="journey">
+  <div class="section-label">Customer Journey</div>
+  <h2 class="section-title">客户旅程与服务全景</h2>
+  <p class="section-desc">从"不知道DPP是什么"到"持续合规"——客户经历的每个阶段，对应我们的一项服务。</p>
+
+  <div class="journey">
+    <div class="journey-flow">
+      <div class="journey-node">
+        <div class="journey-node-icon" aria-hidden="true">?</div>
+        <div class="journey-node-label">不知道DPP</div>
+        <div class="journey-node-desc">通过内容/工具了解法规</div>
+      </div>
+      <div class="journey-arrow" aria-hidden="true">→</div>
+      <div class="journey-node">
+        <div class="journey-node-icon">①</div>
+        <div class="journey-node-label">差距评估</div>
+        <div class="journey-node-desc">知道自己差什么</div>
+      </div>
+      <div class="journey-arrow" aria-hidden="true">→</div>
+      <div class="journey-node">
+        <div class="journey-node-icon">②</div>
+        <div class="journey-node-label">数据建设</div>
+        <div class="journey-node-desc">把数据补齐</div>
+      </div>
+      <div class="journey-arrow" aria-hidden="true">→</div>
+      <div class="journey-node">
+        <div class="journey-node-icon">③</div>
+        <div class="journey-node-label">注册上线</div>
+        <div class="journey-node-desc">护照上线</div>
+      </div>
+      <div class="journey-arrow" aria-hidden="true">→</div>
+      <div class="journey-node">
+        <div class="journey-node-icon">④</div>
+        <div class="journey-node-label">年度托管</div>
+        <div class="journey-node-desc">持续合规</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Funnel / 引流层 -->
+<section class="section" id="funnel">
+  <div class="section-label">引流层</div>
+  <h2 class="section-title">让客户找上我们</h2>
+  <p class="section-desc">三种免费或低价手段，筛选出精准客户。不赚钱，赚信任。</p>
+
+  <div class="service-card card-funnel">
+    <div class="service-card-header">
+      <div class="service-icon" aria-hidden="true">⊕</div>
+      <div>
+        <div class="service-card-title">引流层</div>
+        <p class="service-card-tagline">用免费/低价内容筛选付费意愿客户，48小时内人工跟进红黄客户</p>
+      </div>
+    </div>
+
+    <div class="funnel-grid">
+      <div class="funnel-item">
+        <h4>线上自测工具</h4>
+        <p>18道选择题，5分钟完成。自动出红/黄/绿结果。红色和黄色客户 → 48小时内人工跟进。</p>
+        <span class="funnel-tag tag-free">免费</span>
+      </div>
+      <div class="funnel-item">
+        <h4>科普内容</h4>
+        <p>抖音/公众号/行业群发布法规解读、行业分析、案例分享。建立专业形象，吸引目标客户关注。</p>
+        <span class="funnel-tag tag-free">免费</span>
+      </div>
+      <div class="funnel-item">
+        <h4>图文微课</h4>
+        <p>低价线上课程，教企业DPP基础知识和合规要点。目的是筛选有付费意愿的客户。</p>
+        <span class="funnel-tag tag-low">¥99–299</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: 差距评估 -->
+<section class="section" id="s1">
+  <div class="section-label">核心服务 ①</div>
+  <h2 class="section-title">差距评估——告诉客户"差什么"</h2>
+
+  <div class="service-card card-1">
+    <div class="service-card-header">
+      <div class="service-icon" aria-hidden="true">①</div>
+      <div>
+        <div class="service-card-title">差距评估</div>
+        <p class="service-card-tagline">拿欧盟电池法规的71个数据点，逐项对照客户现状，出正式报告</p>
+      </div>
+    </div>
+
+    <p>客户在最短时间搞清楚<strong>"我在哪、差什么、怎么补"</strong>。评估完成后，自然引导进入数据建设。</p>
+
+    <div class="service-meta">
+      <dl class="service-meta-item">
+        <dt>服务周期</dt>
+        <dd>5–8个工作日（加急3天）</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>定价模式</dt>
+        <dd>三档定价，按电池类型和SKU数量</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>核心价值</dt>
+        <dd>最短时间摸清合规差距全貌</dd>
+      </dl>
+    </div>
+
+    <div class="deliverables">
+      <h4>核心交付物</h4>
+      <ul>
+        <li>差距评估报告</li>
+        <li>71项核查工作表</li>
+        <li>差距分级明细</li>
+        <li>整改路线图</li>
+        <li>关键日期速查卡</li>
+      </ul>
+    </div>
+
+    <h4 style="margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--c-primary);">三档定价</h4>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="tier-label">基础版</div>
+        <h5>单一电池类型</h5>
+        <div class="tier-price">¥80,000–150,000</div>
+        <ul>
+          <li>1种电池类型</li>
+          <li>≤10 SKU</li>
+          <li>标准报告</li>
+        </ul>
+      </div>
+      <div class="tier-card recommended">
+        <div class="tier-label">标准版</div>
+        <h5>多种电池类型</h5>
+        <div class="tier-price">¥200,000–350,000</div>
+        <ul>
+          <li>多种电池类型</li>
+          <li>≤30 SKU</li>
+          <li>含远程汇报</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">旗舰版</div>
+        <h5>全量评估+辅导</h5>
+        <div class="tier-price">¥500,000–800,000</div>
+        <ul>
+          <li>不限SKU</li>
+          <li>含现场汇报</li>
+          <li>3个月整改辅导</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="next-step">
+      <span>→</span>
+      <span><strong>后续衔接：</strong>评估完成后，自然引导进入 ② 数据建设</span>
+    </div>
+  </div>
+</section>
+
+<!-- Section 5: 数据建设 -->
+<section class="section" id="s2">
+  <div class="section-label">核心服务 ②</div>
+  <h2 class="section-title">数据建设——帮客户"补数据"</h2>
+
+  <div class="service-card card-2">
+    <div class="service-card-header">
+      <div class="service-icon" aria-hidden="true">②</div>
+      <div>
+        <div class="service-card-title">数据建设</div>
+        <p class="service-card-tagline">建立每个电池型号的完整数据底册，辅导客户从供应商回收缺失数据</p>
+      </div>
+    </div>
+
+    <p>客户不用自己摸索数据怎么收、问卷怎么发、供应商怎么催。<strong>数据齐备后进入注册上线。</strong></p>
+
+    <div class="service-meta">
+      <dl class="service-meta-item">
+        <dt>服务周期</dt>
+        <dd>4–8周</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>定价模式</dt>
+        <dd>数据规划+供应商采集打包</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>定价区间</dt>
+        <dd>¥200,000–450,000</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>核心价值</dt>
+        <dd>全程不用自己摸索数据采集流程</dd>
+      </dl>
+    </div>
+
+    <h4 style="color:var(--c-primary);margin-bottom:var(--space-sm);">服务包含两部分</h4>
+    <div class="funnel-grid" style="margin-bottom:var(--space-lg);">
+      <div class="funnel-item">
+        <h4>数据规划</h4>
+        <p>建立数据卡（每个型号一张，35个字段），标注已填/待补/不适用。输出缺口分析报告和采集计划。</p>
+      </div>
+      <div class="funnel-item">
+        <h4>供应商采集辅导</h4>
+        <p>代发供应商问卷、催收管理、数据三级核验、录入数据手册。全程管理供应商配合度。</p>
+      </div>
+    </div>
+
+    <div class="deliverables">
+      <h4>核心交付物</h4>
+      <ul>
+        <li>数据手册（数据卡+采集台账+供应商清单）</li>
+        <li>缺口分析报告</li>
+        <li>已回收供应商数据</li>
+        <li>采集计划与进度台账</li>
+      </ul>
+    </div>
+
+    <div class="next-step">
+      <span>→</span>
+      <span><strong>后续衔接：</strong>数据齐备后，进入 ③ 注册上线</span>
+    </div>
+  </div>
+</section>
+
+<!-- Section 6: 注册上线 -->
+<section class="section" id="s3">
+  <div class="section-label">核心服务 ③</div>
+  <h2 class="section-title">注册上线——帮客户"上线"</h2>
+
+  <div class="service-card card-3">
+    <div class="service-card-header">
+      <div class="service-icon" aria-hidden="true">③</div>
+      <div>
+        <div class="service-card-title">注册上线</div>
+        <p class="service-card-tagline">办理三项外部资质，完成电池护照数据提交和正式上线</p>
+      </div>
+    </div>
+
+    <p>客户不用自己跟欧盟机构打交道。<strong>所有外部对接全程代办。</strong></p>
+
+    <div class="service-meta">
+      <dl class="service-meta-item">
+        <dt>服务周期</dt>
+        <dd>12–16周</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>我方服务费</dt>
+        <dd>¥300,000–600,000</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>第三方费用</dt>
+        <dd>€6,500–21,000（实报实销）</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>核心价值</dt>
+        <dd>不用自己跟欧盟机构打交道</dd>
+      </dl>
+    </div>
+
+    <h4 style="color:var(--c-primary);margin-bottom:var(--space-sm);">三项外部资质办理</h4>
+    <div class="funnel-grid" style="margin-bottom:var(--space-lg);">
+      <div class="funnel-item">
+        <h4>eIDAS 证书</h4>
+        <p>向欧盟合格信任服务提供商申请合格电子签名/签章，是护照数据提交的必要前提。</p>
+      </div>
+      <div class="funnel-item">
+        <h4>欧盟授权代表</h4>
+        <p>指定欧盟境内法人实体作为授权代表，签署授权协议，承担法规规定的代表义务。</p>
+      </div>
+      <div class="funnel-item">
+        <h4>注册中心对接</h4>
+        <p>数据格式转换、API对接测试、正式提交、完成电池护照上线。</p>
+      </div>
+    </div>
+
+    <div class="deliverables">
+      <h4>核心交付物</h4>
+      <ul>
+        <li>eIDAS 合格证书</li>
+        <li>欧代授权协议</li>
+        <li>电池护照上线确认</li>
+        <li>对接测试报告</li>
+      </ul>
+    </div>
+
+    <div class="next-step">
+      <span>→</span>
+      <span><strong>后续衔接：</strong>上线后进入 ④ 年度托管</span>
+    </div>
+  </div>
+</section>
+
+<!-- Section 7: 年度托管 -->
+<section class="section" id="s4">
+  <div class="section-label">核心服务 ④</div>
+  <h2 class="section-title">年度托管——持续合规</h2>
+
+  <div class="service-card card-4">
+    <div class="service-card-header">
+      <div class="service-icon" aria-hidden="true">④</div>
+      <div>
+        <div class="service-card-title">年度托管</div>
+        <p class="service-card-tagline">数据持续更新、法规不断变化、可能被查验——我们提供持续维护和支持</p>
+      </div>
+    </div>
+
+    <p>客户不用担心法规变化和查验。<strong>年费制，持续循环。</strong></p>
+
+    <div class="service-meta">
+      <dl class="service-meta-item">
+        <dt>收费模式</dt>
+        <dd>年费制，三档可选</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>定价区间</dt>
+        <dd>¥80,000–500,000+/年</dd>
+      </dl>
+      <dl class="service-meta-item">
+        <dt>核心价值</dt>
+        <dd>不用担心法规变化和监管查验</dd>
+      </dl>
+    </div>
+
+    <h4 style="color:var(--c-primary);margin-bottom:var(--space-sm);">三项持续服务</h4>
+    <div class="funnel-grid" style="margin-bottom:var(--space-lg);">
+      <div class="funnel-item">
+        <h4>数据维护</h4>
+        <p>定期更新动态数据（如健康状态、循环次数）、检查数据完整性、处理数据变更。</p>
+      </div>
+      <div class="funnel-item">
+        <h4>法规跟踪</h4>
+        <p>每日扫描法规变化，季度出简报，重大变更即时通知。确保客户始终合规。</p>
+      </div>
+      <div class="funnel-item">
+        <h4>应急支持</h4>
+        <p>监管查验时1小时响应，协助准备材料、撰写回复。全程陪同应对。</p>
+      </div>
+    </div>
+
+    <div class="deliverables">
+      <h4>核心交付物</h4>
+      <ul>
+        <li>季度法规简报</li>
+        <li>年度合规审核报告</li>
+        <li>应急响应服务</li>
+        <li>数据更新记录</li>
+      </ul>
+    </div>
+
+    <h4 style="margin-top:var(--space-xl);margin-bottom:var(--space-md);color:var(--c-primary);">三档定价</h4>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="tier-label">基础版</div>
+        <h5>半年更新+简报</h5>
+        <div class="tier-price">¥80,000–200,000<span>/年</span></div>
+        <ul>
+          <li>半年一次数据更新</li>
+          <li>季度法规简报</li>
+          <li>邮件响应</li>
+        </ul>
+      </div>
+      <div class="tier-card recommended">
+        <div class="tier-label">标准版</div>
+        <h5>季度更新+工作日响应</h5>
+        <div class="tier-price">¥200,000–350,000<span>/年</span></div>
+        <ul>
+          <li>季度数据更新</li>
+          <li>法规简报+即时通知</li>
+          <li>工作日内响应</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">旗舰版</div>
+        <h5>月度更新+随时响应</h5>
+        <div class="tier-price">¥500,000+<span>/年</span></div>
+        <ul>
+          <li>月度数据更新</li>
+          <li>法规即时通知</li>
+          <li>随时响应</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="next-step">
+      <span>↻</span>
+      <span><strong>持续循环：</strong>年费续费 + 客户转介绍，形成长期价值</span>
+    </div>
+  </div>
+</section>
+
+<!-- Section 8: Pricing Summary -->
+<section class="section" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">收费全景</h2>
+
+  <div class="price-table-wrap">
+    <table class="price-table">
+      <caption style="display:none;">DPP服务体系收费汇总表</caption>
+      <thead>
+        <tr>
+          <th scope="col">服务</th>
+          <th scope="col">类型</th>
+          <th scope="col">价格区间</th>
+          <th scope="col">周期</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>线上自测</td>
+          <td>免费</td>
+          <td class="price-val">¥0</td>
+          <td>5分钟</td>
+        </tr>
+        <tr>
+          <td>科普内容</td>
+          <td>免费</td>
+          <td class="price-val">¥0</td>
+          <td>持续</td>
+        </tr>
+        <tr>
+          <td>图文微课</td>
+          <td>单次</td>
+          <td class="price-val">¥99–299</td>
+          <td>一次性</td>
+        </tr>
+        <tr>
+          <td>① 差距评估</td>
+          <td>单次</td>
+          <td class="price-val">¥80,000–800,000</td>
+          <td>5–8工作日</td>
+        </tr>
+        <tr>
+          <td>② 数据建设</td>
+          <td>单次</td>
+          <td class="price-val">¥200,000–450,000</td>
+          <td>4–8周</td>
+        </tr>
+        <tr>
+          <td>③ 注册上线</td>
+          <td>单次</td>
+          <td class="price-val">¥300,000–600,000 + €6,500–21,000</td>
+          <td>12–16周</td>
+        </tr>
+        <tr>
+          <td>④ 年度托管</td>
+          <td>年费</td>
+          <td class="price-val">¥80,000–500,000/年</td>
+          <td>持续</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="max-value">
+    <div class="label">单客户最大价值（首年 · ①+②+③+④旗舰版）</div>
+    <div class="value">¥660,000 – 2,350,000</div>
+  </div>
+</section>
+
+<!-- Section 9: Service Linking -->
+<section class="section" id="linkage">
+  <div class="section-label">Logic</div>
+  <h2 class="section-title">服务衔接逻辑</h2>
+  <p class="section-desc">每个阶段的输出，就是下一个阶段的输入。上游交付物驱动下游启动。</p>
+
+  <div class="link-flow">
+    <div class="link-step">
+      <div class="link-step-marker">
+        <div class="link-dot">引</div>
+        <div class="link-line"></div>
+      </div>
+      <div class="link-step-content">
+        <h4>引流层（免费/低价）</h4>
+        <div class="link-output">输出：筛选出红/黄客户</div>
+        <div class="link-transfer">红/黄结果 = ① 的精准客户</div>
+      </div>
+    </div>
+    <div class="link-step">
+      <div class="link-step-marker">
+        <div class="link-dot">①</div>
+        <div class="link-line"></div>
+      </div>
+      <div class="link-step-content">
+        <h4>差距评估（单次）</h4>
+        <div class="link-output">输出：差距报告 → 确定数据缺口范围</div>
+        <div class="link-transfer">差距报告 = ② 的工作范围</div>
+      </div>
+    </div>
+    <div class="link-step">
+      <div class="link-step-marker">
+        <div class="link-dot">②</div>
+        <div class="link-line"></div>
+      </div>
+      <div class="link-step-content">
+        <h4>数据建设（单次）</h4>
+        <div class="link-output">输出：完整数据手册 → 数据齐备</div>
+        <div class="link-transfer">数据手册 = ③ 的提交素材</div>
+      </div>
+    </div>
+    <div class="link-step">
+      <div class="link-step-marker">
+        <div class="link-dot">③</div>
+        <div class="link-line"></div>
+      </div>
+      <div class="link-step-content">
+        <h4>注册上线（单次）</h4>
+        <div class="link-output">输出：护照上线确认</div>
+        <div class="link-transfer">上线确认 = ④ 的托管起点</div>
+      </div>
+    </div>
+    <div class="link-step">
+      <div class="link-step-marker">
+        <div class="link-dot">④</div>
+      </div>
+      <div class="link-step-content">
+        <h4>年度托管（年费）← 持续循环</h4>
+        <div class="link-output">续费 / 转介绍 → 新一轮客户增长</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 10: Customers -->
+<section class="section" id="customers">
+  <div class="section-label">Target</div>
+  <h2 class="section-title">适用客户</h2>
+  <p class="section-desc">5类核心客户——凡是想把电池或含电池产品卖到欧盟的中国企业，都是我们的目标。</p>
+
+  <div class="customer-grid">
+    <div class="customer-card">
+      <div class="cust-icon" aria-hidden="true">🔋</div>
+      <h4>锂电池制造商</h4>
+      <p>出口欧盟的电芯/PACK厂</p>
+    </div>
+    <div class="customer-card">
+      <div class="cust-icon" aria-hidden="true">🚲</div>
+      <h4>E-bike/电动滑板车</h4>
+      <p>轻型交通工具制造商</p>
+    </div>
+    <div class="customer-card">
+      <div class="cust-icon" aria-hidden="true">⚡</div>
+      <h4>储能系统集成商</h4>
+      <p>工业/商业储能方案商</p>
+    </div>
+    <div class="customer-card">
+      <div class="cust-icon" aria-hidden="true">🏭</div>
+      <h4>电池PACK厂</h4>
+      <p>为EV厂商配套的生产企业</p>
+    </div>
+    <div class="customer-card">
+      <div class="cust-icon" aria-hidden="true">🌍</div>
+      <h4>贸易商/进口商</h4>
+      <p>欧盟客户的中国供应商</p>
+    </div>
+  </div>
+</section>
+
+<!-- Appendix -->
+<section class="section" id="appendix">
+  <div class="section-label">Appendix</div>
+  <h2 class="section-title">附录</h2>
+
+  <div class="appendix-grid">
+    <div class="appendix-block">
+      <h4>关键法规日期速查</h4>
+      <table>
+        <thead>
+          <tr><th scope="col">日期</th><th scope="col">事项</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="date-val">2023.08.17</td>
+            <td>欧盟电池法规 (EU) 2023/1542 正式生效</td>
+          </tr>
+          <tr>
+            <td class="date-val">2025.02.18</td>
+            <td>生产者责任延伸（EPR）义务全面执行</td>
+          </tr>
+          <tr>
+            <td class="date-val">2027.02.18</td>
+            <td>EV电池、轻交通电池、>2kWh工业电池须持有电池护照</td>
+          </tr>
+          <tr>
+            <td class="date-val">2027.08.18</td>
+            <td>碳足迹声明义务生效</td>
+          </tr>
+          <tr>
+            <td class="date-val">2031.01.01</td>
+            <td>回收料最低比例要求生效</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="appendix-block">
+      <h4>术语简表</h4>
+      <table>
+        <thead>
+          <tr><th scope="col">术语</th><th scope="col">含义</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>DPP</strong></td><td>Digital Product Passport，数字产品护照</td></tr>
+          <tr><td><strong>eIDAS</strong></td><td>欧盟电子身份认证法规，用于合格电子签名</td></tr>
+          <tr><td><strong>欧代</strong></td><td>欧盟授权代表，欧盟境内法人实体</td></tr>
+          <tr><td><strong>EPR</strong></td><td>生产者责任延伸，要求生产者承担回收责任</td></tr>
+          <tr><td><strong>SKU</strong></td><td>最小库存单位，此处指单个电池型号</td></tr>
+          <tr><td><strong>数据卡</strong></td><td>每个电池型号的数据底册，含35个字段</td></tr>
+          <tr><td><strong>71数据点</strong></td><td>法规要求的电池护照必须包含的数据项</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="appendix-block" style="margin-top:var(--space-lg);">
+    <h4>联系方式</h4>
+    <p style="font-size:var(--fs-sm);color:var(--c-text-sec);margin:0;">
+      <strong>守信财税 · DPP业务线</strong><br>
+      抖音/公众号：搜索"守信财税"获取免费自测工具和科普内容<br>
+      业务咨询：请联系合伙人获取定制方案
+    </p>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  try {
+    var sidebar = document.querySelector('.sidebar');
+    var navLinks = document.querySelectorAll('.sidebar nav a[href^="#"]');
+    var sections = [];
+
+    navLinks.forEach(function(link) {
+      var id = link.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if (el) sections.push({ el: el, link: link });
+
+      link.addEventListener('click', function(e) {
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (sidebar && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+      });
+    });
+
+    var activeLink = null;
+    function onScroll() {
+      var scrollY = window.scrollY || window.pageYOffset;
+      var found = null;
+      for (var i = sections.length - 1; i >= 0; i--) {
+        if (sections[i].el.offsetTop - 100 <= scrollY) {
+          found = sections[i];
+          break;
+        }
+      }
+      if (found && found.link !== activeLink) {
+        if (activeLink) activeLink.classList.remove('active');
+        found.link.classList.add('active');
+        activeLink = found.link;
+      }
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          onScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    onScroll();
+  } catch(e) { /* static content remains fully readable */ }
+})();
+</script>
+
+</body>
+</html>

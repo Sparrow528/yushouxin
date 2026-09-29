@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP业务 实施者操作手册 | 守信财税</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#1B5E20;--secondary:#4CAF50;--bg-light:#E8F5E9;--bg-white:#FFFFFF;--text:#212121;--text-light:#555;--border:#C8E6C9;--warning:#FF8F00;--danger:#D32F2F;--info:#1565C0;--sidebar-w:280px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.7;color:var(--text);background:var(--bg-light)}
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--primary);color:#fff;overflow-y:auto;z-index:100;padding:20px 0;transition:transform .3s}
+.sidebar h2{padding:0 20px 15px;font-size:16px;border-bottom:1px solid rgba(255,255,255,.2);margin-bottom:10px}
+.sidebar nav a{display:block;padding:8px 20px;color:rgba(255,255,255,.85);text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:all .2s}
+.sidebar nav a:hover,.sidebar nav a.active{background:rgba(255,255,255,.1);border-left-color:#fff;color:#fff}
+.sidebar nav a.sub{padding-left:35px;font-size:12px;color:rgba(255,255,255,.65)}
+.sidebar nav a.sub:hover{color:#fff}
+.sidebar .nav-group{margin:8px 0;padding:0 20px;font-size:11px;text-transform:uppercase;color:rgba(255,255,255,.4);letter-spacing:1px}
+.main{margin-left:var(--sidebar-w);padding:30px 40px 60px}
+.cover{text-align:center;padding:60px 20px;background:linear-gradient(135deg,var(--primary),#2E7D32);color:#fff;border-radius:12px;margin-bottom:40px}
+.cover h1{font-size:36px;margin-bottom:12px;letter-spacing:2px}
+.cover .subtitle{font-size:18px;opacity:.9;margin-bottom:8px}
+.cover .meta{font-size:14px;opacity:.7;margin-top:20px}
+.cover .badge{display:inline-block;background:rgba(255,255,255,.2);padding:6px 18px;border-radius:20px;font-size:13px;margin-top:12px}
+h2{font-size:24px;color:var(--primary);margin:40px 0 20px;padding-bottom:10px;border-bottom:3px solid var(--secondary)}
+h3{font-size:18px;color:var(--primary);margin:25px 0 12px}
+h4{font-size:15px;color:var(--text);margin:18px 0 8px}
+p{margin-bottom:12px}
+.card{background:#fff;border-radius:8px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.phase-card{border-left:4px solid var(--secondary);padding-left:20px;margin:20px 0}
+.phase-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.phase-num{background:var(--primary);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.phase-title{font-size:17px;font-weight:600;color:var(--primary)}
+.phase-time{font-size:13px;color:var(--text-light);background:var(--bg-light);padding:3px 10px;border-radius:12px}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:14px}
+th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-size:13px}
+td{padding:9px 12px;border-bottom:1px solid var(--border)}
+tr:nth-child(even){background:var(--bg-light)}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:6px 0 6px 28px;position:relative;border-bottom:1px solid #f0f0f0}
+.checklist li::before{content:"☐";position:absolute;left:0;color:var(--secondary);font-size:16px}
+.step-list{counter-reset:step;list-style:none;padding:0}
+.step-list li{counter-increment:step;padding:12px 0 12px 45px;position:relative;border-left:2px solid var(--border);margin-left:15px}
+.step-list li::before{content:counter(step);position:absolute;left:-15px;top:10px;width:28px;height:28px;background:var(--secondary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.step-list li:last-child{border-left-color:transparent}
+.warning{background:#FFF3E0;border-left:4px solid var(--warning);padding:14px 18px;border-radius:0 8px 8px 0;margin:15px 0;font-size:14px}
+.warning::before{content:"⚠️ ";font-size:16px}
+.danger{background:#FFEBEE;border-left:4px solid var(--danger);padding:14px 18px;border-radius:0 8px 8px 0;margin:15px 0;font-size:14px}
+.danger::before{content:"🚫 ";font-size:16px}
+.info-box{background:#E3F2FD;border-left:4px solid var(--info);padding:14px 18px;border-radius:0 8px 8px 0;margin:15px 0;font-size:14px}
+.info-box::before{content:"💡 ";font-size:16px}
+.success{background:var(--bg-light);border-left:4px solid var(--secondary);padding:14px 18px;border-radius:0 8px 8px 0;margin:15px 0;font-size:14px}
+.success::before{content:"✅ ";font-size:16px}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:600}
+.tag-green{background:#C8E6C9;color:#1B5E20}
+.tag-yellow{background:#FFF9C4;color:#F57F17}
+.tag-red{background:#FFCDD2;color:#C62828}
+.tag-blue{background:#BBDEFB;color:#0D47A1}
+.tool-ref{background:#F1F8E9;padding:2px 8px;border-radius:4px;font-family:monospace;font-size:13px;color:var(--primary)}
+.timeline-bar{display:flex;align-items:center;gap:4px;margin:15px 0;flex-wrap:wrap}
+.timeline-block{height:32px;border-radius:4px;display:flex;align-items:center;padding:0 10px;font-size:11px;color:#fff;font-weight:600;white-space:nowrap}
+.faq-item{margin-bottom:20px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.faq-q{background:var(--bg-light);padding:14px 18px;font-weight:600;color:var(--primary);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-a{padding:14px 18px;font-size:14px;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-q::after{content:"+";font-size:20px;color:var(--secondary)}
+.faq-item.open .faq-q::after{content:"−"}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.stat-card{text-align:center;padding:20px;background:#fff;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.stat-card .num{font-size:28px;font-weight:700;color:var(--primary)}
+.stat-card .label{font-size:12px;color:var(--text-light);margin-top:4px}
+.print-only{display:none}
+.toc-list{list-style:none;padding:0}
+.toc-list li{padding:8px 0;border-bottom:1px solid #f0f0f0}
+.toc-list a{color:var(--primary);text-decoration:none;font-weight:500}
+.toc-list a:hover{text-decoration:underline}
+.toc-list .toc-sub{padding-left:20px;font-size:13px;color:var(--text-light)}
+.dim-badge{display:inline-block;width:24px;height:24px;border-radius:4px;text-align:center;line-height:24px;color:#fff;font-size:12px;font-weight:700;margin-right:6px}
+.menu-toggle{display:none;position:fixed;top:15px;left:15px;z-index:200;background:var(--primary);color:#fff;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;font-size:18px}
+@media(max-width:900px){
+.sidebar{transform:translateX(-100%)}
+.sidebar.open{transform:translateX(0)}
+.main{margin-left:0;padding:20px}
+.menu-toggle{display:block}
+.grid-2,.grid-3{grid-template-columns:1fr}
+.cover h1{font-size:24px}
+}
+@media print{
+.sidebar,.menu-toggle{display:none!important}
+.main{margin-left:0;padding:0}
+.cover{break-after:page}
+.card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
+h2{break-after:avoid}
+table{font-size:11px}
+.print-only{display:block}
+}
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+
+<aside class="sidebar">
+<h2>📋 DPP实施手册</h2>
+<nav>
+<a href="#cover" class="active">封面</a>
+<a href="#toc">目录</a>
+<div class="nav-group">核心章节</div>
+<a href="#ch1">第一章 实施流程总览</a>
+<a href="#ch1-timeline" class="sub">时间线</a>
+<a href="#ch1-phases" class="sub">六阶段详解</a>
+<a href="#ch2">第二章 客户评估操作指南</a>
+<a href="#ch2-checklist" class="sub">核查清单使用</a>
+<a href="#ch2-report" class="sub">评估报告填写</a>
+<a href="#ch2-scoring" class="sub">评分方法</a>
+<a href="#ch3">第三章 数据采集操作指南</a>
+<a href="#ch3-datalist" class="sub">数据项标准清单</a>
+<a href="#ch3-handbook" class="sub">数据手册填写</a>
+<a href="#ch3-survey" class="sub">供应商问卷</a>
+<a href="#ch3-quality" class="sub">数据质量检查</a>
+<a href="#ch4">第四章 注册上线操作指南</a>
+<a href="#ch4-eidas" class="sub">eIDAS证书</a>
+<a href="#ch4-rep" class="sub">欧盟授权代表</a>
+<a href="#ch4-registry" class="sub">注册提交</a>
+<a href="#ch5">第五章 质量控制</a>
+<a href="#ch6">第六章 常见问题处理</a>
+<div class="nav-group">附录</div>
+<a href="#appendix">快速参考卡 & 模板</a>
+</nav>
+</aside>
+
+<main class="main">
+
+<!-- 封面 -->
+<section id="cover" class="cover">
+<div class="badge">守信财税 · ShouXin Finance & Tax</div>
+<h1>DPP业务<br>实施者操作手册</h1>
+<p class="subtitle">从评估到上线全流程指南 v1.0</p>
+<p class="meta">
+欧盟电池法规 (EU) 2023/1542 合规咨询<br>
+适用对象：锂电池制造商（LMT / 工业>2kWh / EV）<br>
+强制生效日：2027年2月18日<br><br>
+<strong>2026年9月</strong> · 内部使用
+</p>
+</section>
+
+<!-- 目录 -->
+<section id="toc" class="card">
+<h2>📑 目录</h2>
+<div class="grid-2">
+<div>
+<h4>核心章节</h4>
+<ul class="toc-list">
+<li><a href="#ch1">第一章 实施流程总览</a></li>
+<li class="toc-sub">1.1 六阶段时间线</li>
+<li class="toc-sub">1.2 各阶段详解</li>
+<li><a href="#ch2">第二章 客户评估操作指南</a></li>
+<li class="toc-sub">2.1 核查清单使用（32项）</li>
+<li class="toc-sub">2.2 评估报告填写</li>
+<li class="toc-sub">2.3 评分方法与客户沟通</li>
+<li><a href="#ch3">第三章 数据采集操作指南</a></li>
+<li class="toc-sub">3.1 数据项标准清单（38项）</li>
+<li class="toc-sub">3.2 数据手册填写</li>
+<li class="toc-sub">3.3 供应商问卷管理</li>
+<li class="toc-sub">3.4 数据质量检查</li>
+</ul>
+</div>
+<div>
+<ul class="toc-list" style="margin-top:40px">
+<li><a href="#ch4">第四章 注册上线操作指南</a></li>
+<li class="toc-sub">4.1 eIDAS证书办理</li>
+<li class="toc-sub">4.2 欧盟授权代表</li>
+<li class="toc-sub">4.3 DPP注册表提交</li>
+<li class="toc-sub">4.4 上线前检查清单</li>
+<li><a href="#ch5">第五章 质量控制</a></li>
+<li class="toc-sub">5.1 数据准确性标准</li>
+<li class="toc-sub">5.2 文档完整性检查</li>
+<li class="toc-sub">5.3 双重审核机制</li>
+<li><a href="#ch6">第六章 常见问题处理</a></li>
+<li class="toc-sub">TOP 15 实施FAQ</li>
+<li><a href="#appendix">附录 快速参考</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 第一章 -->
+<section id="ch1">
+<h2>第一章 实施流程总览</h2>
+
+<div class="card">
+<h3>🎯 总体目标</h3>
+<p>在 <strong>16周内</strong> 完成客户从合规评估到DPP注册上线的全流程，确保其电池产品在2027年2月18日强制期前满足 (EU) 2023/1542 电池法规 Annex XIII 数据披露要求。</p>
+
+<div class="grid-3" style="margin-top:20px">
+<div class="stat-card"><div class="num">6</div><div class="label">实施阶段</div></div>
+<div class="stat-card"><div class="num">16</div><div class="label">标准周期（周）</div></div>
+<div class="stat-card"><div class="num">7</div><div class="label">配套工具文件</div></div>
+</div>
+</div>
+
+<div id="ch1-timeline" class="card">
+<h3>📅 六阶段时间线</h3>
+<div class="timeline-bar">
+<div class="timeline-block" style="width:12%;background:#1B5E20">P1 启动评估<br>W1-2</div>
+<div class="timeline-block" style="width:10%;background:#2E7D32">P2 差距分析<br>W2-3</div>
+<div class="timeline-block" style="width:28%;background:#388E3C">P3 数据采集<br>W3-8</div>
+<div class="timeline-block" style="width:28%;background:#43A047">P4 整改辅导<br>W4-12</div>
+<div class="timeline-block" style="width:22%;background:#4CAF50">P5 注册上线<br>W8-16</div>
+<div class="timeline-block" style="width:15%;background:#66BB6A">P6 持续维护<br>持续</div>
+</div>
+
+<table>
+<tr><th>阶段</th><th>时间</th><th>目标</th><th>核心输入</th><th>核心输出</th><th>责任方</th></tr>
+<tr>
+<td><span class="tag tag-green">P1 启动评估</span></td>
+<td>Week 1-2</td>
+<td>全面摸底客户现状</td>
+<td>客户基础资料、营业执照、电池产品清单</td>
+<td>签署服务协议、填写核查清单</td>
+<td>项目经理 + 客户联络人</td>
+</tr>
+<tr>
+<td><span class="tag tag-green">P2 差距分析</span></td>
+<td>Week 2-3</td>
+<td>识别合规差距，排优先级</td>
+<td>01_核查清单评分结果</td>
+<td>02_评估报告、TOP5差距清单、整改路线图</td>
+<td>项目经理 + 技术顾问</td>
+</tr>
+<tr>
+<td><span class="tag tag-yellow">P3 数据采集</span></td>
+<td>Week 3-8</td>
+<td>完成38项数据收集</td>
+<td>03_数据项标准清单、04_数据手册、05_供应商问卷</td>
+<td>完整数据手册、供应商回函</td>
+<td>数据专员 + 客户技术团队</td>
+</tr>
+<tr>
+<td><span class="tag tag-yellow">P4 整改辅导</span></td>
+<td>Week 4-12</td>
+<td>逐项关闭合规差距</td>
+<td>评估报告整改方案</td>
+<td>整改证据包、更新数据手册</td>
+<td>技术顾问 + 客户各部门</td>
+</tr>
+<tr>
+<td><span class="tag tag-blue">P5 注册上线</span></td>
+<td>Week 8-16</td>
+<td>完成EU Registry注册</td>
+<td>06_eIDAS指引、完整数据包</td>
+<td>eIDAS证书、DPP注册成功确认</td>
+<td>项目经理 + IT支持</td>
+</tr>
+<tr>
+<td><span class="tag tag-green">P6 持续维护</span></td>
+<td>持续</td>
+<td>数据更新与合规监控</td>
+<td>客户变更通知</td>
+<td>年度合规报告、数据更新记录</td>
+<td>客户经理</td>
+</tr>
+</table>
+</div>
+
+<div id="ch1-phases" class="card">
+<h3>📋 各阶段操作要点</h3>
+
+<div class="phase-card">
+<div class="phase-header">
+<div class="phase-num">1</div>
+<div class="phase-title">启动评估</div>
+<div class="phase-time">Week 1-2</div>
+</div>
+<p><strong>目标：</strong>建立项目基线，了解客户组织架构和电池产品组合</p>
+<ul class="step-list">
+<li><strong>签署服务协议</strong> — 确认服务范围（电池类型、SKU数量、供应链复杂度）</li>
+<li><strong>发放 01_核查清单</strong> — 指导客户内部6个维度负责人分别填写</li>
+<li><strong>召开启动会</strong> — 明确项目时间表、联系人、资料提交截止日</li>
+<li><strong>收集基础资料</strong> — 营业执照、电池产品技术规格书、现有认证清单</li>
+</ul>
+<div class="info-box">
+<strong>质量关口：</strong>核查清单回收率≥80%（即26/32项已填写）方可进入下一阶段
+</div>
+<p><strong>配套工具：</strong><span class="tool-ref">01_DPP差距评估核查清单_电池版.xlsx</span></p>
+</div>
+
+<div class="phase-card">
+<div class="phase-header">
+<div class="phase-num">2</div>
+<div class="phase-title">差距分析</div>
+<div class="phase-time">Week 2-3</div>
+</div>
+<p><strong>目标：</strong>量化合规差距，确定整改优先级</p>
+<ul class="step-list">
+<li><strong>逐项评分</strong> — 对32项逐一判定：达标(2分) / 部分达标(1分) / 缺失(0分)</li>
+<li><strong>计算维度得分</strong> — 各维度得分率 = 实际得分 / 满分 × 100%</li>
+<li><strong>识别TOP5差距</strong> — 按影响度和紧急度排序，标记「阻塞项」vs「可并行项」</li>
+<li><strong>填写评估报告</strong> — 使用 <span class="tool-ref">02_DPP差距评估报告_模板.docx</span></li>
+<li><strong>向客户汇报</strong> — 召开差距分析会，确认整改路线图</li>
+</ul>
+<div class="warning">
+<strong>关键：</strong>TOP5中如有「阻塞项」（如缺少eIDAS证书、无欧代协议），必须立即启动，不可等待其他项完成
+</div>
+<p><strong>配套工具：</strong><span class="tool-ref">02_DPP差距评估报告_模板.docx</span></p>
+</div>
+
+<div class="phase-card">
+<div class="phase-header">
+<div class="phase-num">3</div>
+<div class="phase-title">数据采集</div>
+<div class="phase-time">Week 3-8</div>
+</div>
+<p><strong>目标：</strong>按Annex XIII要求完成38项标准数据采集</p>
+<ul class="step-list">
+<li><strong>下发数据项清单</strong> — 使用 <span class="tool-ref">03_DPP数据项标准清单_电池版.xlsx</span> 明确每项要求</li>
+<li><strong>指导填写数据手册</strong> — <span class="tool-ref">04_DPP数据手册模板.xlsx</span> 含3个Sheet</li>
+<li><strong>发放供应商问卷</strong> — <span class="tool-ref">05_供应商数据问卷_中英双语.docx</span> 针对上游供应商</li>
+<li><strong>数据回收与校验</strong> — 逐项检查完整性、格式合规性、逻辑一致性</li>
+<li><strong>缺失项追补</strong> — 发出催办通知，必要时安排电话/视频跟进</li>
+</ul>
+<div class="info-box">
+<strong>质量关口：</strong>38项数据完整率≥90%、供应商回函率≥80%方可进入注册阶段
+</div>
+</div>
+
+<div class="phase-card">
+<div class="phase-header">
+<div class="phase-num">4</div>
+<div class="phase-title">整改辅导</div>
+<div class="phase-time">Week 4-12</div>
+</div>
+<p><strong>目标：</strong>逐项关闭评估中识别的合规差距</p>
+<ul class="step-list">
+<li><strong>执行整改方案</strong> — 按评估报告中的路线图逐项推进</li>
+<li><strong>协助获取认证</strong> — 如客户缺少UN38.3、IEC 62133等认证，推荐检测实验室</li>
+<li><strong>完善供应链数据</strong> — 对拒绝配合的供应商启动替代方案（第三方审计报告）</li>
+<li><strong>IT系统对接</strong> — 协助客户选择DPP载体方案（二维码/RFID/NFC）</li>
+<li><strong>建立管理流程</strong> — 制定数据更新SOP、异常处理流程</li>
+</ul>
+<div class="warning">
+<strong>并行原则：</strong>阶段3（数据采集）和阶段4（整改辅导）高度重叠，应并行推进
+</div>
+</div>
+
+<div class="phase-card">
+<div class="phase-header">
+<div class="phase-num">5</div>
+<div class="phase-title">注册上线</div>
+<div class="phase-time">Week 8-16</div>
+</div>
+<p><strong>目标：</strong>完成eIDAS认证和EU DPP Registry注册</p>
+<ul class="step-list">
+<li><strong>办理eIDAS证书</strong> — 参照 <span class="tool-ref">06_eIDAS与欧代办理指引.docx</span></li>
+<li><strong>签署欧代协议</strong> — 选定EU Authorised Representative</li>
+<li><strong>技术测试</strong> — 在EU Registry沙箱环境测试数据提交</li>
+<li><strong>正式提交</strong> — 通过EU Registry提交DPP数据包</li>
+<li><strong>验证上线</strong> — 确认DPP可被终端用户扫码访问</li>
+</ul>
+<div class="success">
+<strong>里程碑：</strong>DPP注册成功 = 客户合规义务达成，可合法在EU市场销售
+</div>
+</div>
+
+<div class="phase-card">
+<div class="phase-header">
+<div class="phase-num">6</div>
+<div class="phase-title">持续维护</div>
+<div class="phase-time">Ongoing</div>
+</div>
+<p><strong>目标：</strong>确保持续合规，应对法规更新</p>
+<ul class="checklist">
+<li>年度数据更新（电池性能衰减数据、回收成分比例）</li>
+<li>法规变更监控（欧盟委托法案更新）</li>
+<li>供应链变更同步（新增/替换供应商数据更新）</li>
+<li>产品变更通知（新材料、新工艺触发DPP更新）</li>
+<li>年度合规复核报告</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 第二章 -->
+<section id="ch2">
+<h2>第二章 客户评估操作指南</h2>
+
+<div id="ch2-checklist" class="card">
+<h3>📝 2.1 核查清单使用方法</h3>
+
+<p><strong>文件：</strong><span class="tool-ref">01_DPP差距评估核查清单_电池版.xlsx</span></p>
+
+<h4>清单结构：6大维度32项检查项</h4>
+<table>
+<tr><th>维度代码</th><th>维度名称</th><th>检查项数</th><th>编号范围</th><th>满分</th></tr>
+<tr><td><span class="dim-badge" style="background:#1B5E20">A</span></td><td>A 企业范围（Enterprise Scope）</td><td>5</td><td>A1 - A5</td><td>10</td></tr>
+<tr><td><span class="dim-badge" style="background:#2E7D32">B</span></td><td>B 合规资质（Compliance Qualification）</td><td>6</td><td>B1 - B6</td><td>12</td></tr>
+<tr><td><span class="dim-badge" style="background:#388E3C">C</span></td><td>C 护照数据（Passport Data）</td><td>9</td><td>C1 - C9</td><td>18</td></tr>
+<tr><td><span class="dim-badge" style="background:#43A047">D</span></td><td>D 供应链（Supply Chain）</td><td>4</td><td>D1 - D4</td><td>8</td></tr>
+<tr><td><span class="dim-badge" style="background:#4CAF50">E</span></td><td>E IT系统（IT Systems）</td><td>4</td><td>E1 - E4</td><td>8</td></tr>
+<tr><td><span class="dim-badge" style="background:#66BB6A">F</span></td><td>F 管理流程（Management Process）</td><td>4</td><td>F1 - F4</td><td>8</td></tr>
+<tr><td colspan="3"><strong>合计</strong></td><td><strong>32项</strong></td><td><strong>64分</strong></td></tr>
+</table>
+
+<h4>各维度检查项明细</h4>
+
+<h4 style="color:var(--primary)">A维度：企业范围 (A1-A5)</h4>
+<table>
+<tr><th>编号</th><th>检查项</th><th>达标标准</th><th>常见证据</th></tr>
+<tr><td>A1</td><td>企业基本信息完整性</td><td>营业执照、注册地址、法人信息齐全</td><td>营业执照扫描件</td></tr>
+<tr><td>A2</td><td>电池产品清单</td><td>列出所有出口EU的电池SKU及类型</td><td>产品目录表</td></tr>
+<tr><td>A3</td><td>电池类型分类</td><td>明确区分LMT/工业(>2kWh)/EV/便携式</td><td>技术规格书</td></tr>
+<tr><td>A4</td><td>年出口量声明</td><td>提供近3年EU出口量数据</td><td>海关/物流数据</td></tr>
+<tr><td>A5</td><td>经济运营商角色确认</td><td>明确自身在供应链中的角色（制造商/进口商）</td><td>贸易合同</td></tr>
+</table>
+
+<h4 style="color:var(--primary)">B维度：合规资质 (B1-B6)</h4>
+<table>
+<tr><th>编号</th><th>检查项</th><th>达标标准</th><th>常见证据</th></tr>
+<tr><td>B1</td><td>CE标志合规</td><td>已获得相关产品CE认证</td><td>CE证书副本</td></tr>
+<tr><td>B2</td><td>UN38.3运输认证</td><td>锂电池运输测试报告有效</td><td>检测报告</td></tr>
+<tr><td>B3</td><td>IEC 62133安全认证</td><td>便携式/工业电池安全测试通过</td><td>检测报告</td></tr>
+<tr><td>B4</td><td>REACH合规声明</td><td>SVHC物质清单排查完成</td><td>REACH声明函</td></tr>
+<tr><td>B5</td><td>RoHS合规声明</td><td>有害物质限制合规</td><td>第三方检测报告</td></tr>
+<tr><td>B6</td><td>EU合格评定程序</td><td>已完成Annex IV conformity assessment</td><td>评定报告</td></tr>
+</table>
+
+<h4 style="color:var(--primary)">C维度：护照数据 (C1-C9)</h4>
+<table>
+<tr><th>编号</th><th>检查项</th><th>达标标准</th><th>常见证据</th></tr>
+<tr><td>C1</td><td>电池制造商信息</td><td>名称、地址、联系方式、税号</td><td>企业注册文件</td></tr>
+<tr><td>C2</td><td>电池型号/批次标识</td><td>唯一产品标识编码系统</td><td>内部编码规则文件</td></tr>
+<tr><td>C3</td><td>化学成分信息</td><td>按重量百分比列出所有化学物质</td><td>MSDS / 配方表</td></tr>
+<tr><td>C4</td><td>关键原材料来源</td><td>锂、钴、镍等CRMs的矿区/国家</td><td>供应商声明</td></tr>
+<tr><td>C5</td><td>回收材料含量</td><td>回收钴/铅/锂/镍的百分比</td><td>供应商证明</td></tr>
+<tr><td>C6</td><td>碳足迹声明</td><td>生命周期碳排放数据(kg CO2eq)</td><td>碳足迹报告</td></tr>
+<tr><td>C7</td><td>性能参数</td><td>容量、电压、循环寿命、能量密度</td><td>产品检测报告</td></tr>
+<tr><td>C8</td><td>耐久性指标</td><td>充放电循环保持率数据</td><td>测试报告</td></tr>
+<tr><td>C9</td><td>回收指引信息</td><td>拆卸说明、回收处理方式</td><td>技术手册</td></tr>
+</table>
+
+<h4 style="color:var(--primary)">D维度：供应链 (D1-D4)</h4>
+<table>
+<tr><th>编号</th><th>检查项</th><th>达标标准</th><th>常见证据</th></tr>
+<tr><td>D1</td><td>供应商清单</td><td>完整的一级/二级供应商名录</td><td>采购系统导出</td></tr>
+<tr><td>D2</td><td>供应商合规状态</td><td>各供应商的DPP配合意愿和能力</td><td>供应商调查问卷</td></tr>
+<tr><td>D3</td><td>供应链尽职调查</td><td>OECD due diligence流程已建立</td><td>尽调报告/审计报告</td></tr>
+<tr><td>D4</td><td>原材料溯源能力</td><td>可追溯至少至矿区/冶炼厂层级</td><td>溯源系统截图/证书</td></tr>
+</table>
+
+<h4 style="color:var(--primary)">E维度：IT系统 (E1-E4)</h4>
+<table>
+<tr><th>编号</th><th>检查项</th><th>达标标准</th><th>常见证据</th></tr>
+<tr><td>E1</td><td>DPP载体方案</td><td>已确定二维码/RFID/NFC载体类型</td><td>技术选型文档</td></tr>
+<tr><td>E2</td><td>数据管理系统</td><td>有ERP/PLM/MES等系统支撑数据管理</td><td>系统清单截图</td></tr>
+<tr><td>E3</td><td>API接口能力</td><td>具备与EU Registry对接的技术能力</td><td>IT部门确认函</td></tr>
+<tr><td>E4</td><td>数据安全防护</td><td>ISO 27001或同等信息安全体系</td><td>安全认证/制度文件</td></tr>
+</table>
+
+<h4 style="color:var(--primary)">F维度：管理流程 (F1-F4)</h4>
+<table>
+<tr><th>编号</th><th>检查项</th><th>达标标准</th><th>常见证据</th></tr>
+<tr><td>F1</td><td>DPP管理责任人</td><td>已指定内部DPP合规负责人</td><td>任命文件</td></tr>
+<tr><td>F2</td><td>数据更新SOP</td><td>有标准流程确保数据及时更新</td><td>SOP文档</td></tr>
+<tr><td>F3</td><td>异常处理机制</td><td>数据异常/召回事件应急预案</td><td>应急预案文档</td></tr>
+<tr><td>F4</td><td>培训记录</td><td>相关人员已接受DPP合规培训</td><td>培训签到表/课件</td></tr>
+</table>
+
+<h4>评分标准</h4>
+<table>
+<tr><th>评级</th><th>分值</th><th>判定标准</th><th>颜色标记</th></tr>
+<tr><td><span class="tag tag-green">达标</span></td><td>2分</td><td>完全满足要求，有有效证据</td><td>🟢 绿色</td></tr>
+<tr><td><span class="tag tag-yellow">部分达标</span></td><td>1分</td><td>部分满足，但存在不足或缺失证据</td><td>🟡 黄色</td></tr>
+<tr><td><span class="tag tag-red">缺失</span></td><td>0分</td><td>完全未满足或不存在</td><td>🔴 红色</td></tr>
+</table>
+</div>
+
+<div id="ch2-report" class="card">
+<h3>📄 2.2 评估报告填写指南</h3>
+
+<p><strong>文件：</strong><span class="tool-ref">02_DPP差距评估报告_模板.docx</span></p>
+
+<h4>报告结构及填写说明</h4>
+<ol class="step-list">
+<li>
+<strong>封面页</strong>
+<ul>
+<li>填写：客户名称、评估日期、评估人员、报告编号</li>
+<li>报告编号格式：SX-DPP-YYYY-NNN（如 SX-DPP-2026-001）</li>
+<li>添加：守信财税Logo、客户Logo（如有）</li>
+</ul>
+</li>
+<li>
+<strong>摘要表（Summary Table）</strong>
+<ul>
+<li>6维度得分一览表，每维度填入：实际得分/满分、得分率、评级</li>
+<li>总体得分率 = 各维度得分之和 / 64 × 100%</li>
+<li>用颜色标记各维度等级（绿/黄/红）</li>
+</ul>
+</li>
+<li>
+<strong>时间线表（Timeline Table）</strong>
+<ul>
+<li>标注强制适用日期：2027年2月18日</li>
+<li>倒推各阶段里程碑节点</li>
+<li>计算剩余可用周数</li>
+</ul>
+</li>
+<li>
+<strong>各维度详评表</strong>（6个表）
+<ul>
+<li>逐项填写：检查项描述、评级、现状描述、改进建议</li>
+<li>每项必须附具体证据或说明不足原因</li>
+<li>改进建议需可操作、有明确责任人和时限</li>
+</ul>
+</li>
+<li>
+<strong>TOP5差距清单</strong>
+<ul>
+<li>按影响度×紧急度矩阵排序</li>
+<li>标注「阻塞项」(Blocker) 或「可并行项」(Parallel)</li>
+<li>每项给出整改建议、预计工时、所需资源</li>
+</ul>
+</li>
+<li>
+<strong>整改路线图（Remediation Roadmap）</strong>
+<ul>
+<li>甘特图式排程：按周为单位</li>
+<li>标注依赖关系（哪些必须先完成才能启动下一项）</li>
+<li>设置阶段检查点（Week 4 / Week 8 / Week 12）</li>
+</ul>
+</li>
+<li>
+<strong>分级附录（Grading Appendix）</strong>
+<ul>
+<li><span class="tag tag-green">A级 ≥80%</span>：绿色通行，基础整改即可</li>
+<li><span class="tag tag-yellow">B级 40-79%</span>：黄色警示，需要系统性整改</li>
+<li><span class="tag tag-red">C级 <40%</span>：红色预警，需全面重建合规体系</li>
+</ul>
+</li>
+</ol>
+
+<div class="warning">
+<strong>填写原则：</strong>评估报告必须客观、有据。每项评级必须附具体证据或明确说明，不可凭主观印象打分。报告将作为客户合规审计的重要底稿。
+</div>
+</div>
+
+<div id="ch2-scoring" class="card">
+<h3>📊 2.3 评分方法与客户沟通</h3>
+
+<h4>评分计算公式</h4>
+<div style="background:#f5f5f5;padding:16px;border-radius:8px;font-family:monospace;margin:12px 0">
+<strong>维度得分率</strong> = 该维度实际得分 ÷ 该维度满分 × 100%<br>
+<strong>总体得分率</strong> = 全部实际得分之和 ÷ 64 × 100%<br><br>
+示例：C维度（护照数据）满分18分<br>
+- C1=2, C2=2, C3=1, C4=0, C5=0, C6=1, C7=2, C8=1, C9=0<br>
+- C维度得分 = 2+2+1+0+0+1+2+1+0 = 9/18 = <strong>50%</strong> → <span class="tag tag-yellow">黄色</span>
+</div>
+
+<h4>客户沟通要点</h4>
+<table>
+<tr><th>场景</th><th>沟通策略</th><th>话术参考</th></tr>
+<tr>
+<td>得分≥80%（绿色）</td>
+<td>肯定现有基础，聚焦少量差距</td>
+<td>「贵司基础较好，主要需要补齐碳足迹数据和供应链溯源」</td>
+</tr>
+<tr>
+<td>得分40-79%（黄色）</td>
+<td>强调紧迫性，提供清晰路径</td>
+<td>「还有几项关键差距需要系统整改，但16周时间充裕，我们有标准化流程」</td>
+</tr>
+<tr>
+<td>得分<40%（红色）</td>
+<td>管理恐慌，给出信心</td>
+<td>「虽然差距较大，但只要现在开始，我们有成功案例可以复制。建议优先解决阻塞项」</td>
+</tr>
+</table>
+
+<div class="info-box">
+<strong>沟通技巧：</strong>永远先说「我们已经确认做到的部分」，再说「还需要补充的部分」。避免使用「不合格」「不达标」等负面词汇，改用「待完善」「待补充」。
+</div>
+</div>
+</section>
+
+<!-- 第三章 -->
+<section id="ch3">
+<h2>第三章 数据采集操作指南</h2>
+
+<div id="ch3-datalist" class="card">
+<h3>📊 3.1 数据项标准清单使用</h3>
+
+<p><strong>文件：</strong><span class="tool-ref">03_DPP数据项标准清单_电池版.xlsx</span></p>
+
+<h4>清单概述</h4>
+<p>基于 (EU) 2023/1542 Annex XIII 要求，定义了 <strong>38个标准数据字段</strong>，分为以下类别：</p>
+
+<table>
+<tr><th>类别</th><th>字段数</th><th>可见性</th><th>说明</th></tr>
+<tr><td>制造商信息</td><td>5项</td><td><span class="tag tag-green">公开</span></td><td>企业名称、地址、联系方式、EORI号、DPP ID</td></tr>
+<tr><td>产品标识</td><td>4项</td><td><span class="tag tag-green">公开</span></td><td>电池型号、批次号、生产日期、序列号</td></tr>
+<tr><td>化学成分</td><td>6项</td><td><span class="tag tag-blue">受限</span></td><td>物质名称、CAS号、重量占比、危险分类</td></tr>
+<tr><td>原材料溯源</td><td>5项</td><td><span class="tag tag-blue">受限</span></td><td>关键原材料、矿区、国家、供应链路径</td></tr>
+<tr><td>性能参数</td><td>6项</td><td><span class="tag tag-green">公开</span></td><td>额定容量、标称电压、能量密度、循环寿命</td></tr>
+<tr><td>可持续性指标</td><td>5项</td><td><span class="tag tag-green">公开</span></td><td>碳足迹、回收材料含量、回收效率</td></tr>
+<tr><td>合规认证</td><td>4项</td><td><span class="tag tag-green">公开</span></td><td>CE证书编号、合格评定、检测报告编号</td></tr>
+<tr><td>回收信息</td><td>3项</td><td><span class="tag tag-green">公开</span></td><td>拆卸指引、回收方式、回收设施代码</td></tr>
+</table>
+
+<h4>可见性说明</h4>
+<ul>
+<li><span class="tag tag-green">公开(Public)</span>：任何扫码用户可查看（终端消费者、监管机构）</li>
+<li><span class="tag tag-blue">受限(Restricted)</span>：仅授权方可查看（监管机构、供应链合作伙伴，需权限验证）</li>
+</ul>
+
+<div class="warning">
+<strong>数据敏感性：</strong>化学成分和供应链溯源数据属于商业机密，必须在DPP系统中正确设置访问权限，仅限Restricted可见性级别。泄露可能导致客户商业损失。
+</div>
+</div>
+
+<div id="ch3-handbook" class="card">
+<h3>📖 3.2 数据手册填写指南</h3>
+
+<p><strong>文件：</strong><span class="tool-ref">04_DPP数据手册模板.xlsx</span></p>
+
+<h4>三个Sheet页说明</h4>
+
+<h4>Sheet 1：数据卡片（Data Card）</h4>
+<p>核心数据录入表，包含 <strong>35个字段</strong>，每个电池SKU一行：</p>
+<table>
+<tr><th>列区域</th><th>列范围</th><th>内容</th><th>填写说明</th></tr>
+<tr><td>A. 基础标识</td><td>A-F列</td><td>DPP-ID、制造商、型号、批次、日期、状态</td><td>DPP-ID由系统自动生成，其余从客户产品清单导入</td></tr>
+<tr><td>B. 技术参数</td><td>G-L列</td><td>化学体系、容量、电压、重量、尺寸、能量密度</td><td>从产品检测报告提取，注意单位统一（mAh/Wh/kg）</td></tr>
+<tr><td>C. 化学成分</td><td>M-R列</td><td>正极材料、负极材料、电解液、隔膜、各物质占比</td><td>从MSDS/配方表提取，百分比总和须=100%±0.5%</td></tr>
+<tr><td>D. 溯源信息</td><td>S-W列</td><td>锂来源、钴来源、镍来源、供应链路径、矿区代码</td><td>从供应商问卷回收，按UN/LOCODE格式填写</td></tr>
+<tr><td>E. 可持续性</td><td>X-AB列</td><td>碳足迹值、回收钴%、回收锂%、回收镍%、碳核算标准</td><td>从碳足迹报告提取，回收含量须附第三方证明</td></tr>
+<tr><td>F. 合规信息</td><td>AC-AF列</td><td>CE证书号、评定报告号、UN38.3编号、检测机构</td><td>从认证证书抄录，注意有效期</td></tr>
+<tr><td>G. 回收信息</td><td>AG-AI列</td><td>拆卸说明链接、回收方式、回收设施代码</td><td>按WEEE指令格式填写</td></tr>
+</table>
+
+<h4>Sheet 2：采集台账（Collection Ledger）</h4>
+<p>追踪每项数据的状态和来源：</p>
+<table>
+<tr><th>列</th><th>字段</th><th>说明</th></tr>
+<tr><td>A</td><td>数据项编号</td><td>对应03_数据项标准清单的编号（D01-D38）</td></tr>
+<tr><td>B</td><td>数据项名称</td><td>标准名称</td></tr>
+<tr><td>C</td><td>数据来源</td><td>客户自有/供应商提供/第三方报告/公开数据库</td></tr>
+<tr><td>D</td><td>采集状态</td><td>已采集 ✓ / 采集中 ⏳ / 待采集 ○ / 不适用 N/A</td></tr>
+<tr><td>E</td><td>责任人</td><td>客户方对接人姓名</td></tr>
+<tr><td>F</td><td>截止日期</td><td>计划完成日期</td></tr>
+<tr><td>G</td><td>实际完成日</td><td>实际收到日期</td></tr>
+<tr><td>H</td><td>质量评级</td><td>A=完整准确 / B=基本可用 / C=需补充 / D=不可用</td></tr>
+<tr><td>I</td><td>备注</td><td>问题说明、缺失原因等</td></tr>
+</table>
+
+<h4>Sheet 3：供应商清单（Supplier List）</h4>
+<p>管理与DPP数据相关的供应商信息：</p>
+<table>
+<tr><th>列</th><th>字段</th><th>说明</th></tr>
+<tr><td>A</td><td>供应商编号</td><td>SUP-001格式</td></tr>
+<tr><td>B</td><td>供应商名称</td><td>全称（中英文）</td></tr>
+<tr><td>C</td><td>供应层级</td><td>T1=一级直接供应商 / T2=二级</td></tr>
+<tr><td>D</td><td>供应品类</td><td>正极材料/负极材料/电解液/隔膜/外壳等</td></tr>
+<tr><td>E</td><td>所在国家</td><td>ISO 3166-1代码</td></tr>
+<tr><td>F</td><td>联系人</td><td>姓名+邮箱+电话</td></tr>
+<tr><td>G</td><td>问卷发放状态</td><td>已发送/已回收/催办中/拒绝配合</td></tr>
+<tr><td>H</td><td>问卷回收日期</td><td>实际回收日期</td></tr>
+<tr><td>I</td><td>数据质量评分</td><td>问卷数据可靠性评估（1-5分）</td></tr>
+</table>
+
+<div class="info-box">
+<strong>操作提示：</strong>先完成Sheet 3供应商清单，再基于供应商清单定向发送问卷，最后将回收数据录入Sheet 1数据卡片。Sheet 2台账作为全程进度追踪表。
+</div>
+</div>
+
+<div id="ch3-survey" class="card">
+<h3>📋 3.3 供应商问卷管理</h3>
+
+<p><strong>文件：</strong><span class="tool-ref">05_供应商数据问卷_中英双语.docx</span></p>
+
+<h4>问卷结构（7个部分）</h4>
+<table>
+<tr><th>部分</th><th>内容</th><th>填写方</th><th>预计时间</th></tr>
+<tr><td>Part A</td><td>企业基本信息</td><td>供应商行政/商务人员</td><td>10分钟</td></tr>
+<tr><td>Part B</td><td>认证与资质</td><td>质量/合规部门</td><td>15分钟</td></tr>
+<tr><td>Part C</td><td>产品信息</td><td>技术/产品部门</td><td>20分钟</td></tr>
+<tr><td>Part D</td><td>材料成分</td><td>研发/技术部门</td><td>25分钟</td></tr>
+<tr><td>Part E</td><td>溯源与供应链</td><td>采购/供应链部门</td><td>20分钟</td></tr>
+<tr><td>Part F</td><td>环境与安全</td><td>EHS部门</td><td>20分钟</td></tr>
+<tr><td>Part G</td><td>声明与签署</td><td>授权代表签字盖章</td><td>10分钟</td></tr>
+</table>
+
+<h4>发放与回收SOP</h4>
+<ol class="step-list">
+<li>
+<strong>准备阶段（Day 1-2）</strong>
+<ul>
+<li>从 <span class="tool-ref">04_数据手册模板.xlsx</span> Sheet 3导出供应商清单</li>
+<li>为每家供应商定制问卷（填入客户名称、供应商名称、供应品类）</li>
+<li>准备中英双语版本（中国供应商用中文版，海外供应商用英文版）</li>
+</ul>
+</li>
+<li>
+<strong>首次发送（Day 3）</strong>
+<ul>
+<li>通过邮件发送，CC客户采购负责人</li>
+<li>邮件模板：强调法规要求、截止日期（建议14天内）、保密承诺</li>
+<li>附问卷文件 + 填写指南PDF</li>
+</ul>
+</li>
+<li>
+<strong>第一次催办（Day 10）</strong>
+<ul>
+<li>对未回复供应商发送邮件催办</li>
+<li>电话确认联系人收到并理解问卷要求</li>
+<li>解答填写过程中的疑问</li>
+</ul>
+</li>
+<li>
+<strong>第二次催办（Day 14）</strong>
+<ul>
+<li>通过客户采购负责人施压</li>
+<li>说明法规强制性和不配合的后果（可能替换供应商）</li>
+</ul>
+</li>
+<li>
+<strong>回收审查（Day 15-17）</strong>
+<ul>
+<li>检查完整性：Part A-G是否全部填写</li>
+<li>检查准确性：数据是否自洽、与已知信息一致</li>
+<li>标记问题项：联系供应商澄清</li>
+</ul>
+</li>
+<li>
+<strong>升级处理（Day 18+）</strong>
+<ul>
+<li>仍不配合的供应商：列入「不合规供应商」名单</li>
+<li>启动替代方案：委托第三方审计获取数据</li>
+<li>建议客户考虑替换供应商</li>
+</ul>
+</li>
+</ol>
+
+<div class="warning">
+<strong>供应商配合度预估：</strong>根据经验，首次发放回收率约50-60%，两轮催办后可提升至75-85%。剩余15-25%需要升级处理。建议在项目启动时就告知客户这一现实，避免不切实际的预期。
+</div>
+</div>
+
+<div id="ch3-quality" class="card">
+<h3>✅ 3.4 数据质量检查</h3>
+
+<h4>数据质量检查清单</h4>
+<table>
+<tr><th>检查维度</th><th>检查项</th><th>通过标准</th><th>检查方法</th></tr>
+<tr><td>完整性</td><td>38项数据采集率</td><td>≥90%（34/38项已采集）</td><td>台账Sheet 2统计</td></tr>
+<tr><td>完整性</td><td>必填字段空值率</td><td>≤5%</td><td>数据卡片Sheet公式检查</td></tr>
+<tr><td>准确性</td><td>化学成分百分比</td><td>总和=100%±0.5%</td><td>Excel SUM公式验证</td></tr>
+<tr><td>准确性</td><td>性能参数范围</td><td>在物理合理范围内</td><td>与同类产品对标</td></tr>
+<tr><td>一致性</td><td>跨字段逻辑</td><td>容量×电压≈能量，无矛盾</td><td>交叉验证公式</td></tr>
+<tr><td>一致性</td><td>供应商数据 vs 客户数据</td><td>同一物质信息一致</td><td>人工抽查比对</td></tr>
+<tr><td>时效性</td><td>数据来源日期</td><td>认证/报告在有效期内</td><td>有效期核查</td></tr>
+<tr><td>格式规范</td><td>单位统一</td><td>全部使用SI单位或约定单位</td><td>格式检查</td></tr>
+<tr><td>格式规范</td><td>编码规范</td><td>DPP-ID、供应商编号格式正确</td><td>正则校验</td></tr>
+</table>
+
+<h4>常见问题及处理</h4>
+<table>
+<tr><th>问题</th><th>影响</th><th>处理方式</th></tr>
+<tr><td>供应商数据相互矛盾</td><td>数据可信度存疑</td><td>要求双方确认，取第三方检测数据</td></tr>
+<tr><td>化学成分数据缺失</td><td>DPP无法提交</td><td>要求客户提供MSDS或委托检测</td></tr>
+<tr><td>碳足迹数据过时</td><td>不满足法规要求</td><td>按最新标准重新核算</td></tr>
+<tr><td>单位不统一</td><td>数据无法直接使用</td><td>统一转换并标注换算依据</td></tr>
+<tr><td>供应商拒绝提供溯源数据</td><td>溯源链断裂</td><td>使用行业数据库替代+第三方审计</td></tr>
+</table>
+</div>
+</section>
+
+<!-- 第四章 -->
+<section id="ch4">
+<h2>第四章 注册上线操作指南</h2>
+
+<div id="ch4-eidas" class="card">
+<h3>🔐 4.1 eIDAS证书办理</h3>
+
+<p><strong>参考文件：</strong><span class="tool-ref">06_eIDAS与欧代办理指引.docx</span></p>
+
+<h4>什么是eIDAS证书？</h4>
+<p>eIDAS (Electronic Identification, Authentication and Trust Services) 证书是EU DPP Registry用于验证经济运营商身份的数字证书。相当于企业在欧盟数字世界的「身份证」。</p>
+
+<h4>办理流程</h4>
+<ol class="step-list">
+<li>
+<strong>选择QTSP（Qualified Trust Service Provider）</strong>
+<ul>
+<li>QTSP必须是欧盟成员国认可的合格信托服务提供商</li>
+<li>推荐QTSP列表（截至2026年）：
+<ul>
+<li><strong>Signicant</strong>（德国） — 审批较快，4-6周</li>
+<li><strong>Infocert</strong>（意大利） — 费用较低</li>
+<li><strong>Chambersign</strong>（德国工商大会） — 权威性高</li>
+<li><strong>Legaltrust</strong>（法国） — 法语区客户首选</li>
+</ul>
+</li>
+<li>费用范围：€500-2,000/年（取决于证书类型和有效期）</li>
+</ul>
+</li>
+<li>
+<strong>准备申请材料</strong>
+<ul>
+<li>企业注册证明（营业执照公证件 + 翻译件）</li>
+<li>法人身份证明（护照复印件）</li>
+<li>VIES增值税号验证</li>
+<li>EORI号（Economic Operators Registration and Identification）</li>
+<li>授权签字人委托书</li>
+</ul>
+</li>
+<li>
+<strong>提交申请</strong>
+<ul>
+<li>通过QTSP在线平台提交</li>
+<li>部分QTSP要求视频验证身份</li>
+<li>支付证书费用</li>
+</ul>
+</li>
+<li>
+<strong>审核与签发</strong>
+<ul>
+<li>审核周期：4-8周（建议提前启动）</li>
+<li>签发后获得：证书文件（.p12/.pfx）+ PIN码</li>
+<li>证书有效期：1-3年（建议选3年）</li>
+</ul>
+</li>
+</ol>
+
+<div class="warning">
+<strong>时间风险：</strong>eIDAS证书办理是最常见的延误环节。务必在Phase 2（差距分析）完成后立即启动，不要等到Phase 5。如一家QTSP延误，立即切换到备选QTSP。
+</div>
+
+<h4>备选方案</h4>
+<p>如eIDAS证书未能及时获得：</p>
+<ul>
+<li>备选QTSP列表准备至少3家</li>
+<li>可先使用测试证书在沙箱环境完成技术对接</li>
+<li>与EU Registry沟通临时接入方案</li>
+</ul>
+</div>
+
+<div id="ch4-rep" class="card">
+<h3>🏛️ 4.2 欧盟授权代表（EU Authorised Representative）</h3>
+
+<h4>为什么需要欧代？</h4>
+<p>根据 (EU) 2023/1542 第40条，非欧盟设立的经济运营商必须指定一个在欧盟境内设立的授权代表，负责DPP合规相关事务。</p>
+
+<h4>选择标准</h4>
+<table>
+<tr><th>标准</th><th>要求</th><th>权重</th></tr>
+<tr><td>所在国</td><td>EU成员国，优先德国/荷兰/卢森堡（法规意识强）</td><td>★★★★</td></tr>
+<tr><td>行业经验</td><td>有电池/电子行业合规经验</td><td>★★★★★</td></tr>
+<tr><td>语言能力</td><td>英语流利，最好有中文服务团队</td><td>★★★</td></tr>
+<tr><td>费用</td><td>€2,000-6,000/年（视服务范围）</td><td>★★★</td></tr>
+<tr><td>响应速度</td><td>48小时内响应监管问询</td><td>★★★★</td></tr>
+</table>
+
+<h4>授权协议要点</h4>
+<ul class="checklist">
+<li>授权范围：明确覆盖DPP合规的具体职责</li>
+<li>授权期限：与电池预期使用寿命匹配（至少10年）</li>
+<li>通信机制：监管机构联络方式、响应时效</li>
+<li>数据权限：欧代访问DPP数据的权限边界</li>
+<li>终止条款：提前终止的通知期和过渡安排</li>
+<li>费用结构：年度固定费 + 额外服务费</li>
+<li>责任划分：欧代仅承担代表责任，不承担制造商合规责任</li>
+</ul>
+</div>
+
+<div id="ch4-registry" class="card">
+<h3>📡 4.3 DPP Registry注册提交</h3>
+
+<h4>注册前技术准备</h4>
+<ol class="step-list">
+<li>
+<strong>系统对接</strong>
+<ul>
+<li>获取EU Registry API文档（发布于欧盟委员会官网）</li>
+<li>开发数据映射：将数据手册字段映射到Registry API格式</li>
+<li>配置eIDAS证书用于API认证</li>
+</ul>
+</li>
+<li>
+<strong>沙箱测试</strong>
+<ul>
+<li>在EU Registry提供的sandbox环境提交测试数据包</li>
+<li>验证数据格式、必填字段、校验规则</li>
+<li>测试DPP载体（二维码）生成和扫码访问</li>
+<li>记录并解决所有错误/警告</li>
+</ul>
+</li>
+<li>
+<strong>正式提交</strong>
+<ul>
+<li>选择首批注册SKU（建议先注册1-3个主力型号）</li>
+<li>通过API提交完整DPP数据包</li>
+<li>获取DPP Unique ID</li>
+<li>将DPP ID绑定到产品载体（二维码/RFID）</li>
+</ul>
+</li>
+<li>
+<strong>上线验证</strong>
+<ul>
+<li>使用EU官方DPP查看器扫描测试</li>
+<li>验证公开数据可正常显示</li>
+<li>验证受限数据需要授权才可查看</li>
+<li>确认多语言显示正常（至少英语）</li>
+</ul>
+</li>
+</ol>
+
+<h4>完整时间线：从启动到上线（16周）</h4>
+<table>
+<tr><th>周次</th><th>里程碑</th><th>关键动作</th></tr>
+<tr><td>W1</td><td>项目启动</td><td>签署协议、启动会</td></tr>
+<tr><td>W2</td><td>评估完成</td><td>核查清单评分、评估报告初稿</td></tr>
+<tr><td>W3</td><td>差距确认</td><td>TOP5确认、整改路线图、<strong>启动eIDAS申请</strong></td></tr>
+<tr><td>W4-5</td><td>数据采集启动</td><td>发放数据清单和供应商问卷</td></tr>
+<tr><td>W6-7</td><td>数据回收</td><td>第一轮催办、数据审查</td></tr>
+<tr><td>W8</td><td>数据完整</td><td>数据手册填写完成、<strong>eIDAS证书到手</strong></td></tr>
+<tr><td>W9-10</td><td>整改收尾</td><td>关闭TOP5差距、签署欧代协议</td></tr>
+<tr><td>W11-12</td><td>系统对接</td><td>API开发、数据映射、沙箱测试</td></tr>
+<tr><td>W13-14</td><td>测试验证</td><td>提交测试数据、修正问题、全流程验证</td></tr>
+<tr><td>W15</td><td>正式提交</td><td>首批SKU注册、DPP载体绑定</td></tr>
+<tr><td>W16</td><td>上线确认</td><td>扫码验证、项目验收、移交运维</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>✅ 4.4 上线前检查清单（Pre-Launch Checklist）</h3>
+<ul class="checklist">
+<li>eIDAS证书有效且已正确配置</li>
+<li>EU Authorised Representative协议已签署</li>
+<li>38项DPP数据100%填写完毕并通过质量检查</li>
+<li>沙箱测试全部通过（0 error, 0 warning）</li>
+<li>首批SKU数据包已提交并获取DPP Unique ID</li>
+<li>二维码/RFID载体已生产并绑定</li>
+<li>扫码测试通过（公开数据可见、受限数据权限正确）</li>
+<li>数据更新SOP已建立并培训相关人员</li>
+<li>异常处理流程已建立</li>
+<li>客户已签署验收确认书</li>
+</ul>
+
+<div class="success">
+<strong>全部勾选 = 可以正式上线！</strong>恭喜客户完成DPP合规。
+</div>
+</div>
+</section>
+
+<!-- 第五章 -->
+<section id="ch5">
+<h2>第五章 质量控制</h2>
+
+<div class="card">
+<h3>🎯 5.1 数据准确性标准</h3>
+
+<table>
+<tr><th>数据类型</th><th>准确性要求</th><th>验证方式</th><th>不合格处理</th></tr>
+<tr><td>化学成分</td><td>与第三方检测偏差≤2%</td><td>交叉比对MSDS和检测报告</td><td>重新检测或补充说明</td></tr>
+<tr><td>性能参数</td><td>与检测报告完全一致</td><td>逐项核对证书编号</td><td>更正数据并更新</td></tr>
+<tr><td>碳足迹</td><td>核算方法符合ISO 14067</td><td>检查核算边界和方法论</td><td>重新核算</td></tr>
+<tr><td>溯源信息</td><td>可追溯到矿区/冶炼厂</td><td>比对行业数据库</td><td>补充溯源证据</td></tr>
+<tr><td>认证信息</td><td>证书在有效期内且覆盖产品类型</td><td>查询认证机构官网验证</td><td>更新或重新认证</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>📑 5.2 文档完整性检查</h3>
+
+<h4>交付前文档检查清单</h4>
+<table>
+<tr><th>文档</th><th>检查项</th><th>✓</th></tr>
+<tr><td>评估报告</td><td>封面信息完整、6维度详评齐全、TOP5清单明确</td><td>☐</td></tr>
+<tr><td>数据手册</td><td>3个Sheet页完整、无空白必填项、格式规范</td><td>☐</td></tr>
+<tr><td>供应商问卷</td><td>回函率≥80%、Part A-G全部填写、签章完整</td><td>☐</td></tr>
+<tr><td>eIDAS证书</td><td>证书有效、PIN码已安全移交</td><td>☐</td></tr>
+<tr><td>欧代协议</td><td>签署页完整、授权范围明确</td><td>☐</td></tr>
+<tr><td>整改证据包</td><td>TOP5差距逐项闭环、有证据支撑</td><td>☐</td></tr>
+<tr><td>测试报告</td><td>沙箱测试通过记录、正式提交确认截图</td><td>☐</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>🔄 5.3 双重审核机制（Double-Check System）</h3>
+
+<h4>审核流程</h4>
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:15px 0">
+<div style="background:var(--bg-light);padding:12px 18px;border-radius:8px;text-align:center">
+<strong>第一次审核</strong><br>
+<span style="font-size:13px;color:var(--text-light)">项目经理自检</span>
+</div>
+<div style="font-size:24px;color:var(--secondary)">→</div>
+<div style="background:var(--bg-light);padding:12px 18px;border-radius:8px;text-align:center">
+<strong>第二次审核</strong><br>
+<span style="font-size:13px;color:var(--text-light)">技术顾问/质量主管</span>
+</div>
+<div style="font-size:24px;color:var(--secondary)">→</div>
+<div style="background:var(--bg-light);padding:12px 18px;border-radius:8px;text-align:center">
+<strong>交付确认</strong><br>
+<span style="font-size:13px;color:var(--text-light)">客户签收</span>
+</div>
+</div>
+
+<h4>一审：项目经理自检</h4>
+<ul class="checklist">
+<li>所有文档是否齐全</li>
+<li>数据是否与原始来源一致</li>
+<li>评估报告评分是否合理（抽查5项）</li>
+<li>数据手册格式是否符合规范</li>
+<li>客户信息是否准确</li>
+</ul>
+
+<h4>二审：技术顾问/质量主管</h4>
+<ul class="checklist">
+<li>抽查3个SKU的完整数据链路</li>
+<li>验证化学成分百分比总和</li>
+<li>检查认证证书有效期</li>
+<li>确认供应商问卷数据与数据手册一致性</li>
+<li>审核整改证据的充分性</li>
+<li>确认DPP注册状态</li>
+</ul>
+
+<div class="danger">
+<strong>红线：</strong>任何一项审核不通过，不得交付。退回修正后重新走审核流程。
+</div>
+</div>
+
+<div class="card">
+<h3>📊 客户验收标准</h3>
+<table>
+<tr><th>验收项</th><th>标准</th><th>验收方式</th></tr>
+<tr><td>DPP注册成功</td><td>EU Registry查询到DPP记录</td><td>提供Registry截图+扫码验证</td></tr>
+<tr><td>数据完整性</td><td>38项数据≥95%完整</td><td>数据手册导出统计</td></tr>
+<tr><td>文档交付</td><td>全部7个工具文件交付客户</td><td>文件清单签收</td></tr>
+<tr><td>培训完成</td><td>客户相关人员已培训</td><td>培训签到表</td></tr>
+<tr><td>运维交接</td><td>数据更新SOP已移交</td><td>SOP文档签收</td></tr>
+</table>
+</div>
+</section>
+
+<!-- 第六章 -->
+<section id="ch6">
+<h2>第六章 常见问题处理（TOP 15 FAQ）</h2>
+
+<div class="card">
+<p>以下列出实施过程中最常遇到的15个问题及标准处理方案。点击问题展开详细解答。</p>
+</div>
+
+<div class="faq-item open">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q1: 客户无法提供供应商数据怎么办？
+</div>
+<div class="faq-a">
+<p><strong>问题场景：</strong>客户上游供应商（特别是中国原材料供应商）拒绝配合填写问卷或提供溯源数据。</p>
+<p><strong>处理方案：</strong></p>
+<ol>
+<li><strong>第一步</strong>：使用 <span class="tool-ref">05_供应商数据问卷_中英双语.docx</span> 正式发放，明确法规强制要求</li>
+<li><strong>第二步</strong>：两轮催办后仍不配合 → 请客户采购负责人介入施压</li>
+<li><strong>第三步</strong>：替代方案 — 使用行业公开数据库（如USGS矿产数据、ICSG铜业数据）补充</li>
+<li><strong>第四步</strong>：极端情况 — 委托第三方审计机构（如SGS/BV）进行现场审计获取数据</li>
+<li><strong>文档记录</strong>：在评估报告中标注该数据项为「第三方替代数据」，说明原因</li>
+</ol>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q2: 电池类型分类不明确怎么判断？
+</div>
+<div class="faq-a">
+<p><strong>分类指引：</strong></p>
+<table>
+<tr><th>类型</th><th>定义</th><th>典型产品</th><th>DPP要求</th></tr>
+<tr><td>便携式电池<br>(Portable)</td><td>密封、重量≤5kg<br>非工业/非EV用途</td><td>手机电池、充电宝<br>遥控器电池</td><td>2027.8后（待定）</td></tr>
+<tr><td>LMT电池<br>(Light Means of Transport)</td><td>用于轻型交通工具</td><td>电动自行车<br>电动滑板车</td><td><strong>2027.2.18强制</strong></td></tr>
+<tr><td>工业电池<br>(Industrial)</td><td>>2kWh，非EV用途</td><td>储能系统、UPS<br>工业设备电池</td><td><strong>2027.2.18强制</strong></td></tr>
+<tr><td>EV电池<br>(Electric Vehicle)</td><td>用于混合动力/纯电动车</td><td>新能源汽车动力电池</td><td><strong>2027.2.18强制</strong></td></tr>
+</table>
+<p><strong>判断方法：</strong>主要依据电池的<strong>设计用途</strong>而非外观。如有争议，查看产品说明书/标签上的用途声明。无法确定时按最严格类别处理。</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q3: eIDAS证书办理延误怎么办？
+</div>
+<div class="faq-a">
+<p><strong>常见延误原因：</strong>材料不完整、QTSP审核排队、视频验证安排困难。</p>
+<p><strong>处理方案：</strong></p>
+<ol>
+<li>提前准备至少3家QTSP备选名单</li>
+<li>第一家提交后2周无进展 → 立即启动第二家</li>
+<li>同步准备完整材料（避免来回补充）</li>
+<li>使用测试证书在沙箱环境先行完成技术对接</li>
+<li>正式证书到手后直接切换生产环境</li>
+</ol>
+<p><strong>预防：</strong>Phase 2完成后立即启动，不等到Phase 5。</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q4: 客户数据格式与Registry API不兼容？
+</div>
+<div class="faq-a">
+<p><strong>常见不兼容情况：</strong>客户内部使用非标准字段命名、单位不一致、编码规则不同。</p>
+<p><strong>标准转换流程：</strong></p>
+<ol>
+<li>获取EU Registry API Schema文档</li>
+<li>建立字段映射表：客户字段 → API标准字段</li>
+<li>单位统一转换（参考数据手册中的单位规范）</li>
+<li>编码标准化（DPP-ID格式：国家代码-企业代码-产品代码-校验位）</li>
+<li>编写转换脚本或使用中间件</li>
+</ol>
+<p><strong>工具：</strong>建议使用Python脚本或Excel Power Query进行批量转换，避免手工操作出错。</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q5: 客户有多个工厂/多个产品线怎么办？
+</div>
+<div class="faq-a">
+<p><strong>处理策略：</strong></p>
+<ul>
+<li><strong>按工厂分别评估</strong> — 每个工厂独立填写核查清单</li>
+<li><strong>按产品线分批上线</strong> — 优先处理出口量最大的产品线</li>
+<li><strong>统一数据标准</strong> — 确保所有工厂使用同一套数据手册模板</li>
+<li><strong>分别申请DPP-ID</strong> — 每个工厂+产品线组合需要独立DPP</li>
+<li>项目时间可能延长20-30%，需提前与客户沟通</li>
+</ul>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q6: 客户已有部分认证但即将过期？
+</div>
+<div class="faq-a">
+<p><strong>处理方案：</strong></p>
+<ol>
+<li>在核查清单中评级为「部分达标」(1分)</li>
+<li>评估报告中标注证书有效期和续期截止日</li>
+<li>整改路线图纳入「证书续期」任务项</li>
+<li>建议客户在到期前3个月启动续期流程</li>
+<li>过渡期：如续期已在进行中，可提供续期申请受理回执作为临时证据</li>
+</ol>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q7: 客户是贸易商而非制造商，如何处理？
+</div>
+<div class="faq-a">
+<p><strong>关键判断：</strong>根据电池法规，DPP义务主体是「制造商」(manufacturer)。如果客户仅为贸易商：</p>
+<ul>
+<li>贸易商作为「进口商」(importer)也有部分合规义务</li>
+<li>需要确认其是否以自己的品牌销售（白标/OEM情况）</li>
+<li>如以自己品牌销售 → 法规视其为制造商，需承担全部DPP义务</li>
+<li>如纯粹代理进口 → 需确保上游制造商已完成DPP注册</li>
+<li><strong>建议：</strong>这种情况需重新评估服务范围，可能转向「DPP合规验证」而非「DPP注册」服务</li>
+</ul>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q8: 供应商问卷回收率太低（<50%）怎么办？
+</div>
+<div class="faq-a">
+<p><strong>升级处理流程：</strong></p>
+<ol>
+<li>请客户高层直接联系供应商高层（对等施压）</li>
+<li>提供简化版问卷（仅Part A + Part C + Part G，减少填写负担）</li>
+<li>提供填写协助（电话指导/视频会议辅助填写）</li>
+<li>设置硬性截止日期并说明后果</li>
+<li>如仍无效：委托第三方进行供应链审计</li>
+<li>在数据手册中标注「供应商数据缺失 — 使用替代数据源」</li>
+</ol>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q9: 碳足迹数据客户完全没有怎么办？
+</div>
+<div class="faq-a">
+<p><strong>碳足迹是DPP中复杂度最高的数据项之一。处理方案：</strong></p>
+<ol>
+<li>推荐合作碳核算机构（如SGS、TÜV、BV）进行产品碳足迹核算</li>
+<li>核算周期通常4-8周，费用约¥30,000-80,000/产品</li>
+<li>过渡方案：使用行业平均值+客户实际能耗数据进行估算</li>
+<li>在整改路线图中标注为高优先级项</li>
+<li>如时间紧迫，建议先使用估算值上线，后续替换为精确值</li>
+</ol>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q10: 客户电池出口量很小，是否有必要做DPP？
+</div>
+<div class="faq-a">
+<p><strong>必须做。</strong>法规无最小出口量豁免。只要在EU市场销售，无论量大小，都必须有DPP。</p>
+<p><strong>沟通要点：</strong></p>
+<ul>
+<li>2027年2月18日后无DPP的电池不允许在EU市场销售</li>
+<li>海关可能查验，无DPP将被扣留</li>
+<li>早准备 = 先发优势，竞争对手可能还在观望</li>
+<li>量小的客户流程更简单（SKU少、供应链短），成本反而更低</li>
+</ul>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q11: 客户已经有ERP系统，如何对接DPP？
+</div>
+<div class="faq-a">
+<p><strong>对接方案：</strong></p>
+<ol>
+<li>评估现有ERP的数据字段覆盖度（与38项DPP数据对比）</li>
+<li>识别Gap：哪些数据ERP中有、哪些需要新建字段</li>
+<li>推荐两种模式：
+<ul>
+<li><strong>API直连模式</strong>（推荐）：ERP数据通过API自动同步到DPP平台</li>
+<li><strong>数据导出模式</strong>：定期从ERP导出数据，手工/半自动导入DPP</li>
+</ul>
+</li>
+<li>无论哪种模式，都需要数据映射和格式转换</li>
+<li>建议客户IT部门参与Phase 3-5的技术对接工作</li>
+</ol>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q12: 客户需要同时满足多国法规（如EU+美国+韩国）？
+</div>
+<div class="faq-a">
+<p><strong>处理策略：</strong></p>
+<ul>
+<li>DPP数据手册设计时预留扩展字段（其他市场要求的数据项）</li>
+<li>核心数据（化学成分、性能参数）各国要求高度重叠，可复用</li>
+<li>差异项单独管理（如美国可能要求UL认证、韩国要求KC认证）</li>
+<li>建议客户建立统一的产品合规数据中台</li>
+<li>服务范围需扩展，项目报价相应调整</li>
+</ul>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q13: 评估发现客户得分极低（<40%），客户信心受挫？
+</div>
+<div class="faq-a">
+<p><strong>沟通策略：</strong></p>
+<ol>
+<li>先肯定已做到的部分（哪怕只有20%也是基础）</li>
+<li>强调时间节点仍有缓冲（距2027.2还有充足时间）</li>
+<li>展示成功案例和标准化流程，给客户信心</li>
+<li>将大目标拆解为小步骤，每周可交付可见进展</li>
+<li>提供分阶段方案：先确保2027.2前核心产品上线，其余后续补齐</li>
+<li>调整团队配置：低分客户需配备更有经验的顾问</li>
+</ol>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+Q14: 注册提交后EU Registry审核退回怎么办？
+</div>
+<div class="faq-a">
+<p><strong>常见退回原因及处理：</strong></p>
+<table>
+<tr><th>退回原因</th><th>处理方案</th></tr>
+<tr><td>必填字段缺失</td><td>补充缺失数据后重新提交</td></tr>
+<tr><td>数据格式错误</td><td>按API Schema修正格式</td></tr>
+<tr><td>eIDAS证书验证失败</td><td>检查证书有效期和配置</td></tr>
+<tr><td>产品信息不完整</td><td>补充缺失的产品技术数据</td></tr>
+</table>
+<p><strong>流程：</strong>收到退回通知 → 分析原因 → 修正数据 → 内部复核 → 重新提交（通常2-3个工作日内完成）</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open)">
+Q15: 项目周期被客户压缩到8周以内怎么办？
+</div>
+<div class="faq-a">
+<p><strong>快速通道方案（适用于基础较好、得分≥60%的客户）：</strong></p>
+<ol>
+<li>Week 1：启动评估 + 差距分析合并（3天评估 + 2天分析）</li>
+<li>Week 2-4：数据采集 + 整改并行（全员投入）</li>
+<li>Week 3：同步启动eIDAS（加急通道，部分QTSP支持2周加急）</li>
+<li>Week 5-6：系统对接 + 沙箱测试</li>
+<li>Week 7-8：正式提交 + 上线验证</li>
+</ol>
+<div class="warning"><strong>风险提示：</strong>快速通道成功率约60-70%。必须在项目启动时与客户明确：加速=风险增加，尤其是eIDAS办理和碳足迹核算环节可能成为瓶颈。建议保留延期4周的缓冲条款。</div>
+</div>
+</div>
+</section>
+
+<!-- 附录 -->
+<section id="appendix">
+<h2>附录</h2>
+
+<div class="card">
+<h3>📋 A. 工具文件速查卡</h3>
+<table>
+<tr><th>编号</th><th>文件名</th><th>格式</th><th>用途</th><th>使用阶段</th></tr>
+<tr><td>01</td><td>01_DPP差距评估核查清单_电池版</td><td>Excel</td><td>32项合规现状评估</td><td>P1-P2</td></tr>
+<tr><td>02</td><td>02_DPP差距评估报告_模板</td><td>Word</td><td>评估结果正式报告</td><td>P2</td></tr>
+<tr><td>03</td><td>03_DPP数据项标准清单_电池版</td><td>Excel</td><td>38项数据要求明细</td><td>P3</td></tr>
+<tr><td>04</td><td>04_DPP数据手册模板</td><td>Excel</td><td>数据录入与追踪</td><td>P3-P5</td></tr>
+<tr><td>05</td><td>05_供应商数据问卷_中英双语</td><td>Word</td><td>向供应商采集数据</td><td>P3</td></tr>
+<tr><td>06</td><td>06_eIDAS与欧代办理指引</td><td>Word</td><td>eIDAS证书+欧代办理指南</td><td>P5</td></tr>
+<tr><td>07</td><td>07_自查工具题库与评分规则</td><td>Excel</td><td>客户自查与模拟测试</td><td>P4-P5</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>📝 B. 报告编号规则</h3>
+<div style="background:#f5f5f5;padding:16px;border-radius:8px;font-family:monospace;margin:12px 0">
+<strong>格式：</strong>SX-DPP-YYYY-NNN<br>
+<strong>示例：</strong><br>
+SX-DPP-2026-001 → 守信财税2026年第1个DPP项目<br>
+SX-DPP-2026-002 → 守信财税2026年第2个DPP项目<br><br>
+<strong>评估报告附件编号：</strong><br>
+SX-DPP-2026-001-R01 → 第1个项目的评估报告<br>
+SX-DPP-2026-001-D01 → 第1个项目的数据手册
+</div>
+</div>
+
+<div class="card">
+<h3>📧 C. 标准邮件模板</h3>
+
+<h4>C1. 项目启动通知邮件</h4>
+<div style="background:#f5f5f5;padding:16px;border-radius:8px;font-size:13px;margin:12px 0;border:1px solid var(--border)">
+<strong>主题：</strong>【守信财税】DPP合规项目启动通知 — [客户名称]<br><br>
+尊敬的[联系人]：<br><br>
+感谢贵司选择守信财税作为DPP合规咨询合作伙伴。现将项目启动相关事宜通知如下：<br><br>
+<strong>一、项目团队</strong><br>
+项目经理：[姓名] / 联系方式：[电话+邮箱]<br>
+技术顾问：[姓名]<br><br>
+<strong>二、启动会安排</strong><br>
+日期：[日期] [时间]<br>
+形式：线上/线下<br>
+参会人：[双方人员名单]<br><br>
+<strong>三、请提前准备</strong><br>
+1. 填写附件《DPP差距评估核查清单》（6个维度，请分派给对应负责人）<br>
+2. 准备营业执照副本、产品目录、现有认证清单<br>
+3. 确认截止日期：[核查清单提交截止日]<br><br>
+<strong>四、项目时间表</strong><br>
+详见附件《项目实施计划》<br><br>
+如有任何问题，请随时联系。<br><br>
+此致<br>
+守信财税 DPP合规团队
+</div>
+
+<h4>C2. 供应商问卷发送模板</h4>
+<div style="background:#f5f5f5;padding:16px;border-radius:8px;font-size:13px;margin:12px 0;border:1px solid var(--border)">
+<strong>主题：</strong>【重要】欧盟电池法规DPP数据配合请求 — [客户名称]供应商问卷<br><br>
+尊敬的[供应商联系人]：<br><br>
+根据欧盟 (EU) 2023/1542 电池法规要求，自2027年2月18日起，出口欧盟的电池产品必须附带数字产品护照（DPP），其中包含原材料溯源、化学成分等数据。<br><br>
+[客户名称]作为电池制造商，需要收集供应链各环节的相关数据以满足合规要求。现附上数据问卷，恳请贵司协助填写。<br><br>
+<strong>填写说明：</strong><br>
+1. 问卷共7个部分（Part A-G），预计填写时间约2小时<br>
+2. 涉及商业机密的信息我们将严格保密，仅用于DPP注册<br>
+3. 请在[截止日期]前回复<br><br>
+<strong>附件：</strong><br>
+1. 供应商数据问卷（中文版）<br>
+2. 填写指南<br><br>
+如有疑问请联系：[联系人+电话+邮箱]<br><br>
+感谢您的配合与支持！<br><br>
+[客户名称] 采购部<br>
+cc: 守信财税DPP项目组
+</div>
+</div>
+
+<div class="card">
+<h3>🔑 D. 关键法规日期速查</h3>
+<table>
+<tr><th>日期</th><th>事件</th><th>影响范围</th></tr>
+<tr><td>2024.2.18</td><td>法规生效（部分条款）</td><td>CE标志、合格评定</td></tr>
+<tr><td><strong>2027.2.18</strong></td><td><strong>DPP强制适用</strong></td><td><strong>LMT / 工业>2kWh / EV电池</strong></td></tr>
+<tr><td>2027.8.18</td><td>碳足迹声明要求</td><td>工业>2kWh / EV电池</td></tr>
+<tr><td>2028.2.18</td><td>碳足迹性能分级</td><td>工业>2kWh / EV电池</td></tr>
+<tr><td>2030.1.1</td><td>回收材料最低比例</td><td>工业>2kWh / EV电池</td></tr>
+<tr><td>2031.1.1</td><td>便携式电池DPP（预计）</td><td>便携式电池</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>📞 E. 紧急联系升级机制</h3>
+<table>
+<tr><th>级别</th><th>情况</th><th>联系人</th><th>响应时间</th></tr>
+<tr><td><span class="tag tag-green">L1 常规</span></td><td>数据问题、格式疑问</td><td>数据专员</td><td>24小时内</td></tr>
+<tr><td><span class="tag tag-yellow">L2 升级</span></td><td>供应商不配合、技术难题</td><td>项目经理</td><td>12小时内</td></tr>
+<tr><td><span class="tag tag-red">L3 紧急</span></td><td>Registry审核退回、法规变更</td><td>技术总监</td><td>4小时内</td></tr>
+<tr><td><span class="tag tag-red">L4 危机</span></td><td>客户面临海关扣货、监管处罚</td><td>合伙人</td><td>1小时内</td></tr>
+</table>
+</div>
+
+<div class="card" style="text-align:center;padding:40px;background:var(--bg-light)">
+<h3 style="color:var(--primary)">— 手册结束 —</h3>
+<p style="margin-top:15px;color:var(--text-light)">
+守信财税 · ShouXin Finance & Tax<br>
+DPP业务实施者操作手册 v1.0<br>
+2026年9月 · 内部使用<br><br>
+<strong>版本更新记录：</strong><br>
+v1.0 — 2026.09 — 初始版本
+</p>
+</div>
+</section>
+
+</main>
+
+<script>
+// Sidebar active state
+const links = document.querySelectorAll('.sidebar nav a');
+const sections = document.querySelectorAll('section[id], div[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    const top = s.offsetTop - 100;
+    if (window.scrollY >= top) current = s.getAttribute('id');
+  });
+  links.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+// Smooth scroll
+links.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Close mobile sidebar
+      document.querySelector('.sidebar').classList.remove('open');
+    }
+  });
+});
+</script>
+</body>
+</html>

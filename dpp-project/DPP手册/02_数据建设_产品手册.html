@@ -1,0 +1,2200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP数据建设服务 · 产品手册（细节版） — 守信财税</title>
+<meta name="description" content="帮助电池企业4-8周完成71个数据点的完整底册——从数据规划到供应商采集到数据手册交付，定价¥200,000-450,000">
+<style>
+:root {
+  --c-primary: #1A237E;
+  --c-primary-light: #283593;
+  --c-primary-lighter: #3949AB;
+  --c-primary-bg: #E8EAF6;
+  --c-primary-bg-light: #F5F6FA;
+  --c-accent: #2E7D32;
+  --c-accent-light: #43A047;
+  --c-accent-bg: #E8F5E9;
+  --c-accent-bg-light: #F1F8E9;
+  --c-amber: #E65100;
+  --c-amber-bg: #FFF3E0;
+  --c-amber-bg-light: #FFF8E1;
+  --c-red: #B71C1C;
+  --c-red-bg: #FFEBEE;
+  --c-info: #0D47A1;
+  --c-info-bg: #E3F2FD;
+  --c-canvas: #FFFFFF;
+  --c-surface: #FAFAFA;
+  --c-surface-alt: #F5F5F5;
+  --c-text: #212121;
+  --c-text-sec: #546E7A;
+  --c-text-muted: #78909C;
+  --c-border: #E0E0E0;
+  --c-border-light: #EEEEEE;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1.0625rem;
+  --fs-md: 1.15rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+  --fs-3xl: 2.5rem;
+  --fs-hero: clamp(1.9rem, 3.6vw, 2.9rem);
+  --lh-tight: 1.2;
+  --lh-body: 1.7;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+  --sidebar-w: 270px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--c-text);
+  background: var(--c-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Layout ===== */
+.page-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--c-primary);
+  color: #fff;
+  padding: var(--space-xl) 0 var(--space-2xl);
+  z-index: 100;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar-brand {
+  padding: 0 var(--space-lg);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: var(--space-lg);
+}
+
+.sidebar-brand h2 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 2px;
+}
+
+.sidebar-brand span { font-size: var(--fs-xs); color: rgba(255,255,255,0.5); }
+
+.sidebar nav { padding: 0 var(--space-sm); }
+
+.sidebar nav a {
+  display: block;
+  padding: 6px var(--space-md);
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+  line-height: 1.35;
+}
+
+.sidebar nav a.nav-sub {
+  padding-left: var(--space-xl);
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.58);
+}
+
+.sidebar nav a:hover,
+.sidebar nav a:focus-visible {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  padding-left: calc(var(--space-md) + 4px);
+}
+
+.sidebar nav a.nav-sub:hover { padding-left: calc(var(--space-xl) + 4px); }
+
+.sidebar nav a.active {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-weight: 600;
+  border-left: 3px solid var(--c-accent-light);
+  padding-left: calc(var(--space-md) - 3px);
+}
+.sidebar nav a.nav-sub.active { padding-left: calc(var(--space-xl) - 3px); }
+
+.nav-group {
+  display: block;
+  padding: var(--space-md) var(--space-md) var(--space-xs);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: rgba(255,255,255,0.38);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ===== Main ===== */
+.main {
+  padding: var(--space-2xl) clamp(var(--space-xl), 4vw, var(--space-3xl));
+  max-width: 1160px;
+}
+
+/* ===== Cover ===== */
+.cover {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 52%, var(--c-accent) 100%);
+  color: #fff;
+  padding: var(--space-3xl) var(--space-2xl);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -10%;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: coverPulse 9s ease-in-out infinite;
+}
+
+@keyframes coverPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -30%; left: -5%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(46,125,50,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cover-content { position: relative; z-index: 2; }
+
+.cover h1 {
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+
+.cover .subtitle {
+  font-size: var(--fs-lg);
+  color: rgba(255,255,255,0.92);
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+}
+
+.cover .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.72);
+}
+
+.cover-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 40px;
+  font-size: var(--fs-sm);
+  margin-top: var(--space-xl);
+  backdrop-filter: blur(4px);
+}
+
+.cover-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.cover-stat {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.cover-stat .cs-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  display: block;
+}
+
+.cover-stat .cs-label {
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.7);
+}
+
+/* ===== Section ===== */
+.section {
+  margin-bottom: var(--space-3xl);
+  padding-top: var(--space-xl);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: var(--space-lg);
+  line-height: var(--lh-tight);
+}
+
+.section-desc {
+  font-size: var(--fs-base);
+  color: var(--c-text-sec);
+  margin-bottom: var(--space-xl);
+  max-width: 760px;
+}
+
+h3.sub-title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--c-primary-light);
+  margin: var(--space-2xl) 0 var(--space-md);
+  line-height: var(--lh-tight);
+}
+
+h4.mini-title {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+p { margin-bottom: var(--space-md); }
+
+/* ===== Cards ===== */
+.problem-grid,
+.value-grid,
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.problem-card,
+.value-card,
+.why-card {
+  padding: var(--space-xl);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.problem-card:hover,
+.value-card:hover,
+.why-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-icon { font-size: 2rem; margin-bottom: var(--space-md); display: block; }
+
+.problem-card h3,
+.value-card h3,
+.why-card h3 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.problem-card p,
+.value-card p,
+.why-card p {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+.card-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-accent);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.03em;
+}
+
+/* ===== Urgency banner ===== */
+.urgency-banner {
+  background: linear-gradient(135deg, var(--c-amber-bg), var(--c-amber-bg-light));
+  border: 1px solid rgba(230,81,0,0.22);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-xl) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.urgency-banner .urgency-icon { font-size: 2rem; flex-shrink: 0; }
+.urgency-banner p { font-size: var(--fs-sm); color: #4E342E; margin: 0; line-height: 1.65; }
+.urgency-banner strong { color: var(--c-amber); }
+
+/* ===== Value statement ===== */
+.value-statement {
+  background: linear-gradient(135deg, var(--c-primary-bg-light), var(--c-accent-bg-light));
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  margin: var(--space-xl) 0;
+  border-left: 5px solid var(--c-accent);
+}
+
+.value-statement p {
+  font-size: var(--fs-lg);
+  color: var(--c-primary);
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== Method cards ===== */
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.method-card {
+  padding: var(--space-xl);
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.method-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--c-primary-lighter);
+}
+
+.method-card .method-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: #fff;
+  background: var(--c-primary);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+}
+
+.method-card h4 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.method-card p {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.65;
+}
+
+/* ===== Module cards ===== */
+.module-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.module-card {
+  padding: var(--space-2xl);
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.module-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+}
+
+.module-card.mod-b::before { background: linear-gradient(90deg, var(--c-primary), var(--c-primary-lighter)); }
+.module-card.mod-c::before { background: linear-gradient(90deg, var(--c-accent), var(--c-accent-light)); }
+
+.module-icon {
+  width: 56px; height: 56px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: var(--space-lg);
+}
+
+.mod-b .module-icon { background: linear-gradient(135deg, var(--c-primary-bg), #C5CAE9); color: var(--c-primary); }
+.mod-c .module-icon { background: linear-gradient(135deg, var(--c-accent-bg), #C8E6C9); color: var(--c-accent); }
+
+.module-card h3 {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.module-card .module-sub {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  margin-bottom: var(--space-lg);
+}
+
+.module-card ul {
+  margin: 0;
+  padding-left: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+}
+
+.module-card li {
+  margin-bottom: var(--space-sm);
+  line-height: 1.55;
+}
+
+/* ===== Tables ===== */
+.table-wrap {
+  overflow-x: auto;
+  margin: var(--space-md) 0 var(--space-xl);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  min-width: 520px;
+}
+
+table.data-table thead { background: var(--c-primary-bg-light); }
+
+table.data-table th {
+  text-align: left;
+  font-weight: 700;
+  color: var(--c-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 2px solid var(--c-primary-bg);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+table.data-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--c-border-light);
+  vertical-align: top;
+}
+
+table.data-table tbody tr:last-child td { border-bottom: none; }
+table.data-table tbody tr:hover { background: var(--c-surface-alt); }
+
+td.num, th.num { text-align: center; font-family: var(--font-mono); }
+td.num { color: var(--c-text-muted); }
+
+tr.group-row td {
+  background: var(--c-primary-bg-light);
+  font-weight: 700;
+  color: var(--c-primary);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ===== Process timeline ===== */
+.process-timeline { position: relative; margin: var(--space-2xl) 0; }
+
+.process-step { display: flex; gap: var(--space-xl); position: relative; }
+
+.process-step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 56px;
+}
+
+.process-dot {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: #fff;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.process-line { width: 2px; flex: 1; min-height: 24px; }
+
+.process-step:nth-child(1) .process-dot { background: var(--c-primary); }
+.process-step:nth-child(1) .process-line { background: linear-gradient(to bottom, var(--c-primary), var(--c-primary-light)); }
+.process-step:nth-child(2) .process-dot { background: var(--c-primary-light); }
+.process-step:nth-child(2) .process-line { background: linear-gradient(to bottom, var(--c-primary-light), var(--c-primary-lighter)); }
+.process-step:nth-child(3) .process-dot { background: var(--c-primary-lighter); }
+.process-step:nth-child(3) .process-line { background: linear-gradient(to bottom, var(--c-primary-lighter), #3F51B5); }
+.process-step:nth-child(4) .process-dot { background: #3F51B5; }
+.process-step:nth-child(4) .process-line { background: linear-gradient(to bottom, #3F51B5, var(--c-accent)); }
+.process-step:nth-child(5) .process-dot { background: var(--c-accent); }
+.process-step:nth-child(5) .process-line { background: linear-gradient(to bottom, var(--c-accent), var(--c-accent-light)); }
+.process-step:nth-child(6) .process-dot { background: var(--c-accent-light); }
+.process-step:nth-child(6) .process-line { background: linear-gradient(to bottom, var(--c-accent-light), #66BB6A); }
+.process-step:nth-child(7) .process-dot { background: #66BB6A; }
+.process-step:nth-child(7) .process-line { background: linear-gradient(to bottom, #66BB6A, #81C784); }
+.process-step:nth-child(8) .process-dot { background: #81C784; }
+.process-step:nth-child(8) .process-line { background: linear-gradient(to bottom, #81C784, #A5D6A7); }
+.process-step:nth-child(9) .process-dot { background: #A5D6A7; }
+
+.process-content { padding-bottom: var(--space-2xl); flex: 1; min-width: 0; }
+
+.process-content h3 {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.process-time {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--c-primary);
+  background: var(--c-primary-bg);
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+}
+
+.role-block {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-light);
+  border-left: 3px solid var(--c-primary-lighter);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-sm) 0;
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+}
+
+.role-block.client { border-left-color: var(--c-amber); background: var(--c-amber-bg-light); }
+.role-block.output { border-left-color: var(--c-accent); background: var(--c-accent-bg-light); }
+
+.role-block .role-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 2px;
+  color: var(--c-primary);
+}
+
+.role-block.client .role-label { color: var(--c-amber); }
+.role-block.output .role-label { color: var(--c-accent); }
+
+.role-block ul { margin: 0 0 0 var(--space-lg); font-size: var(--fs-sm); }
+.role-block p:last-child { margin-bottom: 0; }
+
+.phase-label {
+  display: inline-block;
+  background: var(--c-primary);
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-lg);
+  letter-spacing: 0.04em;
+}
+
+.phase-label.phase-2 { background: var(--c-primary-lighter); }
+.phase-label.phase-3 { background: var(--c-accent); }
+
+/* ===== Callouts ===== */
+.callout {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  margin: var(--space-lg) 0;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+}
+
+.callout-title {
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.callout p:last-child { margin-bottom: 0; }
+.callout ul { margin-bottom: 0; }
+
+.callout-check { background: var(--c-accent-bg); border-left: 4px solid var(--c-accent); color: #1B5E20; }
+.callout-info { background: var(--c-info-bg); border-left: 4px solid var(--c-info); color: var(--c-info); }
+.callout-tip { background: var(--c-amber-bg-light); border-left: 4px solid var(--c-amber); color: #4E342E; }
+.callout-warn { background: var(--c-red-bg); border-left: 4px solid var(--c-red); color: var(--c-red); }
+
+/* ===== Lists ===== */
+ul, ol { margin: var(--space-sm) 0 var(--space-md) var(--space-xl); line-height: 1.7; }
+li { margin-bottom: var(--space-xs); }
+li strong { color: var(--c-primary-light); }
+ul.clean { margin-left: var(--space-lg); font-size: var(--fs-sm); color: var(--c-text-sec); }
+
+/* ===== Deliverables ===== */
+.deliverable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.deliverable-card {
+  padding: var(--space-xl);
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deliverable-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.deliverable-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+}
+
+.deliverable-card .del-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary-bg);
+  position: absolute;
+  top: var(--space-md); right: var(--space-lg);
+}
+
+.deliverable-card h3 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+  position: relative;
+}
+
+.del-format {
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.deliverable-card p,
+.deliverable-card ul {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.deliverable-card ul { margin: 0; padding-left: var(--space-lg); }
+.deliverable-card li { margin-bottom: var(--space-xs); }
+
+/* ===== Pricing ===== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+  align-items: stretch;
+}
+
+.pricing-card {
+  padding: var(--space-2xl);
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.pricing-card.recommended {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 2px var(--c-accent), var(--shadow-md);
+  background: linear-gradient(to bottom, #fff, var(--c-accent-bg-light));
+}
+
+.pricing-card.recommended::after {
+  content: '\2B50 推荐';
+  position: absolute;
+  top: -13px; right: 16px;
+  background: linear-gradient(135deg, var(--c-accent), var(--c-accent-light));
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(46,125,50,0.3);
+}
+
+.plan-name {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xs);
+}
+
+.plan-title { font-size: var(--fs-xl); font-weight: 800; color: var(--c-primary); margin-bottom: var(--space-sm); }
+.plan-suitable { font-size: var(--fs-sm); color: var(--c-text-sec); margin-bottom: var(--space-lg); }
+
+.plan-price {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: var(--space-xl);
+  line-height: 1.1;
+}
+
+.plan-price span { font-size: var(--fs-sm); font-weight: 400; color: var(--c-text-muted); }
+
+.pricing-card ul { margin: 0; padding-left: var(--space-lg); font-size: var(--fs-sm); color: var(--c-text-sec); }
+.pricing-card li { margin-bottom: var(--space-sm); line-height: 1.5; }
+
+.pricing-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.pricing-note {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+}
+
+.pricing-note strong { color: var(--c-primary); display: block; margin-bottom: 2px; }
+
+/* ===== FAQ ===== */
+.faq-list { margin: var(--space-xl) 0; }
+
+.faq-item {
+  margin: var(--space-sm) 0;
+  border: 1px solid var(--c-border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: var(--space-md) var(--space-lg);
+  font-weight: 600;
+  color: var(--c-primary);
+  cursor: pointer;
+  background: var(--c-surface);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: background 0.2s ease;
+  font-size: var(--fs-base);
+}
+
+.faq-item summary:hover { background: var(--c-primary-bg-light); }
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::before {
+  content: '\25B8';
+  font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.faq-item[open] summary::before { transform: rotate(90deg); }
+
+.faq-answer {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.75;
+  border-top: 1px solid var(--c-border-light);
+}
+
+.faq-answer p:last-child { margin-bottom: 0; }
+
+/* ===== CTA ===== */
+.cta-section {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 60%, var(--c-accent) 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3xl) var(--space-2xl);
+  text-align: center;
+  color: #fff;
+  margin: var(--space-2xl) 0;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -40%; right: -10%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-section h2 { font-size: var(--fs-2xl); font-weight: 800; margin-bottom: var(--space-md); position: relative; }
+.cta-section > p { font-size: var(--fs-base); color: rgba(255,255,255,0.9); margin-bottom: var(--space-xl); position: relative; }
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  position: relative;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+.cta-btn.primary { background: #fff; color: var(--c-primary); }
+.cta-btn.secondary { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+.cta-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  position: relative;
+}
+
+.cta-step { text-align: center; font-size: var(--fs-sm); color: rgba(255,255,255,0.82); }
+
+.cta-step .step-num {
+  display: block;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  line-height: 34px;
+  margin: 0 auto var(--space-sm);
+}
+
+/* ===== Appendix ===== */
+.appendix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.appendix-block {
+  padding: var(--space-lg);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+}
+
+.appendix-block h4 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--c-primary-bg);
+}
+
+.appendix-block table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.appendix-block th {
+  text-align: left; font-weight: 700; color: var(--c-primary);
+  padding: var(--space-xs) var(--space-sm); border-bottom: 1px solid var(--c-border); font-size: var(--fs-xs);
+}
+.appendix-block td { padding: var(--space-xs) var(--space-sm); border-bottom: 1px solid var(--c-border-light); vertical-align: top; }
+.appendix-block tbody tr:last-child td { border-bottom: none; }
+
+.def-list { margin: 0; }
+.def-list dt { font-weight: 700; color: var(--c-primary); font-size: var(--fs-sm); margin-top: var(--space-sm); }
+.def-list dt:first-child { margin-top: 0; }
+.def-list dd { font-size: var(--fs-sm); color: var(--c-text-sec); margin: 2px 0 0; }
+
+.about-block {
+  padding: var(--space-xl);
+  background: var(--c-primary-bg-light);
+  border-radius: var(--radius-md);
+  margin: var(--space-xl) 0;
+}
+
+.about-block h4 { font-size: var(--fs-lg); font-weight: 700; color: var(--c-primary); margin-bottom: var(--space-md); }
+.about-block p { font-size: var(--fs-sm); color: var(--c-text-sec); line-height: 1.7; }
+
+/* ===== Footer ===== */
+.doc-footer {
+  margin-top: var(--space-3xl);
+  padding: var(--space-xl) 0;
+  border-top: 2px solid var(--c-primary-bg);
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+  text-align: center;
+}
+
+/* ===== Mobile ===== */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 200;
+  background: var(--c-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.42); z-index: 99; }
+.sidebar-overlay.open { display: block; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--c-primary-lighter);
+  outline-offset: 2px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    position: fixed;
+    width: 290px;
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .page-layout { grid-template-columns: 1fr; }
+  .menu-toggle { display: block; }
+  .main { padding: var(--space-xl) var(--space-lg); padding-top: calc(var(--space-xl) + 52px); }
+  .cover { padding: var(--space-2xl) var(--space-lg); }
+  .cover h1 { font-size: var(--fs-2xl); }
+  .pricing-grid, .deliverable-grid { grid-template-columns: 1fr; }
+  .module-grid { grid-template-columns: 1fr; }
+  .method-grid { grid-template-columns: 1fr 1fr; }
+  .cta-steps { gap: var(--space-md); }
+  .process-step { gap: var(--space-md); }
+  .process-step-marker { width: 44px; }
+  .process-dot { width: 40px; height: 40px; font-size: var(--fs-xs); }
+}
+
+@media (max-width: 600px) {
+  .method-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== Print ===== */
+@media print {
+  .sidebar, .menu-toggle, .sidebar-overlay { display: none !important; }
+  .page-layout { grid-template-columns: 1fr; }
+  .main { padding: 0; max-width: none; }
+  .cover {
+    break-after: page;
+    background: var(--c-primary) !important;
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cover::before, .cover::after { display: none; }
+  .section { break-inside: auto; padding-top: 1rem; }
+  h3.sub-title { break-after: avoid; }
+  .pricing-card, .deliverable-card, .why-card, .problem-card,
+  .module-card, .faq-item, .method-card { break-inside: avoid; }
+  .table-wrap { break-inside: avoid; }
+  .role-block, .callout { break-inside: avoid; }
+  .cta-section { background: var(--c-primary) !important; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { text-decoration: none; color: inherit; }
+}
+
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cover::before { animation: none; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" aria-label="打开导航菜单" onclick="toggleSidebar()">☰ 目录</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="page-layout">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <h2>产品手册 · 细节版</h2>
+    <span>DPP数据建设服务 v2.0</span>
+  </div>
+  <nav aria-label="章节导航">
+    <a href="#cover">封面</a>
+
+    <span class="nav-group">服务内容</span>
+    <a href="#problem">① 您面对的问题</a>
+    <a href="#solution">② 我们能帮您做什么</a>
+    <a class="nav-sub" href="#methodology">四步数据建设体系</a>
+    <a class="nav-sub" href="#datacard-fields">数据卡35字段详解</a>
+    <a class="nav-sub" href="#modules">两个服务模块</a>
+    <a href="#process">③ 我们具体怎么工作</a>
+    <a class="nav-sub" href="#phase1">Phase 1 数据规划</a>
+    <a class="nav-sub" href="#phase2">Phase 2 供应商采集</a>
+    <a class="nav-sub" href="#phase3">Phase 3 手册整合</a>
+    <a href="#deliverables">④ 您会收到什么</a>
+    <a href="#pricing">⑤ 服务定价</a>
+    <a href="#why-us">⑥ 为什么选择我们</a>
+    <a href="#faq">⑦ 常见问题</a>
+    <a href="#cta">⑧ 立即开始</a>
+
+    <span class="nav-group">附录</span>
+    <a href="#app-fields">数据卡35字段完整清单</a>
+    <a href="#app-questionnaire">供应商问卷结构</a>
+    <a href="#app-glossary">术语简表</a>
+    <a href="#app-about">关于我们</a>
+  </nav>
+</aside>
+
+<main class="main">
+
+<!-- ===== COVER ===== -->
+<section class="cover" id="cover">
+  <div class="cover-content">
+    <h1>DPP数据建设服务</h1>
+    <p class="subtitle">帮电池企业4-8周完成71个数据点的完整底册<br>从数据规划 → 供应商采集 → 数据手册交付，全程专业托管</p>
+    <div class="meta">
+      <span>v2.0 · 2026年9月</span>
+      <span>守信财税 · DPP业务线</span>
+    </div>
+    <div class="cover-badge">🔋 专注欧盟电池法规 (EU) 2023/1542 合规服务</div>
+    <div class="cover-stats">
+      <div class="cover-stat"><span class="cs-num">71</span><span class="cs-label">数据点全覆盖</span></div>
+      <div class="cover-stat"><span class="cs-num">35</span><span class="cs-label">字段 · 每型号数据卡</span></div>
+      <div class="cover-stat"><span class="cs-num">9</span><span class="cs-label">步标准流程</span></div>
+      <div class="cover-stat"><span class="cs-num">4-8周</span><span class="cs-label">完成完整数据底册</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第一部分：您面对的问题 ===== -->
+<section class="section" id="problem">
+  <div class="section-label">Part 01</div>
+  <h2 class="section-title">您面对的问题</h2>
+  <p class="section-desc">差距评估已经完成，您知道了"差什么"——但知道问题不等于解决问题。从「知道缺什么」到「数据齐备可提交」，中间还有大量系统性工作要做。</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <span class="card-icon">📋</span>
+      <h3>知道差距≠填补差距</h3>
+      <p>差距评估报告清楚地告诉您71个数据点缺了哪些，但每个缺口都需要实际收集、整理、核验——这是一项系统性工程，不是看看报告就能自动完成的。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">🏢</span>
+      <h3>数据分散在多个部门</h3>
+      <p>基本信息在行政/关务，技术参数在研发，检测报告在质量，BMS数据在IT，采购数据在供应链——没有一个部门掌握全貌，跨部门协调往往推不动。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">🤝</span>
+      <h3>供应商不配合</h3>
+      <p>再生含量、CRM原产国、冶炼厂信息等关键数据握在上游供应商手中。问卷发出去石沉大海、回复质量差、数据口径不一致——企业自己催收缺乏专业工具和谈判经验。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">📊</span>
+      <h3>数据格式不统一</h3>
+      <p>不同供应商给的数据格式各异——Excel、PDF、邮件甚至口头回复，单位不一、口径不同，没有标准化模板，汇总后无法直接使用，还需大量人工清洗转换。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">🔍</span>
+      <h3>缺乏核验标准</h3>
+      <p>收到的数据是否准确、是否完整、是否符合法规口径？没有系统的核验流程，错误数据一旦提交到注册中心，后果比数据缺失更严重——可能触发市场监督调查。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">⏰</span>
+      <h3>时间紧迫</h3>
+      <p>2027年2月18日起，EV/LMT/工业电池(>2kWh)必须有电池护照方可投放欧盟市场。数据采集、供应商协调、核验整理，每一项都需要时间，越晚启动成本越高。</p>
+    </div>
+  </div>
+
+  <h3 class="sub-title">数据收集的5大难点详解</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>难点</th><th>具体表现</th><th>影响</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>1. 数据分散</strong></td><td>研发部门掌握技术参数、采购部门掌握供应商信息、质量部门掌握检测报告、IT部门掌握BMS数据——各部门各自为政，数据孤岛严重</td><td>跨部门协调耗时2-4周，且容易遗漏关键数据</td></tr>
+        <tr><td><strong>2. 供应商不配合</strong></td><td>缺乏强制力要求供应商提供数据；沟通成本高，中小供应商不理解DPP要求；数据质量参差不齐，回复内容不完整</td><td>供应商数据回收率通常不足50%，严重拖延进度</td></tr>
+        <tr><td><strong>3. 格式不统一</strong></td><td>Excel/PDF/邮件/口头回复混杂；单位不一致（如容量用Ah vs Wh）；数据口径不统一（如再生含量的计算基准不同）</td><td>数据清洗工作量巨大，且容易出错</td></tr>
+        <tr><td><strong>4. 动态数据难追踪</strong></td><td>SoH（健康状态）、循环次数、温度历史等使用数据持续变化；需要与BMS系统对接或定期人工采集</td><td>静态数据一次收集即可，但动态数据需要建立持续更新机制</td></tr>
+        <tr><td><strong>5. 法规合规判断难</strong></td><td>71个数据点中哪些必须填、哪些可选、哪些条件适用——不同电池类别（EV/LMT/工业）要求不同；部分数据点截至2027年2月暂不需要填写</td><td>判断错误可能导致提交后被退回或触发合规风险</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="urgency-banner">
+    <div class="urgency-icon">⚡</div>
+    <p><strong>核心矛盾：</strong>差距评估解决了"不知道"的问题，但解决"怎么补"需要专业的数据规划能力、供应商管理经验和标准化核验体系。<strong>数据建设服务，就是帮您把差距变成可执行、可交付的完整数据底册。</strong></p>
+  </div>
+</section>
+
+<!-- ===== 第二部分：我们能帮您做什么 ===== -->
+<section class="section" id="solution">
+  <div class="section-label">Part 02</div>
+  <h2 class="section-title">我们能帮您做什么</h2>
+
+  <div class="value-statement">
+    <p>基于差距评估的结果，帮您建立每个电池型号的完整数据底册，辅导您从供应商那里回收缺失数据，最终形成可以直接提交注册中心的数据手册。</p>
+  </div>
+
+  <p class="section-desc" style="margin-top:var(--space-xl)">一句话总结：<strong>不用自己摸索数据怎么收、问卷怎么发、供应商怎么催——我们全包。</strong></p>
+
+  <h3 class="sub-title" id="methodology">我们的方法论：四步数据建设体系</h3>
+  <p>我们将复杂的数据建设工作拆解为四个标准化步骤，确保每个环节可控、可追溯、可复核：</p>
+
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="method-num">1</div>
+      <h4>标准化数据卡</h4>
+      <p>为每个电池型号（SKU）创建一张数据卡，包含35个标准字段，覆盖法规全部数据要求。字段分6组管理，每个字段标注状态：✅已填 / ⏳待补 / ⚪不适用。</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">2</div>
+      <h4>结构化采集</h4>
+      <p>基于数据卡的缺口分析，制定供应商问卷（中英双语7个Part）+ 催收机制（7-14-21天三级节奏）+ 责任分工（客户内部谁负责什么、我方负责什么）。</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">3</div>
+      <h4>三级数据质量检查</h4>
+      <p><strong>L1 逻辑校验：</strong>数值范围合理性、单位一致性、必填项完整性<br><strong>L2 交叉验证：</strong>多来源数据比对、历史趋势分析、行业基准对比<br><strong>L3 法规合规：</strong>71数据点逐项检查、强制项确认、条件适用项判断</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">4</div>
+      <h4>数据手册整合</h4>
+      <p>将所有通过核验的数据整合为完整数据手册——包含数据卡、采集台账、供应商清单、合规性报告——可直接提交注册中心用于护照数据申报。</p>
+    </div>
+  </div>
+
+  <h3 class="sub-title" id="datacard-fields">数据卡35字段详解（分6组）</h3>
+  <p>每个电池型号一张数据卡，35个字段分6组管理，严格对应欧盟电池法规 (EU) 2023/1542 附录XIII的数据要求：</p>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>分组</th><th>字段数</th><th>包含字段</th><th>数据来源</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>基本信息组</strong></td>
+          <td class="num">9项</td>
+          <td>制造商名称、地址与联系方式、电池类别、电池型号、序列号/批号、制造日期、制造地点、化学体系、电池重量</td>
+          <td>企业内部 / 生产系统 / 规格书</td>
+        </tr>
+        <tr>
+          <td><strong>技术参数组</strong></td>
+          <td class="num">6项</td>
+          <td>标称电压、额定容量、额定功率/能量、循环寿命（预期循环次数）、预期寿命（日历年限）、质保条款</td>
+          <td>规格书 / 研发部门 / 测试报告</td>
+        </tr>
+        <tr>
+          <td><strong>材料组</strong></td>
+          <td class="num">6项</td>
+          <td>有害物质信息、电池组件清单、关键原材料(CRM)清单、CRM原产国、冶炼厂/精炼厂名称与地址、再生含量比例（钴/铅/锂/镍）</td>
+          <td>供应商 / BOM表 / 检测报告</td>
+        </tr>
+        <tr>
+          <td><strong>合规组</strong></td>
+          <td class="num">5项</td>
+          <td>CE认证/DoC符合性声明、测试报告、碳足迹声明、碳足迹等级、供应链尽职调查政策</td>
+          <td>认证机构 / LCA机构 / 合规部门</td>
+        </tr>
+        <tr>
+          <td><strong>供应链组</strong></td>
+          <td class="num">4项</td>
+          <td>供应商名称、供应层级（一级/二级）、负责的数据字段、数据提供日期与版本</td>
+          <td>采购部门 / 供应商问卷</td>
+        </tr>
+        <tr>
+          <td><strong>动态数据组</strong></td>
+          <td class="num">5项</td>
+          <td>健康状态(SoH)数据来源与更新频率、充放电循环次数、温度历史记录、故障与维护记录机制、电池状态（原始/再利用/废弃物）</td>
+          <td>BMS系统 / IT部门 / 售后部门</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">📌 字段完整性说明</div>
+    <p>35个字段并非所有型号都必须全部填写。每个字段根据电池类别（EV/LMT/工业）和企业实际情况标注适用性。不适用的字段标注"⚪不适用"并注明法规依据。所有"✅已填"字段必须挂载证据文件编号，可追溯到原始文件。</p>
+  </div>
+
+  <h3 class="sub-title" id="modules">服务包含两个模块</h3>
+
+  <div class="module-grid">
+    <div class="module-card mod-b">
+      <div class="module-icon">📐</div>
+      <h3>模块一：数据规划</h3>
+      <p class="module-sub">为每个电池型号建立标准化的DPP数据卡，明确数据缺口与采集路径</p>
+      <ul>
+        <li><strong>数据卡建立流程：</strong>从差距评估报告迁移已有数据 → 为每个型号创建数据卡模板 → 字段状态标注（✅已填/⏳待补/⚪不适用）→ 数据缺口自动统计</li>
+        <li><strong>缺口分析报告：</strong>总体缺口统计（多少字段待补）→ 按来源分类（内部数据/供应商数据/第三方检测）→ 按优先级分类（阻塞项/重要项/可选项）</li>
+        <li><strong>采集计划：</strong>供应商清单（名称、联系人、负责的数据字段）→ 采集时间表（每批次问卷发放/回收/核验时间）→ 责任分工</li>
+        <li><strong>准备供应商问卷：</strong>中英双语标准问卷（Part A-G，7个部分）</li>
+      </ul>
+    </div>
+    <div class="module-card mod-c">
+      <div class="module-icon">🔗</div>
+      <h3>模块二：供应商采集辅导</h3>
+      <p class="module-sub">代发问卷、催收管理、三级核验——确保供应商数据高质量入库</p>
+      <ul>
+        <li><strong>问卷发放流程：</strong>中英双语标准问卷（Part A-G共7部分）附采集指引信（用途说明+保密承诺+截止日期）</li>
+        <li><strong>催收管理机制：</strong>第1周发放+说明电话 → 第2周未回复供应商提醒 → 第3周逾期供应商升级（客户协助）→ 第4周最终催收+替代方案讨论</li>
+        <li><strong>数据核验三级体系：</strong>L1 逻辑校验（数值范围/单位/必填项）→ L2 交叉验证（多源比对/趋势分析/基准对比）→ L3 法规合规（71数据点逐项检查）</li>
+        <li><strong>数据录入：</strong>核验通过的数据录入数据手册，形成完整底册</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">📌 两个模块的关系</div>
+    <p>数据规划是框架，供应商采集是填充。先做数据规划建立数据卡和缺口分析，缺口中"供应商数据缺口"直接进入采集辅导的工作范围。两个模块打包执行效果最佳，避免信息断层和重复沟通。</p>
+  </div>
+</section>
+
+<!-- ===== 第三部分：服务包含两个模块（详细展开） ===== -->
+<section class="section" id="modules-detail">
+  <div class="section-label">模块详解</div>
+  <h2 class="section-title">供应商问卷结构与催收管理详解</h2>
+
+  <h3 class="sub-title">供应商问卷结构（Part A-G，7个部分）</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Part</th><th>主题</th><th>采集内容</th><th>对应数据卡字段</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Part A</strong></td><td>供应商基本信息</td><td>公司全称、注册地址、联系人、成立时间、员工人数、主营业务范围</td><td>供应链组</td></tr>
+        <tr><td><strong>Part B</strong></td><td>电池材料组成</td><td>正极材料、负极材料、电解液成分、隔膜材料、外壳材料；有害物质含量声明</td><td>材料组</td></tr>
+        <tr><td><strong>Part C</strong></td><td>生产工艺数据</td><td>关键工艺步骤、能耗数据、生产地点、质量管理体系认证</td><td>技术参数组（部分）</td></tr>
+        <tr><td><strong>Part D</strong></td><td>环境数据（碳足迹相关）</td><td>碳排放数据、LCA研究摘要、可再生能源使用比例、废弃物处理方案</td><td>合规组（碳足迹）</td></tr>
+        <tr><td><strong>Part E</strong></td><td>质量与认证数据</td><td>ISO 9001/14001/45001证书编号、IATF 16949、测试报告编号、产品合规声明</td><td>合规组</td></tr>
+        <tr><td><strong>Part F</strong></td><td>供应链尽调信息</td><td>关键原材料(CRM)来源国、冶炼厂/精炼厂名称地址、尽职调查政策、RMI审核情况</td><td>材料组+合规组</td></tr>
+        <tr><td><strong>Part G</strong></td><td>数据授权声明</td><td>数据真实性承诺、配合DPP数据对接授权、定期更新承诺、保密条款确认</td><td>全局</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-title">催收管理机制</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>时间节点</th><th>动作</th><th>方式</th><th>责任人</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>第1周</strong></td><td>问卷发放 + 说明电话</td><td>邮件发送正式问卷 + 电话沟通说明用途、保密性、截止日期</td><td>我方项目经理</td></tr>
+        <tr><td><strong>第2周</strong></td><td>未回复供应商首次提醒</td><td>邮件/微信温和提醒，询问是否需要填写协助</td><td>我方项目经理</td></tr>
+        <tr><td><strong>第3周</strong></td><td>逾期供应商升级催收</td><td>电话+邮件强调截止日期，同步通知客户采购部门协助介入</td><td>我方+客户采购</td></tr>
+        <tr><td><strong>第4周</strong></td><td>最终催收 + 替代方案讨论</td><td>最后通牒；对C级供应商讨论替代方案（第三方检测/更换供应商）</td><td>我方项目经理</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-title">数据核验三级体系</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>级别</th><th>核验内容</th><th>具体方法</th><th>通过标准</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>L1 逻辑校验</strong></td>
+          <td>数据完整性与合理性</td>
+          <td>①必填项100%有值 ②数值在合理范围内（如容量>0、重量>0）③单位一致性检查（Ah/Wh/kg统一）④日期格式规范</td>
+          <td>必填项无空值，数值逻辑自洽</td>
+        </tr>
+        <tr>
+          <td><strong>L2 交叉验证</strong></td>
+          <td>多来源数据一致性</td>
+          <td>①同一材料不同供应商的数据比对 ②再生含量加总合理性检查（总比例不超过100%）③历史数据趋势分析 ④行业基准对比（偏离超过30%标记）</td>
+          <td>多源数据无矛盾，偏差在可接受范围</td>
+        </tr>
+        <tr>
+          <td><strong>L3 法规合规</strong></td>
+          <td>法规逐项符合性</td>
+          <td>①71个数据点逐项核对 ②强制项是否齐备 ③条件适用项的判断依据是否正确 ④测试方法是否符合法规指定标准 ⑤数据粒度是否满足注册要求</td>
+          <td>每个数据点的合规性已确认，风险项已标注</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 第四部分：9步工作流程 ===== -->
+<section class="section" id="process">
+  <div class="section-label">Part 03</div>
+  <h2 class="section-title">我们具体怎么工作</h2>
+  <p class="section-desc">9个标准步骤，分三个阶段推进。标准版4-6周完成，旗舰版6-8周完成。全程NDA保密，资料经加密安全通道传递。</p>
+
+  <div class="process-timeline">
+
+    <!-- Phase 1 -->
+    <span class="phase-label">Phase 1 · 数据规划阶段（第1-2周）</span>
+
+    <div class="process-step" id="phase1">
+      <div class="process-step-marker"><div class="process-dot">①</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>项目启动与范围确认</h3>
+        <span class="process-time">第1-2天</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>合同签署、NDA保密协议签署</li>
+            <li>召开项目启动会（线上/线下），明确项目目标、时间计划、沟通机制</li>
+            <li>确认电池型号清单（SKU）与适用的数据字段范围</li>
+            <li>指定项目经理（您的唯一接口人），建立加密沟通通道</li>
+          </ul>
+        </div>
+        <div class="role-block client">
+          <span class="role-label">您需要配合</span>
+          <ul>
+            <li>指定内部项目经理（协调各部门数据的唯一接口人）</li>
+            <li>提供完整SKU清单（型号名称、电池类别、规格书）</li>
+            <li>安排启动会参与人员（项目经理+技术负责人+采购负责人）</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>《项目启动书》《范围确认书》《沟通机制说明》</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">②</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>数据卡建立</h3>
+        <span class="process-time">第2-5天</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>从差距评估报告迁移已有数据，避免重复收集</li>
+            <li>为每个电池型号创建数据卡模板（35字段 × N个型号）</li>
+            <li>逐项标注字段状态：✅已填（含证据编号）/ ⏳待补 / ⚪不适用（注明法规依据）</li>
+            <li>自动统计数据缺口（多少字段待补、按组分布情况）</li>
+          </ul>
+        </div>
+        <div class="role-block client">
+          <span class="role-label">您需要配合</span>
+          <ul>
+            <li>提供已有数据文件（规格书、质保文件、BOM表、认证记录、测试报告等）</li>
+            <li>安排研发/质量部门对口人员解答技术数据疑问</li>
+            <li>确认数据卡初稿内容（特别是"不适用"字段的判定）</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>数据卡初稿（含已迁移数据、字段状态标注、证据文件编号）</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">③</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>缺口分析与采集计划</h3>
+        <span class="process-time">第5-10天</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li><strong>缺口统计：</strong>总体缺口统计（总字段数 vs 已填 vs 待补 vs 不适用）</li>
+            <li><strong>按来源分类：</strong>内部数据缺口（客户可自补）/ 供应商数据缺口（需供应商配合）/ 第三方数据缺口（需检测机构出具）</li>
+            <li><strong>按优先级分类：</strong>阻塞项（直接影响注册，如制造商信息、CE/DoC）/ 重要项（影响合规评级）/ 可选项（有则更好）</li>
+            <li><strong>制定采集计划：</strong>供应商清单、采集时间表、催收节奏、责任分工</li>
+            <li><strong>准备问卷：</strong>中英双语供应商数据问卷（Part A-G），附采集指引信</li>
+          </ul>
+        </div>
+        <div class="role-block client">
+          <span class="role-label">您需要配合</span>
+          <ul>
+            <li>确认采集计划（优先级排序、时间节点是否合理）</li>
+            <li>提供供应商联系人清单（名称、联系人、邮箱、电话、供应材料）</li>
+            <li>确认内部各部门的数据提供责任人</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>《数据缺口分析报告》《采集计划》《供应商问卷》《供应商清单》</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <span class="phase-label phase-2">Phase 2 · 供应商采集阶段（第2-6周）</span>
+
+    <div class="process-step" id="phase2">
+      <div class="process-step-marker"><div class="process-dot">④</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>问卷发放与催收</h3>
+        <span class="process-time">第2-4周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>代发供应商问卷（中英双语），每份附采集指引信（用途说明+保密承诺+截止日期）</li>
+            <li>首次发放前先电话沟通说明重要性，提高回复率</li>
+            <li>建立催收台账，按7-14-21天标准节奏跟进</li>
+            <li>协调供应商技术问题（数据口径说明、填写指导）</li>
+            <li>逾期供应商升级至客户采购部门协助</li>
+          </ul>
+        </div>
+        <div class="role-block client">
+          <span class="role-label">您需要配合</span>
+          <ul>
+            <li>协助联系关键供应商（特别是不配合的供应商，由采购部门施压）</li>
+            <li>处理供应商提出的技术问题（如产品规格确认）</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>已发放问卷清单、催收台账（含每次催收记录）</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">⑤</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>数据收集与初步核验</h3>
+        <span class="process-time">第3-5周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>接收供应商回复的数据与支撑文件</li>
+            <li><strong>L1 逻辑校验：</strong>逐项核对必填项是否完整、数值范围是否合理、单位是否一致</li>
+            <li><strong>L2 交叉验证：</strong>多来源数据比对、再生含量加总合理性检查、行业基准对比</li>
+            <li>标记问题数据（缺失/异常/矛盾），退回供应商补充或更正</li>
+            <li>更新采集台账，记录核验状态</li>
+          </ul>
+        </div>
+        <div class="role-block client">
+          <span class="role-label">您需要配合</span>
+          <ul>
+            <li>安排技术部门解答数据疑问（如供应商提供的参数与客户认知不一致时）</li>
+            <li>确认哪些数据可以接受、哪些需要供应商重新提供</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>数据核验报告（第一轮）、问题数据退回清单</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">⑥</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>数据补全与深化</h3>
+        <span class="process-time">第4-6周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>针对仍未回收的数据制定补救方案（替代数据来源、简化采集方式）</li>
+            <li>协调第三方检测（如供应商无法提供再生含量数据，协助委托检测机构）</li>
+            <li>补充动态数据接口方案（BMS数据字段与更新频率确认）</li>
+            <li>评估C级供应商（拒不配合），建议更换或升级沟通层级</li>
+          </ul>
+        </div>
+        <div class="role-block client">
+          <span class="role-label">您需要配合</span>
+          <ul>
+            <li>决策是否进行第三方检测（涉及费用）</li>
+            <li>提供检测样品（如需）</li>
+            <li>对C级供应商做出处理决策（更换/升级沟通/接受部分数据）</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>补救方案、第三方检测报告（如有）、动态数据接口方案</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <span class="phase-label phase-3">Phase 3 · 数据手册整合阶段（第6-8周）</span>
+
+    <div class="process-step" id="phase3">
+      <div class="process-step-marker"><div class="process-dot">⑦</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>法规合规性核验</h3>
+        <span class="process-time">第6-7周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li><strong>L3 法规合规检查：</strong>71个数据点逐项核对，确认每个数据点的合规性</li>
+            <li>标注合规风险项（如测试方法不符、数据粒度不够、证书覆盖范围不足）</li>
+            <li>区分强制项（必须填写）/ 条件适用项（判断适用性是否正确）/ 暂缓项（截至2027年2月无需填写）</li>
+            <li>生成合规性报告，附整改建议与优先级</li>
+          </ul>
+        </div>
+        <div class="role-block client">
+          <span class="role-label">您需要配合</span>
+          <ul>
+            <li>参加合规评审会（30-60分钟，逐项确认风险项处置方案）</li>
+            <li>对风险项做出决策（立即整改/接受风险/延后处理）</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>《法规合规性报告》（71项逐项检查结果 + 风险项清单 + 处置建议）</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">⑧</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>数据手册编制</h3>
+        <span class="process-time">第7-8周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>整合所有通过核验的数据，编制完整数据手册</li>
+            <li>数据手册包含：数据卡 + 采集台账 + 供应商清单 + 缺口分析报告 + 合规性报告</li>
+            <li>双人审核：编制人 + 审核人分别签字，确保数据质量</li>
+            <li>内部审核通过后交付客户确认</li>
+          </ul>
+        </div>
+        <div class="role-block client">
+          <span class="role-label">您需要配合</span>
+          <ul>
+            <li>审核数据手册（重点关注数据准确性和完整性）</li>
+            <li>签字确认（作为数据手册的最终确认方）</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>完整数据手册（Excel+PDF格式，含全部5大交付物）</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">⑨</div></div>
+      <div class="process-content">
+        <h3>交付与衔接</h3>
+        <span class="process-time">第8周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>召开交付会议，逐项说明数据手册内容与使用方法</li>
+            <li>交付完整数据手册套件</li>
+            <li>制定数据维护计划（动态数据更新机制、年度审核计划、数据变更管理流程）</li>
+            <li>衔接③注册上线服务：数据手册可直接用于护照数据提交</li>
+          </ul>
+        </div>
+        <div class="role-block client">
+          <span class="role-label">您需要配合</span>
+          <ul>
+            <li>参加交付会议（确认数据手册内容、了解后续维护要求）</li>
+            <li>确认下一步服务意向（③注册上线 / ④年度合规托管）</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>完整数据手册套件、《数据维护计划》、《下一步服务建议书》</p>
+        </div>
+        <div class="callout callout-info">
+          <div class="callout-title">📌 后续链路</div>
+          <p>① 差距评估 → <strong>② 数据建设（本服务）</strong> → ③ 注册上线（护照数据提交） → ④ 年度合规托管。可整体委托，也可按阶段分别推进。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 第五部分：您会收到什么 ===== -->
+<section class="section" id="deliverables">
+  <div class="section-label">Part 04</div>
+  <h2 class="section-title">您会收到什么</h2>
+  <p class="section-desc">五大交付物，覆盖从数据底册到供应商管理到合规性验证的全链路，确保数据可直接用于注册中心提交。</p>
+
+  <div class="deliverable-grid">
+    <div class="deliverable-card">
+      <span class="del-num">01</span>
+      <h3>数据手册（核心交付物）</h3>
+      <span class="del-format">Excel + PDF</span>
+      <ul>
+        <li><strong>数据卡：</strong>每型号一张，35字段完整填写，含数据版本号、数据来源、更新时间</li>
+        <li><strong>采集台账：</strong>所有数据来源、收集时间、责任人、核验状态（L1/L2/L3通过标记）</li>
+        <li><strong>供应商清单：</strong>供应商名称、联系方式、贡献数据项、配合度评分（A/B/C）</li>
+      </ul>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">02</span>
+      <h3>数据缺口分析报告</h3>
+      <span class="del-format">PDF + Excel</span>
+      <ul>
+        <li><strong>初始缺口统计：</strong>差距评估后 → 数据规划后 → 采集后的三阶段缺口对比</li>
+        <li><strong>按来源分类：</strong>内部缺口 / 供应商缺口 / 第三方缺口，各占比例</li>
+        <li><strong>按优先级分类：</strong>阻塞项 / 重要项 / 可选项，逐项标注</li>
+        <li><strong>补救措施记录：</strong>对每个未闭环缺口的处置方案与状态</li>
+      </ul>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">03</span>
+      <h3>供应商数据回收包</h3>
+      <span class="del-format">完整档案</span>
+      <ul>
+        <li><strong>已回收问卷：</strong>中英双语原件，按供应商分文件夹归档</li>
+        <li><strong>供应商数据核验报告：</strong>每个供应商的数据经L1/L2/L3三级核验的详细记录</li>
+        <li><strong>供应商配合度评估表：</strong>A（主动完整）/B（需催收）/C（消极对抗）评级与判定依据</li>
+      </ul>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">04</span>
+      <h3>数据合规性报告</h3>
+      <span class="del-format">PDF</span>
+      <ul>
+        <li><strong>71项合规性检查表：</strong>逐项标注合规状态（✅合规/⚠️风险/❌不合规/⚪暂缓）</li>
+        <li><strong>风险项清单：</strong>不合规项的具体原因、影响程度、处置建议</li>
+        <li><strong>合规声明：</strong>整体合规度评估，可用于内部汇报和监管沟通</li>
+      </ul>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">05</span>
+      <h3>数据维护计划</h3>
+      <span class="del-format">报告章节</span>
+      <ul>
+        <li><strong>动态数据更新机制：</strong>SoH、循环次数等动态数据的更新频率、责任人、采集流程</li>
+        <li><strong>年度数据审核计划：</strong>再生含量等年度数据的刷新时间表</li>
+        <li><strong>数据变更管理流程：</strong>当电池设计/供应商/法规发生变化时的数据更新流程</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第六部分：服务定价 ===== -->
+<section class="section" id="pricing">
+  <div class="section-label">Part 05</div>
+  <h2 class="section-title">服务定价</h2>
+  <p class="section-desc">根据SKU数量和数据复杂度分档定价。数据建设是差距评估之后的核心执行环节，与后续注册上线服务无缝衔接。</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card recommended">
+      <div class="plan-name">标准版</div>
+      <div class="plan-title">数据建设标准包</div>
+      <div class="plan-suitable">适合：SKU≤20，供应商≤10家</div>
+      <div class="plan-price">¥200,000-300,000</div>
+      <ul>
+        <li>数据规划 + 供应商采集打包</li>
+        <li>数据卡建立（≤20个型号 × 35字段）</li>
+        <li>缺口分析报告 + 采集计划</li>
+        <li>问卷代发 + 催收管理（≤10家供应商）</li>
+        <li>三级数据核验（L1+L2+L3）</li>
+        <li>完整数据手册（5大交付物）</li>
+        <li>数据合规性报告（71项逐项检查）</li>
+        <li>服务周期：4-6周</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">旗舰版</div>
+      <div class="plan-title">数据建设全量包</div>
+      <div class="plan-suitable">适合：SKU&gt;20，供应商&gt;10家，复杂供应链</div>
+      <div class="plan-price">¥300,000-450,000</div>
+      <ul>
+        <li>包含标准版全部内容</li>
+        <li>不限SKU数量</li>
+        <li>复杂供应链协调（多级供应商追溯）</li>
+        <li>第三方检测协调（碳足迹、再生含量等）</li>
+        <li>动态数据接口方案设计（BMS对接）</li>
+        <li>数据维护计划定制</li>
+        <li>后续③注册上线服务专属折扣</li>
+        <li>服务周期：6-8周</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pricing-notes">
+    <div class="pricing-note"><strong>💳 付款节奏</strong>签约时支付50%启动款，数据手册交付验收后支付剩余50%，支持对公转账。</div>
+    <div class="pricing-note"><strong>🚀 差旅费用</strong>差旅费用实报实销，不包含在服务报价中。</div>
+    <div class="pricing-note"><strong>🔗 联合签约优惠</strong>与①差距评估同时签约享9折优惠；费用可按约定比例抵扣。</div>
+    <div class="pricing-note"><strong>📅 优先排期</strong>数据建设客户后续③注册上线服务享受优先排期权。</div>
+  </div>
+</section>
+
+<!-- ===== 第七部分：为什么选择我们 ===== -->
+<section class="section" id="why-us">
+  <div class="section-label">Part 06</div>
+  <h2 class="section-title">为什么选择我们</h2>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="card-icon">📐</span>
+      <h3>标准化体系</h3>
+      <p>数据卡35字段模板 + 7-14-21天标准催收节奏 + 三级核验流程，确保质量稳定。不依赖单个顾问的个人经验，每个项目按统一标准执行，结论可追溯、可复核。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">🌐</span>
+      <h3>供应商管理经验</h3>
+      <p>中英双语问卷（Part A-G共7部分）、专业催收机制、升级处理流程、供应商配合度评估体系——不是简单代发问卷，而是系统化的供应商数据回收管理。第三方催收回复率远高于企业自行催收。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">⚖️</span>
+      <h3>法规专业度</h3>
+      <p>71个数据点逐项合规性检查，不是简单的数据整理。每个字段都对照(EU) 2023/1542法规条款核验口径，区分强制项/条件适用项/暂缓项，确保数据提交后经得起监管审查。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">🔗</span>
+      <h3>全链条服务</h3>
+      <p>从①差距评估 → ②数据建设 → ③注册上线 → ④年度托管，无缝衔接。数据建设成果直接转化为注册输入，避免"做了数据却无法提交"的断层。一站式委托，减少对接成本。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">🔒</span>
+      <h3>数据安全</h3>
+      <p>NDA双向保密 + 加密数据通道 + 项目权限管控。供应商数据涉及商业机密的字段（如CRM原产国、尽调政策）按法规三层访问架构分级处理（公开/受限/监管），全程受控。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第八部分：常见问题FAQ ===== -->
+<section class="section" id="faq">
+  <div class="section-label">Part 07</div>
+  <h2 class="section-title">常见问题</h2>
+  <p class="section-desc">以下是客户最常问到的10个问题。如还有其他疑问，欢迎直接联系项目经理。</p>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Q1：数据建设和差距评估有什么区别？</summary>
+      <div class="faq-answer">
+        <p>差距评估是"诊断"——告诉您71个数据点哪些合格、哪些有缺口、缺口有多严重，产出的是评估报告。数据建设是"治疗"——基于诊断结果，实际帮您建数据卡、发问卷、催供应商、做核验，最终产出可直接提交注册中心的数据手册。</p>
+        <p>简单说：评估告诉您"差什么"（产出报告），建设帮您"补上来"（产出数据手册）。两项服务是上下游关系，建议连续执行。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q2：我的供应商不配合怎么办？</summary>
+      <div class="faq-answer">
+        <p>这正是我们服务的核心价值之一。我们有成熟的四阶段催收体系：</p>
+        <ul>
+          <li><strong>第1周：</strong>首次发放前先电话沟通说明重要性，再发正式问卷</li>
+          <li><strong>第2周：</strong>未回复供应商温和提醒，提供填写协助</li>
+          <li><strong>第3周：</strong>升级催收，同步通知您公司采购部门介入</li>
+          <li><strong>第4周：</strong>最终催收 + 替代方案讨论（如第三方检测）</li>
+        </ul>
+        <p>配合度评估报告会标注A/B/C三级，对C级供应商给出更换或升级沟通的具体建议。多年经验告诉我们，专业第三方出面催收的回复率远高于企业自行催收。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q3：需要我提供什么资料？</summary>
+      <div class="faq-answer">
+        <p>主要需要5类资料，我们会通过结构化采集表引导您提供，不需要您提前整理齐全：</p>
+        <ul>
+          <li>① <strong>差距评估报告</strong>（如由我方完成可直接交接）</li>
+          <li>② <strong>电池型号清单</strong>（SKU列表，含型号名称、电池类别、规格书）</li>
+          <li>③ <strong>内部已有数据</strong>（制造商信息、技术参数、认证文件、BOM表、测试报告等）</li>
+          <li>④ <strong>供应商名单及联系方式</strong>（名称、联系人、邮箱、电话、供应材料）</li>
+          <li>⑤ <strong>指定一名内部对接人</strong>（协调研发、质量、采购、IT各部门的数据提供）</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q4：数据建设周期多长？</summary>
+      <div class="faq-answer">
+        <p>标准版4-6周，旗舰版6-8周。实际周期取决于两个关键因素：</p>
+        <ul>
+          <li><strong>SKU数量：</strong>型号越多，数据卡建立和核验工作量越大</li>
+          <li><strong>供应商配合度：</strong>这是最长路径项——供应商配合度高可更快完成，普遍不配合则需延长催收周期</li>
+        </ul>
+        <p>签约前我们会如实评估并在项目计划中写明预期周期。加急项目可压缩约30%时间，需加收30%加急费用。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q5：如果某些数据确实收不到怎么办？</summary>
+      <div class="faq-answer">
+        <p>首先分析原因，分两种情况处理：</p>
+        <ul>
+          <li><strong>供应商不愿提供：</strong>通过升级催收、采购部门施压解决。如仍不配合，评估替代方案（委托第三方检测机构出具报告）</li>
+          <li><strong>供应商自己也没有：</strong>协助协调第三方检测（如碳足迹LCA检测、再生含量检测），我们可推荐合作检测机构</li>
+        </ul>
+        <p>如果穷尽所有手段仍无法获取，在数据手册中如实标注"缺口"并附补救方案与时间表，同时评估是否影响护照注册。我们的目标是最大化数据齐备率，但不会对无法获取的数据做虚假处理。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q6：数据手册做好后，可以直接用于注册吗？</summary>
+      <div class="faq-answer">
+        <p>可以。数据手册是按照注册中心的数据格式要求编制的：</p>
+        <ul>
+          <li>所有字段与法规71个数据点一一对应</li>
+          <li>经三级核验（L1逻辑校验+L2交叉验证+L3法规合规）确认数据质量</li>
+          <li>格式满足DPP注册中心的提交要求</li>
+        </ul>
+        <p>数据手册交付后可直接进入③注册上线服务，完成护照数据的系统提交。如果您选择自行注册，数据手册同样可直接使用。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q7：后续数据更新怎么办？</summary>
+      <div class="faq-answer">
+        <p>欧盟电池法规要求动态数据持续更新，这是长期合规的关键：</p>
+        <ul>
+          <li><strong>动态数据：</strong>SoH（健康状态）、循环次数等需持续更新（频率取决于电池类别和使用场景）</li>
+          <li><strong>年度数据：</strong>再生含量比例等需每年刷新</li>
+          <li><strong>法规变化：</strong>法规修订可能导致新增数据要求</li>
+        </ul>
+        <p>数据手册交付时会附带《数据维护计划》，说明更新频率和责任人。您也可以选择签订④年度数据维护合同，由我们持续跟踪数据更新和法规变化，确保护照数据始终合规。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q8：你们的数据模板是标准的吗？</summary>
+      <div class="faq-answer">
+        <p>是的，完全基于法规标准设计：</p>
+        <ul>
+          <li>数据卡的35个字段严格对应欧盟电池法规 (EU) 2023/1542 附录XIII的71个数据点要求</li>
+          <li>字段定义与欧委会数据点指南（2026年8月v2.0版）一一对应</li>
+          <li>供应商问卷的7个Part（A-G）覆盖了所有需要供应商提供的数据项</li>
+          <li>模板基于法规原文和行业最佳实践设计，不是自创标准</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q9：数据建设费用怎么支付？</summary>
+      <div class="faq-answer">
+        <p>服务费分两期支付：</p>
+        <ul>
+          <li><strong>签约时：</strong>支付50%启动款</li>
+          <li><strong>交付验收后：</strong>支付剩余50%尾款</li>
+          <li>支持对公转账，可开具增值税专用发票</li>
+        </ul>
+        <p>已完成差距评估的客户，评估费可按约定比例抵扣数据建设费用。差旅费用实报实销，不包含在服务报价中。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q10：和差距评估一起签有优惠吗？</summary>
+      <div class="faq-answer">
+        <p>有，两方面优惠：</p>
+        <ul>
+          <li><strong>价格优惠：</strong>同时签约①差距评估和②数据建设，享受9折优惠</li>
+          <li><strong>效率优势：</strong>两项服务一起签约可以确保差距评估的输出无缝衔接到数据建设的输入，避免中间环节的信息损耗和重复沟通，总周期可缩短1-2周</li>
+        </ul>
+        <p>如果分步签约，评估费也可按约定比例抵扣数据建设费用，但无法享受打包折扣和效率优势。建议有明确合规需求的企业一次性签约两项服务。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 第九部分：立即开始 ===== -->
+<section class="section" id="cta">
+  <div class="cta-section">
+    <h2>准备好开始了吗？</h2>
+    <p>差距评估已经告诉您"差什么"——现在让我们帮您"补上来"。<br>4-8周内完成71个数据点的完整底册，为护照注册做好数据准备。</p>
+    <div class="cta-actions">
+      <a href="#contact-info" class="cta-btn primary">📧 联系我们，启动数据建设</a>
+      <a href="#pricing" class="cta-btn secondary">💰 查看服务定价</a>
+    </div>
+    <div class="cta-steps">
+      <div class="cta-step"><span class="step-num">1</span>签署NDA与服务协议</div>
+      <div class="cta-step"><span class="step-num">2</span>项目启动与数据规划</div>
+      <div class="cta-step"><span class="step-num">3</span>供应商采集与核验</div>
+      <div class="cta-step"><span class="step-num">4</span>数据手册交付</div>
+    </div>
+  </div>
+
+  <div id="contact-info" style="text-align:center;margin-top:var(--space-lg)">
+    <p style="font-size:var(--fs-sm);color:var(--c-text-sec)">📧 联系邮箱：<strong>dpp@shouxincaishui.com</strong> ｜ 服务热线：<strong>400-XXX-XXXX</strong><br><span style="color:var(--c-text-muted);font-size:var(--fs-xs)">工作日2小时内响应，签约后1个工作日内完成项目启动</span></p>
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:var(--space-xl)">
+    <div class="callout-title">💡 前提条件</div>
+    <p>数据建设服务建议以差距评估（服务①）为前置输入。如果尚未完成差距评估，可以选择同时签约两项服务，我们会在差距评估完成后立即衔接数据建设，最大限度缩短总周期。</p>
+  </div>
+</section>
+
+<!-- ===== 附录 ===== -->
+<section class="section" id="appendix">
+  <div class="section-label">附录</div>
+  <h2 class="section-title">附录与参考</h2>
+
+  <div class="appendix-grid">
+    <div class="appendix-block" id="app-fields">
+      <h4>📋 数据卡35字段完整清单（分6组）</h4>
+      <table>
+        <thead><tr><th scope="col">编号</th><th scope="col">分组</th><th scope="col">字段名称</th><th scope="col">说明</th></tr></thead>
+        <tbody>
+          <tr><td colspan="4" style="background:var(--c-primary-bg-light);font-weight:700;color:var(--c-primary);font-size:var(--fs-xs);text-transform:uppercase">基本信息组（9项）</td></tr>
+          <tr><td>G01</td><td>基本信息</td><td>制造商名称</td><td>与营业执照一致的公司全称</td></tr>
+          <tr><td>G02</td><td>基本信息</td><td>制造商地址与联系方式</td><td>含单一联系点</td></tr>
+          <tr><td>G03</td><td>基本信息</td><td>电池类别</td><td>EV/LMT/工业/便携式/SLI</td></tr>
+          <tr><td>G04</td><td>基本信息</td><td>电池型号</td><td>型号标识及批号或序列号</td></tr>
+          <tr><td>G05</td><td>基本信息</td><td>序列号/批号</td><td>唯一标识符</td></tr>
+          <tr><td>G06</td><td>基本信息</td><td>制造日期</td><td>月份和年份</td></tr>
+          <tr><td>G07</td><td>基本信息</td><td>制造地点</td><td>电池生产工厂的地理位置</td></tr>
+          <tr><td>G08</td><td>基本信息</td><td>化学体系</td><td>如NCM/NCA/LFP等</td></tr>
+          <tr><td>G09</td><td>基本信息</td><td>电池重量</td><td>单位：kg</td></tr>
+
+          <tr><td colspan="4" style="background:var(--c-primary-bg-light);font-weight:700;color:var(--c-primary);font-size:var(--fs-xs);text-transform:uppercase">技术参数组（6项）</td></tr>
+          <tr><td>T01</td><td>技术参数</td><td>标称电压</td><td>单位：V，含温度范围</td></tr>
+          <tr><td>T02</td><td>技术参数</td><td>额定容量</td><td>单位：Ah</td></tr>
+          <tr><td>T03</td><td>技术参数</td><td>额定功率/能量</td><td>单位：W/Wh</td></tr>
+          <tr><td>T04</td><td>技术参数</td><td>循环寿命</td><td>预期循环次数（参考条件下）</td></tr>
+          <tr><td>T05</td><td>技术参数</td><td>预期寿命</td><td>日历年限（参考条件下）</td></tr>
+          <tr><td>T06</td><td>技术参数</td><td>质保条款</td><td>商业保修日历寿命期限</td></tr>
+
+          <tr><td colspan="4" style="background:var(--c-primary-bg-light);font-weight:700;color:var(--c-primary);font-size:var(--fs-xs);text-transform:uppercase">材料组（6项）</td></tr>
+          <tr><td>M01</td><td>材料</td><td>有害物质信息</td><td>除Hg/Cd/Pb外的有害物质</td></tr>
+          <tr><td>M02</td><td>材料</td><td>电池组件清单</td><td>正极、负极、电解液等</td></tr>
+          <tr><td>M03</td><td>材料</td><td>关键原材料(CRM)清单</td><td>浓度>0.1%重量比的CRM</td></tr>
+          <tr><td>M04</td><td>材料</td><td>CRM原产国</td><td>关键原材料的原产国</td></tr>
+          <tr><td>M05</td><td>材料</td><td>冶炼厂/精炼厂信息</td><td>名称与地址</td></tr>
+          <tr><td>M06</td><td>材料</td><td>再生含量比例</td><td>再生钴/铅/锂/镍占比(%)</td></tr>
+
+          <tr><td colspan="4" style="background:var(--c-primary-bg-light);font-weight:700;color:var(--c-primary);font-size:var(--fs-xs);text-transform:uppercase">合规组（5项）</td></tr>
+          <tr><td>C01</td><td>合规</td><td>CE认证/DoC声明</td><td>EU符合性声明</td></tr>
+          <tr><td>C02</td><td>合规</td><td>测试报告</td><td>法规符合性测试结果</td></tr>
+          <tr><td>C03</td><td>合规</td><td>碳足迹声明</td><td>kgCO₂e/kWh</td></tr>
+          <tr><td>C04</td><td>合规</td><td>碳足迹等级</td><td>碳足迹分级标签</td></tr>
+          <tr><td>C05</td><td>合规</td><td>尽职调查政策</td><td>供应链尽职调查报告</td></tr>
+
+          <tr><td colspan="4" style="background:var(--c-primary-bg-light);font-weight:700;color:var(--c-primary);font-size:var(--fs-xs);text-transform:uppercase">供应链组（4项）</td></tr>
+          <tr><td>S01</td><td>供应链</td><td>供应商名称</td><td>公司全称，与营业执照一致</td></tr>
+          <tr><td>S02</td><td>供应链</td><td>供应层级</td><td>一级（直接供应）/二级（原材料）</td></tr>
+          <tr><td>S03</td><td>供应链</td><td>负责的数据字段</td><td>该供应商提供的数据项清单</td></tr>
+          <tr><td>S04</td><td>供应链</td><td>数据提供日期与版本</td><td>数据时效性标记</td></tr>
+
+          <tr><td colspan="4" style="background:var(--c-primary-bg-light);font-weight:700;color:var(--c-primary);font-size:var(--fs-xs);text-transform:uppercase">动态数据组（5项）</td></tr>
+          <tr><td>H01</td><td>动态数据</td><td>健康状态(SoH)数据源</td><td>数据来源与更新频率</td></tr>
+          <tr><td>H02</td><td>动态数据</td><td>充放电循环次数</td><td>累计循环次数</td></tr>
+          <tr><td>H03</td><td>动态数据</td><td>温度历史</td><td>运行环境条件信息</td></tr>
+          <tr><td>H04</td><td>动态数据</td><td>故障与维护记录</td><td>负面事件与维护记录</td></tr>
+          <tr><td>H05</td><td>动态数据</td><td>电池状态</td><td>原始/再利用/重复使用/再制造/废弃物</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="appendix-block" id="app-questionnaire">
+      <h4>📝 供应商问卷结构（Part A-G）</h4>
+      <table>
+        <thead><tr><th>Part</th><th>主题</th><th>主要内容</th></tr></thead>
+        <tbody>
+          <tr><td><strong>A</strong></td><td>供应商基本信息</td><td>公司名称、地址、联系人、成立时间、主营业务</td></tr>
+          <tr><td><strong>B</strong></td><td>电池材料组成</td><td>正极/负极/电解液材料、有害物质标识</td></tr>
+          <tr><td><strong>C</strong></td><td>生产工艺数据</td><td>关键工艺步骤、能耗、生产地点、质量认证</td></tr>
+          <tr><td><strong>D</strong></td><td>环境数据</td><td>碳排放数据、LCA摘要、可再生能源比例</td></tr>
+          <tr><td><strong>E</strong></td><td>质量与认证</td><td>ISO/IATF证书编号、测试报告、合规声明</td></tr>
+          <tr><td><strong>F</strong></td><td>供应链尽调</td><td>CRM来源国、冶炼厂信息、尽调政策、RMI审核</td></tr>
+          <tr><td><strong>G</strong></td><td>签署与承诺</td><td>数据真实性承诺、DPP对接授权、更新承诺</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="appendix-grid">
+    <div class="appendix-block" id="app-glossary">
+      <h4>📖 术语简表</h4>
+      <dl class="def-list">
+        <dt>DPP（Digital Product Passport）</dt><dd>数字产品护照，电池护照的正式称谓</dd>
+        <dt>(EU) 2023/1542</dt><dd>欧盟电池与废电池法规，2023年8月17日生效</dd>
+        <dt>数据卡</dt><dd>每个电池型号的数据底卡，包含35个标准字段，标注已填/待补/不适用状态</dd>
+        <dt>数据手册</dt><dd>所有数据卡+采集台账+供应商清单的完整集合，是护照注册的数据基础</dd>
+        <dt>三级核验</dt><dd>L1逻辑校验+L2交叉验证+L3法规合规的数据质量保障流程</dd>
+        <dt>SKU</dt><dd>库存量单位，在本服务中指电池型号</dd>
+        <dt>CRM</dt><dd>关键原材料（Critical Raw Materials），护照中按>0.1%重量比申报</dd>
+        <dt>SoH</dt><dd>电池健康状态（State of Health），属于动态数据需持续更新</dd>
+        <dt>BMS</dt><dd>电池管理系统（Battery Management System），动态数据的来源</dd>
+        <dt>EV / LMT / 工业电池</dt><dd>三类强制适用电池护照的电池类型</dd>
+        <dt>CE / DoC</dt><dd>CE合格标识 / EU符合性声明（Declaration of Conformity）</dd>
+        <dt>EPR</dt><dd>生产者延伸责任（Extended Producer Responsibility）</dd>
+        <dt>LCA</dt><dd>生命周期评估（Life Cycle Assessment），碳足迹计算的方法论基础</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="about-block" id="app-about">
+    <h4>关于守信财税</h4>
+    <p>守信财税深耕财税合规领域18年，是专注于为中国企业提供欧盟合规服务的专业机构。我们的DPP业务线依托对(EU) 2023/1542电池法规的系统性研究，结合电池行业的供应链实际，为电池企业提供从①差距评估 → ②数据建设 → ③注册上线 → ④年度托管的一站式合规服务。标准化流程、工具化交付、全链条衔接——帮助中国电池企业高效、合规地进入欧盟市场。</p>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer class="doc-footer">
+  <p>DPP数据建设服务 · 产品手册 v2.0 · 2026年9月 · 守信财税 · DPP业务线</p>
+  <p>本手册内容仅供参考，具体服务范围与交付标准以签署的服务协议为准</p>
+</footer>
+
+<script>
+(function(){
+  try {
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    window.toggleSidebar = toggleSidebar;
+
+    // Sidebar active state on scroll
+    var sections = document.querySelectorAll('section[id], h3[id]');
+    var navLinks = document.querySelectorAll('.sidebar nav a');
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var id = entry.target.getAttribute('id');
+          navLinks.forEach(function(link){
+            link.classList.remove('active');
+            if(link.getAttribute('href') === '#' + id){
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, {rootMargin: '-20% 0px -70% 0px'});
+    sections.forEach(function(sec){ observer.observe(sec); });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('.sidebar nav a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+          var sidebar = document.getElementById('sidebar');
+          var overlay = document.getElementById('sidebarOverlay');
+          sidebar.classList.remove('open');
+          overlay.classList.remove('open');
+        }
+      });
+    });
+
+    // Close sidebar overlay on main click
+    document.querySelector('.main').addEventListener('click', function(){
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+    });
+  } catch(e){
+    // Silent fail - static content still works
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>守信财税 DPP业务 员工手册</title>
+<style>
+:root {
+  --primary: #1B5E20;
+  --primary-light: #2E7D32;
+  --secondary: #4CAF50;
+  --accent: #66BB6A;
+  --bg: #E8F5E9;
+  --bg-white: #FFFFFF;
+  --bg-light: #F1F8E9;
+  --text: #212121;
+  --text-light: #616161;
+  --text-white: #FFFFFF;
+  --border: #C8E6C9;
+  --shadow: rgba(0,0,0,0.1);
+  --sidebar-width: 280px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: var(--text-white);
+  overflow-y: auto;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 8px var(--shadow);
+}
+
+.sidebar-header {
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.sidebar-header p {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.nav-list { list-style: none; padding: 12px 0; }
+
+.nav-list li a {
+  display: block;
+  padding: 10px 20px;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.nav-list li a:hover,
+.nav-list li a.active {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-left-color: var(--accent);
+}
+
+.nav-list .nav-chapter {
+  font-size: 12px;
+  opacity: 0.5;
+  margin-right: 6px;
+}
+
+/* Mobile toggle */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1100;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* Main content */
+.main-content {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+
+/* Cover */
+.cover {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 80px 40px;
+  text-align: center;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 600px;
+  height: 600px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -40%;
+  left: -20%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+
+.cover h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.cover .subtitle {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.cover .date {
+  font-size: 14px;
+  opacity: 0.7;
+  position: relative;
+  z-index: 1;
+}
+
+.cover .badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 12px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section styles */
+.section {
+  margin-bottom: 48px;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title .icon {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 18px;
+  color: var(--primary-light);
+  margin: 20px 0 12px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 16px;
+  color: var(--text);
+  margin: 16px 0 8px;
+  font-weight: 600;
+}
+
+p { margin-bottom: 12px; }
+
+/* Cards */
+.card {
+  background: var(--bg-white);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px var(--shadow);
+  border-left: 4px solid var(--secondary);
+}
+
+.card.highlight {
+  background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+  border-left-color: var(--primary);
+}
+
+.card.warning {
+  border-left-color: #FF9800;
+  background: linear-gradient(135deg, #FFF8E1 0%, var(--bg-white) 100%);
+}
+
+.card.success {
+  border-left-color: var(--secondary);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.card-grid .card {
+  margin-bottom: 0;
+}
+
+/* Table */
+.table-wrapper {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-white);
+}
+
+th {
+  background: var(--primary);
+  color: var(--text-white);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:nth-child(even) { background: var(--bg-light); }
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+  margin: 20px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--secondary);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  background: var(--bg-white);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 20px;
+  width: 14px;
+  height: 14px;
+  background: var(--secondary);
+  border: 3px solid var(--bg-white);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--secondary);
+}
+
+.timeline-item.active::before {
+  background: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary);
+}
+
+.timeline-date {
+  font-size: 13px;
+  color: var(--secondary);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.timeline-desc {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* Flowchart */
+.flow-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 24px 0;
+  align-items: stretch;
+}
+
+.flow-step {
+  flex: 1;
+  min-width: 110px;
+  text-align: center;
+  padding: 16px 8px;
+  position: relative;
+}
+
+.flow-step .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--secondary);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.flow-step .step-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.flow-step .step-dept {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+.flow-step::after {
+  content: '→';
+  position: absolute;
+  right: -8px;
+  top: 26px;
+  font-size: 20px;
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+.flow-step:last-child::after { display: none; }
+
+/* TOC */
+.toc {
+  background: var(--bg-white);
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 8px var(--shadow);
+  margin-bottom: 40px;
+}
+
+.toc h2 {
+  font-size: 22px;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.toc-list {
+  list-style: none;
+  counter-reset: toc-counter;
+}
+
+.toc-list li {
+  counter-increment: toc-counter;
+  margin-bottom: 8px;
+}
+
+.toc-list li a {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s;
+  font-size: 15px;
+}
+
+.toc-list li a:hover {
+  background: var(--bg);
+  color: var(--primary);
+}
+
+.toc-list li a::before {
+  content: counter(toc-counter, cjk-ideographic);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--bg);
+  color: var(--primary);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* FAQ */
+.faq-item {
+  background: var(--bg-white);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px var(--shadow);
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--primary);
+  transition: background 0.2s;
+}
+
+.faq-question:hover { background: var(--bg-light); }
+
+.faq-question::after {
+  content: '▾';
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+
+.faq-item.open .faq-question::after {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.open .faq-answer {
+  padding: 0 20px 16px;
+  max-height: 500px;
+}
+
+/* Tag */
+.tag {
+  display: inline-block;
+  background: var(--bg);
+  color: var(--primary);
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 2px 4px;
+}
+
+/* List */
+ul, ol {
+  margin: 8px 0 16px 20px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 32px;
+  color: var(--text-light);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+/* Print */
+@media print {
+  .sidebar, .menu-toggle { display: none !important; }
+  .main-content { margin-left: 0 !important; }
+  .container { max-width: 100%; padding: 20px; }
+  .cover { padding: 40px 20px; }
+  .card, .faq-item, .timeline-item { box-shadow: none; border: 1px solid #ddd; }
+  .section { page-break-inside: avoid; }
+  .flow-container { flex-wrap: wrap; }
+  .flow-step::after { content: ''; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .menu-toggle { display: block; }
+  .main-content { margin-left: 0; }
+  .container { padding: 20px 16px; }
+  .cover { padding: 60px 20px; }
+  .cover h1 { font-size: 26px; }
+  .flow-container { flex-direction: column; align-items: center; }
+  .flow-step::after { content: '↓'; position: static; display: block; font-size: 20px; color: var(--secondary); }
+  .flow-step { min-width: 200px; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile Toggle -->
+<button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+<!-- Sidebar -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>📘 员工手册</h2>
+    <p>守信财税 DPP业务</p>
+  </div>
+  <ul class="nav-list">
+    <li><a href="#cover"><span class="nav-chapter"></span>封面</a></li>
+    <li><a href="#toc"><span class="nav-chapter"></span>目录</a></li>
+    <li><a href="#chapter1"><span class="nav-chapter">第一章</span>公司与业务概况</a></li>
+    <li><a href="#chapter2"><span class="nav-chapter">第二章</span>组织架构</a></li>
+    <li><a href="#chapter3"><span class="nav-chapter">第三章</span>DPP法规速览</a></li>
+    <li><a href="#chapter4"><span class="nav-chapter">第四章</span>业务全流程</a></li>
+    <li><a href="#chapter5"><span class="nav-chapter">第五章</span>工具与文件清单</a></li>
+    <li><a href="#chapter6"><span class="nav-chapter">第六章</span>内部协作规则</a></li>
+    <li><a href="#chapter7"><span class="nav-chapter">第七章</span>考核指标</a></li>
+    <li><a href="#appendix"><span class="nav-chapter">附录</span>常见问题</a></li>
+  </ul>
+</nav>
+
+<!-- Main Content -->
+<div class="main-content">
+
+  <!-- Cover -->
+  <div class="cover" id="cover">
+    <h1>守信财税 DPP业务<br>员工手册</h1>
+    <p class="subtitle">内部培训与参考手册 v1.0</p>
+    <p class="date">2026年9月</p>
+    <span class="badge">🔒 内部资料 · 请勿外传</span>
+  </div>
+
+  <div class="container">
+
+    <!-- TOC -->
+    <div class="toc" id="toc">
+      <h2>📑 目 录</h2>
+      <ol class="toc-list">
+        <li><a href="#chapter1">第一章 公司与业务概况</a></li>
+        <li><a href="#chapter2">第二章 组织架构</a></li>
+        <li><a href="#chapter3">第三章 DPP法规速览</a></li>
+        <li><a href="#chapter4">第四章 业务全流程</a></li>
+        <li><a href="#chapter5">第五章 工具与文件清单</a></li>
+        <li><a href="#chapter6">第六章 内部协作规则</a></li>
+        <li><a href="#chapter7">第七章 考核指标</a></li>
+        <li><a href="#appendix">附录 常见问题FAQ</a></li>
+      </ol>
+    </div>
+
+    <!-- Chapter 1 -->
+    <div class="section" id="chapter1">
+      <h2 class="section-title"><span class="icon">🏢</span> 第一章 公司与业务概况</h2>
+
+      <h3>1.1 公司简介</h3>
+      <div class="card highlight">
+        <p><strong>守信财税（ShouXin Finance & Tax）</strong>由洪淳宇先生于2008年创立，深耕财税领域18年，是北京乾坤生会计师事务所及守信财税咨询的运营主体。公司以专业、诚信为核心理念，服务于数百家企业客户。</p>
+      </div>
+
+      <h3>1.2 DPP业务定位</h3>
+      <p>DPP（Digital Product Passport，数字产品护照）业务是公司基于欧盟电池法规合规要求而开拓的全新咨询业务线。我们的核心使命是：</p>
+      <ul>
+        <li>帮助中国电池出口企业理解并满足欧盟DPP合规要求</li>
+        <li>提供从差距评估到数据护照交付的全流程咨询与实施服务</li>
+        <li>成为国内DPP合规咨询领域的先行者与标准制定参与者</li>
+      </ul>
+
+      <h3>1.3 为什么DPP是巨大的机遇</h3>
+      <div class="card-grid">
+        <div class="card success">
+          <h4>🇪🇺 欧盟强制要求</h4>
+          <p>根据(EU) 2023/1542电池法规，2027年2月18日起所有进入欧盟市场的电池必须持有数字产品护照，无例外。</p>
+        </div>
+        <div class="card success">
+          <h4>🇨🇳 中国出口企业必须合规</h4>
+          <p>中国是全球最大的电池生产与出口国，数千家企业面临合规压力，咨询需求巨大。</p>
+        </div>
+        <div class="card success">
+          <h4>🚀 先发优势明显</h4>
+          <p>国内目前几乎没有成熟的DPP咨询机构，率先进入即可建立品牌壁垒和客户基础。</p>
+        </div>
+        <div class="card success">
+          <h4>💰 高附加值服务</h4>
+          <p>DPP合规涉及法规解读、数据采集、系统对接、持续维护，服务周期长、客单价高。</p>
+        </div>
+      </div>
+
+      <div class="card warning">
+        <p><strong>⚠️ 战略定位：</strong>DPP业务不是短期项目，而是公司未来3-5年的核心增长引擎。每位员工都应深刻理解这一业务的战略意义，以创业者心态投入工作。</p>
+      </div>
+    </div>
+
+    <!-- Chapter 2 -->
+    <div class="section" id="chapter2">
+      <h2 class="section-title"><span class="icon">🏗️</span> 第二章 组织架构</h2>
+
+      <h3>2.1 架构总览</h3>
+      <div class="card highlight">
+        <p>公司采用"三方投资 → 统一运营"模式：3家投资方企业共同出资成立1家运营公司，下设4个职能部门协同运作。</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>层级</th>
+              <th>组成</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>投资方</strong></td>
+              <td>3家企业</td>
+              <td>共同出资、共享资源、共担风险</td>
+            </tr>
+            <tr>
+              <td><strong>运营主体</strong></td>
+              <td>1家新设公司</td>
+              <td>独立法人，统一对外承接DPP咨询业务</td>
+            </tr>
+            <tr>
+              <td><strong>执行层</strong></td>
+              <td>4个部门</td>
+              <td>市场部、内勤部、实施部、信息管理部</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>2.2 部门职责</h3>
+
+      <div class="card">
+        <h4>📢 市场部（Marketing）</h4>
+        <ul>
+          <li>负责DPP业务的市场开拓与客户获取</li>
+          <li>行业活动参与、品牌建设与内容营销</li>
+          <li>客户关系维护与商务谈判</li>
+          <li>市场情报收集与竞品分析</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>📋 内勤部（Admin）</h4>
+        <ul>
+          <li>合同管理、发票与财务支持</li>
+          <li>行政事务、人力资源与后勤保障</li>
+          <li>文档归档与知识库维护</li>
+          <li>跨部门协调与流程监督</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>🔧 实施部（Implementation）</h4>
+        <ul>
+          <li>DPP差距评估与合规方案制定</li>
+          <li>数据采集、整理与护照编制</li>
+          <li>客户交付与项目进度管理</li>
+          <li>法规研究与技术标准更新</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>💻 信息管理部（IT）</h4>
+        <ul>
+          <li>DPP数据管理系统开发与维护</li>
+          <li>eIDAS平台对接与技术集成</li>
+          <li>数据安全与隐私保护</li>
+          <li>内部IT工具优化与技术支持</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Chapter 3 -->
+    <div class="section" id="chapter3">
+      <h2 class="section-title"><span class="icon">📜</span> 第三章 DPP法规速览</h2>
+
+      <h3>3.1 法规概述</h3>
+      <div class="card highlight">
+        <p><strong>核心法规：(EU) 2023/1542 电池法规（Battery Regulation）</strong></p>
+        <p>这是欧盟针对电池全生命周期制定的综合性法规，于2023年8月18日正式生效。其中关于数字产品护照（DPP）的条款是本次业务的核心依据。</p>
+      </div>
+
+      <h3>3.2 电池护照强制范围</h3>
+      <p>以下类别的电池必须持有数字产品护照方可进入欧盟市场：</p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>电池类别</th>
+              <th>英文缩写</th>
+              <th>强制条件</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>轻型交通工具电池</td>
+              <td>LMT</td>
+              <td>所有容量，无门槛</td>
+            </tr>
+            <tr>
+              <td>工业电池</td>
+              <td>Industrial</td>
+              <td>容量 > 2 kWh</td>
+            </tr>
+            <tr>
+              <td>电动汽车电池</td>
+              <td>EV</td>
+              <td>所有容量，无门槛</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>3.3 六大合规维度</h3>
+      <p>DPP数据护照涵盖以下6个核心维度（A-F）：</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h4>A. 电池基本信息</h4>
+          <p>制造商信息、电池型号、化学成分、重量等基础标识数据</p>
+        </div>
+        <div class="card">
+          <h4>B. 材料与成分</h4>
+          <p>关键原材料来源、有害物质含量、材料占比等</p>
+        </div>
+        <div class="card">
+          <h4>C. 性能参数</h4>
+          <p>容量、功率、循环寿命、充放电效率等技术指标</p>
+        </div>
+        <div class="card">
+          <h4>D. 耐用性与可替换性</h4>
+          <p>预期寿命、维护要求、可拆卸/可替换设计信息</p>
+        </div>
+        <div class="card">
+          <h4>E. 回收与循环利用</h4>
+          <p>回收指引、可回收材料比例、再生材料含量</p>
+        </div>
+        <div class="card">
+          <h4>F. 合规声明与标识</h4>
+          <p>CE标志、合格声明、供应链合规证明文件</p>
+        </div>
+      </div>
+
+      <h3>3.4 关键时间节点</h3>
+      <p>以下是DPP实施的关键里程碑日期：</p>
+
+      <div class="timeline">
+        <div class="timeline-item active">
+          <div class="timeline-date">2025年8月18日</div>
+          <div class="timeline-title">尽职调查义务生效</div>
+          <div class="timeline-desc">供应链尽职调查（Due Diligence）要求正式生效，企业需开始梳理供应链合规信息</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026年2月18日</div>
+          <div class="timeline-title">QR码规范生效</div>
+          <div class="timeline-desc">电池产品QR码标识要求生效，QR码需链接至DPP数据系统</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026年8月18日</div>
+          <div class="timeline-title">标签要求生效</div>
+          <div class="timeline-desc">电池标签标识规范全面生效，包含合规标志、性能等级等信息</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2027年2月18日</div>
+          <div class="timeline-title">⚡ 电池护照强制实施</div>
+          <div class="timeline-desc">所有适用类别电池必须持有完整的数字产品护照，否则不得进入欧盟市场。这是最终合规截止日。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 4 -->
+    <div class="section" id="chapter4">
+      <h2 class="section-title"><span class="icon">🔄</span> 第四章 业务全流程</h2>
+
+      <h3>4.1 流程总览</h3>
+      <p>DPP咨询服务遵循标准化的7阶段流程，确保项目高效推进、质量可控：</p>
+
+      <div class="flow-container">
+        <div class="flow-step">
+          <div class="step-num">1</div>
+          <div class="step-title">获客</div>
+          <div class="step-dept">市场部</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">2</div>
+          <div class="step-title">评估</div>
+          <div class="step-dept">实施部</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">3</div>
+          <div class="step-title">签约</div>
+          <div class="step-dept">内勤部</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">4</div>
+          <div class="step-title">数据采集</div>
+          <div class="step-dept">实施部+IT</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">5</div>
+          <div class="step-title">注册</div>
+          <div class="step-dept">IT+实施部</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">6</div>
+          <div class="step-title">交付</div>
+          <div class="step-dept">实施部</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">7</div>
+          <div class="step-title">维护</div>
+          <div class="step-dept">全部门</div>
+        </div>
+      </div>
+
+      <h3>4.2 各阶段详解</h3>
+
+      <div class="card">
+        <h4>阶段1：获客（市场部主导）</h4>
+        <ul>
+          <li>通过行业活动、线上推广、老客户转介绍等渠道获取潜在客户</li>
+          <li>初步了解客户的电池产品类型、出口欧盟的规模与时间计划</li>
+          <li>输出：客户线索登记表</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>阶段2：评估（实施部主导）</h4>
+        <ul>
+          <li>使用《DPP差距评估核查清单》进行初步诊断</li>
+          <li>识别客户当前数据基础与合规要求之间的差距</li>
+          <li>输出：《DPP差距评估报告》（初稿）</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>阶段3：签约（内勤部主导）</h4>
+        <ul>
+          <li>根据评估结果拟定服务方案与报价</li>
+          <li>商务谈判、合同签订、收取首期款项</li>
+          <li>建立客户档案，分配项目编号</li>
+          <li>输出：正式服务合同 + 项目任务书</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>阶段4：数据采集（实施部+IT协作）</h4>
+        <ul>
+          <li>发放《供应商数据问卷》给客户及其供应链</li>
+          <li>使用数据手册模板建立采集台账</li>
+          <li>IT部门提供数据系统录入与校验支持</li>
+          <li>输出：完整数据项清单（38项字段全覆盖）</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>阶段5：注册（IT+实施部协作）</h4>
+        <ul>
+          <li>协助客户办理eIDAS数字身份认证</li>
+          <li>指定欧盟授权代表（欧代）</li>
+          <li>在欧盟DPP平台注册并提交数据护照</li>
+          <li>输出：平台注册确认 + QR码生成</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>阶段6：交付（实施部主导）</h4>
+        <ul>
+          <li>编制完整的电池数字产品护照</li>
+          <li>内部质量审核（双人复核制）</li>
+          <li>向客户交付护照文件及使用说明</li>
+          <li>输出：正式DPP文件包 + 交付确认书</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>阶段7：维护（全部门协同）</h4>
+        <ul>
+          <li>法规更新跟踪与护照内容更新</li>
+          <li>年度复审与数据刷新</li>
+          <li>客户咨询响应与合规风险预警</li>
+          <li>输出：年度维护报告 + 续约意向</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Chapter 5 -->
+    <div class="section" id="chapter5">
+      <h2 class="section-title"><span class="icon">📦</span> 第五章 工具与文件清单</h2>
+
+      <p>公司为DPP业务配备了完整的专业工具包，共9个核心文件。每位实施人员必须熟悉全部工具的功能与使用方法。</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>文件名</th>
+              <th>格式</th>
+              <th>功能说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>00</td>
+              <td><strong>准备物使用说明</strong></td>
+              <td>.docx</td>
+              <td>全套工具包使用指南，说明各文件用途、使用顺序和注意事项</td>
+            </tr>
+            <tr>
+              <td>01</td>
+              <td><strong>DPP差距评估核查清单（电池版）</strong></td>
+              <td>.xlsx</td>
+              <td>32项核查条目，覆盖6大合规维度(A-F)，用于快速诊断客户合规现状</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td><strong>DPP差距评估报告模板</strong></td>
+              <td>.docx</td>
+              <td>7页专业评估报告模板，含分析结论、风险等级、整改建议</td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td><strong>DPP数据项标准清单（电池版）</strong></td>
+              <td>.xlsx</td>
+              <td>38项数据字段定义，对应法规附录XIII要求，明确每项的数据类型与来源</td>
+            </tr>
+            <tr>
+              <td>04</td>
+              <td><strong>DPP数据手册模板</strong></td>
+              <td>.xlsx</td>
+              <td>含3个Sheet：数据卡（核心参数）、采集台账（进度跟踪）、供应商清单（信息汇总）</td>
+            </tr>
+            <tr>
+              <td>05</td>
+              <td><strong>供应商数据问卷（中英双语）</strong></td>
+              <td>.docx</td>
+              <td>7部分双语问卷，可直接发送给海外供应商，收集合规所需原始数据</td>
+            </tr>
+            <tr>
+              <td>06</td>
+              <td><strong>eIDAS与欧代办理指引</strong></td>
+              <td>.docx</td>
+              <td>详细说明eIDAS数字身份和欧盟授权代表的办理路径、预估费用与时间表</td>
+            </tr>
+            <tr>
+              <td>07</td>
+              <td><strong>自查工具题库与评分规则</strong></td>
+              <td>.xlsx</td>
+              <td>18道自查题目，系统自动评分，帮助客户快速了解自身合规准备度</td>
+            </tr>
+            <tr>
+              <td>08</td>
+              <td><strong>（预留扩展位）</strong></td>
+              <td>—</td>
+              <td>后续根据业务需要增补新工具文件</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card warning">
+        <p><strong>⚠️ 版本管理提醒：</strong>所有工具文件均以版本号管理，使用前请确认是否为最新版本。修改工具模板需经实施部负责人审批，严禁私自改动核心字段定义。</p>
+      </div>
+    </div>
+
+    <!-- Chapter 6 -->
+    <div class="section" id="chapter6">
+      <h2 class="section-title"><span class="icon">🤝</span> 第六章 内部协作规则</h2>
+
+      <h3>6.1 跨部门协作流程</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>协作场景</th>
+              <th>发起部门</th>
+              <th>配合部门</th>
+              <th>交付时限</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>新客户评估</td>
+              <td>市场部</td>
+              <td>实施部</td>
+              <td>收到线索后3个工作日内</td>
+            </tr>
+            <tr>
+              <td>合同审批</td>
+              <td>内勤部</td>
+              <td>实施部、市场部</td>
+              <td>2个工作日内完成</td>
+            </tr>
+            <tr>
+              <td>数据系统需求</td>
+              <td>实施部</td>
+              <td>IT部</td>
+              <td>提交需求后5个工作日内</td>
+            </tr>
+            <tr>
+              <td>交付质量审核</td>
+              <td>实施部</td>
+              <td>内勤部（抽查）</td>
+              <td>交付前1个工作日</td>
+            </tr>
+            <tr>
+              <td>客户投诉处理</td>
+              <td>内勤部</td>
+              <td>实施部、市场部</td>
+              <td>收到投诉后24小时内响应</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>6.2 文档版本管理</h3>
+      <ul>
+        <li><strong>命名规则：</strong>「文件编号_文件名称_版本号」，如 <span class="tag">01_差距评估清单_v2.1</span></li>
+        <li><strong>版本递增：</strong>小幅修订递增末位（v2.0→v2.1），重大变更递增首位（v2.1→v3.0）</li>
+        <li><strong>归档要求：</strong>每个客户项目建立独立文件夹，按阶段归档所有工作文件</li>
+        <li><strong>保密等级：</strong>所有客户数据视为机密，未经授权不得外传</li>
+      </ul>
+
+      <h3>6.3 质量标准</h3>
+      <div class="card">
+        <h4>🎯 交付质量红线</h4>
+        <ul>
+          <li><strong>数据准确率：</strong>提交客户的护照数据准确率须达到100%，不允许存在明显错误</li>
+          <li><strong>法规符合性：</strong>所有交付物必须经过法规符合性检查，对照最新法规版本</li>
+          <li><strong>双人复核制：</strong>每份交付物须由制作人与复核人双签确认</li>
+          <li><strong>客户确认：</strong>正式交付前须获得客户书面确认数据无误</li>
+        </ul>
+      </div>
+
+      <h3>6.4 沟通规范</h3>
+      <ul>
+        <li><strong>内部沟通：</strong>优先使用公司协作平台，重要决策须有文字记录</li>
+        <li><strong>客户沟通：</strong>统一使用公司邮箱，正式文件加盖公章或部门章</li>
+        <li><strong>会议制度：</strong>每周一部门例会，每月一全员月会，重大项目随时专题会</li>
+        <li><strong>信息保密：</strong>客户业务信息、财务数据、供应链信息均为保密信息</li>
+      </ul>
+    </div>
+
+    <!-- Chapter 7 -->
+    <div class="section" id="chapter7">
+      <h2 class="section-title"><span class="icon">📊</span> 第七章 考核指标</h2>
+
+      <h3>7.1 核心KPI体系</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>指标名称</th>
+              <th>计算方式</th>
+              <th>目标值</th>
+              <th>考核周期</th>
+              <th>适用部门</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>客户签约数</strong></td>
+              <td>当月新签服务合同数量</td>
+              <td>≥5单/月</td>
+              <td>月度</td>
+              <td>市场部</td>
+            </tr>
+            <tr>
+              <td><strong>交付完成率</strong></td>
+              <td>按时交付项目数 ÷ 总项目数 × 100%</td>
+              <td>≥95%</td>
+              <td>月度</td>
+              <td>实施部</td>
+            </tr>
+            <tr>
+              <td><strong>客户满意度</strong></td>
+              <td>客户评分问卷平均得分（满分100）</td>
+              <td>≥90分</td>
+              <td>季度</td>
+              <td>全部门</td>
+            </tr>
+            <tr>
+              <td><strong>数据准确率</strong></td>
+              <td>无差错护照数 ÷ 总提交数 × 100%</td>
+              <td>100%</td>
+              <td>月度</td>
+              <td>实施部、IT部</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>7.2 部门专项指标</h3>
+      <div class="card-grid">
+        <div class="card">
+          <h4>📢 市场部</h4>
+          <ul>
+            <li>有效线索转化率 ≥ 30%</li>
+            <li>客户获取成本控制在预算内</li>
+            <li>行业活动参与 ≥ 2次/季度</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>📋 内勤部</h4>
+          <ul>
+            <li>合同审批时效 ≤ 2个工作日</li>
+            <li>文档归档完整率 100%</li>
+            <li>内部满意度 ≥ 85分</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>🔧 实施部</h4>
+          <ul>
+            <li>评估报告产出时效 ≤ 5个工作日</li>
+            <li>项目平均周期达标率 ≥ 90%</li>
+            <li>法规更新响应 ≤ 3个工作日</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>💻 IT部</h4>
+          <ul>
+            <li>系统可用性 ≥ 99.5%</li>
+            <li>需求响应时效 ≤ 5个工作日</li>
+            <li>安全事件：零容忍</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>7.3 考核结果应用</h3>
+      <div class="card highlight">
+        <ul>
+          <li><strong>优秀（KPI达成率≥110%）：</strong>绩效奖金上浮，优先晋升机会</li>
+          <li><strong>良好（KPI达成率90%-109%）：</strong>正常绩效奖金发放</li>
+          <li><strong>合格（KPI达成率70%-89%）：</strong>绩效改进计划，主管一对一辅导</li>
+          <li><strong>待改进（KPI达成率<70%）：</strong>启动专项提升计划，连续2季度不达标则调整岗位</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Appendix -->
+    <div class="section" id="appendix">
+      <h2 class="section-title"><span class="icon">❓</span> 附录 常见问题FAQ</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q1：什么是DPP（数字产品护照）？</div>
+        <div class="faq-answer">
+          <p>DPP（Digital Product Passport）是欧盟要求的产品数字化"身份证"，通过QR码链接至一个包含产品全生命周期信息的在线数据系统。对于电池产品，DPP包含材料成分、性能参数、回收信息等38项核心数据。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q2：哪些电池需要办理DPP？</div>
+        <div class="faq-answer">
+          <p>三类电池必须办理：①轻型交通工具电池（LMT，如电动自行车电池）；②容量超过2kWh的工业电池；③电动汽车电池（EV）。便携式电池（如手机电池）目前暂不要求。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q3：最终合规截止日期是什么时候？</div>
+        <div class="faq-answer">
+          <p>2027年2月18日起，所有适用类别的电池必须持有完整的数字产品护照，否则不得进入欧盟市场。在此之前有3个前置节点：2025年8月（尽职调查）、2026年2月（QR码）、2026年8月（标签）。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q4：客户不办理DPP会有什么后果？</div>
+        <div class="faq-answer">
+          <p>未持有DPP的电池产品将被拒绝入境欧盟，海关有权扣押、退运或销毁。同时可能面临欧盟成员国的行政处罚（罚款金额由各成员国自行设定），以及商业信誉损失。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q5：我们的服务与第三方检测认证机构有什么区别？</div>
+        <div class="faq-answer">
+          <p>我们提供的是DPP合规咨询的全流程服务，从差距评估到数据护照交付和持续维护。不同于检测机构只做单项测试，我们的价值在于帮助客户系统性地解决合规问题，减少多头对接的成本。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q6：eIDAS是什么？客户为什么需要办理？</div>
+        <div class="faq-answer">
+          <p>eIDAS是欧盟电子身份认证和信任服务法规。企业需要通过eIDAS获得数字身份证书，才能在欧盟DPP平台上注册和提交数据护照。这是技术层面的必要前提，我们会在06号工具文件中提供详细办理指引。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q7：什么是欧盟授权代表（欧代）？</div>
+        <div class="faq-answer">
+          <p>欧盟授权代表（Authorised Representative）是指非欧盟企业指定的、位于欧盟境内的法律实体，负责代表该企业履行部分法规义务。中国出口企业必须在欧盟境内指定一名欧代，才能合法销售产品。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q8：完成一个DPP项目通常需要多长时间？</div>
+        <div class="faq-answer">
+          <p>根据客户数据基础不同，典型项目周期为4-8周。其中：差距评估约1周，数据采集约2-4周（取决于供应商响应速度），护照编制与审核约1-2周，平台注册约1周。数据基础好的客户可能更快。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q9：DPP护照交付后还需要维护吗？</div>
+        <div class="faq-answer">
+          <p>是的。DPP不是一次性交付，而是持续合规义务。法规可能更新数据要求，产品参数可能变化，年度复审也是必要的。我们提供年度维护服务，确保客户DPP始终处于合规状态。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q10：作为新员工，我应该从哪里开始学习？</div>
+        <div class="faq-answer">
+          <p>建议学习路径：①通读本手册，了解公司业务全景 → ②精读00号使用说明文件，熟悉工具包 → ③阅读(EU) 2023/1542法规原文关键章节 → ④跟导师完成一个完整项目实操 → ⑤参加内部培训和考试。整个上手期约2-4周。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>守信财税 DPP业务 · 员工手册 v1.0 · 2026年9月</p>
+      <p>本手册为内部培训资料，未经授权请勿对外传播</p>
+      <p style="margin-top:8px;">© 2026 守信财税 ShouXin Finance & Tax. All Rights Reserved.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// FAQ toggle
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+
+// Active nav highlight
+const navLinks = document.querySelectorAll('.nav-list a');
+const sections = document.querySelectorAll('.section, .cover, .toc');
+
+function updateActiveNav() {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 100;
+    if (window.scrollY >= top) {
+      current = section.id;
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+window.addEventListener('load', updateActiveNav);
+
+// Close sidebar on mobile after clicking
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      document.getElementById('sidebar').classList.remove('open');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

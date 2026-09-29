@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DPP数字产品护照 · 痛点与解决方案全景整理</title>
+<style>
+:root{
+  --navy:#111e36;--navy-2:#1a2b4a;--navy-3:#243a63;
+  --gold:#c9a227;--gold-2:#d8b645;--gold-soft:#f8f1dc;
+  --bg:#f3f5f9;--card:#fff;--ink:#22304a;--muted:#5f6d84;--line:#e2e7f0;
+  --red:#b3382c;--red-soft:#fbe9e7;
+  --green:#1e7d4f;--green-soft:#e5f3eb;
+  --blue:#2b5fa8;--blue-soft:#e9f0fa;
+  --orange:#c05621;--orange-soft:#fef3e2;
+  --radius:14px;--shadow:0 2px 10px rgba(17,30,54,.06);--shadow-lg:0 8px 28px rgba(17,30,54,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+/* nav */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(17,30,54,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--gold)}
+.topnav .wrap{display:flex;align-items:center;gap:14px;height:58px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
+.brand .logo{width:32px;height:32px;border-radius:8px;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex:none}
+.brand small{display:block;font-size:10px;font-weight:400;color:rgba(255,255,255,.6);letter-spacing:.08em}
+.navlinks{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{color:rgba(255,255,255,.75);font-size:13px;padding:5px 10px;border-radius:6px;white-space:nowrap;flex:none}
+.navlinks a:hover{background:rgba(255,255,255,.1);text-decoration:none;color:#fff}
+
+/* hero */
+.hero{background:linear-gradient(150deg,var(--navy) 0%,var(--navy-2) 55%,var(--navy-3) 100%);color:#fff;padding:60px 0 52px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-100px;top:-100px;width:380px;height:380px;border-radius:50%;border:1px solid rgba(201,162,39,.2)}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;color:var(--gold-2);font-weight:700;border:1px solid rgba(201,162,39,.5);border-radius:999px;padding:4px 14px;margin-bottom:18px}
+.hero h1{font-size:34px;line-height:1.35;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--gold-2)}
+.hero .sub{margin-top:14px;font-size:16px;color:rgba(255,255,255,.8);max-width:38em}
+.hero-stats{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.hero-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 16px;min-width:140px;flex:1}
+.hero-stat b{display:block;font-size:20px;color:var(--gold-2);font-weight:800;line-height:1.3}
+.hero-stat span{font-size:12px;color:rgba(255,255,255,.7)}
+
+/* sections */
+section.ch{padding:56px 0 8px}
+.ch-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+.ch-num{font-size:14px;font-weight:800;color:var(--navy);background:var(--gold-soft);border:1px solid var(--gold);border-radius:8px;padding:3px 12px;white-space:nowrap}
+h2{font-size:25px;font-weight:800;color:var(--navy);line-height:1.35}
+.lead{color:var(--muted);font-size:15px;max-width:48em;margin:8px 0 24px}
+.lead strong{color:var(--ink)}
+h3{font-size:17px;color:var(--navy);margin:26px 0 12px;font-weight:700}
+h3 .tn{color:var(--gold);font-weight:800;margin-right:6px}
+p{margin:8px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+
+/* pain card */
+.pain{position:relative;overflow:hidden}
+.pain::before{content:attr(data-no);position:absolute;right:16px;top:14px;font-size:48px;font-weight:900;color:rgba(17,30,54,.04);line-height:1}
+.pain-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.pain-icon{width:40px;height:40px;border-radius:10px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;flex:none}
+.pain-head h4{font-size:16px;color:var(--navy);font-weight:700}
+.pain-desc{font-size:14px;color:var(--muted);margin-bottom:10px}
+.pain-evidence{font-size:13px;color:var(--red);background:var(--red-soft);border-radius:8px;padding:10px 14px;border-left:3px solid var(--red);margin-bottom:10px}
+.pain-evidence b{color:var(--red)}
+
+/* solution card */
+.sol{border-top:4px solid var(--green)}
+.sol-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sol-icon{width:36px;height:36px;border-radius:9px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex:none}
+.sol-head h4{font-size:15px;color:var(--navy);font-weight:700}
+.sol-list{list-style:none;font-size:14px;color:var(--ink)}
+.sol-list li{padding:6px 0 6px 22px;position:relative;border-bottom:1px dashed var(--line)}
+.sol-list li:last-child{border-bottom:none}
+.sol-list li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+
+/* mapping table */
+.map-tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);margin-top:14px}
+.map-tbl table{width:100%;border-collapse:collapse;min-width:760px;font-size:13.5px}
+.map-tbl caption{text-align:left;padding:12px 16px;font-weight:700;color:var(--navy);background:var(--gold-soft);border-bottom:1px solid var(--line)}
+.map-tbl th,.map-tbl td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.map-tbl th{background:var(--navy);color:#fff;font-weight:600;font-size:13px;white-space:nowrap}
+.map-tbl tbody tr:nth-child(even){background:#f8fafd}
+.map-tbl tbody tr:last-child td{border-bottom:none}
+.badge{display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.b-red{background:var(--red-soft);color:var(--red)}
+.b-gold{background:var(--gold-soft);color:#8a6d10;border:1px solid rgba(201,162,39,.5)}
+.b-green{background:var(--green-soft);color:var(--green)}
+.b-blue{background:var(--blue-soft);color:var(--blue)}
+
+/* timeline */
+.timeline{position:relative;margin-top:20px;padding-left:30px}
+.timeline::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:3px;background:linear-gradient(var(--gold),var(--navy));border-radius:2px}
+.tl-item{position:relative;padding:0 0 22px 20px}
+.tl-item::before{content:"";position:absolute;left:-27px;top:5px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--navy)}
+.tl-item.hot::before{border-color:var(--red);background:var(--red-soft)}
+.tl-item.key::before{border-color:var(--gold);background:var(--gold-soft)}
+.tl-date{font-weight:800;color:var(--navy);font-size:14px}
+.tl-item.hot .tl-date{color:var(--red)}
+.tl-body{font-size:13.5px;color:var(--ink);margin-top:2px}
+.tl-body .muted{color:var(--muted);font-size:12.5px}
+.tl-flag{font-size:10.5px;font-weight:800;border-radius:4px;padding:1px 6px;margin-left:6px}
+.flag-red{background:var(--red);color:#fff}
+.flag-gold{background:var(--gold);color:var(--navy)}
+
+/* service layers */
+.pyramid{display:grid;gap:10px;max-width:880px;margin:0 auto}
+.pyr{border-radius:12px;padding:16px 22px;display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:center}
+.pyr-1{background:var(--navy);color:#fff;margin:0 16%}
+.pyr-2{background:var(--gold-soft);border:1.5px solid var(--gold);margin:0 8%}
+.pyr-3{background:#fff;border:1.5px solid var(--line);margin:0}
+.pname{font-weight:800;font-size:15px;text-align:center}
+.pyr-1 .pname{color:var(--gold-2)}
+.pyr-2 .pname{color:#8a6d10}
+.pyr-3 .pname{color:var(--navy)}
+.pname small{display:block;font-weight:400;font-size:11px;opacity:.8;margin-top:2px}
+.pyr p{font-size:13.5px;margin:0}
+.pyr-1 p{color:rgba(255,255,255,.85)}
+.pyr-2 p{color:#6b5410}
+.pyr-3 p{color:var(--muted)}
+
+/* svc list */
+.svc-list{counter-reset:svc;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+.svc-item{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px;display:flex;gap:12px;align-items:flex-start}
+.svc-item::before{counter-increment:svc;content:counter(svc);flex:none;width:26px;height:26px;border-radius:7px;background:var(--navy);color:var(--gold-2);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.svc-item b{display:block;color:var(--navy);font-size:14px;margin-bottom:2px}
+.svc-item span{font-size:12.5px;color:var(--muted)}
+
+/* callout */
+.callout{border-radius:var(--radius);padding:16px 20px;margin-top:18px;font-size:14px;display:flex;gap:12px;align-items:flex-start}
+.callout .ci{font-size:20px;line-height:1.3;flex:none}
+.callout.warn{background:var(--red-soft);border:1px solid rgba(179,56,44,.3);color:#6e241d}
+.callout.tip{background:var(--gold-soft);border:1px solid rgba(201,162,39,.4);color:#6b5410}
+.callout b{color:inherit}
+
+/* phase */
+.phase-card{border-radius:var(--radius);padding:18px 20px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.phase-card h4{font-size:16px;color:var(--navy);margin-bottom:4px}
+.phase-card .ph-tag{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:6px}
+.phase-card ul{list-style:none;font-size:13.5px}
+.phase-card ul li{padding:4px 0 4px 18px;position:relative;color:var(--ink)}
+.phase-card ul li::before{content:"▸";position:absolute;left:0;color:var(--gold);font-weight:800}
+
+/* risk */
+.risk-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#fff;border:1px solid var(--line)}
+.risk-head{background:var(--red-soft);padding:12px 18px;font-weight:700;color:#6e241d;font-size:14px;border-bottom:1px solid rgba(179,56,44,.2)}
+.risk-fix{padding:14px 18px;font-size:13.5px;color:var(--ink)}
+.risk-fix b{color:var(--navy)}
+
+/* footer */
+footer{background:var(--navy);color:#aebfd6;padding:32px 0;font-size:13px;margin-top:40px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer b{color:var(--gold)}
+.disclaim{font-size:12px;color:#8a9ab5;margin-top:18px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}
+
+@media(max-width:760px){
+  .g2,.g3{grid-template-columns:1fr}
+  .svc-list{grid-template-columns:1fr}
+  .pyr{grid-template-columns:1fr}
+  .pyr-1,.pyr-2{margin:0}
+  .hero h1{font-size:24px}
+  .hero-stats{flex-direction:column}
+}
+@media print{
+  nav.topnav{display:none}
+  body{background:#fff;font-size:11px}
+  .hero{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:24px 0}
+  section.ch{padding:18px 0}
+  .card,.pyr,.risk-card{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav" role="navigation" aria-label="页面导航">
+  <div class="wrap">
+    <span class="brand"><span class="logo">DPP</span>DPP数字产品护照<small>痛点与解决方案全景整理</small></span>
+    <div class="navlinks">
+      <a href="#pain">核心痛点</a>
+      <a href="#map">痛点→解法</a>
+      <a href="#law">法规框架</a>
+      <a href="#timeline">时间表</a>
+      <a href="#priority">行业优先级</a>
+      <a href="#action">行动计划</a>
+      <a href="#risk">风险预警</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">DPP 数字产品护照 · 专项整理稿</span>
+    <h1>欧盟 <em>DPP 数字产品护照</em><br>企业痛点与解决方案全景</h1>
+    <p class="sub">整合项目全景分析、服务产品方案、法规时间表、行业优先级清单、企业合规自查表等全部文档，聚焦企业核心痛点与行业解决方案。</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><b class="num">7部法规</b><span>1部总法 + 6部行业法陆续落地</span></div>
+      <div class="hero-stat"><b class="num">8大行业</b><span>电池、纺织、电子、家具等先后纳入</span></div>
+      <div class="hero-stat"><b class="num">2027.2.18</b><span>电池护照第一个强制死线</span></div>
+      <div class="hero-stat"><b class="num">6大痛点</b><span>每个痛点均有对应解法</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ 第一章：核心痛点 ============ -->
+<section class="ch" id="pain">
+  <div class="ch-head"><span class="ch-num">第 1 章</span><h2>六大核心痛点：出口企业到底怕什么</h2></div>
+  <p class="lead">DPP 表面是"加个二维码"，里子是<strong>整个出口合规逻辑的升级</strong>。以下六大痛点从项目全景分析、服务方案、自查表中提炼，每一条都有法规依据和实际影响。</p>
+
+  <div class="grid g2" style="gap:18px">
+
+    <div class="card pain" data-no="01">
+      <div class="pain-head">
+        <div class="pain-icon">📊</div>
+        <h4>痛点一：数据能力断层——从"交单证"到"交数据包"</h4>
+      </div>
+      <p class="pain-desc">以前出口靠报关单、合格证；现在要交结构化的材料成分、碳足迹、回收料比例等数据。多数工厂从来没算过自己的碳足迹，ERP系统也产出不了合规数据。</p>
+      <div class="pain-evidence"><b>法规依据：</b>电池护照要求11类核心数据点（化学成分、碳足迹、回收料比例、SOH健康状态等），每项都需量化数据。自查表26题中，第13—21题（数据准备维度）是企业"否"最多的区域。</div>
+    </div>
+
+    <div class="card pain" data-no="02">
+      <div class="pain-head">
+        <div class="pain-icon">🤝</div>
+        <h4>痛点二：供应链协同——最耗时、最易卡壳</h4>
+      </div>
+      <p class="pain-desc">DPP数据要向上游逐级收集：做电池的得问钴、锂、镍从哪家来、回收料比例多少。上游小厂没能力、不配合是常态。这个环节本身就要6—12个月。</p>
+      <div class="pain-evidence"><b>法规依据：</b>电池法规要求供应链尽职调查+来源可追溯（CRMA关键原材料法联动）；自查表第14题"供应商信息是否可追溯"是关键卡点。行业优先级清单判断理由中反复强调"供应链数据是最大难点"。</div>
+    </div>
+
+    <div class="card pain" data-no="03">
+      <div class="pain-head">
+        <div class="pain-icon">⏰</div>
+        <h4>痛点三：时间窗口极紧——电池行业只剩半年</h4>
+      </div>
+      <p class="pain-desc">距电池护照强制（2027.2.18）仅剩约5个月。供应链数据协同本身就要6—12个月。等法案落地再动，一定赶工、多花钱、丢订单。</p>
+      <div class="pain-evidence"><b>硬节点：</b>2026.7.20 DPP注册中心已上线，注册成为海关清关前置条件；2026.8.6注册条例生效；2027.2.18电池护照强制——晚一天都可能货卡在港口。</div>
+    </div>
+
+    <div class="card pain" data-no="04">
+      <div class="pain-head">
+        <div class="pain-icon">💰</div>
+        <h4>痛点四：四笔新账——成本结构完全变了</h4>
+      </div>
+      <p class="pain-desc">① 系统改造或SaaS采购；② 数据核算与认证（碳足迹核算等）；③ 注册与年度维护；④ 专人负责。中小企业可利用电池法规Art.48简化安排，但只能减负不能免责。</p>
+      <div class="pain-evidence"><b>成本现实：</b>市场CE认证咨询1.5万—8万/类，碳足迹/ISO体系3万—10万。DPP是跨部门体系型合规，工作量高于单次认证，企业需综合评估合规投入。</div>
+    </div>
+
+    <div class="card pain" data-no="05">
+      <div class="pain-head">
+        <div class="pain-icon">🚧</div>
+        <h4>痛点五：准入门槛升级——两道卡子同时来</h4>
+      </div>
+      <p class="pain-desc">第一道是政府：注册中心核验不过，海关不放行。第二道是客户：欧盟大买家会把DPP直接写进采购合同。很多时候不是"欧盟要"，是"你的客户要"。</p>
+      <div class="pain-evidence"><b>法规依据：</b>(EU) 2026/1778注册条例明确"产品投放欧盟市场前必须先完成注册"，海关电子核验DPP注册状态，核验通过后才放行——"先上户口，再卖货"。自查表第4题"是否已有客户提出DPP要求"是关键信号。</div>
+    </div>
+
+    <div class="card pain" data-no="06">
+      <div class="pain-head">
+        <div class="pain-icon">🏁</div>
+        <h4>痛点六：竞争格局重塑——合规变成订单分水岭</h4>
+      </div>
+      <p class="pain-desc">早合规的企业拿得到大客户供应链门票，晚合规的被挤出欧盟市场。能扫码看碳足迹、看回收料的产品，在欧盟采购商眼里是加分项——DPP会从"成本项"变成"竞争力"。</p>
+      <div class="pain-evidence"><b>市场逻辑：</b>服务方案中客户画像A类（年出口>2000万，客户已发DPP问卷）正在抢购"早鸟"位置；C类（小厂、无概念）等死线前3个月会被一窝蜂挤爆服务商产能。</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 第二章：痛点→解法映射 ============ -->
+<section class="ch" id="map">
+  <div class="ch-head"><span class="ch-num">第 2 章</span><h2>痛点→解法映射：每个坑都有对应的铲子</h2></div>
+  <p class="lead">从企业实战经验出发，DPP合规可沿"诊断→方案→落地→维护"四步走。以下逐一对应六大痛点的行业解决方案。</p>
+
+  <div class="map-tbl">
+    <table>
+      <caption>表 1：六大痛点 × 行业解法 × 对应服务方向</caption>
+      <thead>
+        <tr><th>痛点</th><th>核心问题</th><th>行业解法</th><th>对应服务方向</th><th>关键交付物</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge b-red">痛点①</span> 数据能力断层</td>
+          <td>不会算碳足迹、没有材料数据、BOM不完整</td>
+          <td>逐SKU梳理数据项→编制《DPP数据手册》→碳足迹核算对接第三方机构</td>
+          <td>DPP数据规划与手册 + 碳足迹数据对接</td>
+          <td>《DPP数据手册》+ 采集台账模板 + 碳足迹核算报告</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-red">痛点②</span> 供应链协同难</td>
+          <td>上游小厂不配合、数据收不齐、多级穿透难</td>
+          <td>设计上游问卷与数据模板→辅导供应商填报→催收核验→缺失项整改</td>
+          <td>供应商数据收集辅导</td>
+          <td>供应商数据回收台账 + 合格数据数据包</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-red">痛点③</span> 时间窗口极紧</td>
+          <td>电池行业只剩半年，其他行业也在倒数</td>
+          <td>差距评估快速定位→优先补齐关键数据→注册代办全程陪跑</td>
+          <td>DPP差距评估 + 注册中心注册辅导</td>
+          <td>《差距评估报告》+ 注册确认函 + 清关核验指引</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-gold">痛点④</span> 成本压力大</td>
+          <td>系统改造、认证、注册、专人——四笔新账</td>
+          <td>分阶段合规路径，先做最小可行合规，再逐步升级</td>
+          <td>诊断评估+注册代办+年度维护组合</td>
+          <td>差距评估报告 + 注册确认 + 持续维护方案</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-gold">痛点⑤</span> 准入门槛升级</td>
+          <td>注册是清关前置，客户合同也有DPP条款</td>
+          <td>协助成为"已验证经济运营商"→完成产品注册→合同DPP条款审核</td>
+          <td>注册代办 + 采购合同DPP条款审核</td>
+          <td>注册账户 + 注册确认函 + 合同风险评估</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-blue">痛点⑥</span> 竞争格局重塑</td>
+          <td>早合规拿门票，晚合规丢订单</td>
+          <td>年度数据托管确保持续合规→CE+DPP+CBAM一站式出海合规</td>
+          <td>数据托管年度维护 + CE+DPP+CBAM衔接</td>
+          <td>年度维护报告 + 季度法规简报 + DPP数据看板</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<!-- ============ 第三章：法规框架 ============ -->
+<section class="ch" id="law">
+  <div class="ch-head"><span class="ch-num">第 3 章</span><h2>法规框架：一部总法搭台，六部行业法唱戏</h2></div>
+  <p class="lead">DPP不是单独一部法，而是"一部总法+一批行业法规"。总法<strong>ESPR生态设计法规</strong>定下统一规矩，各行业再通过授权法案规定具体数据要求和时间表。</p>
+
+  <div class="map-tbl">
+    <table>
+      <caption>表 2：与DPP相关的主要欧盟法规（截至2026年9月）</caption>
+      <thead>
+        <tr><th>法规</th><th>管什么</th><th>编号</th><th>状态</th><th>关键日期</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>ESPR 生态设计法规</b><br><span class="muted">总法，定DPP通用规则与注册框架</span></td>
+          <td>所有产品的DPP总规矩</td>
+          <td><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener noreferrer">(EU) 2024/1781</a></td>
+          <td><span class="badge b-green">已生效</span></td>
+          <td class="num">2024.7.18生效</td>
+        </tr>
+        <tr>
+          <td><b>电池法规</b><br><span class="muted">第一本强制的"行业护照"——电池护照</span></td>
+          <td>EV电池、LMT电池、>2kWh工业电池</td>
+          <td><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1542" target="_blank" rel="noopener noreferrer">(EU) 2023/1542</a></td>
+          <td><span class="badge b-red">护照义务即将强制</span></td>
+          <td class="num">2027.2.18 电池护照强制</td>
+        </tr>
+        <tr>
+          <td><b>建筑产品法规 CPR</b></td>
+          <td>钢材、水泥、门窗等建筑产品</td>
+          <td><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R3110" target="_blank" rel="noopener noreferrer">(EU) 2024/3110</a></td>
+          <td><span class="badge b-green">已生效·普遍适用</span></td>
+          <td class="num">2026.1.8普遍适用</td>
+        </tr>
+        <tr>
+          <td><b>玩具安全法规（新版）</b></td>
+          <td>玩具产品安全与DPP义务</td>
+          <td><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32025R2509" target="_blank" rel="noopener noreferrer">(EU) 2025/2509</a></td>
+          <td><span class="badge b-gold">已通过·待适用</span></td>
+          <td class="num">DPP 2030.8.1强制</td>
+        </tr>
+        <tr>
+          <td><b>洗涤剂法规</b></td>
+          <td>洗涤剂的数字标签与环境信息</td>
+          <td><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R0405" target="_blank" rel="noopener noreferrer">(EU) 2026/405</a></td>
+          <td><span class="badge b-gold">已通过·待适用</span></td>
+          <td class="num">2029.9.23适用</td>
+        </tr>
+        <tr>
+          <td><b>包装法规 PPWR</b></td>
+          <td>包装可回收性、数字标签</td>
+          <td><span class="muted">(EU) 2025/40</span></td>
+          <td><span class="badge b-blue">细则推进中</span></td>
+          <td class="num">配套细则陆续出台</td>
+        </tr>
+        <tr>
+          <td><b>关键原材料法 CRMA</b></td>
+          <td>锂、钴、镍等关键原材料供应链</td>
+          <td><span class="muted">(EU) 2024/1252</span></td>
+          <td><span class="badge b-blue">推进中</span></td>
+          <td class="num">与电池行业义务协同</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <span class="ci">📌</span>
+    <div><b>两个机制要记住：</b><br>
+    ① <b>授权法案机制</b>：ESPR授权欧盟委员会按行业逐个出细则。每个行业法案通过后，企业<b>至少有18个月过渡期</b>。<br>
+    ② <b>注册条例</b>：<a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R1778" target="_blank" rel="noopener noreferrer">(EU) 2026/1778</a> 于 <b>2026年8月6日生效</b>，规定DPP注册中心怎么运作、企业怎么注册。</div>
+  </div>
+</section>
+
+<!-- ============ 第四章：时间表 ============ -->
+<section class="ch" id="timeline">
+  <div class="ch-head"><span class="ch-num">第 4 章</span><h2>强制时间表：2024→2030，谁先谁后</h2></div>
+  <p class="lead">DPP分行业、分批次推进。<strong>最近的硬节点是2027年2月18日的电池护照</strong>——倒推回来，准备时间已经很紧。</p>
+
+  <div class="timeline">
+    <div class="tl-item key">
+      <div class="tl-date">2024年7月18日</div>
+      <div class="tl-body">ESPR生态设计法规正式生效，DPP总法落地。<span class="muted">——搭台子</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2025年1月7日</div>
+      <div class="tl-body">建筑产品法规CPR生效。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2026年1月8日</div>
+      <div class="tl-body">CPR<b>普遍适用</b>——建材出口企业已在义务范围内。</div>
+    </div>
+    <div class="tl-item hot">
+      <div class="tl-date">2026年7月20日 <span class="tl-flag flag-gold">已发生</span></div>
+      <div class="tl-body"><b>欧盟DPP注册中心正式上线</b>（含测试环境）。<span class="muted">——户籍登记处开门了</span></div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-date">2026年8月6日</div>
+      <div class="tl-body">注册条例(EU) 2026/1778生效，注册成为清关前置条件的制度依据生效。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2026年第四季度（预计）</div>
+      <div class="tl-body"><b>钢铁行业授权法案预计出台</b>——钢铁、金属制品产业链需关注。</div>
+    </div>
+    <div class="tl-item hot">
+      <div class="tl-date">2027年2月18日 <span class="tl-flag flag-red">硬截止</span></div>
+      <div class="tl-body"><b>电池护照强制实施</b>：EV电池、LMT电池、>2kWh工业电池必须带护照。<span class="muted">这是全行业第一个强制大限。</span></div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-date">2027年内</div>
+      <div class="tl-body"><b>纺织、轮胎、铝、能源相关产品</b>授权法案陆续出台（另有≥18个月过渡期）。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2028年</div>
+      <div class="tl-body"><b>家具行业</b>法案落地推进。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2029年</div>
+      <div class="tl-body"><b>床垫、ICT</b>行业法案推进；9月23日洗涤剂法规适用。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2030年8月1日</div>
+      <div class="tl-body"><b>玩具DPP强制</b>。</div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <span class="ci">⏰</span>
+    <div><b>"18个月过渡期" ≠ "可以再等等"。</b> 过渡期从法案通过算起，但最耗时的是<b>上游供应链数据采集</b>——找原材料厂要成分、要碳足迹、要回收料比例，来回扯皮往往就要6—12个月。等法案落地再动，一定赶工、多花钱、丢订单。</div>
+  </div>
+</section>
+
+<!-- ============ 第五章：行业优先级 ============ -->
+<section class="ch" id="priority">
+  <div class="ch-head"><span class="ch-num">第 5 章</span><h2>行业优先级排序：综合强制时间 × 出口体量 × 供应链复杂度</h2></div>
+  <p class="lead">红色=最紧急，金色=第二梯队，绿色=可提前规划。</p>
+
+  <div class="map-tbl">
+    <table>
+      <caption>表 3：八大行业DPP优先级</caption>
+      <thead>
+        <tr><th>优先级</th><th>行业</th><th>强制时间</th><th>紧迫度</th><th>核心数据类型</th><th>建议启动时间</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge b-red">1 最紧急</span></td>
+          <td><b>电池</b><br><span class="muted">EV/储能/电动工具/LMT</span></td>
+          <td class="num">2027.2.18</td>
+          <td><span class="badge b-red">红</span></td>
+          <td>材料构成、碳足迹、回收料比例、供应链尽职调查、SOH</td>
+          <td><b>立即启动</b></td>
+        </tr>
+        <tr>
+          <td><span class="badge b-gold">2 第二梯队</span></td>
+          <td><b>钢铁/铝</b></td>
+          <td class="num">2028年中前后</td>
+          <td><span class="badge b-gold">黄</span></td>
+          <td>材料成分/牌号、碳足迹/EPD、再生原料比例</td>
+          <td>2026年立即启动</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-gold">3</span></td>
+          <td><b>建材</b></td>
+          <td class="num">CPR已适用</td>
+          <td><span class="badge b-gold">黄</span></td>
+          <td>产品性能、EPD/碳足迹、有害物质</td>
+          <td>2026年启动</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-gold">4</span></td>
+          <td><b>纺织服装</b></td>
+          <td class="num">2028—2029年</td>
+          <td><span class="badge b-gold">黄</span></td>
+          <td>纤维成分、产地溯源、再生材料、耐用性</td>
+          <td>2026—2027年</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-gold">5</span></td>
+          <td><b>轮胎</b></td>
+          <td class="num">2028—2029年</td>
+          <td><span class="badge b-gold">黄</span></td>
+          <td>橡胶成分、再生含量、耐磨性能</td>
+          <td>2026—2027年</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-blue">6</span></td>
+          <td><b>电子ICT</b></td>
+          <td class="num">2029年</td>
+          <td><span class="badge b-green">绿</span></td>
+          <td>BOM、有害物质(RoHS)、能效、维修信息</td>
+          <td>2027—2028年</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-blue">7</span></td>
+          <td><b>家具</b></td>
+          <td class="num">2029—2030年</td>
+          <td><span class="badge b-green">绿</span></td>
+          <td>材料构成、来源合法性、有害物质(甲醛)</td>
+          <td>2027—2028年</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-blue">8</span></td>
+          <td><b>玩具/包装/洗涤剂</b></td>
+          <td class="num">2029—2030年</td>
+          <td><span class="badge b-green">绿</span></td>
+          <td>材料成分、有害物质、适龄安全</td>
+          <td>玩具2028—2029年</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 第六章：行动计划 ============ -->
+<section class="ch" id="action">
+  <div class="ch-head"><span class="ch-num">第 6 章</span><h2>行动计划：三阶段推进</h2></div>
+
+  <div class="grid g3" style="gap:14px">
+    <div class="phase-card">
+      <div class="ph-tag">短期 · 2026年8—12月</div>
+      <h4>卡位与练兵（0—4个月）</h4>
+      <ul>
+        <li><b>吃透政策</b>：组建DPP研究小组，精读ESPR、电池法规、注册条例</li>
+        <li><b>启动引流</b>：产出科普文章、政策快讯、直播讲座、自查清单</li>
+        <li><b>免费诊断</b>：筛选20—30家电池/纺织出口客户做诊断，打造1—2个标杆</li>
+        <li><b>建渠道</b>：与碳足迹核算机构、DPP服务商建立合作</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="ph-tag">中期 · 2027年</div>
+      <h4>交付与产品化（5—16个月）</h4>
+      <ul>
+        <li><b>抢电池窗口</b>：围绕2027.2.18大限集中交付注册代办与合规项目</li>
+        <li><b>上线托管</b>：推出年费制合规托管产品，锁定长期收入</li>
+        <li><b>提前布局</b>：跟踪钢铁（2026Q4法案）、纺织/铝/轮胎（2027法案）落地节奏</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="ph-tag">长期 · 2028—2030年</div>
+      <h4>滚动复制（17个月以后）</h4>
+      <ul>
+        <li><b>行业扩展</b>：家具（2028）、床垫/ICT（2029）、玩具（2030）按时间表滚动复制</li>
+        <li><b>续费为王</b>：以托管续约率为核心指标，形成稳定年费基本盘</li>
+        <li><b>一站式升级</b>：从DPP单点扩展为"出海合规一站式"（CE/CBAM/碳足迹/DPP）</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3><span class="tn">◆</span>企业12个月合规路径（电池企业为例）</h3>
+  <p class="muted" style="font-size:13px"><b>数据采集最耗时，必须最先启动</b>；注册中心测试环境可提前演练。</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:14px">
+    <div class="card" style="padding:12px;text-align:center;border-top:3px solid var(--gold)"><b style="font-size:13px">M1—M2</b><p style="font-size:12px;color:var(--muted);margin:4px 0 0">法规诊断<br>差距评估</p></div>
+    <div class="card" style="padding:12px;text-align:center;border-top:3px solid var(--navy-3)"><b style="font-size:13px">M2—M4</b><p style="font-size:12px;color:var(--muted);margin:4px 0 0">供应链数据<br>摸底</p></div>
+    <div class="card" style="padding:12px;text-align:center;border-top:3px solid var(--navy-3)"><b style="font-size:13px">M3—M6</b><p style="font-size:12px;color:var(--muted);margin:4px 0 0">碳足迹核算<br>第三方认证</p></div>
+    <div class="card" style="padding:12px;text-align:center;border-top:3px solid var(--navy-3)"><b style="font-size:13px">M4—M6</b><p style="font-size:12px;color:var(--muted);margin:4px 0 0">DPP系统<br>选型搭建</p></div>
+    <div class="card" style="padding:12px;text-align:center;border-top:3px solid var(--navy-3)"><b style="font-size:13px">M6—M8</b><p style="font-size:12px;color:var(--muted);margin:4px 0 0">数据填报<br>内部测试</p></div>
+    <div class="card" style="padding:12px;text-align:center;border-top:3px solid var(--gold)"><b style="font-size:13px">M8—M9</b><p style="font-size:12px;color:var(--muted);margin:4px 0 0">注册运营商<br>与产品</p></div>
+    <div class="card" style="padding:12px;text-align:center;border-top:3px solid var(--navy-3)"><b style="font-size:13px">M9—M11</b><p style="font-size:12px;color:var(--muted);margin:4px 0 0">欧盟买家<br>对接</p></div>
+    <div class="card" style="padding:12px;text-align:center;border-top:3px solid var(--red)"><b style="font-size:13px">M11—M12</b><p style="font-size:12px;color:var(--muted);margin:4px 0 0">正式上线<br>迎接强制大限</p></div>
+  </div>
+</section>
+
+<!-- ============ 第九章：风险预警 ============ -->
+<section class="ch" id="risk">
+  <div class="ch-head"><span class="ch-num">第 7 章</span><h2>风险预警：五个坑，提前防</h2></div>
+  <p class="lead">无论是出口企业自己做合规，还是服务机构承接项目，以下五类风险都要提前有预案。</p>
+
+  <div class="grid" style="gap:14px">
+    <div class="risk-card">
+      <div class="risk-head">⚠️ 风险一：政策变动风险</div>
+      <div class="risk-fix"><b>应对</b>：授权法案细则仍在密集出台，数据点要求和时间表可能调整。建立政策跟踪机制，把"法规变动预警"写进托管服务内容；合规方案模块化设计，留出调整余量。</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-head">⚠️ 风险二：数据获取风险</div>
+      <div class="risk-fix"><b>应对</b>：上游小厂没能力算碳足迹、给不出成分数据是常态。对供应商分级管理，把数据义务写进采购合同；关键材料备选两家以上供应商；过渡期可用行业数据库合理估算，但须留痕可追溯。</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-head">⚠️ 风险三：服务商乱象风险</div>
+      <div class="risk-fix"><b>应对</b>：DPP热度起来后，SaaS工具和代办公司鱼龙混杂。需要以"独立第三方咨询"定位，帮企业选型把关、核验服务商资质——<b>帮客户避坑本身就是收入来源</b>。</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-head">⚠️ 风险四：价格战风险</div>
+      <div class="risk-fix"><b>应对</b>：单纯注册代办门槛不高，后期容易陷入价格战。向高价值环节走：供应链数据方案、碳足迹、年度托管，用专业深度和客户信任筑壁垒。</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-head">⚠️ 风险五：企业观望风险</div>
+      <div class="risk-fix"><b>应对</b>：客户觉得"还早"而拖延。用两个硬约束教育市场：<b>海关注册前置核验 + 欧盟买家合同要求</b>；配合早鸟优惠和标杆案例，推动客户现在就启动诊断。</div>
+    </div>
+  </div>
+
+  <div class="callout tip" style="margin-top:22px">
+    <span class="ci">🎯</span>
+    <div><b>给出口企业老板的一句话：</b>DPP不是可选项，是欧盟市场的新门票。<b>电池行业现在就动，其他行业先做诊断摸清自己排在哪一年</b>——早动手的企业花小钱办大事，晚动手的企业花大钱还可能丢订单。</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b>DPP 数字产品护照 · 行业整理稿</b><br>
+      外贸/出海企业合规参考
+    </div>
+    <div>
+      <b>资料来源</b><br>
+      <a href="https://single-market-economy.ec.europa.eu/" target="_blank" rel="noopener noreferrer" style="color:#aebfd6">欧盟委员会官网</a> · 
+      <a href="https://eur-lex.europa.eu/" target="_blank" rel="noopener noreferrer" style="color:#aebfd6">EUR-Lex法规数据库</a> · 
+      <a href="https://chinawto.mofcom.gov.cn/" target="_blank" rel="noopener noreferrer" style="color:#aebfd6">商务部世贸司</a>
+    </div>
+    <div>
+      <b>关键节点速查</b><br>
+      2026.7.20 注册中心上线<br>
+      2027.2.18 电池护照强制<br>
+      2030.8.1 玩具DPP强制
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="disclaim">
+      免责声明：本文基于欧盟委员会、商务部及EUR-Lex公开发布的法规信息整理，仅供内部研究与客户沟通参考，不构成法律意见。各行业授权法案仍在陆续出台，具体合规义务、数据要求与时间节点以欧盟官方最新发布为准，企业实施前请结合《DPP行业优先级清单》与专业顾问意见。<br>
+      DPP数字产品护照 · 痛点与解决方案全景整理稿 · 编制于2026年9月
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  try{
+    var links=document.querySelectorAll('.navlinks a[href^="#"]');
+    links.forEach(function(a){
+      a.addEventListener('click',function(e){
+        var id=a.getAttribute('href').slice(1);
+        var target=document.getElementById(id);
+        if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'','#'+id);}
+      });
+    });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

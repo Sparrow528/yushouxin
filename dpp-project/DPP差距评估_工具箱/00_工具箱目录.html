@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP差距评估工具箱 · 文件目录</title>
+<style>
+:root{
+  --primary:#1A237E; --primary-l:#3949AB; --green:#2E7D32; --green-l:#4CAF50;
+  --amber:#F9A825; --red:#C62828; --ink:#1b2430; --muted:#5b6675;
+  --line:#e6eaf0; --bg:#f4f6fa;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.hero{background:linear-gradient(135deg,#1A237E 0%,#283593 55%,#3949AB 100%);color:#fff;padding:56px 40px 64px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(76,175,80,.35),transparent 70%)}
+.hero::after{content:"";position:absolute;left:-80px;bottom:-140px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%)}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:-.5px;position:relative}
+.hero p{margin-top:12px;font-size:16px;color:rgba(255,255,255,.85);position:relative;max-width:720px}
+.hero .meta{margin-top:22px;display:flex;gap:28px;flex-wrap:wrap;position:relative}
+.hero .meta div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 18px;font-size:14px}
+.hero .meta b{font-size:22px;display:block;color:#A5D6A7}
+.wrap{max-width:1080px;margin:-32px auto 60px;padding:0 24px;position:relative}
+.group{background:#fff;border-radius:14px;box-shadow:0 6px 22px rgba(26,35,126,.08);padding:26px 28px;margin-bottom:24px;border:1px solid var(--line)}
+.group-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line)}
+.group-icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0}
+.g1 .group-icon{background:linear-gradient(135deg,#1A237E,#3949AB)}
+.g2 .group-icon{background:linear-gradient(135deg,#2E7D32,#66BB6A)}
+.g3 .group-icon{background:linear-gradient(135deg,#6A1B9A,#AB47BC)}
+.g4 .group-icon{background:linear-gradient(135deg,#EF6C00,#FFA726)}
+.group-head h2{font-size:19px;color:var(--primary);font-weight:800}
+.group-head span{font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:#EEF1F8;color:var(--primary);font-weight:700;text-align:left;padding:10px 12px;font-size:13px}
+td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafbfe}
+.num{display:inline-flex;width:26px;height:26px;border-radius:7px;background:var(--primary);color:#fff;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.fname{font-weight:700;color:var(--ink)}
+.fmt{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+.fmt.docx{background:#E3F2FD;color:#1565C0}
+.fmt.xlsx{background:#E8F5E9;color:#2E7D32}
+.fmt.html{background:#FFF3E0;color:#E65100}
+.fmt.pptx{background:#FCE4EC;color:#AD1457}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:5px;margin-left:6px;font-weight:700}
+.tag.in{background:#F3E5F5;color:#7B1FA2}
+.tag.out{background:#E0F2F1;color:#00695C}
+.flow{background:linear-gradient(135deg,#1A237E,#2E7D32);border-radius:14px;padding:28px;color:#fff;margin-bottom:24px}
+.flow h2{font-size:18px;margin-bottom:16px}
+.flow-steps{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.fstep{flex:1;min-width:130px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;margin:4px;position:relative}
+.fstep b{display:block;font-size:14px;margin-bottom:3px}
+.fstep small{font-size:11.5px;color:rgba(255,255,255,.78)}
+.arrow{display:flex;align-items:center;color:#A5D6A7;font-size:20px;font-weight:700}
+.note-box{background:#FFFDE7;border:1px solid #FFF59D;border-left:4px solid var(--amber);border-radius:8px;padding:14px 18px;font-size:13.5px;color:#5d5220;margin-bottom:24px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:20px}
+@media(max-width:680px){.hero{padding:40px 24px 52px}.group{padding:20px}.flow-steps{flex-direction:column}.arrow{transform:rotate(90deg);justify-content:center}}
+@media print{body{background:#fff}.group,.flow{box-shadow:none;break-inside:avoid}.hero::before,.hero::after{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>DPP差距评估 · 工具箱文件目录</h1>
+  <p>覆盖差距评估服务从签约启动、客户资料采集、内部核查工作，到最终交付的全部20个标准文件。配套《01_差距评估_产品手册 v2.0》使用。</p>
+  <div class="meta">
+    <div><b>20</b>标准文件</div>
+    <div><b>4</b>使用阶段</div>
+    <div><b>71</b>数据点核查</div>
+    <div><b>v2.0 · 2026.09</b>版本</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="note-box">
+    <strong>使用规则：</strong>标注 <span class="tag in">内部</span> 的文件为我方工作底稿，不向客户提供；标注 <span class="tag out">客户</span> 的文件用于向客户发放或作为交付物。所有协议、报价类文件以本工具箱版本为准，定价为2026年9月调整后的空白期价格。
+  </div>
+
+  <div class="flow">
+    <h2>📌 文件在服务流程中的位置</h2>
+    <div class="flow-steps">
+      <div class="fstep"><b>S1 签约启动</b><small>01-04 协议/启动/指引</small></div>
+      <div class="arrow">→</div>
+      <div class="fstep"><b>S2-S3 采集适配</b><small>05-08 采集表/判定/矩阵</small></div>
+      <div class="arrow">→</div>
+      <div class="fstep"><b>S4-S5 核查分析</b><small>09-12 核查清单/证据/评分</small></div>
+      <div class="arrow">→</div>
+      <div class="fstep"><b>S6-S7 交付衔接</b><small>13-20 报告/明细/路线图/验收</small></div>
+    </div>
+  </div>
+
+  <!-- 组1 -->
+  <div class="group g1">
+    <div class="group-head">
+      <div class="group-icon">📋</div>
+      <h2>一、签约启动</h2>
+      <span>项目启动前的法律文件与准备指引</span>
+    </div>
+    <table>
+      <thead><tr><th style="width:54px">编号</th><th>文件名称</th><th style="width:70px">格式</th><th>用途说明</th><th style="width:72px">使用方</th></tr></thead>
+      <tbody>
+        <tr><td><span class="num">01</span></td><td class="fname">NDA保密协议（中英双语）</td><td><span class="fmt docx">DOCX</span></td><td>客户资料交换前签署，约定双方保密义务</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">02</span></td><td class="fname">服务协议与报价单</td><td><span class="fmt docx">DOCX</span></td><td>九条正文+三档报价单附件，含付款/加急/差旅条款</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">03</span></td><td class="fname">项目启动书</td><td><span class="fmt docx">DOCX</span></td><td>明确目标、范围、双方项目组、沟通机制、里程碑</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">04</span></td><td class="fname">资料准备清单与数据采集指引</td><td><span class="fmt docx">DOCX</span></td><td>告知客户需要提前准备的全部资料及格式要求</td><td><span class="tag out">客户</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 组2 -->
+  <div class="group g2">
+    <div class="group-head">
+      <div class="group-icon">📝</div>
+      <h2>二、客户资料采集</h2>
+      <span>S2-S3：摸清客户现状与适用法规范围</span>
+    </div>
+    <table>
+      <thead><tr><th style="width:54px">编号</th><th>文件名称</th><th style="width:70px">格式</th><th>用途说明</th><th style="width:72px">使用方</th></tr></thead>
+      <tbody>
+        <tr><td><span class="num">05</span></td><td class="fname">客户信息采集表</td><td><span class="fmt xlsx">XLSX</span></td><td>企业信息/电池产品/现有认证/供应链/需求5个表</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">06</span></td><td class="fname">电池类型判定表</td><td><span class="fmt xlsx">XLSX</span></td><td>判定流程+类型对照，确认产品归属与评估范围</td><td><span class="tag in">内部</span></td></tr>
+        <tr><td><span class="num">07</span></td><td class="fname">访谈提纲</td><td><span class="fmt docx">DOCX</span></td><td>6部门各10题访谈，含记录区与待补资料清单</td><td><span class="tag in">内部</span></td></tr>
+        <tr><td><span class="num">08</span></td><td class="fname">法规适配矩阵</td><td><span class="fmt xlsx">XLSX</span></td><td>电池类型×适用条款矩阵，确定71项适用性</td><td><span class="tag in">内部</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 组3 -->
+  <div class="group g3">
+    <div class="group-head">
+      <div class="group-icon">🔧</div>
+      <h2>三、内部核查工作</h2>
+      <span>S4-S5：逐项核查、证据管理与评分</span>
+    </div>
+    <table>
+      <thead><tr><th style="width:54px">编号</th><th>文件名称</th><th style="width:70px">格式</th><th>用途说明</th><th style="width:72px">使用方</th></tr></thead>
+      <tbody>
+        <tr><td><span class="num">09</span></td><td class="fname">32项核查清单（内部工作版）</td><td><span class="fmt xlsx">XLSX</span></td><td>A1-F4六维度32项，含评级标准</td><td><span class="tag in">内部</span></td></tr>
+        <tr><td><span class="num">10</span></td><td class="fname">71数据项标准清单</td><td><span class="fmt xlsx">XLSX</span></td><td>数据字段字典，评估与数据手册编制依据</td><td><span class="tag in">内部</span></td></tr>
+        <tr><td><span class="num">11</span></td><td class="fname">证据收集索引表</td><td><span class="fmt xlsx">XLSX</span></td><td>32项证据跟踪台账，含状态下拉与类型说明</td><td><span class="tag in">内部</span></td></tr>
+        <tr><td><span class="num">12</span></td><td class="fname">差距分级与评分模型</td><td><span class="fmt xlsx">XLSX</span></td><td>六维加权自动评分+评级，公式实测通过</td><td><span class="tag in">内部</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 组4 -->
+  <div class="group g4">
+    <div class="group-head">
+      <div class="group-icon">📦</div>
+      <h2>四、交付物模板</h2>
+      <span>S6-S7：向客户交付的正式成果与衔接文件</span>
+    </div>
+    <table>
+      <thead><tr><th style="width:54px">编号</th><th>文件名称</th><th style="width:70px">格式</th><th>用途说明</th><th style="width:72px">使用方</th></tr></thead>
+      <tbody>
+        <tr><td><span class="num">13</span></td><td class="fname">差距评估报告模板</td><td><span class="fmt docx">DOCX</span></td><td>9章+附录，含32项详述/评级/根因/路线图</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">14</span></td><td class="fname">71项核查工作表</td><td><span class="fmt xlsx">XLSX</span></td><td>预填71项，逐项标注状态/证据/差距/建议</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">15</span></td><td class="fname">差距分级明细表</td><td><span class="fmt xlsx">XLSX</span></td><td>红/黄/绿分级+六维评分汇总</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">16</span></td><td class="fname">整改路线图模板</td><td><span class="fmt xlsx">XLSX</span></td><td>三阶段（0-3/3-6/6-12月）行动计划</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">17</span></td><td class="fname">下一步服务建议书</td><td><span class="fmt docx">DOCX</span></td><td>②③④组合方案与报价，含评估费抵扣政策</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">18</span></td><td class="fname">关键日期速查卡</td><td><span class="fmt html">HTML</span></td><td>客户产品线相关法规日期，A4可打印</td><td><span class="tag out">客户</span></td></tr>
+        <tr><td><span class="num">19</span></td><td class="fname">汇报PPT模板</td><td><span class="fmt pptx">PPTX</span></td><td>评估结果汇报演示标准模板</td><td><span class="tag in">内部</span></td></tr>
+        <tr><td><span class="num">20</span></td><td class="fname">交付物验收确认单</td><td><span class="fmt docx">DOCX</span></td><td>5项交付物逐项验收与客户签字确认</td><td><span class="tag out">客户</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>守信财税 · DPP业务线　|　差距评估工具箱 v2.0　|　2026年9月</footer>
+</div>
+
+</body>
+</html>

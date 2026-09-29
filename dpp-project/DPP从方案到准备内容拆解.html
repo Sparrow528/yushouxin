@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP服务方案落地拆解 — 每项准备的具体内容</title>
+<style>
+  :root {
+    --navy: #0c1f3d;
+    --accent: #1a6b5a;
+    --accent-light: #e8f5f0;
+    --gold: #b8860b;
+    --gold-light: #fdf6e3;
+    --gold-border: #e8d48b;
+    --red: #b3382c;
+    --red-light: #fbe9e7;
+    --blue: #2b5fa8;
+    --blue-light: #e9f0fa;
+    --bg: #f5f4f0;
+    --card: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #6b6560;
+    --border: #e4dfd8;
+    --radius: 8px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.05);
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 960px; margin: 0 auto; padding: clamp(20px, 4vw, 40px) clamp(14px, 3vw, 28px); }
+
+  .header { border-bottom: 3px solid var(--accent); padding-bottom: 18px; margin-bottom: 30px; }
+  .header-meta { font-size: 12px; color: var(--muted); letter-spacing: 0.03em; margin-bottom: 6px; }
+  .header h1 { font-size: clamp(20px, 4vw, 27px); font-weight: 800; line-height: 1.35; color: var(--navy); }
+  .header h1 em { font-style: normal; color: var(--accent); }
+  .header-sub { margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+  section { margin-bottom: 34px; }
+  .sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .sec-num { display: inline-flex; min-width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; font-weight: 800; align-items: center; justify-content: center; flex-shrink: 0; padding: 0 6px; }
+  .sec-head h2 { font-size: 18px; font-weight: 800; color: var(--navy); }
+  .sec-desc { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+
+  /* Service card */
+  .svc { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
+  .svc-head { background: var(--navy); color: #fff; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .svc-head .svc-title { font-size: 16px; font-weight: 700; }
+  .svc-head .svc-tag { font-size: 11px; padding: 3px 10px; border-radius: 10px; background: rgba(255,255,255,0.18); font-weight: 600; }
+  .svc-body { padding: 18px 20px; }
+  .svc-deliver { font-size: 13.5px; color: var(--muted); background: var(--bg); border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; }
+  .svc-deliver b { color: var(--ink); }
+
+  .prep-item { border-left: 3px solid var(--accent); padding: 12px 16px; margin-bottom: 12px; background: #fafaf8; border-radius: 0 6px 6px 0; }
+  .prep-item h4 { font-size: 14.5px; font-weight: 700; color: var(--navy); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .prep-item h4 .prio { font-size: 10.5px; padding: 2px 8px; border-radius: 9px; font-weight: 700; }
+  .prio.p0 { background: var(--red-light); color: var(--red); }
+  .prio.p1 { background: var(--gold-light); color: var(--gold); }
+  .prio.p2 { background: var(--accent-light); color: var(--accent); }
+  .prep-item ul { list-style: none; }
+  .prep-item ul li { font-size: 13.5px; padding: 3px 0 3px 16px; position: relative; }
+  .prep-item ul li::before { content: "·"; position: absolute; left: 4px; color: var(--accent); font-weight: 800; }
+  .prep-item .owner { font-size: 12px; color: var(--muted); margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }
+  .prep-item .owner b { color: var(--blue); }
+
+  .chip { display: inline-block; font-size: 11.5px; padding: 2px 10px; border-radius: 10px; margin: 2px 3px 2px 0; font-weight: 600; }
+  .chip.tech { background: var(--accent-light); color: var(--accent); }
+  .chip.market { background: var(--blue-light); color: var(--blue); }
+  .chip.it { background: var(--gold-light); color: var(--gold); }
+  .chip.doc { background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
+
+  /* Summary table */
+  .sum-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 14px 0; background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .sum-table th { background: var(--navy); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12.5px; }
+  .sum-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .sum-table tr:last-child td { border-bottom: none; }
+  .sum-table tr:nth-child(even) td { background: #fafaf8; }
+  .sum-table .p0 { color: var(--red); font-weight: 700; }
+  .sum-table .p1 { color: var(--gold); font-weight: 700; }
+  .sum-table .p2 { color: var(--accent); font-weight: 700; }
+
+  .callout { border-radius: var(--radius); padding: 14px 18px; margin: 16px 0; font-size: 13.5px; }
+  .callout.hl { background: var(--gold-light); border: 1px solid var(--gold-border); color: #6b5410; }
+  .callout.tip { background: var(--accent-light); border: 1px solid rgba(26,107,90,0.25); color: #0e4a3e; }
+  .callout b { font-weight: 700; }
+
+  .phase { display: grid; grid-template-columns: 90px 1fr; gap: 14px; margin-bottom: 14px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .phase-label { font-size: 13px; font-weight: 800; color: #fff; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8px 6px; height: fit-content; }
+  .phase-body h4 { font-size: 14.5px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .phase-body p { font-size: 13px; color: var(--ink); }
+  .phase-body .who { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+  footer { margin-top: 34px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); text-align: center; }
+
+  @media (max-width: 640px) {
+    .phase { grid-template-columns: 1fr; }
+    .sum-table { font-size: 12px; }
+    .sum-table th, .sum-table td { padding: 8px; }
+  }
+  @media print {
+    body { background: #fff; font-size: 11px; }
+    .page { max-width: 100%; padding: 0; }
+    section { page-break-inside: avoid; }
+    .svc { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="header-meta">DPP业务线 · 落地准备拆解 · 承接反推执行规划</div>
+    <h1>从服务方案到<em>准备内容</em>的具体拆解</h1>
+    <div class="header-sub">每一项准备物展开到"可以直接开工"的颗粒度：内容结构、负责人、优先级、验收标准</div>
+  </header>
+
+  <!-- ===== 总览 ===== -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">0</span>
+      <h2>拆解逻辑：准备物的四层展开</h2>
+    </div>
+    <p class="sec-desc">反推规划已确定"10项服务→需要什么准备"的框架；本文件把每个准备物继续往下拆：它是什么（内容结构）→ 怎么做（编制路径）→ 谁来做（三角分工）→ 怎么算做完（验收标准）。</p>
+    <div class="callout tip">
+      <b>拆解原则：</b>① 电池行业版本优先做（2027.2.18死线最近）；② 每份模板先用1个种子客户跑通再定稿；③ P0 = 获客前必须有，P1 = 首单签约前必须有，P2 = 交付过程中完善即可。
+    </div>
+  </section>
+
+  <!-- ===== 核心层 ===== -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">1</span>
+      <h2>核心层 4 项服务的准备内容拆解</h2>
+    </div>
+    <p class="sec-desc">核心层是首单利润来源，准备要求最高。以下每项服务拆到具体模板结构与编制路径。</p>
+
+    <!-- 服务1 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">服务① DPP差距评估（敲门砖，3–5人天）</span>
+        <span class="svc-tag">P0 最优先</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-deliver"><b>交付物：</b>《DPP差距评估报告》（含整改清单与时间表）——低门槛建立信任，评估费可抵扣主单</div>
+
+        <div class="prep-item">
+          <h4>准备物 1：《差距评估核查清单》 <span class="prio p0">P0</span></h4>
+          <ul>
+            <li><b>基础版结构：</b>ESPR通用要求核查（数据载体、唯一标识、注册状态、标签要求）+ 行业专项核查（数据项逐条对照）</li>
+            <li><b>电池版（最先做）：</b>对照电池法规附件，覆盖材料构成、碳足迹声明、供应链尽职调查、维修回收、电池护照字段五大模块，逐条列"要求原文→企业现状→差距判断"</li>
+            <li><b>后续版本：</b>纺织版、电子电器版、家具版、建材/铝版——结构同电池版，替换行业数据项</li>
+            <li><b>编制路径：</b>先生主笔电池版 → 用种子客户实测修订 → 再复制到其他行业（每版约3–5天）</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b> ｜ 验收标准：拿一家真实电池企业数据走一遍，每个核查项都能明确判"合规/缺失/不适用"</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 2：《差距评估报告》模板 <span class="prio p0">P0</span></h4>
+          <ul>
+            <li><b>章节结构：</b>企业概况 → SKU核查结果 → 差距分析（按严重度排序）→ 风险评级 → 整改清单（每项标注工作量与建议时间）→ 下一步行动建议</li>
+            <li><b>风险评级模型：</b>红/黄/绿三档；评分维度=数据完整性（BOM/碳/供应链）+ 时间紧迫度（行业死线距离）+ 注册状态 + 供应链成熟度，四个维度加权打分</li>
+            <li><b>关键设计：</b>整改清单必须落到"可以报价"——每项差距对应到我们哪项服务，报告本身就是销售工具</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b> ｜ 验收标准：报告输出后客户能直接看懂"我差什么、要花多少时间、先做哪件事"</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 3：评估操作SOP + 首访访谈提纲 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>访谈提纲：</b>现场访谈问题清单（SKU规模、欧盟客户构成、现有CE/ISO、供应链层级、内部谁管合规）——半结构化，30分钟能问完</li>
+            <li><b>操作流程：</b>首访访谈（0.5天）→ 资料分析（1天）→ 现场核查（0.5–1天）→ 报告输出（1天）→ 讲解汇报（0.5天）</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>，市场合伙人陪同首访</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 服务3 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">服务③ DPP数据规划与手册（5–8人天）</span>
+        <span class="svc-tag">P0 最优先</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-deliver"><b>交付物：</b>《DPP数据手册》（按SKU）+ 数据项采集台账模板</div>
+
+        <div class="prep-item">
+          <h4>准备物 1：各行业《DPP数据项标准清单》 <span class="prio p0">P0</span></h4>
+          <ul>
+            <li><b>清单结构：</b>每个数据项一行——字段名称 / 法规依据条款 / 必填或选填 / 数据来源（客户提供/供应商收集/检测机构出具/自行计算） / 更新频率</li>
+            <li><b>电池版优先：</b>覆盖材料构成（有害物质、关键原材料占比）、碳足迹（生产阶段排放）、供应链（原产地、供应商识别）、性能与耐久、维修与回收、电池护照唯一标识等模块</li>
+            <li><b>数据项分级：</b>必填（法案强制）/ 选填（法规允许但有客户要求）/ 增值（提升数据看板价值）——分级决定采集优先级</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>主笔法规部分，IT合伙人协助字段标准化（与后续系统对齐）</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 2：《DPP数据手册》编制模板 <span class="prio p0">P0</span></h4>
+          <ul>
+            <li><b>按SKU组织：</b>一个SKU一张数据卡——产品基本信息 / 数据项清单（沿用标准清单结构）/ 每项数据的责任人 / 采集路径 / 当前状态（已齐/收集中/缺失）</li>
+            <li><b>台账联动：</b>手册与采集台账字段一一对应，手册是目标态，台账是过程态</li>
+            <li><b>方法论说明页：</b>给客户老板看的"一页纸"——为什么每项数据都要、缺了会怎样</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>设计模板，交付顾问执行填写 ｜ 验收标准：种子客户的1个SKU手册全字段填满无遗漏</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 3：数据采集台账模板（Excel） <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>台账字段：</b>数据项 / 所属SKU / 责任人 / 来源方（客户自填/供应商A/检测机构） / 下发日期 / 回收截止 / 当前状态 / 核验结果 / 备注</li>
+            <li><b>使用规则：</b>每周更新，作为项目周报依据；台账完成率直接挂钩项目进度</li>
+          </ul>
+          <div class="owner">负责人：<b>交付顾问</b>（招到后）维护，先生审核</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 服务4 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">服务④ 供应商数据收集辅导（6–10人天）</span>
+        <span class="svc-tag">P0 最优先</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-deliver"><b>交付物：</b>供应商数据回收台账 + 合格数据包（覆盖2–3级供应链）</div>
+
+        <div class="prep-item">
+          <h4>准备物 1：供应商问卷模板（中英双语） <span class="prio p0">P0</span></h4>
+          <ul>
+            <li><b>问卷模块：</b>供应商基本信息 / 供货材料构成（名称、占比、来源地）/ 有害物质声明 / 碳数据（有则填，无则标注"暂无"）/ 现有认证（ISO/REACH/RoHS等）/ 联系人与签字确认</li>
+            <li><b>分版本：</b>原材料供应商版（重材料数据）/ 元器件供应商版（重成分与认证）/ 加工商版（重工艺与能耗）</li>
+            <li><b>双语说明：</b>每题附英文对照与填写示例，降低供应商填写门槛——供应商配合度是最大变量，问卷体验决定回收率</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>编写中文版，英文翻译外包或AI初翻+人工校对</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 2：催收SOP与话术包 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>催收节奏：</b>问卷下发 → 第7天邮件提醒 → 第14天电话跟进 → 第21天升级客户协调（客户向供应商施压）→ 第30天仍未回收则列入缺失项整改</li>
+            <li><b>话术包：</b>给客户的催收协调函模板（客户发给供应商）、给供应商的解释函（为什么要这些数据、不交的后果）</li>
+          </ul>
+          <div class="owner">负责人：<b>交付顾问</b>执行，先生设计机制</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 3：数据核验标准 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>三级核验：</b>完整性（必填字段齐全）→ 合理性（数据逻辑自洽，如材料占比加总100%）→ 佐证性（认证证书可查、检测报告在有效期内）</li>
+            <li><b>不合格处理：</b>退回重填话术 + 常见错误FAQ</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>定标准，交付顾问执行</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 服务5 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">服务⑤ 欧盟注册中心注册辅导（4–6人天）</span>
+        <span class="svc-tag">P0 最优先</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-deliver"><b>交付物：</b>注册账户 + 注册确认函 + 清关核验指引</div>
+
+        <div class="prep-item">
+          <h4>准备物 1：Registry平台操作手册（团队先自己跑通） <span class="prio p0">P0</span></h4>
+          <ul>
+            <li><b>跑通优先：</b>注册中心2026.7.20已上线——团队必须先用自己的主体（或欧代合作方配合）实际注册一遍，不能只看文档</li>
+            <li><b>手册内容：</b>注册流程步骤图（账户开立→主体信息→产品档案→数据字段→提交通道）、每步所需材料清单、常见退回原因与规避方法、审核周期实测记录</li>
+            <li><b>动态更新机制：</b>平台规则会持续更新，手册标注版本号与更新日期，指定专人跟踪</li>
+          </ul>
+          <div class="owner">负责人：<b>先生+IT合伙人</b>（IT合伙人负责API与数据字段部分）｜ 验收标准：完整走通一个测试注册流程</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 2：客户侧前置条件指引 <span class="prio p0">P0</span></h4>
+          <ul>
+            <li><b>eIDAS电子印章办理指引：</b>合格信托服务提供商（QTSP）候选名单、办理所需材料、周期、费用区间——客户办理是注册的前置，指引要细到"照着办就行"</li>
+            <li><b>欧盟授权代表签约指引：</b>欧代的作用、选型要点（行业匹配、响应速度、费用）、签约注意事项</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>编写；欧代合作渠道见外部合作部分</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 3：《清关核验指引》文档 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>内容：</b>海关如何扫码核验DPP、哪些字段会被查验、核验失败常见原因、客户报关员应对口径</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>编写，首单客户交付时实测修订</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 引流层 ===== -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">2</span>
+      <h2>引流层 2 项服务的准备内容拆解</h2>
+    </div>
+
+    <!-- 服务2 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">服务② 合规自查工具（99元/次，标准化）</span>
+        <span class="svc-tag">P0 获客引擎</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-deliver"><b>交付物：</b>《企业DPP合规自查报告》（系统自动出具，含风险等级+待办清单）</div>
+
+        <div class="prep-item">
+          <h4>准备物 1：问卷题库与评分算法 <span class="prio p0">P0</span></h4>
+          <ul>
+            <li><b>题库结构（15–20题，5–10分钟答完）：</b>①行业（电池/纺织/电子/家具/建材/其他）②产品类别与SKU数量 ③是否含电池及电池类型 ④年出口欧盟额 ⑤欧盟客户占比 ⑥欧盟客户是否已发DPP/碳问卷 ⑦现有CE/ISO认证 ⑧BOM完整度自评 ⑨供应链层级数 ⑩内部是否有专人管合规</li>
+            <li><b>评分算法：</b>死线紧迫度（权重最高，电池行业直接加权）× 数据基础 × 认证基础 × 客户压力 → 输出红/黄/绿三档 + 三个最关键差距点</li>
+            <li><b>报告结尾设计：</b>固定引导位——"预约免费咨询，由顾问讲解报告"——直接接入核心层销售</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>设计题库与算法逻辑，IT合伙人技术实现</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 2：在线系统开发 <span class="prio p0">P0</span></h4>
+          <ul>
+            <li><b>前端：</b>H5问卷页（手机端优先，微信可打开）、答题进度条、结果即时展示</li>
+            <li><b>后端：</b>评分引擎 + PDF报告自动生成 + 支付对接（99元）</li>
+            <li><b>线索管理：</b>每份报告自动进入线索池（行业/评分/联系方式），按红黄绿分级推送给市场合伙人跟进</li>
+            <li><b>MVP路径：</b>第一版可以用问卷星/腾讯问卷+人工出报告过渡，同步开发正式版——获客不等人</li>
+          </ul>
+          <div class="owner">负责人：<b>IT合伙人</b>主导开发 ｜ 验收标准：手机扫码→答题→支付→收到PDF报告全流程≤15分钟</div>
+        </div>
+
+        <div class="prep-item">
+          <h4>准备物 3：《欧盟DPP合规明白纸》+ 图文微课 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>明白纸结构：</b>是什么（一句话+一张图）→ 罚什么（卡关/丢客户/滞港费）→ 谁中招（行业死线表）→ 怎么办（三步走）→ 花多少钱（分档价格区间）</li>
+            <li><b>微课：</b>明白纸内容扩展成4–6节图文/音频课，9.9元定价，与99元自查工具形成价格阶梯</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>出内容框架，内容运营执行</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 科普内容 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">免费科普内容（短视频/直播/公众号）</span>
+        <span class="svc-tag">P1 持续获客</span>
+      </div>
+      <div class="svc-body">
+        <div class="prep-item">
+          <h4>准备物：内容日历与选题库 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>选题库（首批30条）：</b>死线提醒类（"电池护照还剩X个月"）/ 后果警示类（"货卡在港口的滞箱费怎么算"）/ 科普类（"DPP扫出来是什么"）/ 案例类（客户问卷长什么样）/ 对比类（"CE认证踩过的坑，DPP会不会重来一遍"）</li>
+            <li><b>内容日历：</b>每周2–3条短视频 + 每月1场直播（死线倒计时主题），关键节点（法案生效、行业大事件）加发</li>
+            <li><b>统一话术库：</b>沿用方案里的"老张老李"口语化风格，所有内容统一从《切入话术》派生，保证口径一致</li>
+          </ul>
+          <div class="owner">负责人：<b>市场合伙人</b>统筹选题与分发，内容运营/外包执行剪辑</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 增值与绑定层 ===== -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">3</span>
+      <h2>增值层与绑定层的准备内容拆解</h2>
+    </div>
+
+    <!-- 服务6 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">服务⑥ 碳足迹数据对接（5–8人天）</span>
+        <span class="svc-tag">P1 增值项</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-deliver"><b>交付物：</b>碳足迹数据对接方案 + 核算机构对接记录</div>
+        <div class="prep-item">
+          <h4>准备物 1：LCA机构合作 + 碳字段映射表 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>机构签约（外部合作）：</b>筛选并签约2–3家碳足迹核算机构，谈定转介分成或联合交付模式——我们自己不算碳，做"数据翻译与对接"</li>
+            <li><b>《碳足迹-DPP字段映射表》：</b>核算报告的哪些输出字段对应DPP碳数据项、格式如何转换、由谁上传——这张表是与LCA机构协作的接口标准</li>
+            <li><b>知识储备：</b>ISO 14067 / PEF方法论基础认知（能看懂核算报告、能向客户解释口径差异即可，不要求自己建模）</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>谈合作、编映射表</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 服务7 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">服务⑦ CE+DPP衔接辅导（4–7人天）</span>
+        <span class="svc-tag">P1 差异化主项</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-deliver"><b>交付物：</b>《CE-DPP数据对照复用表》+ 补做清单</div>
+        <div class="prep-item">
+          <h4>准备物：《CE-DPP数据对照复用表》模板 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>对照结构：</b>CE技术文件资产（材料清单/安全测试/供应商信息/使用说明）↔ DPP数据项，逐项标注"可直接复用 / 部分复用（需补充） / 完全无关需新做"</li>
+            <li><b>复用价值量化：</b>每项复用标注"节省的采集工作量"——这张表本身就是差异化卖点（帮客户省钱）</li>
+            <li><b>这是先生的独特优势项：</b>18年财税+合规经验对这个映射最熟，竞争对手短期做不出来</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>主笔，优先以航大淼盾案例实测</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 服务8/9 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">服务⑧ 企业内训 ｜ 服务⑨ 经销商导入辅导</span>
+        <span class="svc-tag">P2 按单准备</span>
+      </div>
+      <div class="svc-body">
+        <div class="prep-item">
+          <h4>准备物：内训课件 + 双语操作指引模板 <span class="prio p2">P2</span></h4>
+          <ul>
+            <li><b>内训课件两个版本：</b>老板版（半天：法规要求+成本账+内部怎么分工）/ 操作版（一天：数据采集实务+台账使用+供应商管理）——从已有知识库派生，首单前完成框架即可</li>
+            <li><b>经销商指引：</b>中英双语，扫码演示+FAQ（常见查验问题应答口径）——接到订单再细化</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>出内容，签约订单后2周内可备齐</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 服务10 -->
+    <div class="svc">
+      <div class="svc-head">
+        <span class="svc-title">服务⑩ 数据托管年度维护（6–15人天/年）</span>
+        <span class="svc-tag">P1 续费引擎</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-deliver"><b>交付物：</b>年度维护报告 + 季度法规简报 + 扫码数据看板账号</div>
+        <div class="prep-item">
+          <h4>准备物 1：法规跟踪机制与简报模板 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>信息源清单：</b>欧盟官方公报（EUR-Lex）、ESP注册中心公告、行业认证机构动态、行业媒体——每日扫描、每周汇总、季度成简报</li>
+            <li><b>简报模板：</b>本期变化 → 对客户的影响 → 建议动作，一页纸以内，客户老板能30秒看完</li>
+          </ul>
+          <div class="owner">负责人：<b>先生</b>定机制，可复用现有政策扫描的Agent能力自动化</div>
+        </div>
+        <div class="prep-item">
+          <h4>准备物 2：数据管理平台与看板 <span class="prio p1">P1</span></h4>
+          <ul>
+            <li><b>平台功能：</b>客户产品数据存储、DPP数据包生成、注册数据同步维护、新产品上线配置</li>
+            <li><b>看板：</b>扫码访问量、查验记录、数据完整度、合规状态——给客户"看得见的价值"，是续费的核心抓手</li>
+            <li><b>开发节奏：</b>首批客户用Excel台账+人工维护过渡，签约托管客户≥5家后平台上线</li>
+          </ul>
+          <div class="owner">负责人：<b>IT合伙人</b>主导，先生定义数据结构</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 汇总清单 ===== -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">4</span>
+      <h2>准备物总清单（按开工顺序）</h2>
+    </div>
+    <p class="sec-desc">全部准备物按优先级排序汇总。P0共10项是获客前必须完成的最小集合，预估总工时约30–40人天。</p>
+
+    <table class="sum-table">
+      <thead>
+        <tr>
+          <th style="width:44px">序</th>
+          <th>准备物</th>
+          <th style="width:80px">类型</th>
+          <th style="width:82px">负责人</th>
+          <th style="width:52px">优先级</th>
+          <th style="width:70px">预估工时</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Registry平台实操跑通 + 操作手册</td><td><span class="chip doc">实操+文档</span></td><td>先生+IT</td><td class="p0">P0</td><td>5–7天</td></tr>
+        <tr><td>2</td><td>《差距评估核查清单》电池版</td><td><span class="chip doc">模板</span></td><td>先生</td><td class="p0">P0</td><td>3–5天</td></tr>
+        <tr><td>3</td><td>《差距评估报告》模板 + 评级模型</td><td><span class="chip doc">模板</span></td><td>先生</td><td class="p0">P0</td><td>2–3天</td></tr>
+        <tr><td>4</td><td>自查工具题库 + 评分算法</td><td><span class="chip doc">设计</span></td><td>先生</td><td class="p0">P0</td><td>2–3天</td></tr>
+        <tr><td>5</td><td>自查工具MVP（问卷+报告+支付+线索池）</td><td><span class="chip it">系统</span></td><td>IT</td><td class="p0">P0</td><td>7–10天</td></tr>
+        <tr><td>6</td><td>《DPP数据项标准清单》电池版</td><td><span class="chip doc">模板</span></td><td>先生</td><td class="p0">P0</td><td>2–3天</td></tr>
+        <tr><td>7</td><td>《DPP数据手册》编制模板</td><td><span class="chip doc">模板</span></td><td>先生</td><td class="p0">P0</td><td>2天</td></tr>
+        <tr><td>8</td><td>供应商问卷模板（中英双语3版本）</td><td><span class="chip doc">模板</span></td><td>先生</td><td class="p0">P0</td><td>3天</td></tr>
+        <tr><td>9</td><td>eIDAS办理指引 + 欧代签约指引</td><td><span class="chip doc">文档</span></td><td>先生</td><td class="p0">P0</td><td>2天</td></tr>
+        <tr><td>10</td><td>LCA机构 + 欧代机构签约（2–3家）</td><td><span class="chip tech">外部合作</span></td><td>先生</td><td class="p0">P0</td><td>并行推进</td></tr>
+        <tr><td>11</td><td>《明白纸》+ 微课内容包</td><td><span class="chip doc">内容</span></td><td>先生+运营</td><td class="p1">P1</td><td>3天</td></tr>
+        <tr><td>12</td><td>科普选题库（30条）+ 内容日历</td><td><span class="chip doc">内容</span></td><td>市场</td><td class="p1">P1</td><td>3天</td></tr>
+        <tr><td>13</td><td>催收SOP + 数据核验标准</td><td><span class="chip doc">SOP</span></td><td>先生</td><td class="p1">P1</td><td>2天</td></tr>
+        <tr><td>14</td><td>《CE-DPP数据对照复用表》模板</td><td><span class="chip doc">模板</span></td><td>先生</td><td class="p1">P1</td><td>3天</td></tr>
+        <tr><td>15</td><td>法规跟踪机制 + 简报模板</td><td><span class="chip doc">机制</span></td><td>先生</td><td class="p1">P1</td><td>2天</td></tr>
+        <tr><td>16</td><td>供应商问卷系统（在线化）</td><td><span class="chip it">系统</span></td><td>IT</td><td class="p1">P1</td><td>7天</td></tr>
+        <tr><td>17</td><td>数据管理平台 + 客户看板</td><td><span class="chip it">系统</span></td><td>IT</td><td class="p1">P1</td><td>15天+</td></tr>
+        <tr><td>18</td><td>内训课件（老板版/操作版）</td><td><span class="chip doc">课件</span></td><td>先生</td><td class="p2">P2</td><td>按单备</td></tr>
+        <tr><td>19</td><td>经销商双语指引 + FAQ库</td><td><span class="chip doc">文档</span></td><td>先生</td><td class="p2">P2</td><td>按单备</td></tr>
+        <tr><td>20</td><td>其他行业核查清单（纺织/电子/家具/建材）</td><td><span class="chip doc">模板</span></td><td>先生</td><td class="p2">P2</td><td>各3–5天</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout hl">
+      <b>关键判断：</b>P0的10项准备物中，8项由先生主笔、2项依赖IT合伙人和外部签约。先生是知识资产的核心产能——建议先生本周启动Registry实操与电池版清单两条线，其余模板并行推进；外部签约（LCA+欧代）与模板编写互不阻塞，同步谈。
+    </div>
+  </section>
+
+  <!-- ===== 开工节奏 ===== -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">5</span>
+      <h2>开工节奏：三条线并行</h2>
+    </div>
+    <p class="sec-desc">准备不分先后串行，按"知识线 / 工具线 / 合作线"三线并行，两周内形成获客能力。</p>
+
+    <div class="phase">
+      <div class="phase-label">知识线<br>（先生）</div>
+      <div class="phase-body">
+        <h4>Registry实操 → 电池版核查清单 → 评估报告模板 → 数据项清单 → 数据手册模板 → 供应商问卷</h4>
+        <p>全部围绕电池行业先行，形成"评估→规划→采集→注册"完整模板链。纺织等其他行业版本等电池版实测后再复制。</p>
+        <div class="who">第1–2周完成Registry实操+核查清单；第3–4周完成评估与手册模板；供应商问卷第4周定稿</div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label">工具线<br>（IT）</div>
+      <div class="phase-body">
+        <h4>自查工具MVP → 问卷系统在线化 → 数据管理平台</h4>
+        <p>先用现成问卷工具+人工出报告跑MVP（获客不等人），正式版同步开发；数据管理平台等托管客户积累后再上。</p>
+        <div class="who">第1周完成MVP方案（问卷工具+支付+人工报告）；第2–4周正式版开发上线；平台按签约节奏排期</div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label">合作+市场线<br>（先生+市场）</div>
+      <div class="phase-body">
+        <h4>LCA/欧代签约 → 内容选题库 → 首场直播 → 存量客户名单分级</h4>
+        <p>外部签约由先生主导谈判；市场合伙人同步梳理存量外贸客户（18年财税客户基础），标记电池/纺织/电子类，按A/B/C分级排出首访顺序。</p>
+        <div class="who">第1–2周完成合作签约+客户名单分级；第3周内容上线；第4周首场直播+首批首访</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <b>第一里程碑：</b>第4周末——自查工具可收99元、评估模板可用、欧代/LCA已签约、首批客户首访完成。达到这个状态，业务线正式具备"获客→评估→报价→交付"的完整闭环能力。
+    </div>
+  </section>
+
+  <footer>
+    DPP服务方案落地拆解 · 2026.9.17 · 内部使用 · 承接《DPP服务反推执行规划》
+  </footer>
+
+</div>
+</body>
+</html>

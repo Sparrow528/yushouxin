@@ -1,0 +1,1952 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(EU) 2023/1542 欧盟电池与废电池法规 — 核心条款参考手册</title>
+<meta name="description" content="基于欧盟官方公报OJ L 191, 28.7.2023及截至2026年9月的修订，系统梳理(EU) 2023/1542电池法规核心条款">
+<style>
+:root {
+  --color-primary: #1A237E;
+  --color-primary-light: #283593;
+  --color-primary-lighter: #3949AB;
+  --color-primary-bg: #E8EAF6;
+  --color-primary-bg-light: #F5F6FA;
+  --color-green: #2E7D32;
+  --color-green-light: #43A047;
+  --color-green-bg: #E8F5E9;
+  --color-green-bg-light: #F1F8E9;
+  --color-amber: #E65100;
+  --color-amber-bg: #FFF3E0;
+  --color-red: #B71C1C;
+  --color-red-bg: #FFEBEE;
+  --color-blue-info: #0D47A1;
+  --color-blue-info-bg: #E3F2FD;
+  --color-canvas: #FFFFFF;
+  --color-surface: #FAFAFA;
+  --color-surface-alt: #F5F5F5;
+  --color-text: #212121;
+  --color-text-secondary: #546E7A;
+  --color-text-muted: #78909C;
+  --color-border: #E0E0E0;
+  --color-border-light: #EEEEEE;
+  --color-link: #1A237E;
+  --color-focus: #1565C0;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 1rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 1.875rem;
+  --fs-3xl: 2.25rem;
+  --lh-tight: 1.25;
+  --lh-body: 1.7;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+  --sidebar-w: 260px;
+  --content-max: 900px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout */
+.page-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-xl) 0;
+  z-index: 100;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-header {
+  padding: 0 var(--space-lg);
+  margin-bottom: var(--space-xl);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding-bottom: var(--space-lg);
+}
+
+.sidebar-header h2 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: var(--space-xs);
+}
+
+.sidebar-header p {
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.5);
+}
+
+.sidebar nav { padding: 0 var(--space-sm); }
+
+.sidebar nav a {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  border-radius: var(--radius-sm);
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a:focus-visible {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.sidebar nav a.active {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebar nav a .nav-num {
+  display: inline-block;
+  width: 1.8em;
+  color: rgba(255,255,255,0.45);
+  font-size: var(--fs-xs);
+  font-family: var(--font-mono);
+}
+
+/* Main content */
+.main-content {
+  padding: var(--space-2xl) var(--space-3xl);
+  max-width: calc(var(--content-max) + var(--space-3xl) * 2);
+}
+
+/* Cover */
+.cover {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: #fff;
+  padding: var(--space-3xl) var(--space-2xl);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 6px;
+  background: var(--color-green);
+}
+
+.cover h1 {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.01em;
+}
+
+.cover .subtitle {
+  font-size: var(--fs-lg);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+}
+
+.cover .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.7);
+}
+
+.cover .meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cover .meta-label {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.5);
+}
+
+.cover .note {
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.75);
+  border-left: 3px solid rgba(255,255,255,0.3);
+}
+
+/* Sections */
+.chapter {
+  margin-bottom: var(--space-3xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.chapter:first-of-type { border-top: none; }
+
+.chapter-title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xl);
+  line-height: var(--lh-tight);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+}
+
+.chapter-title .ch-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  color: var(--color-text-muted);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+h3 {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--color-primary-light);
+  margin: var(--space-xl) 0 var(--space-md);
+  line-height: var(--lh-tight);
+}
+
+h4 {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+p { margin-bottom: var(--space-md); }
+
+/* Article tags */
+.art-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin: 0 2px;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  margin: var(--space-md) 0 var(--space-xl);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+thead { background: var(--color-primary-bg-light); }
+
+th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 2px solid var(--color-primary-bg);
+  white-space: nowrap;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-light);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tbody tr:hover { background: var(--color-surface-alt); }
+
+td.num { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-text-muted); text-align: center; }
+
+td.mandatory { color: var(--color-green); font-weight: 600; }
+td.optional { color: var(--color-text-muted); }
+td.deferred { color: var(--color-amber); font-style: italic; }
+td.na { color: var(--color-text-muted); }
+
+/* Callout boxes */
+.callout {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  margin: var(--space-lg) 0;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.callout-title {
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.callout-date {
+  background: var(--color-amber-bg);
+  border-left: 4px solid var(--color-amber);
+  color: #4E342E;
+}
+
+.callout-change {
+  background: var(--color-blue-info-bg);
+  border-left: 4px solid var(--color-blue-info);
+  color: #0D47A1;
+}
+
+.callout-note {
+  background: var(--color-green-bg-light);
+  border-left: 4px solid var(--color-green);
+  color: #1B5E20;
+}
+
+.callout-warn {
+  background: var(--color-red-bg);
+  border-left: 4px solid var(--color-red);
+  color: #B71C1C;
+}
+
+/* Lists */
+ul, ol {
+  margin: var(--space-sm) 0 var(--space-md) var(--space-xl);
+  line-height: 1.7;
+}
+
+li { margin-bottom: var(--space-xs); }
+
+li strong { color: var(--color-primary-light); }
+
+/* Definition list */
+.def-list {
+  margin: var(--space-md) 0;
+}
+
+.def-item {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.def-item:last-child { border-bottom: none; }
+
+.def-term {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: var(--fs-sm);
+}
+
+.def-desc {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+/* Impact cards */
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+.impact-card {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.impact-card .impact-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-green);
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.impact-card h4 {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--fs-md);
+  color: var(--color-primary);
+}
+
+.impact-card p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: var(--space-xl);
+  margin: var(--space-lg) 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-primary-bg);
+}
+
+.tl-item {
+  position: relative;
+  padding: var(--space-sm) 0 var(--space-lg);
+}
+
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-xl) + 4px);
+  top: calc(var(--space-sm) + 6px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 2px solid var(--color-primary-bg);
+}
+
+.tl-item.tl-critical::before {
+  background: var(--color-red);
+  border-color: var(--color-red-bg);
+  width: 12px;
+  height: 12px;
+  left: calc(-1 * var(--space-xl) + 3px);
+}
+
+.tl-date {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 2px;
+}
+
+.tl-item.tl-critical .tl-date { color: var(--color-red); }
+
+.tl-desc {
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.tl-source {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* Link styles */
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 35, 126, 0.3);
+  text-underline-offset: 2px;
+}
+
+a:hover { text-decoration-color: var(--color-link); }
+
+a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* External links */
+a[target="_blank"]::after {
+  content: ' ↗';
+  font-size: 0.7em;
+  vertical-align: super;
+  opacity: 0.5;
+}
+
+/* Footer */
+.doc-footer {
+  margin-top: var(--space-3xl);
+  padding: var(--space-xl) 0;
+  border-top: 2px solid var(--color-primary-bg);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+/* Mobile toggle */
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: var(--space-md);
+  left: var(--space-md);
+  z-index: 200;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    width: 280px;
+    transition: left 0.25s ease;
+    box-shadow: var(--shadow-md);
+  }
+  .sidebar.open { left: 0; }
+  .mobile-toggle { display: block; }
+  .main-content {
+    padding: var(--space-xl) var(--space-lg);
+    padding-top: calc(var(--space-xl) + 48px);
+  }
+  .cover { padding: var(--space-xl) var(--space-lg); }
+  .cover h1 { font-size: var(--fs-xl); }
+  .chapter-title { font-size: var(--fs-xl); }
+  .impact-grid { grid-template-columns: 1fr; }
+  html { scroll-padding-top: 60px; }
+}
+
+/* Print */
+@media print {
+  .sidebar, .mobile-toggle { display: none !important; }
+  .page-layout { grid-template-columns: 1fr; }
+  .main-content { padding: 0; max-width: none; }
+  .cover { break-after: page; background: none; color: #000; border: 2px solid var(--color-primary); }
+  .cover::after { display: none; }
+  .chapter { break-before: page; }
+  .table-wrap { break-inside: avoid; }
+  .callout { break-inside: avoid; }
+  .timeline { break-inside: avoid; }
+  a { text-decoration: none; }
+  a[target="_blank"]::after { content: ''; }
+}
+
+/* Scrollbar for sidebar */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+/* Overlay for mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 99;
+}
+.sidebar-overlay.open { display: block; }
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" aria-label="打开导航菜单" onclick="toggleSidebar()">☰ 目录</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="page-layout">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>法规参考手册</h2>
+    <p>(EU) 2023/1542</p>
+  </div>
+  <nav aria-label="章节导航">
+    <a href="#cover"><span class="nav-num"></span>封面</a>
+    <a href="#ch1"><span class="nav-num">01</span>法规总览</a>
+    <a href="#ch2"><span class="nav-num">02</span>适用范围与电池分类</a>
+    <a href="#ch3"><span class="nav-num">03</span>电池护照</a>
+    <a href="#ch4"><span class="nav-num">04</span>碳足迹</a>
+    <a href="#ch5"><span class="nav-num">05</span>供应链尽职调查</a>
+    <a href="#ch6"><span class="nav-num">06</span>标签与标识</a>
+    <a href="#ch7"><span class="nav-num">07</span>回收与再生材料</a>
+    <a href="#ch8"><span class="nav-num">08</span>生产者延伸责任</a>
+    <a href="#ch9"><span class="nav-num">09</span>经济运营商义务</a>
+    <a href="#ch10"><span class="nav-num">10</span>合格评定与市场监督</a>
+    <a href="#ch11"><span class="nav-num">11</span>关键时间线</a>
+    <a href="#ch12"><span class="nav-num">12</span>对中国企业的影响</a>
+    <a href="#appA"><span class="nav-num">A</span>法规来源与链接</a>
+    <a href="#appB"><span class="nav-num">B</span>术语对照表</a>
+    <a href="#appC"><span class="nav-num">C</span>相关法规与指引</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+<!-- COVER -->
+<section class="cover" id="cover">
+  <h1>(EU) 2023/1542<br>欧盟电池与废电池法规<br>核心条款参考手册</h1>
+  <p class="subtitle">Regulation (EU) 2023/1542 of the European Parliament and of the Council concerning batteries and waste batteries</p>
+  <div class="meta">
+    <div class="meta-item">
+      <span class="meta-label">版本</span>
+      <span>守信财税 DPP业务 法规基础 v1.0</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">日期</span>
+      <span>2026年9月</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">法律来源</span>
+      <span>OJ L 191, 28.7.2023</span>
+    </div>
+  </div>
+  <div class="note">
+    <strong>声明：</strong>本文件基于欧盟官方公报 OJ L 191, 28.7.2023 及截至2026年9月的修订（含 Regulation (EU) 2025/1561）整理，旨在为守信财税DPP业务团队提供法规核心条款的结构化参考。本文件不构成法律意见，具体合规要求以法规原文及最新授权法案/实施条例为准。
+  </div>
+</section>
+
+<!-- CHAPTER 1 -->
+<section class="chapter" id="ch1">
+  <h2 class="chapter-title"><span class="ch-num">第一章</span>法规总览</h2>
+
+  <div class="table-wrap">
+    <table>
+      <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">法规总览信息表</caption>
+      <thead>
+        <tr><th style="width:180px">项目</th><th>内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="width:180px;font-weight:600;color:var(--color-primary)">全称</td><td>Regulation (EU) 2023/1542 of the European Parliament and of the Council of 12 July 2023 concerning batteries and waste batteries, repealing Directive 2006/66/EC</td></tr>
+        <tr><td style="font-weight:600;color:var(--color-primary)">签署日期</td><td>2023年7月12日</td></tr>
+        <tr><td style="font-weight:600;color:var(--color-primary)">刊登日期</td><td>2023年7月28日，欧盟官方公报 OJ L 191</td></tr>
+        <tr><td style="font-weight:600;color:var(--color-primary)">生效日期</td><td>2023年8月17日 <span class="art-tag">Art.96(1)</span></td></tr>
+        <tr><td style="font-weight:600;color:var(--color-primary)">适用日期</td><td>2024年2月18日起部分适用 <span class="art-tag">Art.96(2)</span></td></tr>
+        <tr><td style="font-weight:600;color:var(--color-primary)">取代</td><td>Directive 2006/66/EC（2025年8月18日起全面取代）</td></tr>
+        <tr><td style="font-weight:600;color:var(--color-primary)">法律基础</td><td>TFEU 第114条（内部市场）+ 第192条第1款（环境）</td></tr>
+        <tr><td style="font-weight:600;color:var(--color-primary)">法律性质</td><td>Regulation（条例）— 直接适用于所有成员国，无需国内转化立法</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>三大目标</h3>
+  <ol>
+    <li><strong>保障内部市场有效运行</strong> — 统一电池在欧盟市场的投放条件，消除成员国间的监管差异</li>
+    <li><strong>预防并减少电池对环境的不利影响</strong> — 覆盖全生命周期，从原材料开采到废弃处理</li>
+    <li><strong>保护环境和人类健康</strong> — 通过有害物质限制、碳足迹管理、回收效率等机制实现</li>
+  </ol>
+
+  <div class="callout callout-note">
+    <div class="callout-title">📌 法规性质要点</div>
+    <p>与Directive（指令）不同，Regulation（条例）在生效后直接成为各成员国的法律，企业无需等待各国转化立法即可直接援引。这意味着合规义务的时间节点是统一的，不会因成员国转化进度不同而产生差异。</p>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter" id="ch2">
+  <h2 class="chapter-title"><span class="ch-num">第二章</span>适用范围与电池分类</h2>
+
+  <h3>适用范围 <span class="art-tag">Art.1</span></h3>
+  <p>本法规适用于<strong>所有类别电池</strong>，无论其形状、体积、重量、材料组成、化学成分、用途或目的。包括嵌入或添加到产品中的电池，或拟用于嵌入或添加到产品中的电池。</p>
+
+  <h4>豁免范围</h4>
+  <ul>
+    <li>军事用途设备中的电池</li>
+    <li>航天器专用电池</li>
+    <li>核应用相关电池（受Euratom条约管辖）</li>
+  </ul>
+
+  <h3>电池分类定义 <span class="art-tag">Art.3</span></h3>
+
+  <div class="table-wrap">
+    <table>
+      <caption style="caption-side:top;text-align:left;padding:var(--space-md);font-weight:700;color:var(--color-primary);font-size:var(--fs-md)">关键术语定义</caption>
+      <thead>
+        <tr>
+          <th style="width:160px">术语</th>
+          <th>定义要点</th>
+          <th style="width:100px">法律来源</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>电池</strong><br>(battery)</td>
+          <td>通过化学能直接转化为电能供电的装置，包含原电池和蓄电池</td>
+          <td><span class="art-tag">Art.3(1)</span></td>
+        </tr>
+        <tr>
+          <td><strong>电池包</strong><br>(battery pack)</td>
+          <td>任何电芯或电池模块的连接或封装组合，构成终端用户不可拆分或拆卸的完整电池单元</td>
+          <td><span class="art-tag">Art.3(2)</span></td>
+        </tr>
+        <tr>
+          <td><strong>电池模块</strong><br>(battery module)</td>
+          <td>任何电芯的连接或封装组合，可单独或组合使用，为电路供电</td>
+          <td><span class="art-tag">Art.3(3)</span></td>
+        </tr>
+        <tr>
+          <td><strong>便携式电池</strong><br>(portable battery)</td>
+          <td>密封电池，重量≤5kg，非工业专用设计，非电动汽车/LMT/SLI电池</td>
+          <td><span class="art-tag">Art.3(10)</span></td>
+        </tr>
+        <tr>
+          <td><strong>LMT电池</strong><br>(light means of transport battery)</td>
+          <td>密封电池，重量≤25kg，设计为轮式车辆牵引供电（L类车辆），如电动自行车、电动滑板车</td>
+          <td><span class="art-tag">Art.3(11)</span></td>
+        </tr>
+        <tr>
+          <td><strong>电动汽车电池</strong><br>(EV battery)</td>
+          <td>为混合动力或纯电动车辆牵引供电的电池，适用于L类（>25kg）或M/N/O类车辆</td>
+          <td><span class="art-tag">Art.3(9)</span></td>
+        </tr>
+        <tr>
+          <td><strong>工业电池</strong><br>(industrial battery)</td>
+          <td>工业专用设计的电池；或重量>5kg且非EV/LMT/SLI电池</td>
+          <td><span class="art-tag">Art.3(12)</span></td>
+        </tr>
+        <tr>
+          <td><strong>SLI电池</strong><br>(SLI battery)</td>
+          <td>用于车辆或发动机启动、照明或点火的电池（Starting, Lighting, Ignition）</td>
+          <td><span class="art-tag">Art.3(13)</span></td>
+        </tr>
+        <tr>
+          <td><strong>固定储能系统</strong><br>(stationary energy storage)</td>
+          <td>属于工业电池类别，用于内部存储电能，可并网或供终端用户使用的系统</td>
+          <td><span class="art-tag">Art.3(14)</span></td>
+        </tr>
+        <tr>
+          <td><strong>投放市场</strong><br>(placing on the market)</td>
+          <td>首次在欧盟市场提供电池，无论是免费还是收费</td>
+          <td><span class="art-tag">Art.3(27)</span></td>
+        </tr>
+        <tr>
+          <td><strong>经济运营商</strong><br>(economic operator)</td>
+          <td>制造商、授权代表、进口商、分销商及其他承担法规义务的主体</td>
+          <td><span class="art-tag">Art.3(28)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-change">
+    <div class="callout-title">⚡ 分类重要性</div>
+    <p>电池分类决定适用哪些义务。例如：电池护照仅适用于EV电池、>2kWh工业电池和LMT电池；碳足迹要求仅适用于EV、LMT和>2kWh可充电工业电池；便携式电池虽不需电池护照，但仍须满足标签、EPR和收集目标要求。正确分类是合规的第一步。</p>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter" id="ch3">
+  <h2 class="chapter-title"><span class="ch-num">第三章</span>电池护照（Digital Battery Passport）</h2>
+
+  <div class="callout callout-date">
+    <div class="callout-title">⚠️ 强制生效日期：2027年2月18日</div>
+    <p>自该日起，所有EV电池、LMT电池及容量>2kWh的可充电工业电池在投放欧盟市场或投入使用时，须携带数字产品护照（电池护照）。<span class="art-tag">Art.77(1)</span></p>
+  </div>
+
+  <h3>Article 77 核心要求</h3>
+
+  <h4>适用对象</h4>
+  <ul>
+    <li>LMT电池（电动自行车、电动滑板车等）</li>
+    <li>容量>2kWh的可充电工业电池</li>
+    <li>电动汽车（EV）电池</li>
+  </ul>
+  <p><em>注意：便携式电池和SLI电池不在电池护照强制范围内</em></p>
+
+  <h4>关键要求清单</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th style="width:200px">要求项</th><th>内容</th><th style="width:100px">来源</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>唯一标识符</strong></td><td>在item级别为每个电池分配唯一标识符（非型号级）</td><td><span class="art-tag">Art.77(3)</span></td></tr>
+        <tr><td><strong>QR码数据载体</strong></td><td>通过QR码实现数据载体，须符合ISO/IEC 15459系列标准或等效标准；采用GS1 Digital Link格式</td><td><span class="art-tag">Art.77(3)</span></td></tr>
+        <tr><td><strong>责任方</strong></td><td>将电池投放欧盟市场的经济运营商（制造商或进口商）负责创建和维护护照</td><td><span class="art-tag">Art.77(1)</span></td></tr>
+        <tr><td><strong>数据质量</strong></td><td>护照数据必须可用（available）、准确（accurate）、可更新（updatable），贯穿电池全生命周期</td><td><span class="art-tag">Art.77(2)</span></td></tr>
+        <tr><td><strong>存储架构</strong></td><td><strong>去中心化：</strong>完整数据由经济运营商（或其授权服务商）持有；欧盟中央DPP注册中心仅存储唯一标识符和访问控制元数据</td><td><span class="art-tag">Art.77(5)</span></td></tr>
+        <tr><td><strong>DPP注册中心</strong></td><td>2026年7月20日起上线运行，与市场监督系统互联，监管机构可访问受限数据</td><td><span class="art-tag">Art.77(6)</span></td></tr>
+        <tr><td><strong>访问层级</strong></td><td>三层：公开层（所有人）→ 受限层（维修商、二手运营商、回收商等有合法利益者）→ 监管机构层（主管当局和公告机构）</td><td><span class="art-tag">Art.77(2)</span></td></tr>
+        <tr><td><strong>访问规则实施法案</strong></td><td>原定2026年8月18日前通过，截至2026年9月尚未通过，预计2026年Q4通过 <span style="color:var(--color-amber);font-weight:600">（待确认）</span></td><td><span class="art-tag">Art.77(9)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Annex XIII 数据点要求（71个数据点）</h3>
+  <p>依据欧盟委员会2026年8月发布的v2.0指南《Digital Batteries Passport – data points by category》，共71个数据点按以下类别组织。各数据点对EV、LMT和工业电池的适用性不同，标注如下：</p>
+  <ul>
+    <li><span style="color:var(--color-green);font-weight:600">强制</span> = 所有适用电池类别须填报</li>
+    <li><span style="color:var(--color-text-muted)">可选</span> = 有数据时填报</li>
+    <li><span style="color:var(--color-text-secondary);font-style:italic">如适用</span> = 特定条件下填报</li>
+    <li><span style="color:var(--color-amber);font-style:italic">截至2027年2月暂不填报</span> = 格式或实施细则尚未确定</li>
+  </ul>
+
+  <h4>类别A：电池身份（Annex VI Part A）— 数据点1-15</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th>数据点</th>
+          <th style="width:120px">法律来源</th>
+          <th style="width:50px">EV</th>
+          <th style="width:50px">LMT</th>
+          <th style="width:70px">工业</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td>唯一标识符</td><td><span class="art-tag">Art.77(3)</span></td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">2</td><td>注册和/或负责电池护照的主体身份</td><td><span class="art-tag">Art.77(3)</span></td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">3</td><td>制造商名称、注册商号或注册商标</td><td>Annex VI A-1</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">4</td><td>制造商邮政地址（含单一联系点）</td><td>Annex VI A-1</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">5</td><td>制造商网址和电子邮件地址</td><td>Annex VI A-1</td><td class="optional">可选</td><td class="optional">可选</td><td class="optional">可选</td></tr>
+        <tr><td class="num">6</td><td>电池类别</td><td>Annex VI A-2</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">7</td><td>型号标识及批号或序列号，或产品编号</td><td>Annex VI A-2</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">8</td><td>制造地点（电池生产工厂的地理位置）</td><td>Annex VI A-3</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">9</td><td>制造日期（月份和年份）</td><td>Annex VI A-4</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">10</td><td>重量</td><td>Annex VI A-5</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">11</td><td>容量</td><td>Annex VI A-6</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">12</td><td>化学组成</td><td>Annex VI A-7</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">13</td><td>除汞、镉或铅以外的有害物质</td><td>Annex VI A-8</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">14</td><td>可用的灭火剂</td><td>Annex VI A-9</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">15</td><td>浓度超过0.1%的关键原材料（以重量比计）</td><td>Annex VI A-10</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>类别B：碳足迹（Annex XIII.1(c)）— 数据点17-18</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th>数据点</th>
+          <th style="width:120px">法律来源</th>
+          <th>适用性</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">17</td><td>碳足迹声明</td><td>Annex XIII.1(c)</td><td class="deferred">截至2027年2月无需填写/显示 — 格式尚待后续实施法案规定</td></tr>
+        <tr><td class="num">18</td><td>碳足迹等级标签</td><td>Annex XIII.1(c)</td><td class="deferred">截至2027年2月无需填写/显示 — 格式尚待后续实施法案规定</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>类别C：负责任采购（Annex XIII.1(d)）— 数据点19</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th>数据点</th>
+          <th style="width:120px">法律来源</th>
+          <th>适用性</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">19</td><td>Article 52(3)所述尽职调查报告中的负责任采购信息</td><td>Annex XIII.1(d)</td><td class="deferred">截至2027年2月无需填写/显示 — 尽职调查义务自2027年8月18日起适用（<span class="art-tag">Art.48(1)</span> as amended by Reg. 2025/1561）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>类别D：再生材料含量（Annex XIII.1(e)-(f)）— 数据点20-25</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th>数据点</th>
+          <th style="width:120px">法律来源</th>
+          <th style="width:50px">EV</th>
+          <th style="width:50px">LMT</th>
+          <th style="width:70px">工业</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">20</td><td>从废料中回收的钴占比（活性材料中）</td><td>Annex XIII.1(e)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">21</td><td>从废料中回收的锂占比（活性材料中）</td><td>Annex XIII.1(e)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">22</td><td>从废料中回收的镍占比（活性材料中）</td><td>Annex XIII.1(e)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">23</td><td>从废料中回收的铅占比</td><td>Annex XIII.1(e)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">24</td><td>可再生含量占比</td><td>Annex XIII.1(f)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">25</td><td>额定容量（Ah）</td><td>Annex XIII.1(g)</td><td class="deferred">无需填写</td><td class="deferred">无需填写</td><td class="deferred">无需填写</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>类别E：性能与耐久性参数（Annex XIII.1(h)-(p)）— 数据点26-39</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th>数据点</th>
+          <th style="width:120px">法律来源</th>
+          <th style="width:50px">EV</th>
+          <th style="width:50px">LMT</th>
+          <th style="width:70px">工业</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">26</td><td>最小电压及温度范围（如适用）</td><td>Annex XIII.1(h)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">27</td><td>标称电压及温度范围（如适用）</td><td>Annex XIII.1(h)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">28</td><td>最大电压及温度范围（如适用）</td><td>Annex XIII.1(h)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">29</td><td>原始功率能力（瓦特）</td><td>Annex XIII.1(i)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">30</td><td>功率限值及温度范围（如适用）</td><td>Annex XIII.1(i)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">31</td><td>以循环次数表示的预期电池寿命</td><td>Annex XIII.1(j)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">部分适用</td></tr>
+        <tr><td class="num">32</td><td>用于预期寿命的参考测试</td><td>Annex XIII.1(j)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">部分适用</td></tr>
+        <tr><td class="num">33</td><td>容量耗尽阈值（SOCE）</td><td>Annex XIII.1(k)</td><td class="mandatory">强制</td><td class="deferred">无需填写</td><td class="deferred">无需填写</td></tr>
+        <tr><td class="num">34</td><td>非使用状态下可耐受温度范围</td><td>Annex XIII.1(l)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">35</td><td>商业保修日历寿命期限</td><td>Annex XIII.1(m)</td><td class="optional">适用时</td><td class="optional">适用时</td><td class="optional">适用时</td></tr>
+        <tr><td class="num">36</td><td>初始往返能量效率</td><td>Annex XIII.1(n)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">部分适用</td></tr>
+        <tr><td class="num">37</td><td>循环寿命50%时往返效率</td><td>Annex XIII.1(n)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">部分适用</td></tr>
+        <tr><td class="num">38</td><td>内部电芯及电池组内阻</td><td>Annex XIII.1(o)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">39</td><td>循环寿命测试C-rate</td><td>Annex XIII.1(p)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">部分适用</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>类别F：标签与合规声明 — 数据点40-44</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th>数据点</th>
+          <th style="width:120px">法律来源</th>
+          <th style="width:50px">EV</th>
+          <th style="width:50px">LMT</th>
+          <th style="width:70px">工业</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">40</td><td>Article 13(4)标记要求</td><td>Annex XIII.1(q)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">41</td><td>Article 13(5)标记要求（镉/铅符号，如适用）</td><td>Annex XIII.1(q)</td><td class="optional">适用时</td><td class="optional">适用时</td><td class="optional">适用时</td></tr>
+        <tr><td class="num">42</td><td>EU符合性声明 <span class="art-tag">Art.18</span></td><td>Annex XIII.1(r)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">43</td><td>废电池预防与管理信息 <span class="art-tag">Art.74(1)(a)-(f)</span></td><td>Annex XIII.1(s)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">44</td><td>使用说明（可打印/下载/保存格式）</td><td>Annex XIII.1(t)</td><td class="deferred">暂不填报</td><td class="deferred">暂不填报</td><td class="deferred">暂不填报</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:var(--fs-xs);color:var(--color-text-muted)">数据点44：适用条款待Omnibus IV通过后另行决定</p>
+
+  <h4>类别G：详细材料组成（Annex XIII.2）— 数据点45-49</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th>数据点</th>
+          <th style="width:120px">法律来源</th>
+          <th style="width:50px">EV</th>
+          <th style="width:50px">LMT</th>
+          <th style="width:70px">工业</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">45</td><td>详细组成：正极、负极和电解液所用材料</td><td>Annex XIII.2(a)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">46</td><td>零部件的零件号</td><td>Annex XIII.2(b)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">47</td><td>替换备件来源的联系方式</td><td>Annex XIII.2(b)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">48</td><td>拆解信息</td><td>Annex XIII.2(c)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">49</td><td>安全措施</td><td>Annex XIII.2(d)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>类别H：合格评定与测试报告 — 数据点50</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th>数据点</th>
+          <th style="width:120px">法律来源</th>
+          <th style="width:50px">EV</th>
+          <th style="width:50px">LMT</th>
+          <th style="width:70px">工业</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">50</td><td>证明符合本法规要求的测试报告结果</td><td>Annex XIII.3</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>类别I：动态使用数据（Annex XIII.4）— 数据点51-71</h4>
+  <p>此部分数据须定期更新，反映电池在使用过程中的实时状态。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px">#</th>
+          <th>数据点</th>
+          <th style="width:120px">法律来源</th>
+          <th style="width:50px">EV</th>
+          <th style="width:50px">LMT</th>
+          <th style="width:70px">工业</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">51</td><td>额定容量（Ah）— 动态数据</td><td>Annex XIII.4(a)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">52</td><td>容量衰减（%）</td><td>Annex XIII.4(a)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">53</td><td>功率（W）</td><td>Annex XIII.4(a)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">54</td><td>功率衰减（%）</td><td>Annex XIII.4(a)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">55</td><td>内阻（Ω）</td><td>Annex XIII.4(a)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">56</td><td>内阻增加（%）</td><td>Annex XIII.4(a)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">57</td><td>往返能量效率（%）</td><td>Annex XIII.4(a)</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">58</td><td>往返能量效率衰减（%）</td><td>Annex XIII.4(a)</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">59</td><td>预期寿命（循环次数，参考条件下）</td><td>Annex XIII.4(a)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">60</td><td>预期寿命（日历年限，参考条件下）</td><td>Annex XIII.4(a)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr style="background:var(--color-surface-alt)"><td class="num">61</td><td><strong>健康状态：认证能量状态（SOCE）</strong></td><td>Annex XIII.4(b)</td><td class="mandatory">强制</td><td class="deferred">无需填写</td><td class="deferred">无需填写</td></tr>
+        <tr style="background:var(--color-surface-alt)"><td class="num">62</td><td><strong>健康状态：剩余容量</strong></td><td>Annex XIII.4(b)</td><td class="deferred">无需填写</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr style="background:var(--color-surface-alt)"><td class="num">63</td><td><strong>健康状态：剩余功率能力</strong></td><td>Annex XIII.4(b)</td><td class="deferred">无需填写</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr style="background:var(--color-surface-alt)"><td class="num">64</td><td><strong>健康状态：自放电率的演变</strong></td><td>Annex XIII.4(b)</td><td class="deferred">无需填写</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr style="background:var(--color-surface-alt)"><td class="num">66</td><td><strong>健康状态：欧姆电阻</strong></td><td>Annex XIII.4(b)</td><td class="deferred">无需填写</td><td class="mandatory">强制</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">67</td><td>电池状态（"原始""再利用""重复使用""再制造"或"废弃物"）</td><td>Annex XIII.4(c)</td><td class="mandatory">强制</td><td class="mandatory">强制</td><td class="mandatory">强制</td></tr>
+        <tr><td class="num">68</td><td>充放电循环次数</td><td>Annex XIII.4(d)</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">69</td><td>负面事件（如事故）</td><td>Annex XIII.4(d)</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">70</td><td>运行环境条件信息（含温度）</td><td>Annex XIII.4(d)</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+        <tr><td class="num">71</td><td>荷电状态（SOC）信息</td><td>Annex XIII.4(d)</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td><td style="color:var(--color-text-secondary);font-style:italic">如适用</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-title">📌 数据访问层级设计</div>
+    <p><strong>公开层：</strong>电池身份、基本技术参数、标签信息、符合性声明 — 任何扫描QR码的人均可访问<br>
+    <strong>受限层（合法利益）：</strong>维修商、再制造商、二手运营商、回收商 — 可访问拆解信息、安全措施、材料组成等 <span class="art-tag">Art.77(2) Subpara.3</span><br>
+    <strong>监管机构层：</strong>主管当局和公告机构 — 可访问全部数据，包括供应链尽职调查、碳足迹研究详情等</p>
+  </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section class="chapter" id="ch4">
+  <h2 class="chapter-title"><span class="ch-num">第四章</span>碳足迹 <span class="art-tag">Art.7</span></h2>
+
+  <p>Article 7建立三阶段递进式碳足迹管理体系。适用对象为：EV电池、LMT电池、容量>2kWh的可充电工业电池。普通便携式电池不在碳足迹要求范围内。</p>
+
+  <div class="callout callout-change">
+    <div class="callout-title">⚡ 重要：碳足迹日期为"条件日期"</div>
+    <p>Article 7的多个时间节点写作"固定日期或相关授权法案生效后X个月，以后者为准"。截至2026年9月，EV电池碳足迹计算方法的授权法案尚未正式通过（草案于2024年4月30日发布征求意见），因此EV电池碳足迹声明的实际生效日期已推迟至授权法案生效后12个月。</p>
+  </div>
+
+  <h3>三阶段实施路径</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>阶段</th>
+          <th>内容</th>
+          <th>法律来源</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>第一阶段</strong><br>碳足迹声明</td>
+          <td>
+            <p>每个电池型号×每个生产工厂计算碳足迹，单位为 kgCO₂e/kWh（全生命周期总能量输出）。</p>
+            <p>方法：PEF（Product Environmental Footprint），需现场一级数据（primary data），不可仅依赖通用数据库。</p>
+            <p>碳抵消不可用于降低申报数值（可单独报告为补充信息）。</p>
+            <p>须第三方验证，作为合格评定的一部分。</p>
+            <p><strong>适用日期（按电池类型）：</strong></p>
+            <ul>
+              <li>EV电池：原定2025年2月18日 → 实际为授权法案生效后12个月</li>
+              <li>>2kWh可充电工业电池（非外部存储）：原定2026年2月18日 → 实际为授权法案生效后18个月</li>
+              <li>LMT电池：2028年8月18日或授权法案生效后18个月</li>
+              <li>外部存储工业电池：2030年8月18日或授权法案生效后18个月</li>
+            </ul>
+          </td>
+          <td><span class="art-tag">Art.7(1)</span></td>
+        </tr>
+        <tr>
+          <td><strong>第二阶段</strong><br>碳足迹等级</td>
+          <td>
+            <p>按碳强度对电池分级（类似能效标签的A-G分级），在标签上标注等级。</p>
+            <p>从合规文件变为竞争信号 — 低排放电池获得市场优势。</p>
+            <p><strong>授权法案截止日：</strong></p>
+            <ul>
+              <li>EV电池：原定2025年8月18日（已过期未通过）</li>
+              <li>工业电池：原定2026年8月18日</li>
+              <li>LMT电池：2028年2月18日</li>
+            </ul>
+          </td>
+          <td><span class="art-tag">Art.7(2)</span></td>
+        </tr>
+        <tr>
+          <td><strong>第三阶段</strong><br>最大阈值</td>
+          <td>
+            <p>超过碳足迹最大阈值的电池<strong>不得投放欧盟市场</strong>。</p>
+            <p>这是具有真正商业约束力的阶段 — 碳强度成为市场准入门槛。</p>
+            <p><strong>生效日期：</strong></p>
+            <ul>
+              <li>EV电池：2028年2月18日（或授权法案生效后）</li>
+              <li>工业电池：2029年2月18日</li>
+              <li>LMT电池：2031年8月18日</li>
+            </ul>
+          </td>
+          <td><span class="art-tag">Art.7(3)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-title">⚠️ 对出口企业的影响</div>
+    <p>碳足迹第三阶段意味着：如果你的电池碳足迹超过设定阈值，将直接被禁止进入欧盟市场。电力消耗在电极干燥、干燥室运行和化成阶段占比最大，使用低碳电网的工厂具有结构性优势。中国电池企业需提前规划工厂电力来源的低碳化。</p>
+  </div>
+</section>
+
+<!-- CHAPTER 5 -->
+<section class="chapter" id="ch5">
+  <h2 class="chapter-title"><span class="ch-num">第五章</span>供应链尽职调查 <span class="art-tag">Art.48-52</span></h2>
+
+  <div class="callout callout-date">
+    <div class="callout-title">⚠️ 重要延期：尽职调查义务已延期至2027年8月18日</div>
+    <p>原定于2025年8月18日生效的尽职调查义务，已通过 <strong>Regulation (EU) 2025/1561</strong>（2025年7月18日通过，7月30日刊登于OJ）延期两年至<strong>2027年8月18日</strong>。委员会指南发布截止日亦从原定2025年2月18日延至<strong>2026年7月26日</strong>。 <span class="art-tag">Art.48(1)</span> as amended</p>
+  </div>
+
+  <h3>Article 48 — 尽职调查政策</h3>
+  <ul>
+    <li><strong>覆盖材料：</strong>钴、锂、天然石墨、镍（Annex X, Point 1所列原材料）</li>
+    <li><strong>覆盖风险：</strong>环境、气候和人类健康，人权，劳工权利和工业关系，社区生活（Annex X, Point 2）</li>
+    <li><strong>适用主体：</strong>上一财年净营业额超过<strong>4000万欧元</strong>的经济运营商（按个别或合并基础计算）</li>
+    <li><strong>第三方验证：</strong>须由依据本法规获得认可的独立第三方验证</li>
+    <li><strong>国际基准：</strong>须基于UNGP（联合国工商企业与人权指导原则）、OECD跨国企业指南等国际公认尽职调查工具</li>
+  </ul>
+
+  <div class="callout callout-change">
+    <div class="callout-title">⚡ Omnibus IV 提案中的进一步修订</div>
+    <p>COM(2025) 501（2025年5月21日提交）提议：</p>
+    <ul>
+      <li>营业额豁免门槛从4000万欧元上调至<strong>1.5亿欧元</strong>（截至2026年9月尚未正式通过）</li>
+      <li>尽职调查报告频率从每年一次改为<strong>每三年一次</strong>（自生效后一年起，即2028年起）</li>
+    </ul>
+    <p>2026年6月9日，议会和理事会达成临时协议，进一步提高了中小中型企业门槛。正式通过待确认。</p>
+  </div>
+
+  <h3>Article 49 — 管理系统</h3>
+  <ul>
+    <li>高层管理承担管理责任</li>
+    <li>将尽职调查政策纳入供应商合同和协议</li>
+    <li>向供应商和公众传达尽职调查政策</li>
+    <li>与国际标准对齐</li>
+    <li>建立供应链控制和透明度体系（监管链/追溯机制）</li>
+    <li>识别上游参与者，从开采到一级供应商</li>
+    <li>建立基于UNGP的申诉机制和补救流程</li>
+  </ul>
+
+  <h4>须捕获的关键供应链信息</h4>
+  <ul>
+    <li>原材料描述、类型、数量和重量</li>
+    <li>原材料供应商名称和地址</li>
+    <li>原材料原产国</li>
+    <li>从开采到一级供应商的市场交易链</li>
+  </ul>
+
+  <h3>Article 50 — 风险管理义务</h3>
+  <ul>
+    <li>识别和评估钴、锂、镍、石墨供应链中的人权和环境风险</li>
+    <li>设计和实施应对策略（考虑国际标准、企业对供应商的影响力、风险管理计划）</li>
+    <li>向高层管理报告</li>
+    <li>与UNGP、OECD指南、ILO核心劳工标准一致</li>
+    <li>跟踪和监控风险缓解措施效果</li>
+    <li>缓解失败后考虑暂停或终止与供应商合作</li>
+  </ul>
+
+  <h3>Article 51 — 第三方验证 <span class="art-tag">Art.51</span></h3>
+  <ul>
+    <li>独立第三方验证覆盖所有尽职调查活动、流程和系统</li>
+    <li>验证报告须指出改进领域</li>
+  </ul>
+
+  <h3>Article 52 — 信息披露 <span class="art-tag">Art.52</span></h3>
+  <ul>
+    <li>公开发布尽职调查报告</li>
+    <li>内容包括：已采取步骤、重大不利影响发现及应对措施</li>
+    <li>频率：原定每年一次；Omnibus IV提案改为每三年一次</li>
+    <li>文档保存期限：相关政策下最后一块电池投放市场后<strong>10年</strong></li>
+  </ul>
+</section>
+
+<!-- CHAPTER 6 -->
+<section class="chapter" id="ch6">
+  <h2 class="chapter-title"><span class="ch-num">第六章</span>标签与标识 <span class="art-tag">Art.13, 14</span></h2>
+
+  <h3>Article 13 — 通用标签要求</h3>
+  <p>所有电池须标注以下信息，要求<strong>清晰可见、易读、不可擦除</strong>：</p>
+  <ul>
+    <li>制造商名称和联系地址</li>
+    <li>电池类别标识</li>
+    <li>型号标识（型号、批号或序列号）</li>
+    <li>重量（便携式电池）</li>
+    <li>容量（以mAh或Wh标注）</li>
+    <li>化学成分标识（自2025年8月18日起：锂离子电池、镍氢电池、铅酸电池等）</li>
+    <li>有害物质标识（含汞、镉、铅的电池须标注对应化学符号）</li>
+    <li>单独收集标识（划叉的带轮垃圾桶符号）</li>
+    <li>生产日期</li>
+    <li>自2026年8月18日起：QR码链接至电池护照（如适用）或产品信息</li>
+  </ul>
+
+  <h3>Article 14 — 健康状态信息 <span class="art-tag">Art.14</span></h3>
+  <p><strong>适用对象：</strong>固定储能系统、LMT电池、EV电池</p>
+  <p><strong>生效日期：</strong>2024年8月18日起</p>
+  <ul>
+    <li>BMS（电池管理系统）须包含健康状态（SOH）和预期寿命的最新数据</li>
+    <li>依据Annex VII参数</li>
+  </ul>
+
+  <h3>Article 11 — 可拆卸与可更换 <span class="art-tag">Art.11</span></h3>
+
+  <div class="callout callout-date">
+    <div class="callout-title">⚠️ 2027年2月18日起适用</div>
+    <p>包含便携式电池的产品：最终用户可轻松拆卸和更换电池<br>
+    LMT电池：独立专业人员可更换（在产品生命周期内）</p>
+  </div>
+
+  <h4>关键禁止事项</h4>
+  <ul>
+    <li><strong>禁止通过软件/固件/零件配对阻止电池更换</strong></li>
+    <li>设计要求不得妨碍独立专业人员更换LMT电池</li>
+  </ul>
+
+  <p>2025年1月，委员会已发布可拆卸/可更换要求的实施指南。</p>
+</section>
+
+<!-- CHAPTER 7 -->
+<section class="chapter" id="ch7">
+  <h2 class="chapter-title"><span class="ch-num">第七章</span>回收与再生材料 <span class="art-tag">Art.8, 71</span></h2>
+
+  <h3>Article 8 — 再生材料含量最低要求</h3>
+  <p>自<strong>2031年8月18日</strong>起，新投放市场的工业电池、SLI电池、EV电池须满足以下再生材料最低含量要求：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>材料</th>
+          <th>2031年8月18日起</th>
+          <th>2036年8月18日起</th>
+          <th>法律来源</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>钴（Co）</strong></td>
+          <td style="text-align:center;font-weight:700">16%</td>
+          <td style="text-align:center;font-weight:700">26%</td>
+          <td><span class="art-tag">Art.8(1)(a)</span></td>
+        </tr>
+        <tr>
+          <td><strong>铅（Pb）</strong></td>
+          <td style="text-align:center;font-weight:700">85%</td>
+          <td style="text-align:center;font-weight:700">85%</td>
+          <td><span class="art-tag">Art.8(1)(b)</span></td>
+        </tr>
+        <tr>
+          <td><strong>锂（Li）</strong></td>
+          <td style="text-align:center;font-weight:700">6%</td>
+          <td style="text-align:center;font-weight:700">12%</td>
+          <td><span class="art-tag">Art.8(1)(c)</span></td>
+        </tr>
+        <tr>
+          <td><strong>镍（Ni）</strong></td>
+          <td style="text-align:center;font-weight:700">6%</td>
+          <td style="text-align:center;font-weight:700">15%</td>
+          <td><span class="art-tag">Art.8(1)(d)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>披露义务：</strong>自2028年8月18日起，须通过电池护照披露钴、铅、锂、镍的再生材料含量。LMT电池自2033年8月18日起适用最低含量要求（2036年档次）。</p>
+
+  <div class="callout callout-note">
+    <div class="callout-title">📌 计算依据</div>
+    <p>再生材料百分比按活性材料中的含量计算，来源为电池制造废料或消费后废料。Regulation (EU) 2025/606（2025年3月21日通过，7月4日刊登）已确定计算和验证方法。该计算方法为强制性，不再具有临时性。</p>
+  </div>
+
+  <h3>Article 71 — 回收效率目标</h3>
+
+  <h4>废电池回收效率（2025年12月31日起）</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>电池类型</th><th>回收效率</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>镍镉电池</td><td style="text-align:center;font-weight:700">80%</td></tr>
+        <tr><td>铅酸电池</td><td style="text-align:center;font-weight:700">75%</td></tr>
+        <tr><td>锂电池</td><td style="text-align:center;font-weight:700">65%</td></tr>
+        <tr><td>其他废电池</td><td style="text-align:center;font-weight:700">50%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>材料回收率目标（2027年12月31日起）</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>材料</th><th>回收率</th><th>法律来源</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>钴（Co）</td><td style="text-align:center;font-weight:700">90%</td><td><span class="art-tag">Art.71</span></td></tr>
+        <tr><td>铜（Cu）</td><td style="text-align:center;font-weight:700">90%</td><td><span class="art-tag">Art.71</span></td></tr>
+        <tr><td>铅（Pb）</td><td style="text-align:center;font-weight:700">90%</td><td><span class="art-tag">Art.71</span></td></tr>
+        <tr><td>镍（Ni）</td><td style="text-align:center;font-weight:700">90%</td><td><span class="art-tag">Art.71</span></td></tr>
+        <tr><td>锂（Li）</td><td style="text-align:center;font-weight:700">50%</td><td><span class="art-tag">Art.71</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>材料回收率目标（2031年12月31日起）</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>材料</th><th>回收率</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>钴/铜/铅/镍</td><td style="text-align:center;font-weight:700">95%</td></tr>
+        <tr><td>锂</td><td style="text-align:center;font-weight:700">80%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CHAPTER 8 -->
+<section class="chapter" id="ch8">
+  <h2 class="chapter-title"><span class="ch-num">第八章</span>生产者延伸责任（EPR）<span class="art-tag">Art.56-63</span></h2>
+
+  <h3>Article 56 — EPR基本要求</h3>
+  <ul>
+    <li>在成员国首次投放电池的生产者须有EPR方案</li>
+    <li>EPR覆盖成本包括：废电池分类收集、运输、处理</li>
+    <li>成分调查、信息提供、数据收集和报告</li>
+    <li>须在<strong>每个目标成员国</strong>履行EPR义务</li>
+  </ul>
+
+  <h3>Article 58 — 集体履约（PRO）</h3>
+  <ul>
+    <li>生产者可委托生产者责任组织（Producer Responsibility Organisation, PRO）履行EPR义务</li>
+    <li>财务贡献须按电池类别和化学类型调节</li>
+    <li>考虑因素：可充电性、再生材料含量、再利用/翻新状态、碳足迹</li>
+  </ul>
+
+  <h3>Article 59 — 便携式电池收集目标</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>截止日期</th><th>收集目标</th><th>法律来源</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2027年12月31日</td><td style="text-align:center;font-weight:700;font-size:var(--fs-lg)">63%</td><td><span class="art-tag">Art.59</span></td></tr>
+        <tr><td>2030年12月31日</td><td style="text-align:center;font-weight:700;font-size:var(--fs-lg)">73%</td><td><span class="art-tag">Art.59</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>LMT电池收集目标</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>截止日期</th><th>收集目标</th><th>法律来源</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2028年12月31日</td><td style="text-align:center;font-weight:700">51%</td><td><span class="art-tag">Art.59</span></td></tr>
+        <tr><td>2031年12月31日</td><td style="text-align:center;font-weight:700">61%</td><td><span class="art-tag">Art.59</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CHAPTER 9 -->
+<section class="chapter" id="ch9">
+  <h2 class="chapter-title"><span class="ch-num">第九章</span>经济运营商义务 <span class="art-tag">Art.39-46</span></h2>
+
+  <h3>Article 39 — 制造商义务</h3>
+  <ul>
+    <li>确保电池符合法规所有适用要求</li>
+    <li>准备技术文档 <span class="art-tag">Annex VIII</span></li>
+    <li>执行合格评定程序 <span class="art-tag">Art.17</span></li>
+    <li>出具EU符合性声明 <span class="art-tag">Annex IX</span></li>
+    <li>加贴CE标志 <span class="art-tag">Art.19</span></li>
+    <li>在电池投放市场后保存技术文档和符合性声明<strong>10年</strong></li>
+    <li>确保电池带有类型、批号/序列号等可识别标识</li>
+    <li>标注制造商名称和联系地址</li>
+    <li>建立投诉和召回程序</li>
+  </ul>
+
+  <h3>Article 41 — 授权代表 <span class="art-tag">Art.41</span></h3>
+  <ul>
+    <li><strong>非欧盟制造商须指定欧盟境内授权代表</strong></li>
+    <li>书面授权委托</li>
+    <li>职责：保存技术文档和符合性声明副本（10年）</li>
+    <li>配合主管当局提供信息和样品</li>
+    <li>配合消除不合规风险</li>
+  </ul>
+
+  <div class="callout callout-warn">
+    <div class="callout-title">⚠️ 对中国出口企业的关键影响</div>
+    <p>非欧盟制造商（包括中国电池企业）<strong>必须</strong>在欧盟境内指定授权代表。这是进入欧盟市场的必要条件，不可省略。授权代表承担连带责任。</p>
+  </div>
+
+  <h3>Article 42 — 进口商义务 <span class="art-tag">Art.42</span></h3>
+  <ul>
+    <li>确保制造商已执行合格评定</li>
+    <li>确保技术文档可用</li>
+    <li>确保加贴CE标志</li>
+    <li>标注进口商名称和联系地址于电池或包装上</li>
+    <li>保存符合性声明副本10年</li>
+  </ul>
+
+  <h3>Article 43 — 分销商义务 <span class="art-tag">Art.43</span></h3>
+  <ul>
+    <li>验证CE标志和文件齐全</li>
+    <li>确保存储和运输条件不影响合规</li>
+    <li>发现不合规时通知主管当局</li>
+  </ul>
+</section>
+
+<!-- CHAPTER 10 -->
+<section class="chapter" id="ch10">
+  <h2 class="chapter-title"><span class="ch-num">第十章</span>合格评定与市场监督 <span class="art-tag">Art.17-26, 74-76</span></h2>
+
+  <h3>Article 17 — 合格评定程序</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>评定模块</th><th>适用范围</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Module A</strong><br>内部生产控制</td>
+          <td>无Art.6/7/10限制或Art.12(1)限制的电池</td>
+          <td>由制造商自行执行合格评定，无需公告机构介入</td>
+        </tr>
+        <tr>
+          <td><strong>Module D1</strong><br>生产过程质量保证</td>
+          <td>有限制要求（物质限制、碳足迹、性能要求等）的电池</td>
+          <td>须由公告机构（Notified Body）审核并批准质量管理系统</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Article 18 — EU符合性声明 <span class="art-tag">Art.18</span></h3>
+  <ul>
+    <li>声明电池符合法规所有适用要求</li>
+    <li>须持续更新</li>
+    <li>翻译为市场所在成员国要求的语言</li>
+  </ul>
+
+  <h3>Articles 74-76 — 市场监督与处罚</h3>
+  <ul>
+    <li>各成员国须指定主管当局 <span class="art-tag">Art.54</span></li>
+    <li>2025年8月18日起成员国须制定违规处罚规则</li>
+    <li>处罚须<strong>有效、成比例、具威慑力</strong></li>
+    <li>市场监督系统互通，监管机构可跨区域协作</li>
+  </ul>
+
+  <div class="callout callout-note">
+    <div class="callout-title">📌 合格评定与电池护照的关系</div>
+    <p>合格评定是电池护照的前置条件。电池在投放市场前须完成合格评定并出具符合性声明，随后其数据纳入电池护照。碳足迹声明、再生材料含量、性能测试报告等均为合格评定的组成部分。</p>
+  </div>
+</section>
+
+<!-- CHAPTER 11 -->
+<section class="chapter" id="ch11">
+  <h2 class="chapter-title"><span class="ch-num">第十一章</span>关键时间线（完整）</h2>
+
+  <p>以下时间线列出所有已确认的关键日期。部分碳足迹相关日期为"条件日期"，取决于授权法案的最终通过时间。</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2023年7月12日</div>
+      <div class="tl-desc">法规签署</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2023年7月28日</div>
+      <div class="tl-desc">刊登于欧盟官方公报 OJ L 191</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2023年8月17日</div>
+      <div class="tl-desc">法规正式生效（进入force后第20日）</div>
+      <div class="tl-source">Art.96(1)</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2024年2月18日</div>
+      <div class="tl-desc">部分条款开始适用（电池护照相关条款除外）</div>
+      <div class="tl-source">Art.96(2)</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2024年8月18日</div>
+      <div class="tl-desc">BMS健康状态数据要求生效（固定储能/LMT/EV）；CE标志和合格评定条款适用；便携式电池性能和耐久性要求适用</div>
+      <div class="tl-source">Art.14; Art.17-19; Art.10</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2025年1月</div>
+      <div class="tl-desc">可拆卸/可更换电池实施指南发布</div>
+      <div class="tl-source">Art.11</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2025年8月18日</div>
+      <div class="tl-desc">旧电池指令（Directive 2006/66/EC）全面废止；EPR统一框架生效；成员国须制定违规处罚规则；电池化学成分标签要求生效</div>
+      <div class="tl-source">多条款</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2025年12月31日</div>
+      <div class="tl-desc">第一阶段废电池回收效率目标达成（镍镉80%、铅酸75%、锂电65%、其他50%）</div>
+      <div class="tl-source">Art.71</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2026年2月18日</div>
+      <div class="tl-desc">便携式电池含于产品中须可拆卸可更换（原法规日期）</div>
+      <div class="tl-source">Art.11</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2026年7月20日</div>
+      <div class="tl-desc">DPP注册中心上线运行</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2026年7月26日</div>
+      <div class="tl-desc">尽职调查指南发布截止日（原定2025年2月18日，已由Reg. 2025/1561延期）</div>
+      <div class="tl-source">Art.48(1) as amended</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2026年8月18日</div>
+      <div class="tl-desc">碳足迹等级标签要求（工业电池，非外部存储）；电池标签中QR码/产品信息链接要求；电池护照访问规则实施法案原定截止日（截至2026年9月尚未通过）</div>
+      <div class="tl-source">Art.7(2); Art.13; Art.77(9)</div>
+    </div>
+    <div class="tl-item tl-critical">
+      <div class="tl-date">2027年2月18日 ★</div>
+      <div class="tl-desc"><strong>电池护照强制生效日</strong>（LMT/工业>2kWh/EV电池）；便携式电池可拆卸要求（产品内置）</div>
+      <div class="tl-source">Art.77(1); Art.11</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2027年8月18日</div>
+      <div class="tl-desc"><strong>供应链尽职调查义务生效</strong>（原定2025年8月18日，已由Reg. 2025/1561延期2年）</div>
+      <div class="tl-source">Art.48(1) as amended by Reg. (EU) 2025/1561</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2027年12月31日</div>
+      <div class="tl-desc">便携式电池收集目标63%达成；第一阶段材料回收率目标（Co/Ni/Cu/Pb 90%, Li 50%）</div>
+      <div class="tl-source">Art.59; Art.71</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2028年2月18日</div>
+      <div class="tl-desc">碳足迹最大阈值生效（超标电池禁止入市）— EV电池（条件日期，取决于授权法案）</div>
+      <div class="tl-source">Art.7(3)</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2028年</div>
+      <div class="tl-desc">尽职调查报告首次发布（三年周期，Omnibus IV提案如通过）；再生材料含量披露义务生效</div>
+      <div class="tl-source">Art.52; Art.8</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2028年12月31日</div>
+      <div class="tl-desc">LMT电池收集目标51%达成</div>
+      <div class="tl-source">Art.59</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2030年12月31日</div>
+      <div class="tl-desc">便携式电池收集目标73%达成；第二阶段材料回收率目标（Co/Ni/Cu/Pb 95%, Li 80%）</div>
+      <div class="tl-source">Art.59; Art.71</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2031年8月18日</div>
+      <div class="tl-desc">再生材料最低含量要求生效（Co 16%, Pb 85%, Li 6%, Ni 6%）</div>
+      <div class="tl-source">Art.8(1)</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2031年12月31日</div>
+      <div class="tl-desc">LMT电池收集目标61%达成；第二阶段材料回收率目标全面达成</div>
+      <div class="tl-source">Art.59; Art.71</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2036年8月18日</div>
+      <div class="tl-desc">更高再生材料目标（Co 26%, Li 12%, Ni 15%, Pb 85%）；LMT电池纳入最低含量要求</div>
+      <div class="tl-source">Art.8(1)</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 12 -->
+<section class="chapter" id="ch12">
+  <h2 class="chapter-title"><span class="ch-num">第十二章</span>对中国出口企业的关键影响</h2>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-num">影响 01</div>
+      <h4>所有出口欧盟的电池企业都在适用范围内</h4>
+      <p>无论企业规模大小、无论是否在欧盟设有实体，只要电池投放欧盟市场，即受本法规约束。中国作为全球最大的电池生产国，受影响面最广。</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">影响 02</div>
+      <h4>进口商承担与制造商同等责任</h4>
+      <p>海外制造商未做电池护照的，欧盟进口商必须代为创建。进口商对护照内容的合规性承担与制造商同等的法律责任。这是最常见的合规缺口。</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">影响 03</div>
+      <h4>供应链追溯是硬要求</h4>
+      <p>钴/镍/锂/石墨从矿山到一级供应商的全链路追溯。须记录原材料名称、供应商地址、原产国、市场交易链。尽职调查义务自2027年8月18日起适用。</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">影响 04</div>
+      <h4>数据质量是核心</h4>
+      <p>碳足迹须使用一级数据（primary data），不能仅靠通用数据库值。约50%的数据点来自企业外部：供应商声明、电芯技术规格、PEF评估方、认证回收商。</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">影响 05</div>
+      <h4>QR码+护照是物理+数字双重要求</h4>
+      <p>每个电池实体（非型号）都须有唯一QR码。QR码须符合ISO/IEC 15459标准和GS1 Digital Link格式。数据载体必须物理附着于电池。</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">影响 06</div>
+      <h4>碳足迹将成市场准入门槛</h4>
+      <p>2028年起（条件日期），碳足迹超过阈值的电池将被直接禁止销售。使用高碳电网的工厂面临结构性劣势。电力消耗在电极干燥和化成阶段占比最大。</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">影响 07</div>
+      <h4>尽职调查有营业额门槛但正在提高</h4>
+      <p>当前门槛为4000万欧元净营业额。Omnibus IV提案拟提高至1.5亿欧元。即使低于门槛，也应关注，因为下游客户可能要求供应链上的所有企业配合尽职调查。</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">影响 08</div>
+      <h4>EPR须在每个目标成员国履行</h4>
+      <p>生产者须在电池投放的每个成员国注册并履行EPR义务。可委托PRO但责任仍在生产者。财务贡献按电池类别、化学类型和碳足迹等因素调节。</p>
+    </div>
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-title">📌 合规优先级建议</div>
+    <p><strong>第一优先（立即行动）：</strong>电池身份数据采集 + 性能参数整理 → 为2027年2月18日电池护照做准备<br>
+    <strong>第二优先（2026年Q4启动）：</strong>供应链映射 + 碳足迹PEF研究 → 应对尽职调查和碳足迹要求<br>
+    <strong>第三优先（2027年起）：</strong>再生材料含量数据准备 → 2028年8月18日起须披露<br>
+    <strong>持续关注：</strong>Omnibus IV立法进展、授权法案和实施条例的发布</p>
+  </div>
+</section>
+
+<!-- APPENDIX A -->
+<section class="chapter" id="appA">
+  <h2 class="chapter-title"><span class="ch-num">附录A</span>法规来源与相关链接</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>资源</th><th>链接</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>官方全文（EUR-Lex）</td>
+          <td><a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32023R1542" target="_blank" rel="noopener noreferrer">eur-lex.europa.eu — CELEX:32023R1542</a></td>
+        </tr>
+        <tr>
+          <td>合并文本</td>
+          <td><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R1542-20230728" target="_blank" rel="noopener noreferrer">eur-lex.europa.eu — 合并文本</a></td>
+        </tr>
+        <tr>
+          <td>欧盟环境总署电池页面</td>
+          <td><a href="https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en" target="_blank" rel="noopener noreferrer">environment.ec.europa.eu — Batteries</a></td>
+        </tr>
+        <tr>
+          <td>电池护照数据点指南v2.0（2026年8月）</td>
+          <td><a href="https://single-market-economy.ec.europa.eu/news/guidance-support-preparations-digital-batteries-passport-2026-08-21_en" target="_blank" rel="noopener noreferrer">single-market-economy.ec.europa.eu — 指南公告</a></td>
+        </tr>
+        <tr>
+          <td>Regulation (EU) 2025/1561（尽职调查延期）</td>
+          <td><a href="https://eur-lex.europa.eu/eli/reg/2025/1561" target="_blank" rel="noopener noreferrer">eur-lex.europa.eu — Reg. 2025/1561</a></td>
+        </tr>
+        <tr>
+          <td>厦门WTO工作站解读</td>
+          <td><a href="https://chinawto.mofcom.gov.cn/article/jsbl/dtxx/202508/20250803595202.shtml" target="_blank" rel="noopener noreferrer">chinawto.mofcom.gov.cn — 解读</a></td>
+        </tr>
+        <tr>
+          <td>厦门WTO工作站 — 电池护照数据点指南中文翻译</td>
+          <td><a href="https://chinawto.mofcom.gov.cn/article/jsbl/dtxx/202608/20260803638482.shtml" target="_blank" rel="noopener noreferrer">chinawto.mofcom.gov.cn — 71数据点</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- APPENDIX B -->
+<section class="chapter" id="appB">
+  <h2 class="chapter-title"><span class="ch-num">附录B</span>术语对照表（中英文）</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th style="width:40%">中文</th><th>English</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>电池</td><td>Battery</td></tr>
+        <tr><td>电池包</td><td>Battery pack</td></tr>
+        <tr><td>电池模块</td><td>Battery module</td></tr>
+        <tr><td>电芯</td><td>Cell</td></tr>
+        <tr><td>便携式电池</td><td>Portable battery</td></tr>
+        <tr><td>轻型交通工具电池</td><td>Light means of transport (LMT) battery</td></tr>
+        <tr><td>电动汽车电池</td><td>Electric vehicle (EV) battery</td></tr>
+        <tr><td>工业电池</td><td>Industrial battery</td></tr>
+        <tr><td>SLI电池（启动/照明/点火）</td><td>SLI (Starting, Lighting, Ignition) battery</td></tr>
+        <tr><td>固定储能系统</td><td>Stationary energy storage system</td></tr>
+        <tr><td>数字产品护照 / 电池护照</td><td>Digital Product Passport (DPP) / Battery Passport</td></tr>
+        <tr><td>经济运营商</td><td>Economic operator</td></tr>
+        <tr><td>制造商</td><td>Manufacturer</td></tr>
+        <tr><td>授权代表</td><td>Authorised representative</td></tr>
+        <tr><td>进口商</td><td>Importer</td></tr>
+        <tr><td>分销商</td><td>Distributor</td></tr>
+        <tr><td>投放市场</td><td>Placing on the market</td></tr>
+        <tr><td>投入使用</td><td>Putting into service</td></tr>
+        <tr><td>合格评定</td><td>Conformity assessment</td></tr>
+        <tr><td>EU符合性声明</td><td>EU declaration of conformity</td></tr>
+        <tr><td>CE标志</td><td>CE marking</td></tr>
+        <tr><td>公告机构</td><td>Notified Body</td></tr>
+        <tr><td>市场监督</td><td>Market surveillance</td></tr>
+        <tr><td>生产者延伸责任</td><td>Extended Producer Responsibility (EPR)</td></tr>
+        <tr><td>生产者责任组织</td><td>Producer Responsibility Organisation (PRO)</td></tr>
+        <tr><td>碳足迹</td><td>Carbon footprint</td></tr>
+        <tr><td>产品环境足迹</td><td>Product Environmental Footprint (PEF)</td></tr>
+        <tr><td>再生材料含量</td><td>Recycled content</td></tr>
+        <tr><td>回收效率</td><td>Recycling efficiency</td></tr>
+        <tr><td>供应链尽职调查</td><td>Supply chain due diligence</td></tr>
+        <tr><td>健康状态</td><td>State of Health (SOH)</td></tr>
+        <tr><td>认证能量状态</td><td>State of Certified Energy (SOCE)</td></tr>
+        <tr><td>荷电状态</td><td>State of Charge (SOC)</td></tr>
+        <tr><td>电池管理系统</td><td>Battery Management System (BMS)</td></tr>
+        <tr><td>关键原材料</td><td>Critical Raw Material (CRM)</td></tr>
+        <tr><td>往返能量效率</td><td>Round-trip energy efficiency</td></tr>
+        <tr><td>容量耗尽阈值</td><td>Capacity depletion threshold</td></tr>
+        <tr><td>可拆卸性/可更换性</td><td>Removability / Replaceability</td></tr>
+        <tr><td>黑粉（回收中间品）</td><td>Black mass</td></tr>
+        <tr><td>授权法案</td><td>Delegated act</td></tr>
+        <tr><td>实施条例</td><td>Implementing act / Implementing regulation</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- APPENDIX C -->
+<section class="chapter" id="appC">
+  <h2 class="chapter-title"><span class="ch-num">附录C</span>相关法规与指引</h2>
+
+  <h3>修订法规</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>法规</th><th>内容</th><th>状态（截至2026年9月）</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Regulation (EU) 2025/1561</strong></td>
+          <td>"Stop the Clock"法规，将尽职调查义务从2025年8月18日延期至2027年8月18日</td>
+          <td style="color:var(--color-green);font-weight:600">已通过并生效</td>
+        </tr>
+        <tr>
+          <td><strong>Regulation (EU) 2025/606</strong></td>
+          <td>确定再生材料含量计算和验证方法</td>
+          <td style="color:var(--color-green);font-weight:600">已通过并生效</td>
+        </tr>
+        <tr>
+          <td><strong>COM(2025) 501</strong>（Omnibus IV）</td>
+          <td>提议进一步修订：提高尽职调查豁免门槛至1.5亿欧元、改为三年报告周期等</td>
+          <td style="color:var(--color-amber);font-weight:600">临时协议达成，待正式通过</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>国际标准与指引</h3>
+  <ul>
+    <li><strong>OECD Due Diligence Guidance for Responsible Supply Chains of Minerals from Conflict-Affected and High-Risk Areas</strong> — 负责任供应链尽职调查的基准文件</li>
+    <li><strong>UN Guiding Principles on Business and Human Rights (UNGP)</strong> — 企业与人权的联合国指导原则</li>
+    <li><strong>ILO核心劳工标准</strong> — 国际劳工组织八大核心公约</li>
+    <li><strong>ISO/IEC 15459系列</strong> — 唯一标识符标准（电池护照QR码数据载体）</li>
+    <li><strong>ISO/IEC 18004:2015</strong> — QR码技术规范</li>
+    <li><strong>GS1 Digital Link</strong> — 电池护照URL格式标准</li>
+    <li><strong>PEFCR for Batteries (v2)</strong> — 电池产品环境足迹类别规则</li>
+  </ul>
+
+  <h3>授权法案和实施条例清单（已发布或待发布）</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>主题</th><th>状态</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>碳足迹计算方法（EV电池）</td>
+          <td style="color:var(--color-amber)">待通过</td>
+          <td>草案2024年4月发布征求意见，尚未正式通过</td>
+        </tr>
+        <tr>
+          <td>碳足迹计算方法（工业电池）</td>
+          <td style="color:var(--color-amber)">待通过</td>
+          <td>JRC 2025年4月发布等效规则</td>
+        </tr>
+        <tr>
+          <td>碳足迹性能等级</td>
+          <td style="color:var(--color-amber)">待通过</td>
+          <td>各电池类型分别设定截止日</td>
+        </tr>
+        <tr>
+          <td>碳足迹最大阈值</td>
+          <td style="color:var(--color-amber)">待通过</td>
+          <td>预计2028年前</td>
+        </tr>
+        <tr>
+          <td>再生材料含量验证方法</td>
+          <td style="color:var(--color-green)">已通过</td>
+          <td>Regulation (EU) 2025/606</td>
+        </tr>
+        <tr>
+          <td>电池护照访问规则 <span class="art-tag">Art.77(9)</span></td>
+          <td style="color:var(--color-amber)">待通过</td>
+          <td>原定2026年8月18日，预计2026年Q4</td>
+        </tr>
+        <tr>
+          <td>电池护照技术架构</td>
+          <td style="color:var(--color-amber)">待通过</td>
+          <td>实施条例待定</td>
+        </tr>
+        <tr>
+          <td>碳足迹计算方法（Implementing Regulation (EU) 2024/1564）</td>
+          <td style="color:var(--color-green)">已通过</td>
+          <td>设定计算方法和性能等级边界</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="doc-footer">
+  <p><strong>文档信息</strong></p>
+  <p>版本：v1.0 | 编制日期：2026年9月 | 编制方：守信财税 DPP业务团队</p>
+  <p>法律依据：Regulation (EU) 2023/1542, OJ L 191, 28.7.2023; Regulation (EU) 2025/1561, OJ L 198, 30.7.2025</p>
+  <p>71个数据点来源：欧盟委员会《Digital Batteries Passport – data points by category》指南v2.0, 2026年8月15日</p>
+  <p style="margin-top:var(--space-md);color:var(--color-text-muted)">本文件为内部参考使用，不构成法律意见。具体合规要求以法规原文及最新发布的授权法案/实施条例为准。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  // Mobile sidebar toggle
+  window.toggleSidebar = function(){
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('open');
+  };
+
+  // Active nav highlighting on scroll
+  var sections = document.querySelectorAll('.chapter, .cover');
+  var navLinks = document.querySelectorAll('.sidebar nav a');
+
+  function updateActive(){
+    var scrollPos = window.scrollY + 120;
+    var current = '';
+    for(var i = 0; i < sections.length; i++){
+      if(sections[i].offsetTop <= scrollPos){
+        current = sections[i].id;
+      }
+    }
+    for(var j = 0; j < navLinks.length; j++){
+      navLinks[j].classList.remove('active');
+      if(navLinks[j].getAttribute('href') === '#' + current){
+        navLinks[j].classList.add('active');
+      }
+    }
+  }
+
+  // Smooth scroll for internal links
+  document.querySelectorAll('.sidebar nav a, a[href^="#"]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      var targetId = this.getAttribute('href');
+      if(targetId && targetId.startsWith('#')){
+        var target = document.querySelector(targetId);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+          // Close mobile sidebar
+          var sidebar = document.getElementById('sidebar');
+          var overlay = document.getElementById('sidebarOverlay');
+          sidebar.classList.remove('open');
+          overlay.classList.remove('open');
+        }
+      }
+    });
+  });
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        updateActive();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  updateActive();
+})();
+</script>
+</body>
+</html>

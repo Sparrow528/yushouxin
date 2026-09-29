@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>守信财税 · 欧盟DPP合规服务产品方案</title>
+<style>
+:root{
+  --navy:#071B3A;
+  --navy-2:#0D2A56;
+  --navy-3:#13386F;
+  --bg:#F3F7FB;
+  --card:#FFFFFF;
+  --gold:#D5A84D;
+  --gold-soft:#F3E6C8;
+  --gold-deep:#A97F28;
+  --teal:#2BC4B6;
+  --text:#102033;
+  --sub:#65758A;
+  --line:#DCE5F0;
+  --danger:#C0392B;
+  --radius:10px;
+  --shadow:0 2px 10px rgba(7,27,58,.07);
+  --font:"Inter","IBM Plex Sans","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.75;
+  font-size:15.5px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+a{color:var(--navy-3)}
+
+/* ============ 顶部导航 ============ */
+nav.topnav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,27,58,.96);
+  backdrop-filter:blur(6px);
+  border-bottom:2px solid var(--gold);
+}
+nav.topnav .wrap{display:flex;align-items:center;gap:18px;height:56px;overflow-x:auto}
+nav.topnav .brand{
+  color:#fff;font-weight:700;font-size:16px;white-space:nowrap;
+  display:flex;align-items:center;gap:8px;
+}
+nav.topnav .brand .mark{
+  width:26px;height:26px;border:2px solid var(--gold);border-radius:6px;
+  display:inline-flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:13px;font-weight:800;
+}
+nav.topnav a.navlink{
+  color:#C9D6E8;text-decoration:none;font-size:13.5px;white-space:nowrap;
+  padding:4px 2px;border-bottom:2px solid transparent;
+}
+nav.topnav a.navlink:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ============ 首屏 ============ */
+header.hero{
+  background:
+    radial-gradient(900px 320px at 85% -60px,rgba(213,168,77,.20),transparent 60%),
+    linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 60%,var(--navy) 100%);
+  color:#fff;padding:64px 0 56px;position:relative;overflow:hidden;
+}
+header.hero::after{
+  content:"";position:absolute;right:-120px;bottom:-160px;width:420px;height:420px;
+  border:1px solid rgba(213,168,77,.25);border-radius:50%;pointer-events:none;
+}
+.hero .kicker{
+  color:var(--gold);font-weight:700;letter-spacing:2px;font-size:13px;margin-bottom:14px;
+}
+.hero h1{
+  font-size:34px;line-height:1.35;font-weight:800;letter-spacing:.5px;margin-bottom:16px;
+}
+.hero h1 .em{color:var(--gold)}
+.hero p.lede{color:#C9D6E8;font-size:16.5px;max-width:760px;margin-bottom:28px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
+.chip{
+  background:rgba(255,255,255,.07);border:1px solid rgba(213,168,77,.55);
+  border-radius:8px;padding:10px 16px;font-size:13.5px;color:#F0EDE4;
+}
+.chip b{color:var(--gold);display:block;font-size:15px;margin-bottom:2px}
+.trust{display:flex;flex-wrap:wrap;gap:26px;color:#AEBFD6;font-size:13.5px;border-top:1px solid rgba(255,255,255,.12);padding-top:20px}
+.trust span b{color:#fff;font-weight:700}
+
+/* ============ 章节通用 ============ */
+section{padding:52px 0}
+section.alt{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-head{margin-bottom:30px}
+.sec-no{
+  display:inline-block;font-size:13px;font-weight:800;color:var(--gold-deep);
+  background:var(--gold-soft);border-radius:20px;padding:3px 14px;letter-spacing:1px;margin-bottom:10px;
+}
+.sec-head h2{font-size:25px;color:var(--navy);font-weight:800;letter-spacing:.3px}
+.sec-head p{color:var(--sub);margin-top:8px;max-width:860px}
+h3.sub{font-size:18px;color:var(--navy);margin:30px 0 14px;font-weight:700;display:flex;align-items:center;gap:10px}
+h3.sub::before{content:"";width:5px;height:18px;background:var(--gold);border-radius:3px;display:inline-block}
+
+/* ============ 背景时间线 ============ */
+.tl-note{
+  background:var(--gold-soft);border-left:4px solid var(--gold);
+  border-radius:0 8px 8px 0;padding:14px 18px;font-size:14px;color:#5C4716;margin-top:18px;
+}
+.tl-note b{color:var(--gold-deep)}
+
+/* ============ 表格 ============ */
+.tbl-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:720px}
+caption{text-align:left;padding:14px 16px 0;font-weight:700;color:var(--navy);font-size:15px}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:13.5px;white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:nth-child(even){background:#F8FAFD}
+tbody tr:hover{background:#EEF3FA}
+td .price{color:var(--gold-deep);font-weight:700;white-space:nowrap}
+td .tag{display:inline-block;font-size:12px;padding:1px 9px;border-radius:12px;background:#E8EEF7;color:var(--navy-3);margin-right:4px;white-space:nowrap}
+.tag.hot{background:var(--gold);color:#fff}
+.tag.free{background:#E3F6F4;color:#0E7E74}
+
+/* ============ 三层架构 ============ */
+.layer{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden;
+}
+.layer .l-head{display:flex;align-items:center;gap:16px;padding:18px 22px;color:#fff}
+.layer.l1 .l-head{background:linear-gradient(120deg,#0E7E74,#14A394)}
+.layer.l2 .l-head{background:linear-gradient(120deg,var(--navy),var(--navy-3))}
+.layer.l3 .l-head{background:linear-gradient(120deg,#8A6420,var(--gold-deep))}
+.l-badge{
+  width:46px;height:46px;min-width:46px;border-radius:50%;background:rgba(255,255,255,.16);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;border:1.5px solid rgba(255,255,255,.5)
+}
+.l-head h3{font-size:19px;font-weight:800;color:#fff}
+.l-head .l-sub{font-size:13px;opacity:.85;font-weight:400;margin-top:2px}
+.l-body{padding:20px 22px;display:grid;grid-template-columns:1.4fr 1fr .9fr;gap:22px}
+.l-body h4{font-size:13px;color:var(--sub);letter-spacing:1px;margin-bottom:8px;font-weight:700}
+.l-body ul{list-style:none}
+.l-body ul li{padding-left:18px;position:relative;margin-bottom:6px;font-size:14px}
+.l-body ul li::before{content:"▸";position:absolute;left:0;color:var(--gold-deep)}
+.l-body ul.deliver li::before{content:"✓";color:var(--teal)}
+.price-box{background:#F8FAFD;border:1px dashed var(--gold);border-radius:8px;padding:14px 16px}
+.price-box h4{color:var(--gold-deep)}
+.price-box .p-line{font-size:14px;margin-bottom:8px}
+.price-box .p-line b{color:var(--navy)}
+.price-box .p-big{font-size:20px;font-weight:800;color:var(--gold-deep);font-variant-numeric:tabular-nums}
+.l-foot{padding:0 22px 18px;font-size:13px;color:var(--sub);border-top:1px dashed var(--line);margin:0 0;padding-top:14px;margin:0 22px 18px}
+.market-anchor{
+  margin-top:6px;background:#F0F5FC;border-radius:8px;padding:14px 18px;font-size:13.5px;color:var(--navy-3);
+  border-left:4px solid var(--navy-3);
+}
+
+/* ============ 客户画像 ============ */
+.prio-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:8px}
+.prio-card{
+  background:var(--card);border:1px solid var(--line);border-top:4px solid var(--navy-3);
+  border-radius:8px;padding:16px 14px;box-shadow:var(--shadow);position:relative;
+}
+.prio-card .rank{
+  position:absolute;top:-13px;right:10px;background:var(--gold);color:#fff;
+  width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:13px;box-shadow:var(--shadow);
+}
+.prio-card h4{font-size:15px;color:var(--navy);margin-bottom:6px}
+.prio-card .deadline{font-size:12.5px;color:var(--danger);font-weight:700;margin-bottom:6px}
+.prio-card p{font-size:13px;color:var(--sub);line-height:1.6}
+.persona{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.p-card{border-radius:var(--radius);padding:20px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.p-card.a{border-top:4px solid var(--danger)}
+.p-card.b{border-top:4px solid var(--gold)}
+.p-card.c{border-top:4px solid var(--teal)}
+.p-card h4{font-size:16px;color:var(--navy);margin-bottom:4px}
+.p-card .act{font-size:12.5px;font-weight:700;margin-bottom:10px}
+.p-card.a .act{color:var(--danger)}
+.p-card.b .act{color:var(--gold-deep)}
+.p-card.c .act{color:#0E7E74}
+.p-card ul{list-style:none;font-size:13.5px}
+.p-card ul li{padding-left:16px;position:relative;margin-bottom:5px;color:#33455C}
+.p-card ul li::before{content:"·";position:absolute;left:4px;color:var(--gold-deep);font-weight:900}
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.ch-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px;box-shadow:var(--shadow);font-size:13.5px}
+.ch-card .ch-n{
+  display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--navy);color:var(--gold);
+  align-items:center;justify-content:center;font-weight:800;font-size:13px;margin-right:8px;
+}
+.ch-card b{color:var(--navy)}
+.ch-card p{color:var(--sub);font-size:13px;margin-top:6px}
+
+/* ============ 话术 ============ */
+.script-hero{
+  background:linear-gradient(135deg,var(--navy),var(--navy-3));color:#fff;
+  border-radius:var(--radius);padding:26px 28px;position:relative;box-shadow:var(--shadow);
+}
+.script-hero::before{
+  content:"“";position:absolute;top:6px;left:16px;font-size:64px;color:var(--gold);opacity:.5;font-family:Georgia,serif;
+}
+.script-hero .s-label{color:var(--gold);font-weight:700;font-size:13px;letter-spacing:1px;margin-bottom:10px}
+.script-hero p{font-size:15.5px;line-height:1.95;padding-left:30px}
+.script-hero .s-meta{margin-top:14px;padding-left:30px;font-size:12.5px;color:#AEBFD6}
+.obj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.obj-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.obj-card .q{
+  background:#FDF3E2;padding:14px 18px;font-weight:700;color:var(--gold-deep);font-size:14.5px;
+  border-bottom:1px solid var(--gold-soft);
+}
+.obj-card .q::before{content:"客户问：";font-size:12px;color:var(--gold-deep);display:block;font-weight:600;opacity:.8}
+.obj-card .a{padding:16px 18px;font-size:14px;color:#2A3B52}
+.obj-card .a::before{content:"你说：";display:block;font-size:12px;color:var(--teal);font-weight:700;margin-bottom:6px}
+
+/* ============ 案例 ============ */
+.case-top{
+  display:grid;grid-template-columns:1.1fr 1fr;gap:20px;margin-bottom:22px;
+}
+.case-info{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.case-info h3{color:var(--navy);font-size:16px;margin-bottom:10px;font-weight:700}
+a:focus-visible,nav a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:3px}
+.case-info ul{list-style:none;font-size:14px}
+.case-info ul li{padding-left:20px;position:relative;margin-bottom:8px}
+.case-info ul li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:10px;top:7px}
+.case-alert{
+  background:#FBEEEC;border:1px solid #E5B7B0;border-left:4px solid var(--danger);
+  border-radius:0 8px 8px 0;padding:16px 18px;font-size:14px;color:#7A2E24;
+}
+.case-alert b{color:var(--danger)}
+.steps{counter-reset:step;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:6px}
+.step{
+  background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px 16px 58px;
+  position:relative;box-shadow:var(--shadow);font-size:14px;
+}
+.step::before{
+  counter-increment:step;content:counter(step);
+  position:absolute;left:16px;top:16px;width:30px;height:30px;border-radius:50%;
+  background:var(--navy);color:var(--gold);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.step b{color:var(--navy)}
+.step p{color:var(--sub);font-size:13.5px;margin-top:3px}
+
+/* ============ 收入测算 ============ */
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-top:22px}
+.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--sub);margin-bottom:16px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.bar-row{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.bar-row .bl{width:52px;font-weight:700;color:var(--navy);font-size:14px;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:34px;background:#EDF2F9;border-radius:6px;display:flex;overflow:hidden;min-width:200px}
+.bar-track .seg{height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.seg-cons{background:var(--navy)}
+.seg-host{background:var(--gold-deep)}
+.seg-tool{background:var(--teal)}
+.bar-total{width:96px;font-weight:800;color:var(--navy);font-size:15px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.assume{font-size:13.5px;color:var(--sub);margin-top:14px;background:#F8FAFD;border-radius:8px;padding:14px 18px;border:1px solid var(--line)}
+.assume b{color:var(--navy)}
+
+/* ============ 页脚 ============ */
+footer{background:var(--navy);color:#AEBFD6;padding:34px 0;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer b{color:var(--gold)}
+
+/* ============ 响应式 ============ */
+@media (max-width:980px){
+  .l-body{grid-template-columns:1fr;gap:16px}
+  .prio-grid{grid-template-columns:repeat(2,1fr)}
+  .persona{grid-template-columns:1fr}
+  .obj-grid{grid-template-columns:1fr}
+  .case-top{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .hero h1{font-size:27px}
+}
+@media (max-width:600px){
+  .prio-grid{grid-template-columns:1fr}
+  section{padding:38px 0}
+  .hero{padding:46px 0 40px}
+  .bar-total{width:auto;font-size:13px}
+  .bar-row{flex-wrap:wrap}
+}
+/* ============ 打印 ============ */
+@media print{
+  nav.topnav{display:none}
+  body{background:#fff;font-size:12px}
+  header.hero{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:30px 0}
+  section{padding:24px 0;page-break-inside:avoid}
+  .layer,.p-card,.obj-card,.chart-box,.case-info{box-shadow:none}
+  .tbl-scroll{overflow:visible}
+  table{min-width:0;font-size:11px}
+  a{text-decoration:none;color:var(--text)}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="页面导航">
+  <div class="wrap">
+    <span class="brand"><span class="mark">守</span>守信财税 · DPP服务方案</span>
+    <a class="navlink" href="#s1">三层架构</a>
+    <a class="navlink" href="#s2">服务清单</a>
+    <a class="navlink" href="#s3">客户画像</a>
+    <a class="navlink" href="#s4">切入话术</a>
+    <a class="navlink" href="#s5">标杆案例</a>
+    <a class="navlink" href="#s6">收入预估</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">守信财税 · 外贸合规产品线 · 内部产品方案</div>
+    <h1>欧盟 <span class="em">DPP 数字产品护照</span><br>合规服务产品方案</h1>
+    <p class="lede">面向出口欧盟企业的强制合规新门槛：产品须带数字档案（材料、碳足迹、供应链、维修回收数据），二维码扫码可查。守信财税依托 18 年财税实战经验与外贸客户基础，打造"科普引流—咨询落地—数据托管"三层服务闭环。</p>
+    <div class="hero-chips">
+      <div class="chip"><b>2026.7.20</b>欧盟DPP注册中心已上线，注册是海关清关前置条件</div>
+      <div class="chip"><b>2027.2.18</b>电池护照强制执行（EV电池/储能/两轮车/&gt;2kWh工业电池）</div>
+      <div class="chip"><b>2027–2030</b>纺织·轮胎·铝·建材→家具→ICT·床垫→玩具 分批适用</div>
+    </div>
+    <div class="trust">
+      <span><b>18年</b> 财税咨询实战</span>
+      <span><b>大量</b> 外贸/出海企业服务基础</span>
+      <span><b>数十万</b> 中国出口欧盟企业尚未了解DPP</span>
+      <span><b>窗口期</b> 抢在客户问卷和海关查验之前</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 背景速览 -->
+<section id="s0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">背景速览</span>
+      <h2>DPP 是什么？为什么出口企业必须现在动手</h2>
+      <p>欧盟数字产品护照（Digital Product Passport, DPP）要求出口欧盟的产品携带唯一数字档案，覆盖材料构成、碳足迹、供应链来源、维修与回收信息，以二维码/NFC 方式附着于产品，海关、客户、消费者扫码可查。没有 DPP，产品无法完成清关。</p>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <caption>欧盟 DPP 关键时间节点</caption>
+        <thead>
+          <tr><th scope="col">时间</th><th scope="col">事项</th><th scope="col">对出口企业的含义</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>2026年7月20日</b></td><td>欧盟 DPP 注册中心正式上线</td><td>注册成为海关清关前置条件，先注册、后出货</td></tr>
+          <tr><td><b>2027年2月18日</b></td><td>电池护照强制执行：电动汽车电池、储能电池、电动两轮车电池、容量&gt;2kWh 工业电池</td><td>电池产业链死线最近，数据项最细（材料、碳足迹、供应链、维修回收全覆盖）</td></tr>
+          <tr><td><b>2027年</b></td><td>纺织品、轮胎、铝、建材相关法案适用</td><td>纺织服装、建材/铝出口企业同年进入强制期</td></tr>
+          <tr><td><b>2028年</b></td><td>家具行业法案适用</td><td>家具出口企业启动合规</td></tr>
+          <tr><td><b>2029年</b></td><td>ICT（信息通信技术设备）、床垫法案适用</td><td>电子电器企业进入强制期</td></tr>
+          <tr><td><b>2030年8月</b></td><td>玩具行业适用</td><td>玩具出口企业最后一批纳入</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tl-note"><b>关键提醒：</b>各法案生效后至少设 18 个月过渡期，但数据采集（尤其向上游供应商逐级收集材料与碳足迹数据）通常需要 3–6 个月。法案出台即"合规启动令"——等客户问卷或海关查验再动手，必然错过船期与订单。</div>
+  </div>
+</section>
+
+<!-- 第一部分：三层服务架构 -->
+<section id="s1" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 01</span>
+      <h2>三层服务架构：引流 → 核心 → 绑定</h2>
+      <p>用免费/低价内容批量获客建立认知，用咨询项目完成合规落地与首单变现，用年度数据托管形成持续续费——三层共用同一套DPP方法论与数据模板，客户沿漏斗自然上行。</p>
+    </div>
+
+    <div class="layer l1">
+      <div class="l-head">
+        <span class="l-badge">引</span>
+        <div>
+          <h3>引流层 ·「DPP出口合规自助包」</h3>
+          <div class="l-sub">目标：0–7天让企业老板"知道DPP、知道自己要做"，批量换取销售线索</div>
+        </div>
+      </div>
+      <div class="l-body">
+        <div>
+          <h4>服务内容</h4>
+          <ul>
+            <li>免费科普内容：公众号/抖音/视频号短视频、月度直播（DPP政策解读、行业死线提醒）</li>
+            <li>《欧盟DPP合规明白纸》图文微课：讲清"是什么、罚什么、怎么做、花多少钱"</li>
+            <li>「出口欧盟合规自查工具」：在线问卷（行业/产品/电池含量/欧盟客户占比/现有认证），自动生成风险评级与差距清单</li>
+          </ul>
+        </div>
+        <div>
+          <h4>交付物</h4>
+          <ul class="deliver">
+            <li>科普文章与短视频、直播回放</li>
+            <li>微课图文/音频</li>
+            <li>《企业DPP合规自查报告》（PDF，含风险等级+待办清单）</li>
+          </ul>
+        </div>
+        <div>
+          <div class="price-box">
+            <h4>定价建议</h4>
+            <div class="p-line">科普内容 / 直播：<b>免费</b></div>
+            <div class="p-line">图文微课：<span class="p-big">9.9元</span></div>
+            <div class="p-line">合规自查工具：<span class="p-big">99元/次</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="l-foot">定位：不以盈利为目的，99元只为筛选付费意愿客户；自查报告末尾引导预约免费咨询，直接接入核心层销售。</div>
+    </div>
+
+    <div class="layer l2">
+      <div class="l-head">
+        <span class="l-badge">核</span>
+        <div>
+          <h3>核心层 ·「DPP合规一站式落地包」</h3>
+          <div class="l-sub">差距评估 → 数据规划 → 注册辅导，项目制收费，首单利润来源</div>
+        </div>
+      </div>
+      <div class="l-body">
+        <div>
+          <h4>服务内容</h4>
+          <ul>
+            <li>DPP差距评估：逐条比对法案要求，输出差距清单与优先级</li>
+            <li>合规体系搭建：内部责任分工、DPP数据管理制度、文件模板</li>
+            <li>数据采集规划：按SKU梳理数据项清单（材料、碳足迹、供应链、维修回收）</li>
+            <li>供应商数据收集：上游问卷、数据模板下发、催收与核验辅导</li>
+            <li>数据载体配置：DPP二维码/NFC生成与产品标识落地</li>
+            <li>欧盟注册中心注册辅导：账户注册、档案填报、清关前置核验</li>
+            <li>CE+DPP衔接：CE技术文件与DPP数据打通，避免重复建设</li>
+          </ul>
+        </div>
+        <div>
+          <h4>交付物</h4>
+          <ul class="deliver">
+            <li>《DPP差距评估报告》</li>
+            <li>《DPP数据手册》（按SKU）</li>
+            <li>供应商数据问卷与回收台账</li>
+            <li>DPP二维码数据载体</li>
+            <li>欧盟注册中心注册档案与注册确认</li>
+          </ul>
+        </div>
+        <div>
+          <div class="price-box">
+            <h4>分档定价（项目制）</h4>
+            <div class="p-line"><b>入门包</b> 小微厂（年出口&lt;500万，SKU&lt;5）<br><span class="p-big">0.98–1.98万</span></div>
+            <div class="p-line"><b>标准包</b> 中型厂（出口500万–5000万，SKU 5–20）<br><span class="p-big">2.8–5.8万</span></div>
+            <div class="p-line"><b>深度包</b> 中大型（&gt;5000万或多品类/多工厂）<br><span class="p-big">6.8–15万</span></div>
+            <div class="p-line" style="color:var(--sub);font-size:12.5px">含碳足迹核算/CE衔接，整体上浮20%–30%</div>
+          </div>
+        </div>
+      </div>
+      <div class="market-anchor"><b>定价锚点：</b>市场上 CE 认证咨询普遍 1.5万–8万/类，碳足迹/ISO 体系咨询 3万–10万，DPP 是跨部门体系型合规、工作量高于单次认证。核心包定价压在中小外贸企业"三四万可决策"的心理区间，比 CE 认证更显性价比，靠走量和后端托管盈利。</div>
+    </div>
+
+    <div class="layer l3">
+      <div class="l-head">
+        <span class="l-badge">绑</span>
+        <div>
+          <h3>绑定层 ·「DPP数据托管与年度守护包」</h3>
+          <div class="l-sub">注册数据年度维护 + 法规跟踪 + 审计支持，年费制，形成稳定续费现金流</div>
+        </div>
+      </div>
+      <div class="l-body">
+        <div>
+          <h4>服务内容</h4>
+          <ul>
+            <li>DPP注册数据年度维护、新产品上线DPP配置</li>
+            <li>欧盟法规更新跟踪与应对简报</li>
+            <li>供应商数据年度更新催收与核验</li>
+            <li>扫码数据看板（访问量、查验记录）</li>
+            <li>欧盟客户审厂/海关查验时的资料支持</li>
+            <li>年度合规复盘与下一年数据规划</li>
+          </ul>
+        </div>
+        <div>
+          <h4>交付物</h4>
+          <ul class="deliver">
+            <li>年度维护报告</li>
+            <li>法规更新简报（季度）</li>
+            <li>客户审计/海关查验支持记录</li>
+            <li>DPP数据看板账号</li>
+          </ul>
+        </div>
+        <div>
+          <div class="price-box">
+            <h4>年费定价（按SKU规模）</h4>
+            <div class="p-line"><b>基础版</b>（SKU≤10）<br><span class="p-big">0.98–1.5万/年</span></div>
+            <div class="p-line"><b>标准版</b>（SKU 10–50）<br><span class="p-big">1.8–3.6万/年</span></div>
+            <div class="p-line"><b>旗舰版</b>（SKU&gt;50/多工厂）<br><span class="p-big">4.8万起/年</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="l-foot">转化逻辑：咨询项目交付时即锁定首年托管（"数据我们建的，我们维护最省心"），次年起自动续费；托管期内新增SKU、新法案适配按第10项增值服务另行计费。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 第二部分：10项服务清单 -->
+<section id="s2">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 02</span>
+      <h2>10 项服务清单：内容、工时、交付物与定价</h2>
+      <p>所有服务按人天报价、按交付物验收。工时为中型企业标准口径，小微企业按下限、多工厂集团按上限浮动。</p>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <caption>DPP合规服务价目表（建议零售价）</caption>
+        <thead>
+          <tr>
+            <th scope="col">序号</th><th scope="col">服务项</th><th scope="col">服务内容</th>
+            <th scope="col" class="num">工时（人天）</th><th scope="col">交付物</th><th scope="col">建议定价</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td><span class="tag hot">敲门砖</span>DPP差距评估</td>
+            <td>对照法案条款，逐SKU核查数据项、供应链、碳足迹、注册状态的差距，输出风险评级与整改优先级</td>
+            <td class="num">3–5</td>
+            <td>《DPP差距评估报告》（含整改清单与时间表）</td>
+            <td><span class="price">8,000–15,000元</span></td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td><span class="tag hot">低价引流</span>出口合规自查工具</td>
+            <td>在线问卷：行业、产品类别、是否含电池、欧盟出口占比、现有认证；自动生成风险评分</td>
+            <td class="num">标准化</td>
+            <td>《企业合规自查报告》（系统自动出具）</td>
+            <td><span class="price">99元/次</span></td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td><span class="tag">核心</span>DPP数据规划与手册</td>
+            <td>按SKU梳理数据项清单、责任人、采集路径；编制企业级《DPP数据手册》</td>
+            <td class="num">5–8</td>
+            <td>《DPP数据手册》+ 数据项采集台账模板</td>
+            <td><span class="price">12,000–25,000元</span></td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td><span class="tag">核心</span>供应商数据收集辅导</td>
+            <td>设计上游问卷与数据模板、辅导供应商填报、催收核验、缺失项整改跟进（覆盖2–3级供应链）</td>
+            <td class="num">6–10</td>
+            <td>供应商数据回收台账、合格数据数据包</td>
+            <td><span class="price">15,000–30,000元</span></td>
+          </tr>
+          <tr>
+            <td class="num">5</td>
+            <td><span class="tag hot">核心</span>欧盟注册中心注册辅导</td>
+            <td>注册账户开立、企业与产品档案填报、材料提交、清关前置核验全流程陪跑</td>
+            <td class="num">4–6</td>
+            <td>注册账户、注册确认函、清关核验指引</td>
+            <td><span class="price">10,000–20,000元</span></td>
+          </tr>
+          <tr>
+            <td class="num">6</td>
+            <td><span class="tag">增值</span>碳足迹数据对接</td>
+            <td>产品碳足迹数据梳理、第三方核算机构对接、核算报告与DPP字段打通</td>
+            <td class="num">5–8</td>
+            <td>碳足迹数据对接方案、核算机构对接记录</td>
+            <td><span class="price">15,000–35,000元</span></td>
+          </tr>
+          <tr>
+            <td class="num">7</td>
+            <td><span class="tag">增值</span>CE+DPP衔接辅导</td>
+            <td>CE技术文件与DPP数据项对照复用、差异补做、两套合规资料一次整理</td>
+            <td class="num">4–7</td>
+            <td>《CE-DPP数据对照复用表》、补做清单</td>
+            <td><span class="price">12,000–28,000元</span></td>
+          </tr>
+          <tr>
+            <td class="num">8</td>
+            <td><span class="tag">内训</span>DPP企业内训</td>
+            <td>面向老板、外贸、采购、品质部门的半天/一天内训：法规要求、内部分工、数据采集实务</td>
+            <td class="num">1–2</td>
+            <td>培训课件、内训记录与考核问卷</td>
+            <td><span class="price">5,000–10,000元/场</span></td>
+          </tr>
+          <tr>
+            <td class="num">9</td>
+            <td><span class="tag">渠道</span>经销商DPP导入辅导</td>
+            <td>指导海外经销商/品牌方理解DPP查验要求、扫码使用、终端问题应答</td>
+            <td class="num">2–4</td>
+            <td>经销商DPP操作指引（中英双语）</td>
+            <td><span class="price">6,000–12,000元</span></td>
+          </tr>
+          <tr>
+            <td class="num">10</td>
+            <td><span class="tag free">绑定</span>DPP数据托管年度维护</td>
+            <td>注册数据维护、法规更新跟踪、新SKU配置、年度数据更新、审厂查验支持</td>
+            <td class="num">6–15/年</td>
+            <td>年度维护报告、季度法规简报、看板账号</td>
+            <td><span class="price">9,800–48,000元/年</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="market-anchor" style="margin-top:16px"><b>组合逻辑：</b>入门包 ≈ 第1+2+3+5项；标准包 ≈ 第1+3+4+5项；深度包在标准包基础上加第6+7项。单买按上表价，打包整体约为单买总价的 7.5–8.5 折。</div>
+  </div>
+</section>
+
+<!-- 第三部分：目标客户画像与优先级 -->
+<section id="s3" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 03</span>
+      <h2>目标客户画像与优先级</h2>
+      <p>按"死线远近 × 付费能力 × 获客难度"排序，集中火力打电池产业链，纺织与电子电器走量，家具建材择机切入。</p>
+    </div>
+
+    <h3 class="sub">行业优先级排序</h3>
+    <div class="prio-grid">
+      <div class="prio-card">
+        <span class="rank">1</span>
+        <h4>电池产业链</h4>
+        <div class="deadline">2027.2.18 电池护照</div>
+        <p>电芯、电池包、PACK厂、储能、电动两轮车。死线最近、数据要求最细、罚则最明确，客户焦虑度最高，首选主攻。</p>
+      </div>
+      <div class="prio-card">
+        <span class="rank">2</span>
+        <h4>纺织服装</h4>
+        <div class="deadline">2027年 法案适用</div>
+        <p>出口企业数量最大、供应链层级多、数据基础最弱；老板普遍没概念，适合科普直播批量获客、标准包走量。</p>
+      </div>
+      <div class="prio-card">
+        <span class="rank">3</span>
+        <h4>电子电器（ICT）</h4>
+        <div class="deadline">2029年 法案适用</div>
+        <p>家电、消费电子、通信设备。多有CE/ISO基础，接受度高；带电池产品提前受电池护照波及，可提前锁客。</p>
+      </div>
+      <div class="prio-card">
+        <span class="rank">4</span>
+        <h4>家具</h4>
+        <div class="deadline">2028年 法案适用</div>
+        <p>板材、金属件供应链数据相对简单，客单价中等；通过园区/商协会集体宣讲打包获客。</p>
+      </div>
+      <div class="prio-card">
+        <span class="rank">5</span>
+        <h4>建材 / 钢铁 / 铝</h4>
+        <div class="deadline">2027年 法案适用（铝）</div>
+        <p>B2B大项目制、客户集中（工程承包商），单项目金额大但决策链长；铝制品2027年同批适用，机会型跟进。</p>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--sub);margin-top:10px">补充覆盖：轮胎（2027）、床垫（2029）、玩具（2030.8）行业客户主动咨询时承接，不单独投放获客资源。</p>
+
+    <h3 class="sub">企业画像分层（按年出口额 / 欧盟客户占比 / 认知阶段）</h3>
+    <div class="persona">
+      <div class="p-card a">
+        <h4>A 类 · 立刻签约</h4>
+        <div class="act">策略：销售直接跟进，2周内逼单</div>
+        <ul>
+          <li>年出口欧盟额 &gt;2,000万元</li>
+          <li>欧盟客户占比 &gt;40%，或客户已发DPP/碳数据问卷</li>
+          <li>已有CE认证、ISO体系，合规预算有科目</li>
+          <li>认知阶段：老板/外贸负责人已听说DPP，正在打听怎么做</li>
+        </ul>
+      </div>
+      <div class="p-card b">
+        <h4>B 类 · 培育转化</h4>
+        <div class="act">策略：直播+99元自查工具孵化，1–3个月转化</div>
+        <ul>
+          <li>年出口欧盟额 500万–2,000万元</li>
+          <li>欧盟客户占比 20%–40%</li>
+          <li>有CE基础但无体系化合规管理</li>
+          <li>认知阶段：听过DPP但不知道跟自己有什么关系、要做什么</li>
+        </ul>
+      </div>
+      <div class="p-card c">
+        <h4>C 类 · 长线观望</h4>
+        <div class="act">策略：免费内容持续触达，死线前3个月激活</div>
+        <ul>
+          <li>年出口欧盟额 &lt;500万元，或欧盟占比 &lt;20%</li>
+          <li>无认证基础，价格敏感</li>
+          <li>认知阶段：完全没概念，"欧盟的事跟我小厂没关系"</li>
+          <li>用入门包（9,800起）在2026年底前完成收割</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub">获客渠道（按转化效率排序）</h3>
+    <div class="ch-grid">
+      <div class="ch-card"><span class="ch-n">1</span><b>现有外贸客户转介绍</b><p>18年财税服务存量外贸客户，信任成本最低；老客户案例+老客户饭局推荐，转化率最高。</p></div>
+      <div class="ch-card"><span class="ch-n">2</span><b>商协会合作</b><p>外贸商会、电池/纺织行业协会，联合举办"DPP合规宣讲会"，会后现场收99元自查单。</p></div>
+      <div class="ch-card"><span class="ch-n">3</span><b>外贸园区 / 产业园</b><p>入驻企业批量讲座 + 园区团购包（10家成团每家再减2,000），一次获客一批。</p></div>
+      <div class="ch-card"><span class="ch-n">4</span><b>抖音 / 视频号科普</b><p>"出口欧盟""电池护照""海关卡货"关键词短视频+每周直播，引流99元自查工具，沉淀私域。</p></div>
+      <div class="ch-card"><span class="ch-n">5</span><b>展会获客</b><p>广交会、电池展、纺织展设DPP咨询台，现场扫码免费领《合规明白纸》，预约上门评估。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 第四部分：客户切入话术 -->
+<section id="s4">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 04</span>
+      <h2>客户切入话术：30秒电梯话术 + 三大异议应对</h2>
+      <p>口语化、说人话、算小账。统一用"老张/老李"这类老哥式称呼，不用职务称谓——跟外贸厂老板打交道，越像老朋友越容易签单。</p>
+    </div>
+
+    <div class="script-hero">
+      <div class="s-label">30秒电梯话术（以电池厂老张为例，其他行业替换死线即可）</div>
+      <p>"老张，跟你说个要紧事——欧盟明年2月18号起，电池出口必须带'数字护照'，材料来源、碳足迹、供应链信息全录在一个二维码里头，欧盟海关扫不出来，货直接卡在港口。现在人家注册中心7月份已经开了，注册就是清关的前置条件，这不是想不想做的事，是没它货进不去。我们守信做了18年财税咨询，外贸客户一大把，现在帮工厂从差距评估到注册托管一条龙办下来，几万块钱，比你一柜子货滞港一天的滞箱费都便宜。你先花99块做个自查，看看自己差在哪，行吧？"</p>
+      <div class="s-meta">要点顺序：抛死线 → 讲后果（卡关）→ 摆资格（18年）→ 降门槛（99元自查）</div>
+    </div>
+
+    <div class="obj-grid">
+      <div class="obj-card">
+        <div class="q">「我们小厂，用得着吗？」</div>
+        <div class="a">"老李，DPP认的是产品，不认厂大厂小——你一只电池、一匹布卖到欧盟，海关扫码没有护照，货就进不去，跟你厂多大没关系。恰恰小厂最怕滞港，一柜子货压一天几千块没了，货值才几十万。前期做个入门包一万出头，先保货能进关，后面慢慢补数据。这钱是保命钱，不是冤枉钱。"</div>
+      </div>
+      <div class="obj-card">
+        <div class="q">「客户还没提啊，等客户提了再说」</div>
+        <div class="a">"老张，等客户提就晚了。电池护照死线明年2月18号，到时候你欧洲客户一次性甩给你一份数据清单，供应链、碳足迹、维修回收全要，那玩意儿要向上游一层层收，三四个月都收不齐。现在做是从容地做；到时候客户催着做，是加班加点做、还得花加急钱。当年CE认证是不是也这么过来的？早做早拿订单，晚做的那批，订单都让同行接走了。"</div>
+      </div>
+      <div class="obj-card">
+        <div class="q">「要花多少钱？」</div>
+        <div class="a">"老李，明码标价不绕弯：先花99块做个合规自查，报告出来你就知道差多少。真要落地，小厂入门包9,800起，多数中型工厂三四万做下来——比你做一套CE认证还便宜。做完每年一万多托管费，数据我们帮你维护、法规变了我们帮你盯，还不到半个跟单员的工资。跟一柜子货卡港口、丢一个欧洲大客户比，这账怎么算都划算。"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 第五部分：航大淼盾案例 -->
+<section id="s5" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 05</span>
+      <h2>标杆案例打法：航大淼盾（消防设备出口）</h2>
+      <p>消防设备出口企业，产品同时面临 CE 强制认证与 DPP 双重合规——"CE是准入证，DPP是数据准入证"，两证缺一不可。</p>
+    </div>
+
+    <div class="case-top">
+      <div class="case-info">
+        <h3>企业情况与合规压力</h3>
+        <ul>
+          <li>消防设备（烟感、应急照明、报警器等）出口欧盟，属安全类产品，<b>CE认证强制</b>；</li>
+          <li>设备普遍内置锂电池/备用电池，可能直接落入<b>2027.2.18电池护照</b>范围；</li>
+          <li>设备整机按电子电器路径，后续纳入ICT/电器类DPP；</li>
+          <li>上游电子件、电池、金属件供应商分散，供应链数据收集是最大工作量；</li>
+          <li>欧盟客户为工程承包商/品牌商，验厂要求严，合规资料早晚必交。</li>
+        </ul>
+      </div>
+      <div class="case-alert">
+        <b>双重合规的机会点：</b>CE技术文件中已包含部分材料、安全、供应商信息，与DPP数据项高度重叠。客户单独找认证机构做CE、再找人做DPP，必然重复花钱、重复收集资料。守信以"CE+DPP一次打通"为切入，比单一CE报价更有竞争力，也比纯DPP咨询更懂客户当下处境。
+      </div>
+    </div>
+
+    <h3 class="sub">可承接业务清单（对应10项服务）</h3>
+    <div class="tbl-scroll">
+      <table>
+        <caption>航大淼盾可承接DPP业务</caption>
+        <thead><tr><th scope="col">服务项</th><th scope="col">承接判断</th><th scope="col">说明</th></tr></thead>
+        <tbody>
+          <tr><td>① DPP差距评估</td><td><span class="tag hot">首单敲门</span></td><td>低门槛进场，摸清CE现状与DPP差距</td></tr>
+          <tr><td>② 合规自查工具</td><td><span class="tag free">赠送/99元</span></td><td>拜访现场演示，当场出结果制造紧迫感</td></tr>
+          <tr><td>③ DPP数据规划与手册</td><td><span class="tag">主单内含</span></td><td>按消防设备SKU编制</td></tr>
+          <tr><td>④ 供应商数据收集辅导</td><td><span class="tag">主单内含</span></td><td>重点：电池供应商的电池护照数据、电子件材料数据</td></tr>
+          <tr><td>⑤ 欧盟注册中心注册辅导</td><td><span class="tag">主单内含</span></td><td>注册是清关前置，客户最痛的点</td></tr>
+          <tr><td>⑥ 碳足迹数据对接</td><td><span class="tag">增购</span></td><td>对接第三方核算机构，打通DPP碳字段</td></tr>
+          <tr><td>⑦ CE+DPP衔接辅导</td><td><span class="tag hot">差异化主项</span></td><td>CE技术文件与DPP复用对照，避免重复建设</td></tr>
+          <tr><td>⑧ 企业内训</td><td><span class="tag">增购</span></td><td>项目启动时半天内训，可打包赠送促签约</td></tr>
+          <tr><td>⑨ 经销商DPP导入</td><td><span class="tag">二期</span></td><td>随项目交付后追加</td></tr>
+          <tr><td>⑩ 数据托管年度维护</td><td><span class="tag free">续费</span></td><td>交付即锁首年托管</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">报价思路</h3>
+    <div class="tbl-scroll">
+      <table>
+        <caption>航大淼盾报价组合（建议）</caption>
+        <thead><tr><th scope="col">项目</th><th scope="col">报价</th><th scope="col">策略</th></tr></thead>
+        <tbody>
+          <tr><td>首单：DPP差距评估</td><td><span class="price">8,000–12,000元</span></td><td>低门槛建立信任；签约主单时评估费<b>全额抵扣</b></td></tr>
+          <tr><td>主单：标准包+CE衔接+碳足迹对接</td><td><span class="price">45,000–68,000元</span></td><td>中型企业标准包（2.8–5.8万）基础上，因含第⑥⑦项增值服务上浮20%–30%</td></tr>
+          <tr><td>续费：数据托管（标准版）</td><td><span class="price">18,000–36,000元/年</span></td><td>按SKU数量定档，首年在主单签约时一并锁定</td></tr>
+          <tr><td>打包优惠</td><td>整体让利 5%–8%</td><td>CE+DPP打包签约或园区团购价，用于临门一脚</td></tr>
+          <tr><td><b>首年合计</b></td><td><span class="price">约 7.1万–11.6万元</span></td><td>含评估+主单+首年托管</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">首次拜访切入步骤</h3>
+    <div class="steps">
+      <div class="step"><b>聊近况，不提产品</b><p>以18年财税老关系开场："最近欧洲订单怎么样？CE那边折腾得顺不顺？"先听他说合规上的烦心事。</p></div>
+      <div class="step"><b>扔消息，制造冲击</b><p>"欧盟DPP注册中心7月已经开了，明年2月18号电池护照强制执行——你们消防设备里带的备用电池、锂电池算不算电池护照范围，研究过没？"</p></div>
+      <div class="step"><b>点风险，三重压力</b><p>海关扫码清关、欧洲客户数据问卷、滞港费三重压力；一句话点透："CE是准入，DPP是数据准入，两个都要，而且数据能打通。"</p></div>
+      <div class="step"><b>给抓手，当场体验</b><p>现场演示99元自查工具（老客户可免费送一次），10分钟出风险评级，约"报告出来我再来一趟，给你讲讲差在哪、要补什么"。</p></div>
+      <div class="step"><b>留作业，盘点家底</b><p>请对方回去盘点四样东西：产品SKU清单、含电池型号、欧盟客户名单、现有CE证书清单——为二次拜访的方案做准备。</p></div>
+      <div class="step"><b>约二访，带方案逼单</b><p>二访带《差距评估方案+分档报价单》，用老客户身份+电池行业已签约案例推进，评估费抵扣+打包让利促成现场签约。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 第六部分：首年收入预估 -->
+<section id="s6">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 06</span>
+      <h2>首年收入预估：保守 / 中性 / 乐观三档模型</h2>
+      <p>收入 = 低价引流产品收入 + 核心咨询成交（客户数 × 客单价）+ 绑定托管收入（咨询客户 × 托管转化率 × 年费）。三档差异主要在触达量、成交客户数与客单价结构。</p>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <caption>首年收入测算表（单位：万元，除特别注明）</caption>
+        <thead>
+          <tr>
+            <th scope="col">测算指标</th>
+            <th scope="col" class="num">保守</th>
+            <th scope="col" class="num">中性</th>
+            <th scope="col" class="num">乐观</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>内容触达企业（家/年）</td><td class="num">500</td><td class="num">1,500</td><td class="num">3,500</td></tr>
+          <tr><td>留资线索（家，留资率30%/40%/45%）</td><td class="num">150</td><td class="num">600</td><td class="num">1,575</td></tr>
+          <tr><td>低价工具/微课成交（单，转化率50%/55%/60%）</td><td class="num">75</td><td class="num">330</td><td class="num">945</td></tr>
+          <tr><td>低价产品收入</td><td class="num">0.45</td><td class="num">2.31</td><td class="num">8.03</td></tr>
+          <tr><td>核心咨询成交客户（家）</td><td class="num">12</td><td class="num">40</td><td class="num">85</td></tr>
+          <tr><td>咨询平均客单价（万元/家）</td><td class="num">3.2</td><td class="num">4.8</td><td class="num">5.8</td></tr>
+          <tr><td><b>核心咨询收入</b></td><td class="num"><b>38.4</b></td><td class="num"><b>192.0</b></td><td class="num"><b>493.0</b></td></tr>
+          <tr><td>托管转化客户（家，转化率40%/55%/60%）</td><td class="num">5</td><td class="num">22</td><td class="num">51</td></tr>
+          <tr><td>托管平均年费（万元/家）</td><td class="num">1.4</td><td class="num">1.8</td><td class="num">2.2</td></tr>
+          <tr><td><b>绑定托管收入</b></td><td class="num"><b>7.0</b></td><td class="num"><b>39.6</b></td><td class="num"><b>112.2</b></td></tr>
+          <tr style="background:var(--gold-soft)">
+            <td><b>首年收入合计</b></td>
+            <td class="num"><b style="color:var(--gold-deep);font-size:17px">45.9</b></td>
+            <td class="num"><b style="color:var(--gold-deep);font-size:17px">233.9</b></td>
+            <td class="num"><b style="color:var(--gold-deep);font-size:17px">613.2</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="chart-box">
+      <div class="legend">
+        <span><i style="background:var(--navy)"></i>核心咨询收入</span>
+        <span><i style="background:var(--gold-deep)"></i>绑定托管收入</span>
+        <span><i style="background:var(--teal)"></i>低价引流收入</span>
+        <span style="margin-left:auto;color:var(--navy);font-weight:700">单位：万元</span>
+      </div>
+      <svg viewBox="0 0 720 170" width="100%" role="img" aria-labelledby="charttitle chartdesc" style="max-width:760px;display:block;margin:0 auto">
+        <title id="charttitle">首年收入三档测算堆叠条形图</title>
+        <desc id="chartdesc">保守档合计45.9万元，中性档合计233.9万元，乐观档合计613.2万元；咨询收入占比最大。</desc>
+        <!-- 保守 -->
+        <text x="0" y="28" font-size="14" font-weight="700" fill="#071B3A">保守</text>
+        <rect x="58" y="12" width="35.1" height="30" fill="#071B3A" rx="3"/>
+        <rect x="93.1" y="12" width="6.4" height="30" fill="#A97F28"/>
+        <rect x="99.5" y="12" width="2" height="30" fill="#2BC4B6"/>
+        <text x="112" y="32" font-size="13" font-weight="700" fill="#071B3A">45.9万</text>
+        <!-- 中性 -->
+        <text x="0" y="78" font-size="14" font-weight="700" fill="#071B3A">中性</text>
+        <rect x="58" y="62" width="175.3" height="30" fill="#071B3A" rx="3"/>
+        <rect x="233.3" y="62" width="36.2" height="30" fill="#A97F28"/>
+        <rect x="269.5" y="62" width="3" height="30" fill="#2BC4B6"/>
+        <text x="283" y="82" font-size="13" font-weight="700" fill="#071B3A">233.9万</text>
+        <!-- 乐观 -->
+        <text x="0" y="128" font-size="14" font-weight="700" fill="#071B3A">乐观</text>
+        <rect x="58" y="112" width="450.2" height="30" fill="#071B3A" rx="3"/>
+        <rect x="508.2" y="112" width="102.5" height="30" fill="#A97F28"/>
+        <rect x="610.7" y="112" width="7.3" height="30" fill="#2BC4B6" rx="3"/>
+        <text x="626" y="132" font-size="13" font-weight="700" fill="#071B3A">613.2万</text>
+      </svg>
+    </div>
+
+    <div class="assume">
+      <b>测算口径与产能说明：</b><br>
+      ① 低价收入按实际成交单数×均价（60–85元/单）计算，定位为获客成本回收，不承担利润；<br>
+      ② 咨询客单价分档结构：保守档以入门包/标准包为主（均价3.2万），中性档标准包为主（均价4.8万），乐观档深度包与含碳足迹/CE衔接项目占比提升（均价5.8万）；<br>
+      ③ 交付产能：单家咨询项目平均约20–25人天。保守档约240人天（1名顾问即可），<b>中性档约880人天，需3–4人DPP专项小组</b>，乐观档约2,125人天，需8–10人团队、超出部分联合检测/认证机构外包交付；<br>
+      ④ 托管收入按咨询客户当年转化测算，次年起托管客户基数滚动累积，续费收入将逐年增厚；<br>
+      ⑤ 本模型为DPP合规产品线首年（2026下半年–2027）口径，未含由此带动的财税老客户增购。
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b>守信财税</b> · 18年财税实战 · 外贸/出海企业合规伙伴<br>
+      本文件为DPP合规服务内部产品规划方案，定价为建议区间，最终以签约合同为准。
+    </div>
+    <div style="text-align:right">
+      法规时间节点依据已公布的欧盟DPP相关法案安排<br>
+      建议每季度依据欧盟立法进展复核一次方案
+    </div>
+  </div>
+</footer>
+
+<script>
+// 页内锚点平滑滚动（无JS时原生降级）
+document.querySelectorAll('a.navlink[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>

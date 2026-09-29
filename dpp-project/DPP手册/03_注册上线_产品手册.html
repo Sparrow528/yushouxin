@@ -1,0 +1,1979 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP注册上线服务 · 产品手册 — 守信财税</title>
+<meta name="description" content="帮电池企业完成欧盟注册，让电池护照真正上线——eIDAS证书、欧盟授权代表、注册中心对接全流程代办，定价30万-60万">
+<style>
+:root {
+  --c-primary: #1A237E;
+  --c-primary-light: #283593;
+  --c-primary-lighter: #3949AB;
+  --c-primary-bg: #E8EAF6;
+  --c-primary-bg-light: #F5F6FA;
+  --c-accent: #2E7D32;
+  --c-accent-light: #43A047;
+  --c-accent-bg: #E8F5E9;
+  --c-accent-bg-light: #F1F8E9;
+  --c-amber: #E65100;
+  --c-amber-bg: #FFF3E0;
+  --c-amber-bg-light: #FFF8E1;
+  --c-red: #B71C1C;
+  --c-red-bg: #FFEBEE;
+  --c-info: #0D47A1;
+  --c-info-bg: #E3F2FD;
+  --c-canvas: #FFFFFF;
+  --c-surface: #FAFAFA;
+  --c-surface-alt: #F5F5F5;
+  --c-text: #212121;
+  --c-text-sec: #546E7A;
+  --c-text-muted: #78909C;
+  --c-border: #E0E0E0;
+  --c-border-light: #EEEEEE;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1.0625rem;
+  --fs-md: 1.15rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+  --fs-3xl: 2.5rem;
+  --fs-hero: clamp(1.9rem, 3.6vw, 2.9rem);
+  --lh-tight: 1.2;
+  --lh-body: 1.7;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+  --sidebar-w: 270px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--c-text);
+  background: var(--c-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Layout ===== */
+.page-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--c-primary);
+  color: #fff;
+  padding: var(--space-xl) 0 var(--space-2xl);
+  z-index: 100;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar-brand {
+  padding: 0 var(--space-lg);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: var(--space-lg);
+}
+
+.sidebar-brand h2 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 2px;
+}
+
+.sidebar-brand span { font-size: var(--fs-xs); color: rgba(255,255,255,0.5); }
+
+.sidebar nav { padding: 0 var(--space-sm); }
+
+.sidebar nav a {
+  display: block;
+  padding: 6px var(--space-md);
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+  line-height: 1.35;
+}
+
+.sidebar nav a.nav-sub {
+  padding-left: var(--space-xl);
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.58);
+}
+
+.sidebar nav a:hover,
+.sidebar nav a:focus-visible {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  padding-left: calc(var(--space-md) + 4px);
+}
+
+.sidebar nav a.nav-sub:hover { padding-left: calc(var(--space-xl) + 4px); }
+
+.sidebar nav a.active {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-weight: 600;
+  border-left: 3px solid var(--c-accent-light);
+  padding-left: calc(var(--space-md) - 3px);
+}
+.sidebar nav a.nav-sub.active { padding-left: calc(var(--space-xl) - 3px); }
+
+.nav-group {
+  display: block;
+  padding: var(--space-md) var(--space-md) var(--space-xs);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: rgba(255,255,255,0.38);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ===== Main ===== */
+.main {
+  padding: var(--space-2xl) clamp(var(--space-xl), 4vw, var(--space-3xl));
+  max-width: 1160px;
+}
+
+/* ===== Cover ===== */
+.cover {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 52%, var(--c-accent) 100%);
+  color: #fff;
+  padding: var(--space-3xl) var(--space-2xl);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -10%;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: coverPulse 9s ease-in-out infinite;
+}
+
+@keyframes coverPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -30%; left: -5%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(46,125,50,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cover-content { position: relative; z-index: 2; }
+
+.cover h1 {
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+
+.cover .subtitle {
+  font-size: var(--fs-lg);
+  color: rgba(255,255,255,0.92);
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+}
+
+.cover .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.72);
+}
+
+.cover-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 40px;
+  font-size: var(--fs-sm);
+  margin-top: var(--space-xl);
+  backdrop-filter: blur(4px);
+}
+
+.cover-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.cover-stat {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.cover-stat .cs-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  display: block;
+}
+
+.cover-stat .cs-label {
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.7);
+}
+
+/* ===== Section ===== */
+.section {
+  margin-bottom: var(--space-3xl);
+  padding-top: var(--space-xl);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: var(--space-lg);
+  line-height: var(--lh-tight);
+}
+
+.section-desc {
+  font-size: var(--fs-base);
+  color: var(--c-text-sec);
+  margin-bottom: var(--space-xl);
+  max-width: 760px;
+}
+
+h3.sub-title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--c-primary-light);
+  margin: var(--space-2xl) 0 var(--space-md);
+  line-height: var(--lh-tight);
+}
+
+h4.mini-title {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+p { margin-bottom: var(--space-md); }
+
+/* ===== Cards grid ===== */
+.problem-grid,
+.value-grid,
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.problem-card,
+.value-card,
+.why-card {
+  padding: var(--space-xl);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.problem-card:hover,
+.value-card:hover,
+.why-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-icon { font-size: 2rem; margin-bottom: var(--space-md); display: block; }
+
+.problem-card h3,
+.value-card h3,
+.why-card h3 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.problem-card p,
+.value-card p,
+.why-card p {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+.card-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-accent);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.03em;
+}
+
+/* ===== Qualification Cards ===== */
+.qual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.qual-card {
+  padding: var(--space-2xl);
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qual-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.qual-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+}
+
+.qual-card:nth-child(1)::before { background: linear-gradient(90deg, var(--c-primary), var(--c-primary-light)); }
+.qual-card:nth-child(2)::before { background: linear-gradient(90deg, var(--c-info), #1565C0); }
+.qual-card:nth-child(3)::before { background: linear-gradient(90deg, var(--c-accent), var(--c-accent-light)); }
+
+.qual-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: var(--space-lg);
+  transition: transform 0.3s ease;
+}
+
+.qual-card:hover .qual-icon { transform: scale(1.1); }
+
+.qual-card:nth-child(1) .qual-icon { background: linear-gradient(135deg, var(--c-primary-bg), #C5CAE9); }
+.qual-card:nth-child(2) .qual-icon { background: linear-gradient(135deg, var(--c-info-bg), #BBDEFB); }
+.qual-card:nth-child(3) .qual-icon { background: linear-gradient(135deg, var(--c-accent-bg), #C8E6C9); }
+
+.qual-card h3 {
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.qual-card .qual-subtitle {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+}
+
+.qual-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0;
+  padding: var(--space-md);
+  background: var(--c-surface);
+  border-radius: var(--radius-md);
+}
+
+.qual-meta-item dt {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+
+.qual-meta-item dd {
+  font-size: var(--fs-sm);
+  color: var(--c-text);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.qual-deliverable {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--c-accent-bg-light);
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-md);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--c-accent);
+}
+
+/* ===== Value statement ===== */
+.value-statement {
+  background: linear-gradient(135deg, var(--c-primary-bg-light), var(--c-accent-bg-light));
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  margin: var(--space-xl) 0;
+  border-left: 5px solid var(--c-accent);
+}
+
+.value-statement p {
+  font-size: var(--fs-lg);
+  color: var(--c-primary);
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== Urgency Banner ===== */
+.urgency-banner {
+  background: linear-gradient(135deg, var(--c-amber-bg), var(--c-amber-bg-light));
+  border: 1px solid rgba(230,81,0,0.22);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-xl) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.urgency-banner .urgency-icon { font-size: 2rem; flex-shrink: 0; }
+.urgency-banner p { font-size: var(--fs-sm); color: #4E342E; margin: 0; line-height: 1.65; }
+.urgency-banner strong { color: var(--c-amber); }
+
+/* ===== Process timeline ===== */
+.process-timeline { position: relative; margin: var(--space-2xl) 0; }
+
+.process-step { display: flex; gap: var(--space-xl); position: relative; }
+
+.process-step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 56px;
+}
+
+.process-dot {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: #fff;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.process-line { width: 2px; flex: 1; min-height: 24px; }
+
+.process-step:nth-child(1) .process-dot { background: var(--c-primary); }
+.process-step:nth-child(1) .process-line { background: linear-gradient(to bottom, var(--c-primary), var(--c-primary-light)); }
+.process-step:nth-child(2) .process-dot { background: var(--c-primary-light); }
+.process-step:nth-child(2) .process-line { background: linear-gradient(to bottom, var(--c-primary-light), var(--c-primary-lighter)); }
+.process-step:nth-child(3) .process-dot { background: var(--c-primary-lighter); }
+.process-step:nth-child(3) .process-line { background: linear-gradient(to bottom, var(--c-primary-lighter), #3F51B5); }
+.process-step:nth-child(4) .process-dot { background: #3F51B5; }
+.process-step:nth-child(4) .process-line { background: linear-gradient(to bottom, #3F51B5, var(--c-accent)); }
+.process-step:nth-child(5) .process-dot { background: var(--c-accent); }
+.process-step:nth-child(5) .process-line { background: linear-gradient(to bottom, var(--c-accent), var(--c-accent-light)); }
+.process-step:nth-child(6) .process-dot { background: var(--c-accent-light); }
+.process-step:nth-child(6) .process-line { background: linear-gradient(to bottom, var(--c-accent-light), #66BB6A); }
+.process-step:nth-child(7) .process-dot { background: #66BB6A; }
+.process-step:nth-child(7) .process-line { background: linear-gradient(to bottom, #66BB6A, #81C784); }
+.process-step:nth-child(8) .process-dot { background: #81C784; }
+
+.process-content { padding-bottom: var(--space-2xl); flex: 1; min-width: 0; }
+
+.process-content h3 {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.process-time {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--c-primary);
+  background: var(--c-primary-bg);
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+}
+
+.phase-label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: #fff;
+  background: var(--c-primary);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: var(--space-lg);
+  letter-spacing: 0.04em;
+}
+
+.phase-label.phase-2 { background: #3F51B5; }
+.phase-label.phase-3 { background: var(--c-accent); }
+
+.role-block {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-light);
+  border-left: 3px solid var(--c-primary-lighter);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-sm) 0;
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+}
+
+.role-block.output { border-left-color: var(--c-accent); background: var(--c-accent-bg-light); }
+.role-block.output .role-label { color: var(--c-accent); }
+
+.role-block .role-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 2px;
+  color: var(--c-primary);
+}
+
+.role-block ul { margin: 0 0 0 var(--space-lg); font-size: var(--fs-sm); }
+.role-block p:last-child { margin-bottom: 0; }
+
+/* ===== Deliverables ===== */
+.deliverable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.deliverable-card {
+  padding: var(--space-xl);
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deliverable-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.deliverable-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+}
+
+.deliverable-card .del-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary-bg);
+  position: absolute;
+  top: var(--space-md); right: var(--space-lg);
+}
+
+.deliverable-card h3 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-sm);
+  position: relative;
+}
+
+.del-format {
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.deliverable-card p {
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ===== Pricing ===== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+  align-items: stretch;
+}
+
+.pricing-card {
+  padding: var(--space-2xl);
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.pricing-card.recommended {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 2px var(--c-accent), var(--shadow-md);
+  background: linear-gradient(to bottom, #fff, var(--c-accent-bg-light));
+}
+
+.pricing-card.recommended::after {
+  content: '⭐ 推荐';
+  position: absolute;
+  top: -13px; right: 16px;
+  background: linear-gradient(135deg, var(--c-accent), var(--c-accent-light));
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(46,125,50,0.3);
+}
+
+.plan-name {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xs);
+}
+
+.plan-title { font-size: var(--fs-xl); font-weight: 800; color: var(--c-primary); margin-bottom: var(--space-sm); }
+.plan-suitable { font-size: var(--fs-sm); color: var(--c-text-sec); margin-bottom: var(--space-lg); }
+
+.plan-price {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--c-primary);
+  margin-bottom: var(--space-xl);
+  line-height: 1.1;
+}
+
+.plan-price span { font-size: var(--fs-sm); font-weight: 400; color: var(--c-text-muted); }
+
+.pricing-card ul { margin: 0; padding-left: var(--space-lg); font-size: var(--fs-sm); color: var(--c-text-sec); }
+.pricing-card li { margin-bottom: var(--space-sm); line-height: 1.5; }
+
+.third-party-table {
+  margin: var(--space-xl) 0;
+}
+
+.third-party-table .table-wrap {
+  margin: var(--space-md) 0;
+}
+
+.pricing-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.pricing-note {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+}
+
+.pricing-note strong { color: var(--c-primary); display: block; margin-bottom: 2px; }
+
+/* ===== Tables ===== */
+.table-wrap {
+  overflow-x: auto;
+  margin: var(--space-md) 0 var(--space-xl);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  min-width: 520px;
+}
+
+table.data-table thead { background: var(--c-primary-bg-light); }
+
+table.data-table th {
+  text-align: left;
+  font-weight: 700;
+  color: var(--c-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 2px solid var(--c-primary-bg);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+table.data-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--c-border-light);
+  vertical-align: top;
+}
+
+table.data-table tbody tr:last-child td { border-bottom: none; }
+table.data-table tbody tr:hover { background: var(--c-surface-alt); }
+
+td.num, th.num { text-align: center; font-family: var(--font-mono); }
+td.num { color: var(--c-text-muted); }
+
+tr.total-row td {
+  background: var(--c-primary-bg-light);
+  font-weight: 700;
+  color: var(--c-primary);
+}
+
+tr.total-row .price-val {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  color: var(--c-accent);
+  font-size: var(--fs-md);
+}
+
+.price-val {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--c-primary);
+  white-space: nowrap;
+}
+
+/* ===== Callouts ===== */
+.callout {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  margin: var(--space-lg) 0;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+}
+
+.callout-title {
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.callout p:last-child { margin-bottom: 0; }
+.callout ul { margin-bottom: 0; }
+
+.callout-warn { background: var(--c-red-bg); border-left: 4px solid var(--c-red); color: var(--c-red); }
+.callout-check { background: var(--c-accent-bg); border-left: 4px solid var(--c-accent); color: #1B5E20; }
+.callout-info { background: var(--c-info-bg); border-left: 4px solid var(--c-info); color: var(--c-info); }
+.callout-tip { background: var(--c-amber-bg-light); border-left: 4px solid var(--c-amber); color: #4E342E; }
+
+/* ===== FAQ ===== */
+.faq-list { margin: var(--space-xl) 0; }
+
+.faq-item {
+  margin: var(--space-sm) 0;
+  border: 1px solid var(--c-border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: var(--space-md) var(--space-lg);
+  font-weight: 600;
+  color: var(--c-primary);
+  cursor: pointer;
+  background: var(--c-surface);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: background 0.2s ease;
+  font-size: var(--fs-base);
+}
+
+.faq-item summary:hover { background: var(--c-primary-bg-light); }
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::before {
+  content: '▸';
+  font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.faq-item[open] summary::before { transform: rotate(90deg); }
+
+.faq-answer {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--c-text-sec);
+  line-height: 1.75;
+  border-top: 1px solid var(--c-border-light);
+}
+
+.faq-answer p:last-child { margin-bottom: 0; }
+
+/* ===== CTA ===== */
+.cta-section {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 60%, var(--c-accent) 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3xl) var(--space-2xl);
+  text-align: center;
+  color: #fff;
+  margin: var(--space-2xl) 0;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -40%; right: -10%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-section h2 { font-size: var(--fs-2xl); font-weight: 800; margin-bottom: var(--space-md); position: relative; }
+.cta-section > p { font-size: var(--fs-base); color: rgba(255,255,255,0.9); margin-bottom: var(--space-xl); position: relative; }
+
+.cta-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  position: relative;
+}
+
+.cta-step { text-align: center; font-size: var(--fs-sm); color: rgba(255,255,255,0.82); }
+
+.cta-step .step-num {
+  display: block;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  line-height: 34px;
+  margin: 0 auto var(--space-sm);
+}
+
+/* ===== Appendix ===== */
+.appendix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.appendix-block {
+  padding: var(--space-lg);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+}
+
+.appendix-block h4 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--c-primary-bg);
+}
+
+.appendix-block table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.appendix-block th {
+  text-align: left; font-weight: 700; color: var(--c-primary);
+  padding: var(--space-xs) var(--space-sm); border-bottom: 1px solid var(--c-border); font-size: var(--fs-xs);
+}
+.appendix-block td { padding: var(--space-xs) var(--space-sm); border-bottom: 1px solid var(--c-border-light); vertical-align: top; }
+.appendix-block tbody tr:last-child td { border-bottom: none; }
+
+.date-val { font-family: var(--font-mono); font-weight: 700; color: var(--c-amber); white-space: nowrap; }
+.date-critical { color: var(--c-red); }
+
+.def-list { margin: 0; }
+.def-list dt { font-weight: 700; color: var(--c-primary); font-size: var(--fs-sm); margin-top: var(--space-sm); }
+.def-list dt:first-child { margin-top: 0; }
+.def-list dd { font-size: var(--fs-sm); color: var(--c-text-sec); margin: 2px 0 0; }
+
+.about-block {
+  padding: var(--space-xl);
+  background: var(--c-primary-bg-light);
+  border-radius: var(--radius-md);
+  margin: var(--space-xl) 0;
+}
+
+.about-block h4 { font-size: var(--fs-lg); font-weight: 700; color: var(--c-primary); margin-bottom: var(--space-md); }
+.about-block p { font-size: var(--fs-sm); color: var(--c-text-sec); line-height: 1.7; }
+
+/* ===== Footer ===== */
+.doc-footer {
+  margin-top: var(--space-3xl);
+  padding: var(--space-xl) 0;
+  border-top: 2px solid var(--c-primary-bg);
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+  text-align: center;
+}
+
+/* ===== Mobile ===== */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 200;
+  background: var(--c-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.42); z-index: 99; }
+.sidebar-overlay.open { display: block; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--c-primary-lighter);
+  outline-offset: 2px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    position: fixed;
+    width: 290px;
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .page-layout { grid-template-columns: 1fr; }
+  .menu-toggle { display: block; }
+  .main { padding: var(--space-xl) var(--space-lg); padding-top: calc(var(--space-xl) + 52px); }
+  .cover { padding: var(--space-2xl) var(--space-lg); }
+  .cover h1 { font-size: var(--fs-2xl); }
+  .pricing-grid, .deliverable-grid, .qual-grid { grid-template-columns: 1fr; }
+  .cta-steps { gap: var(--space-md); }
+  .process-step { gap: var(--space-md); }
+  .process-step-marker { width: 44px; }
+  .process-dot { width: 40px; height: 40px; font-size: var(--fs-xs); }
+}
+
+/* ===== Print ===== */
+@media print {
+  .sidebar, .menu-toggle, .sidebar-overlay { display: none !important; }
+  .page-layout { grid-template-columns: 1fr; }
+  .main { padding: 0; max-width: none; }
+  .cover {
+    break-after: page;
+    background: var(--c-primary) !important;
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cover::before, .cover::after { display: none; }
+  .section { break-inside: auto; padding-top: 1rem; }
+  h3.sub-title { break-after: avoid; }
+  .pricing-card, .deliverable-card, .qual-card, .why-card, .problem-card { break-inside: avoid; }
+  .faq-item { break-inside: avoid; }
+  .table-wrap { break-inside: avoid; }
+  .role-block, .callout { break-inside: avoid; }
+  .cta-section { background: var(--c-primary) !important; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { text-decoration: none; color: inherit; }
+}
+
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cover::before { animation: none; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" aria-label="打开导航菜单" onclick="toggleSidebar()">☰ 目录</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="page-layout">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <h2>产品手册 · 细节版</h2>
+    <span>DPP注册上线服务 v1.0</span>
+  </div>
+  <nav aria-label="章节导航">
+    <a href="#cover">封面</a>
+
+    <span class="nav-group">服务内容</span>
+    <a href="#problem">① 您面对的问题</a>
+    <a href="#solution">② 我们能帮您做什么</a>
+    <a href="#qualifications">③ 三项外部资质详解</a>
+    <a class="nav-sub" href="#qual-eidas">eIDAS合格电子签名</a>
+    <a class="nav-sub" href="#qual-ar">欧盟授权代表</a>
+    <a class="nav-sub" href="#qual-registry">注册中心对接</a>
+    <a href="#process">④ 我们具体怎么工作</a>
+    <a class="nav-sub" href="#phase1">Phase 1 准备阶段</a>
+    <a class="nav-sub" href="#phase2">Phase 2 技术对接</a>
+    <a class="nav-sub" href="#phase3">Phase 3 验收阶段</a>
+    <a href="#deliverables">⑤ 您会收到什么</a>
+    <a href="#pricing">⑥ 服务定价</a>
+    <a href="#why-us">⑦ 为什么选择我们</a>
+    <a href="#faq">⑧ 常见问题</a>
+    <a href="#cta">⑨ 立即开始</a>
+
+    <span class="nav-group">附录</span>
+    <a href="#app-dates">关键日期</a>
+    <a href="#app-qtsp">QTSP选择指南</a>
+    <a href="#app-glossary">术语简表</a>
+    <a href="#app-about">关于我们</a>
+  </nav>
+</aside>
+
+<main class="main">
+
+<!-- ===== COVER ===== -->
+<section class="cover" id="cover">
+  <div class="cover-content">
+    <h1>DPP注册上线服务</h1>
+    <p class="subtitle">帮电池企业完成欧盟注册，让电池护照真正上线</p>
+    <div class="meta">
+      <span>v1.0 · 2026年9月</span>
+      <span>守信财税 · DPP业务线</span>
+    </div>
+    <div class="cover-badge">🔋 专注欧盟电池法规 (EU) 2023/1542 合规服务</div>
+    <div class="cover-stats">
+      <div class="cover-stat"><span class="cs-num">3</span><span class="cs-label">项外部资质代办</span></div>
+      <div class="cover-stat"><span class="cs-num">8</span><span class="cs-label">步标准流程</span></div>
+      <div class="cover-stat"><span class="cs-num">12周</span><span class="cs-label">最快上线周期</span></div>
+      <div class="cover-stat"><span class="cs-num">100%</span><span class="cs-label">全程代办零跑腿</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第一部分 ===== -->
+<section class="section" id="problem">
+  <div class="section-label">Part 01</div>
+  <h2 class="section-title">您面对的问题</h2>
+  <p class="section-desc">数据已经齐备，数据手册已经完成——但从"有数据"到"电池护照上线"之间，还有一段关键路程。这段路比想象中更复杂。</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <span class="card-icon">🔐</span>
+      <h3>注册流程复杂，涉及三项外部资质</h3>
+      <p>eIDAS合格电子签名证书、欧盟授权代表指定、注册中心技术对接——三项资质分别来自不同的欧盟机构，申请流程各异，材料要求不同，且必须全部到位才能上线。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">🌍</span>
+      <h3>三个外部机构要打交道</h3>
+      <p>合格信任服务提供商（QTSP）、欧盟授权代表机构、欧盟电池护照注册中心——都是欧盟机构，都用英文沟通，都有自己的审核流程和周期。自己对接，沟通成本极高。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">📝</span>
+      <h3>语言障碍 + 法规差异 + 技术对接</h3>
+      <p>eIDAS申请材料全英文、欧代协议是欧盟法律文件、注册中心API文档是英文技术规范。一个环节理解偏差，就可能导致退回重提。</p>
+    </div>
+    <div class="problem-card">
+      <span class="card-icon">⏰</span>
+      <h3>时间紧迫：2027年2月18日强制执行</h3>
+      <p>自该日起，EV电池、LMT电池和&gt;2kWh工业电池必须持有有效电池护照方可投放欧盟市场。注册流程本身需要8-16周，越早启动越主动。</p>
+    </div>
+  </div>
+
+  <div class="urgency-banner">
+    <div class="urgency-icon">⚡</div>
+    <p><strong>核心矛盾：</strong>数据准备好了，但注册流程涉及多个欧盟机构，语言、法规、技术三重障碍叠加。<strong>一步出错，前功尽弃</strong>——材料被退回意味着重新排队，证书出错意味着签名无效，格式不对意味着数据提交失败。</p>
+  </div>
+</section>
+
+<!-- ===== 第二部分 ===== -->
+<section class="section" id="solution">
+  <div class="section-label">Part 02</div>
+  <h2 class="section-title">我们能帮您做什么</h2>
+
+  <div class="value-statement">
+    <p>帮您办理三项外部资质——eIDAS证书、欧盟授权代表、注册中心对接——让您的数据手册变成真正可用的电池护照。</p>
+  </div>
+
+  <p class="section-desc" style="margin-top:var(--space-xl)">一句话总结：<strong>不用自己跟欧盟机构打交道，我们全程代办，从数据到上线无缝衔接。</strong></p>
+
+  <div class="value-grid">
+    <div class="value-card">
+      <span class="card-tag">VALUE 01</span>
+      <h3>全程代办，零跑腿</h3>
+      <p>QTSP选择、eIDAS申请、欧代筛选与签约、注册中心对接——所有与欧盟机构的沟通由我方完成。您只需指定一名联络人，配合提供必要材料。</p>
+    </div>
+    <div class="value-card">
+      <span class="card-tag">VALUE 02</span>
+      <h3>一次通过率高</h3>
+      <p>熟悉每项资质的审核要点和常见退件原因。材料准备阶段即按审核标准把关，测试验证阶段充分覆盖边界情况，大幅降低被退回的概率。</p>
+    </div>
+    <div class="value-card">
+      <span class="card-tag">VALUE 03</span>
+      <h3>技术对接一站式解决</h3>
+      <p>数据格式转换、API对接、测试提交、QR码方案——技术环节由我方技术团队完成，不需要您投入IT资源。无IT团队也能顺利上线。</p>
+    </div>
+    <div class="value-card">
+      <span class="card-tag">VALUE 04</span>
+      <h3>全链条无缝衔接</h3>
+      <p>从差距评估①→数据建设②→注册上线③→年度托管④，数据从采集到上线不断链。评估成果和数据手册直接复用，不重复做工。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第三部分 ===== -->
+<section class="section" id="qualifications">
+  <div class="section-label">Part 03</div>
+  <h2 class="section-title">三项外部资质详解</h2>
+  <p class="section-desc">电池护照上线需要三项外部资质同时到位。它们分别解决"签名合法性"、"非欧盟制造商代表"和"数据提交通道"三个核心问题。</p>
+
+  <div class="qual-grid">
+    <!-- eIDAS -->
+    <div class="qual-card" id="qual-eidas">
+      <div class="qual-icon">🔐</div>
+      <h3>eIDAS合格电子签名</h3>
+      <p class="qual-subtitle">欧盟认可的合格电子签名证书，用于签署电池护照数据。向欧盟合格信任服务提供商（QTSP）申请，在欧盟全境具有与手写签名同等法律效力。</p>
+      <div class="qual-meta">
+        <dl class="qual-meta-item">
+          <dt>向谁申请</dt>
+          <dd>欧盟合格信任服务提供商（QTSP）</dd>
+        </dl>
+        <dl class="qual-meta-item">
+          <dt>办理周期</dt>
+          <dd>4-6周</dd>
+        </dl>
+        <dl class="qual-meta-item">
+          <dt>法规依据</dt>
+          <dd>EU 910/2014 (eIDAS法规)</dd>
+        </dl>
+        <dl class="qual-meta-item">
+          <dt>证书有效期</dt>
+          <dd>1-3年，到期须续期</dd>
+        </dl>
+      </div>
+      <h4 class="mini-title" style="margin-top:var(--space-lg)">我们的服务</h4>
+      <ul style="font-size:var(--fs-sm);color:var(--c-text-sec);margin-left:var(--space-lg);">
+        <li>选择适合您的QTSP（支持远程身份验证，无需飞欧洲）</li>
+        <li>准备全部申请材料（企业证明、签字人授权等）</li>
+        <li>协助身份验证流程（视频验证指导）</li>
+        <li>跟进审核进度，处理补件要求</li>
+      </ul>
+      <div class="qual-deliverable">📦 交付物：eIDAS合格证书（原件+电子版）</div>
+    </div>
+
+    <!-- 欧代 -->
+    <div class="qual-card" id="qual-ar">
+      <div class="qual-icon">🤝</div>
+      <h3>欧盟授权代表（欧代）</h3>
+      <p class="qual-subtitle">欧盟境内法人实体，代表非欧盟制造商承担合规责任。法规Art.41要求非欧盟制造商必须指定欧代，Art.77要求欧代信息须在电池护照中披露。</p>
+      <div class="qual-meta">
+        <dl class="qual-meta-item">
+          <dt>为什么需要</dt>
+          <dd>Art.77强制要求</dd>
+        </dl>
+        <dl class="qual-meta-item">
+          <dt>办理周期</dt>
+          <dd>2-4周</dd>
+        </dl>
+        <dl class="qual-meta-item">
+          <dt>核心职责</dt>
+          <dd>文件保存+监管沟通+风险通报</dd>
+        </dl>
+        <dl class="qual-meta-item">
+          <dt>协议期限</dt>
+          <dd>建议首签2-3年</dd>
+        </dl>
+      </div>
+      <h4 class="mini-title" style="margin-top:var(--space-lg)">我们的服务</h4>
+      <ul style="font-size:var(--fs-sm);color:var(--c-text-sec);margin-left:var(--space-lg);">
+        <li>推荐合格欧代服务商（电池/电子行业经验丰富）</li>
+        <li>协助签署授权协议（明确责任边界和终止条款）</li>
+        <li>协调双方沟通（语言、时差、法律术语）</li>
+        <li>将欧代信息录入注册中心</li>
+      </ul>
+      <div class="qual-deliverable">📦 交付物：欧代授权协议（签署生效版）</div>
+    </div>
+
+    <!-- 注册中心 -->
+    <div class="qual-card" id="qual-registry">
+      <div class="qual-icon">🚀</div>
+      <h3>注册中心对接与上线</h3>
+      <p class="qual-subtitle">将电池护照数据提交到欧盟电池护照注册中心（Battery Passport Registry）。这是"数据变成护照"的关键一步，涉及数据格式转换、API对接、测试验证。</p>
+      <div class="qual-meta">
+        <dl class="qual-meta-item">
+          <dt>核心流程</dt>
+          <dd>格式转换→API对接→测试→上线</dd>
+        </dl>
+        <dl class="qual-meta-item">
+          <dt>对接周期</dt>
+          <dd>4-8周</dd>
+        </dl>
+        <dl class="qual-meta-item">
+          <dt>法规依据</dt>
+          <dd>Art.77(6) 注册中心</dd>
+        </dl>
+        <dl class="qual-meta-item">
+          <dt>IT要求</dt>
+          <dd>无（我方全程处理）</dd>
+        </dl>
+      </div>
+      <h4 class="mini-title" style="margin-top:var(--space-lg)">我们的服务</h4>
+      <ul style="font-size:var(--fs-sm);color:var(--c-text-sec);margin-left:var(--space-lg);">
+        <li>将数据手册转换为注册中心要求的格式（JSON/XML）</li>
+        <li>API技术对接（注册中心接口适配）</li>
+        <li>测试环境验证（数据完整性+格式合规性）</li>
+        <li>正式提交并跟进审核反馈，直至上线确认</li>
+      </ul>
+      <div class="qual-deliverable">📦 交付物：电池护照上线确认（注册中心官方确认）</div>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">📌 三项资质的关系</div>
+    <p><strong>eIDAS证书</strong>解决"谁在签名"——确保数据提交的法律效力；<strong>欧盟授权代表</strong>解决"谁在欧盟负责"——满足非欧盟制造商的合规要求；<strong>注册中心对接</strong>解决"数据怎么交"——让护照真正进入欧盟系统。三者缺一不可，必须全部到位才能完成上线。</p>
+  </div>
+</section>
+
+<!-- ===== 第四部分 ===== -->
+<section class="section" id="process">
+  <div class="section-label">Part 04</div>
+  <h2 class="section-title">我们具体怎么工作</h2>
+  <p class="section-desc">3个阶段、8个标准步骤，总周期约12-16周。各步骤可并行推进，我们负责把控节奏，您只需配合提供材料和确认。</p>
+
+  <div class="process-timeline">
+
+    <!-- Phase 1 -->
+    <div class="phase-label">Phase 1 · 准备阶段（第1-4周）</div>
+
+    <!-- Step 1 -->
+    <div class="process-step" id="phase1">
+      <div class="process-step-marker"><div class="process-dot">S1</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>项目启动与材料准备</h3>
+        <span class="process-time">第1周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>基于已交付的数据手册，确认注册中心提交内容</li>
+            <li>准备eIDAS申请材料清单（签字人护照、企业注册证明、授权委托书）</li>
+            <li>筛选并推荐合适的欧盟授权代表服务商</li>
+            <li>制定项目计划，明确里程碑与各方职责</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>《项目启动书》《eIDAS申请材料清单》《欧代候选名单》</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">S2</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>eIDAS证书申请</h3>
+        <span class="process-time">第1-4周（与S1并行）</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>从EU Trusted List中筛选最合适的QTSP（优先支持远程视频验证）</li>
+            <li>代为提交申请材料，跟进审核进度</li>
+            <li>指导签字人完成身份验证（视频面谈/银行验证）</li>
+            <li>处理补件要求，确保顺利通过</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>eIDAS合格电子签名证书</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">S3</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>欧代授权签署</h3>
+        <span class="process-time">第2-4周（与S2并行）</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>协调您与候选欧代机构的商务沟通</li>
+            <li>审核授权协议条款（重点关注责任边界、终止条款、文件移交安排）</li>
+            <li>协助签署书面授权协议（Art.41(2)要求）</li>
+            <li>将欧代信息录入注册中心系统</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>欧代授权协议（签署生效版）、欧代信息备案确认</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase-label phase-2">Phase 2 · 技术对接阶段（第4-8周）</div>
+
+    <!-- Step 4 -->
+    <div class="process-step" id="phase2">
+      <div class="process-step-marker"><div class="process-dot">S4</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>数据格式转换</h3>
+        <span class="process-time">第4-5周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>将数据手册内容转换为注册中心要求的数据格式（JSON/XML）</li>
+            <li>71个数据点逐一映射，确保字段对应</li>
+            <li>处理数据格式差异（计量单位、精度、编码规则等）</li>
+            <li>数据完整性检查与格式合规性验证</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>数据格式转换报告（原始数据→提交格式对照表）</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">S5</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>API对接与测试</h3>
+        <span class="process-time">第5-7周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>注册中心账号注册与配置（使用eIDAS证书完成身份认证）</li>
+            <li>与注册中心API技术对接</li>
+            <li>在测试/沙箱环境提交测试数据</li>
+            <li>测试QR码生成与扫描功能（GS1 Digital Link格式）</li>
+            <li>验证三层访问权限（公开层/受限层/监管层）</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>技术对接测试报告（API对接记录+测试提交截图）</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">S6</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>正式提交与上线</h3>
+        <span class="process-time">第7-8周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>执行上线前10项检查清单确认</li>
+            <li>正式提交电池护照数据（使用eIDAS证书签名）</li>
+            <li>跟进注册中心审核反馈</li>
+            <li>处理可能的退回修正（如有），直至审核通过</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>电池护照上线确认（注册中心官方回执）</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase-label phase-3">Phase 3 · 验收阶段（第8-12周）</div>
+
+    <!-- Step 7 -->
+    <div class="process-step" id="phase3">
+      <div class="process-step-marker"><div class="process-dot">S7</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>上线确认与验证</h3>
+        <span class="process-time">第8-10周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>确认电池护照已在注册中心成功上线</li>
+            <li>验证数据完整性（71个数据点是否全部正确显示）</li>
+            <li>验证QR码扫描可达性</li>
+            <li>验证动态数据更新机制可运行</li>
+            <li>生成上线验证报告</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>上线验证报告（数据完整性验证+QR码测试+动态数据确认）</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 8 -->
+    <div class="process-step">
+      <div class="process-step-marker"><div class="process-dot">S8</div></div>
+      <div class="process-content">
+        <h3>交付与衔接</h3>
+        <span class="process-time">第10-12周</span>
+        <div class="role-block">
+          <span class="role-label">我们做什么</span>
+          <ul>
+            <li>交付全部证书和确认文件（eIDAS证书、欧代协议、上线确认等）</li>
+            <li>制定年度维护计划（证书续期提醒、数据更新节奏）</li>
+            <li>衔接④年度托管服务，确保上线后合规持续有效</li>
+            <li>项目验收签字</li>
+          </ul>
+        </div>
+        <div class="role-block output">
+          <span class="role-label">输出物</span>
+          <p>全套交付文件、年度维护计划、④年度托管服务衔接方案</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">💡 并行优化</div>
+    <p>S2（eIDAS申请）和S3（欧代签署）可并行推进，通常在Phase 1期间同时完成。S4（数据格式转换）也可在等待证书期间提前启动。合理编排可将总周期压缩至12周。</p>
+  </div>
+</section>
+
+<!-- ===== 第五部分 ===== -->
+<section class="section" id="deliverables">
+  <div class="section-label">Part 05</div>
+  <h2 class="section-title">您会收到什么</h2>
+  <p class="section-desc">全部交付物清单——每一项都有对应的文件，确保您拿到完整的合规成果。</p>
+
+  <div class="deliverable-grid">
+    <div class="deliverable-card">
+      <span class="del-num">01</span>
+      <h3>eIDAS合格证书</h3>
+      <span class="del-format">原件（USB令牌/云证书）+ 电子版</span>
+      <p>欧盟QTSP签发的合格电子签名证书，含安装配置文档。证书有效期1-3年，到期前我方协助续期。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">02</span>
+      <h3>欧盟授权代表协议</h3>
+      <span class="del-format">签署生效版（双方用印）</span>
+      <p>与欧代机构签署的书面授权协议，明确职责范围、服务期限、终止条款和文件移交安排。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">03</span>
+      <h3>电池护照上线确认</h3>
+      <span class="del-format">注册中心官方确认文件</span>
+      <p>注册中心出具的上线确认回执，证明电池护照数据已成功提交并通过审核。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">04</span>
+      <h3>数据格式转换报告</h3>
+      <span class="del-format">PDF + Excel对照表</span>
+      <p>71个数据点从原始数据手册到注册中心提交格式的完整映射记录，便于后续维护和审计。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">05</span>
+      <h3>技术对接测试报告</h3>
+      <span class="del-format">PDF + 测试截图</span>
+      <p>API对接记录、测试提交结果、数据校验反馈、QR码测试记录——完整的技术验证证据链。</p>
+    </div>
+    <div class="deliverable-card">
+      <span class="del-num">06</span>
+      <h3>上线验证报告</h3>
+      <span class="del-format">PDF报告</span>
+      <p>上线后的数据完整性验证、QR码扫描可达性测试、动态数据更新确认——证明护照运行正常。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第六部分 ===== -->
+<section class="section" id="pricing">
+  <div class="section-label">Part 06</div>
+  <h2 class="section-title">服务定价</h2>
+  <p class="section-desc">费用分为两部分：我方服务费 + 第三方费用（实报实销）。透明清晰，无隐性收费。</p>
+
+  <h3 class="sub-title">我方服务费</h3>
+  <p>根据SKU数量和复杂度分档：</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="plan-name">标准版</div>
+      <div class="plan-title">eIDAS + 欧代 + 注册上线</div>
+      <p class="plan-suitable">SKU ≤ 20，标准流程</p>
+      <div class="plan-price">¥300,000 – 450,000</div>
+      <ul>
+        <li>eIDAS证书全程代办</li>
+        <li>欧盟授权代表筛选与签约协助</li>
+        <li>数据格式转换（71数据点映射）</li>
+        <li>注册中心API对接与测试</li>
+        <li>正式上线支持</li>
+        <li>6份交付文件</li>
+        <li>项目周期：12-16周</li>
+      </ul>
+    </div>
+    <div class="pricing-card recommended">
+      <div class="plan-name">旗舰版</div>
+      <div class="plan-title">全流程 + 优先排期</div>
+      <p class="plan-suitable">SKU > 20，复杂技术对接，优先排期</p>
+      <div class="plan-price">¥450,000 – 600,000</div>
+      <ul>
+        <li>标准版全部服务</li>
+        <li>多SKU批量处理与优化</li>
+        <li>复杂供应链数据格式适配</li>
+        <li>优先排期（缩短2-4周）</li>
+        <li>专属项目经理+技术团队</li>
+        <li>上线后3个月免费技术支持</li>
+        <li>衔接④年度托管服务优惠</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub-title">第三方费用（实报实销）</h3>
+  <p>以下费用由第三方机构收取，我方代收代缴，提供原始发票：</p>
+
+  <div class="third-party-table">
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>费用项目</th>
+            <th style="width:180px">费用范围</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>eIDAS合格电子签名证书</strong></td>
+            <td class="price-val">€2,000 – 5,000/年</td>
+            <td>按签名数量/类型计价，云签名方案通常偏高端</td>
+          </tr>
+          <tr>
+            <td><strong>欧盟授权代表年费</strong></td>
+            <td class="price-val">€3,000 – 10,000/年</td>
+            <td>按产品线/SKU数量计价，含文件保存+监管沟通+风险通报</td>
+          </tr>
+          <tr>
+            <td><strong>注册中心接入费</strong></td>
+            <td class="price-val">€1,500 – 6,000/年</td>
+            <td>部分注册中心按交易量额外收费</td>
+          </tr>
+          <tr class="total-row">
+            <td><strong>第三方费用合计</strong></td>
+            <td class="price-val">€6,500 – 21,000</td>
+            <td><strong>首年估算，视企业规模和产品复杂度而定</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pricing-notes">
+    <div class="pricing-note">
+      <strong>💰 支付节奏</strong>
+      服务费分三期支付：签约30% + eIDAS证书获取40% + 上线确认30%。第三方费用按实际发生结算。
+    </div>
+    <div class="pricing-note">
+      <strong>📋 发票说明</strong>
+      我方服务费开具增值税发票；第三方费用提供原始发票复印件，实报实销。
+    </div>
+    <div class="pricing-note">
+      <strong>🔄 年度续期</strong>
+      eIDAS证书和欧代为年费制，续期由④年度托管服务统一管理，也可自行续期。
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第七部分 ===== -->
+<section class="section" id="why-us">
+  <div class="section-label">Part 07</div>
+  <h2 class="section-title">为什么选择我们</h2>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="card-icon">📋</span>
+      <h3>流程熟悉，经验丰富</h3>
+      <p>已完成多个电池护照注册案例，熟悉eIDAS申请审核要点、欧代协议关键条款、注册中心技术规范和常见退件原因。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">🤝</span>
+      <h3>机构关系成熟</h3>
+      <p>与主流QTSP和欧代服务商建立合作关系，了解各家审批速度、服务质量和价格水平，帮您选择最优方案。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">🔧</span>
+      <h3>技术能力一站式</h3>
+      <p>数据格式转换 + API对接 + 测试验证，技术环节由我方团队完成。您不需要自己找IT服务商，也不需要投入开发人员。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">✅</span>
+      <h3>一次通过率高</h3>
+      <p>材料准备阶段即按审核标准把关，测试验证阶段充分覆盖边界情况。我们不追求"提交"，追求"一次通过"。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">🔗</span>
+      <h3>全链条无缝衔接</h3>
+      <p>从①差距评估 → ②数据建设 → ③注册上线 → ④年度托管，全链条闭环服务。数据不重复采集，成果不重复交付。</p>
+    </div>
+    <div class="why-card">
+      <span class="card-icon">🛡️</span>
+      <h3>风险兜底</h3>
+      <p>材料被退回？我方免费修正重新提交。审核遇到障碍？我方协调解决。因我方原因导致的延误，按合同约定承担责任。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第八部分 ===== -->
+<section class="section" id="faq">
+  <div class="section-label">Part 08</div>
+  <h2 class="section-title">常见问题</h2>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Q1：什么是电池护照注册？</summary>
+      <div class="faq-answer">
+        <p>电池护照注册是将电池的数据信息（71个数据点）提交到欧盟电池护照注册中心（Battery Passport Registry）的过程。注册成功后，每块电池获得唯一的电池护照，通过QR码可供监管机构和消费者查阅。这是法规Art.77的强制要求，自2027年2月18日起执行。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q2：eIDAS证书是什么？必须的吗？</summary>
+      <div class="faq-answer">
+        <p>eIDAS证书是欧盟认可的合格电子签名证书（QES级别），由经认证的QTSP签发。向注册中心提交数据时，必须使用eIDAS证书进行电子签章，确保数据的真实性和不可抵赖性。eIDAS证书在欧盟全境具有与手写签名同等的法律效力——这是强制要求，不可省略。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q3：欧盟授权代表是谁？为什么需要？</summary>
+      <div class="faq-answer">
+        <p>欧盟授权代表（欧代）是欧盟境内的法人实体，代表非欧盟制造商承担合规责任。法规Art.41要求非欧盟制造商必须指定欧代，Art.77要求欧代信息须在电池护照中披露。欧代的核心职责包括：保存合规文件、配合市场监管、通报安全风险。简单来说，欧代就是您在欧盟的"合规代理人"。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q4：注册中心是什么？怎么对接？</summary>
+      <div class="faq-answer">
+        <p>DPP注册中心是欧盟依据Art.77(6)建立的中央系统，2026年7月20日起上线运行。它接收、存储和分发电池护照数据。对接方式有三种：API接口（适合有IT团队的企业）、手动上传（适合小企业）、委托服务商代办（选择一站式服务的客户）。我们的服务包含全程代办对接，您无需投入IT资源。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q5：注册周期多长？</summary>
+      <div class="faq-answer">
+        <p>标准周期12-16周（约3-4个月）。其中eIDAS证书4-6周、欧代签约2-4周、注册中心对接4-8周，各步骤可并行推进。旗舰版可缩短2-4周。建议在2027年2月18日强制生效前至少6个月启动，确保充裕的办理和调试时间。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q6：如果审核不通过怎么办？</summary>
+      <div class="faq-answer">
+        <p>材料或数据被退回是常见情况（注册中心会对数据进行格式校验）。我们的做法是：① 在测试阶段充分验证，尽量在正式提交前解决所有问题；② 正式提交后如遇退回，我方免费修正并重新提交；③ 因我方原因导致的退回，按合同约定承担责任。历史上我们的首次通过率保持在较高水平。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q7：第三方费用包含在你们的服务费里吗？</summary>
+      <div class="faq-answer">
+        <p>不包含。我方服务费（¥30-60万）是代办服务费用；第三方费用（€6,500-21,000）是QTSP、欧代机构和注册中心收取的费用，实报实销。两部分分开计价、分开支付，我方提供第三方机构的原始发票，透明可追溯。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q8：注册后数据还能修改吗？</summary>
+      <div class="faq-answer">
+        <p>可以修改。DPP架构设计支持数据更新，经济运营商有义务保持数据的准确性和时效性（Art.77(2)）。静态数据（电池身份、材料组成等）变更较少，动态数据（SOCE、循环次数等）须定期更新。修改时须使用eIDAS证书重新签名提交。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q9：后续数据更新怎么办？</summary>
+      <div class="faq-answer">
+        <p>上线后的数据更新纳入④年度托管服务范围。我们负责：① 动态数据定期更新提醒与协助；② eIDAS证书到期续期（每1-3年）；③ 欧代关系维护和年度复核；④ 法规变更导致的数据格式调整。也可选择自行管理，但我们强烈建议使用年度托管服务，确保持续合规。</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Q10：你们的服务费怎么支付？</summary>
+      <div class="faq-answer">
+        <p>分三期支付：签约时30% → eIDAS证书获取时40% → 上线确认时30%。第三方费用按实际发生结算。支持银行转账，开具增值税发票。具体支付节点在合同中明确约定。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== 第九部分 ===== -->
+<section class="section" id="cta">
+  <div class="section-label">Part 09</div>
+  <h2 class="section-title">立即开始</h2>
+
+  <div class="cta-section">
+    <h2>让电池护照真正上线</h2>
+    <p>距离2027年2月18日强制执行越来越近。越早启动，越主动。</p>
+    <div class="cta-steps">
+      <div class="cta-step">
+        <span class="step-num">1</span>
+        签署服务协议
+      </div>
+      <div class="cta-step">
+        <span class="step-num">2</span>
+        项目启动 & 材料准备
+      </div>
+      <div class="cta-step">
+        <span class="step-num">3</span>
+        eIDAS申请 & 欧代签约
+      </div>
+      <div class="cta-step">
+        <span class="step-num">4</span>
+        注册中心对接上线
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-check">
+    <div class="callout-title">☑ 启动前提</div>
+    <p>注册上线服务的前提是已完成数据建设（服务②数据手册已交付）。如果数据建设尚未完成，建议同时签约数据建设与注册上线，我们可以并行推进，缩短总周期。</p>
+  </div>
+
+  <div class="about-block">
+    <h4>📞 联系我们</h4>
+    <p><strong>守信财税 · DPP业务线</strong><br>
+    专注欧盟电池法规合规服务<br>
+    从差距评估到护照上线到持续维护的一站式解决方案</p>
+  </div>
+</section>
+
+<!-- ===== 附录 ===== -->
+<section class="section" id="app-dates">
+  <div class="section-label">Appendix</div>
+  <h2 class="section-title">附录</h2>
+
+  <div class="appendix-grid">
+    <div class="appendix-block">
+      <h4>📅 关键日期速查</h4>
+      <table>
+        <tbody>
+          <tr><td>2026年7月20日</td><td>DPP注册中心上线运行</td></tr>
+          <tr><td class="date-critical date-val">2027年2月18日</td><td class="date-critical"><strong>电池护照强制执行（EV/LMT/工业&gt;2kWh）</strong></td></tr>
+          <tr><td>建议提前6个月</td><td>启动注册上线服务</td></tr>
+          <tr><td>eIDAS证书到期前60天</td><td>启动续期流程</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="appendix-block" id="app-qtsp">
+      <h4>🔐 QTSP选择指南</h4>
+      <table>
+        <thead>
+          <tr><th>评估维度</th><th>优先级</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>已列入EU Trusted List</td><td style="color:var(--c-red);font-weight:700">必须</td></tr>
+          <tr><td>支持远程视频身份验证</td><td style="color:var(--c-red);font-weight:700">高</td></tr>
+          <tr><td>签发速度（4周内）</td><td style="color:var(--c-red);font-weight:700">高</td></tr>
+          <tr><td>支持英文/中文服务</td><td style="color:var(--c-amber);font-weight:700">中</td></tr>
+          <tr><td>云签名支持（推荐）</td><td style="color:var(--c-amber);font-weight:700">中</td></tr>
+          <tr><td>DPP场景经验</td><td style="color:var(--c-text-muted)">加分</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="appendix-block" id="app-glossary">
+      <h4>📖 术语简表</h4>
+      <dl class="def-list">
+        <dt>eIDAS</dt>
+        <dd>欧盟电子身份认证和信任服务法规（EU 910/2014）</dd>
+        <dt>QES</dt>
+        <dd>Qualified Electronic Signature，合格电子签名，eIDAS最高级别</dd>
+        <dt>QTSP</dt>
+        <dd>Qualified Trust Service Provider，合格信任服务提供商</dd>
+        <dt>欧代 / AR</dt>
+        <dd>Authorised Representative，欧盟授权代表</dd>
+        <dt>DPP Registry</dt>
+        <dd>电池护照注册中心，依据Art.77(6)建立的中央系统</dd>
+        <dt>SOCE</dt>
+        <dd>State of Charge Expectancy，预期充电状态</dd>
+        <dt>GS1 Digital Link</dt>
+        <dd>QR码编码格式，扫描后指向电池护照数据页面</dd>
+      </dl>
+    </div>
+
+    <div class="appendix-block" id="app-about">
+      <h4>🏢 关于我们</h4>
+      <p><strong>守信财税</strong>是中国领先的财税合规服务商，专注于帮助中国企业解决跨境合规问题。</p>
+      <p>DPP业务线是我们针对欧盟电池法规(EU) 2023/1542设立的专项服务团队，提供从差距评估→数据建设→注册上线→年度托管的全链条合规服务。</p>
+      <p><strong>服务理念：</strong>让复杂的事情变简单，让中国电池企业无忧进入欧盟市场。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="doc-footer">
+  <p><strong>守信财税 · DPP业务线</strong> — DPP注册上线服务产品手册</p>
+  <p>版本：v1.0 | 编制日期：2026年9月 | 适用法规：(EU) 2023/1542 | EU 910/2014</p>
+  <p>本手册不构成法律意见。具体合规要求以法规原文及最新授权法案/实施条例为准。</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  try {
+    // Sidebar toggle for mobile
+    window.toggleSidebar = function() {
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      if (sidebar && overlay) {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('open');
+      }
+    };
+
+    // Close sidebar when clicking a nav link on mobile
+    var navLinks = document.querySelectorAll('.sidebar nav a');
+    navLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 960) {
+          var sidebar = document.getElementById('sidebar');
+          var overlay = document.getElementById('sidebarOverlay');
+          if (sidebar) sidebar.classList.remove('open');
+          if (overlay) overlay.classList.remove('open');
+        }
+      });
+    });
+
+    // Active nav highlighting based on scroll
+    var sections = document.querySelectorAll('.section, .cover');
+    var navMap = {};
+    navLinks.forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        navMap[href.substring(1)] = link;
+      }
+    });
+
+    function updateActiveNav() {
+      var scrollPos = window.scrollY + 120;
+      var currentSection = '';
+      sections.forEach(function(section) {
+        if (section.offsetTop <= scrollPos) {
+          currentSection = section.id;
+        }
+      });
+      Object.values(navMap).forEach(function(link) { link.classList.remove('active'); });
+      if (currentSection && navMap[currentSection]) {
+        navMap[currentSection].classList.add('active');
+      }
+    }
+
+    var scrollTimer;
+    window.addEventListener('scroll', function() {
+      if (scrollTimer) clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(updateActiveNav, 50);
+    }, { passive: true });
+
+    updateActiveNav();
+  } catch(e) { /* graceful degradation */ }
+})();
+</script>
+
+</body>
+</html>

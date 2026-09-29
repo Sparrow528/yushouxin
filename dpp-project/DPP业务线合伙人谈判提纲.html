@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP业务线合伙人谈判提纲 — 2026.9.15</title>
+<style>
+  :root {
+    --canvas: #faf8f5;
+    --surface: #ffffff;
+    --surface-alt: #f3f0eb;
+    --ink: #1a1a1a;
+    --ink-secondary: #5c5650;
+    --ink-muted: #8a837a;
+    --border: #e4dfd8;
+    --accent: #1a6b5a;
+    --accent-light: #e8f5f0;
+    --accent-ink: #ffffff;
+    --warn: #c45d2c;
+    --warn-light: #fef3ed;
+    --gold: #b8860b;
+    --gold-light: #fdf6e3;
+    --radius: 6px;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --max-w: 720px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--canvas);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 48px) clamp(16px, 4vw, 32px);
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 20px;
+    margin-bottom: 32px;
+  }
+  .header-meta {
+    font-size: 13px;
+    color: var(--ink-muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: clamp(22px, 4.5vw, 28px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .header-sub {
+    margin-top: 8px;
+    font-size: 15px;
+    color: var(--ink-secondary);
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-num {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .section h2 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+  }
+  .section h2 span { flex: 1; }
+
+  .lead {
+    font-size: 15px;
+    color: var(--ink-secondary);
+    margin-bottom: 14px;
+    padding-left: 38px;
+  }
+
+  /* Key point */
+  .key-point {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 14px 18px;
+    margin: 12px 0 16px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .key-point strong { color: var(--accent); }
+
+  /* Timeline */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 14px 0;
+  }
+  .timeline-item {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .timeline-date {
+    width: 90px;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    padding-top: 10px;
+    text-align: right;
+  }
+  .timeline-dot {
+    width: 12px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+  }
+  .timeline-dot::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .timeline-dot::after {
+    content: '';
+    flex: 1;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item:last-child .timeline-dot::after { display: none; }
+  .timeline-content {
+    flex: 1;
+    padding: 8px 0 14px;
+    font-size: 14.5px;
+    color: var(--ink-secondary);
+    line-height: 1.6;
+  }
+  .timeline-content strong { color: var(--ink); }
+
+  /* Product table */
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14.5px;
+  }
+  .product-table th {
+    background: var(--accent);
+    color: var(--accent-ink);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .product-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .product-table tr:nth-child(even) td { background: var(--surface-alt); }
+  .product-table .tier-name {
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .product-table .price {
+    font-weight: 600;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* Role cards */
+  .role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  @media (max-width: 500px) {
+    .role-grid { grid-template-columns: 1fr; }
+  }
+  .role-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+  .role-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .role-card p {
+    font-size: 13.5px;
+    color: var(--ink-secondary);
+    line-height: 1.55;
+  }
+
+  /* Finance box */
+  .finance-box {
+    background: var(--gold-light);
+    border: 1px solid #e8d48b;
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin: 14px 0;
+  }
+  .finance-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    font-size: 14.5px;
+  }
+  .finance-row + .finance-row { border-top: 1px solid #e8d48b; }
+  .finance-label { color: var(--ink-secondary); }
+  .finance-value { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .finance-value.highlight { color: var(--gold); font-size: 16px; }
+
+  /* Action list */
+  .action-list {
+    list-style: none;
+    counter-reset: action;
+  }
+  .action-list li {
+    counter-increment: action;
+    padding: 12px 0 12px 42px;
+    position: relative;
+    font-size: 14.5px;
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border);
+  }
+  .action-list li:last-child { border-bottom: none; }
+  .action-list li::before {
+    content: counter(action);
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .action-deadline {
+    display: inline-block;
+    background: var(--warn-light);
+    color: var(--warn);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+  }
+
+  /* Tips */
+  .tips {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-top: 8px;
+  }
+  .tips h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .tips ul {
+    list-style: none;
+    font-size: 14px;
+    color: var(--ink-secondary);
+    line-height: 1.7;
+  }
+  .tips li { padding: 4px 0 4px 20px; position: relative; }
+  .tips li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-align: center;
+  }
+
+  /* Print */
+  @media print {
+    body { background: #fff; font-size: 14px; }
+    .page { max-width: 100%; padding: 0; }
+    .section { page-break-inside: avoid; }
+    .role-grid { grid-template-columns: 1fr 1fr; }
+    .key-point, .finance-box, .tips { border-width: 1px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="header-meta">守信财税 · DPP业务线启动 · 合伙人沟通提纲</div>
+    <h1>欧盟数字产品护照（DPP）<br>业务线合伙人谈判提纲</h1>
+    <div class="header-sub">2026年9月15日下午 · 守信财税</div>
+  </header>
+
+  <main>
+
+    <!-- Section 1 -->
+    <section class="section">
+      <h2><span class="section-num">1</span><span>为什么是现在</span></h2>
+      <p class="lead">给合伙人建立紧迫感——这是一个时间窗口，不是远期规划。</p>
+
+      <div class="key-point">
+        <strong>核心信息：</strong>2027年2月电池护照强制执行，距今不到6个月。欧盟 DPP 服务商认证体系尚未出台，市场空白期就这一两年。守信18年财税合规底子，做 DPP 咨询是能力延伸，不是跨界。<br><br>
+        <strong>一句话点题：</strong>现在进场是先行者，半年后进场是跟风者。
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2027.2.18</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content"><strong>电池护照强制执行</strong>（电动汽车电池、&gt;2kWh工业电池），缺护照无法清关</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2027年内</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content"><strong>纺织品、轮胎、铝、建材</strong> 分批强制</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2028-2030</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">家具、床垫、ICT产品、玩具全面覆盖，<strong>超90%出口商品纳入管控</strong></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">待定</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">欧盟 DPP 服务商<strong>正式认证体系出台</strong>——谁先积累案例谁先拿认证</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="section">
+      <h2><span class="section-num">2</span><span>我们卖什么 & 怎么定价</span></h2>
+      <p class="lead">完全蓝海，定价策略：先服务肯花钱的人，红海再降价。</p>
+
+      <div class="key-point" style="background:#fef3ed; border-left-color:#c45d2c;">
+        <strong>定价讨论背景：</strong>DPP 合规咨询在国内是<strong>完全空白市场</strong>，没有竞争对手、没有价格参照。定价策略需要三人共同商议——是走高价路线服务愿付费的头部客户，还是先以中等价格跑量建口碑，当场定。
+      </div>
+
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th style="width:80px">层级</th>
+            <th>产品内容</th>
+            <th style="width:130px">定价</th>
+            <th style="width:100px">作用</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tier-name">引流层</td>
+            <td>DPP合规快速诊断报告<br>（1对1出具，非自助工具）</td>
+            <td class="price" style="color:var(--ink-muted); font-style:italic;">面议</td>
+            <td>筛选优质客户</td>
+          </tr>
+          <tr>
+            <td class="tier-name">核心层</td>
+            <td>DPP全流程合规咨询包<br>（法规解读 + 差距分析 + 行动路线图 + 欧代/LCA/赋码全链条对接 + 注册辅导）</td>
+            <td class="price" style="color:var(--ink-muted); font-style:italic;">面议</td>
+            <td><strong>主力营收</strong></td>
+          </tr>
+          <tr>
+            <td class="tier-name">绑定层</td>
+            <td>年度DPP合规托管<br>（数据动态更新 + 电子签章年审 + 法规变更跟踪 + 海关应急支持）</td>
+            <td class="price" style="color:var(--ink-muted); font-style:italic;">面议</td>
+            <td>长期现金流</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="key-point">
+        <strong>跟合伙人重点聊：</strong>定价策略——蓝海阶段怎么定、先服务哪类客户、后续怎么调价。定价当场讨论确定。
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="section">
+      <h2><span class="section-num">3</span><span>三角形架构：谁干什么</span></h2>
+      <p class="lead">三个核心合伙人，三角稳定，分工明确。</p>
+
+      <div class="role-grid" style="grid-template-columns: 1fr;">
+        <div class="role-card" style="border-left: 4px solid var(--accent); background: var(--accent-light);">
+          <h4>🔧 技术合规 — 先生（洪淳宇）</h4>
+          <p><strong>核心职责：</strong>法规主攻 + 技术标准 + 交付质量<br>
+          啃 ESPR 法规、翻译 DPP 技术标准、制定行业 SOP、把控咨询包交付质量。成为团队 DPP 第一人——客户信任的专家。</p>
+        </div>
+      </div>
+      <div class="role-grid">
+        <div class="role-card">
+          <h4>📢 市场拓展 — 市场合伙人</h4>
+          <p><strong>核心职责：</strong>客户获取 + 商务谈判 + 渠道建设<br>
+          筛现有客户名单、拜访首批目标客户、谈合作签约、建立行业口碑和转介绍网络。</p>
+        </div>
+        <div class="role-card">
+          <h4>💻 IT底层 — 技术合伙人</h4>
+          <p><strong>核心职责：</strong>平台搭建 + 数据系统 + 技术对接<br>
+          DPP数据管理平台开发、欧盟 Registry API 对接、企业 ERP 集成、赋码系统技术评估。IT 行业资深背景，是技术落地的关键。</p>
+        </div>
+      </div>
+
+      <div class="key-point">
+        <strong>跟合伙人讲清楚：</strong>这个三角架构天然覆盖 DPP 业务的三个核心——法规能力（先生）+ 客户来源（市场）+ 技术交付（IT）。<strong>缺一不可，三人各管一摊，互相不交叉。</strong><br><br>
+        外部只需补齐两样：① 碳足迹核算机构（LCA）合作；② 欧盟授权代表（欧代）合作。其余全靠自己。
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="section">
+      <h2><span class="section-num">4</span><span>算一笔账（会上讨论）</span></h2>
+      <p class="lead">定价待定，先把账的逻辑理清楚，数字当场一起算。</p>
+
+      <div class="finance-box">
+        <div class="finance-row">
+          <span class="finance-label">启动投入</span>
+          <span class="finance-value">2-3个月、几万元</span>
+        </div>
+        <div class="finance-row">
+          <span class="finance-label">投入构成</span>
+          <span class="finance-value">人力学习 + LCA/欧代合作对接 + 平台MVP开发</span>
+        </div>
+        <div class="finance-row">
+          <span class="finance-label">盈亏平衡点</span>
+          <span class="finance-value">待定（根据定价倒推）</span>
+        </div>
+        <div class="finance-row">
+          <span class="finance-label">定价策略</span>
+          <span class="finance-value">蓝海定高价，先服务愿付费客户</span>
+        </div>
+        <div class="finance-row">
+          <span class="finance-label">收入模型</span>
+          <span class="finance-value">咨询包（一次性）+ 年度托管（持续）</span>
+        </div>
+        <div class="finance-row">
+          <span class="finance-label">核心逻辑</span>
+          <span class="finance-value">蓝海定价 → 案例积累 → 口碑裂变 → 红海走量</span>
+        </div>
+      </div>
+
+      <div class="key-point">
+        <strong>当场要定的数字：</strong>三层产品分别定多少？首批目标客户愿意付多少？盈亏平衡需要几个客户？这些数字三个人一起算、一起认。
+      </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="section">
+      <h2><span class="section-num">5</span><span>第一步干什么</span></h2>
+      <p class="lead">建议当场拍板三件事，定人定时间。</p>
+
+      <ol class="action-list">
+        <li>
+          <span class="action-deadline">本周内</span>
+          <strong>筛客户名单</strong><br>
+          现有客户中标记所有出口欧盟的企业，按电池、纺织、电子、建材优先级排序，锁定首批拜访目标。
+        </li>
+        <li>
+          <span class="action-deadline">两周内</span>
+          <strong>锁定合作伙伴</strong><br>
+          对接 1-2 家有资质的碳足迹核算机构（LCA机构），谈合作模式和分润机制；同步联系欧代机构。
+        </li>
+        <li>
+          <span class="action-deadline">一个月内</span>
+          <strong>市场测试</strong><br>
+          用已做好的 DPP 科普信息图和内容，做一场线上 DPP 科普直播，测试市场反应，收集潜在客户线索。
+        </li>
+      </ol>
+    </section>
+
+    <!-- Tips -->
+    <section class="section">
+      <div class="tips">
+        <h3>💡 谈判策略提醒</h3>
+        <ul>
+          <li><strong>先讲机会，再讲风险</strong>——合伙人体制下，先让人兴奋再谈谨慎</li>
+          <li><strong>定价要一起定</strong>——三个层级分别多少，三个人一起算、一起认、一起扛</li>
+          <li><strong>三角架构讲清楚</strong>——技术（先生）+ 市场 + IT，三人各司其职，外部只需对接 LCA 和欧代</li>
+          <li><strong>不需要资格证</strong>——DPP 咨询没有特许牌照要求，先干起来边干边补</li>
+          <li><strong>定一个回顾节点</strong>——一个月后碰一次，看客户反馈和市场热度，再决定是否加大投入</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    守信财税 · DPP业务线合伙人谈判提纲 · 2026.9.15 · 内部使用
+  </footer>
+
+</div>
+</body>
+</html>

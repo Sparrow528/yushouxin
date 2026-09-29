@@ -1,0 +1,1772 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP业务 市场营销手册 | 守信财税</title>
+<style>
+:root {
+  --c-primary: #1B5E20;
+  --c-primary-dark: #0D3B13;
+  --c-secondary: #4CAF50;
+  --c-bg-light: #E8F5E9;
+  --c-bg: #F5FBF5;
+  --c-surface: #ffffff;
+  --c-gold: #FFD700;
+  --c-gold-dark: #C7A600;
+  --c-text: #1a1a1a;
+  --c-text-secondary: #4a5568;
+  --c-text-muted: #718096;
+  --c-border: #c8e6c9;
+  --c-border-light: #e0f2e0;
+  --c-danger: #c62828;
+  --c-warning: #e65100;
+  --c-info: #0d47a1;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --sidebar-w: 260px;
+  --content-max: 900px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+/* Sidebar Navigation */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--c-primary-dark);
+  color: #fff;
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-header .brand {
+  font-size: 14px;
+  color: var(--c-gold);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-header .brand-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 4px;
+}
+
+.sidebar-nav { flex: 1; padding: 12px 0; }
+
+.sidebar-nav a {
+  display: block;
+  padding: 10px 20px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 13.5px;
+  line-height: 1.4;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-left-color: var(--c-gold);
+}
+
+.sidebar-nav .nav-chapter {
+  font-weight: 600;
+  color: #fff;
+  margin-top: 4px;
+}
+
+.sidebar-nav .nav-sub {
+  padding-left: 36px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 200;
+  background: var(--c-primary);
+  color: #fff;
+  border: none;
+  width: 44px; height: 44px;
+  border-radius: var(--radius);
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+/* Main content */
+.main-content {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+
+/* Cover section */
+.cover {
+  background: linear-gradient(135deg, var(--c-primary-dark) 0%, var(--c-primary) 50%, var(--c-secondary) 100%);
+  color: #fff;
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -30%;
+  width: 80%; height: 200%;
+  background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cover-badge {
+  display: inline-block;
+  background: rgba(255,215,0,0.2);
+  border: 1px solid var(--c-gold);
+  color: var(--c-gold);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.cover h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.cover .subtitle {
+  font-size: clamp(16px, 2.5vw, 22px);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 32px;
+}
+
+.cover .meta {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+}
+
+.cover .meta strong { color: var(--c-gold); }
+
+/* Section styling */
+.section {
+  padding: 48px 0 32px;
+  border-bottom: 1px solid var(--c-border-light);
+}
+
+.section:last-child { border-bottom: none; }
+
+.section-number {
+  display: inline-block;
+  background: var(--c-primary);
+  color: #fff;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+h2 {
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--c-primary);
+  margin: 28px 0 14px;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--c-text);
+  margin: 20px 0 10px;
+}
+
+p { margin-bottom: 14px; }
+
+/* TOC */
+.toc {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin: 32px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.toc h3 {
+  margin: 0 0 16px;
+  color: var(--c-primary-dark);
+  font-size: 17px;
+}
+
+.toc ol {
+  list-style: none;
+  counter-reset: toc;
+}
+
+.toc > ol > li {
+  counter-increment: toc;
+  margin-bottom: 8px;
+}
+
+.toc > ol > li::before {
+  content: counter(toc) ". ";
+  font-weight: 700;
+  color: var(--c-primary);
+}
+
+.toc a {
+  color: var(--c-text);
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.6;
+  border-bottom: 1px dashed transparent;
+  transition: border-color 0.2s;
+}
+
+.toc a:hover { border-bottom-color: var(--c-primary); }
+
+/* Cards */
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin: 16px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.card-highlight {
+  border-left: 4px solid var(--c-primary);
+}
+
+.card-gold {
+  border-left: 4px solid var(--c-gold);
+  background: linear-gradient(135deg, #fffef5 0%, #fff 100%);
+}
+
+.card-danger {
+  border-left: 4px solid var(--c-danger);
+  background: #fef5f5;
+}
+
+.card-info {
+  border-left: 4px solid var(--c-info);
+  background: #f5f8ff;
+}
+
+/* Service packages */
+.pkg {
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.pkg-green { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border: 2px solid #81c784; }
+.pkg-blue { background: linear-gradient(135deg, #e3f2fd, #e8eaf6); border: 2px solid #64b5f6; }
+.pkg-red { background: linear-gradient(135deg, #ffebee, #fce4ec); border: 2px solid #ef9a9a; }
+
+.pkg-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.pkg-green .pkg-badge { background: #2e7d32; color: #fff; }
+.pkg-blue .pkg-badge { background: #1565c0; color: #fff; }
+.pkg-red .pkg-badge { background: #c62828; color: #fff; }
+
+.pkg h4 { font-size: 20px; margin: 0 0 8px; }
+.pkg .pkg-price { font-size: 24px; font-weight: 800; color: var(--c-primary-dark); margin: 8px 0; }
+.pkg .pkg-time { font-size: 13px; color: var(--c-text-secondary); }
+
+.pkg ul {
+  list-style: none;
+  margin: 16px 0;
+}
+
+.pkg ul li {
+  padding: 6px 0;
+  padding-left: 24px;
+  position: relative;
+  font-size: 14.5px;
+}
+
+.pkg ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--c-secondary);
+  font-weight: 700;
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--c-border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  background: var(--c-primary);
+  color: #fff;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--c-border-light);
+  vertical-align: top;
+}
+
+tr:nth-child(even) td { background: var(--c-bg-light); }
+tr:last-child td { border-bottom: none; }
+
+/* Callout boxes */
+.callout {
+  padding: 18px 22px;
+  border-radius: var(--radius);
+  margin: 16px 0;
+  font-size: 14.5px;
+}
+
+.callout-urgency {
+  background: #fff3e0;
+  border: 1px solid #ffcc02;
+  border-left: 4px solid var(--c-warning);
+}
+
+.callout-success {
+  background: var(--c-bg-light);
+  border: 1px solid var(--c-border);
+  border-left: 4px solid var(--c-secondary);
+}
+
+.callout-warning {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-left: 4px solid var(--c-gold-dark);
+}
+
+.callout strong { display: block; margin-bottom: 6px; }
+
+/* Countdown */
+.countdown-bar {
+  background: linear-gradient(90deg, var(--c-danger), var(--c-warning));
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 20px 0;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(198,40,40,0.3); }
+  50% { box-shadow: 0 0 16px 4px rgba(198,40,40,0.2); }
+}
+
+/* Scripts / dialogue */
+.script-box {
+  background: #f8faf8;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 14px 0;
+  font-size: 14px;
+  line-height: 1.8;
+  position: relative;
+}
+
+.script-box::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -10px; left: 16px;
+  background: var(--c-primary);
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Objection handling */
+.objection {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.objection-q {
+  background: #ffebee;
+  padding: 14px 20px;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--c-danger);
+  border-bottom: 1px solid var(--c-border-light);
+}
+
+.objection-a {
+  padding: 14px 20px;
+  font-size: 14px;
+  color: var(--c-text);
+  line-height: 1.7;
+}
+
+/* Case study */
+.case-study {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin: 20px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.case-study-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.case-icon {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--c-bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.case-study h4 { margin: 0; font-size: 17px; }
+.case-study .case-tag { font-size: 12px; color: var(--c-text-muted); }
+
+.case-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.case-metric {
+  text-align: center;
+  padding: 12px;
+  background: var(--c-bg-light);
+  border-radius: var(--radius);
+}
+
+.case-metric .num { font-size: 22px; font-weight: 800; color: var(--c-primary); }
+.case-metric .label { font-size: 12px; color: var(--c-text-muted); margin-top: 4px; }
+
+/* Lists */
+ul, ol { margin: 10px 0 14px 20px; }
+li { margin-bottom: 6px; }
+
+/* FAQ */
+.faq-item {
+  border-bottom: 1px solid var(--c-border-light);
+  padding: 14px 0;
+}
+
+.faq-item:last-child { border-bottom: none; }
+
+.faq-q {
+  font-weight: 600;
+  color: var(--c-primary-dark);
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.faq-a { font-size: 14px; color: var(--c-text-secondary); }
+
+/* Tag / badge */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tag-green { background: var(--c-bg-light); color: var(--c-primary); }
+.tag-gold { background: #fff8e1; color: var(--c-gold-dark); }
+.tag-red { background: #ffebee; color: var(--c-danger); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .menu-toggle { display: flex; align-items: center; justify-content: center; }
+  .main-content { margin-left: 0; }
+  .content-wrapper { padding: 60px 20px 60px; }
+  .cover { padding: 60px 20px; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+
+/* Print */
+@media print {
+  .sidebar, .menu-toggle { display: none !important; }
+  .main-content { margin-left: 0; }
+  .content-wrapper { padding: 20px; max-width: 100%; }
+  .cover { padding: 40px 20px; page-break-after: always; }
+  .section { page-break-inside: avoid; }
+  .card, .pkg, .case-study, .objection { break-inside: avoid; }
+  .countdown-bar { animation: none; }
+  a { color: var(--c-primary) !important; }
+}
+
+/* Overlay for mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+.sidebar-overlay.show { display: block; }
+
+/* Scrollbar for sidebar */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+/* Comparison highlight */
+.vs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.vs-col { padding: 16px; border-radius: var(--radius); }
+.vs-col.good { background: var(--c-bg-light); border: 1px solid var(--c-border); }
+.vs-col.bad { background: #fff5f5; border: 1px solid #ffcdd2; }
+
+@media (max-width: 600px) {
+  .vs-row { grid-template-columns: 1fr; }
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+  margin: 20px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--c-border);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 12px 0 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -24px; top: 16px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--c-secondary);
+  border: 2px solid var(--c-surface);
+  box-shadow: 0 0 0 2px var(--c-secondary);
+}
+
+.timeline-date { font-size: 13px; font-weight: 700; color: var(--c-primary); }
+.timeline-text { font-size: 14px; color: var(--c-text-secondary); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<!-- Mobile Menu Toggle -->
+<button class="menu-toggle" aria-label="打开导航菜单" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<nav class="sidebar" aria-label="章节导航">
+  <div class="sidebar-header">
+    <div class="brand">守信财税 SHOUXIN</div>
+    <div class="brand-sub">DPP业务市场营销手册 v1.0</div>
+  </div>
+  <div class="sidebar-nav">
+    <a href="#cover" class="nav-chapter">封面</a>
+    <a href="#toc" class="nav-chapter">目录</a>
+    <a href="#ch1" class="nav-chapter">第一章 市场机会分析</a>
+    <a href="#ch1-1" class="nav-sub">1.1 法规驱动力</a>
+    <a href="#ch1-2" class="nav-sub">1.2 市场规模</a>
+    <a href="#ch1-3" class="nav-sub">1.3 竞争格局</a>
+    <a href="#ch1-4" class="nav-sub">1.4 客户痛点</a>
+    <a href="#ch2" class="nav-chapter">第二章 目标客户画像</a>
+    <a href="#ch2-1" class="nav-sub">2.1 五类核心客户</a>
+    <a href="#ch2-2" class="nav-sub">2.2 决策人画像</a>
+    <a href="#ch3" class="nav-chapter">第三章 服务产品体系</a>
+    <a href="#ch3-1" class="nav-sub">3.1 基础包</a>
+    <a href="#ch3-2" class="nav-sub">3.2 标准包</a>
+    <a href="#ch3-3" class="nav-sub">3.3 旗舰包</a>
+    <a href="#ch3-4" class="nav-sub">3.4 增值服务</a>
+    <a href="#ch4" class="nav-chapter">第四章 获客话术与工具</a>
+    <a href="#ch4-1" class="nav-sub">4.1 话术脚本</a>
+    <a href="#ch4-2" class="nav-sub">4.2 异议处理</a>
+    <a href="#ch4-3" class="nav-sub">4.3 自测引流工具</a>
+    <a href="#ch5" class="nav-chapter">第五章 营销渠道与策略</a>
+    <a href="#ch6" class="nav-chapter">第六章 成功案例模板</a>
+    <a href="#ch7" class="nav-chapter">第七章 报价与合同</a>
+    <a href="#appendix" class="nav-chapter">附录</a>
+    <a href="#app-1" class="nav-sub">关键日期卡</a>
+    <a href="#app-2" class="nav-sub">一页传单</a>
+    <a href="#app-3" class="nav-sub">客户FAQ</a>
+    <a href="#app-4" class="nav-sub">竞品对比</a>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+
+<!-- Cover -->
+<header class="cover" id="cover">
+  <div class="cover-badge">内部培训 · 销售团队专用</div>
+  <h1>DPP业务 市场营销手册</h1>
+  <p class="subtitle">获客 · 转化 · 品牌 &nbsp;v1.0</p>
+  <p class="meta">
+    <strong>守信财税</strong> ShouXin Finance & Tax<br>
+    2026年9月 · 创始人 洪淳宇（18年财税实战专家）
+  </p>
+</header>
+
+<div class="content-wrapper">
+
+<!-- TOC -->
+<section id="toc">
+<div class="toc">
+  <h3>📑 目录</h3>
+  <ol>
+    <li><a href="#ch1">第一章 市场机会分析 —— 为什么这是当下最大的合规蓝海</a></li>
+    <li><a href="#ch2">第二章 目标客户画像 —— 精准锁定五类核心客户</a></li>
+    <li><a href="#ch3">第三章 服务产品体系 —— 三档包 + 增值服务</a></li>
+    <li><a href="#ch4">第四章 获客话术与工具 —— 从破冰到成交的全套武器库</a></li>
+    <li><a href="#ch5">第五章 营销渠道与策略 —— 线上线下全覆盖</a></li>
+    <li><a href="#ch6">第六章 成功案例模板 —— 用故事打动客户</a></li>
+    <li><a href="#ch7">第七章 报价与合同 —— 标准化定价与签约流程</a></li>
+    <li><a href="#appendix">附录 —— 关键日期卡 / 一页传单 / 客户FAQ / 竞品对比</a></li>
+  </ol>
+</div>
+</section>
+
+<!-- Chapter 1 -->
+<section class="section" id="ch1">
+<h2><span class="section-number">1</span> 市场机会分析</h2>
+
+<div class="countdown-bar">
+  ⏰ 距 QR 码强制要求（2026年2月18日）已不足 5 个月 &nbsp;|&nbsp; 距电池护照强制生效（2027年2月18日）仅剩约 17 个月
+</div>
+
+<p>欧盟电池法规 (EU) 2023/1542 正在重塑全球电池产业链的合规格局。对中国电池出口企业而言，这不是"是否要做"的问题，而是"多快做完"的问题。</p>
+
+<h3 id="ch1-1">1.1 法规驱动力</h3>
+
+<div class="card card-highlight">
+  <p><strong>核心法规：</strong>(EU) 2023/1542 — 欧盟新电池法规</p>
+  <p><strong>适用范围：</strong>所有在欧盟市场销售的电池产品，包括：</p>
+  <ul>
+    <li><strong>轻型交通工具电池 (LMT)</strong> — 电动自行车、电动滑板车、电动工具等</li>
+    <li><strong>工业电池</strong> — 容量 > 2kWh 的储能系统、UPS 等</li>
+    <li><strong>电动汽车电池 (EV)</strong> — 所有纯电动车、插电混动车动力电池</li>
+    <li><strong>便携式电池</strong> — 消费电子类（后续阶段）</li>
+  </ul>
+</div>
+
+<div class="table-wrap">
+<table>
+  <caption>关键时间节点一览</caption>
+  <thead>
+    <tr><th>日期</th><th>要求</th><th>影响</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2026年2月18日</td><td>QR 码标注要求生效</td><td>所有出口欧盟电池须在包装上标注 QR 码</td></tr>
+    <tr><td>2027年2月18日</td><td>DPP（电池护照）强制上线</td><td>LMT、工业>2kWh、EV 电池必须完成电子护照注册</td></tr>
+    <tr><td>2027年8月18日</td><td>碳足迹声明要求</td><td>需提供全生命周期碳排放数据</td></tr>
+    <tr><td>2031年</td><td>回收料含量最低要求</td><td>电池须含一定比例回收钴、铅、锂、镍</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="ch1-2">1.2 市场规模估算</h3>
+
+<div class="card-grid">
+  <div class="card card-gold">
+    <div style="font-size:28px;font-weight:800;color:var(--c-primary);">2,000+</div>
+    <div style="font-size:13px;color:var(--c-text-muted);">中国电池出口欧盟企业（保守估计）</div>
+  </div>
+  <div class="card card-gold">
+    <div style="font-size:28px;font-weight:800;color:var(--c-primary);">€45B+</div>
+    <div style="font-size:13px;color:var(--c-text-muted);">2025年中国锂电池对欧出口额</div>
+  </div>
+  <div class="card card-gold">
+    <div style="font-size:28px;font-weight:800;color:var(--c-primary);">¥3-6亿</div>
+    <div style="font-size:13px;color:var(--c-text-muted);">DPP合规咨询市场容量（初期）</div>
+  </div>
+</div>
+
+<p><strong>目标客户分层：</strong></p>
+<ul>
+  <li><strong>T1 — 头部电池厂</strong>（宁德时代、比亚迪、亿纬锂能等）：自建团队+外部顾问，单客户¥30万+</li>
+  <li><strong>T2 — 中型专业厂</strong>（500-5000人，年出口额€1000万-€1亿）：最佳成交区间，¥15-30万/单</li>
+  <li><strong>T3 — 小型出口企业</strong>（50-500人，首次接触欧盟合规）：评估包引流，后续升级</li>
+</ul>
+
+<h3 id="ch1-3">1.3 竞争格局 — 先发优势窗口期</h3>
+
+<div class="vs-row">
+  <div class="vs-col good">
+    <h4 style="color:var(--c-primary);margin:0 0 8px;">✅ 市场现状（我们的机会）</h4>
+    <ul style="margin:0;font-size:14px;">
+      <li>国内专注 DPP 合规咨询的机构极少</li>
+      <li>传统认证机构（SGS/TÜV）仅提供检测，不做全流程</li>
+      <li>欧洲咨询公司报价高（€5万+）且不懂中国市场</li>
+      <li>律所只提供法律意见，不做数据规划和系统对接</li>
+    </ul>
+  </div>
+  <div class="vs-col bad">
+    <h4 style="color:var(--c-danger);margin:0 0 8px;">⚠️ 窗口期预判</h4>
+    <ul style="margin:0;font-size:14px;">
+      <li>2026年下半年：大量机构涌入，价格战开始</li>
+      <li>2027年初：市场进入红海，客户已被瓜分</li>
+      <li><strong>现在到2026年底 = 黄金窗口期</strong></li>
+      <li>先发者建立品牌认知和客户口碑</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="ch1-4">1.4 客户核心痛点</h3>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>🔒 法规壁垒</h4>
+    <p style="font-size:14px;">法规全文 200+ 页，Annex XIII 数据要求极其复杂，中文资料几乎为零</p>
+  </div>
+  <div class="card">
+    <h4>🌐 语言障碍</h4>
+    <p style="font-size:14px;">与欧盟机构沟通、eIDAS 认证申请、技术文档准备均需英文/欧盟官方语言</p>
+  </div>
+  <div class="card">
+    <h4>🔐 eIDAS 认证</h4>
+    <p style="font-size:14px;">须通过欧盟认可的 QTSP（合格信任服务提供商）获取数字证书，流程陌生</p>
+  </div>
+  <div class="card">
+    <h4>🏛️ 欧盟授权代表</h4>
+    <p style="font-size:14px;">非欧盟企业必须指定 EU Authorized Representative，企业自身无法解决</p>
+  </div>
+  <div class="card">
+    <h4>💾 数据系统对接</h4>
+    <p style="font-size:14px;">需将供应链数据整合至统一平台，与企业现有 ERP/MES 系统打通</p>
+  </div>
+  <div class="card">
+    <h4>⏱️ 时间紧迫</h4>
+    <p style="font-size:14px;">从评估到上线至少 12-16 周，很多企业已经滞后于最佳启动时间</p>
+  </div>
+</div>
+</section>
+
+<!-- Chapter 2 -->
+<section class="section" id="ch2">
+<h2><span class="section-number">2</span> 目标客户画像</h2>
+
+<h3 id="ch2-1">2.1 五类核心客户</h3>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>客户类型</th><th>典型产品</th><th>对应法规分类</th><th>紧迫度</th><th>预估需求</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>锂电池制造商</strong></td>
+      <td>圆柱/方形/软包电芯及模组</td>
+      <td>LMT / 工业 / EV</td>
+      <td><span class="tag tag-red">极高</span></td>
+      <td>旗舰包</td>
+    </tr>
+    <tr>
+      <td><strong>电动自行车/电动工具厂商</strong></td>
+      <td>E-bike 电池组、电动工具电池包</td>
+      <td>LMT 电池</td>
+      <td><span class="tag tag-red">高</span></td>
+      <td>标准包/旗舰包</td>
+    </tr>
+    <tr>
+      <td><strong>储能系统厂商</strong></td>
+      <td>户用储能、工商业储能柜</td>
+      <td>工业 >2kWh</td>
+      <td><span class="tag tag-red">高</span></td>
+      <td>标准包/旗舰包</td>
+    </tr>
+    <tr>
+      <td><strong>新能源汽车电池供应商</strong></td>
+      <td>动力电池 Pack、CTP/CTC</td>
+      <td>EV 电池</td>
+      <td><span class="tag tag-red">极高</span></td>
+      <td>旗舰包</td>
+    </tr>
+    <tr>
+      <td><strong>电池回收企业</strong></td>
+      <td>梯次利用、湿法/火法回收</td>
+      <td>回收料含量证明</td>
+      <td><span class="tag tag-gold">中</span></td>
+      <td>基础包/标准包</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout callout-urgency">
+  <strong>🎯 优先攻克的「甜蜜客户」</strong>
+  年出口欧盟 €1000万-€1亿、员工 200-2000 人、已有 ISO 体系但缺乏欧盟法规经验的中型电池企业。它们有预算、有动力、决策链短，是最高效的成交对象。
+</div>
+
+<h3 id="ch2-2">2.2 决策人画像</h3>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>👔 CEO / 总经理</h4>
+    <p style="font-size:13.5px;"><strong>关注点：</strong>出口能否继续、成本影响、合规风险</p>
+    <p style="font-size:13.5px;"><strong>说服角度：</strong>不合规 = 失去欧盟市场 = 营收蒸发</p>
+    <p style="font-size:13.5px;"><strong>触达方式：</strong>行业活动、转介绍、高管社群</p>
+  </div>
+  <div class="card">
+    <h4>⚙️ COO / 运营副总</h4>
+    <p style="font-size:13.5px;"><strong>关注点：</strong>执行可行性、时间线、资源投入</p>
+    <p style="font-size:13.5px;"><strong>说服角度：</strong>我们端到端交付，贵司只需配合提供数据</p>
+    <p style="font-size:13.5px;"><strong>触达方式：</strong>专业内容（白皮书/直播）、定向拜访</p>
+  </div>
+  <div class="card">
+    <h4>📋 合规/法规负责人</h4>
+    <p style="font-size:13.5px;"><strong>关注点：</strong>技术细节、数据要求、eIDAS 流程</p>
+    <p style="font-size:13.5px;"><strong>说服角度：</strong>我们懂法规细节，有成功经验，能省你半年摸索</p>
+    <p style="font-size:13.5px;"><strong>触达方式：</strong>技术文章、行业论坛、微信社群</p>
+  </div>
+  <div class="card">
+    <h4>🌍 出口业务负责人</h4>
+    <p style="font-size:13.5px;"><strong>关注点：</strong>客户催促、订单风险、交货时间</p>
+    <p style="font-size:13.5px;"><strong>说服角度：</strong>欧洲客户已经在问 DPP 进度了，晚上不如早做</p>
+    <p style="font-size:13.5px;"><strong>触达方式：</strong>展会接触、邮件开发、LinkedIn</p>
+  </div>
+</div>
+</section>
+
+<!-- Chapter 3 -->
+<section class="section" id="ch3">
+<h2><span class="section-number">3</span> 服务产品体系</h2>
+
+<p>三档服务包覆盖从"初步了解"到"全面上线"的全旅程，搭配增值模块满足个性化需求。</p>
+
+<!-- 基础包 -->
+<div class="pkg pkg-green" id="ch3-1">
+  <span class="pkg-badge">🟢 基础包</span>
+  <h4>DPP 差距评估</h4>
+  <div class="pkg-price">¥15,000 — ¥30,000</div>
+  <div class="pkg-time">⏱ 交付周期：1-2 周</div>
+  <ul>
+    <li>使用《DPP合规差距评估检查表》（01号工具）全面诊断</li>
+    <li>覆盖产品分类、数据就绪度、供应商情况、现有体系评估</li>
+    <li>输出《DPP合规评估报告》（02号工具），含优先级建议</li>
+    <li>1次线上反馈会（60分钟）+ 书面问答</li>
+    <li>提供后续服务升级路径和报价</li>
+  </ul>
+  <p style="font-size:13px;color:var(--c-text-muted);"><strong>适用客户：</strong>初步了解 DPP 的企业，或需要内部汇报依据的合规负责人</p>
+</div>
+
+<!-- 标准包 -->
+<div class="pkg pkg-blue" id="ch3-2">
+  <span class="pkg-badge">🔵 标准包</span>
+  <h4>数据规划与手册编制</h4>
+  <div class="pkg-price">¥50,000 — ¥100,000</div>
+  <div class="pkg-time">⏱ 交付周期：4-8 周</div>
+  <ul>
+    <li>包含基础包全部内容</li>
+    <li>定制化《DPP数据清单》（03号工具）—— 按产品 SKU 梳理所需数据</li>
+    <li>编制《DPP数据管理手册》（04号工具）—— 数据收集、验证、更新流程</li>
+    <li>设计《供应商数据问卷》（05号工具）—— 中英文对照，可直接下发</li>
+    <li>协助建立内部 DPP 合规管理制度</li>
+    <li>2次线上/线下工作坊 + 不限邮件沟通</li>
+  </ul>
+  <p style="font-size:13px;color:var(--c-text-muted);"><strong>适用客户：</strong>已有初步认知，需要系统化数据管理方案的企业</p>
+</div>
+
+<!-- 旗舰包 -->
+<div class="pkg pkg-red" id="ch3-3">
+  <span class="pkg-badge">🔴 旗舰包</span>
+  <h4>全链条注册上线</h4>
+  <div class="pkg-price">¥150,000 — ¥300,000</div>
+  <div class="pkg-time">⏱ 交付周期：12-16 周</div>
+  <ul>
+    <li>包含标准包全部内容</li>
+    <li>eIDAS 数字证书申请全程协助（对接 QTSP）</li>
+    <li>欧盟授权代表（EU Authorized Representative）安排</li>
+    <li>数据平台对接与技术选型建议</li>
+    <li>Annex XIII 全部数据字段填报与审核</li>
+    <li>代理完成 EU Battery Passport Registry 注册</li>
+    <li>QR 码生成与合规验证</li>
+    <li>上线后 3 个月免费维护期</li>
+    <li>专属项目经理，每周进度同步</li>
+  </ul>
+  <p style="font-size:13px;color:var(--c-text-muted);"><strong>适用客户：</strong>需要端到端解决方案、确保按时合规的出口企业</p>
+</div>
+
+<h3 id="ch3-4">增值服务模块</h3>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>增值项目</th><th>说明</th><th>单独报价</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>eIDAS 证书加速办理</td><td>对接 QTSP 完成数字证书申请，含材料准备与流程跟进</td><td>¥8,000-15,000</td></tr>
+    <tr><td>欧盟授权代表服务</td><td>提供/安排欧盟境内授权代表，年费制</td><td>¥20,000-40,000/年</td></tr>
+    <tr><td>持续合规维护</td><td>法规更新跟踪、数据年度审核、护照续期管理</td><td>¥30,000-60,000/年</td></tr>
+    <tr><td>供应链数据审计</td><td>对上游供应商数据进行独立验证与审计</td><td>¥20,000-50,000</td></tr>
+    <tr><td>碳足迹数据服务</td><td>全生命周期碳足迹核算（LCA），对接 Annex IX 要求</td><td>¥50,000-120,000</td></tr>
+    <tr><td>培训与内训</td><td>DPP 合规内部培训（半天/全天），可定制内容</td><td>¥5,000-15,000/次</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout callout-success">
+  <strong>💡 套餐优惠策略</strong>
+  基础包客户升级标准包：补差价享 9 折 &nbsp;|&nbsp; 标准包客户升级旗舰包：补差价享 95 折 &nbsp;|&nbsp; 直接签旗舰包：赠送 1 次内部培训（价值¥10,000）
+</div>
+</section>
+
+<!-- Chapter 4 -->
+<section class="section" id="ch4">
+<h2><span class="section-number">4</span> 获客话术与工具</h2>
+
+<h3 id="ch4-1">4.1 话术脚本</h3>
+
+<h4>📞 电话陌拜脚本（30秒版）</h4>
+<div class="script-box" data-label="话术">
+<p>「您好，[姓名]总，我是守信财税的[你的名字]。</p>
+<p>我们专门帮助中国电池企业解决欧盟电池护照（DPP）合规问题。根据欧盟新法规，<strong>2027年2月起，所有出口欧盟的锂电池都必须有电子护照</strong>，否则无法清关。</p>
+<p>目前国内能做全流程合规服务的机构非常少，我们已经帮助多家企业启动了合规准备。</p>
+<p>不知道贵司目前 DPP 准备情况如何？方便的话我可以发一份<strong>免费的 DPP 合规自测表</strong>给您，5分钟就能了解差距在哪。」</p>
+</div>
+
+<h4>📧 邮件模板 — 首次触达</h4>
+<div class="script-box" data-label="邮件">
+<p><strong>主题：</strong>欧盟电池护照倒计时 — 贵司准备好了吗？（附免费自测表）</p>
+<p>[姓名]总 您好：</p>
+<p>冒昧打扰。我是守信财税创始人洪淳宇，18年财税合规从业经验。</p>
+<p>根据欧盟法规 (EU) 2023/1542，<strong>2027年2月18日起</strong>，所有出口欧盟的 LMT 电池、工业电池（>2kWh）和电动汽车电池，都必须完成「电池护照」（Digital Product Passport）注册，否则将无法进入欧盟市场。</p>
+<p>目前距离强制生效仅剩约 <strong>17 个月</strong>。考虑到从评估到上线至少需要 12-16 周，加上 eIDAS 数字证书和欧盟授权代表的办理时间，<strong>现在启动已不算早</strong>。</p>
+<p>守信财税是国内较早专注 DPP 合规服务的机构，我们提供：</p>
+<ul>
+  <li>✅ DPP 差距评估（1-2周出报告）</li>
+  <li>✅ 数据规划与手册编制</li>
+  <li>✅ eIDAS 证书 + 欧盟代表 + Registry 注册全流程</li>
+</ul>
+<p>附件是我们整理的 <strong>《DPP合规自测表》</strong>，贵司可以花5分钟做个快速诊断。如需进一步交流，我随时方便。</p>
+<p>祝商祺<br>
+洪淳宇<br>
+守信财税 | 18年财税合规经验<br>
+[电话] [微信] [邮箱]</p>
+</div>
+
+<h4>💬 微信消息模板</h4>
+<div class="script-box" data-label="微信">
+<p>[姓名]总好，我是守信财税的[你的名字]。</p>
+<p>最近很多电池行业的客户在问欧盟 DPP（电池护照）的事，不知道贵司关注了没有？</p>
+<p>简单说：欧盟要求 2027年2月起，出口欧盟的电池<strong>必须有电子护照</strong>，涉及几百个数据字段，还要 eIDAS 数字证书和欧盟授权代表。</p>
+<p>我们整理了一份<strong>「DPP合规自测表」</strong>（18道题），可以快速评估目前的准备情况。要不要我发您一份？免费的，很多客户反馈很有参考价值。</p>
+</div>
+
+<h4>📋 首次客户会议议程模板</h4>
+<div class="script-box" data-label="会议议程">
+<p><strong>会议时长：</strong>45-60 分钟</p>
+<p><strong>议程：</strong></p>
+<ol>
+  <li><strong>破冰（5分钟）</strong>—— 公司介绍 + 行业背景，建立专业信任</li>
+  <li><strong>客户现状了解（10分钟）</strong>—— 产品类型、出口欧盟占比、已知合规进展</li>
+  <li><strong>DPP 法规要点解读（10分钟）</strong>—— 关键时间线 + 核心要求 + 违规后果</li>
+  <li><strong>客户差距初判（10分钟）</strong>—— 基于客户描述，现场指出关键缺口</li>
+  <li><strong>服务方案介绍（10分钟）</strong>—— 三档包介绍 + 类似案例分享</li>
+  <li><strong>下一步约定（5分钟）</strong>—— 发送评估表 / 安排现场调研 / 发送报价</li>
+</ol>
+<p><strong>会后动作：</strong>24小时内发送会议纪要 + 定制化方案建议书</p>
+</div>
+
+<h3 id="ch4-2">4.2 常见异议处理</h3>
+
+<div class="objection">
+  <div class="objection-q">❌ 异议1：「2027年才强制，不着急」</div>
+  <div class="objection-a">
+    <strong>应对要点：</strong><br>
+    「理解您的想法。不过有两点需要提醒您：第一，<strong>2026年2月就要标注 QR 码</strong>，这比大多数人想的要早得多；第二，从评估到上线至少 12-16 周，eIDAS 证书办理还要额外 4-8 周。很多先行企业去年就启动了。现在开始其实刚好来得及，再晚可能就要赶工或者错过节点了。」
+  </div>
+</div>
+
+<div class="objection">
+  <div class="objection-q">❌ 异议2：「费用太高了」</div>
+  <div class="objection-a">
+    <strong>应对要点：</strong><br>
+    「从绝对数看确实是一笔投入。不过换个角度：如果因为 DPP 不合规导致产品被欧盟海关扣押，一天的损失可能就是几十万。更严重的话，被取消市场准入资格，整个欧盟市场就丢了。相比这些风险，十几万的合规投入其实是很划算的保险。而且我们的评估包只要 1.5-3 万，可以先试水看效果。」
+  </div>
+</div>
+
+<div class="objection">
+  <div class="objection-q">❌ 异议3：「我们自己团队能做」</div>
+  <div class="objection-a">
+    <strong>应对要点：</strong><br>
+    「有团队是好事，说明贵司很重视。不过 DPP 合规涉及几个比较特殊的环节：一是 eIDAS 数字证书需要通过欧盟认可的 QTSP 申请，流程很陌生；二是必须有一个欧盟境内的授权代表，企业自己无法解决；三是 Annex XIII 有几百个数据字段，需要把供应链数据全部结构化。这些即使是大型电池厂的合规团队也需要外部支持。我们可以和您的团队配合，不是完全替代。」
+  </div>
+</div>
+
+<div class="objection">
+  <div class="objection-q">❌ 异议4：「等竞争对手先做，看看情况再说」</div>
+  <div class="objection-a">
+    <strong>应对要点：</strong><br>
+    「策略上理解。但换个角度：先做的企业不仅能按时合规，还能在欧盟客户面前建立信任优势。很多欧洲采购商已经在供应商评估中加入 DPP 能力指标了。而且现在做，服务机构的时间充裕，方案质量更好；等到大家挤在一起做，一是排不上队，二是赶工质量难以保证。」
+  </div>
+</div>
+
+<div class="objection">
+  <div class="objection-q">❌ 异议5：「法规还不明确，实施细则还没出来」</div>
+  <div class="objection-a">
+    <strong>应对要点：</strong><br>
+    「核心法规 (EU) 2023/1542 已经于 2023年8月正式发布了，时间线和主要要求都是确定的。实施细则（delegated acts）会在某些技术细节上补充，但大框架不会变。现在做的评估和数据梳理工作，无论细则怎么调整都用得上。等细则全出来再动，时间上可能来不及。」
+  </div>
+</div>
+
+<div class="objection">
+  <div class="objection-q">❌ 异议6：「我们有欧洲代理/办事处了」</div>
+  <div class="objection-a">
+    <strong>应对要点：</strong><br>
+    「有欧洲团队是很好的基础。不过 DPP 注册和一般的贸易代理是两回事：它需要通过 eIDAS 数字证书在 EU Battery Passport Registry 系统里完成注册，涉及特定的数据字段填报和技术对接。一般的欧洲代理商或办事处通常不具备这个能力。我们可以和您现有的欧洲团队配合，他们负责当地联络，我们负责 DPP 技术合规部分。」
+  </div>
+</div>
+
+<div class="objection">
+  <div class="objection-q">❌ 异议7：「数据太多了，太复杂了」</div>
+  <div class="objection-a">
+    <strong>应对要点：</strong><br>
+    「您说得对，这确实是最复杂的部分。Annex XIII 涉及原材料来源、化学成分、碳足迹、回收含量等几百个数据字段，还要从供应链上下游收集。但这恰恰是您需要我们的原因——我们的核心工作就是帮您把这些数据结构化、标准化，让复杂的合规要求变成可执行的数据收集流程。您不需要自己理清所有细节，这正是我们的专业所在。」
+  </div>
+</div>
+
+<div class="objection">
+  <div class="objection-q">❌ 异议8：「先看看再说吧」</div>
+  <div class="objection-a">
+    <strong>应对要点：</strong><br>
+    「完全理解，这是个重要决策。不过我有两个建议：第一，时间窗口确实在收窄，我们每个季度只能接有限数量的旗舰包客户，目前名额已经排到 Q4 了；第二，不如先从免费的 DPP 自测表开始，18 道题，5分钟就能完成，至少能知道贵司目前处于什么位置。如果分数理想，恭喜您；如果有差距，我们也可以帮您规划一下优先级，不一定马上要花钱做项目。」
+  </div>
+</div>
+
+<h3 id="ch4-3">4.3 DPP 合规自测引流工具</h3>
+
+<div class="card card-gold">
+  <h4>🧪 使用《DPP 合规自测表》（07号工具）作为获客利器</h4>
+  <p><strong>自测表共 18 道题</strong>，覆盖 6 大维度：产品分类、数据就绪度、供应链管理能力、eIDAS 准备、欧盟代表、时间规划。</p>
+  <p><strong>引流流程：</strong></p>
+  <ol>
+    <li>通过邮件/微信/展会将自测表发给潜在客户</li>
+    <li>客户完成后回传，我们免费评分并出具简易雷达图</li>
+    <li>基于评分结果安排 30 分钟电话解读</li>
+    <li>解读过程中展示差距 → 推荐对应服务包</li>
+  </ol>
+  <p><strong>转化逻辑：</strong>评分 <strong>&lt;60 分 → 推荐旗舰包</strong>，<strong>60-80 分 → 推荐标准包</strong>，<strong>&gt;80 分 → 推荐基础包验证后转维护</strong></p>
+</div>
+</section>
+
+<!-- Chapter 5 -->
+<section class="section" id="ch5">
+<h2><span class="section-number">5</span> 营销渠道与策略</h2>
+
+<h3>5.1 行业展会 — 最高效的面对面获客</h3>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>展会名称</th><th>时间</th><th>地点</th><th>目标客户</th><th>动作</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>CIBF 中国国际电池展</td><td>每年（关注2026年档期）</td><td>深圳/上海</td><td>电池制造商</td><td>展位+论坛演讲+现场自测</td></tr>
+    <tr><td>世界新能源汽车大会</td><td>年度</td><td>国内轮换</td><td>EV 电池供应商</td><td>技术分享+名片收集</td></tr>
+    <tr><td>储能国际峰会</td><td>年度</td><td>北京/上海</td><td>储能系统厂商</td><td>专题演讲+展位</td></tr>
+    <tr><td>中国国际电动自行车展</td><td>年度</td><td>上海</td><td>E-bike/工具厂商</td><td>现场评估+扫码送白皮书</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>展会获客 SOP：</strong></p>
+<ul>
+  <li>展前：朋友圈预热 + 邀请目标客户到展位，准备 DPP 白皮书作为赠品</li>
+  <li>展中：设置「DPP 合规自测」二维码扫码台，现场出分 + 加微信</li>
+  <li>展后：48小时内跟进所有留资客户，发送定制化 DPP 简报</li>
+</ul>
+
+<h3>5.2 线上内容矩阵</h3>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>📱 抖音短视频</h4>
+    <p style="font-size:14px;"><strong>内容方向：</strong>60秒法规解读、DPP 避坑指南、真实案例分析</p>
+    <p style="font-size:14px;"><strong>发布频率：</strong>每周 2-3 条</p>
+    <p style="font-size:14px;"><strong>目标：</strong>建立「DPP 合规找守信」的品牌认知</p>
+  </div>
+  <div class="card">
+    <h4>📝 微信公众号</h4>
+    <p style="font-size:14px;"><strong>内容方向：</strong>深度法规解读、行业分析、实操指南、客户案例</p>
+    <p style="font-size:14px;"><strong>发布频率：</strong>每周 1-2 篇</p>
+    <p style="font-size:14px;"><strong>目标：</strong>SEO + 长尾获客 + 专业形象沉淀</p>
+  </div>
+  <div class="card">
+    <h4>👥 行业社群</h4>
+    <p style="font-size:14px;"><strong>渠道：</strong>微信群、LinkedIn 电池行业群组、知识星球</p>
+    <p style="font-size:14px;"><strong>内容：</strong>法规更新速递、政策解读、答疑互动</p>
+    <p style="font-size:14px;"><strong>目标：</strong>精准触达决策人，建立行业影响力</p>
+  </div>
+</div>
+
+<h3>5.3 合作伙伴生态</h3>
+
+<div class="card">
+  <div class="table-wrap" style="margin:0;border:none;">
+  <table>
+    <thead>
+      <tr><th>合作类型</th><th>合作方式</th><th>互赢价值</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>行业协会</strong></td><td>联合举办 DPP 合规培训/论坛</td><td>协会获内容，我们获精准客户</td></tr>
+      <tr><td><strong>律所</strong></td><td>法务+合规服务打包推荐</td><td>律所做法务部分，我们做数据+注册</td></tr>
+      <tr><td><strong>认证机构</strong></td><td>检测认证 + DPP 咨询互相推荐</td><td>共享客户资源，互补服务</td></tr>
+      <tr><td><strong>跨境电商平台</strong></td><td>平台内 DPP 合规服务推荐</td><td>平台提升卖家合规率，我们获客</td></tr>
+      <tr><td><strong>ERP/MES 软件商</strong></td><td>技术对接合作，系统层面打通</td><td>共同服务客户，增加客户粘性</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<h3>5.4 内容营销策略</h3>
+
+<div class="callout callout-success">
+  <strong>📚 免费内容产品矩阵</strong>
+  <ul style="margin:8px 0 0;">
+    <li><strong>《DPP 合规白皮书》</strong> — 30页深度指南，作为核心引流物料</li>
+    <li><strong>《DPP 法规月报》</strong> — 每月更新，法规动态 + 实操要点</li>
+    <li><strong>《DPP 合规自测表》</strong> — 18题快速诊断，获客利器</li>
+    <li><strong>行业案例集</strong> — 脱敏后的成功案例，建立信任</li>
+    <li><strong>关键日期卡</strong> — 可打印的合规日历，办公桌常驻物料</li>
+  </ul>
+</div>
+
+<h3>5.5 转介绍激励计划</h3>
+
+<div class="card">
+  <h4>🤝 「电池合规联盟」转介绍计划</h4>
+  <ul>
+    <li><strong>推荐奖励：</strong>成功签约客户，推荐人获合同金额 10% 的服务抵扣券</li>
+    <li><strong>双向优惠：</strong>被推荐客户享首次服务 95 折</li>
+    <li><strong>年度TOP推荐人：</strong>额外赠送免费 DPP 年度维护服务</li>
+    <li><strong>适用人群：</strong>已成交客户、行业协会、合作伙伴</li>
+  </ul>
+</div>
+</section>
+
+<!-- Chapter 6 -->
+<section class="section" id="ch6">
+<h2><span class="section-number">6</span> 成功案例模板</h2>
+
+<p>以下为案例模板结构，待实际客户项目完成后填入真实数据。每个案例均须获得客户书面授权后方可公开使用。</p>
+
+<!-- Case 1 -->
+<div class="case-study">
+  <div class="case-study-header">
+    <div class="case-icon">🔋</div>
+    <div>
+      <h4>案例一：某锂电池制造商 — 从评估到上线全流程</h4>
+      <span class="case-tag">旗舰包客户 · [待填入行业细分]</span>
+    </div>
+  </div>
+  <div class="card-grid" style="margin:0;">
+    <div class="card" style="margin:0;">
+      <h4 style="font-size:14px;">📌 客户概况</h4>
+      <p style="font-size:13px;">[企业名称]，成立于[年份]，员工[人数]人，年出口欧盟营收约[金额]。主要产品：[产品类型]。</p>
+    </div>
+    <div class="card" style="margin:0;">
+      <h4 style="font-size:14px;">⚡ 面临挑战</h4>
+      <p style="font-size:13px;">• 欧盟客户已开始询问 DPP 进度<br>• 内部无专人熟悉 EU 2023/1542<br>• 供应链数据未结构化，收集困难<br>• 不了解 eIDAS 和 EU 代表要求</p>
+    </div>
+  </div>
+  <div style="margin-top:16px;">
+    <h4 style="font-size:14px;">✅ 解决方案</h4>
+    <p style="font-size:13px;">签约旗舰包，16周完成全流程：差距评估（第1-2周）→ 数据规划与手册编制（第3-6周）→ 供应商数据收集（第5-10周）→ eIDAS 证书办理（第7-12周）→ Registry 注册与 QR 码生成（第13-16周）。</p>
+  </div>
+  <div class="case-metrics">
+    <div class="case-metric">
+      <div class="num">[X]</div>
+      <div class="label">SKU 完成注册</div>
+    </div>
+    <div class="case-metric">
+      <div class="num">16周</div>
+      <div class="label">项目周期</div>
+    </div>
+    <div class="case-metric">
+      <div class="num">[X]</div>
+      <div class="label">数据字段覆盖</div>
+    </div>
+    <div class="case-metric">
+      <div class="num">100%</div>
+      <div class="label">按时合规</div>
+    </div>
+  </div>
+  <p style="font-size:13px;font-style:italic;color:var(--c-text-muted);margin-top:12px;">「[客户评语待填入]」—— [职位] [姓名]</p>
+</div>
+
+<!-- Case 2 -->
+<div class="case-study">
+  <div class="case-study-header">
+    <div class="case-icon">🚲</div>
+    <div>
+      <h4>案例二：某电动自行车厂商 — 快速合规通道</h4>
+      <span class="case-tag">标准包客户 · LMT 电池</span>
+    </div>
+  </div>
+  <div class="card-grid" style="margin:0;">
+    <div class="card" style="margin:0;">
+      <h4 style="font-size:14px;">📌 客户概况</h4>
+      <p style="font-size:13px;">[企业名称]，[地区]，主攻 E-bike 电池组，出口欧洲占比[比例]，SKU 约[数量]个。</p>
+    </div>
+    <div class="card" style="margin:0;">
+      <h4 style="font-size:14px;">⚡ 面临挑战</h4>
+      <p style="font-size:13px;">• LMT 分类确认存在疑问<br>• 供应商（电芯厂）不配合提供数据<br>• 预算有限，需要精准投入</p>
+    </div>
+  </div>
+  <div style="margin-top:16px;">
+    <h4 style="font-size:14px;">✅ 解决方案</h4>
+    <p style="font-size:13px;">签约标准包 + eIDAS 增值模块。重点解决供应商数据问卷设计，中英文对照版本帮助客户直接向供应链下发。8周完成数据规划和手册编制。</p>
+  </div>
+  <div class="case-metrics">
+    <div class="case-metric">
+      <div class="num">[X]</div>
+      <div class="label">SKU 数据梳理</div>
+    </div>
+    <div class="case-metric">
+      <div class="num">8周</div>
+      <div class="label">项目周期</div>
+    </div>
+    <div class="case-metric">
+      <div class="num">[X]</div>
+      <div class="label">供应商回函率</div>
+    </div>
+    <div class="case-metric">
+      <div class="num">¥[X]万</div>
+      <div class="label">项目投入</div>
+    </div>
+  </div>
+  <p style="font-size:13px;font-style:italic;color:var(--c-text-muted);margin-top:12px;">「[客户评语待填入]」—— [职位] [姓名]</p>
+</div>
+
+<!-- Case 3 -->
+<div class="case-study">
+  <div class="case-study-header">
+    <div class="case-icon">⚡</div>
+    <div>
+      <h4>案例三：某储能系统企业 — 多 SKU 数据管理方案</h4>
+      <span class="case-tag">旗舰包客户 · 工业电池 >2kWh</span>
+    </div>
+  </div>
+  <div class="card-grid" style="margin:0;">
+    <div class="card" style="margin:0;">
+      <h4 style="font-size:14px;">📌 客户概况</h4>
+      <p style="font-size:13px;">[企业名称]，[地区]，户用+工商业储能产品线，出口欧洲[国家数]个国家，SKU 超[数量]个。</p>
+    </div>
+    <div class="card" style="margin:0;">
+      <h4 style="font-size:14px;">⚡ 面临挑战</h4>
+      <p style="font-size:13px;">• SKU 数量庞大，数据管理复杂度极高<br>• 产品线跨户用和工商业，数据字段差异大<br>• 已有 ERP 系统但无法直接对接 DPP 平台</p>
+    </div>
+  </div>
+  <div style="margin-top:16px;">
+    <h4 style="font-size:14px;">✅ 解决方案</h4>
+    <p style="font-size:13px;">签约旗舰包。重点设计了分产品线的 DPP 数据管理方案，提出 ERP-DPP 中间层架构建议，帮助客户建立可扩展的数据收集与管理流程。</p>
+  </div>
+  <div class="case-metrics">
+    <div class="case-metric">
+      <div class="num">[X]+</div>
+      <div class="label">SKU 覆盖</div>
+    </div>
+    <div class="case-metric">
+      <div class="num">[X]周</div>
+      <div class="label">项目周期</div>
+    </div>
+    <div class="case-metric">
+      <div class="num">[X]个</div>
+      <div class="label">出口国覆盖</div>
+    </div>
+    <div class="case-metric">
+      <div class="num">[X]%</div>
+      <div class="label">数据自动化率</div>
+    </div>
+  </div>
+  <p style="font-size:13px;font-style:italic;color:var(--c-text-muted);margin-top:12px;">「[客户评语待填入]」—— [职位] [姓名]</p>
+</div>
+</section>
+
+<!-- Chapter 7 -->
+<section class="section" id="ch7">
+<h2><span class="section-number">7</span> 报价与合同</h2>
+
+<h3>7.1 标准报价参考表</h3>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>服务包</th><th>适用场景</th><th>报价区间</th><th>交付周期</th><th>主要交付物</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>🟢 基础包</strong></td>
+      <td>初步了解 / 内部汇报</td>
+      <td>¥15,000-30,000</td>
+      <td>1-2 周</td>
+      <td>评估报告 + 改进建议</td>
+    </tr>
+    <tr>
+      <td><strong>🔵 标准包</strong></td>
+      <td>数据规划 / 制度建设</td>
+      <td>¥50,000-100,000</td>
+      <td>4-8 周</td>
+      <td>数据清单 + 管理手册 + 供应商问卷</td>
+    </tr>
+    <tr>
+      <td><strong>🔴 旗舰包</strong></td>
+      <td>全流程合规上线</td>
+      <td>¥150,000-300,000</td>
+      <td>12-16 周</td>
+      <td>全流程交付 + EU 注册 + QR码 + 3月维护</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>7.2 付款方式</h3>
+
+<div class="vs-row">
+  <div class="vs-col good">
+    <h4 style="margin:0 0 8px;font-size:15px;">方案A：3-4-3 分期（推荐）</h4>
+    <p style="font-size:14px;margin:0;">
+      • 签约时付 <strong>30%</strong><br>
+      • 中期交付物验收后付 <strong>40%</strong><br>
+      • 终验完成后付 <strong>30%</strong>
+    </p>
+  </div>
+  <div class="vs-col good">
+    <h4 style="margin:0 0 8px;font-size:15px;">方案B：5-5 分期</h4>
+    <p style="font-size:14px;margin:0;">
+      • 签约时付 <strong>50%</strong><br>
+      • 终验完成后付 <strong>50%</strong>
+    </p>
+    <p style="font-size:12px;color:var(--c-text-muted);margin:8px 0 0;">适用于基础包等短期项目</p>
+  </div>
+</div>
+
+<h3>7.3 折扣政策</h3>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>折扣类型</th><th>条件</th><th>折扣幅度</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>早鸟优惠</td><td>首次接触后 30 天内签约</td><td>95 折</td></tr>
+    <tr><td>升级优惠</td><td>基础包 → 标准包 → 旗舰包升级</td><td>补差价 9-95 折</td></tr>
+    <tr><td>转介绍优惠</td><td>现有客户推荐成交</td><td>95 折（双方各享）</td></tr>
+    <tr><td>多产品优惠</td><td>同一企业 3 个以上产品线</td><td>第 3 个起 9 折</td></tr>
+    <tr><td>年度协议</td><td>签年度合规维护协议</td><td>首次服务 9 折 + 维护费 85 折</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>7.4 合同关键条款</h3>
+
+<div class="card">
+  <ul style="font-size:14px;">
+    <li><strong>服务范围：</strong>以附件形式明确列出具体交付物和工作内容，避免范围蔓延</li>
+    <li><strong>客户配合义务：</strong>明确列出需客户提供的数据、文件和配合时间要求</li>
+    <li><strong>知识产权：</strong>交付物知识产权归客户所有，方法论和工具模板归守信财税所有</li>
+    <li><strong>保密条款：</strong>双方互负保密义务，期限 3 年</li>
+    <li><strong>验收标准：</strong>每个阶段交付物附验收标准，签字确认后进入下一阶段</li>
+    <li><strong>责任限制：</strong>因客户提供数据不实导致的合规问题，责任由客户承担</li>
+    <li><strong>不可抗力：</strong>因法规变更或政策调整导致的范围变化，双方友好协商调整</li>
+    <li><strong>争议解决：</strong>北京仲裁委员会仲裁</li>
+  </ul>
+</div>
+</section>
+
+<!-- Appendix -->
+<section class="section" id="appendix">
+<h2><span class="section-number">附</span> 附录</h2>
+
+<!-- 关键日期卡 -->
+<h3 id="app-1">附录一：法规关键日期卡（可打印）</h3>
+
+<div class="card" style="background:linear-gradient(135deg,#1B5E20,#2e7d32);color:#fff;border:none;">
+  <div style="text-align:center;margin-bottom:20px;">
+    <div style="font-size:12px;color:var(--c-gold);font-weight:600;">守信财税 DPP 合规服务</div>
+    <div style="font-size:20px;font-weight:800;">EU 电池法规关键日期速查</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.7);">(EU) 2023/1542</div>
+  </div>
+  <div class="timeline" style="--tl-color:#4CAF50;">
+    <div class="timeline-item">
+      <div class="timeline-date" style="color:var(--c-gold);">2024年8月18日</div>
+      <div class="timeline-text" style="color:rgba(255,255,255,0.9);">合格评定体系要求生效</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date" style="color:var(--c-gold);">2025年2月18日</div>
+      <div class="timeline-text" style="color:rgba(255,255,255,0.9);">供应商尽职调查要求生效</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date" style="color:#ff6b6b;font-weight:800;">2026年2月18日 ⚠️</div>
+      <div class="timeline-text" style="color:#fff;font-weight:600;">QR 码标注要求生效 — 所有电池包装须附 QR 码</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date" style="color:#ff6b6b;font-weight:800;">2027年2月18日 🚨</div>
+      <div class="timeline-text" style="color:#fff;font-weight:700;">DPP 强制生效 — LMT/工业>2kWh/EV 电池必须有电池护照</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date" style="color:var(--c-gold);">2027年8月18日</div>
+      <div class="timeline-text" style="color:rgba(255,255,255,0.9);">碳足迹声明要求生效</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date" style="color:var(--c-gold);">2031年</div>
+      <div class="timeline-text" style="color:rgba(255,255,255,0.9);">回收料含量最低比例要求</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:16px;font-size:11px;color:rgba(255,255,255,0.5);">
+    守信财税 | shouxin@example.com | www.shouxincaishui.com
+  </div>
+</div>
+
+<!-- 一页传单 -->
+<h3 id="app-2">附录二：一页服务传单内容</h3>
+
+<div class="card" style="border:2px solid var(--c-primary);">
+  <div style="text-align:center;padding:16px 0;border-bottom:2px solid var(--c-border);">
+    <div style="font-size:11px;color:var(--c-text-muted);letter-spacing:2px;">守信财税 SHOUXIN FINANCE & TAX</div>
+    <h3 style="color:var(--c-primary);font-size:22px;margin:12px 0 4px;">欧盟电池护照（DPP）合规服务</h3>
+    <p style="font-size:14px;color:var(--c-text-secondary);">2027年2月起强制实施 — 您准备好了吗？</p>
+  </div>
+  <div style="padding:20px 0;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div>
+        <h4 style="font-size:14px;color:var(--c-primary);">我们能做什么？</h4>
+        <ul style="font-size:13px;margin:8px 0 0 16px;">
+          <li>DPP 合规差距评估</li>
+          <li>数据规划与管理手册</li>
+          <li>eIDAS 数字证书办理</li>
+          <li>欧盟授权代表安排</li>
+          <li>EU Battery Passport Registry 注册</li>
+          <li>供应链数据管理方案</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:14px;color:var(--c-primary);">为什么选择我们？</h4>
+        <ul style="font-size:13px;margin:8px 0 0 16px;">
+          <li>18年财税合规经验</li>
+          <li>国内首批 DPP 专业服务机构</li>
+          <li>端到端全流程交付</li>
+          <li>中英文双语服务能力</li>
+          <li>欧洲合作伙伴网络</li>
+          <li>已服务多家电池企业</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:16px;text-align:center;background:var(--c-bg-light);padding:14px;border-radius:var(--radius);">
+      <p style="font-size:14px;font-weight:600;margin:0;">🎁 免费 DPP 合规自测 | 扫码获取 →</p>
+      <p style="font-size:12px;color:var(--c-text-muted);margin:4px 0 0;">[二维码位置] &nbsp; 联系：[电话] [微信]</p>
+    </div>
+  </div>
+</div>
+
+<!-- 客户FAQ -->
+<h3 id="app-3">附录三：客户常见问题 TOP 10</h3>
+
+<div class="card">
+  <div class="faq-item">
+    <div class="faq-q">Q1：什么是 DPP？和 CE 认证有什么区别？</div>
+    <div class="faq-a">DPP（Digital Product Passport，数字产品护照）是欧盟要求为每个电池产品建立的电子档案，包含原材料、化学成分、碳足迹、回收信息等数百个数据字段。CE 认证是安全合格标志，DPP 是产品信息透明化要求，两者互补但不能替代。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q2：我的产品是否受影响？</div>
+    <div class="faq-a">如果您的电池产品出口欧盟，且属于以下类别之一，就受影响：①轻型交通工具电池（LMT，如电动自行车、电动工具）；②工业电池（容量 > 2kWh，如储能系统）；③电动汽车电池。便携式电池（如手机电池）后续阶段也会被纳入。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q3：最晚什么时候必须完成？</div>
+    <div class="faq-a">2026年2月18日起须标注 QR 码；2027年2月18日起 DPP 电池护照必须上线。考虑准备工作至少需要 3-4 个月，建议最迟 2026 年 Q2 启动。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q4：不合规的后果是什么？</div>
+    <div class="faq-a">产品无法进入欧盟市场（海关扣押/退回）；已上市产品可能被召回；面临各成员国自行制定的罚款（最高可达年营收的 3-5%）；严重的会被禁止在欧盟市场销售。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q5：eIDAS 是什么？为什么需要它？</div>
+    <div class="faq-a">eIDAS 是欧盟电子身份认证框架。DPP 注册需要通过欧盟认可的 QTSP（合格信任服务提供商）获取数字证书，用于在 Battery Passport Registry 系统中进行身份验证和电子签名。没有 eIDAS 证书就无法完成注册。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q6：什么是欧盟授权代表？必须有吗？</div>
+    <div class="faq-a">非欧盟企业必须在欧盟境内指定一名授权代表（Authorized Representative），作为与欧盟监管机构的联络人。这是法规强制要求，没有授权代表无法完成 DPP 注册。我们可以协助安排。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q7：需要准备哪些数据？</div>
+    <div class="faq-a">Annex XIII 规定了电池护照的数据字段，主要包括：电池基本信息、原材料来源与成分、有害物质含量、碳足迹（LCA）、回收料含量、性能参数、耐久性、可拆解性说明等。具体字段因电池类别而异，通常需要从供应链上下游收集。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q8：供应链数据收集很困难怎么办？</div>
+    <div class="faq-a">这是所有企业面临的最大挑战。我们的服务包括设计供应商数据问卷（中英文对照）、建立数据收集流程、协助与供应商沟通。经验表明，结构化的方法和专业的沟通模板可以显著提高供应商回函率和数据质量。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q9：费用和周期大概是多少？</div>
+    <div class="faq-a">取决于服务范围：基础评估 ¥1.5-3万/1-2周；标准数据规划 ¥5-10万/4-8周；全流程旗舰包 ¥15-30万/12-16周。具体报价根据产品数量、SKU 复杂度、数据就绪度等因素确定。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q10：你们和 SGS / TÜV 有什么区别？</div>
+    <div class="faq-a">SGS/TÜV 等机构主要提供检测和认证服务（如产品安全测试），属于 DPP 合规的其中一个环节。我们提供的是端到端的 DPP 合规咨询：从法规解读、数据规划、供应商管理到 eIDAS 证书、欧盟代表和 Registry 注册，覆盖整个合规链条。可以与 SGS 等机构配合工作。</div>
+  </div>
+</div>
+
+<!-- 竞品对比 -->
+<h3 id="app-4">附录四：竞品对比模板</h3>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>对比维度</th><th>守信财税</th><th>传统认证机构</th><th>欧洲咨询公司</th><th>律所</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>服务范围</strong></td>
+      <td style="background:var(--c-bg-light);">端到端全流程 ✅</td>
+      <td>检测+认证（单一环节）</td>
+      <td>咨询+部分执行</td>
+      <td>法律意见（不涉及数据）</td>
+    </tr>
+    <tr>
+      <td><strong>中国法规经验</strong></td>
+      <td style="background:var(--c-bg-light);">18年 ✅</td>
+      <td>有（但侧重检测标准）</td>
+      <td>弱</td>
+      <td>有（侧重法务）</td>
+    </tr>
+    <tr>
+      <td><strong>欧盟法规熟悉度</strong></td>
+      <td style="background:var(--c-bg-light);">高 ✅</td>
+      <td>中（侧重测试标准）</td>
+      <td>高</td>
+      <td>高</td>
+    </tr>
+    <tr>
+      <td><strong>eIDAS 办理能力</strong></td>
+      <td style="background:var(--c-bg-light);">全流程协助 ✅</td>
+      <td>不涉及</td>
+      <td>可协助</td>
+      <td>不涉及</td>
+    </tr>
+    <tr>
+      <td><strong>欧盟代表安排</strong></td>
+      <td style="background:var(--c-bg-light);">可安排 ✅</td>
+      <td>不涉及</td>
+      <td>部分可安排</td>
+      <td>不涉及</td>
+    </tr>
+    <tr>
+      <td><strong>Registry 注册代办</strong></td>
+      <td style="background:var(--c-bg-light);">全程代办 ✅</td>
+      <td>不涉及</td>
+      <td>部分可做</td>
+      <td>不涉及</td>
+    </tr>
+    <tr>
+      <td><strong>数据规划能力</strong></td>
+      <td style="background:var(--c-bg-light);">强 ✅</td>
+      <td>弱</td>
+      <td>中</td>
+      <td>弱</td>
+    </tr>
+    <tr>
+      <td><strong>中文沟通</strong></td>
+      <td style="background:var(--c-bg-light);">全中文 ✅</td>
+      <td>中文</td>
+      <td>英文为主</td>
+      <td>中文</td>
+    </tr>
+    <tr>
+      <td><strong>价格水平</strong></td>
+      <td style="background:var(--c-bg-light);">¥1.5-30万</td>
+      <td>检测费另计</td>
+      <td>€5万+（¥40万+）</td>
+      <td>¥500-2000/小时</td>
+    </tr>
+    <tr>
+      <td><strong>性价比</strong></td>
+      <td style="background:var(--c-bg-light);">⭐⭐⭐⭐⭐</td>
+      <td>⭐⭐⭐</td>
+      <td>⭐⭐</td>
+      <td>⭐⭐</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout callout-warning">
+  <strong>⚠️ 使用说明</strong>
+  本竞品对比表仅供内部销售参考，不得直接对外出示。面对客户时，以「我们的优势」正面表述为主，不主动贬低竞争对手。
+</div>
+
+</section>
+
+</div><!-- content-wrapper end -->
+
+<!-- Footer -->
+<footer style="background:var(--c-primary-dark);color:rgba(255,255,255,0.7);padding:32px;text-align:center;font-size:13px;">
+  <p style="margin:0 0 8px;"><strong style="color:var(--c-gold);">守信财税</strong> ShouXin Finance & Tax</p>
+  <p style="margin:0;">DPP业务市场营销手册 v1.0 | 2026年9月 | 内部资料 · 请勿外传</p>
+  <p style="margin:8px 0 0;font-size:11px;color:rgba(255,255,255,0.4);">本手册中的案例模板、报价区间仅供内部参考，实际执行以正式合同为准。</p>
+</footer>
+
+</main>
+
+<script>
+(function() {
+  // Sidebar toggle for mobile
+  window.toggleSidebar = function() {
+    var sidebar = document.querySelector('.sidebar');
+    var overlay = document.querySelector('.sidebar-overlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  };
+
+  // Active nav highlight on scroll
+  var navLinks = document.querySelectorAll('.sidebar-nav a');
+  var sections = [];
+  navLinks.forEach(function(link) {
+    var id = link.getAttribute('href').replace('#', '');
+    var el = document.getElementById(id);
+    if (el) sections.push({ el: el, link: link });
+  });
+
+  var scrollTimeout;
+  window.addEventListener('scroll', function() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
+      var scrollPos = window.scrollY + 120;
+      var current = null;
+      sections.forEach(function(s) {
+        if (s.el.offsetTop <= scrollPos) current = s;
+      });
+      navLinks.forEach(function(l) { l.classList.remove('active'); });
+      if (current) current.link.classList.add('active');
+    }, 50);
+  });
+
+  // Smooth scroll for internal links (fallback for browsers without CSS scroll-behavior)
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var targetId = this.getAttribute('href').replace('#', '');
+      var target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Close mobile sidebar
+        var sidebar = document.querySelector('.sidebar');
+        var overlay = document.querySelector('.sidebar-overlay');
+        if (sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('show');
+        }
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

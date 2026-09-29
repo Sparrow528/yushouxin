@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欧盟电池法规 关键日期速查卡</title>
+<style>
+:root {
+  --c-primary: #1A237E;
+  --c-primary-light: #283593;
+  --c-surface: #FFFFFF;
+  --c-surface-alt: #F5F7FF;
+  --c-text: #1A1A2E;
+  --c-text-secondary: #4A4A6A;
+  --c-border: #D0D5E8;
+  --c-status-active: #2E7D32;
+  --c-status-upcoming: #1565C0;
+  --c-status-conditional: #F57F17;
+  --c-status-building: #6A1B9A;
+  --c-battery-ev: #D32F2F;
+  --c-battery-lmt: #EF6C00;
+  --c-battery-industrial: #1565C0;
+  --c-battery-all: #2E7D32;
+  --c-key-bg: #FFF8E1;
+  --c-key-border: #FFD54F;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+@page {
+  size: A4 landscape;
+  margin: 8mm;
+}
+
+html { font-size: 13px; }
+body {
+  font-family: var(--font-body);
+  color: var(--c-text);
+  background: var(--c-surface);
+  line-height: 1.35;
+  padding: 12px 16px;
+  min-height: 100vh;
+}
+
+/* === HEADER === */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--c-primary);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px 6px 0 0;
+  gap: 12px;
+}
+.card-header h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.card-header .subtitle {
+  font-size: 0.82rem;
+  opacity: 0.85;
+  font-weight: 400;
+}
+.print-hint {
+  font-size: 0.72rem;
+  background: rgba(255,255,255,0.15);
+  padding: 3px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* === LEGEND BAR === */
+.legend-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  padding: 6px 16px;
+  background: var(--c-surface-alt);
+  border-bottom: 1px solid var(--c-border);
+  font-size: 0.78rem;
+  color: var(--c-text-secondary);
+}
+.legend-group { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.legend-group .label { font-weight: 600; color: var(--c-text); margin-right: 2px; }
+.status-dot {
+  display: inline-block;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+.status-dot.active { background: var(--c-status-active); }
+.status-dot.upcoming { background: var(--c-status-upcoming); }
+.status-dot.conditional { background: var(--c-status-conditional); }
+.status-dot.building { background: var(--c-status-building); }
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: #fff;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+.tag-ev { background: var(--c-battery-ev); }
+.tag-lmt { background: var(--c-battery-lmt); }
+.tag-industrial { background: var(--c-battery-industrial); }
+.tag-all { background: var(--c-battery-all); }
+
+/* === TIMELINE === */
+.timeline-wrap {
+  padding: 8px 16px 4px;
+}
+.timeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 82px;
+  top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--c-status-active) 0%, var(--c-status-upcoming) 40%, var(--c-status-conditional) 80%, var(--c-status-building) 100%);
+  border-radius: 2px;
+}
+.tl-row {
+  display: grid;
+  grid-template-columns: 76px 10px 1fr;
+  gap: 0 8px;
+  align-items: start;
+  padding: 4px 0;
+  position: relative;
+}
+.tl-row .date {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--c-primary);
+  text-align: right;
+  padding-top: 2px;
+  white-space: nowrap;
+}
+.tl-row .dot-col {
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+.tl-dot {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--c-border);
+}
+.tl-dot.active { background: var(--c-status-active); box-shadow: 0 0 0 1px var(--c-status-active); }
+.tl-dot.upcoming { background: var(--c-status-upcoming); box-shadow: 0 0 0 1px var(--c-status-upcoming); }
+.tl-dot.conditional { background: var(--c-status-conditional); box-shadow: 0 0 0 1px var(--c-status-conditional); }
+.tl-dot.building { background: var(--c-status-building); box-shadow: 0 0 0 1px var(--c-status-building); }
+.tl-dot.key { background: var(--c-key-border); box-shadow: 0 0 0 2px var(--c-key-border), 0 0 6px rgba(255,213,79,0.5); width: 14px; height: 14px; margin-top: 1px; }
+
+.tl-row .content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  padding: 3px 8px 4px;
+  border-radius: 4px;
+}
+.tl-row.is-key .content {
+  background: var(--c-key-bg);
+  border: 1.5px solid var(--c-key-border);
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0 1px 4px rgba(255,213,79,0.25);
+}
+.tl-row .req {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--c-text);
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+.tl-row.is-key .req {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--c-primary);
+}
+.tl-row .meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.tl-row .art {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--c-text-secondary);
+  background: rgba(0,0,0,0.04);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+.tl-row .status-text {
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+.tl-row .key-star {
+  font-size: 1rem;
+}
+
+/* === FOOTER TIPS === */
+.tips-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 6px 16px 8px;
+}
+.tip-box {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+.tip-box.warning {
+  background: #FFF3E0;
+  border-left: 3px solid var(--c-status-conditional);
+}
+.tip-box.pin {
+  background: #E8F5E9;
+  border-left: 3px solid var(--c-status-active);
+}
+.tip-box.action {
+  background: #E3F2FD;
+  border-left: 3px solid var(--c-status-upcoming);
+}
+.tip-box .tip-title {
+  font-weight: 700;
+  margin-bottom: 2px;
+  font-size: 0.78rem;
+}
+
+/* === FOOTER === */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 16px;
+  border-top: 1px solid var(--c-border);
+  font-size: 0.68rem;
+  color: var(--c-text-secondary);
+}
+.card-footer a {
+  color: var(--c-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.card-footer a:hover { text-decoration: underline; }
+
+/* === RESPONSIVE === */
+@media (max-width: 700px) {
+  html { font-size: 12px; }
+  .card-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .timeline::before { left: 52px; }
+  .tl-row { grid-template-columns: 46px 10px 1fr; }
+  .tips-bar { grid-template-columns: 1fr; }
+  .tl-row .req { min-width: 120px; }
+}
+
+/* === PRINT === */
+@media print {
+  html { font-size: 11.5px; }
+  body { padding: 0; }
+  .card-header, .legend-bar, .timeline-wrap, .tips-bar, .card-footer { break-inside: avoid; }
+  .print-hint { display: none; }
+  .tl-row.is-key .content { box-shadow: none; border: 1.5px solid var(--c-key-border); }
+  a { color: var(--c-primary) !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="card-header">
+  <div>
+    <h1>欧盟电池法规 关键日期速查卡</h1>
+    <span class="subtitle">(EU) 2023/1542 · 截至2026年9月</span>
+  </div>
+  <span class="print-hint">🖨️ A4横向打印</span>
+</header>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <div class="legend-group">
+    <span class="label">电池类型：</span>
+    <span class="tag tag-ev">EV</span>电动汽车
+    <span class="tag tag-lmt">LMT</span>轻型交通
+    <span class="tag tag-industrial">工业</span>工业电池
+    <span class="tag tag-all">全部</span>所有类型
+  </div>
+  <div class="legend-group">
+    <span class="label">状态：</span>
+    <span class="status-dot active"></span>已生效
+    <span class="status-dot upcoming"></span>待生效
+    <span class="status-dot conditional"></span>条件日期
+    <span class="status-dot building"></span>建设中
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline-wrap">
+  <div class="timeline" role="list" aria-label="关键日期时间轴">
+
+    <!-- 2023.8.17 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2023.8.17</div>
+      <div class="dot-col"><div class="tl-dot active"></div></div>
+      <div class="content">
+        <span class="req">法规正式生效</span>
+        <div class="meta">
+          <span class="tag tag-all">全部</span>
+          <span class="art">Art.96(1)</span>
+          <span class="status-text">✅ 已生效</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2025.8.18 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2025.8.18</div>
+      <div class="dot-col"><div class="tl-dot active"></div></div>
+      <div class="content">
+        <span class="req">旧指令废止 / EPR框架生效 / 处罚规则适用</span>
+        <div class="meta">
+          <span class="tag tag-all">全部</span>
+          <span class="art">多条款</span>
+          <span class="status-text">✅ 已生效</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2025.12.31 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2025.12.31</div>
+      <div class="dot-col"><div class="tl-dot active"></div></div>
+      <div class="content">
+        <span class="req">第一阶段回收效率目标达标</span>
+        <div class="meta">
+          <span class="tag tag-all">全部</span>
+          <span class="art">Art.71</span>
+          <span class="status-text">✅ 已生效</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026.7.20 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2026.7.20</div>
+      <div class="dot-col"><div class="tl-dot building"></div></div>
+      <div class="content">
+        <span class="req">DPP注册中心上线运行</span>
+        <div class="meta">
+          <span class="status-text">🔄 建设中</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026.8.18 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2026.8.18</div>
+      <div class="dot-col"><div class="tl-dot upcoming"></div></div>
+      <div class="content">
+        <span class="req">碳足迹等级标签（工业电池适用）</span>
+        <div class="meta">
+          <span class="tag tag-industrial">工业</span>
+          <span class="art">Art.7(2)</span>
+          <span class="status-text">📅 待生效</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2027.2.18 KEY -->
+    <div class="tl-row is-key" role="listitem">
+      <div class="date">2027.2.18</div>
+      <div class="dot-col"><div class="tl-dot key"></div></div>
+      <div class="content">
+        <span class="key-star">⭐</span>
+        <span class="req">电池护照（DPP）强制实施——每台电池必须附带数字产品护照</span>
+        <div class="meta">
+          <span class="tag tag-ev">EV</span>
+          <span class="tag tag-lmt">LMT</span>
+          <span class="tag tag-industrial">工业</span>
+          <span class="art" style="font-weight:700;">Art.77(1)</span>
+          <span class="status-text" style="font-weight:700;color:var(--c-primary);">⭐ 关键节点</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2027.8.18 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2027.8.18</div>
+      <div class="dot-col"><div class="tl-dot upcoming"></div></div>
+      <div class="content">
+        <span class="req">供应链尽职调查义务（已延期生效）</span>
+        <div class="meta">
+          <span class="tag tag-all">全部</span>
+          <span class="art">Art.48</span>
+          <span class="status-text">📅 待生效</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2027.12.31 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2027.12.31</div>
+      <div class="dot-col"><div class="tl-dot upcoming"></div></div>
+      <div class="content">
+        <span class="req">便携式电池收集目标 63%</span>
+        <div class="meta">
+          <span class="tag tag-all">全部</span>
+          <span class="art">Art.59</span>
+          <span class="status-text">📅 待生效</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2028.2.18 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2028.2.18</div>
+      <div class="dot-col"><div class="tl-dot conditional"></div></div>
+      <div class="content">
+        <span class="req">碳足迹最大阈值生效（电动汽车电池）</span>
+        <div class="meta">
+          <span class="tag tag-ev">EV</span>
+          <span class="art">Art.7(3)</span>
+          <span class="status-text">⚠️ 条件日期</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2028.8.18 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2028.8.18</div>
+      <div class="dot-col"><div class="tl-dot conditional"></div></div>
+      <div class="content">
+        <span class="req">碳足迹最大阈值生效（工业/LMT电池）</span>
+        <div class="meta">
+          <span class="tag tag-industrial">工业</span>
+          <span class="tag tag-lmt">LMT</span>
+          <span class="art">Art.7(3)</span>
+          <span class="status-text">⚠️ 条件日期</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2028.12.31 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2028.12.31</div>
+      <div class="dot-col"><div class="tl-dot upcoming"></div></div>
+      <div class="content">
+        <span class="req">LMT电池收集目标 51%</span>
+        <div class="meta">
+          <span class="tag tag-lmt">LMT</span>
+          <span class="art">Art.59</span>
+          <span class="status-text">📅 待生效</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2030.12.31 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2030.12.31</div>
+      <div class="dot-col"><div class="tl-dot upcoming"></div></div>
+      <div class="content">
+        <span class="req">便携式电池收集目标 73% / 第二阶段回收率</span>
+        <div class="meta">
+          <span class="tag tag-all">全部</span>
+          <span class="art">Art.59/71</span>
+          <span class="status-text">📅 待生效</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2031.8.18 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2031.8.18</div>
+      <div class="dot-col"><div class="tl-dot upcoming"></div></div>
+      <div class="content">
+        <span class="req">再生材料最低含量：Co≥16% · Pb≥85% · Li≥6% · Ni≥6%</span>
+        <div class="meta">
+          <span class="tag tag-ev">EV</span>
+          <span class="tag tag-industrial">工业</span>
+          <span class="art">Art.8(1)</span>
+          <span class="status-text">📅 待生效</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2036.8.18 -->
+    <div class="tl-row" role="listitem">
+      <div class="date">2036.8.18</div>
+      <div class="dot-col"><div class="tl-dot upcoming"></div></div>
+      <div class="content">
+        <span class="req">更高再生材料目标：Co≥26% · Li≥12% · Ni≥15%</span>
+        <div class="meta">
+          <span class="tag tag-ev">EV</span>
+          <span class="tag tag-industrial">工业</span>
+          <span class="art">Art.8(1)</span>
+          <span class="status-text">📅 待生效</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="tips-bar">
+  <div class="tip-box warning">
+    <div class="tip-title">⚠️ 条件日期说明</div>
+    标注「条件日期」的条款取决于配套授权法案的通过时间，实际生效日期可能调整。建议持续关注EUR-Lex更新。
+  </div>
+  <div class="tip-box pin">
+    <div class="tip-title">📌 最重要的三个日期</div>
+    <strong>2027.2.18</strong> 电池护照强制 · <strong>2027.8.18</strong> 供应链尽调 · <strong>2028</strong> 碳足迹阈值
+  </div>
+  <div class="tip-box action">
+    <div class="tip-title">📋 建议行动</div>
+    距2027.2.18电池护照强制实施不足<span id="countdown-months">—</span>个月，建议立即启动电池数据采集与DPP系统对接准备。
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="card-footer">
+  <span>法规全文：<a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1542" target="_blank" rel="noopener noreferrer">EUR-Lex · (EU) 2023/1542</a></span>
+  <span>更新时间：2026年9月 · 守信财税 DPP项目组</span>
+</footer>
+
+<script>
+(function(){
+  try {
+    var keyDate = new Date('2027-02-18T00:00:00+08:00');
+    var now = new Date();
+    var diffMs = keyDate - now;
+    if (diffMs > 0) {
+      var months = Math.ceil(diffMs / (1000 * 60 * 60 * 24 * 30.44));
+      var el = document.getElementById('countdown-months');
+      if (el) el.textContent = months;
+    } else {
+      var el2 = document.getElementById('countdown-months');
+      if (el2) el2.textContent = '0';
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>

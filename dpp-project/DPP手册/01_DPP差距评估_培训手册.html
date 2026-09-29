@@ -1,0 +1,2159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP差距评估服务 · 内部培训手册 — 从签约到交付的完整操作指南</title>
+<meta name="description" content="守信财税DPP业务内部培训手册：从签约到交付的S1-S7全流程操作指南，含实操示例、质量关口、常见坑、话术参考">
+<style>
+:root {
+  --color-primary: #1A237E;
+  --color-primary-light: #283593;
+  --color-primary-lighter: #3949AB;
+  --color-primary-bg: #E8EAF6;
+  --color-primary-bg-light: #F5F6FA;
+  --color-orange: #E65100;
+  --color-orange-light: #EF6C00;
+  --color-orange-bg: #FFF3E0;
+  --color-orange-bg-light: #FFF8E1;
+  --color-green: #2E7D32;
+  --color-green-light: #43A047;
+  --color-green-bg: #E8F5E9;
+  --color-green-bg-light: #F1F8E9;
+  --color-red: #B71C1C;
+  --color-red-bg: #FFEBEE;
+  --color-blue-info: #0D47A1;
+  --color-blue-info-bg: #E3F2FD;
+  --color-amber: #F57F17;
+  --color-amber-bg: #FFF8E1;
+  --color-canvas: #FFFFFF;
+  --color-surface: #FAFAFA;
+  --color-surface-alt: #F5F5F5;
+  --color-text: #212121;
+  --color-text-secondary: #546E7A;
+  --color-text-muted: #78909C;
+  --color-border: #E0E0E0;
+  --color-border-light: #EEEEEE;
+  --color-link: #1A237E;
+  --color-focus: #1565C0;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 1rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 1.875rem;
+  --fs-3xl: 2.25rem;
+  --lh-tight: 1.25;
+  --lh-body: 1.7;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+  --sidebar-w: 270px;
+  --content-max: 920px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout */
+.page-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-xl) 0;
+  z-index: 100;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-header {
+  padding: 0 var(--space-lg);
+  margin-bottom: var(--space-xl);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding-bottom: var(--space-lg);
+}
+
+.sidebar-header h2 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: var(--space-xs);
+}
+
+.sidebar-header p {
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.5);
+}
+
+.sidebar nav { padding: 0 var(--space-sm); }
+
+.sidebar nav a {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  border-radius: var(--radius-sm);
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a:focus-visible {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.sidebar nav a.active {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebar nav a .nav-num {
+  display: inline-block;
+  width: 2em;
+  color: rgba(255,255,255,0.45);
+  font-size: var(--fs-xs);
+  font-family: var(--font-mono);
+}
+
+/* Main content */
+.main-content {
+  padding: var(--space-2xl) var(--space-3xl);
+  max-width: calc(var(--content-max) + var(--space-3xl) * 2);
+}
+
+/* Cover */
+.cover {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #283593 60%, var(--color-orange) 100%);
+  color: #fff;
+  padding: var(--space-3xl) var(--space-2xl);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 6px;
+  background: var(--color-orange);
+}
+
+.cover h1 {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.01em;
+}
+
+.cover .subtitle {
+  font-size: var(--fs-lg);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+}
+
+.cover .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.7);
+}
+
+.cover .meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cover .meta-label {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.5);
+}
+
+.cover .confidential {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  padding: var(--space-xs) var(--space-md);
+  background: rgba(183, 28, 28, 0.4);
+  border: 1px solid rgba(183, 28, 28, 0.6);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: #FFCDD2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cover .note {
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.75);
+  border-left: 3px solid rgba(255,255,255,0.3);
+}
+
+/* Sections */
+.chapter {
+  margin-bottom: var(--space-3xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.chapter:first-of-type { border-top: none; }
+
+.chapter-title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xl);
+  line-height: var(--lh-tight);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+}
+
+.chapter-title .ch-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  color: var(--color-text-muted);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+h3 {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--color-primary-light);
+  margin: var(--space-xl) 0 var(--space-md);
+  line-height: var(--lh-tight);
+}
+
+h4 {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+p { margin-bottom: var(--space-md); }
+
+/* Article tags */
+.art-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin: 0 2px;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  margin: var(--space-md) 0 var(--space-xl);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+thead { background: var(--color-primary-bg-light); }
+
+th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 2px solid var(--color-primary-bg);
+  white-space: nowrap;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-light);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--color-surface-alt); }
+
+td.num { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-text-muted); text-align: center; }
+td.mandatory { color: var(--color-green); font-weight: 600; }
+td.optional { color: var(--color-text-muted); }
+
+/* Callout boxes */
+.callout {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  margin: var(--space-lg) 0;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.callout-title {
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.callout-date {
+  background: var(--color-amber-bg);
+  border-left: 4px solid var(--color-amber);
+  color: #4E342E;
+}
+
+.callout-change {
+  background: var(--color-blue-info-bg);
+  border-left: 4px solid var(--color-blue-info);
+  color: #0D47A1;
+}
+
+.callout-note {
+  background: var(--color-green-bg-light);
+  border-left: 4px solid var(--color-green);
+  color: #1B5E20;
+}
+
+.callout-warn {
+  background: var(--color-red-bg);
+  border-left: 4px solid var(--color-red);
+  color: #B71C1C;
+}
+
+/* Example box - 💡 实操示例 */
+.example-box {
+  background: var(--color-orange-bg-light);
+  border: 1px solid #FFE0B2;
+  border-left: 4px solid var(--color-orange);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.example-box-title {
+  font-weight: 700;
+  color: var(--color-orange);
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.example-box p, .example-box li {
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+}
+
+/* Quality gate - 质量关口 */
+.quality-gate {
+  background: var(--color-primary-bg-light);
+  border: 1px solid var(--color-primary-bg);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.quality-gate-title {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.quality-gate ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.quality-gate li {
+  padding: var(--space-xs) 0;
+  font-size: var(--fs-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.quality-gate li::before {
+  content: '☐';
+  font-size: var(--fs-base);
+  color: var(--color-primary);
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+/* Pitfall box - 常见坑 */
+.pitfall-box {
+  background: #FFF8E1;
+  border: 1px solid #FFE082;
+  border-left: 4px solid #FF8F00;
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.pitfall-box-title {
+  font-weight: 700;
+  color: #E65100;
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.pitfall-box li {
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  margin-bottom: var(--space-xs);
+}
+
+.pitfall-box li strong {
+  color: #BF360C;
+}
+
+/* Dialog bubble - 话术参考 */
+.dialog-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.dialog-box-title {
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dialog-bubble {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  align-items: flex-start;
+}
+
+.dialog-bubble:last-child { margin-bottom: 0; }
+
+.dialog-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.dialog-avatar.staff { background: var(--color-primary); }
+.dialog-avatar.client { background: var(--color-text-muted); }
+
+.dialog-content {
+  background: #fff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  max-width: 80%;
+  position: relative;
+}
+
+.dialog-content.staff-say {
+  background: var(--color-primary-bg-light);
+  border-color: var(--color-primary-bg);
+}
+
+.dialog-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+/* Lists */
+ul, ol {
+  margin: var(--space-sm) 0 var(--space-md) var(--space-xl);
+  line-height: 1.7;
+}
+
+li { margin-bottom: var(--space-xs); }
+li strong { color: var(--color-primary-light); }
+
+/* Steps */
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  margin-right: var(--space-sm);
+  flex-shrink: 0;
+}
+
+/* Flow diagram */
+.flow-diagram {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+  margin: var(--space-lg) 0;
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-primary-bg-light);
+  border: 1px solid var(--color-primary-bg);
+  border-radius: var(--radius-md);
+  min-width: 80px;
+}
+
+.flow-step .flow-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+}
+
+.flow-step .flow-desc {
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+.flow-arrow {
+  font-size: var(--fs-lg);
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+/* Decision tree */
+.decision-tree {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.decision-node {
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-sm) 0;
+  border-left: 3px solid var(--color-orange);
+  background: var(--color-orange-bg-light);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: var(--fs-sm);
+}
+
+.decision-node strong {
+  color: var(--color-orange);
+}
+
+.decision-result {
+  padding: var(--space-xs) var(--space-md);
+  margin: var(--space-xs) 0 var(--space-xs) var(--space-xl);
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+}
+
+.decision-result::before {
+  content: '→ ';
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+/* FAQ */
+details {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin: var(--space-sm) 0;
+  background: var(--color-surface);
+}
+
+details[open] {
+  border-color: var(--color-primary-bg);
+  background: var(--color-primary-bg-light);
+}
+
+summary {
+  padding: var(--space-md) var(--space-lg);
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-primary);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+summary::-webkit-details-marker { display: none; }
+
+summary::before {
+  content: '▸';
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+details .faq-body {
+  padding: 0 var(--space-lg) var(--space-md);
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* Links */
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 35, 126, 0.3);
+  text-underline-offset: 2px;
+}
+
+a:hover { text-decoration-color: var(--color-link); }
+
+a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+a[target="_blank"]::after {
+  content: ' ↗';
+  font-size: 0.7em;
+  vertical-align: super;
+  opacity: 0.5;
+}
+
+/* Footer */
+.doc-footer {
+  margin-top: var(--space-3xl);
+  padding: var(--space-xl) 0;
+  border-top: 2px solid var(--color-primary-bg);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+/* Mobile toggle */
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: var(--space-md);
+  left: var(--space-md);
+  z-index: 200;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+/* Overlay for mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 99;
+}
+.sidebar-overlay.open { display: block; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    width: 280px;
+    transition: left 0.25s ease;
+    box-shadow: var(--shadow-md);
+  }
+  .sidebar.open { left: 0; }
+  .mobile-toggle { display: block; }
+  .main-content {
+    padding: var(--space-xl) var(--space-lg);
+    padding-top: calc(var(--space-xl) + 48px);
+  }
+  .cover { padding: var(--space-xl) var(--space-lg); }
+  .cover h1 { font-size: var(--fs-xl); }
+  .chapter-title { font-size: var(--fs-xl); }
+  .flow-diagram { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+  html { scroll-padding-top: 60px; }
+}
+
+/* Print */
+@media print {
+  .sidebar, .mobile-toggle { display: none !important; }
+  .page-layout { grid-template-columns: 1fr; }
+  .main-content { padding: 0; max-width: none; }
+  .cover { break-after: page; background: none !important; color: #000; border: 2px solid var(--color-primary); }
+  .cover::after { display: none; }
+  .cover .confidential { color: #B71C1C; border-color: #B71C1C; background: #FFEBEE; }
+  .chapter { break-before: page; }
+  .table-wrap { break-inside: avoid; }
+  .callout, .example-box, .pitfall-box, .quality-gate, .dialog-box, .decision-tree { break-inside: avoid; }
+  a { text-decoration: none; }
+  a[target="_blank"]::after { content: ''; }
+}
+
+/* Scrollbar for sidebar */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+.status-existing { background: var(--color-green-bg); color: var(--color-green); }
+.status-todo { background: var(--color-orange-bg); color: var(--color-orange); }
+
+/* Difficulty tags */
+.diff-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  margin: 0 1px;
+}
+.diff-urgent { background: var(--color-red-bg); color: var(--color-red); }
+.diff-short { background: var(--color-orange-bg); color: var(--color-orange); }
+.diff-mid { background: var(--color-amber-bg); color: var(--color-amber); }
+.diff-long { background: var(--color-blue-info-bg); color: var(--color-blue-info); }
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" aria-label="打开导航菜单" onclick="toggleSidebar()">☰ 目录</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="page-layout">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>内部培训手册</h2>
+    <p>DPP差距评估服务</p>
+  </div>
+  <nav aria-label="章节导航">
+    <a href="#cover"><span class="nav-num"></span>封面</a>
+    <a href="#ch1"><span class="nav-num">01</span>培训概述</a>
+    <a href="#ch2"><span class="nav-num">02</span>服务全景图</a>
+    <a href="#ch3"><span class="nav-num">03</span>S1 签约启动</a>
+    <a href="#ch4"><span class="nav-num">04</span>S2 客户画像</a>
+    <a href="#ch5"><span class="nav-num">05</span>S3 法规适配</a>
+    <a href="#ch6"><span class="nav-num">06</span>S4 71项逐项核查</a>
+    <a href="#ch7"><span class="nav-num">07</span>S5 差距分级</a>
+    <a href="#ch8"><span class="nav-num">08</span>S6 报告编制</a>
+    <a href="#ch9"><span class="nav-num">09</span>S7 交付与下一步</a>
+    <a href="#ch10"><span class="nav-num">10</span>常见问题处理</a>
+    <a href="#ch11"><span class="nav-num">11</span>工具文件速查</a>
+    <a href="#appA"><span class="nav-num">A</span>术语速查表</a>
+    <a href="#appB"><span class="nav-num">B</span>关键Art.条款索引</a>
+    <a href="#appC"><span class="nav-num">C</span>内部联系人与升级机制</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+<!-- COVER -->
+<section class="cover" id="cover">
+  <h1>DPP差距评估服务<br>内部培训手册</h1>
+  <p class="subtitle">从签约到交付的完整操作指南</p>
+  <div class="meta">
+    <div class="meta-item">
+      <span class="meta-label">版本</span>
+      <span>v1.0 · 2026年9月</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">适用团队</span>
+      <span>守信财税 DPP业务部</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">法规依据</span>
+      <span>(EU) 2023/1542</span>
+    </div>
+  </div>
+  <div class="confidential">内部资料 · 请勿外传</div>
+  <div class="note">
+    <strong>使用说明：</strong>本手册是面向内部团队成员的操作指南——告诉你每一步"怎么干"，而不是"卖什么"。与《01_DPP差距评估_产品手册》的区别：产品手册面向客户讲服务介绍，本手册面向员工讲执行细节。所有法规条款引用与《00_欧盟电池法规核心条款》保持一致。
+  </div>
+</section>
+
+<!-- CHAPTER 1 -->
+<section class="chapter" id="ch1">
+  <h2 class="chapter-title"><span class="ch-num">第一章</span>培训概述</h2>
+
+  <h3>培训目标</h3>
+  <p>完成培训后，团队成员能够<strong>独立执行DPP差距评估服务的S1-S7全流程</strong>，包括：签约启动、客户画像构建、法规适配、71项核查、差距分级、报告编制和交付汇报。</p>
+
+  <h3>适用人员</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>角色</th><th>参与步骤</th><th>培训重点</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>项目经理</strong></td><td>全流程（S1-S7）</td><td>全局把控、质量审核、客户沟通</td></tr>
+        <tr><td><strong>交付顾问</strong></td><td>S2-S6</td><td>客户画像、核查执行、差距分析、报告编写</td></tr>
+        <tr><td><strong>法规分析师</strong></td><td>S3-S5</td><td>法规适配矩阵使用、条款判定、分级复核</td></tr>
+        <tr><td><strong>商务人员</strong></td><td>S1, S7</td><td>签约流程、NDA/协议使用、下一步引导</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>培训周期建议</h3>
+  <p>新人建议<strong>5-7个工作日跟岗学习</strong>：</p>
+  <ul>
+    <li><strong>Day 1-2：</strong>阅读本手册 + 《00_欧盟电池法规核心条款》，理解法规基础和服务逻辑</li>
+    <li><strong>Day 3：</strong>观摩一个完整案例的S2-S4执行过程</li>
+    <li><strong>Day 4-5：</strong>在mentor指导下实操一个模拟案例</li>
+    <li><strong>Day 6-7：</strong>独立完成模拟案例全流程，mentor审核并反馈</li>
+  </ul>
+
+  <h3>前置知识要求</h3>
+  <ul>
+    <li><strong>基础：</strong>了解欧盟电池法规 (EU) 2023/1542 的核心要求（电池分类、电池护照概念、关键时间节点）</li>
+    <li><strong>建议先阅读：</strong><code>00_欧盟电池法规核心条款.html</code> 的第一至第四章</li>
+    <li><strong>加分项：</strong>有电池行业或欧盟合规咨询经验</li>
+  </ul>
+
+  <h3>考核方式</h3>
+  <div class="callout callout-note">
+    <div class="callout-title">📌 考核标准</div>
+    <p><strong>模拟案例演练 + mentor审核</strong>。学员需独立完成一个完整模拟案例的S1-S7全流程交付物，由mentor按质量关口清单逐项评分。全部质量关口通过后，方可独立承接真实客户项目。</p>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter" id="ch2">
+  <h2 class="chapter-title"><span class="ch-num">第二章</span>服务全景图（30分钟学习）</h2>
+
+  <h3>客户从哪来：服务漏斗</h3>
+  <p>DPP业务采用三层漏斗结构，差距评估是核心层的入口：</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>层级</th><th>内容</th><th>作用</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>引流层</strong></td><td>免费法规解读、行业资讯分享、公开课</td><td>建立信任、获取潜在客户</td></tr>
+        <tr><td><strong>核心层</strong></td><td>① DPP差距评估（本服务）→ ②③④ 后续服务</td><td>核心价值交付，客户付费服务起点</td></tr>
+        <tr><td><strong>绑定层</strong></td><td>⑤ 长期合规顾问、年度法规更新服务</td><td>持续收入、深度客户关系</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>差距评估在服务链路中的位置</h3>
+  <div class="callout callout-change">
+    <div class="callout-title">⚡ 为什么这一步至关重要</div>
+    <p>差距评估是整个服务链路的<strong>第一步</strong>，它决定了后续所有服务的方向。就像医生开药之前必须先做检查——差距评估就是"合规体检"。如果体检结果不准，后续的数据规划、电池护照创建都会走弯路。做好这一步，客户自然会购买后续服务。</p>
+  </div>
+
+  <h3>7步流程鸟瞰图</h3>
+  <div class="flow-diagram">
+    <div class="flow-step">
+      <span class="flow-label">S1</span>
+      <span class="flow-desc">签约启动</span>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="flow-label">S2</span>
+      <span class="flow-desc">客户画像</span>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="flow-label">S3</span>
+      <span class="flow-desc">法规适配</span>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="flow-label">S4</span>
+      <span class="flow-desc">71项核查</span>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="flow-label">S5</span>
+      <span class="flow-desc">差距分级</span>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="flow-label">S6</span>
+      <span class="flow-desc">报告编制</span>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="flow-label">S7</span>
+      <span class="flow-desc">交付+下一步</span>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th style="width:50px">步骤</th><th>一句话概括</th><th style="width:100px">负责角色</th><th style="width:100px">交付周期</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">S1</td><td>签NDA、签协议、收客户信息——把合作基础搭好</td><td>商务</td><td>1-2天</td></tr>
+        <tr><td class="num">S2</td><td>搞清楚客户是谁、做什么电池、有多少SKU——画好画像</td><td>项目组</td><td>1天</td></tr>
+        <tr><td class="num">S3</td><td>根据电池类型，在法规矩阵里标出客户需要满足哪些条款</td><td>法规岗</td><td>1天</td></tr>
+        <tr><td class="num">S4</td><td>对照71个数据点逐项核查客户现状——✅有/⚠️部分有/❌没有</td><td>交付团队</td><td>2-3天</td></tr>
+        <tr><td class="num">S5</td><td>把差距按严重程度分A/B/C/D四级，评估整改难度</td><td>交付团队</td><td>1天</td></tr>
+        <tr><td class="num">S6</td><td>把前面所有成果写成正式报告，双人审核</td><td>项目经理</td><td>1-2天</td></tr>
+        <tr><td class="num">S7</td><td>向客户汇报结果，引导后续服务，签字验收</td><td>项目经理</td><td>1天</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>交付周期</h3>
+  <p><strong>标准服务：5-8个工作日</strong>（适用于单一或双电池类型、SKU≤30的客户）</p>
+  <p><strong>加急服务：3个工作日</strong>（需团队全程优先投入，加收30%-50%服务费）</p>
+
+  <h3>团队协作角色分工</h3>
+  <div class="callout callout-note">
+    <div class="callout-title">📌 分工原则</div>
+    <p>每个步骤有明确的"主责角色"，但项目经理全程参与把控质量。关键质量关口（S3法规适配、S5差距分级）需法规岗独立复核。</p>
+  </div>
+  <p>商务(S1) → 项目组(S2) → 法规岗(S3) → 交付团队(S4-S5) → 项目经理(S6-S7)</p>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter" id="ch3">
+  <h2 class="chapter-title"><span class="ch-num">第三章</span>S1 签约启动（操作指南）</h2>
+
+  <h3>3.1 你需要做什么</h3>
+  <ol>
+    <li>向客户发送NDA模板（中英双语），双方签署</li>
+    <li>发送服务协议/报价单，确认服务范围、价格、时间</li>
+    <li>发送客户信息采集表，请客户填写</li>
+  </ol>
+
+  <h3>3.2 具体操作步骤</h3>
+
+  <h4>Step 1: NDA签署</h4>
+  <p>使用模板：NDA模板（中英双语）</p>
+  <p><strong>注意事项：</strong></p>
+  <ul>
+    <li>确认客户公司全称与营业执照一致</li>
+    <li>双方签署日期要完整</li>
+    <li>保密期限通常3-5年</li>
+    <li>中英文版本以中文版为准（或约定以哪个版本为准）</li>
+  </ul>
+
+  <div class="pitfall-box">
+    <div class="pitfall-box-title">⚠️ 常见坑</div>
+    <ul>
+      <li><strong>客户法务修改条款：</strong>注意保密范围是否收窄（如"仅限本项目"改为"所有交流"）、违约责任是否加码、争议解决条款是否被修改为仲裁。如有重大修改，须上报项目经理审批。</li>
+    </ul>
+  </div>
+
+  <h4>Step 2: 服务协议</h4>
+  <p>使用模板：服务协议/报价单</p>
+  <p><strong>确认要点：</strong></p>
+  <ul>
+    <li><strong>服务范围：</strong>仅差距评估（S1-S6/S7），不含后续整改辅导（除非客户选了旗舰版）</li>
+    <li><strong>交付时间：</strong>标准5-8工作日 / 加急3工作日</li>
+    <li><strong>付款条件：</strong>签约付50%，交付验收后付50%</li>
+    <li><strong>知识产权：</strong>报告归客户所有，方法论归我方</li>
+  </ul>
+
+  <div class="dialog-box">
+    <div class="dialog-box-title">💬 话术参考：常见客户疑问</div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar client">客</div>
+      <div class="dialog-content">
+        <div class="dialog-label">客户问</div>
+        "你们这个评估和认证机构做的有什么不同？"
+      </div>
+    </div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">参考应答</div>
+        "认证机构做的是'考试'——给您打分、发证书。我们做的是'考前辅导'——帮您搞清楚哪些知识点没掌握、该怎么补。评估完成后，您就知道该优先做什么，去找谁做认证，花最少的钱和时间通过合规。"
+      </div>
+    </div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar client">客</div>
+      <div class="dialog-content">
+        <div class="dialog-label">客户问</div>
+        "能不能便宜点？别家报价更低。"
+      </div>
+    </div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">参考应答</div>
+        "价格可以根据您的具体情况调整。不过我想强调的是，差距评估的质量直接决定后续整改的效率。如果评估漏掉了关键数据点，后面整改时才发现，代价远比评估费高出数倍。我们的评估覆盖Annex XIII全部71个数据点，且每个差距项都标注了法规依据，确保无遗漏。"
+      </div>
+    </div>
+  </div>
+
+  <h4>Step 3: 客户信息采集</h4>
+  <p>发送Excel模板：<code>01_客户信息采集表</code></p>
+  <p><strong>给客户的填写说明（邮件模板）：</strong></p>
+  <div class="callout callout-change">
+    <div class="callout-title">📧 邮件模板</div>
+    <p>XX先生/女士，您好：</p>
+    <p>感谢选择守信财税DPP差距评估服务。为高效推进项目，请贵司协助填写附件《客户信息采集表》。</p>
+    <p>表格共5个Sheet，请尽量完整填写。如某些信息暂时不确定（如具体电池参数），可先填写已知部分并标注"待确认"，我们将在后续沟通中补充。</p>
+    <p>请于X月X日前回复，以便我们按计划启动评估工作。如有疑问请随时联系。</p>
+  </div>
+  <p><strong>回收后检查完整性：</strong></p>
+  <ul>
+    <li>5个Sheet是否都有内容</li>
+    <li>电池类型是否明确（如不确定，标记"待确认"进入S2再判）</li>
+    <li>联系人信息是否完整（姓名、电话、邮箱、微信）</li>
+    <li>SKU数量级是否已填写</li>
+    <li>出口欧盟的目的地国家是否已明确</li>
+  </ul>
+
+  <div class="pitfall-box">
+    <div class="pitfall-box-title">⚠️ 常见坑</div>
+    <ul>
+      <li><strong>客户迟迟不回复采集表：</strong>电话跟进，必要时安排30分钟电话访谈代替填写。不要让采集表成为项目瓶颈。</li>
+      <li><strong>客户填的电池类型明显错误：</strong>不要直接接受，标记"待确认"，S2再判。比如客户说自己的电池是"便携式"但实际用于E-bike。</li>
+      <li><strong>客户提供的信息前后矛盾：</strong>如SKU数量在不同Sheet不一致，须立即联系客户确认。</li>
+    </ul>
+  </div>
+
+  <div class="quality-gate">
+    <div class="quality-gate-title">✅ 质量关口</div>
+    <ul>
+      <li>NDA双方签署完毕</li>
+      <li>服务协议签署</li>
+      <li>客户信息采集表回收并检查完整性</li>
+      <li>客户付款确认（首付款到账）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section class="chapter" id="ch4">
+  <h2 class="chapter-title"><span class="ch-num">第四章</span>S2 客户画像（操作指南）</h2>
+
+  <h3>4.1 核心任务</h3>
+  <p>根据客户信息采集表，构建完整的客户画像。最重要的是<strong>准确判定电池类型</strong>——这一步的准确性直接决定后续所有法规条款的适用性判定。</p>
+
+  <h3>4.2 电池类型判定（最关键的环节）</h3>
+
+  <div class="callout callout-warn">
+    <div class="callout-title">⚠️ 关键提醒</div>
+    <p>电池类型判定是S2的核心输出。判定错误会导致后续法规适配全部偏差——该查的没查、不该查的查了。这是整个评估中<strong>容错率最低</strong>的环节。</p>
+  </div>
+
+  <h4>判定流程（决策树）</h4>
+  <div class="decision-tree">
+    <div class="decision-node">
+      <strong>问题1：你的电池用在哪里？</strong>
+    </div>
+    <div class="decision-result">电动汽车（纯电/混动）的牵引电池 → <strong>EV电池</strong> <span class="art-tag">Art.3(9)</span></div>
+    <div class="decision-result">E-bike、电动滑板车、电动轮椅、平衡车等轻型轮式车辆 → 进入问题2</div>
+    <div class="decision-result">叉车、AGV、UPS、固定储能等工业用途 → <strong>工业电池</strong> <span class="art-tag">Art.3(12)</span></div>
+    <div class="decision-result">遥控器、手电筒、玩具、手机等消费电子 → <strong>便携式电池</strong> <span class="art-tag">Art.3(10)</span></div>
+    <div class="decision-result">汽车启动/照明/点火 → <strong>SLI电池</strong> <span class="art-tag">Art.3(13)</span></div>
+
+    <div class="decision-node" style="margin-top:var(--space-lg)">
+      <strong>问题2：电池额定能量是否 &gt; 2kWh？</strong>（这是电池护照的分界线 <span class="art-tag">Art.77</span>）
+    </div>
+    <div class="decision-result">&gt; 2kWh 的 LMT 电池 → <strong>LMT电池（需电池护照）</strong></div>
+    <div class="decision-result">≤ 2kWh 的 LMT 电池 → <strong>LMT电池（不需电池护照，但需满足标签等要求）</strong></div>
+    <div class="decision-result">≤ 2kWh 的工业电池 → <strong>工业电池（不需电池护照）</strong></div>
+  </div>
+
+  <h4>特殊案例处理</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>场景</th><th>判定结果</th><th>依据</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>混动汽车的电池</td><td>归入<strong>EV电池</strong></td><td>为混合动力车辆牵引供电 <span class="art-tag">Art.3(9)</span></td></tr>
+        <tr><td>电动工具的电池</td><td>通常是<strong>便携式电池</strong>；但如果用于工业场景且&gt;2kWh → <strong>工业电池</strong></td><td>看实际使用场景</td></tr>
+        <tr><td>无人机电池</td><td>看具体用途和容量：消费级→便携式，工业级&gt;2kWh→工业</td><td>看重量和用途</td></tr>
+        <tr><td>电动船/船舶电池</td><td>如为牵引供电→可能归入工业电池（法规未明确列为独立类别）</td><td>需个案分析</td></tr>
+        <tr><td>既有EV用途又有储能用途的电池</td><td>按主要设计用途判定；如双重用途，按更严格类别处理</td><td>保守原则</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="example-box">
+    <div class="example-box-title">💡 实操示例：判定一个E-bike电池</div>
+    <p><strong>客户描述：</strong>"我们生产电动自行车用的锂电池包，额定电压48V，容量20Ah。"</p>
+    <p><strong>判定过程：</strong></p>
+    <ol>
+      <li>用在哪里？→ 电动自行车（E-bike）→ 属于LMT类轻型轮式车辆</li>
+      <li>额定能量计算：48V × 20Ah = 960Wh = 0.96kWh</li>
+      <li>0.96kWh &lt; 2kWh → 虽然属于LMT电池，但<strong>不需要电池护照</strong></li>
+    </ol>
+    <p><strong>判定结果：</strong>LMT电池（≤2kWh），不需电池护照，但仍须满足标签、EPR等要求。</p>
+    <p><strong>注意：</strong>如果客户的产品线中有容量&gt;2kWh的型号（如 cargo bike用大电池包），则需单独评估该型号。</p>
+  </div>
+
+  <h3>4.3 输出：客户画像表</h3>
+  <p>汇总以下信息形成一页纸画像：</p>
+  <ul>
+    <li><strong>公司基本信息摘要：</strong>企业名称、规模、主营业务、出口欧盟的主要产品</li>
+    <li><strong>电池类型判定结果：</strong>附判定依据（如上述E-bike示例）</li>
+    <li><strong>SKU数量和复杂程度评估：</strong>按电池类型分组统计</li>
+    <li><strong>现有认证情况总结：</strong>已有哪些认证（CE / UN38.3 / ISO 9001等）</li>
+    <li><strong>供应链概况摘要：</strong>涉及哪些关键原材料（钴/锂/镍/石墨）</li>
+    <li><strong>客户紧迫度和预算评估：</strong>距强制日期多远？预算是否充足？</li>
+  </ul>
+
+  <div class="pitfall-box">
+    <div class="pitfall-box-title">⚠️ 常见坑</div>
+    <ul>
+      <li><strong>客户自己说不清电池类型：</strong>用上面的判定树帮他判断，必要时看产品规格书（datasheet）。不要被客户的描述误导——客户说"工业电池"不代表法规上也算工业电池。</li>
+      <li><strong>一个客户有多种电池类型：</strong>分别建档，每种类型单独评估（影响报价和法规适配）。不要混在一起处理。</li>
+      <li><strong>忽略SKU数量对报价的影响：</strong>SKU越多，核查工作量越大。确保报价与SKU规模匹配。</li>
+    </ul>
+  </div>
+
+  <div class="quality-gate">
+    <div class="quality-gate-title">✅ 质量关口</div>
+    <ul>
+      <li>电池类型判定准确（必要时与客户确认）</li>
+      <li>SKU数量已核实</li>
+      <li>供应链涉及的关键原材料已识别</li>
+      <li>客户画像表已填写完整</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 5 -->
+<section class="chapter" id="ch5">
+  <h2 class="chapter-title"><span class="ch-num">第五章</span>S3 法规适配（操作指南）</h2>
+
+  <h3>5.1 核心任务</h3>
+  <p>根据客户电池类型，在法规适配矩阵中标注哪些数据点适用，生成"适用条款清单"——这就是后续S4核查的核查范围。</p>
+
+  <h3>5.2 操作步骤</h3>
+  <ol>
+    <li>打开工具：<code>02_法规适配矩阵.xlsx</code></li>
+    <li>找到客户电池类型对应的列</li>
+    <li>标记"●"的行 = 客户需要满足的数据点</li>
+    <li>标记"○"的行 = 需进一步确认的数据点（与客户确认具体情况）</li>
+    <li>标记"—"的行 = 客户不需要满足，直接跳过</li>
+    <li>生成"适用条款清单"——后续S4核查的核查范围</li>
+  </ol>
+
+  <h3>5.3 实操示例</h3>
+  <div class="example-box">
+    <div class="example-box-title">💡 实操示例：E-bike电池（LMT &gt;2kWh）法规适配</div>
+    <p><strong>客户背景：</strong>某E-bike电池制造商，产品额定能量15kWh（远超2kWh门槛），出口德国、荷兰。</p>
+    <p><strong>适配过程：</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>类别</th><th>名称</th><th>适配结果</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">A</td><td>电池身份</td><td class="mandatory">● 全部适用</td><td>15个数据点全部适用</td></tr>
+          <tr><td class="num">B</td><td>碳足迹</td><td class="mandatory">● 适用</td><td>LMT >2kWh须碳足迹声明</td></tr>
+          <tr><td class="num">C</td><td>供应链尽职调查</td><td class="mandatory">● 适用</td><td>涉及钴、锂、镍、石墨</td></tr>
+          <tr><td class="num">D</td><td>再生材料含量</td><td class="mandatory">● 适用</td><td>2031年起有最低含量要求</td></tr>
+          <tr><td class="num">E</td><td>性能与耐久性</td><td class="mandatory">● 适用</td><td>14个参数</td></tr>
+          <tr><td class="num">F</td><td>标签与合规声明</td><td class="mandatory">● 适用</td><td>标签格式、符合性声明</td></tr>
+          <tr><td class="num">G</td><td>详细材料组成</td><td class="mandatory">● 适用</td><td>5个数据点</td></tr>
+          <tr><td class="num">H</td><td>合格评定与测试报告</td><td class="mandatory">● 适用</td><td>第三方检测报告</td></tr>
+          <tr><td class="num">I</td><td>动态使用数据</td><td>○ 部分适用</td><td>部分动态数据需确认是否适用于LMT</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>输出：</strong>适用条款清单（含68个"●"适用项 + 3个"○"待确认项）</p>
+  </div>
+
+  <h3>5.4 关键日期标注</h3>
+  <p>在适用条款清单旁标注强制日期，让客户知道每项要求的紧迫程度：</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>法规要求</th><th>强制日期</th><th>法律来源</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>电池护照</strong></td><td style="color:var(--color-red);font-weight:700">2027年2月18日</td><td><span class="art-tag">Art.77(1)</span></td><td>最紧迫</td></tr>
+        <tr><td><strong>供应链尽职调查</strong></td><td style="color:var(--color-red);font-weight:700">2027年8月18日</td><td><span class="art-tag">Art.48(1)</span> as amended</td><td>已由Reg. 2025/1561延期两年</td></tr>
+        <tr><td><strong>碳足迹最大阈值（EV）</strong></td><td>2028年2月18日（条件日期）</td><td><span class="art-tag">Art.7(3)</span></td><td>取决于授权法案</td></tr>
+        <tr><td><strong>碳足迹最大阈值（工业）</strong></td><td>2029年2月18日（条件日期）</td><td><span class="art-tag">Art.7(3)</span></td><td>取决于授权法案</td></tr>
+        <tr><td><strong>碳足迹最大阈值（LMT）</strong></td><td>2031年8月18日（条件日期）</td><td><span class="art-tag">Art.7(3)</span></td><td>最宽松</td></tr>
+        <tr><td><strong>再生材料最低含量</strong></td><td>2031年8月18日</td><td><span class="art-tag">Art.8(1)</span></td><td>钴≥16%、铅≥85%、锂≥6%、镍≥6%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-date">
+    <div class="callout-title">⚠️ 条件日期说明</div>
+    <p>多个时间节点写作"固定日期或相关授权法案生效后X个月，以后者为准"。向客户解释时，建议以固定日期为准做规划，不要依赖"条件日期可能推迟"的侥幸心理。</p>
+  </div>
+
+  <div class="pitfall-box">
+    <div class="pitfall-box-title">⚠️ 常见坑</div>
+    <ul>
+      <li><strong>忘记标注条件日期：</strong>客户问"碳足迹什么时候强制？"如果只回答"条件日期"，客户会困惑。应该告诉客户最晚的固定日期，并说明可能因授权法案推迟。</li>
+      <li><strong>"○"项没有跟进确认：</strong>"○"项如果一直挂着不确认，会在S4核查时遗漏。须在S3结束前与客户完成确认。</li>
+    </ul>
+  </div>
+
+  <div class="quality-gate">
+    <div class="quality-gate-title">✅ 质量关口</div>
+    <ul>
+      <li>适用/不适用判定无误（逐项核对法规原文依据）</li>
+      <li>关键日期标注正确</li>
+      <li>与客户确认过"○"项的具体适用性</li>
+      <li>适用条款清单已生成并交项目经理审阅</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 6 -->
+<section class="chapter" id="ch6">
+  <h2 class="chapter-title"><span class="ch-num">第六章</span>S4 71项逐项核查（操作指南）</h2>
+
+  <h3>6.1 核心任务</h3>
+  <p>对照Annex XIII的71个数据点，逐项核查客户现状：<strong>✅已有 / ⚠️部分有 / ❌缺失</strong>。这是整个评估中工作量最大、最需要细致的环节。</p>
+
+  <h3>6.2 核查方法</h3>
+
+  <h4>数据来源分三类</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>来源类型</th><th>说明</th><th>典型数据点</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>客户内部数据</strong></td><td>客户自己掌握的生产/研发/质量数据</td><td>电池型号、化学成分、性能参数</td></tr>
+        <tr><td><strong>供应商数据</strong></td><td>需要上游供应商提供的数据</td><td>原材料来源、供应商尽职调查信息</td></tr>
+        <tr><td><strong>第三方数据</strong></td><td>需要第三方机构出具的数据</td><td>碳足迹验证报告、认证证书</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>核查流程（三步走）</h4>
+  <ol>
+    <li><strong>桌面审查：</strong>客户提供的文件和数据进行文档层面检查——看文件是否齐全、数据是否完整、格式是否符合要求</li>
+    <li><strong>访谈确认：</strong>与客户技术/质量负责人开30-60分钟电话会议，逐项过——特别关注"桌面审查"中存疑的项</li>
+    <li><strong>标注状态：</strong>在核查工作表中标记每个数据点的状态</li>
+  </ol>
+
+  <h3>6.3 核查工作表填写规范</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>列名</th><th>填写内容</th><th>规范</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>数据点编号</strong></td><td>Annex XIII编号（1-71）</td><td>与法规原文一致</td></tr>
+        <tr><td><strong>数据点名称</strong></td><td>数据点的中文描述</td><td>参考法规原文翻译</td></tr>
+        <tr><td><strong>状态</strong></td><td>✅已有 / ⚠️部分有 / ❌缺失</td><td>三选一，不可留空</td></tr>
+        <tr><td><strong>证据</strong></td><td>客户提供了什么证据</td><td>写文件名/版本号/描述，如"产品规格书v2.3"</td></tr>
+        <tr><td><strong>数据来源</strong></td><td>内部 / 供应商 / 第三方</td><td>三选一</td></tr>
+        <tr><td><strong>备注</strong></td><td>特殊情况说明</td><td>如"供应商尚未回复"、"认证即将过期"等</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>6.4 实操示例（5个数据点的详细核查示范）</h3>
+  <div class="example-box">
+    <div class="example-box-title">💡 实操示例：5个数据点的核查过程</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th style="width:40px">#</th><th>数据点</th><th>状态</th><th>证据</th><th>来源</th><th>备注</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td>电池型号/产品标识</td>
+            <td style="color:var(--color-green);font-weight:600">✅已有</td>
+            <td>产品规格书v2.3，含完整型号命名规则</td>
+            <td>内部</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="num">5</td>
+            <td>电池化学成分及含量</td>
+            <td style="color:var(--color-green);font-weight:600">✅已有</td>
+            <td>MSDS（材料安全数据表）2026版</td>
+            <td>内部</td>
+            <td>注意核对与Annex XIII要求的一致性</td>
+          </tr>
+          <tr>
+            <td class="num">11</td>
+            <td>碳足迹声明值</td>
+            <td style="color:var(--color-amber);font-weight:600">⚠️部分有</td>
+            <td>碳足迹咨询合同（已签约，尚未完成）</td>
+            <td>第三方</td>
+            <td>预计3个月后出结果</td>
+          </tr>
+          <tr>
+            <td class="num">15</td>
+            <td>供应链尽职调查政策</td>
+            <td style="color:var(--color-red);font-weight:600">❌缺失</td>
+            <td>—</td>
+            <td>—</td>
+            <td>客户尚无相关政策文件</td>
+          </tr>
+          <tr>
+            <td class="num">20</td>
+            <td>再生钴含量百分比</td>
+            <td style="color:var(--color-red);font-weight:600">❌缺失</td>
+            <td>—</td>
+            <td>供应商</td>
+            <td>需向正极材料供应商确认，供应商目前无此数据</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>核查技巧：</strong></p>
+    <ul>
+      <li>客户说"我们有"→ 要求看证据。"有"和"能拿出证据"是两回事</li>
+      <li>"部分有"的项一定要写清楚缺什么子项</li>
+      <li>"❌缺失"的项要记录为什么缺——是客户没有、还是供应商不给、还是第三方还没出</li>
+    </ul>
+  </div>
+
+  <div class="pitfall-box">
+    <div class="pitfall-box-title">⚠️ 常见坑</div>
+    <ul>
+      <li><strong>只看客户提供的文件就下结论：</strong>必须访谈确认。有些数据客户"有"但没有整理成法规要求的格式。</li>
+      <li><strong>供应商数据催收困难：</strong>提前告知客户需要协调供应商配合，在S1协议中就要明确"客户有义务协调供应商提供数据"。</li>
+      <li><strong>71项不是每个客户都要查71项：</strong>S3已经生成了"适用条款清单"，只查适用项。不适用的项标注"—"跳过。</li>
+      <li><strong>把"计划做"当成"已有"：</strong>客户说"我们正在做碳足迹"≠"已有碳足迹"。只有拿到正式报告/证书才能标✅。</li>
+    </ul>
+  </div>
+
+  <div class="quality-gate">
+    <div class="quality-gate-title">✅ 质量关口</div>
+    <ul>
+      <li>71个数据点全部标注（无遗漏，不适用的标注"—"）</li>
+      <li>每个"✅"都有对应证据（证据名称已记录）</li>
+      <li>数据来源分类准确（内部/供应商/第三方）</li>
+      <li>"⚠️部分有"的项已标注缺失的子项</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 7 -->
+<section class="chapter" id="ch7">
+  <h2 class="chapter-title"><span class="ch-num">第七章</span>S5 差距分级（操作指南）</h2>
+
+  <h3>7.1 核心任务</h3>
+  <p>将所有"⚠️"和"❌"项按<strong>A/B/C/D四个等级</strong>分类，同时评估整改难度。</p>
+
+  <h3>7.2 分级决策树（怎么用）</h3>
+  <p>对每个差距项，依次问四个问题：</p>
+  <div class="decision-tree">
+    <div class="decision-node">
+      <strong>问题1：没有这项，能注册电池护照吗？</strong>
+    </div>
+    <div class="decision-result">不能 → <strong style="color:var(--color-red)">A级（阻断级）</strong></div>
+
+    <div class="decision-node" style="margin-top:var(--space-lg)">
+      <strong>问题2：有法规时间要求且违反会受罚？</strong>（仅对问题1回答"能"的项）
+    </div>
+    <div class="decision-result">是 → <strong style="color:var(--color-amber)">B级（重大差距）</strong></div>
+
+    <div class="decision-node" style="margin-top:var(--space-lg)">
+      <strong>问题3：法规有要求但细则未定？</strong>（仅对问题2回答"否"的项）
+    </div>
+    <div class="decision-result">是 → <strong style="color:var(--color-blue-info)">C级（一般差距）</strong></div>
+
+    <div class="decision-node" style="margin-top:var(--space-lg)">
+      <strong>问题4：属于最佳实践？</strong>（仅对问题3回答"否"的项）
+    </div>
+    <div class="decision-result">是 → <strong style="color:var(--color-text-muted)">D级（建议级）</strong></div>
+  </div>
+
+  <h3>分级标准定义</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>级别</th><th>名称</th><th>定义</th><th>典型示例</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight:700;color:var(--color-red)">A</td><td>阻断级</td><td>不完成则产品无法进入欧盟市场</td><td>无电池护照数据基础、无唯一标识符方案、无EU符合性声明</td></tr>
+        <tr><td style="font-weight:700;color:var(--color-amber)">B</td><td>重大差距</td><td>法规明确要求，缺失将导致合规风险</td><td>缺碳足迹声明、缺尽职调查政策、标签不符合格式要求</td></tr>
+        <tr><td style="font-weight:700;color:var(--color-blue-info)">C</td><td>一般差距</td><td>法规有要求但可通过短期工作补齐</td><td>部分性能参数缺失、材料组成数据不完整</td></tr>
+        <tr><td style="font-weight:700;color:var(--color-text-muted)">D</td><td>建议级</td><td>非强制但建议完善，有助于合规效率</td><td>内部数据管理系统优化建议、数据自动采集方案</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>7.3 实操示例（5个分级示范）</h3>
+  <div class="example-box">
+    <div class="example-box-title">💡 实操示例：5个差距项的分级过程</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>差距项</th><th>Q1: 能注册电池护照吗？</th><th>Q2: 违反会受罚？</th><th>Q3: 细则未定？</th><th>最终级别</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>❌ 无唯一标识符方案</td>
+            <td>不能</td>
+            <td>—</td>
+            <td>—</td>
+            <td style="color:var(--color-red);font-weight:700">A级</td>
+          </tr>
+          <tr>
+            <td>⚠️ 碳足迹声明值仅有咨询合同</td>
+            <td>能（碳足迹不是护照注册的阻断项）</td>
+            <td>是（2028年强制阈值）</td>
+            <td>—</td>
+            <td style="color:var(--color-amber);font-weight:700">B级</td>
+          </tr>
+          <tr>
+            <td>❌ 无供应链尽职调查政策</td>
+            <td>能（尽调不是护照注册的阻断项）</td>
+            <td>是（2027年8月生效）</td>
+            <td>—</td>
+            <td style="color:var(--color-amber);font-weight:700">B级</td>
+          </tr>
+          <tr>
+            <td>⚠️ 部分性能参数缺失</td>
+            <td>能</td>
+            <td>否（性能参数无罚则）</td>
+            <td>否（测试方法已明确）</td>
+            <td style="color:var(--color-blue-info);font-weight:700">C级</td>
+          </tr>
+          <tr>
+            <td>❌ 无数据管理系统</td>
+            <td>能（法规未要求特定系统）</td>
+            <td>否</td>
+            <td>否</td>
+            <td style="color:var(--color-text-muted);font-weight:700">D级</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>7.4 整改难度评估</h3>
+  <p>每个差距项还要评估三维难度：</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>维度</th><th>等级</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="4"><strong>时间</strong></td>
+          <td><span class="diff-tag diff-urgent">紧急</span> &lt;1月</td>
+          <td>内部数据整理、格式调整</td>
+        </tr>
+        <tr>
+          <td><span class="diff-tag diff-short">短期</span> 1-3月</td>
+          <td>供应商数据收集、文件补充</td>
+        </tr>
+        <tr>
+          <td><span class="diff-tag diff-mid">中期</span> 3-12月</td>
+          <td>碳足迹核算、认证获取</td>
+        </tr>
+        <tr>
+          <td><span class="diff-tag diff-long">长期</span> &gt;12月</td>
+          <td>供应链体系重建、系统开发</td>
+        </tr>
+        <tr>
+          <td rowspan="3"><strong>成本</strong></td>
+          <td><strong>低</strong> (&lt;5万)</td>
+          <td>内部人力投入</td>
+        </tr>
+        <tr>
+          <td><strong>中</strong> (5-20万)</td>
+          <td>第三方服务费</td>
+        </tr>
+        <tr>
+          <td><strong>高</strong> (&gt;20万)</td>
+          <td>系统开发、大规模认证</td>
+        </tr>
+        <tr>
+          <td rowspan="4"><strong>外部依赖</strong></td>
+          <td>无</td>
+          <td>纯内部工作</td>
+        </tr>
+        <tr>
+          <td>需供应商配合</td>
+          <td>数据来自上游供应商</td>
+        </tr>
+        <tr>
+          <td>需第三方认证</td>
+          <td>需认证机构出具报告</td>
+        </tr>
+        <tr>
+          <td>需政府审批</td>
+          <td>涉及监管部门审批流程</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pitfall-box">
+    <div class="pitfall-box-title">⚠️ 常见坑</div>
+    <ul>
+      <li><strong>分级标准不一致：</strong>不同评估员对同一项可能给出不同级别。必须使用上述决策树，不能凭感觉。有分歧时由项目经理裁决。</li>
+      <li><strong>A级项过多：</strong>如果A级项超过10个，说明分级标准可能过于严格。回查决策树，确保只在"没有这项就不能注册电池护照"时才标A。</li>
+      <li><strong>忽略整改难度评估：</strong>只分级不评估难度，客户拿到报告也不知道先做什么。三维难度评估是整改路线图的基础。</li>
+    </ul>
+  </div>
+
+  <div class="quality-gate">
+    <div class="quality-gate-title">✅ 质量关口</div>
+    <ul>
+      <li>所有差距项都已分级（无遗漏）</li>
+      <li>A级项由第二位评审员复核</li>
+      <li>整改难度评估合理（三维都有标注）</li>
+      <li>分级决策树使用正确（有判定依据）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 8 -->
+<section class="chapter" id="ch8">
+  <h2 class="chapter-title"><span class="ch-num">第八章</span>S6 报告编制（操作指南）</h2>
+
+  <h3>8.1 核心任务</h3>
+  <p>将前面所有步骤的成果汇编成正式的差距评估报告。这是客户看到的最终产物，质量直接决定客户满意度和后续合作意愿。</p>
+
+  <h3>8.2 报告结构</h3>
+  <p>基于模板<code>02_DPP差距评估报告_模板.docx</code>：</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th style="width:40px">#</th><th>章节</th><th>内容要点</th><th style="width:80px">篇幅</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td><strong>封面</strong></td><td>客户名称、项目名称、日期、版本号</td><td>1页</td></tr>
+        <tr><td class="num">2</td><td><strong>执行摘要</strong></td><td>核心发现 + 关键差距数量统计（覆盖率X%，A级X项，B级X项...）</td><td>1页</td></tr>
+        <tr><td class="num">3</td><td><strong>项目背景与方法论</strong></td><td>法规依据、评估方法、范围界定</td><td>1-2页</td></tr>
+        <tr><td class="num">4</td><td><strong>客户画像摘要</strong></td><td>从S2的客户画像表提炼</td><td>1页</td></tr>
+        <tr><td class="num">5</td><td><strong>适用法规条款清单</strong></td><td>从S3的适用条款清单转化</td><td>1-2页</td></tr>
+        <tr><td class="num">6</td><td><strong>核查结果总览</strong></td><td>✅/⚠️/❌数量统计，按9个类别展示</td><td>1-2页</td></tr>
+        <tr><td class="num">7</td><td><strong>差距分级明细</strong></td><td>A/B/C/D各级的详细列表，每项标注法规依据</td><td>3-5页</td></tr>
+        <tr><td class="num">8</td><td><strong>整改路线图</strong></td><td>按优先级排列的整改计划，含时间线</td><td>2-3页</td></tr>
+        <tr><td class="num">9</td><td><strong>风险评估</strong></td><td>不合规的商业影响分析</td><td>1页</td></tr>
+        <tr><td class="num">10</td><td><strong>建议与下一步</strong></td><td>后续服务建议</td><td>1页</td></tr>
+        <tr><td class="num">11</td><td><strong>附录</strong></td><td>核查工作表、术语表、法规来源</td><td>按需</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>8.3 编写要点</h3>
+  <div class="callout callout-note">
+    <div class="callout-title">📌 写作原则</div>
+    <ul>
+      <li><strong>执行摘要：</strong>不超过1页，用数据说话。管理层可能只看这一页。</li>
+      <li><strong>差距明细：</strong>每项标注法规依据（Art.编号），让客户信服这不是我们编的。</li>
+      <li><strong>整改路线图：</strong>给客户一个时间线——先做什么后做什么，为什么。要让客户觉得"跟着这个路线图走就能合规"。</li>
+      <li><strong>语气：</strong>专业客观，不制造恐慌，但明确指出风险。不要写"你们问题很严重"，要写"存在X项阻断级差距，建议在X月前完成整改"。</li>
+    </ul>
+  </div>
+
+  <h3>8.4 内部审核流程</h3>
+  <ol>
+    <li><strong>初稿完成</strong> → 交付团队自查（格式、数据一致性、Art.编号）</li>
+    <li><strong>法规岗审核</strong> → 检查法规引用正确性、分级合理性</li>
+    <li><strong>项目经理审核</strong> → 检查逻辑一致性、数据准确性、客户可读性</li>
+    <li><strong>终稿确认</strong> → 格式、编号、页码检查</li>
+  </ol>
+
+  <div class="pitfall-box">
+    <div class="pitfall-box-title">⚠️ 常见坑</div>
+    <ul>
+      <li><strong>执行摘要写太长：</strong>管理层没时间看3页摘要。控制在1页以内，核心数据一目了然。</li>
+      <li><strong>Art.编号引用错误：</strong>这是最常见的低级错误。每条引用都要核对法规原文。"Art.77"和"Art.7(7)"是不同的条款。</li>
+      <li><strong>数据不一致：</strong>报告正文说"A级5项"，附录明细表数出来是6项。必须交叉核对。</li>
+      <li><strong>语气过于恐吓：</strong>"如果不整改，你们的产品将被禁止进入欧盟市场"——这种话不要写。改成"如未能在强制日期前完成整改，相关产品将无法合法投放欧盟市场"。</li>
+    </ul>
+  </div>
+
+  <div class="quality-gate">
+    <div class="quality-gate-title">✅ 质量关口</div>
+    <ul>
+      <li>报告通过双人审核（法规岗 + 项目经理）</li>
+      <li>所有Art.编号引用正确（逐项核对）</li>
+      <li>数据与核查工作表一致（交叉核对）</li>
+      <li>格式规范、无错别字</li>
+      <li>执行摘要可独立阅读（管理层只看摘要也能了解全貌）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 9 -->
+<section class="chapter" id="ch9">
+  <h2 class="chapter-title"><span class="ch-num">第九章</span>S7 交付与下一步（操作指南）</h2>
+
+  <h3>9.1 核心任务</h3>
+  <p>向客户汇报评估结果，并引导后续服务。这一步不仅是一次交付，更是<strong>后续服务的起点</strong>。</p>
+
+  <h3>9.2 汇报准备</h3>
+  <h4>制作汇报PPT（不超过15页）</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th style="width:40px">#</th><th>页面</th><th>内容</th><th style="width:60px">篇幅</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td>封面</td><td>项目名称、日期</td><td>—</td></tr>
+        <tr><td class="num">2</td><td>项目概述</td><td>评估范围、方法、时间线</td><td>半页</td></tr>
+        <tr><td class="num">3</td><td>核查范围与方法</td><td>71个数据点、9个类别</td><td>半页</td></tr>
+        <tr><td class="num">4</td><td>结果总览</td><td>用数据说话：✅X项 / ⚠️X项 / ❌X项</td><td>1页</td></tr>
+        <tr><td class="num">5-6</td><td>A级差距详解</td><td>每项：差距描述 + 法规依据 + 整改建议</td><td>1-2页</td></tr>
+        <tr><td class="num">7-8</td><td>B级差距详解</td><td>同上</td><td>1-2页</td></tr>
+        <tr><td class="num">9</td><td>C/D级差距概览</td><td>合并展示，不必逐项展开</td><td>1页</td></tr>
+        <tr><td class="num">10</td><td>整改路线图</td><td>时间线 + 优先级</td><td>1页</td></tr>
+        <tr><td class="num">11</td><td>下一步建议</td><td>后续服务方案</td><td>1页</td></tr>
+        <tr><td class="num">12-15</td><td>附录/问答</td><td>详细数据备查</td><td>按需</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>准备下一步服务方案</h4>
+  <ul>
+    <li>基于差距评估结果，推荐后续服务（③数据规划与手册 → ④电池护照创建 → ⑤整改辅导）</li>
+    <li>从差距评估自然衔接到下一步："基于这次评估发现的X项A级差距，建议优先启动数据规划..."</li>
+    <li>如果客户需要整改辅导，引出增值服务（旗舰版内容）</li>
+  </ul>
+
+  <h3>9.3 汇报技巧</h3>
+  <div class="dialog-box">
+    <div class="dialog-box-title">💬 汇报话术框架</div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">开场（先说好消息）</div>
+        "好消息是，贵司在71个数据点中已经有X%的覆盖率，这说明你们的基础不错。"
+      </div>
+    </div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">再说差距</div>
+        "但有几个关键项需要优先解决——特别是X项A级差距，这些是不解决就无法注册电池护照的。"
+      </div>
+    </div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">聚焦重点</div>
+        "建议先把A级和B级差距解决掉——这X项是最紧迫的。C/D级可以后续逐步完善。"
+      </div>
+    </div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">给客户选择权</div>
+        "我们有三个方案供您参考——基础版聚焦数据规划，标准版含整改辅导，旗舰版提供全程陪伴式服务。根据您的时间表和团队配置，我建议..."
+      </div>
+    </div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">控制时间</div>
+        "汇报+讨论控制在60-90分钟。重点放在A/B级差距和整改路线图上，C/D级可以快速过。"
+      </div>
+    </div>
+  </div>
+
+  <h3>9.4 交付确认</h3>
+  <ol>
+    <li>客户签字确认验收</li>
+    <li>发送正式报告（Word + PDF）</li>
+    <li>发送配套交付物：
+      <ul>
+        <li>71项核查工作表（Excel）</li>
+        <li>差距分级明细表（Excel）</li>
+        <li>整改路线图（嵌入报告）</li>
+        <li>关键日期速查卡（定制版PDF）</li>
+      </ul>
+    </li>
+    <li>尾款催收</li>
+  </ol>
+
+  <h3>9.5 下一步引导话术</h3>
+  <div class="dialog-box">
+    <div class="dialog-box-title">💬 引导话术</div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">引导数据规划</div>
+        "基于这次评估结果，建议下一步进入数据规划阶段——我们可以帮您建立数据采集手册和供应商沟通方案，让数据收集效率提升50%以上。"
+      </div>
+    </div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">引导整改辅导</div>
+        "如果时间紧张，我们也有加急通道和整改辅导服务，可以帮您团队在3个月内完成A级差距的整改。"
+      </div>
+    </div>
+    <div class="dialog-bubble">
+      <div class="dialog-avatar staff">我</div>
+      <div class="dialog-content staff-say">
+        <div class="dialog-label">处理犹豫</div>
+        "理解您需要时间考虑。不过距离2027年2月18日只剩不到半年，建议尽早启动。我们可以先安排一次免费的30分钟咨询，帮您理清优先级。"
+      </div>
+    </div>
+  </div>
+
+  <div class="pitfall-box">
+    <div class="pitfall-box-title">⚠️ 常见坑</div>
+    <ul>
+      <li><strong>汇报变成念报告：</strong>客户自己能读报告。汇报的价值在于"解读"和"互动"——重点讲客户最关心的A/B级差距，留出时间回答问题。</li>
+      <li><strong>过度推销后续服务：</strong>汇报的核心是交付价值，不是卖服务。先让客户感受到差距评估的价值，后续服务自然水到渠成。</li>
+      <li><strong>忘记催收尾款：</strong>交付确认后立即发送尾款账单。不要在交付后一个月才想起来催。</li>
+    </ul>
+  </div>
+
+  <div class="quality-gate">
+    <div class="quality-gate-title">✅ 质量关口</div>
+    <ul>
+      <li>客户签字确认验收</li>
+      <li>所有交付物发送完毕（报告+工作表+分级表+速查卡）</li>
+      <li>尾款到账</li>
+      <li>后续服务方案已发送</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 10 -->
+<section class="chapter" id="ch10">
+  <h2 class="chapter-title"><span class="ch-num">第十章</span>常见问题处理（FAQ）</h2>
+
+  <p>以下是内部团队在执行过程中最常遇到的10个问题及处理建议：</p>
+
+  <details>
+    <summary>Q1: 客户提供的数据明显不准确怎么办？</summary>
+    <div class="faq-body">
+      <p><strong>处理步骤：</strong></p>
+      <ol>
+        <li>不要直接指出"你的数据是错的"——用提问方式引导："这个数值和我们看到的规格书上的不一样，能否帮忙确认一下？"</li>
+        <li>交叉验证：用其他来源的数据核对（如用产品规格书核对客户填写的参数）</li>
+        <li>如确认数据不准确，在核查工作表备注栏标注"数据待核实"，并与客户约定二次确认时间</li>
+        <li>如客户坚持错误数据，在报告中如实记录并注明"该数据由客户提供，未经独立验证"</li>
+      </ol>
+    </div>
+  </details>
+
+  <details>
+    <summary>Q2: 客户说"我们已经有CE了"但其实不对怎么办？</summary>
+    <div class="faq-body">
+      <p><strong>背景：</strong>很多客户以为有CE认证就够了，但CE和电池护照是两回事。CE是产品安全认证，电池护照是数据披露要求。</p>
+      <p><strong>处理方式：</strong></p>
+      <ol>
+        <li>肯定客户："CE认证说明你们在产品安全方面做得不错，这是很好的基础。"</li>
+        <li>解释差异："但电池护照要求的71个数据点中，CE只覆盖了其中一小部分（主要是合格评定相关）。碳足迹、供应链尽调、材料成分等数据点是CE不包含的。"</li>
+        <li>在核查中将CE相关的项标为✅，但明确标注"仅覆盖合格评定类别，其他类别仍需补充"</li>
+      </ol>
+    </div>
+  </details>
+
+  <details>
+    <summary>Q3: 客户的电池类型判定有争议怎么办？</summary>
+    <div class="faq-body">
+      <p><strong>常见争议场景：</strong>客户希望自己的电池被归入要求较少的类别（如声称是"便携式"而非"LMT"）。</p>
+      <p><strong>处理原则：</strong></p>
+      <ul>
+        <li>以法规定义（Art.3）为准，不以客户意愿为准</li>
+        <li>查看产品规格书、使用说明书、产品页面——产品的实际用途和宣传是重要判定依据</li>
+        <li>如果仍无法判定，建议按更严格类别处理（保守原则）</li>
+        <li>必要时咨询法规专家或查阅欧盟委员会的实施指引</li>
+        <li>在报告中注明判定依据，让客户理解这不是我们的主观判断</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Q4: 供应商不配合提供数据怎么办？</summary>
+    <div class="faq-body">
+      <p><strong>这是最常见的问题之一。</strong>中国电池供应链中，很多中小供应商不了解DPP要求，也不愿配合。</p>
+      <p><strong>建议方案：</strong></p>
+      <ol>
+        <li>在S1阶段就告知客户："部分数据需要供应商配合，请提前与供应商沟通"</li>
+        <li>帮客户准备"供应商数据需求函"——用正式的商业函件形式，提升供应商配合意愿</li>
+        <li>建议客户将DPP数据要求纳入采购合同条款</li>
+        <li>如果供应商确实无法提供，在核查表中标注"供应商无法提供"，并在差距分析中评估替代方案</li>
+        <li>这本身就是一个增值服务机会——我们可以帮客户设计供应商沟通方案</li>
+      </ol>
+    </div>
+  </details>
+
+  <details>
+    <summary>Q5: 客户对分级结果有异议怎么办？</summary>
+    <div class="faq-body">
+      <p><strong>常见情况：</strong>客户认为某项不应该标A级（觉得没那么严重），或认为某项应该标更低级别。</p>
+      <p><strong>处理方式：</strong></p>
+      <ul>
+        <li>回到决策树：逐项展示判定过程，让客户理解为什么是这个级别</li>
+        <li>出示法规原文：让客户看到法规是怎么写的</li>
+        <li>如果客户仍有异议，记录异议内容，在报告中以"客户反馈"形式注明</li>
+        <li>核心原则：分级标准不能因为客户异议而降低。我们是专业机构，判定要有依据</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Q6: 评估过程中发现新的法规变化怎么办？</summary>
+    <div class="faq-body">
+      <p><strong>处理流程：</strong></p>
+      <ol>
+        <li>记录变化内容和来源（欧盟官方公报、授权法案等）</li>
+        <li>评估变化对客户项目的影响范围</li>
+        <li>上报项目经理决定是否需要调整评估范围</li>
+        <li>如影响重大，及时通知客户</li>
+        <li>在报告中注明评估基准日期和法规版本</li>
+      </ol>
+      <p><strong>建议：</strong>每周检查一次欧盟官方公报（OJ）和欧洲标准化委员会（CEN/CENELEC）的最新发布。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Q7: 客户想要评估报告用于投标/审计怎么办？</summary>
+    <div class="faq-body">
+      <p>差距评估报告是咨询报告，不是认证报告。如果客户需要用于投标：</p>
+      <ul>
+        <li>可以在报告中增加"声明页"，说明报告的目的和局限性</li>
+        <li>不建议修改报告内容来迎合投标要求——保持专业性和客观性</li>
+        <li>如果客户需要正式的合规认证，建议其找认可的第三方认证机构</li>
+        <li>可以单独出具一份"评估结果摘要函"用于投标，但需注明仅供参考</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Q8: 多个SKU的评估工作量怎么计算？</summary>
+    <div class="faq-body">
+      <p><strong>原则：</strong>71个数据点的核查是按"电池类型"而非"SKU"进行的。但如果SKU之间差异大（如不同化学成分），工作量会增加。</p>
+      <p><strong>计算方式：</strong></p>
+      <ul>
+        <li>同一电池类型、不同容量/尺寸：工作量增加约10-20%</li>
+        <li>不同化学成分（如LFP vs NMC）：工作量增加约30-50%</li>
+        <li>超过30个SKU：建议分批次处理，优先处理出口量最大的SKU</li>
+        <li>报价时：基础版≤10 SKU，标准版≤30 SKU，旗舰版不限</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Q9: 客户要求加急怎么处理？</summary>
+    <div class="faq-body">
+      <p><strong>加急条件：</strong></p>
+      <ul>
+        <li>加收30%-50%服务费</li>
+        <li>需团队全程优先投入（至少2人全职）</li>
+        <li>客户需承诺48小时内响应所有信息请求</li>
+        <li>加急服务不包含中英双语报告</li>
+      </ul>
+      <p><strong>加急流程调整：</strong></p>
+      <ol>
+        <li>Day 1：S1+S2并行（签约同时开始画像）</li>
+        <li>Day 2：S3+S4前半（法规适配 + 桌面审查）</li>
+        <li>Day 3：S4后半+S5+S6（完成核查+分级+报告框架）</li>
+        <li>Day 4-5：S6审核+S7交付</li>
+      </ol>
+      <p><strong>风险提示：</strong>加急可能影响质量。建议向客户说明：如果时间允许，标准周期能保证更高质量的交付。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Q10: 评估完成后客户不继续购买后续服务怎么办？</summary>
+    <div class="faq-body">
+      <p><strong>心态调整：</strong>这是正常情况，不要气馁。差距评估本身就是一个完整的交付。</p>
+      <p><strong>处理建议：</strong></p>
+      <ul>
+        <li>确保本次交付质量——高质量的交付是未来合作的基础</li>
+        <li>在交付后1个月做一次回访，了解客户进展</li>
+        <li>保持法规资讯推送（引流层内容），维持客户关系</li>
+        <li>很多客户会在3-6个月后回来——当他们发现自己做不了或做不好时</li>
+        <li>请客户推荐其他有需求的客户（转介绍是最低成本的获客方式）</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- CHAPTER 11 -->
+<section class="chapter" id="ch11">
+  <h2 class="chapter-title"><span class="ch-num">第十一章</span>工具文件速查</h2>
+
+  <p>以下是S1-S7所有用到的工具/模板完整清单：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>步骤</th><th>工具/文件</th><th>格式</th><th>位置/文件名</th><th style="width:70px">状态</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>S1</td><td>NDA模板（中英双语）</td><td>Word</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S1</td><td>服务协议/报价单</td><td>Word</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S1</td><td>客户信息采集表</td><td>Excel</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S2</td><td>电池类型判定表</td><td>Excel</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S2</td><td>现有认证清单采集表</td><td>Excel</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S2</td><td>供应链概况采集表</td><td>Excel</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S3</td><td>法规适配矩阵</td><td>Excel</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S3</td><td>关键日期速查卡（模板）</td><td>PDF/单页</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S4</td><td>核查工作表</td><td>Excel</td><td>DPP手册/01_</td><td><span class="status-badge status-existing">已有</span></td></tr>
+        <tr><td>S4</td><td>数据采集指引</td><td>Word</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S5</td><td>差距分级标准定义</td><td>Word/HTML</td><td>DPP手册/03_</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S6</td><td>差距评估报告模板</td><td>Word</td><td>DPP手册/02_</td><td><span class="status-badge status-existing">已有</span></td></tr>
+        <tr><td>S7</td><td>汇报PPT模板</td><td>PPT</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>S7</td><td>下一步服务方案模板</td><td>Word</td><td>DPP手册/</td><td><span class="status-badge status-todo">待创建</span></td></tr>
+        <tr><td>通用</td><td>法规核心条款参考</td><td>HTML</td><td>DPP手册/00_</td><td><span class="status-badge status-existing">已有</span></td></tr>
+        <tr><td>通用</td><td>产品手册（对外）</td><td>HTML</td><td>DPP手册/01_</td><td><span class="status-badge status-existing">已有</span></td></tr>
+        <tr><td>通用</td><td>培训手册（本文档）</td><td>HTML</td><td>DPP手册/01_</td><td><span class="status-badge status-existing">已有</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- APPENDIX A -->
+<section class="chapter" id="appA">
+  <h2 class="chapter-title"><span class="ch-num">附录A</span>术语速查表</h2>
+
+  <p>以下术语与《00_欧盟电池法规核心条款》附录B保持一致：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th style="width:180px">中文术语</th><th style="width:180px">英文术语</th><th>定义简述</th><th style="width:80px">法规来源</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>电池护照</strong></td><td>Digital Battery Passport</td><td>每个电池的数字产品护照，包含71个数据点</td><td><span class="art-tag">Art.77</span></td></tr>
+        <tr><td><strong>经济运营商</strong></td><td>Economic Operator</td><td>制造商、授权代表、进口商、分销商等</td><td><span class="art-tag">Art.3(28)</span></td></tr>
+        <tr><td><strong>投放市场</strong></td><td>Placing on the Market</td><td>首次在欧盟市场提供电池</td><td><span class="art-tag">Art.3(27)</span></tr>
+        <tr><td><strong>碳足迹</strong></td><td>Carbon Footprint</td><td>电池全生命周期温室气体排放总量</td><td><span class="art-tag">Art.7</span></td></tr>
+        <tr><td><strong>尽职调查</strong></td><td>Due Diligence</td><td>对供应链中人权和环境风险的识别与管理</td><td><span class="art-tag">Art.48-52</span></td></tr>
+        <tr><td><strong>生产者延伸责任</strong></td><td>EPR (Extended Producer Responsibility)</td><td>生产者对电池废弃阶段承担的责任</td><td><span class="art-tag">Art.53-57</span></td></tr>
+        <tr><td><strong>符合性声明</strong></td><td>EU Declaration of Conformity</td><td>制造商出具的符合法规要求的声明文件</td><td><span class="art-tag">Art.18</span></td></tr>
+        <tr><td><strong>合格评定</strong></td><td>Conformity Assessment</td><td>验证产品符合法规要求的过程</td><td><span class="art-tag">Art.16-17</span></td></tr>
+        <tr><td><strong>Annex XIII</strong></td><td>Annex XIII</td><td>电池护照数据点清单（71个数据点，9个类别）</td><td>—</td></tr>
+        <tr><td><strong>LMT</strong></td><td>Light Means of Transport</td><td>轻型交通工具（E-bike、电动滑板车等）</td><td><span class="art-tag">Art.3(11)</span></td></tr>
+        <tr><td><strong>SLI</strong></td><td>Starting, Lighting, Ignition</td><td>车辆启动/照明/点火电池</td><td><span class="art-tag">Art.3(13)</span></td></tr>
+        <tr><td><strong>授权法案</strong></td><td>Delegated Act</td><td>欧盟委员会根据法规授权制定的实施细则</td><td>—</td></tr>
+        <tr><td><strong>实施条例</strong></td><td>Implementing Act</td><td>确保法规统一实施的技术性规定</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- APPENDIX B -->
+<section class="chapter" id="appB">
+  <h2 class="chapter-title"><span class="ch-num">附录B</span>关键Art.条款索引</h2>
+
+  <p>以下是本手册中引用的关键法规条款索引，方便快速查找：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th style="width:100px">条款</th><th>主题</th><th>关联步骤</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="art-tag">Art.1</span></td><td>适用范围</td><td>S2</td></tr>
+        <tr><td><span class="art-tag">Art.3</span></td><td>定义（电池分类）</td><td>S2</td></tr>
+        <tr><td><span class="art-tag">Art.7</span></td><td>碳足迹要求</td><td>S3, S4, S5</td></tr>
+        <tr><td><span class="art-tag">Art.8</span></td><td>再生材料最低含量</td><td>S3, S5</td></tr>
+        <tr><td><span class="art-tag">Art.13</span></td><td>标签要求</td><td>S4</td></tr>
+        <tr><td><span class="art-tag">Art.16-17</span></td><td>合格评定程序</td><td>S4</td></tr>
+        <tr><td><span class="art-tag">Art.18</span></td><td>EU符合性声明</td><td>S4</td></tr>
+        <tr><td><span class="art-tag">Art.48-52</span></td><td>供应链尽职调查</td><td>S3, S4, S5</td></tr>
+        <tr><td><span class="art-tag">Art.53-57</span></td><td>生产者延伸责任（EPR）</td><td>S4</td></tr>
+        <tr><td><span class="art-tag">Art.77</span></td><td>电池护照（Digital Battery Passport）</td><td>S2, S3, S4, S5</td></tr>
+        <tr><td><span class="art-tag">Art.96</span></td><td>生效与适用日期</td><td>S3</td></tr>
+        <tr><td>Annex VI Part A</td><td>电池身份数据点</td><td>S4</td></tr>
+        <tr><td>Annex XIII</td><td>电池护照数据点清单（71项）</td><td>S3, S4, S5</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- APPENDIX C -->
+<section class="chapter" id="appC">
+  <h2 class="chapter-title"><span class="ch-num">附录C</span>内部联系人与升级机制</h2>
+
+  <h3>角色职责</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>角色</th><th>职责</th><th>升级场景</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>项目经理</strong></td><td>全流程质量把控、客户沟通、最终审核</td><td>客户投诉、分级争议、范围变更</td></tr>
+        <tr><td><strong>法规分析师</strong></td><td>法规适配判定、条款引用审核</td><td>法规解读分歧、新法规变化</td></tr>
+        <tr><td><strong>商务负责人</strong></td><td>定价审批、合同条款审核</td><td>NDA条款重大修改、价格争议</td></tr>
+        <tr><td><strong>创始人/合伙人</strong></td><td>战略决策、重大客户关系</td><td>客户升级投诉、重大项目决策</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>升级机制</h3>
+  <div class="callout callout-warn">
+    <div class="callout-title">⚠️ 必须升级的场景</div>
+    <ul>
+      <li><strong>立即升级至项目经理：</strong>NDA客户法务修改条款、客户对分级结果强烈不满、发现法规重大变化</li>
+      <li><strong>立即升级至商务负责人：</strong>客户要求降价超过20%、合同范围争议、付款延迟超过30天</li>
+      <li><strong>立即升级至创始人：</strong>客户威胁法律行动、涉及敏感客户（竞品/政府相关）、媒体询问</li>
+    </ul>
+  </div>
+
+  <h3>内部沟通规范</h3>
+  <ul>
+    <li><strong>项目启动：</strong>在项目群中发布启动通知，明确分工和时间线</li>
+    <li><strong>日常更新：</strong>每日在项目群中更新进度（一句话即可）</li>
+    <li><strong>问题升级：</strong>先私聊项目经理，不要直接在群里抛问题</li>
+    <li><strong>客户沟通：</strong>所有对外邮件/消息须经项目经理审核</li>
+  </ul>
+</section>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <p><strong>守信财税 DPP业务部 · 内部培训手册</strong></p>
+  <p>版本 v1.0 · 2026年9月 · 内部资料请勿外传</p>
+  <p>法规依据：(EU) 2023/1542 及截至2026年9月的修订</p>
+  <p style="margin-top:var(--space-sm)">本手册为内部操作指南，所有法规条款引用与《00_欧盟电池法规核心条款》保持一致。如有法规更新，本手册将同步修订。</p>
+</div>
+
+</main>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+}
+
+// Close sidebar when clicking a link on mobile
+document.querySelectorAll('.sidebar nav a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    if (window.innerWidth <= 900) {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('open');
+    }
+  });
+});
+
+// Active nav highlighting on scroll
+(function() {
+  var sections = document.querySelectorAll('.chapter, .cover');
+  var navLinks = document.querySelectorAll('.sidebar nav a');
+
+  function onScroll() {
+    var scrollPos = window.scrollY + 100;
+    var current = '';
+    sections.forEach(function(section) {
+      if (section.offsetTop <= scrollPos) {
+        current = section.id;
+      }
+    });
+    navLinks.forEach(function(link) {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+})();
+</script>
+
+</body>
+</html>

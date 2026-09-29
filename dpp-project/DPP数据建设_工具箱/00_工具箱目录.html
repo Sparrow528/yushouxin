@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP数据建设工具箱 · 目录</title>
+<style>
+:root {
+  --c-primary: #1A237E;
+  --c-accent: #2E7D32;
+  --c-text: #212121;
+  --c-text-sec: #546E7A;
+  --c-border: #E0E0E0;
+  --c-bg: #FAFAFA;
+  --c-card: #FFFFFF;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--c-bg);
+  color: var(--c-text);
+  line-height: 1.7;
+  font-size: 16px;
+}
+.cover {
+  background: linear-gradient(135deg, var(--c-primary) 0%, #283593 52%, var(--c-accent) 100%);
+  color: #fff;
+  padding: 60px 40px;
+  text-align: center;
+}
+.cover h1 { font-size: 2em; margin-bottom: 8px; }
+.cover .subtitle { font-size: 1.1em; opacity: 0.9; margin-bottom: 12px; }
+.cover .version {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+.content { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+.category {
+  margin-bottom: 32px;
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.category-header {
+  background: var(--c-primary);
+  color: #fff;
+  padding: 14px 20px;
+  font-size: 1.1em;
+  font-weight: 700;
+}
+.file-list { list-style: none; }
+.file-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+.file-item:last-child { border-bottom: none; }
+.file-item:hover { background: #F5F6FA; }
+.file-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+.file-icon.xlsx { background: #2E7D32; }
+.file-icon.docx { background: #1A237E; }
+.file-info { flex: 1; }
+.file-name { font-weight: 600; font-size: 15px; color: var(--c-text); }
+.file-desc { font-size: 13px; color: var(--c-text-sec); margin-top: 2px; }
+.file-badge {
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge-client { background: #E8F5E9; color: #2E7D32; }
+.badge-internal { background: #E8EAF6; color: #1A237E; }
+.badge-delivery { background: #FFF3E0; color: #E65100; }
+.footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--c-text-sec);
+  font-size: 13px;
+  border-top: 1px solid var(--c-border);
+  margin-top: 40px;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+.stat-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+.stat-num { font-size: 1.8em; font-weight: 800; color: var(--c-primary); }
+.stat-label { font-size: 13px; color: var(--c-text-sec); }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <h1>📦 DPP数据建设工具箱</h1>
+  <p class="subtitle">服务B（数据规划与手册编制）+ 服务C（供应商数据采集辅导）</p>
+  <span class="version">v1.0 · 2026年9月 · 守信财税</span>
+</header>
+
+<div class="content">
+
+<div class="stats">
+  <div class="stat-card">
+    <div class="stat-num">15</div>
+    <div class="stat-label">文件总数</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">35</div>
+    <div class="stat-label">数据字段</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">7</div>
+    <div class="stat-label">问卷Part</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">3</div>
+    <div class="stat-label">核验级别</div>
+  </div>
+</div>
+
+<div class="category">
+  <div class="category-header">📁 签约启动类（3个文件）</div>
+  <ul class="file-list">
+    <li class="file-item">
+      <div class="file-icon docx">W</div>
+      <div class="file-info">
+        <div class="file-name">01_NDA保密协议_中英双语.docx</div>
+        <div class="file-desc">数据保密协议，中英双语，签约前签署</div>
+      </div>
+      <span class="file-badge badge-client">客户签署</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon docx">W</div>
+      <div class="file-info">
+        <div class="file-name">02_服务协议与报价单.docx</div>
+        <div class="file-desc">含标准版¥200,000-300,000 / 旗舰版¥300,000-450,000</div>
+      </div>
+      <span class="file-badge badge-client">客户签署</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon docx">W</div>
+      <div class="file-info">
+        <div class="file-name">03_项目启动书.docx</div>
+        <div class="file-desc">明确数据建设范围、双方项目组、里程碑计划</div>
+      </div>
+      <span class="file-badge badge-client">双方确认</span>
+    </li>
+  </ul>
+</div>
+
+<div class="category">
+  <div class="category-header">📁 数据采集类（4个文件）</div>
+  <ul class="file-list">
+    <li class="file-item">
+      <div class="file-icon xlsx">X</div>
+      <div class="file-info">
+        <div class="file-name">04_供应商清单模板.xlsx</div>
+        <div class="file-desc">供应商名称/联系人/负责数据项/配合度评分（A/B/C评级）</div>
+      </div>
+      <span class="file-badge badge-internal">内部工作</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon docx">W</div>
+      <div class="file-info">
+        <div class="file-name">05_供应商数据问卷_中英双语.docx</div>
+        <div class="file-desc">Part A-G共7部分：基本信息/合规资质/产品信息/材料成分/供应链追溯/环保安全/签署承诺</div>
+      </div>
+      <span class="file-badge badge-client">发放供应商</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon xlsx">X</div>
+      <div class="file-info">
+        <div class="file-name">06_催收管理台账.xlsx</div>
+        <div class="file-desc">供应商催收跟踪表：发放日期/回收日期/催收次数/状态/7-14-21天节奏</div>
+      </div>
+      <span class="file-badge badge-internal">内部工作</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon docx">W</div>
+      <div class="file-info">
+        <div class="file-name">07_数据采集指引.docx</div>
+        <div class="file-desc">告知客户需准备的资料清单：内部数据/认证文件/供应商信息/对接人</div>
+      </div>
+      <span class="file-badge badge-client">发客户</span>
+    </li>
+  </ul>
+</div>
+
+<div class="category">
+  <div class="category-header">📁 内部工作类（4个文件）</div>
+  <ul class="file-list">
+    <li class="file-item">
+      <div class="file-icon xlsx">X</div>
+      <div class="file-info">
+        <div class="file-name">08_数据卡模板.xlsx</div>
+        <div class="file-desc">35字段×N型号，含字段说明（编号/分组/名称/类型/来源/证据要求）</div>
+      </div>
+      <span class="file-badge badge-internal">内部工作</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon xlsx">X</div>
+      <div class="file-info">
+        <div class="file-name">09_数据缺口分析报告模板.xlsx</div>
+        <div class="file-desc">初始缺口→采集后缺口→最终缺口对比，含汇总统计+逐字段明细</div>
+      </div>
+      <span class="file-badge badge-delivery">交付物</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon xlsx">X</div>
+      <div class="file-info">
+        <div class="file-name">10_数据核验记录表.xlsx</div>
+        <div class="file-desc">L1逻辑校验→L2交叉验证→L3法规合规三级核验，逐字段记录</div>
+      </div>
+      <span class="file-badge badge-internal">内部工作</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon xlsx">X</div>
+      <div class="file-info">
+        <div class="file-name">11_采集计划与进度表.xlsx</div>
+        <div class="file-desc">里程碑+详细采集任务，含责任分工/进度跟踪/风险标注</div>
+      </div>
+      <span class="file-badge badge-internal">内部工作</span>
+    </li>
+  </ul>
+</div>
+
+<div class="category">
+  <div class="category-header">📁 交付物模板类（4个文件）</div>
+  <ul class="file-list">
+    <li class="file-item">
+      <div class="file-icon xlsx">X</div>
+      <div class="file-info">
+        <div class="file-name">12_数据手册模板.xlsx</div>
+        <div class="file-desc">核心交付物：封面+数据卡汇总+采集台账+供应商清单+齐备度统计（5个Sheet）</div>
+      </div>
+      <span class="file-badge badge-delivery">核心交付物</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon docx">W</div>
+      <div class="file-info">
+        <div class="file-name">13_数据合规性报告模板.docx</div>
+        <div class="file-desc">71项合规性检查报告，9大分类逐项检查，含汇总统计+审核签字</div>
+      </div>
+      <span class="file-badge badge-delivery">交付物</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon docx">W</div>
+      <div class="file-info">
+        <div class="file-name">14_数据维护计划模板.docx</div>
+        <div class="file-desc">动态数据更新计划+年度审核+变更管理流程+沟通机制</div>
+      </div>
+      <span class="file-badge badge-delivery">交付物</span>
+    </li>
+    <li class="file-item">
+      <div class="file-icon docx">W</div>
+      <div class="file-info">
+        <div class="file-name">15_交付物验收确认单.docx</div>
+        <div class="file-desc">数据建设5项交付物逐项验收：数据卡/缺口分析/台账/手册/配合度评估</div>
+      </div>
+      <span class="file-badge badge-client">客户签收</span>
+    </li>
+  </ul>
+</div>
+
+<div class="footer">
+  <p>守信财税咨询 · DPP电池护照合规服务 · 数据建设工具箱 v1.0</p>
+  <p>依据 (EU) 2023/1542 附录XIII | 8分组35字段 | Part A-G问卷 | 三级核验体系</p>
+</div>
+
+</div>
+</body>
+</html>
