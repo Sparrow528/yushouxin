@@ -125,6 +125,8 @@ input[type=file]{display:none}
     <div id="metrics"></div>
     <h2 style="margin-top:20px"><span class="n">!</span>风险点与建议</h2>
     <div id="issues"></div>
+    <h2 style="margin-top:20px"><span class="n">!</span>本行业常见风险自查</h2>
+    <div id="industryRisks"></div>
     <div class="disclaimer">⚠️ 本报告为算法估算，不构成专业税务意见。增值税额可能为反推估算值，行业预警值为参考区间。如出现任何风险提示，请务必人工复核原始报表，或咨询专业财税顾问。</div>
   </div>
 </div>
@@ -163,7 +165,7 @@ const FIELDS = [
   {key:'vat', label:'应交增值税（元，可反推）', keywords:['应交增值税','应纳增值税','增值税额','增值税']},
   {key:'taxSurcharge', label:'营业税金及附加（元）', keywords:['营业税金及附加','税金及附加']},
   {key:'stampTax', label:'印花税（元，可留空）', keywords:['印花税']},
-  {key:'propertyTax', label:'房产税（元，可留空）', keywords:['房产税']},
+  {key:'houseValue', label:'房产原值（元，可留空，自动估房产税）', keywords:['房屋建筑物','房产原值','房屋原值','房屋及建筑物']},
   {key:'otherTax', label:'其他税金合计（元，可留空）', keywords:['城镇土地使用税','土地使用税','车船税','资源税','消费税']},
   {key:'incomeTax', label:'应交所得税（元）', keywords:['应交所得税','所得税费用','企业所得税']},
   {key:'sellExp', label:'销售费用（元，可留空）', keywords:['销售费用','营业费用']},
@@ -186,6 +188,19 @@ const INDUSTRIES = {
   '餐饮住宿': {vatMin:1.5, vatMax:3, grossMin:30},
   '交通运输': {vatMin:1.5, vatMax:2.5, grossMin:10},
   '房地产': {vatMin:3, vatMax:6, grossMin:20},
+};
+
+// 行业常见风险提示（引流点）
+const INDUSTRY_RISKS = {
+  '通用': ['进销项发票匹配度需核查，避免进项异常','往来款长期挂账，可能被视同分红或借款利息','股东个人账户与公司账户混用的税务风险'],
+  '商贸零售': ['进销存不匹配——进项发票与销项收入对不上','库存账实差异大，可能存在少记收入','返利、促销、赠品销售的税务处理不规范'],
+  '制造业': ['研发费用加计扣除是否足额享受（可省一大笔所得税）','存货跌价、报废损失是否做了税前扣除','固定资产加速折旧政策是否利用'],
+  '建筑业': ['跨区域经营是否按规定预缴增值税','农民工工资专户与个税、社保的合规处理','挂靠、转包模式下的税务风险'],
+  '软件科技': ['研发费用加计扣除是否足额享受','软件产品增值税即征即退是否申请','高新技术企业/软件企业资质与税收优惠'],
+  '咨询服务': ['大量无票支出，成本税前扣除不足','个人劳务报酬的个税与发票处理','核定征收与查账征收的税负差异'],
+  '餐饮住宿': ['食材采购无票，成本无法税前扣除','会员充值、预售款的收入确认时点','现金收入漏报风险'],
+  '交通运输': ['挂靠车辆、个体司机的税务处理','油费、通行费进项抵扣是否充分','无车承运/网络货运平台的合规'],
+  '房地产': ['土地增值税清算风险','预收款是否按规定预缴增值税','利息费用资本化与税前扣除'],
 };
 
 function toNum(v){ if(v===null||v===undefined||v==='') return null; if(typeof v==='number') return v; const n=parseFloat(String(v).replace(/[,，¥￥\s]/g,'')); return isNaN(n)?null:n; }
@@ -294,7 +309,8 @@ function analyze(){
     const sur=parseFloat(document.getElementById('cityRate').value);
     let rate=(sur+5)/100; // 城建税+教育费附加3%+地方教育附加2%
     if(isSmall) rate=rate/2; // 小规模纳税人六税两费减半
-    const base=getVal('taxSurcharge')-(getVal('stampTax')||0)-(getVal('propertyTax')||0)-(getVal('otherTax')||0);
+    const houseTax=(getVal('houseValue')||0)*0.0084; // 房产税=房产原值×70%×1.2%
+    const base=getVal('taxSurcharge')-(getVal('stampTax')||0)-houseTax-(getVal('otherTax')||0);
     if(base>0){ vat=base/rate; vatSource='反推'; }
   }
   const incomeTax=getVal('incomeTax');
@@ -401,6 +417,22 @@ function renderReport(metrics,issues){
       issuesBox.appendChild(div);
     });
   }
+
+  // 行业常见风险提示（引流）
+  const indName=document.getElementById('industry').value;
+  const risks=INDUSTRY_RISKS[indName]||INDUSTRY_RISKS['通用'];
+  const indBox=document.getElementById('industryRisks');
+  indBox.innerHTML='';
+  risks.forEach(r=>{
+    const div=document.createElement('div');
+    div.className='issue';
+    div.innerHTML=`<div class="dot y"></div><div>${r}</div>`;
+    indBox.appendChild(div);
+  });
+  const cta=document.createElement('div');
+  cta.style.cssText='margin-top:12px;padding:12px 16px;background:#FDF3E3;border-radius:8px;font-size:13px;color:#8a6d1a;text-align:center;';
+  cta.textContent='以上是本行业常见风险点，如需逐项排查，欢迎预约免费一对一诊断';
+  indBox.appendChild(cta);
 }
 
 // ============ 步骤切换 ============
