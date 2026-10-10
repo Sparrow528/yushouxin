@@ -82,6 +82,14 @@ input[type=file]{display:none}
         <option value="房地产">房地产</option>
       </select>
     </div>
+    <div style="margin-bottom:14px">
+      <label style="font-size:13px;color:var(--muted)">企业所在地（城建税税率，反推增值税用）</label>
+      <select id="cityRate" style="width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;font-size:15px;margin-top:6px;color:var(--navy);font-weight:600">
+        <option value="7">市区（城建税 7%，附加率 12%）</option>
+        <option value="5">县城 / 建制镇（城建税 5%，附加率 10%）</option>
+        <option value="1">其他（城建税 1%，附加率 6%）</option>
+      </select>
+    </div>
     <div class="upload-zone" id="uploadZone">
       <div class="ico">📊</div>
       <p>点这里上传 Excel 报表</p>
@@ -146,7 +154,11 @@ const FIELDS = [
   {key:'grossProfit', label:'毛利（元，可留空自动算）', keywords:['毛利']},
   {key:'profit', label:'利润总额（元）', keywords:['利润总额','税前利润']},
   {key:'netProfit', label:'净利润（元）', keywords:['净利润','税后利润']},
-  {key:'vat', label:'应交增值税（元）', keywords:['应交增值税','应纳增值税','增值税额','增值税']},
+  {key:'vat', label:'应交增值税（元，可反推）', keywords:['应交增值税','应纳增值税','增值税额','增值税']},
+  {key:'taxSurcharge', label:'营业税金及附加（元）', keywords:['营业税金及附加','税金及附加']},
+  {key:'stampTax', label:'印花税（元，可留空）', keywords:['印花税']},
+  {key:'propertyTax', label:'房产税（元，可留空）', keywords:['房产税']},
+  {key:'otherTax', label:'其他税金合计（元，可留空）', keywords:['城镇土地使用税','土地使用税','车船税','资源税','消费税']},
   {key:'incomeTax', label:'应交所得税（元）', keywords:['应交所得税','所得税费用','企业所得税']},
   {key:'sellExp', label:'销售费用（元，可留空）', keywords:['销售费用','营业费用']},
   {key:'adminExp', label:'管理费用（元，可留空）', keywords:['管理费用']},
@@ -266,7 +278,15 @@ function analyze(){
   const cost=getVal('cost');
   const profit=getVal('profit');
   const netProfit=getVal('netProfit');
-  const vat=getVal('vat');
+  let vat=getVal('vat');
+  let vatSource='直接';
+  // 增值税反推：无直接值时，从营业税金及附加反推（扣除印花税、房产税、其他税金）
+  if((vat===null||vat===undefined) && getVal('taxSurcharge')!==null){
+    const sur=parseFloat(document.getElementById('cityRate').value);
+    const rate=(sur+5)/100; // 城建税+教育费附加3%+地方教育附加2%
+    const base=getVal('taxSurcharge')-(getVal('stampTax')||0)-(getVal('propertyTax')||0)-(getVal('otherTax')||0);
+    if(base>0){ vat=base/rate; vatSource='反推'; }
+  }
   const incomeTax=getVal('incomeTax');
   const sellExp=getVal('sellExp')||0;
   const adminExp=getVal('adminExp')||0;
@@ -282,7 +302,8 @@ function analyze(){
   // 增值税税负率
   if(vat!==null && revenue){
     const v=pct(vat,revenue);
-    metrics.push(metricRow('增值税税负率',v+'%','应交增值税 ÷ 营业收入',v<ind.vatMin?'bad':(v>ind.vatMax?'warn':'good'),'参考区间约 '+ind.vatMin+'%~'+ind.vatMax+'%，过低可能被关注，过高说明税负偏重'));
+    const vatTag = vatSource==='反推' ? '【增值税由税金及附加反推，为估算值】' : '';
+    metrics.push(metricRow('增值税税负率',v+'%','应交增值税 ÷ 营业收入',v<ind.vatMin?'bad':(v>ind.vatMax?'warn':'good'),vatTag+'参考区间约 '+ind.vatMin+'%~'+ind.vatMax+'%，过低可能被关注，过高说明税负偏重'));
     if(v<ind.vatMin) issues.push({lv:'r',t:'增值税税负率过低',m:'税负率 '+v.toFixed(2)+'%，明显低于本行业参考。可能被税务系统预警，建议核实进项与收入确认。'});
     else if(v>ind.vatMax) issues.push({lv:'y',t:'增值税税负率偏高',m:'税负率 '+v.toFixed(2)+'%，高于本行业常见区间，可能存在可优化空间。'});
   }
