@@ -155,7 +155,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
 <script>
 // ============ 关键词 → 指标映射 ============
 const FIELDS = [
-  {key:'revenue', label:'营业收入（元）', keywords:['营业收入','主营业务收入','销售收入','总收入','收入合计','营业额']},
+  {key:'revenue', label:'营业收入（元）', keywords:['营业收入','主营业务收入','销售收入','营业额']},
   {key:'cost', label:'营业成本（元）', keywords:['营业成本','主营业务成本','销售成本','成本合计']},
   {key:'grossProfit', label:'毛利（元，可留空自动算）', keywords:['毛利']},
   {key:'profit', label:'利润总额（元）', keywords:['利润总额','税前利润']},
@@ -169,8 +169,8 @@ const FIELDS = [
   {key:'sellExp', label:'销售费用（元，可留空）', keywords:['销售费用','营业费用']},
   {key:'adminExp', label:'管理费用（元，可留空）', keywords:['管理费用']},
   {key:'finExp', label:'财务费用（元，可留空）', keywords:['财务费用']},
-  {key:'totalAsset', label:'资产总额（元）', keywords:['资产总计','资产总额','总资产']},
-  {key:'totalLiability', label:'负债总额（元）', keywords:['负债总计','负债总额','总负债']},
+  {key:'totalAsset', label:'资产总额（元）', keywords:['资产总计','资产总额','总资产','资产合计'], exclude:['流动资产']},
+  {key:'totalLiability', label:'负债总额（元）', keywords:['负债总计','负债总额','总负债','负债合计'], exclude:['流动负债']},
   {key:'curAsset', label:'流动资产（元，可留空）', keywords:['流动资产合计','流动资产']},
   {key:'curLiability', label:'流动负债（元，可留空）', keywords:['流动负债合计','流动负债']},
 ];
@@ -197,11 +197,12 @@ function findNumberNear(rows, r, c){
   return null;
 }
 
-function extract(rows, keywords){
+function extract(rows, keywords, exclude){
   for(let r=0;r<rows.length;r++){
     const row=rows[r]||[];
     for(let c=0;c<row.length;c++){
       const cell=String(row[c]||'');
+      if(exclude && exclude.some(ex=>cell.includes(ex))) continue;
       for(const kw of keywords){
         if(cell.includes(kw)){
           const n=findNumberNear(rows,r,c);
@@ -235,7 +236,7 @@ function handleFile(e){
       const result={};
       let missing=[];
       FIELDS.forEach(f=>{
-        const v=extract(rows,f.keywords);
+        const v=extract(rows,f.keywords,f.exclude);
         if(v!==null) result[f.key]=v; else { result[f.key]=''; missing.push(f.label); }
       });
       // 毛利自动算
