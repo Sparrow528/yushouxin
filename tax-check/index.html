@@ -67,7 +67,14 @@ input[type=file]{display:none}
 <div class="wrap">
   <!-- 步骤1：上传 -->
   <div id="step1" class="card">
-    <h2><span class="n">1</span>选择行业 & 上传报表</h2>
+    <h2><span class="n">1</span>选择类型 & 上传报表</h2>
+    <div style="margin-bottom:14px">
+      <label style="font-size:13px;color:var(--muted)">纳税人身份</label>
+      <select id="taxpayer" style="width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;font-size:15px;margin-top:6px;color:var(--navy);font-weight:600">
+        <option value="general">一般纳税人</option>
+        <option value="small">小规模纳税人</option>
+      </select>
+    </div>
     <div style="margin-bottom:14px">
       <label style="font-size:13px;color:var(--muted)">你的行业（用于匹配税负率预警值）</label>
       <select id="industry" style="width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;font-size:15px;margin-top:6px;color:var(--navy);font-weight:600">
@@ -274,6 +281,8 @@ function pct(n,d){ if(!d) return null; return n/d*100; }
 
 function analyze(){
   const ind = INDUSTRIES[document.getElementById('industry').value] || INDUSTRIES['通用'];
+  const isSmall = document.getElementById('taxpayer').value === 'small';
+  if(isSmall){ ind.vatMin = 1; ind.vatMax = 3.5; } // 小规模按征收率预警（3%，优惠期1%）
   const revenue=getVal('revenue');
   const cost=getVal('cost');
   const profit=getVal('profit');
@@ -283,7 +292,8 @@ function analyze(){
   // 增值税反推：无直接值时，从营业税金及附加反推（扣除印花税、房产税、其他税金）
   if((vat===null||vat===undefined) && getVal('taxSurcharge')!==null){
     const sur=parseFloat(document.getElementById('cityRate').value);
-    const rate=(sur+5)/100; // 城建税+教育费附加3%+地方教育附加2%
+    let rate=(sur+5)/100; // 城建税+教育费附加3%+地方教育附加2%
+    if(isSmall) rate=rate/2; // 小规模纳税人六税两费减半
     const base=getVal('taxSurcharge')-(getVal('stampTax')||0)-(getVal('propertyTax')||0)-(getVal('otherTax')||0);
     if(base>0){ vat=base/rate; vatSource='反推'; }
   }
