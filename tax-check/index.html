@@ -67,7 +67,21 @@ input[type=file]{display:none}
 <div class="wrap">
   <!-- 步骤1：上传 -->
   <div id="step1" class="card">
-    <h2><span class="n">1</span>上传报表</h2>
+    <h2><span class="n">1</span>选择行业 & 上传报表</h2>
+    <div style="margin-bottom:14px">
+      <label style="font-size:13px;color:var(--muted)">你的行业（用于匹配税负率预警值）</label>
+      <select id="industry" style="width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;font-size:15px;margin-top:6px;color:var(--navy);font-weight:600">
+        <option value="通用">通用 / 其他</option>
+        <option value="商贸零售">商贸零售 / 批发</option>
+        <option value="制造业">制造业</option>
+        <option value="建筑业">建筑业</option>
+        <option value="软件科技">软件 / 科技</option>
+        <option value="咨询服务">咨询服务</option>
+        <option value="餐饮住宿">餐饮住宿</option>
+        <option value="交通运输">交通运输</option>
+        <option value="房地产">房地产</option>
+      </select>
+    </div>
     <div class="upload-zone" id="uploadZone">
       <div class="ico">📊</div>
       <p>点这里上传 Excel 报表</p>
@@ -142,6 +156,19 @@ const FIELDS = [
   {key:'curAsset', label:'流动资产（元，可留空）', keywords:['流动资产合计','流动资产']},
   {key:'curLiability', label:'流动负债（元，可留空）', keywords:['流动负债合计','流动负债']},
 ];
+
+// 行业预警值（增值税税负率区间 + 毛利率最低参考）
+const INDUSTRIES = {
+  '通用': {vatMin:1, vatMax:5, grossMin:10},
+  '商贸零售': {vatMin:0.8, vatMax:2, grossMin:5},
+  '制造业': {vatMin:2, vatMax:4, grossMin:15},
+  '建筑业': {vatMin:2, vatMax:3.5, grossMin:10},
+  '软件科技': {vatMin:2, vatMax:6, grossMin:30},
+  '咨询服务': {vatMin:2, vatMax:6, grossMin:40},
+  '餐饮住宿': {vatMin:1.5, vatMax:3, grossMin:30},
+  '交通运输': {vatMin:1.5, vatMax:2.5, grossMin:10},
+  '房地产': {vatMin:3, vatMax:6, grossMin:20},
+};
 
 function toNum(v){ if(v===null||v===undefined||v==='') return null; if(typeof v==='number') return v; const n=parseFloat(String(v).replace(/[,，¥￥\s]/g,'')); return isNaN(n)?null:n; }
 
@@ -234,6 +261,7 @@ function getVal(key){ return toNum(document.getElementById('f_'+key).value); }
 function pct(n,d){ if(!d) return null; return n/d*100; }
 
 function analyze(){
+  const ind = INDUSTRIES[document.getElementById('industry').value] || INDUSTRIES['通用'];
   const revenue=getVal('revenue');
   const cost=getVal('cost');
   const profit=getVal('profit');
@@ -254,9 +282,9 @@ function analyze(){
   // 增值税税负率
   if(vat!==null && revenue){
     const v=pct(vat,revenue);
-    metrics.push(metricRow('增值税税负率',v+'%','应交增值税 ÷ 营业收入',v<0.5?'bad':(v>6?'warn':'good'),'参考区间约 1%~5%，过低可能被关注，过高说明税负偏重'));
-    if(v<0.5) issues.push({lv:'r',t:'增值税税负率过低',m:'税负率 '+v.toFixed(2)+'%，明显低于行业参考。可能被税务系统预警，建议核实进项与收入确认。'});
-    else if(v>6) issues.push({lv:'y',t:'增值税税负率偏高',m:'税负率 '+v.toFixed(2)+'%，高于常见区间，可能存在可优化空间。'});
+    metrics.push(metricRow('增值税税负率',v+'%','应交增值税 ÷ 营业收入',v<ind.vatMin?'bad':(v>ind.vatMax?'warn':'good'),'参考区间约 '+ind.vatMin+'%~'+ind.vatMax+'%，过低可能被关注，过高说明税负偏重'));
+    if(v<ind.vatMin) issues.push({lv:'r',t:'增值税税负率过低',m:'税负率 '+v.toFixed(2)+'%，明显低于本行业参考。可能被税务系统预警，建议核实进项与收入确认。'});
+    else if(v>ind.vatMax) issues.push({lv:'y',t:'增值税税负率偏高',m:'税负率 '+v.toFixed(2)+'%，高于本行业常见区间，可能存在可优化空间。'});
   }
   // 所得税税负率
   if(incomeTax!==null && revenue){
@@ -268,8 +296,8 @@ function analyze(){
   if(revenue){
     const gp=(revenue-(cost||0));
     const v=pct(gp,revenue);
-    metrics.push(metricRow('毛利率',v+'%','(收入-成本) ÷ 收入',v<10?'bad':(v>60?'warn':'good'),'毛利率过低可能隐藏问题，过高也需核实'));
-    if(v<10) issues.push({lv:'r',t:'毛利率偏低',m:'毛利率 '+v.toFixed(2)+'%，盈利能力偏弱，建议核查成本与定价。'});
+    metrics.push(metricRow('毛利率',v+'%','(收入-成本) ÷ 收入',v<ind.grossMin?'bad':(v>60?'warn':'good'),'本行业毛利率参考下限约 '+ind.grossMin+'%，过低可能隐藏问题'));
+    if(v<ind.grossMin) issues.push({lv:'r',t:'毛利率偏低',m:'毛利率 '+v.toFixed(2)+'%，低于本行业参考，盈利能力偏弱，建议核查成本与定价。'});
   }
   // 净利率
   if(netProfit!==null && revenue){
