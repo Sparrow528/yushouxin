@@ -119,14 +119,13 @@ input[type=file]{display:none}
   <div id="step3" class="card hidden">
     <h2><span class="n">3</span>体检报告</h2>
     <div class="score-bar">
-      <div class="score-num" id="scoreNum">--</div>
-      <div class="score-label">综合健康评分</div>
+      <div class="score-label">综合评估</div>
       <div class="verdict" id="verdict"></div>
     </div>
     <div id="metrics"></div>
     <h2 style="margin-top:20px"><span class="n">!</span>风险点与建议</h2>
     <div id="issues"></div>
-    <div class="disclaimer">本报告由算法自动生成，仅作参考，不构成专业税务意见。行业预警值因行业而异，具体请咨询专业财税顾问。</div>
+    <div class="disclaimer">⚠️ 本报告为算法估算，不构成专业税务意见。增值税额可能为反推估算值，行业预警值为参考区间。如出现任何风险提示，请务必人工复核原始报表，或咨询专业财税顾问。</div>
   </div>
 </div>
 
@@ -312,10 +311,11 @@ function analyze(){
   // 增值税税负率
   if(vat!==null && revenue){
     const v=pct(vat,revenue);
-    const vatTag = vatSource==='反推' ? '【增值税由税金及附加反推，为估算值】' : '';
-    metrics.push(metricRow('增值税税负率',v+'%','应交增值税 ÷ 营业收入',v<ind.vatMin?'bad':(v>ind.vatMax?'warn':'good'),vatTag+'参考区间约 '+ind.vatMin+'%~'+ind.vatMax+'%，过低可能被关注，过高说明税负偏重'));
-    if(v<ind.vatMin) issues.push({lv:'r',t:'增值税税负率过低',m:'税负率 '+v.toFixed(2)+'%，明显低于本行业参考。可能被税务系统预警，建议核实进项与收入确认。'});
-    else if(v>ind.vatMax) issues.push({lv:'y',t:'增值税税负率偏高',m:'税负率 '+v.toFixed(2)+'%，高于本行业常见区间，可能存在可优化空间。'});
+    const isEst = vatSource==='反推';
+    const valStr = v.toFixed(2)+'%'+(isEst?'（估算）':'');
+    metrics.push(metricRow('增值税税负率',valStr,'应交增值税 ÷ 营业收入',v<ind.vatMin?'bad':(v>ind.vatMax?'warn':'good'),'参考区间约 '+ind.vatMin+'%~'+ind.vatMax+'%'+(isEst?'（增值税由税金及附加反推）':'')));
+    if(v<ind.vatMin) issues.push({lv:'r',t:'增值税税负率偏低·建议核实',m:'税负率 '+v.toFixed(2)+'%，低于本行业参考区间'+(isEst?'（反推估算值，建议核对申报表）':'')+'。建议核实进项与收入确认。'});
+    else if(v>ind.vatMax) issues.push({lv:'y',t:'增值税税负率偏高·建议核实',m:'税负率 '+v.toFixed(2)+'%，高于本行业参考区间'+(isEst?'（反推估算值）':'')+'，建议核实。'});
   }
   // 所得税税负率
   if(incomeTax!==null && revenue){
@@ -369,14 +369,10 @@ function metricRow(name,val,formula,lv,msg){
 function renderReport(metrics,issues){
   const badCount=metrics.filter(m=>m.lv==='bad').length;
   const warnCount=metrics.filter(m=>m.lv==='warn').length;
-  const total=metrics.length;
-  const score=Math.max(0,Math.round(100-badCount/total*100*0.7-warnCount/total*100*0.3));
-  document.getElementById('scoreNum').textContent=score;
-  document.getElementById('scoreNum').style.color=score>=80?'var(--green)':(score>=60?'var(--yellow)':'var(--red)');
   const verdict=document.getElementById('verdict');
-  if(score>=80){ verdict.textContent='健康'; verdict.className='verdict good'; }
-  else if(score>=60){ verdict.textContent='亚健康·需关注'; verdict.className='verdict warn'; }
-  else{ verdict.textContent='有风险·建议尽快咨询'; verdict.className='verdict bad'; }
+  if(badCount===0 && warnCount===0){ verdict.textContent='整体平稳'; verdict.className='verdict good'; }
+  else if(badCount===0){ verdict.textContent='建议关注'; verdict.className='verdict warn'; }
+  else{ verdict.textContent='建议尽快核实'; verdict.className='verdict bad'; }
 
   const metricsBox=document.getElementById('metrics');
   metricsBox.innerHTML='';
