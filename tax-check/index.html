@@ -337,33 +337,33 @@ function analyze(){
   // 所得税税负率
   if(incomeTax!==null && revenue){
     const v=pct(incomeTax,revenue);
-    metrics.push(metricRow('所得税税负率',v+'%','应交所得税 ÷ 营业收入',v<1?'bad':(v>6?'warn':'good'),'参考区间约 1%~5%'));
+    metrics.push(metricRow('所得税税负率',v.toFixed(2)+'%','应交所得税 ÷ 营业收入',v<1?'bad':(v>6?'warn':'good'),'参考区间约 1%~5%'));
     if(v<1) issues.push({lv:'r',t:'所得税税负率过低',m:'税负率 '+v.toFixed(2)+'%，需关注利润与所得税的匹配。'});
   }
   // 毛利率
   if(revenue){
     const gp=(revenue-(cost||0));
     const v=pct(gp,revenue);
-    metrics.push(metricRow('毛利率',v+'%','(收入-成本) ÷ 收入',v<ind.grossMin?'bad':(v>60?'warn':'good'),'本行业毛利率参考下限约 '+ind.grossMin+'%，过低可能隐藏问题'));
+    metrics.push(metricRow('毛利率',v.toFixed(2)+'%','(收入-成本) ÷ 收入',v<ind.grossMin?'bad':(v>60?'warn':'good'),'本行业毛利率参考下限约 '+ind.grossMin+'%，过低可能隐藏问题'));
     if(v<ind.grossMin) issues.push({lv:'r',t:'毛利率偏低',m:'毛利率 '+v.toFixed(2)+'%，低于本行业参考，盈利能力偏弱，建议核查成本与定价。'});
   }
   // 净利率
   if(netProfit!==null && revenue){
     const v=pct(netProfit,revenue);
-    metrics.push(metricRow('净利率',v+'%','净利润 ÷ 收入',v<3?'bad':(v<5?'warn':'good'),'净利率反映最终盈利能力'));
+    metrics.push(metricRow('净利率',v.toFixed(2)+'%','净利润 ÷ 收入',v<3?'bad':(v<5?'warn':'good'),'净利率反映最终盈利能力'));
     if(v<3) issues.push({lv:'r',t:'净利率偏低',m:'净利率 '+v.toFixed(2)+'%，最终盈利水平偏低。'});
   }
   // 费用率
   if(revenue){
     const exp=sellExp+adminExp+finExp;
     const v=pct(exp,revenue);
-    metrics.push(metricRow('期间费用率',v+'%','三费合计 ÷ 收入',v>35?'bad':(v>25?'warn':'good'),'费用率过高会侵蚀利润'));
+    metrics.push(metricRow('期间费用率',v.toFixed(2)+'%','三费合计 ÷ 收入',v>35?'bad':(v>25?'warn':'good'),'费用率过高会侵蚀利润'));
     if(v>35) issues.push({lv:'r',t:'费用率偏高',m:'期间费用率 '+v.toFixed(2)+'%，费用管控偏弱。'});
   }
   // 资产负债率
   if(totalLiability!==null && totalAsset){
     const v=pct(totalLiability,totalAsset);
-    metrics.push(metricRow('资产负债率',v+'%','负债 ÷ 资产',v>80?'bad':(v>60?'warn':'good'),'60%以内较健康，80%以上风险较高'));
+    metrics.push(metricRow('资产负债率',v.toFixed(2)+'%','负债 ÷ 资产',v>80?'bad':(v>60?'warn':'good'),'60%以内较健康，80%以上风险较高'));
     if(v>80) issues.push({lv:'r',t:'资产负债率过高',m:'资产负债率 '+v.toFixed(2)+'%，偿债风险偏高。'});
     else if(v>60) issues.push({lv:'y',t:'资产负债率偏高',m:'资产负债率 '+v.toFixed(2)+'%，处于预警区间。'});
   }
