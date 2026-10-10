@@ -137,8 +137,8 @@ const FIELDS = [
   {key:'sellExp', label:'销售费用（元，可留空）', keywords:['销售费用','营业费用']},
   {key:'adminExp', label:'管理费用（元，可留空）', keywords:['管理费用']},
   {key:'finExp', label:'财务费用（元，可留空）', keywords:['财务费用']},
-  {key:'totalAsset', label:'资产总额（元）', keywords:['资产总计','资产合计','总资产','资产总额']},
-  {key:'totalLiability', label:'负债总额（元）', keywords:['负债总计','负债合计','总负债','负债总额']},
+  {key:'totalAsset', label:'资产总额（元）', keywords:['资产总计','资产总额','总资产']},
+  {key:'totalLiability', label:'负债总额（元）', keywords:['负债总计','负债总额','总负债']},
   {key:'curAsset', label:'流动资产（元，可留空）', keywords:['流动资产合计','流动资产']},
   {key:'curLiability', label:'流动负债（元，可留空）', keywords:['流动负债合计','流动负债']},
 ];
@@ -259,9 +259,9 @@ function analyze(){
     else if(v>6) issues.push({lv:'y',t:'增值税税负率偏高',m:'税负率 '+v.toFixed(2)+'%，高于常见区间，可能存在可优化空间。'});
   }
   // 所得税税负率
-  if(incomeTax!==null && profit && profit>0){
-    const v=pct(incomeTax,profit);
-    metrics.push(metricRow('所得税税负率',v+'%','应交所得税 ÷ 利润总额',v<1?'bad':(v>8?'warn':'good'),'参考区间约 2%~5%'));
+  if(incomeTax!==null && revenue){
+    const v=pct(incomeTax,revenue);
+    metrics.push(metricRow('所得税税负率',v+'%','应交所得税 ÷ 营业收入',v<1?'bad':(v>6?'warn':'good'),'参考区间约 1%~5%'));
     if(v<1) issues.push({lv:'r',t:'所得税税负率过低',m:'税负率 '+v.toFixed(2)+'%，需关注利润与所得税的匹配。'});
   }
   // 毛利率
