@@ -37,17 +37,18 @@ input[type=file]{display:none}
 .score-bar{text-align:center;padding:20px 0}
 .score-num{font-size:52px;font-weight:800;line-height:1}
 .score-label{font-size:13px;color:var(--muted);margin-top:6px}
-.verdict{display:inline-block;padding:6px 18px;border-radius:20px;font-size:15px;font-weight:700;margin-top:12px}
+.verdict{display:inline-block;padding:6px 18px;border-radius:20px;font-size:15px;font-weight:700;margin-top:12px;transform:scale(.5);opacity:0;transition:transform .6s cubic-bezier(.34,1.56,.64,1),opacity .4s}
+.verdict.show{transform:scale(1);opacity:1}
 .verdict.good{background:#E7F7F0;color:var(--green)}
 .verdict.warn{background:#FDF3E3;color:var(--yellow)}
 .verdict.bad{background:#FDECEC;color:var(--red)}
 /* 指标列表 */
-.metric{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
 .metric-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .metric-name{font-size:14px;font-weight:600}
-.metric-val{font-size:16px;font-weight:800}
+.metric{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+.metric.show{opacity:1;transform:translateY(0)}
 .metric-bar{height:8px;background:#EEF1F6;border-radius:4px;overflow:hidden}
-.metric-bar .fill{height:100%;border-radius:4px}
+.metric-bar .fill{height:100%;border-radius:4px;width:0;transition:width 1s ease .3s}
 .metric-msg{font-size:12px;color:var(--muted);margin-top:6px}
 .good-c{color:var(--green)}.warn-c{color:var(--yellow)}.bad-c{color:var(--red)}
 .issue{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
@@ -387,22 +388,29 @@ function renderReport(metrics,issues){
   const badCount=metrics.filter(m=>m.lv==='bad').length;
   const warnCount=metrics.filter(m=>m.lv==='warn').length;
   const verdict=document.getElementById('verdict');
+  verdict.classList.remove('show');
   if(badCount===0 && warnCount===0){ verdict.textContent='整体平稳'; verdict.className='verdict good'; }
   else if(badCount===0){ verdict.textContent='建议关注'; verdict.className='verdict warn'; }
   else{ verdict.textContent='建议尽快核实'; verdict.className='verdict bad'; }
+  requestAnimationFrame(()=>requestAnimationFrame(()=>verdict.classList.add('show')));
 
   const metricsBox=document.getElementById('metrics');
   metricsBox.innerHTML='';
-  metrics.forEach(m=>{
+  metrics.forEach((m,idx)=>{
     const div=document.createElement('div');
     div.className='metric';
     const color=m.lv==='bad'?'var(--red)':(m.lv==='warn'?'var(--yellow)':'var(--green)');
     const pctW=m.lv==='bad'?100:(m.lv==='warn'?60:30);
     div.innerHTML=`
-      <div class="metric-top"><span class="metric-name">${m.name}</span><span class="metric-val" style="color:${color}">${m.val}</span></div>
-      <div class="metric-bar"><div class="fill" style="width:${pctW}%;background:${color}"></div></div>
+      <div class="metric-top"><span class="metric-name">${m.name}</span><span class="metric-val" style="color:${color}">--</span></div>
+      <div class="metric-bar"><div class="fill" style="width:0;background:${color}"></div></div>
       <div class="metric-msg">${m.formula} · ${m.msg}</div>`;
     metricsBox.appendChild(div);
+    setTimeout(()=>{
+      div.classList.add('show');
+      animateValue(div.querySelector('.metric-val'), m.val);
+      div.querySelector('.fill').style.width=pctW+'%';
+    }, 200+idx*140);
   });
 
   const issuesBox=document.getElementById('issues');
@@ -433,6 +441,23 @@ function renderReport(metrics,issues){
   cta.style.cssText='margin-top:12px;padding:12px 16px;background:#FDF3E3;border-radius:8px;font-size:13px;color:#8a6d1a;text-align:center;';
   cta.textContent='以上是本行业常见的自查点，如有拿不准的，欢迎预约免费一对一诊断';
   indBox.appendChild(cta);
+}
+
+// 数字滚动动画
+function animateValue(el, text){
+  const m=text.match(/^([-+]?\d+(\.\d+)?)(.*)$/);
+  if(!m){ el.textContent=text; return; }
+  const target=parseFloat(m[1]);
+  const suffix=m[3]||'';
+  const duration=800;
+  const start=performance.now();
+  function step(now){
+    const t=Math.min((now-start)/duration,1);
+    const eased=1-Math.pow(1-t,3);
+    el.textContent=(target*eased).toFixed(2)+suffix;
+    if(t<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
 
 // ============ 步骤切换 ============
