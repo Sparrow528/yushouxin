@@ -98,13 +98,23 @@ input[type=file]{display:none}
         <option value="1">其他（城建税 1%，附加率 6%）</option>
       </select>
     </div>
-    <div class="upload-zone" id="uploadZone">
-      <div class="ico">📊</div>
-      <p>点这里上传 Excel 报表</p>
-      <div class="tip">支持 .xlsx / .xls / .csv（利润表、资产负债表都可）</div>
+    <div class="upload-zone" id="uploadLrb">
+      <div class="ico">📄</div>
+      <p>点这里上传「利润表」</p>
+      <div class="tip">支持 .xlsx / .xls / .csv</div>
     </div>
-    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
-    <p class="muted-tip">💡 傻瓜式：直接传财务报表原文件就行，系统自动识别里面的「营业收入」「利润」「资产」等数字，不用你整理格式。</p>
+    <input type="file" id="fileLrb" accept=".xlsx,.xls,.csv">
+    <div id="lrbStatus" class="muted-tip"></div>
+
+    <div class="upload-zone" id="uploadBs" style="margin-top:12px">
+      <div class="ico">🏦</div>
+      <p>点这里上传「资产负债表」</p>
+      <div class="tip">支持 .xlsx / .xls / .csv</div>
+    </div>
+    <input type="file" id="fileBs" accept=".xlsx,.xls,.csv">
+    <div id="bsStatus" class="muted-tip"></div>
+
+    <p class="muted-tip">💡 两张表都要传，才能算出完整的税负率和资产负债指标。系统自动识别数字，不用整理格式。</p>
   </div>
 
   <!-- 步骤2：确认数字 -->
@@ -157,7 +167,8 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
 </script>
 <script>
 // ============ 关键词 → 指标映射 ============
-const FIELDS = [
+// 利润表字段
+const LRB_FIELDS = [
   {key:'revenue', label:'营业收入（元）', keywords:['营业收入','主营业务收入','销售收入','营业额']},
   {key:'cost', label:'营业成本（元）', keywords:['营业成本','主营业务成本','销售成本','成本合计']},
   {key:'grossProfit', label:'毛利（元，可留空自动算）', keywords:['毛利']},
@@ -166,17 +177,22 @@ const FIELDS = [
   {key:'vat', label:'应交增值税（元，可反推）', keywords:['应交增值税','应纳增值税','增值税额','增值税']},
   {key:'taxSurcharge', label:'营业税金及附加（元）', keywords:['营业税金及附加','税金及附加']},
   {key:'stampTax', label:'印花税（元，可留空）', keywords:['印花税']},
-  {key:'houseValue', label:'房产原值（元，可留空，自动估房产税）', keywords:['房屋建筑物','房产原值','房屋原值','房屋及建筑物']},
   {key:'otherTax', label:'其他税金合计（元，可留空）', keywords:['城镇土地使用税','土地使用税','车船税','资源税','消费税']},
   {key:'incomeTax', label:'应交所得税（元）', keywords:['应交所得税','所得税费用','企业所得税']},
   {key:'sellExp', label:'销售费用（元，可留空）', keywords:['销售费用','营业费用']},
   {key:'adminExp', label:'管理费用（元，可留空）', keywords:['管理费用']},
   {key:'finExp', label:'财务费用（元，可留空）', keywords:['财务费用']},
+];
+// 资产负债表字段
+const BS_FIELDS = [
   {key:'totalAsset', label:'资产总额（元）', keywords:['资产总计','资产总额','总资产','资产合计'], exclude:['流动资产']},
   {key:'totalLiability', label:'负债总额（元）', keywords:['负债总计','负债总额','总负债','负债合计'], exclude:['流动负债']},
   {key:'curAsset', label:'流动资产（元，可留空）', keywords:['流动资产合计','流动资产']},
   {key:'curLiability', label:'流动负债（元，可留空）', keywords:['流动负债合计','流动负债']},
+  {key:'houseValue', label:'房产原值（元，可留空，自动估房产税）', keywords:['房屋建筑物','房产原值','房屋原值','房屋及建筑物','固定资产']},
 ];
+// 合并（渲染确认字段用）
+const FIELDS = [...LRB_FIELDS, ...BS_FIELDS];
 
 // 行业预警值（增值税税负率区间 + 毛利率最低参考）
 const INDUSTRIES = {
@@ -231,40 +247,77 @@ function extract(rows, keywords, exclude){
 }
 
 // ============ 文件解析 ============
-const fileInput=document.getElementById('fileInput');
-const uploadZone=document.getElementById('uploadZone');
-uploadZone.addEventListener('click',()=>fileInput.click());
-fileInput.addEventListener('change',handleFile);
+const fileLrb=document.getElementById('fileLrb');
+const fileBs=document.getElementById('fileBs');
+const uploadLrb=document.getElementById('uploadLrb');
+const uploadBs=document.getElementById('uploadBs');
+uploadLrb.addEventListener('click',()=>fileLrb.click());
+uploadBs.addEventListener('click',()=>fileBs.click());
 
-function handleFile(e){
+let lrbData={};
+let bsData={};
+
+function parseFile(file, fields){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=(ev)=>{
+      try{
+        const wb=XLSX.read(new Uint8Array(ev.target.result),{type:'array'});
+        const rows=[];
+        wb.SheetNames.forEach(name=>{
+          const ws=wb.Sheets[name];
+          const arr=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+          arr.forEach(r=>rows.push(r));
+        });
+        const result={};
+        fields.forEach(f=>{
+          const v=extract(rows,f.keywords,f.exclude);
+          if(v!==null) result[f.key]=v; else result[f.key]='';
+        });
+        resolve(result);
+      }catch(err){
+        reject(err);
+      }
+    };
+    reader.onerror=reject;
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+fileLrb.addEventListener('change',(e)=>{
   const file=e.target.files[0];
   if(!file) return;
-  const reader=new FileReader();
-  reader.onload=(ev)=>{
-    try{
-      const wb=XLSX.read(new Uint8Array(ev.target.result),{type:'array'});
-      const rows=[];
-      wb.SheetNames.forEach(name=>{
-        const ws=wb.Sheets[name];
-        const arr=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
-        arr.forEach(r=>rows.push(r));
-      });
-      const result={};
-      let missing=[];
-      FIELDS.forEach(f=>{
-        const v=extract(rows,f.keywords,f.exclude);
-        if(v!==null) result[f.key]=v; else { result[f.key]=''; missing.push(f.label); }
-      });
-      // 毛利自动算
-      if((!result.grossProfit) && result.revenue && result.cost) result.grossProfit=result.revenue-result.cost;
-      renderFields(result);
-      if(missing.length>0){ document.getElementById('missingTip').classList.remove('hidden'); }
-      showStep(2);
-    }catch(err){
-      alert('文件解析失败，请确认是有效的 Excel/CSV 文件');
-    }
-  };
-  reader.readAsArrayBuffer(file);
+  parseFile(file, LRB_FIELDS).then((result)=>{
+    lrbData=result;
+    const s=document.getElementById('lrbStatus');
+    s.textContent='✅ 利润表已上传：'+file.name;
+    s.style.color='var(--green)';
+    tryMerge();
+  }).catch(()=>alert('利润表解析失败，请确认文件格式'));
+});
+
+fileBs.addEventListener('change',(e)=>{
+  const file=e.target.files[0];
+  if(!file) return;
+  parseFile(file, BS_FIELDS).then((result)=>{
+    bsData=result;
+    const s=document.getElementById('bsStatus');
+    s.textContent='✅ 资产负债表已上传：'+file.name;
+    s.style.color='var(--green)';
+    tryMerge();
+  }).catch(()=>alert('资产负债表解析失败，请确认文件格式'));
+});
+
+function tryMerge(){
+  const lrbReady=Object.keys(lrbData).length>0;
+  const bsReady=Object.keys(bsData).length>0;
+  if(lrbReady && bsReady){
+    const result={...lrbData, ...bsData};
+    // 毛利自动算
+    if((!result.grossProfit) && result.revenue && result.cost) result.grossProfit=result.revenue-result.cost;
+    renderFields(result);
+    showStep(2);
+  }
 }
 
 // ============ 渲染确认字段 ============
