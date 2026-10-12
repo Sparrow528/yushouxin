@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朝企联 · 第二期活动主题投票结果</title>
+<style>
+:root{--navy:#071B3A;--navy-l:#0F2D5C;--gold:#D5A84D;--ink:#152033;--muted:#637089;--line:#E6EAF2;--bg:#F6F8FB;--green:#16A37B;--blue:#2F6BFF;--orange:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.hero{background:linear-gradient(150deg,var(--navy) 0%,var(--navy-l) 60%,#1A3A6B 100%);color:#fff;padding:44px 20px 38px;text-align:center}
+.hero .tag{display:inline-block;border:1px solid rgba(213,168,77,.6);color:var(--gold);padding:4px 16px;border-radius:20px;font-size:12px;letter-spacing:2px;margin-bottom:14px}
+.hero h1{font-size:26px;font-weight:800;letter-spacing:1px}
+.hero .sub{font-size:14px;color:rgba(255,255,255,.75);margin-top:10px}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 60px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin-top:16px;box-shadow:0 1px 3px rgba(7,27,58,.05)}
+h2{font-size:16px;color:var(--navy);font-weight:700;margin-bottom:16px}
+/* 排名柱状图 */
+.bar-row{display:flex;align-items:center;margin-bottom:14px}
+.bar-rank{width:28px;font-size:15px;font-weight:800;color:var(--navy);flex-shrink:0}
+.bar-label{width:110px;font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0}
+.bar-track{flex:1;height:26px;background:#EEF1F6;border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:12px;font-weight:700;color:#fff;transition:width .8s ease}
+.bar-num{width:48px;text-align:right;font-size:13px;font-weight:700;color:var(--navy);flex-shrink:0}
+/* 中选主题 */
+.winner{background:linear-gradient(135deg,#FDF8EF,#fff);border:2px solid var(--gold);border-radius:12px;padding:18px;margin-top:16px;text-align:center}
+.winner .w-tag{font-size:13px;color:var(--gold);font-weight:700;letter-spacing:2px;margin-bottom:8px}
+.winner .w-list{font-size:17px;font-weight:800;color:var(--navy);line-height:1.8}
+.winner .w-note{font-size:12px;color:var(--muted);margin-top:6px}
+.footer{text-align:center;font-size:12px;color:var(--muted);margin-top:24px}
+.medal{font-size:18px}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="tag">投票结果公示</div>
+  <h1>朝企联 · 协会学习小组<br>第二期活动主题投票结果</h1>
+  <div class="sub">共 10 人参与投票 · 每人选 3 个最感兴趣的方向</div>
+</div>
+
+<div class="wrap">
+  <div class="card">
+    <h2>📊 主题得票排名</h2>
+    <div id="bars"></div>
+  </div>
+
+  <div class="winner">
+    <div class="w-tag">★ 本期活动主题 ★</div>
+    <div class="w-list">视频制作 · 数据分析 · 方案策划</div>
+    <div class="w-note">（方案策划与图片设计并列第三，经综合评定取前三）</div>
+  </div>
+
+  <div class="footer">
+    朝企联 · 协会学习小组<br>活动时间：2026年10月29日（周四）14:00-17:00
+  </div>
+</div>
+
+<script>
+const data = [
+  {name:'Agent 制作视频', votes:7, color:'#2F6BFF'},
+  {name:'Agent 数据分析', votes:6, color:'#16A37B'},
+  {name:'Agent 制作方案', votes:5, color:'#D97706'},
+  {name:'Agent 制作图片', votes:5, color:'#7C5CBF'},
+  {name:'Agent 搭建入门', votes:3, color:'#5B8DEF'},
+  {name:'Agent 日程管理', votes:2, color:'#94A3B8'},
+  {name:'Agent 客户管理', votes:2, color:'#94A3B8'},
+];
+const max = 10; // 投票人数
+const medals = ['🥇','🥈','🥉','','','',''];
+const box = document.getElementById('bars');
+data.forEach((d,i)=>{
+  const pct = d.votes / max * 100;
+  const row = document.createElement('div');
+  row.className = 'bar-row';
+  row.innerHTML = `
+    <div class="bar-rank">${medals[i]||(i+1)}</div>
+    <div class="bar-label">${d.name}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:0;background:${d.color}" data-w="${pct}"></div></div>
+    <div class="bar-num">${d.votes} 票</div>`;
+  box.appendChild(row);
+  setTimeout(()=>{ row.querySelector('.bar-fill').style.width = pct+'%'; }, 200+i*120);
+});
+</script>
+</body>
+</html>
