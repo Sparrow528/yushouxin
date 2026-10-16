@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>云桥国际 · 会员专属平台</title>
 <style>
-:root{--navy:#0F2544;--navy-l:#1A3A6B;--gold:#C9A24B;--ink:#1A2333;--muted:#6B7686;--line:#E6EAF0;--bg:#F7F8FA;--white:#fff}
+:root{--navy:#0F2544;--navy-l:#1A3A6B;--gold:#C9A24B;--ink:#1A2333;--muted:#6B7686;--line:#E6EAF0;--bg:#F7F8FA;--white:#fff;--price:#E0433F}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -13,44 +13,58 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:56px}
 .brand{font-size:15px;font-weight:800}
 .brand .sub{display:block;font-size:10px;font-weight:400;opacity:.7;letter-spacing:1px}
-.lang-btn{margin-left:8px;flex-shrink:0;background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer}
-.lang-btn:hover{background:var(--gold);color:var(--navy)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-link{color:#cfd8e6;font-size:13px;text-decoration:none;cursor:pointer;padding:5px 10px;border-radius:6px}
+.nav-link.on{color:#fff;background:rgba(255,255,255,.14)}
+.lang-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer}
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px 40px}
-/* 平台首页 */
-.platform-hero{padding:100px 20px 40px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center}
-.platform-hero .logo-zone{font-size:44px;margin-bottom:12px}
-.platform-hero h1{font-size:24px;font-weight:800}
-.platform-hero .sub{font-size:13px;opacity:.85;margin-top:8px;letter-spacing:1px}
-.platform-hero .desc{max-width:640px;margin:18px auto 0;font-size:13px;opacity:.8;padding:0 20px}
-/* 会员列表 */
-.members-title{font-size:20px;font-weight:800;color:var(--navy);margin:30px 0 6px}
-.members-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
-.member-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);cursor:pointer;transition:transform .15s,box-shadow .15s;border:1px solid var(--line)}
-.member-card:active{transform:scale(.98)}
-.member-card .mc-head{height:120px;display:flex;align-items:center;justify-content:center;font-size:44px;background:linear-gradient(135deg,#E8F1FF,#F5F7FA)}
-.member-card .mc-body{padding:16px}
-.member-card .mc-name{font-size:17px;font-weight:800;color:var(--navy)}
-.member-card .mc-en{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.5px}
-.member-card .mc-cat{display:inline-block;margin-top:8px;background:#FFF3E0;color:#B8741A;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px}
-.member-card .mc-intro{font-size:13px;color:var(--muted);margin-top:10px}
-.member-card .mc-btn{margin-top:14px;text-align:center;padding:10px;background:var(--navy);color:#fff;border-radius:8px;font-size:14px;font-weight:700}
-/* 会员详情 */
-.detail{display:none}
-.detail.show{display:block}
-.back-btn{display:inline-flex;align-items:center;gap:6px;margin:80px 0 0;padding:8px 16px;background:#fff;border:1px solid var(--line);border-radius:8px;color:var(--navy);font-size:14px;font-weight:600;cursor:pointer}
-.detail-hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center;padding:40px 20px;margin-top:14px;border-radius:14px}
-.detail-hero .logo-zone{font-size:44px}
-.detail-hero h2{font-size:22px;font-weight:800;margin-top:10px}
-.detail-hero .en{font-size:12px;opacity:.8;margin-top:4px;letter-spacing:1px}
-.detail-hero .cat{display:inline-block;margin-top:12px;background:rgba(201,162,75,.2);color:var(--gold);font-size:12px;font-weight:700;padding:4px 14px;border-radius:12px;border:1px solid rgba(201,162,75,.5)}
-.detail-hero .intro{max-width:680px;margin:16px auto 0;font-size:13px;opacity:.88;text-align:left}
-section{padding:36px 0 8px}
-.sec-tag{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
-.sec-title{font-size:22px;font-weight:800;color:var(--navy);margin:4px 0 4px}
-.sec-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.tab{padding:7px 16px;border-radius:18px;font-size:13px;font-weight:600;color:var(--muted);background:#fff;border:1px solid var(--line);cursor:pointer}
+/* 首页 hero */
+.hero{padding:96px 20px 36px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center}
+.hero .logo-zone{font-size:44px;margin-bottom:10px}
+.hero h1{font-size:22px;font-weight:800}
+.hero .sub{font-size:13px;opacity:.85;margin-top:6px;letter-spacing:1px}
+.hero .desc{max-width:640px;margin:14px auto 0;font-size:13px;opacity:.8;padding:0 20px}
+/* 分类 tab */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 16px}
+.tab{padding:8px 18px;border-radius:20px;font-size:14px;font-weight:600;color:var(--muted);background:#fff;border:1px solid var(--line);cursor:pointer;transition:.2s}
 .tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+/* 产品网格 */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:pointer;transition:transform .15s}
+.card:active{transform:scale(.97)}
+.card .thumb{height:180px;overflow:hidden;background:#E8EDF5}
+.card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.card .info{padding:12px 14px}
+.card .nm{font-size:14px;font-weight:700;color:var(--ink);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.card .by{font-size:11px;color:var(--muted);margin-top:4px}
+/* 产品详情弹窗 */
+.mask{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.mask.show{display:flex}
+.sheet{background:#fff;width:100%;max-width:760px;border-radius:18px 18px 0 0;padding:0 0 30px;max-height:88vh;overflow-y:auto;animation:up .25s ease}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.sheet .big{width:100%;height:260px;background:#E8EDF5}
+.sheet .big img{width:100%;height:100%;object-fit:cover}
+.sheet .pd{padding:16px 20px}
+.sheet h2{font-size:18px;font-weight:800;margin-bottom:4px}
+.sheet .by{font-size:12px;color:var(--muted);margin-bottom:12px}
+.sheet .by a{color:var(--gold);text-decoration:none;font-weight:700;cursor:pointer}
+.sheet .lbl{font-size:11px;color:var(--muted);margin:12px 0 4px}
+.sheet .desc{font-size:14px;color:var(--ink);line-height:1.7}
+.sheet .close{width:calc(100% - 40px);margin:18px 20px 0;padding:13px;border:none;border-radius:10px;background:var(--navy);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
+/* 会员企业页 */
+.members{display:none}
+.members.show{display:block}
+.back-btn{display:inline-flex;align-items:center;gap:6px;margin:80px 0 0;padding:8px 16px;background:#fff;border:1px solid var(--line);border-radius:8px;color:var(--navy);font-size:14px;font-weight:600;cursor:pointer}
+.m-hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center;padding:40px 20px;margin-top:14px;border-radius:14px}
+.m-hero .logo-zone{font-size:44px}
+.m-hero h2{font-size:22px;font-weight:800;margin-top:10px}
+.m-hero .en{font-size:12px;opacity:.8;margin-top:4px}
+.m-hero .cat{display:inline-block;margin-top:12px;background:rgba(201,162,75,.2);color:var(--gold);font-size:12px;font-weight:700;padding:4px 14px;border-radius:12px;border:1px solid rgba(201,162,75,.5)}
+.m-hero .intro{max-width:680px;margin:16px auto 0;font-size:13px;opacity:.88;text-align:left}
+section{padding:34px 0 6px}
+.sec-tag{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.sec-title{font-size:21px;font-weight:800;color:var(--navy);margin:4px 0 4px}
+.sec-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .gallery .g{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .gallery .g img{width:100%;height:100%;object-fit:cover;display:block}
@@ -67,9 +81,10 @@ section{padding:36px 0 8px}
 footer{background:var(--navy);color:#7f8ea6;text-align:center;padding:24px 16px;font-size:12px;margin-top:30px}
 footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
 @media(min-width:640px){
+  .grid{grid-template-columns:repeat(3,1fr)}
   .gallery{grid-template-columns:repeat(3,1fr)}
   .steps{grid-template-columns:repeat(4,1fr)}
-  .platform-hero h1{font-size:30px}
+  .hero h1{font-size:28px}
 }
 </style>
 </head>
@@ -78,38 +93,33 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
 <div class="nav">
   <div class="nav-inner">
     <div class="brand"><span data-i18n="brand">云桥国际 · 会员专属平台</span><span class="sub" data-i18n="brand_sub">YUNQIAO INTERNATIONAL MEMBERS PLATFORM</span></div>
-    <button class="lang-btn" id="langBtn">EN</button>
+    <div class="nav-right">
+      <span class="nav-link on" id="navHome" onclick="showHome()" data-i18n="nav_products">产品</span>
+      <span class="nav-link" id="navMembers" onclick="showMembers()" data-i18n="nav_members">会员企业</span>
+      <button class="lang-btn" id="langBtn">EN</button>
+    </div>
   </div>
 </div>
 
-<!-- 平台首页 -->
+<!-- 首页：产品展示 -->
 <div class="home" id="home">
-  <div class="platform-hero">
+  <div class="hero">
     <div class="logo-zone">🌉</div>
     <h1 data-i18n="platform_name">云桥国际文化交流有限公司</h1>
-    <div class="sub" data-i18n="platform_sub">会员专属平台</div>
-    <div class="desc" data-i18n="platform_desc">云桥国际文化交流有限公司为会员企业提供产品展示服务，帮助会员客户向海内外意向客户展示优质产品。</div>
+    <div class="sub" data-i18n="platform_sub">会员专属平台 · 优质产品展示</div>
+    <div class="desc" data-i18n="platform_desc">精选会员企业优质产品，向海内外意向客户展示。</div>
   </div>
-
   <div class="wrap">
-    <div class="members-title" data-i18n="members_title">会员企业</div>
-    <div class="members-sub" data-i18n="members_sub">点击查看会员企业介绍与产品</div>
-    <div id="memberList"></div>
+    <div class="tabs" id="ptabs"></div>
+    <div class="grid" id="pgrid"></div>
   </div>
 </div>
 
-<!-- 会员详情 -->
-<div class="detail" id="detail">
+<!-- 会员企业页 -->
+<div class="members" id="members">
   <div class="wrap">
-    <button class="back-btn" onclick="showHome()">← <span data-i18n="back">返回会员列表</span></button>
-    <div class="detail-hero" id="detailHero"></div>
-    <section id="secProducts">
-      <div class="sec-tag" data-i18n="sec_products_tag">PRODUCTS</div>
-      <div class="sec-title" data-i18n="products_title">产品展示</div>
-      <div class="sec-sub" data-i18n="products_sub">五大类箱包产品，接受定制</div>
-      <div class="tabs" id="ptabs"></div>
-      <div class="gallery" id="pgrid"></div>
-    </section>
+    <button class="back-btn" onclick="showHome()">← <span data-i18n="back">返回产品</span></button>
+    <div class="m-hero" id="mHero"></div>
     <section id="secFactory">
       <div class="sec-tag" data-i18n="sec_factory_tag">FACTORY</div>
       <div class="sec-title" data-i18n="factory_title">工厂环境</div>
@@ -139,41 +149,45 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
   </div>
 </div>
 
+<!-- 产品详情弹窗 -->
+<div class="mask" id="mask"><div class="sheet" id="sheet"></div></div>
+
 <footer>
   <div class="co" data-i18n="foot_co">云桥国际文化交流有限公司 · 会员专属平台</div>
   <div data-i18n="foot">为会员企业提供产品展示服务</div>
 </footer>
 
 <script>
-// ============ 中英文案 ============
 const I18N = {
   zh: {
     brand:'云桥国际 · 会员专属平台', brand_sub:'YUNQIAO INTERNATIONAL MEMBERS PLATFORM',
-    platform_name:'云桥国际文化交流有限公司', platform_sub:'会员专属平台',
-    platform_desc:'云桥国际文化交流有限公司为会员企业提供产品展示服务，帮助会员客户向海内外意向客户展示优质产品。',
-    members_title:'会员企业', members_sub:'点击查看会员企业介绍与产品', back:'返回会员列表',
-    sec_products_tag:'产品', products_title:'产品展示', products_sub:'五大类箱包产品，接受定制',
+    nav_products:'产品', nav_members:'会员企业',
+    platform_name:'云桥国际文化交流有限公司', platform_sub:'会员专属平台 · 优质产品展示',
+    platform_desc:'精选会员企业优质产品，向海内外意向客户展示。',
+    back:'返回产品',
     sec_factory_tag:'工厂', factory_title:'工厂环境', factory_sub:'从原料到成品的完整生产线',
     sec_quality_tag:'质量', quality_title:'质量控制', quality_sub:'21年零质量投诉，四道质检把关', test_title:'测试设备',
     sec_design_tag:'设计', design_title:'设计能力', design_sub:'自有设计团队，支持来样定制',
     sec_cert_tag:'证书', cert_title:'认证证书', cert_sub:'通过国际社会责任与商业道德认证',
     foot_co:'云桥国际文化交流有限公司 · 会员专属平台', foot:'为会员企业提供产品展示服务',
-    view:'查看会员企业', pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
+    by:'由 {name} 提供', view_member:'查看企业介绍',
+    pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
     fc_sample:'样品间', fc_warehouse:'仓库', fc_cut:'裁剪车间', fc_sew:'缝纫车间', fc_inspect:'检验包装车间',
     qc1t:'原料检验', qc1d:'Raw material inspection', qc2t:'裁剪/印花检验', qc2d:'Cut / print part inspection', qc3t:'生产过程巡检', qc3d:'Patrol inspection during production', qc4t:'成品检验', qc4d:'In-line / Final inspection',
   },
   en: {
     brand:'Yunqiao International', brand_sub:'MEMBERS PLATFORM',
-    platform_name:'Yunqiao International Cultural Exchange Co., Ltd.', platform_sub:'Members Exclusive Platform',
-    platform_desc:'Yunqiao International provides product display services for member enterprises, helping members showcase quality products to customers worldwide.',
-    members_title:'Member Enterprises', members_sub:'Click to view member profile and products', back:'Back to Members',
-    sec_products_tag:'PRODUCTS', products_title:'Our Products', products_sub:'Five categories of bags, OEM/ODM welcome',
+    nav_products:'Products', nav_members:'Members',
+    platform_name:'Yunqiao International Cultural Exchange Co., Ltd.', platform_sub:'Members Exclusive Platform · Quality Products',
+    platform_desc:'Curated quality products from member enterprises, showcased to customers worldwide.',
+    back:'Back to Products',
     sec_factory_tag:'FACTORY', factory_title:'Factory Environment', factory_sub:'Complete production line from raw material to finished goods',
     sec_quality_tag:'QUALITY', quality_title:'Quality Control', quality_sub:'Zero quality complaint in 21 years, 4-stage inspection', test_title:'Testing Equipment',
     sec_design_tag:'DESIGN', design_title:'Design Capability', design_sub:'In-house design team, sample customization supported',
     sec_cert_tag:'CERTIFICATES', cert_title:'Certificates', cert_sub:'BSCI & SMETA certified',
     foot_co:'Yunqiao International Cultural Exchange Co., Ltd. · Members Platform', foot:'Product display service for member enterprises',
-    view:'View Member', pc_cosmetic:'Cosmetic Bags', pc_bags:'Bag Products', pc_school:'School Bags', pc_backpack:'Backpacks', pc_woman:'Woman Bags',
+    by:'Provided by {name}', view_member:'View Company',
+    pc_cosmetic:'Cosmetic Bags', pc_bags:'Bag Products', pc_school:'School Bags', pc_backpack:'Backpacks', pc_woman:'Woman Bags',
     fc_sample:'Sample Room', fc_warehouse:'Warehouse', fc_cut:'Cut Workshop', fc_sew:'Sewing Workshop', fc_inspect:'Inspect & Package Workshop',
     qc1t:'Raw material inspection', qc1d:'', qc2t:'Cut / print part inspection', qc2d:'', qc3t:'Patrol inspection', qc3d:'', qc4t:'Final inspection', qc4d:'',
   }
@@ -184,70 +198,19 @@ function switchLang(){
   lang = lang==='zh'?'en':'zh';
   document.getElementById('langBtn').textContent = lang==='zh'?'EN':'中';
   document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent = t(el.getAttribute('data-i18n')));
-  renderMemberList(); renderDetailHero(); renderTabs(); renderProducts(); renderFactory(); renderQuality(); renderDesign(); renderCert();
+  renderTabs(); renderProducts(); renderMHero(); renderFactory(); renderQuality(); renderDesign(); renderCert();
 }
 document.getElementById('langBtn').onclick = switchLang;
 
-// ============ 会员数据 ============
+// ============ 会员 + 产品数据 ============
 const MEMBERS = [
   {
-    id:'stage-leather',
-    name:'浙江实达皮革服饰有限公司',
-    nameEn:'ZHEJIANG STAGE LEATHER APPAREL CO., LTD.',
-    category:'箱包制造',
-    categoryEn:'Bags Manufacturing',
-    emoji:'🧳',
+    id:'stage-leather', name:'浙江实达皮革服饰有限公司', nameEn:'ZHEJIANG STAGE LEATHER APPAREL CO., LTD.',
+    category:'箱包制造', categoryEn:'Bags Manufacturing', emoji:'🧳',
     intro:'2004年成立，21年专注服饰/箱包的设计、开发与生产，通过 BSCI、SMETA 认证。',
     introEn:'Established in 2004, 21 years specializing in clothes/bags design, development and production. BSCI & SMETA certified.',
   }
 ];
-
-// ============ 首页：会员列表 ============
-function renderMemberList(){
-  const box = document.getElementById('memberList');
-  box.innerHTML = '';
-  MEMBERS.forEach(m=>{
-    const card = document.createElement('div');
-    card.className = 'member-card';
-    card.innerHTML = `
-      <div class="mc-head">${m.emoji}</div>
-      <div class="mc-body">
-        <div class="mc-name">${lang==='zh'?m.name:m.nameEn}</div>
-        <div class="mc-en">${lang==='zh'?m.nameEn:m.name}</div>
-        <div class="mc-cat">${lang==='zh'?m.category:m.categoryEn}</div>
-        <div class="mc-intro">${lang==='zh'?m.intro:m.introEn}</div>
-        <div class="mc-btn">${t('view')}</div>
-      </div>`;
-    card.onclick = ()=>showDetail(m);
-    box.appendChild(card);
-  });
-}
-
-// ============ 详情：会员介绍 ============
-let curMember = null;
-function showDetail(m){
-  curMember = m;
-  document.getElementById('home').style.display = 'none';
-  document.getElementById('detail').classList.add('show');
-  window.scrollTo(0,0);
-  renderDetailHero(); renderTabs(); renderProducts(); renderFactory(); renderQuality(); renderDesign(); renderCert();
-}
-function showHome(){
-  document.getElementById('detail').classList.remove('show');
-  document.getElementById('home').style.display = 'block';
-  window.scrollTo(0,0);
-}
-function renderDetailHero(){
-  const m = curMember;
-  document.getElementById('detailHero').innerHTML = `
-    <div class="logo-zone">${m.emoji}</div>
-    <h2>${lang==='zh'?m.name:m.nameEn}</h2>
-    <div class="en">${lang==='zh'?m.nameEn:m.name}</div>
-    <div class="cat">${lang==='zh'?m.category:m.categoryEn}</div>
-    <div class="intro">${lang==='zh'?m.intro:m.introEn}</div>`;
-}
-
-// ============ 产品 ============
 const PROD_CATS = [
   {key:'cosmetic', count:17, cap:'pc_cosmetic'},
   {key:'bags', count:6, cap:'pc_bags'},
@@ -256,6 +219,11 @@ const PROD_CATS = [
   {key:'woman', count:2, cap:'pc_woman'},
 ];
 let curCat = 'cosmetic';
+
+function showHome(){ document.getElementById('home').style.display='block'; document.getElementById('members').classList.remove('show'); document.getElementById('navHome').classList.add('on'); document.getElementById('navMembers').classList.remove('on'); window.scrollTo(0,0); }
+function showMembers(){ document.getElementById('home').style.display='none'; document.getElementById('members').classList.add('show'); document.getElementById('navMembers').classList.add('on'); document.getElementById('navHome').classList.remove('on'); window.scrollTo(0,0); renderMHero(); renderFactory(); renderQuality(); renderDesign(); renderCert(); }
+
+// ============ 产品 ============
 function renderTabs(){
   const box = document.getElementById('ptabs');
   box.innerHTML = '';
@@ -271,18 +239,44 @@ function renderProducts(){
   const grid = document.getElementById('pgrid');
   const c = PROD_CATS.find(x=>x.key===curCat);
   grid.innerHTML = '';
+  const m = MEMBERS[0];
   for(let i=1;i<=c.count;i++){
     const d = document.createElement('div');
-    d.className='g';
-    d.innerHTML = `<img src="images/${c.key}/${c.key}${i}.png" loading="lazy" alt="${t(c.cap)}">`;
+    d.className='card';
+    d.innerHTML = `
+      <div class="thumb"><img src="images/${c.key}/${c.key}${i}.png" loading="lazy" alt=""></div>
+      <div class="info"><div class="nm">${t(c.cap)} ${i}</div><div class="by">${t('by').replace('{name}', lang==='zh'?m.name:m.nameEn)}</div></div>`;
+    d.onclick = ()=>openDetail(c, i);
     grid.appendChild(d);
   }
 }
+function openDetail(c, i){
+  const m = MEMBERS[0];
+  document.getElementById('sheet').innerHTML = `
+    <div class="big"><img src="images/${c.key}/${c.key}${i}.png" alt=""></div>
+    <div class="pd">
+      <h2>${t(c.cap)} ${i}</h2>
+      <div class="by">${t('by').replace('{name}', lang==='zh'?m.name:m.nameEn)} · <a onclick="closeDetail();showMembers()">${t('view_member')}</a></div>
+      <div class="lbl">${lang==='zh'?'产品介绍':'Description'}</div>
+      <div class="desc">${lang==='zh'?'（产品介绍待补充）':'(Description to be added)'}</div>
+    </div>
+    <button class="close" onclick="closeDetail()">${lang==='zh'?'关闭':'Close'}</button>`;
+  document.getElementById('mask').classList.add('show');
+}
+function closeDetail(){ document.getElementById('mask').classList.remove('show'); }
+document.getElementById('mask').addEventListener('click',e=>{ if(e.target.id==='mask') closeDetail(); });
 
-// ============ 工厂 ============
-const FACTORY = [
-  {n:3, cap:'fc_sample'}, {n:2, cap:'fc_warehouse', off:3}, {n:2, cap:'fc_cut', off:5}, {n:2, cap:'fc_sew', off:7}, {n:2, cap:'fc_inspect', off:9},
-];
+// ============ 会员企业 ============
+function renderMHero(){
+  const m = MEMBERS[0];
+  document.getElementById('mHero').innerHTML = `
+    <div class="logo-zone">${m.emoji}</div>
+    <h2>${lang==='zh'?m.name:m.nameEn}</h2>
+    <div class="en">${lang==='zh'?m.nameEn:m.name}</div>
+    <div class="cat">${lang==='zh'?m.category:m.categoryEn}</div>
+    <div class="intro">${lang==='zh'?m.intro:m.introEn}</div>`;
+}
+const FACTORY = [{n:3,cap:'fc_sample'},{n:2,cap:'fc_warehouse'},{n:2,cap:'fc_cut'},{n:2,cap:'fc_sew'},{n:2,cap:'fc_inspect'}];
 function renderFactory(){
   const grid = document.getElementById('fgrid');
   grid.innerHTML = '';
@@ -297,8 +291,6 @@ function renderFactory(){
     }
   });
 }
-
-// ============ 质量 ============
 function renderQuality(){
   const steps = document.getElementById('qsteps');
   steps.innerHTML = '';
@@ -314,8 +306,6 @@ function renderQuality(){
     grid.appendChild(d);
   }
 }
-
-// ============ 设计 ============
 function renderDesign(){
   const grid = document.getElementById('dgrid');
   grid.innerHTML = '';
@@ -326,8 +316,6 @@ function renderDesign(){
     grid.appendChild(d);
   }
 }
-
-// ============ 证书 ============
 function renderCert(){
   const grid = document.getElementById('cgrid');
   grid.innerHTML = '';
@@ -341,7 +329,7 @@ function renderCert(){
 }
 
 // 初始化
-renderMemberList();
+renderTabs(); renderProducts();
 </script>
 </body>
 </html>
