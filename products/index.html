@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+[dir="rtl"] body{font-family:"Segoe UI","Tahoma",system-ui,sans-serif}
 .nav{position:fixed;top:0;left:0;right:0;background:var(--navy);color:#fff;z-index:100;box-shadow:0 1px 6px rgba(0,0,0,.15)}
 .nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:56px}
 .brand{font-size:15px;font-weight:800}
@@ -16,7 +17,17 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .nav-right{display:flex;align-items:center;gap:10px}
 .nav-link{color:#cfd8e6;font-size:13px;text-decoration:none;cursor:pointer;padding:5px 10px;border-radius:6px}
 .nav-link.on{color:#fff;background:rgba(255,255,255,.14)}
-.lang-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer}
+/* 语言选择器 */
+.lang-wrap{position:relative}
+.lang-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:4px}
+.lang-btn::after{content:'▾';font-size:10px}
+.lang-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.15);padding:6px 0;min-width:100px;display:none;z-index:300}
+.lang-menu.open{display:block}
+[dir="rtl"] .lang-menu{right:auto;left:0}
+.lang-opt{display:block;width:100%;padding:8px 14px;font-size:13px;color:var(--ink);background:none;border:none;text-align:left;cursor:pointer;font-weight:500}
+[dir="rtl"] .lang-opt{text-align:right}
+.lang-opt:hover{background:#f0f2f5}
+.lang-opt.on{color:var(--navy);font-weight:700}
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px 40px}
 /* 首页 hero */
 .hero{padding:96px 20px 36px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center}
@@ -61,6 +72,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .m-hero .en{font-size:12px;opacity:.8;margin-top:4px}
 .m-hero .cat{display:inline-block;margin-top:12px;background:rgba(201,162,75,.2);color:var(--gold);font-size:12px;font-weight:700;padding:4px 14px;border-radius:12px;border:1px solid rgba(201,162,75,.5)}
 .m-hero .intro{max-width:680px;margin:16px auto 0;font-size:13px;opacity:.88;text-align:left}
+[dir="rtl"] .m-hero .intro{text-align:right}
 section{padding:34px 0 6px}
 .sec-tag{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
 .sec-title{font-size:21px;font-weight:800;color:var(--navy);margin:4px 0 4px}
@@ -96,7 +108,15 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
     <div class="nav-right">
       <span class="nav-link on" id="navHome" onclick="showHome()" data-i18n="nav_products">产品</span>
       <span class="nav-link" id="navMembers" onclick="showMembers()" data-i18n="nav_members">会员企业</span>
-      <button class="lang-btn" id="langBtn">EN</button>
+      <div class="lang-wrap">
+        <button class="lang-btn" id="langBtn">EN</button>
+        <div class="lang-menu" id="langMenu">
+          <button class="lang-opt on" data-lang="zh">中文</button>
+          <button class="lang-opt" data-lang="en">EN</button>
+          <button class="lang-opt" data-lang="fr">FR</button>
+          <button class="lang-opt" data-lang="ar">عربي</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -158,6 +178,9 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
 </footer>
 
 <script>
+const LANGS = ['zh','en','fr','ar'];
+const LANG_LABELS = {zh:'中文',en:'EN',fr:'FR',ar:'عربي'};
+
 const I18N = {
   zh: {
     brand:'云桥国际 · 会员专属平台', brand_sub:'YUNQIAO INTERNATIONAL MEMBERS PLATFORM',
@@ -173,7 +196,8 @@ const I18N = {
     by:'由 {name} 提供', view_member:'查看企业介绍',
     pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
     fc_sample:'样品间', fc_warehouse:'仓库', fc_cut:'裁剪车间', fc_sew:'缝纫车间', fc_inspect:'检验包装车间',
-    qc1t:'原料检验', qc1d:'Raw material inspection', qc2t:'裁剪/印花检验', qc2d:'Cut / print part inspection', qc3t:'生产过程巡检', qc3d:'Patrol inspection during production', qc4t:'成品检验', qc4d:'In-line / Final inspection',
+    qc1t:'原料检验', qc1d:'', qc2t:'裁剪/印花检验', qc2d:'', qc3t:'生产过程巡检', qc3d:'', qc4t:'成品检验', qc4d:'',
+    desc_placeholder:'（产品介绍待补充）', close:'关闭', label_desc:'产品介绍',
   },
   en: {
     brand:'Yunqiao International', brand_sub:'MEMBERS PLATFORM',
@@ -190,27 +214,94 @@ const I18N = {
     pc_cosmetic:'Cosmetic Bags', pc_bags:'Bag Products', pc_school:'School Bags', pc_backpack:'Backpacks', pc_woman:'Woman Bags',
     fc_sample:'Sample Room', fc_warehouse:'Warehouse', fc_cut:'Cut Workshop', fc_sew:'Sewing Workshop', fc_inspect:'Inspect & Package Workshop',
     qc1t:'Raw material inspection', qc1d:'', qc2t:'Cut / print part inspection', qc2d:'', qc3t:'Patrol inspection', qc3d:'', qc4t:'Final inspection', qc4d:'',
+    desc_placeholder:'(Description to be added)', close:'Close', label_desc:'Description',
+  },
+  fr: {
+    brand:'Yunqiao International', brand_sub:'PLATEFORME DES MEMBRES',
+    nav_products:'Produits', nav_members:'Membres',
+    platform_name:'Yunqiao International Culture Exchange Co., Ltd.', platform_sub:'Plateforme Membres · Produits de Qualité',
+    platform_desc:'Sélection de produits de qualité des entreprises membres, présentés aux clients du monde entier.',
+    back:'Retour aux Produits',
+    sec_factory_tag:'USINE', factory_title:'Environnement d\'Usine', factory_sub:'Ligne de production complète, de la matière première au produit fini',
+    sec_quality_tag:'QUALITÉ', quality_title:'Contrôle Qualité', quality_sub:'Zéro plainte qualité en 21 ans, inspection en 4 étapes', test_title:'Équipement de Test',
+    sec_design_tag:'DESIGN', design_title:'Capacité de Design', design_sub:'Équipe de design interne, personnalisation sur échantillon',
+    sec_cert_tag:'CERTIFICATS', cert_title:'Certificats', cert_sub:'Certifié BSCI & SMETA',
+    foot_co:'Yunqiao International Culture Exchange Co., Ltd. · Plateforme Membres', foot:'Service de présentation de produits pour les entreprises membres',
+    by:'Fourni par {name}', view_member:'Voir l\'Entreprise',
+    pc_cosmetic:'Sacs Cosmétiques', pc_bags:'Sacs', pc_school:'Cartables', pc_backpack:'Sacs à Dos', pc_woman:'Sacs Femme',
+    fc_sample:'Salle d\'Échantillons', fc_warehouse:'Entrepôt', fc_cut:'Atelier de Coupe', fc_sew:'Atelier de Couture', fc_inspect:'Atelier d\'Inspection',
+    qc1t:'Inspection matière première', qc1d:'', qc2t:'Inspection coupe/impression', qc2d:'', qc3t:'Inspection en cours', qc3d:'', qc4t:'Inspection finale', qc4d:'',
+    desc_placeholder:'(Description à ajouter)', close:'Fermer', label_desc:'Description',
+  },
+  ar: {
+    brand:'يونتشياو الدولية · منصة الأعضاء', brand_sub:'منصة الأعضاء يونتشياو الدولية',
+    nav_products:'المنتجات', nav_members:'الأعضاء',
+    platform_name:'شركة يونتشياو الدولية للتبادل الثقافي', platform_sub:'منصة الأعضاء · منتجات عالية الجودة',
+    platform_desc:'منتجات مختارة من الشركات الأعضاء، معروضة للعملاء حول العالم.',
+    back:'العودة إلى المنتجات',
+    sec_factory_tag:'المصنع', factory_title:'بيئة المصنع', factory_sub:'خط إنتاج كامل من المواد الخام إلى المنتج النهائي',
+    sec_quality_tag:'الجودة', quality_title:'مراقبة الجودة', quality_sub:'صفر شكوى جودة في 21 عاماً، تفتيش في 4 مراحل', test_title:'معدات الاختبار',
+    sec_design_tag:'التصميم', design_title:'قدرة التصميم', design_sub:'فريق تصميم داخلي، تخصيص حسب العينة',
+    sec_cert_tag:'الشهادات', cert_title:'شهادات الاعتماد', cert_sub:'حاصل على شهادات BSCI و SMETA',
+    foot_co:'شركة يونتشياو الدولية للتبادل الثقافي · منصة الأعضاء', foot:'خدمة عرض المنتجات للشركات الأعضاء',
+    by:'مقدم من {name}', view_member:'عرض الشركة',
+    pc_cosmetic:'حقائب مستحضرات', pc_bags:'حقائب', pc_school:'حقائب مدرسية', pc_backpack:'حقائب ظهر', pc_woman:'حقائب نسائية',
+    fc_sample:'غرفة العينات', fc_warehouse:'المستودع', fc_cut:'ورشة القص', fc_sew:'ورشة الخياطة', fc_inspect:'ورشة التفتيش والتغليف',
+    qc1t:'تفتيش المواد الخام', qc1d:'', qc2t:'تفتيش القص/الطباعة', qc2d:'', qc3t:'تفتيش دوري', qc3d:'', qc4t:'تفتيش نهائي', qc4d:'',
+    desc_placeholder:'(الوصف سيتم إضافته لاحقاً)', close:'إغلاق', label_desc:'وصف المنتج',
   }
 };
+
 let lang = 'zh';
-function t(k){ return I18N[lang][k] || k; }
-function switchLang(){
-  lang = lang==='zh'?'en':'zh';
-  document.getElementById('langBtn').textContent = lang==='zh'?'EN':'中';
+function t(k){ return (I18N[lang] && I18N[lang][k]) || I18N.zh[k] || k; }
+
+/* 语言切换 */
+const langBtn = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+langBtn.onclick = function(e){
+  e.stopPropagation();
+  langMenu.classList.toggle('open');
+};
+document.addEventListener('click', ()=> langMenu.classList.remove('open'));
+
+document.querySelectorAll('.lang-opt').forEach(opt=>{
+  opt.onclick = function(e){
+    e.stopPropagation();
+    setLang(this.getAttribute('data-lang'));
+    langMenu.classList.remove('open');
+  };
+});
+
+function setLang(newLang){
+  lang = newLang;
+  // RTL for Arabic
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+  // Update button label
+  langBtn.textContent = LANG_LABELS[lang];
+  // Highlight current option
+  document.querySelectorAll('.lang-opt').forEach(o=>{
+    o.classList.toggle('on', o.getAttribute('data-lang') === lang);
+  });
+  // Apply translations
   document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent = t(el.getAttribute('data-i18n')));
   renderTabs(); renderProducts(); renderMHero(); renderFactory(); renderQuality(); renderDesign(); renderCert();
 }
-document.getElementById('langBtn').onclick = switchLang;
 
 // ============ 会员 + 产品数据 ============
 const MEMBERS = [
   {
     id:'stage-leather', name:'浙江实达皮革服饰有限公司', nameEn:'ZHEJIANG STAGE LEATHER APPAREL CO., LTD.',
-    category:'箱包制造', categoryEn:'Bags Manufacturing', emoji:'🧳',
+    nameFr:'ZHEJIANG STAGE LEATHER APPAREL CO., LTD.', nameAr:'شركة تشجيانغ شتاج ليثير للملابس الجلدية',
+    category:'箱包制造', categoryEn:'Bags Manufacturing', categoryFr:'Fabrication de Sacs', categoryAr:'تصنيع الحقائب',
+    emoji:'🧳',
     intro:'2004年成立，21年专注服饰/箱包的设计、开发与生产，通过 BSCI、SMETA 认证。',
     introEn:'Established in 2004, 21 years specializing in clothes/bags design, development and production. BSCI & SMETA certified.',
+    introFr:'Fondée en 2004, 21 ans de spécialisation en conception/développement de vêtements et sacs. Certifiée BSCI & SMETA.',
+    introAr:'تأسست عام 2004، 21 عاماً من التخصص في تصميم وتطوير وإنتاج الملابس والحقائب. حاصلة على شهادات BSCI و SMETA.',
   }
 ];
+
 const PROD_CATS = [
   {key:'cosmetic', count:17, cap:'pc_cosmetic'},
   {key:'bags', count:6, cap:'pc_bags'},
@@ -218,7 +309,30 @@ const PROD_CATS = [
   {key:'backpack', count:2, cap:'pc_backpack'},
   {key:'woman', count:2, cap:'pc_woman'},
 ];
-let curCat = 'cosmetic';
+
+/* 只保留有产品的分类（count > 0）*/
+function visibleCats(){ return PROD_CATS.filter(c => c.count > 0); }
+
+let curCat = visibleCats().length ? visibleCats()[0].key : '';
+
+function getMemberName(m){
+  if(lang==='zh') return m.name;
+  if(lang==='fr') return m.nameFr || m.nameEn;
+  if(lang==='ar') return m.nameAr || m.nameEn;
+  return m.nameEn;
+}
+function getMemberCategory(m){
+  if(lang==='zh') return m.category;
+  if(lang==='fr') return m.categoryFr || m.categoryEn;
+  if(lang==='ar') return m.categoryAr || m.categoryEn;
+  return m.categoryEn;
+}
+function getMemberIntro(m){
+  if(lang==='zh') return m.intro;
+  if(lang==='fr') return m.introFr || m.introEn;
+  if(lang==='ar') return m.introAr || m.introEn;
+  return m.introEn;
+}
 
 function showHome(){ document.getElementById('home').style.display='block'; document.getElementById('members').classList.remove('show'); document.getElementById('navHome').classList.add('on'); document.getElementById('navMembers').classList.remove('on'); window.scrollTo(0,0); }
 function showMembers(){ document.getElementById('home').style.display='none'; document.getElementById('members').classList.add('show'); document.getElementById('navMembers').classList.add('on'); document.getElementById('navHome').classList.remove('on'); window.scrollTo(0,0); renderMHero(); renderFactory(); renderQuality(); renderDesign(); renderCert(); }
@@ -227,7 +341,8 @@ function showMembers(){ document.getElementById('home').style.display='none'; do
 function renderTabs(){
   const box = document.getElementById('ptabs');
   box.innerHTML = '';
-  PROD_CATS.forEach(c=>{
+  /* 只渲染有产品的分类 */
+  visibleCats().forEach(c=>{
     const el = document.createElement('div');
     el.className = 'tab' + (c.key===curCat?' on':'');
     el.textContent = t(c.cap);
@@ -238,6 +353,7 @@ function renderTabs(){
 function renderProducts(){
   const grid = document.getElementById('pgrid');
   const c = PROD_CATS.find(x=>x.key===curCat);
+  if(!c){ grid.innerHTML=''; return; }
   grid.innerHTML = '';
   const m = MEMBERS[0];
   for(let i=1;i<=c.count;i++){
@@ -245,7 +361,7 @@ function renderProducts(){
     d.className='card';
     d.innerHTML = `
       <div class="thumb"><img src="images/${c.key}/${c.key}${i}.png" loading="lazy" alt=""></div>
-      <div class="info"><div class="nm">${t(c.cap)} ${i}</div><div class="by">${t('by').replace('{name}', lang==='zh'?m.name:m.nameEn)}</div></div>`;
+      <div class="info"><div class="nm">${t(c.cap)} ${i}</div><div class="by">${t('by').replace('{name}', getMemberName(m))}</div></div>`;
     d.onclick = ()=>openDetail(c, i);
     grid.appendChild(d);
   }
@@ -256,11 +372,11 @@ function openDetail(c, i){
     <div class="big"><img src="images/${c.key}/${c.key}${i}.png" alt=""></div>
     <div class="pd">
       <h2>${t(c.cap)} ${i}</h2>
-      <div class="by">${t('by').replace('{name}', lang==='zh'?m.name:m.nameEn)} · <a onclick="closeDetail();showMembers()">${t('view_member')}</a></div>
-      <div class="lbl">${lang==='zh'?'产品介绍':'Description'}</div>
-      <div class="desc">${lang==='zh'?'（产品介绍待补充）':'(Description to be added)'}</div>
+      <div class="by">${t('by').replace('{name}', getMemberName(m))} · <a onclick="closeDetail();showMembers()">${t('view_member')}</a></div>
+      <div class="lbl">${t('label_desc')}</div>
+      <div class="desc">${t('desc_placeholder')}</div>
     </div>
-    <button class="close" onclick="closeDetail()">${lang==='zh'?'关闭':'Close'}</button>`;
+    <button class="close" onclick="closeDetail()">${t('close')}</button>`;
   document.getElementById('mask').classList.add('show');
 }
 function closeDetail(){ document.getElementById('mask').classList.remove('show'); }
@@ -269,12 +385,14 @@ document.getElementById('mask').addEventListener('click',e=>{ if(e.target.id==='
 // ============ 会员企业 ============
 function renderMHero(){
   const m = MEMBERS[0];
+  const mainName = getMemberName(m);
+  const subName = lang==='zh' ? m.nameEn : (lang==='en' ? m.name : (lang==='fr' ? (m.nameFr||m.nameEn) : (m.nameAr||m.nameEn)));
   document.getElementById('mHero').innerHTML = `
     <div class="logo-zone">${m.emoji}</div>
-    <h2>${lang==='zh'?m.name:m.nameEn}</h2>
-    <div class="en">${lang==='zh'?m.nameEn:m.name}</div>
-    <div class="cat">${lang==='zh'?m.category:m.categoryEn}</div>
-    <div class="intro">${lang==='zh'?m.intro:m.introEn}</div>`;
+    <h2>${mainName}</h2>
+    <div class="en">${lang==='zh' ? m.nameEn : m.name}</div>
+    <div class="cat">${getMemberCategory(m)}</div>
+    <div class="intro">${getMemberIntro(m)}</div>`;
 }
 const FACTORY = [{n:3,cap:'fc_sample'},{n:2,cap:'fc_warehouse'},{n:2,cap:'fc_cut'},{n:2,cap:'fc_sew'},{n:2,cap:'fc_inspect'}];
 function renderFactory(){
