@@ -10,8 +10,8 @@
 html{scroll-behavior:smooth}
 body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
 [dir="rtl"] body{font-family:"Segoe UI","Tahoma",system-ui,sans-serif}
-.nav{position:fixed;top:0;left:0;right:0;background:var(--navy);color:#fff;z-index:100;box-shadow:0 1px 6px rgba(0,0,0,.15)}
-.nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:56px}
+.nav{position:fixed;top:0;left:0;right:0;background:var(--navy);color:#fff;z-index:100;box-shadow:0 1px 6px rgba(0,0,0,.15);direction:ltr}
+.nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:56px;direction:ltr}
 .brand{font-size:15px;font-weight:800}
 .brand .sub{display:block;font-size:10px;font-weight:400;opacity:.7;letter-spacing:1px}
 .nav-right{display:flex;align-items:center;gap:10px}
@@ -21,9 +21,8 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .lang-wrap{position:relative}
 .lang-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:4px}
 .lang-btn::after{content:'▾';font-size:10px}
-.lang-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.15);padding:6px 0;min-width:100px;display:none;z-index:300}
+.lang-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.15);padding:6px 0;min-width:100px;display:none;z-index:300;direction:ltr}
 .lang-menu.open{display:block}
-[dir="rtl"] .lang-menu{right:auto;left:0}
 .lang-opt{display:block;width:100%;padding:8px 14px;font-size:13px;color:var(--ink);background:none;border:none;text-align:left;cursor:pointer;font-weight:500}
 [dir="rtl"] .lang-opt{text-align:right}
 .lang-opt:hover{background:#f0f2f5}
