@@ -12,12 +12,10 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .header h1{font-size:20px;font-weight:600;}
 .header a{color:var(--gold);text-decoration:none;font-size:14px;}
 .wrap{max-width:960px;margin:0 auto;padding:24px;}
-/* 状态栏 */
 .stats{display:flex;gap:16px;margin-bottom:24px;}
 .stat{background:var(--card);border-radius:10px;padding:16px 20px;flex:1;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06);}
 .stat .num{font-size:28px;font-weight:700;color:var(--navy);}
 .stat .label{font-size:13px;color:var(--muted);margin-top:4px;}
-/* 产品列表 */
 .section-title{font-size:16px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s;}
 .btn-primary{background:var(--gold);color:#fff;}.btn-primary:hover{background:#b8943f;}
@@ -31,7 +29,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .product-row .meta{font-size:12px;color:var(--muted);margin-top:2px;}
 .product-row .meta span{margin-right:10px;}
 .product-row .actions{display:flex;gap:6px;}
-/* 表单 */
 .form-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:center;justify-content:center;}
 .form-overlay.show{display:flex;}
 .form-box{background:#fff;border-radius:14px;padding:28px;width:92%;max-width:680px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);}
@@ -46,7 +43,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .lang-tab{padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer;border:1px solid var(--border);background:#fff;transition:all .15s;}
 .lang-tab.on{background:var(--navy);color:#fff;border-color:var(--navy);}
 .lang-group{display:none;}.lang-group.on{display:block;}
-/* 图片上传 */
 .upload-zone{border:2px dashed var(--border);border-radius:10px;padding:24px;text-align:center;cursor:pointer;transition:border .2s;position:relative;}
 .upload-zone:hover{border-color:var(--gold);}
 .upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
@@ -55,20 +51,14 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .preview-item{position:relative;width:80px;height:80px;}
 .preview-item img{width:100%;height:100%;object-fit:cover;border-radius:8px;}
 .preview-item .remove{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--red);color:#fff;border:none;border-radius:50%;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-/* 美化开关 */
 .toggle-row{display:flex;align-items:center;gap:10px;margin:12px 0;}
 .toggle{width:40px;height:22px;background:#ccc;border-radius:11px;position:relative;cursor:pointer;transition:background .2s;}
 .toggle.on{background:var(--green);}
 .toggle .knob{width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.15);}
 .toggle.on .knob{left:20px;}
-/* toast */
 .toast{position:fixed;top:20px;right:20px;padding:12px 20px;border-radius:10px;color:#fff;font-size:14px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;}
 .toast.show{opacity:1;}
 .toast.ok{background:var(--green);}.toast.err{background:var(--red);}
-/* GitHub Token */
-.token-section{background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px;}
-.token-section .field{margin-bottom:8px;}
-.token-section small{color:#856404;}
 </style>
 </head>
 <body>
@@ -78,15 +68,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 </div>
 <div class="wrap">
   <div class="stats" id="stats"></div>
-
-  <div class="token-section">
-    <strong>GitHub Token（图片上传用）</strong><br>
-    <small>需要 repo 权限的 Personal Access Token，填一次浏览器会记住</small>
-    <div class="field" style="margin-top:8px;">
-      <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" style="max-width:400px;">
-    </div>
-  </div>
-
   <div class="section-title">
     <span>产品列表</span>
     <button class="btn btn-primary" onclick="openForm()">+ 新增产品</button>
@@ -94,19 +75,14 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
   <div class="product-list" id="productList"></div>
 </div>
 
-<!-- 新增/编辑表单 -->
 <div class="form-overlay" id="formOverlay">
   <div class="form-box">
     <h2 id="formTitle">新增产品</h2>
     <input type="hidden" id="editId">
-
     <div class="field">
       <label>所属会员企业</label>
-      <select id="fMember">
-        <option value="stage-leather">浙江实达皮革服饰有限公司</option>
-      </select>
+      <select id="fMember"><option value="stage-leather">浙江实达皮革服饰有限公司</option></select>
     </div>
-
     <div class="field">
       <label>产品分类</label>
       <select id="fCategory">
@@ -121,84 +97,67 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
         <option value="other">其他</option>
       </select>
     </div>
-
     <div class="field">
       <label>产品名称（多语言）</label>
-      <div class="lang-tabs">
-        <div class="lang-tab on" data-l="zh" onclick="switchLangTab(this)">中文</div>
-        <div class="lang-tab" data-l="en" onclick="switchLangTab(this)">English</div>
-        <div class="lang-tab" data-l="fr" onclick="switchLangTab(this)">Français</div>
-        <div class="lang-tab" data-l="ar" onclick="switchLangTab(this)">عربي</div>
-      </div>
-      <div class="lang-group on" data-l="zh"><input id="fName_zh" placeholder="产品中文名"></div>
-      <div class="lang-group" data-l="en"><input id="fName_en" placeholder="Product name (English)"></div>
-      <div class="lang-group" data-l="fr"><input id="fName_fr" placeholder="Nom du produit (Français)"></div>
-      <div class="lang-group" data-l="ar"><input id="fName_ar" placeholder="اسم المنتج (عربي)" dir="rtl"></div>
+      <div class="lang-tabs"><div class="lang-tab on" data-l="zh" onclick="swTab(this,'name')">中文</div><div class="lang-tab" data-l="en" onclick="swTab(this,'name')">EN</div><div class="lang-tab" data-l="fr" onclick="swTab(this,'name')">FR</div><div class="lang-tab" data-l="ar" onclick="swTab(this,'name')">عربي</div></div>
+      <div class="lang-group on" data-g="name" data-l="zh"><input id="fName_zh" placeholder="产品中文名"></div>
+      <div class="lang-group" data-g="name" data-l="en"><input id="fName_en" placeholder="Product name"></div>
+      <div class="lang-group" data-g="name" data-l="fr"><input id="fName_fr" placeholder="Nom du produit"></div>
+      <div class="lang-group" data-g="name" data-l="ar"><input id="fName_ar" placeholder="اسم المنتج" dir="rtl"></div>
     </div>
-
     <div class="row2">
-      <div class="field"><label>价格</label><input id="fPrice" placeholder="¥299 或 $49.99"></div>
-      <div class="field"><label>规格</label><input id="fSpecs" placeholder="型号A1 / 白色 / 2年质保"></div>
+      <div class="field"><label>价格</label><input id="fPrice" placeholder="¥299"></div>
+      <div class="field"><label>规格</label><input id="fSpecs" placeholder="型号A1 / 白色"></div>
     </div>
-
     <div class="field">
       <label>产品介绍（多语言）</label>
-      <div class="lang-tabs">
-        <div class="lang-tab on" data-l="zh" onclick="switchDescTab(this)">中文</div>
-        <div class="lang-tab" data-l="en" onclick="switchDescTab(this)">English</div>
-        <div class="lang-tab" data-l="fr" onclick="switchDescTab(this)">Français</div>
-        <div class="lang-tab" data-l="ar" onclick="switchDescTab(this)">عربي</div>
-      </div>
-      <div class="lang-group on" data-l="zh"><textarea id="fDesc_zh" placeholder="产品中文介绍"></textarea></div>
-      <div class="lang-group" data-l="en"><textarea id="fDesc_en" placeholder="Product description (English)"></textarea></div>
-      <div class="lang-group" data-l="fr"><textarea id="fDesc_fr" placeholder="Description du produit (Français)"></textarea></div>
-      <div class="lang-group" data-l="ar"><textarea id="fDesc_ar" placeholder="وصف المنتج (عربي)" dir="rtl"></textarea></div>
+      <div class="lang-tabs"><div class="lang-tab on" data-l="zh" onclick="swTab(this,'desc')">中文</div><div class="lang-tab" data-l="en" onclick="swTab(this,'desc')">EN</div><div class="lang-tab" data-l="fr" onclick="swTab(this,'desc')">FR</div><div class="lang-tab" data-l="ar" onclick="swTab(this,'desc')">عربي</div></div>
+      <div class="lang-group on" data-g="desc" data-l="zh"><textarea id="fDesc_zh" placeholder="产品中文介绍"></textarea></div>
+      <div class="lang-group" data-g="desc" data-l="en"><textarea id="fDesc_en" placeholder="Product description"></textarea></div>
+      <div class="lang-group" data-g="desc" data-l="fr"><textarea id="fDesc_fr" placeholder="Description du produit"></textarea></div>
+      <div class="lang-group" data-g="desc" data-l="ar"><textarea id="fDesc_ar" placeholder="وصف المنتج" dir="rtl"></textarea></div>
     </div>
-
     <div class="field">
       <label>产品图片</label>
       <div class="upload-zone" id="uploadZone">
         <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this.files)">
-        <div class="hint">点击或拖拽上传图片（支持多张）</div>
+        <div class="hint">点击或拖拽上传图片（支持多张，建议≤2MB/张）</div>
       </div>
       <div class="preview-grid" id="previewGrid"></div>
     </div>
-
     <div class="toggle-row">
       <div class="toggle" id="beautifyToggle" onclick="this.classList.toggle('on')"><div class="knob"></div></div>
       <span style="font-size:13px;">AI图片美化（抠图白底 + 清晰度增强）</span>
     </div>
-
     <div style="display:flex;gap:10px;margin-top:20px;">
-      <button class="btn btn-primary" onclick="saveProduct()" style="flex:1;">发布产品</button>
+      <button class="btn btn-primary" onclick="saveProduct()" style="flex:1;" id="saveBtn">发布产品</button>
       <button class="btn btn-ghost" onclick="closeForm()">取消</button>
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-/* ===== 配置 ===== */
 const SB_URL='https://xvvwdiqxbhhkgnibhbxi.supabase.co';
 const SB_KEY='sb_publishable_E5fa74SZ-2GmAWWv4T4BdA_P5TS9cm_';
-const SB_HEADERS={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
-const SB_ADMIN_HEADERS={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
-const RPC_PASSWORD='admin888';
-const GH_REPO='Sparrow528/yushouxin';
-const GH_BRANCH='main';
+const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
+const RPC_PW='admin888';
+const SB_BUCKET='product-images';
 
 let products=[];
-let uploadedImages=[]; // {file, dataUrl, base64}
+let uploadedImages=[];
 
-/* Token 持久化 */
-const tokenEl=document.getElementById('ghToken');
-tokenEl.value=localStorage.getItem('gh_token')||'';
-tokenEl.onchange=function(){localStorage.setItem('gh_token',this.value);};
+function swTab(el,group){
+  el.parentElement.querySelectorAll('.lang-tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  var l=el.getAttribute('data-l');
+  el.closest('.field').querySelectorAll('.lang-group').forEach(g=>{
+    g.classList.toggle('on',g.getAttribute('data-g')===group && g.getAttribute('data-l')===l);
+  });
+}
 
-/* ===== 加载产品 ===== */
 function loadProducts(){
-  fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_HEADERS})
+  fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_H})
     .then(r=>r.json()).then(d=>{products=d||[];renderList();renderStats();})
     .catch(()=>{products=[];renderList();renderStats();});
 }
@@ -217,22 +176,20 @@ function renderList(){
   el.innerHTML='';
   products.forEach(function(p){
     var row=document.createElement('div');row.className='product-row';
-    var imgSrc=p.image||'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56"><rect fill="%23eee" width="56" height="56"/></svg>';
-    row.innerHTML='<img src="'+imgSrc+'" alt=""><div class="info"><div class="name">'+p.name+'</div><div class="meta"><span>'+p.category+'</span>'+(p.price?'<span>'+p.price+'</span>':'')+'</div></div><div class="actions"><button class="btn btn-ghost" onclick="editProduct('+p.id+')">编辑</button><button class="btn btn-danger" onclick="deleteProduct('+p.id+')">删除</button></div>';
+    var imgSrc=p.image||'';
+    if(!imgSrc) imgSrc='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56"><rect fill="%23eee" width="56" height="56"/><text x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23ccc" font-size="12">N/A</text></svg>';
+    row.innerHTML='<img src="'+imgSrc+'" alt=""><div class="info"><div class="name">'+(p.name||'未命名')+'</div><div class="meta"><span>'+p.category+'</span>'+(p.price?'<span>'+p.price+'</span>':'')+'</div></div><div class="actions"><button class="btn btn-ghost" onclick="editProduct('+p.id+')">编辑</button><button class="btn btn-danger" onclick="deleteProduct('+p.id+')">删除</button></div>';
     el.appendChild(row);
   });
 }
-
-/* ===== 表单 ===== */
-function switchLangTab(el){el.parentElement.querySelectorAll('.lang-tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');var l=el.getAttribute('data-l');el.parentElement.parentElement.querySelectorAll('.lang-group').forEach(g=>{g.classList.toggle('on',g.getAttribute('data-l')===l);});}
-function switchDescTab(el){el.parentElement.querySelectorAll('.lang-tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');var l=el.getAttribute('data-l');el.parentElement.parentElement.querySelectorAll('.lang-group').forEach(g=>{g.classList.toggle('on',g.getAttribute('data-l')===l);});}
 
 function openForm(id){
   document.getElementById('formOverlay').classList.add('show');
   document.getElementById('editId').value=id||'';
   document.getElementById('formTitle').textContent=id?'编辑产品':'新增产品';
+  document.getElementById('saveBtn').textContent=id?'保存修改':'发布产品';
   if(!id){
-    ['fName_zh','fName_en','fName_fr','fName_ar','fPrice','fSpecs','fDesc_zh','fDesc_en','fDesc_fr','fDesc_ar'].forEach(id=>{document.getElementById(id).value='';});
+    ['fName_zh','fName_en','fName_fr','fName_ar','fPrice','fSpecs','fDesc_zh','fDesc_en','fDesc_fr','fDesc_ar'].forEach(x=>{document.getElementById(x).value='';});
     document.getElementById('fCategory').value='cosmetic';
     document.getElementById('fMember').value='stage-leather';
     uploadedImages=[];renderPreviews();
@@ -251,7 +208,7 @@ function openForm(id){
       document.getElementById('fDesc_ar').value=p.description_ar||'';
       document.getElementById('fCategory').value=p.category||'cosmetic';
       document.getElementById('fMember').value=p.member_id||'stage-leather';
-      uploadedImages=p.image?[{dataUrl:p.image,base64:'',existing:true}]:[];
+      uploadedImages=p.image?[{dataUrl:p.image,existing:true}]:[];
       renderPreviews();
     }
   }
@@ -259,13 +216,12 @@ function openForm(id){
 function closeForm(){document.getElementById('formOverlay').classList.remove('show');}
 function editProduct(id){openForm(id);}
 
-/* ===== 图片上传 ===== */
 function handleFiles(files){
   Array.from(files).forEach(function(file){
+    if(file.size>5*1024*1024){toast('图片不能超过5MB','err');return;}
     var reader=new FileReader();
     reader.onload=function(e){
-      var base64=e.target.result.split(',')[1];
-      uploadedImages.push({file:file,dataUrl:e.target.result,base64:base64});
+      uploadedImages.push({file:file,dataUrl:e.target.result});
       renderPreviews();
     };
     reader.readAsDataURL(file);
@@ -280,6 +236,29 @@ function renderPreviews(){
   });
 }
 function removeImage(i){uploadedImages.splice(i,1);renderPreviews();}
+
+/* ===== 上传图片到 Supabase Storage ===== */
+async function uploadToStorage(file, category){
+  var ts=Date.now()+'_'+Math.random().toString(36).slice(2,6);
+  var ext=file.name.split('.').pop()||'png';
+  var path=category+'/'+ts+'.'+ext;
+
+  var res=await fetch(SB_URL+'/storage/v1/object/'+SB_BUCKET+'/'+path,{
+    method:'POST',
+    headers:{
+      'apikey':SB_KEY,
+      'Authorization':'Bearer '+SB_KEY,
+      'Content-Type':file.type||'image/png'
+    },
+    body:file
+  });
+  if(!res.ok){
+    var err=await res.json().catch(()=>({}));
+    throw new Error(err.message||err.error||'Upload failed ('+res.status+')');
+  }
+  /* 返回公开访问URL */
+  return SB_URL+'/storage/v1/object/public/'+SB_BUCKET+'/'+path;
+}
 
 /* ===== 保存产品 ===== */
 async function saveProduct(){
@@ -296,107 +275,73 @@ async function saveProduct(){
   var desc_fr=document.getElementById('fDesc_fr').value.trim();
   var desc_ar=document.getElementById('fDesc_ar').value.trim();
   var member_id=document.getElementById('fMember').value;
-  var beautify=document.getElementById('beautifyToggle').classList.contains('on');
 
   if(!name_zh){toast('请填写产品中文名称','err');return;}
-  if(!uploadedImages.length){toast('请上传至少一张产品图片','err');return;}
 
-  toast('正在处理...','ok');
+  document.getElementById('saveBtn').disabled=true;
+  document.getElementById('saveBtn').textContent='处理中...';
+  toast('正在保存...','ok');
 
-  /* 上传图片到 GitHub */
-  var imageUrls=[];
-  var token=tokenEl.value;
-  if(token){
+  try{
+    /* 上传图片 */
+    var imageUrls=[];
     for(var i=0;i<uploadedImages.length;i++){
       var img=uploadedImages[i];
       if(img.existing){imageUrls.push(img.dataUrl);continue;}
-      var ext=img.file?img.file.name.split('.').pop():'png';
-      var ts=Date.now()+'_'+Math.random().toString(36).slice(2,6);
-      var path='products/images/'+category+'/'+ts+'.'+ext;
-      try{
-        var res=await fetch('https://api.github.com/repos/'+GH_REPO+'/contents/'+path,{
-          method:'PUT',
-          headers:{'Authorization':'token '+token,'Content-Type':'application/json'},
-          body:JSON.stringify({message:'upload product image',content:img.base64,branch:GH_BRANCH})
-        });
-        var data=await res.json();
-        if(data.content&&data.content.download_url){
-          imageUrls.push(data.content.download_url);
-        }else{
-          imageUrls.push(img.dataUrl); // fallback to data URL
-        }
-      }catch(e){
-        console.warn('GitHub upload failed, using data URL',e);
-        imageUrls.push(img.dataUrl);
+      if(img.file){
+        var url=await uploadToStorage(img.file,category);
+        imageUrls.push(url);
       }
     }
-  }else{
-    /* 无token，用第一张图的data URL */
-    imageUrls=[uploadedImages[0].dataUrl];
-  }
 
-  /* 写入 Supabase */
-  var productData={
-    name:name_zh,
-    name_en:name_en||null,
-    name_fr:name_fr||null,
-    name_ar:name_ar||null,
-    category:category,
-    price:price||null,
-    specs:specs||null,
-    description:desc_zh||null,
-    description_en:desc_en||null,
-    description_fr:desc_fr||null,
-    description_ar:desc_ar||null,
-    image:imageUrls[0]||'',
-    member_id:member_id
-  };
+    /* 写入 Supabase */
+    var productData={
+      name:name_zh,
+      name_en:name_en||null,name_fr:name_fr||null,name_ar:name_ar||null,
+      category:category,price:price||null,specs:specs||null,
+      description:desc_zh||null,description_en:desc_en||null,description_fr:desc_fr||null,description_ar:desc_ar||null,
+      image:imageUrls[0]||'',images:imageUrls.length>1?imageUrls.join(','):null,
+      member_id:member_id
+    };
 
-  try{
     var action=editId?'update':'insert';
-    var rpcBody={password:RPC_PASSWORD,action:action,data:productData};
+    var rpcBody={password:RPC_PW,action:action,data:productData};
     if(editId) rpcBody.data.id=parseInt(editId);
 
     var res=await fetch(SB_URL+'/rest/v1/rpc/manage_product',{
-      method:'POST',
-      headers:SB_ADMIN_HEADERS,
-      body:JSON.stringify(rpcBody)
+      method:'POST',headers:SB_H,body:JSON.stringify(rpcBody)
     });
     var result=await res.json();
     if(res.ok){
       toast(editId?'产品已更新！':'产品已发布！','ok');
-      closeForm();
-      loadProducts();
+      closeForm();loadProducts();
     }else{
       toast('保存失败: '+(result.error||result.msg||JSON.stringify(result)),'err');
     }
   }catch(e){
-    toast('网络错误: '+e.message,'err');
+    toast('错误: '+e.message,'err');
+  }finally{
+    document.getElementById('saveBtn').disabled=false;
+    document.getElementById('saveBtn').textContent=editId?'保存修改':'发布产品';
   }
 }
 
-/* ===== 删除产品 ===== */
 async function deleteProduct(id){
   if(!confirm('确定删除此产品？'))return;
   try{
     var res=await fetch(SB_URL+'/rest/v1/rpc/manage_product',{
-      method:'POST',
-      headers:SB_ADMIN_HEADERS,
-      body:JSON.stringify({password:RPC_PASSWORD,action:'delete',data:{id:id}})
+      method:'POST',headers:SB_H,body:JSON.stringify({password:RPC_PW,action:'delete',data:{id:id}})
     });
     if(res.ok){toast('已删除','ok');loadProducts();}
     else{var r=await res.json();toast('删除失败: '+(r.error||''),'err');}
   }catch(e){toast('网络错误','err');}
 }
 
-/* ===== Toast ===== */
 function toast(msg,type){
-  var el=document.getElementById('toast');
-  el.textContent=msg;el.className='toast show '+(type||'ok');
+  var el=document.getElementById('toast');el.textContent=msg;el.className='toast show '+(type||'ok');
   setTimeout(()=>{el.className='toast';},2500);
 }
 
-/* 初始化 */
 loadProducts();
 </script>
 </body>
