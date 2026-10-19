@@ -91,6 +91,10 @@ section{padding:34px 0 6px}
 .cert-grid .cap{font-size:13px;font-weight:700;color:var(--navy);padding:8px}
 footer{background:var(--navy);color:#7f8ea6;text-align:center;padding:24px 16px;font-size:12px;margin-top:30px}
 footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
+.loading{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+.card .price-tag{font-size:14px;font-weight:700;color:var(--price);margin-top:4px}
+.sheet .price-big{font-size:22px;font-weight:800;color:var(--price);margin:6px 0}
+.sheet .specs{font-size:13px;color:var(--muted);line-height:1.6}
 @media(min-width:640px){
   .grid{grid-template-columns:repeat(3,1fr)}
   .gallery{grid-template-columns:repeat(3,1fr)}
@@ -130,7 +134,7 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
   </div>
   <div class="wrap">
     <div class="tabs" id="ptabs"></div>
-    <div class="grid" id="pgrid"></div>
+    <div class="grid" id="pgrid"><div class="loading" data-i18n="loading">加载中...</div></div>
   </div>
 </div>
 
@@ -177,6 +181,11 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
 </footer>
 
 <script>
+/* ===== Supabase 配置 ===== */
+const SB_URL = 'https://xvvwdiqxbhhkgnibhbxi.supabase.co';
+const SB_KEY = 'sb_publishable_E5fa74SZ-2GmAWWv4T4BdA_P5TS9cm_';
+const SB_HEADERS = {'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
+
 const LANGS = ['zh','en','fr','ar'];
 const LANG_LABELS = {zh:'中文',en:'EN',fr:'FR',ar:'عربي'};
 
@@ -186,7 +195,7 @@ const I18N = {
     nav_products:'产品', nav_members:'会员企业',
     platform_name:'云桥国际文化交流有限公司', platform_sub:'会员专属平台 · 优质产品展示',
     platform_desc:'精选会员企业优质产品，向海内外意向客户展示。',
-    back:'返回产品',
+    back:'返回产品', loading:'加载中...', no_products:'暂无产品',
     sec_factory_tag:'工厂', factory_title:'工厂环境', factory_sub:'从原料到成品的完整生产线',
     sec_quality_tag:'质量', quality_title:'质量控制', quality_sub:'21年零质量投诉，四道质检把关', test_title:'测试设备',
     sec_design_tag:'设计', design_title:'设计能力', design_sub:'自有设计团队，支持来样定制',
@@ -194,16 +203,19 @@ const I18N = {
     foot_co:'云桥国际文化交流有限公司 · 会员专属平台', foot:'为会员企业提供产品展示服务',
     by:'由 {name} 提供', view_member:'查看企业介绍',
     pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
+    pc_clothing:'服装纺织', pc_beauty:'美妆个护', pc_home:'家居日用', pc_food:'食品饮料',
+    pc_mom_baby:'母婴用品', pc_electronics:'电子电器', pc_sports:'运动户外', pc_furniture:'家装建材',
+    pc_jewelry:'珠宝饰品', pc_stationery:'办公文教', pc_auto:'汽车配件', pc_other:'其他',
     fc_sample:'样品间', fc_warehouse:'仓库', fc_cut:'裁剪车间', fc_sew:'缝纫车间', fc_inspect:'检验包装车间',
     qc1t:'原料检验', qc1d:'', qc2t:'裁剪/印花检验', qc2d:'', qc3t:'生产过程巡检', qc3d:'', qc4t:'成品检验', qc4d:'',
-    desc_placeholder:'（产品介绍待补充）', close:'关闭', label_desc:'产品介绍',
+    desc_placeholder:'（产品介绍待补充）', close:'关闭', label_desc:'产品介绍', label_specs:'规格',
   },
   en: {
     brand:'Yunqiao International', brand_sub:'MEMBERS PLATFORM',
     nav_products:'Products', nav_members:'Members',
     platform_name:'Yunqiao International Cultural Exchange Co., Ltd.', platform_sub:'Members Exclusive Platform · Quality Products',
     platform_desc:'Curated quality products from member enterprises, showcased to customers worldwide.',
-    back:'Back to Products',
+    back:'Back to Products', loading:'Loading...', no_products:'No products yet',
     sec_factory_tag:'FACTORY', factory_title:'Factory Environment', factory_sub:'Complete production line from raw material to finished goods',
     sec_quality_tag:'QUALITY', quality_title:'Quality Control', quality_sub:'Zero quality complaint in 21 years, 4-stage inspection', test_title:'Testing Equipment',
     sec_design_tag:'DESIGN', design_title:'Design Capability', design_sub:'In-house design team, sample customization supported',
@@ -211,16 +223,19 @@ const I18N = {
     foot_co:'Yunqiao International Cultural Exchange Co., Ltd. · Members Platform', foot:'Product display service for member enterprises',
     by:'Provided by {name}', view_member:'View Company',
     pc_cosmetic:'Cosmetic Bags', pc_bags:'Bag Products', pc_school:'School Bags', pc_backpack:'Backpacks', pc_woman:'Woman Bags',
+    pc_clothing:'Clothing & Textile', pc_beauty:'Beauty & Personal Care', pc_home:'Home & Living', pc_food:'Food & Beverage',
+    pc_mom_baby:'Mom & Baby', pc_electronics:'Electronics', pc_sports:'Sports & Outdoor', pc_furniture:'Furniture & Decor',
+    pc_jewelry:'Jewelry & Accessories', pc_stationery:'Office & Stationery', pc_auto:'Auto Parts', pc_other:'Other',
     fc_sample:'Sample Room', fc_warehouse:'Warehouse', fc_cut:'Cut Workshop', fc_sew:'Sewing Workshop', fc_inspect:'Inspect & Package Workshop',
     qc1t:'Raw material inspection', qc1d:'', qc2t:'Cut / print part inspection', qc2d:'', qc3t:'Patrol inspection', qc3d:'', qc4t:'Final inspection', qc4d:'',
-    desc_placeholder:'(Description to be added)', close:'Close', label_desc:'Description',
+    desc_placeholder:'(Description to be added)', close:'Close', label_desc:'Description', label_specs:'Specifications',
   },
   fr: {
     brand:'Yunqiao International', brand_sub:'PLATEFORME DES MEMBRES',
     nav_products:'Produits', nav_members:'Membres',
     platform_name:'Yunqiao International Culture Exchange Co., Ltd.', platform_sub:'Plateforme Membres · Produits de Qualité',
     platform_desc:'Sélection de produits de qualité des entreprises membres, présentés aux clients du monde entier.',
-    back:'Retour aux Produits',
+    back:'Retour aux Produits', loading:'Chargement...', no_products:'Aucun produit',
     sec_factory_tag:'USINE', factory_title:'Environnement d\'Usine', factory_sub:'Ligne de production complète, de la matière première au produit fini',
     sec_quality_tag:'QUALITÉ', quality_title:'Contrôle Qualité', quality_sub:'Zéro plainte qualité en 21 ans, inspection en 4 étapes', test_title:'Équipement de Test',
     sec_design_tag:'DESIGN', design_title:'Capacité de Design', design_sub:'Équipe de design interne, personnalisation sur échantillon',
@@ -228,16 +243,19 @@ const I18N = {
     foot_co:'Yunqiao International Culture Exchange Co., Ltd. · Plateforme Membres', foot:'Service de présentation de produits pour les entreprises membres',
     by:'Fourni par {name}', view_member:'Voir l\'Entreprise',
     pc_cosmetic:'Sacs Cosmétiques', pc_bags:'Sacs', pc_school:'Cartables', pc_backpack:'Sacs à Dos', pc_woman:'Sacs Femme',
+    pc_clothing:'Vêtements & Textile', pc_beauty:'Beauté & Soins', pc_home:'Maison & Vie', pc_food:'Alimentation',
+    pc_mom_baby:'Maternité & Bébé', pc_electronics:'Électronique', pc_sports:'Sport & Plein Air', pc_furniture:'Meubles & Déco',
+    pc_jewelry:'Bijoux & Accessoires', pc_stationery:'Bureau & Papeterie', pc_auto:'Pièces Auto', pc_other:'Autres',
     fc_sample:'Salle d\'Échantillons', fc_warehouse:'Entrepôt', fc_cut:'Atelier de Coupe', fc_sew:'Atelier de Couture', fc_inspect:'Atelier d\'Inspection',
     qc1t:'Inspection matière première', qc1d:'', qc2t:'Inspection coupe/impression', qc2d:'', qc3t:'Inspection en cours', qc3d:'', qc4t:'Inspection finale', qc4d:'',
-    desc_placeholder:'(Description à ajouter)', close:'Fermer', label_desc:'Description',
+    desc_placeholder:'(Description à ajouter)', close:'Fermer', label_desc:'Description', label_specs:'Spécifications',
   },
   ar: {
     brand:'يونتشياو الدولية · منصة الأعضاء', brand_sub:'منصة الأعضاء يونتشياو الدولية',
     nav_products:'المنتجات', nav_members:'الأعضاء',
     platform_name:'شركة يونتشياو الدولية للتبادل الثقافي', platform_sub:'منصة الأعضاء · منتجات عالية الجودة',
     platform_desc:'منتجات مختارة من الشركات الأعضاء، معروضة للعملاء حول العالم.',
-    back:'العودة إلى المنتجات',
+    back:'العودة إلى المنتجات', loading:'جارٍ التحميل...', no_products:'لا توجد منتجات',
     sec_factory_tag:'المصنع', factory_title:'بيئة المصنع', factory_sub:'خط إنتاج كامل من المواد الخام إلى المنتج النهائي',
     sec_quality_tag:'الجودة', quality_title:'مراقبة الجودة', quality_sub:'صفر شكوى جودة في 21 عاماً، تفتيش في 4 مراحل', test_title:'معدات الاختبار',
     sec_design_tag:'التصميم', design_title:'قدرة التصميم', design_sub:'فريق تصميم داخلي، تخصيص حسب العينة',
@@ -245,9 +263,12 @@ const I18N = {
     foot_co:'شركة يونتشياو الدولية للتبادل الثقافي · منصة الأعضاء', foot:'خدمة عرض المنتجات للشركات الأعضاء',
     by:'مقدم من {name}', view_member:'عرض الشركة',
     pc_cosmetic:'حقائب مستحضرات', pc_bags:'حقائب', pc_school:'حقائب مدرسية', pc_backpack:'حقائب ظهر', pc_woman:'حقائب نسائية',
+    pc_clothing:'ملابس ونسيج', pc_beauty:'تجميل وعناية', pc_home:'منزل ومعيشة', pc_food:'أغذية ومشروبات',
+    pc_mom_baby:'أمومة وطفولة', pc_electronics:'إلكترونيات', pc_sports:'رياضة وهواية', pc_furniture:'أثاث وديكور',
+    pc_jewelry:'مجوهرات وإكسسوارات', pc_stationery:'مكتبية وقرطاسية', pc_auto:'قطع سيارات', pc_other:'أخرى',
     fc_sample:'غرفة العينات', fc_warehouse:'المستودع', fc_cut:'ورشة القص', fc_sew:'ورشة الخياطة', fc_inspect:'ورشة التفتيش والتغليف',
     qc1t:'تفتيش المواد الخام', qc1d:'', qc2t:'تفتيش القص/الطباعة', qc2d:'', qc3t:'تفتيش دوري', qc3d:'', qc4t:'تفتيش نهائي', qc4d:'',
-    desc_placeholder:'(الوصف سيتم إضافته لاحقاً)', close:'إغلاق', label_desc:'وصف المنتج',
+    desc_placeholder:'(الوصف سيتم إضافته لاحقاً)', close:'إغلاق', label_desc:'وصف المنتج', label_specs:'المواصفات',
   }
 };
 
@@ -336,50 +357,67 @@ function getMemberIntro(m){
 function showHome(){ document.getElementById('home').style.display='block'; document.getElementById('members').classList.remove('show'); document.getElementById('navHome').classList.add('on'); document.getElementById('navMembers').classList.remove('on'); window.scrollTo(0,0); }
 function showMembers(){ document.getElementById('home').style.display='none'; document.getElementById('members').classList.add('show'); document.getElementById('navMembers').classList.add('on'); document.getElementById('navHome').classList.remove('on'); window.scrollTo(0,0); renderMHero(); renderFactory(); renderQuality(); renderDesign(); renderCert(); }
 
-// ============ 产品 ============
+// ============ 产品（Supabase 动态加载）============
+let allProducts = [];
+let curCat = '';
+const CAT_I18N = {
+  cosmetic:'pc_cosmetic', bags:'pc_bags', school:'pc_school', backpack:'pc_backpack', woman:'pc_woman',
+  clothing:'pc_clothing', beauty:'pc_beauty', home:'pc_home', food:'pc_food',
+  mom_baby:'pc_mom_baby', electronics:'pc_electronics', sports:'pc_sports', furniture:'pc_furniture',
+  jewelry:'pc_jewelry', stationery:'pc_stationery', auto:'pc_auto', other:'pc_other'
+};
+
+/* 静态兜底：Supabase不可用时用本地图片 */
+var FALLBACK = [];
+[{k:'cosmetic',n:17},{k:'bags',n:6},{k:'school',n:2},{k:'backpack',n:2},{k:'woman',n:2}].forEach(function(c){
+  for(var i=1;i<=c.n;i++) FALLBACK.push({id:1000+FALLBACK.length,name:t(CAT_I18N[c.k]||c.k)+' '+i,category:c.k,price:null,description:'',image:'images/'+c.k+'/'+c.k+i+'.png',specs:'',member_id:'stage-leather'});
+});
+
+function loadProducts(){
+  fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_HEADERS})
+    .then(function(r){ if(!r.ok) throw new Error(); return r.json(); })
+    .then(function(d){ allProducts = (d && d.length) ? d : FALLBACK.slice(); })
+    .catch(function(){ allProducts = FALLBACK.slice(); })
+    .finally(function(){
+      var cats = getVisibleCats();
+      if(cats.indexOf(curCat)===-1) curCat = cats[0]||'';
+      renderTabs(); renderProducts();
+    });
+}
+function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.category]=1;}); return Object.keys(s); }
+
 function renderTabs(){
-  const box = document.getElementById('ptabs');
-  box.innerHTML = '';
-  /* 只渲染有产品的分类 */
-  visibleCats().forEach(c=>{
-    const el = document.createElement('div');
-    el.className = 'tab' + (c.key===curCat?' on':'');
-    el.textContent = t(c.cap);
-    el.onclick = ()=>{ curCat=c.key; renderTabs(); renderProducts(); };
+  var box=document.getElementById('ptabs'); box.innerHTML='';
+  getVisibleCats().forEach(function(cat){
+    var el=document.createElement('div');
+    el.className='tab'+(cat===curCat?' on':'');
+    el.textContent=t(CAT_I18N[cat]||cat);
+    el.onclick=function(){curCat=cat;renderTabs();renderProducts();};
     box.appendChild(el);
   });
 }
 function renderProducts(){
-  const grid = document.getElementById('pgrid');
-  const c = PROD_CATS.find(x=>x.key===curCat);
-  if(!c){ grid.innerHTML=''; return; }
-  grid.innerHTML = '';
-  const m = MEMBERS[0];
-  for(let i=1;i<=c.count;i++){
-    const d = document.createElement('div');
-    d.className='card';
-    d.innerHTML = `
-      <div class="thumb"><img src="images/${c.key}/${c.key}${i}.png" loading="lazy" alt=""></div>
-      <div class="info"><div class="nm">${t(c.cap)} ${i}</div><div class="by">${t('by').replace('{name}', getMemberName(m))}</div></div>`;
-    d.onclick = ()=>openDetail(c, i);
-    grid.appendChild(d);
-  }
+  var grid=document.getElementById('pgrid');
+  var prods=allProducts.filter(function(p){return p.category===curCat;});
+  if(!prods.length){grid.innerHTML='<div class="loading">'+t('no_products')+'</div>';return;}
+  grid.innerHTML='';
+  prods.forEach(function(p){
+    var m=MEMBERS.find(function(x){return x.id===p.member_id;})||MEMBERS[0];
+    var d=document.createElement('div');d.className='card';
+    var ph=p.price?'<div class="price-tag">'+p.price+'</div>':'';
+    d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+p.name+'"></div><div class="info"><div class="nm">'+p.name+'</div>'+ph+'<div class="by">'+t('by').replace('{name}',getMemberName(m))+'</div></div>';
+    d.onclick=function(){openDetail(p);}; grid.appendChild(d);
+  });
 }
-function openDetail(c, i){
-  const m = MEMBERS[0];
-  document.getElementById('sheet').innerHTML = `
-    <div class="big"><img src="images/${c.key}/${c.key}${i}.png" alt=""></div>
-    <div class="pd">
-      <h2>${t(c.cap)} ${i}</h2>
-      <div class="by">${t('by').replace('{name}', getMemberName(m))} · <a onclick="closeDetail();showMembers()">${t('view_member')}</a></div>
-      <div class="lbl">${t('label_desc')}</div>
-      <div class="desc">${t('desc_placeholder')}</div>
-    </div>
-    <button class="close" onclick="closeDetail()">${t('close')}</button>`;
+function openDetail(p){
+  var m=MEMBERS.find(function(x){return x.id===p.member_id;})||MEMBERS[0];
+  var ph=p.price?'<div class="price-big">'+p.price+'</div>':'';
+  var sh=p.specs?'<div class="lbl">'+t('label_specs')+'</div><div class="specs">'+p.specs+'</div>':'';
+  document.getElementById('sheet').innerHTML='<div class="big"><img src="'+p.image+'" alt="'+p.name+'"></div><div class="pd"><h2>'+p.name+'</h2>'+ph+'<div class="by">'+t('by').replace('{name}',getMemberName(m))+' · <a onclick="closeDetail();showMembers()">'+t('view_member')+'</a></div><div class="lbl">'+t('label_desc')+'</div><div class="desc">'+(p.description||t('desc_placeholder'))+'</div>'+sh+'</div><button class="close" onclick="closeDetail()">'+t('close')+'</button>';
   document.getElementById('mask').classList.add('show');
 }
-function closeDetail(){ document.getElementById('mask').classList.remove('show'); }
-document.getElementById('mask').addEventListener('click',e=>{ if(e.target.id==='mask') closeDetail(); });
+function closeDetail(){document.getElementById('mask').classList.remove('show');}
+document.getElementById('mask').addEventListener('click',function(e){if(e.target.id==='mask')closeDetail();});
 
 // ============ 会员企业 ============
 function renderMHero(){
@@ -446,7 +484,7 @@ function renderCert(){
 }
 
 // 初始化
-renderTabs(); renderProducts();
+loadProducts();
 </script>
 </body>
 </html>
