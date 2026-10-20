@@ -322,19 +322,6 @@ const MEMBERS = [
   }
 ];
 
-const PROD_CATS = [
-  {key:'cosmetic', count:17, cap:'pc_cosmetic'},
-  {key:'bags', count:6, cap:'pc_bags'},
-  {key:'school', count:2, cap:'pc_school'},
-  {key:'backpack', count:2, cap:'pc_backpack'},
-  {key:'woman', count:2, cap:'pc_woman'},
-];
-
-/* 只保留有产品的分类（count > 0）*/
-function visibleCats(){ return PROD_CATS.filter(c => c.count > 0); }
-
-let curCat = visibleCats().length ? visibleCats()[0].key : '';
-
 function getMemberName(m){
   if(lang==='zh') return m.name;
   if(lang==='fr') return m.nameFr || m.nameEn;
