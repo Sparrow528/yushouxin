@@ -367,13 +367,27 @@ function loadProducts(){
   /* 先渲染兜底数据，用户立刻看到内容 */
   renderTabs(); renderProducts();
 
-  /* 再尝试从 Supabase 加载真实数据 */
+  /* 再尝试从 Supabase 加载真实产品，与兜底合并 */
   var controller = new AbortController();
   var timer = setTimeout(function(){ controller.abort(); }, 6000);
   fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_HEADERS,signal:controller.signal})
     .then(function(r){ clearTimeout(timer); if(!r.ok) throw new Error(); return r.json(); })
-    .then(function(d){ if(d && d.length){ allProducts=d; var cats=getVisibleCats(); if(cats.indexOf(curCat)===-1)curCat=cats[0]||''; renderTabs(); renderProducts(); } })
-    .catch(function(){ /* 兜底已在上面渲染，无需处理 */ });
+    .then(function(d){
+      if(d && d.length){
+        /* 只保留有图片的Supabase产品 */
+        var sbProds=d.filter(function(p){return p.image && p.image.length>0;});
+        if(sbProds.length){
+          /* Supabase产品覆盖的分类 */
+          var sbCats={};sbProds.forEach(function(p){sbCats[p.category]=1;});
+          /* 兜底中不属于Supabase分类的产品 */
+          var remainFb=FALLBACK.filter(function(p){return !sbCats[p.category];});
+          allProducts=sbProds.concat(remainFb);
+          var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
+          renderTabs();renderProducts();
+        }
+      }
+    })
+    .catch(function(){ /* 兜底已在上面渲染 */ });
 }
 function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.category]=1;}); return Object.keys(s); }
 
