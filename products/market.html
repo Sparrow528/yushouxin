@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>云桥国际 · 海外市场</title>
+<style>
+:root{--navy:#1a2332;--gold:#c9a96e;--bg:#f5f6fa;--card:#fff;--border:#e2e5ed;--red:#e74c3c;--green:#27ae60;--text:#333;--muted:#888;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* 导航 */
+.nav{background:var(--navy);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;direction:ltr;}
+.nav .brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none;}
+.nav .links{display:flex;gap:16px;align-items:center;}
+.nav .links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;transition:color .2s;}
+.nav .links a:hover,.nav .links a.on{color:var(--gold);}
+.lang-dd{position:relative;display:inline-block;}
+.lang-btn{background:rgba(255,255,255,.1);color:#fff;border:none;padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer;}
+.lang-menu{display:none;position:absolute;right:0;top:100%;background:#fff;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.15);margin-top:4px;z-index:10;min-width:100px;overflow:hidden;}
+.lang-menu.open{display:block;}
+.lang-opt{display:block;width:100%;padding:8px 16px;border:none;background:#fff;font-size:13px;cursor:pointer;text-align:left;transition:background .15s;}
+.lang-opt:hover{background:#f0f0f0;}
+.lang-opt.on{background:var(--gold);color:#fff;font-weight:600;}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#2a3a52 100%);color:#fff;padding:48px 20px;text-align:center;}
+.hero .icon{font-size:48px;margin-bottom:12px;}
+.hero h1{font-size:26px;font-weight:700;margin-bottom:8px;}
+.hero .sub{font-size:15px;color:rgba(255,255,255,.7);max-width:600px;margin:0 auto;line-height:1.6;}
+
+/* 统计条 */
+.stats-bar{display:flex;gap:12px;padding:20px;max-width:960px;margin:0 auto;flex-wrap:wrap;}
+.stat-card{background:var(--card);border-radius:10px;padding:16px;flex:1;min-width:120px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.stat-card .num{font-size:24px;font-weight:700;color:var(--navy);}
+.stat-card .unit{font-size:12px;color:var(--muted);margin-top:2px;}
+
+/* 区域标题 */
+.section{max-width:960px;margin:0 auto;padding:0 20px;}
+.section-head{display:flex;align-items:center;gap:10px;margin:32px 0 16px;}
+.section-head .icon{font-size:24px;}
+.section-head h2{font-size:18px;font-weight:700;color:var(--navy);}
+
+/* 国家卡片网格 */
+.country-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:24px;}
+@media(min-width:640px){.country-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:960px){.country-grid{grid-template-columns:repeat(4,1fr);}}
+
+.country-card{background:var(--card);border-radius:12px;padding:18px;cursor:pointer;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,.06);border:2px solid transparent;}
+.country-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.12);border-color:var(--gold);transform:translateY(-2px);}
+.country-card .flag{font-size:32px;margin-bottom:8px;}
+.country-card .name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.country-card .name-en{font-size:11px;color:var(--muted);}
+.country-card .tag{display:inline-block;background:var(--bg);color:var(--muted);font-size:11px;padding:2px 8px;border-radius:4px;margin-top:6px;}
+
+/* 区域卡片（宽版） */
+.region-grid{display:grid;grid-template-columns:repeat(1,1fr);gap:14px;margin-bottom:24px;}
+@media(min-width:640px){.region-grid{grid-template-columns:repeat(2,1fr);}}
+
+.region-card{background:linear-gradient(135deg,var(--navy) 0%,#2a3a52 100%);color:#fff;border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.region-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.region-card .icon{font-size:28px;margin-bottom:6px;}
+.region-card .name{font-size:16px;font-weight:700;margin-bottom:4px;}
+.region-card .desc{font-size:12px;color:rgba(255,255,255,.7);line-height:1.5;}
+
+/* 详情弹窗 */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;}
+.overlay.show{display:flex;}
+.detail{background:#fff;border-radius:14px;padding:28px;width:100%;max-width:640px;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);}
+.detail .top{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.detail .top .flag{font-size:40px;}
+.detail .top h2{font-size:20px;font-weight:700;color:var(--navy);}
+.detail .top .en{font-size:12px;color:var(--muted);}
+.detail .block{margin-bottom:18px;}
+.detail .block .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.detail .block .val{font-size:14px;line-height:1.7;color:var(--text);}
+.detail .block .val strong{color:var(--navy);}
+.detail .close-btn{display:block;margin:16px auto 0;padding:8px 24px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--muted);cursor:pointer;font-size:13px;transition:all .2s;}
+.detail .close-btn:hover{border-color:var(--gold);color:var(--gold);}
+footer{background:var(--navy);color:#7f8ea6;text-align:center;padding:24px 16px;font-size:12px;margin-top:30px;direction:ltr;}
+footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px;}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="index.html">云桥国际</a>
+  <div class="links">
+    <a href="index.html" data-i18n="nav_products">产品</a>
+    <a href="#" class="on" data-i18n="nav_market">市场</a>
+    <div class="lang-dd">
+      <button class="lang-btn" id="langBtn">中文</button>
+      <div class="lang-menu" id="langMenu">
+        <button class="lang-opt on" data-lang="zh" onclick="setLang('zh')">中文</button>
+        <button class="lang-opt" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-opt" data-lang="fr" onclick="setLang('fr')">FR</button>
+        <button class="lang-opt" data-lang="ar" onclick="setLang('ar')">عربي</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="icon">🌍</div>
+  <h1 data-i18n="hero_title">全球市场布局</h1>
+  <div class="sub" data-i18n="hero_sub">深耕一带一路沿线与新兴市场，为会员企业打开海外增长通道</div>
+</div>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<div class="section">
+  <div class="section-head"><div class="icon">📍</div><h2 data-i18n="sec_countries">重点国家市场</h2></div>
+  <div class="country-grid" id="countryGrid"></div>
+</div>
+
+<div class="section">
+  <div class="section-head"><div class="icon">🌐</div><h2 data-i18n="sec_regions">区域市场</h2></div>
+  <div class="region-grid" id="regionGrid"></div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="detail" id="detailBox"></div>
+</div>
+
+<footer>
+  <div class="co">云桥国际文化交流有限公司 · 全球市场</div>
+  <div>为会员企业提供海外市场拓展服务</div>
+</footer>
+
+<script>
+/* ===== i18n ===== */
+var I18N={
+  zh:{nav_products:'产品',nav_market:'市场',hero_title:'全球市场布局',hero_sub:'深耕一带一路沿线与新兴市场，为会员企业打开海外增长通道',sec_countries:'重点国家市场',sec_regions:'区域市场',lbl_overview:'市场概况',lbl_trade:'与中国贸易',lbl_products:'产品机会',lbl_prospect:'发展前景',close:'关闭',stat_countries:'个国家',stat_regions:'个区域',stat_belt:'一带一路覆盖'},
+  en:{nav_products:'Products',nav_market:'Markets',hero_title:'Global Market Footprint',hero_sub:'Deep presence along the Belt & Road and emerging markets, opening overseas growth channels for member enterprises',sec_countries:'Key Country Markets',sec_regions:'Regional Markets',lbl_overview:'Market Overview',lbl_trade:'Trade with China',lbl_products:'Product Opportunities',lbl_prospect:'Growth Outlook',close:'Close',stat_countries:'Countries',stat_regions:'Regions',stat_belt:'B&R Coverage'},
+  fr:{nav_products:'Produits',nav_market:'Marchés',hero_title:'Présence Mondiale',hero_sub:'Présence forte le long de la Belt & Road et des marchés émergents',sec_countries:'Marchés Nationaux Clés',sec_regions:'Marchés Régionaux',lbl_overview:'Aperçu du Marché',lbl_trade:'Commerce avec la Chine',lbl_products:'Opportunités Produits',lbl_prospect:'Perspectives de Croissance',close:'Fermer',stat_countries:'Pays',stat_regions:'Régions',stat_belt:'Couverture B&R'},
+  ar:{nav_products:'المنتجات',nav_market:'الأسواق',hero_title:'التواجد العالمي',hero_sub:'حضور قوي على طول مبادرة الحزام والطريق والأسواق الناشئة',sec_countries:'أسواق دولية رئيسية',sec_regions:'أسواق إقليمية',lbl_overview:'نظرة عامة',lbl_trade:'التجارة مع الصين',lbl_products:'فرص المنتجات',lbl_prospect:'آفاق النمو',close:'إغلاق',stat_countries:'دول',stat_regions:'مناطق',stat_belt:'تغطية الحزام والطريق'}
+};
+var lang='zh';
+function t(k){return(I18N[lang]&&I18N[lang][k])||I18N.zh[k]||k;}
+var langBtn=document.getElementById('langBtn');
+var langMenu=document.getElementById('langMenu');
+langBtn.onclick=function(e){e.stopPropagation();langMenu.classList.toggle('open');};
+document.addEventListener('click',function(){langMenu.classList.remove('open');});
+function setLang(l){
+  lang=l;
+  document.documentElement.dir=l==='ar'?'rtl':'ltr';
+  document.documentElement.lang=l==='zh'?'zh-CN':l;
+  langBtn.textContent={zh:'中文',en:'EN',fr:'FR',ar:'عربي'}[l];
+  document.querySelectorAll('.lang-opt').forEach(function(o){o.classList.toggle('on',o.getAttribute('data-lang')===l);});
+  document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'));});
+  render();
+}
+
+/* ===== 市场数据 ===== */
+var COUNTRIES=[
+  {id:'iraq',flag:'🇮🇶',name:{zh:'伊拉克',en:'Iraq',fr:'Irak',ar:'العراق'},tag:'中东',
+   pop:'4,400万',gdp:'2,640亿美元',
+   overview:{zh:'伊拉克是中东第二大产油国，石油收入驱动消费市场。战后重建带来大量基建需求，消费品依赖进口。城市化率70%，年轻人口占比高，消费意愿强。',en:'Iraq is the second-largest oil producer in the Middle East. Oil revenues drive consumer spending. Post-war reconstruction creates massive infrastructure demand. Urbanization rate 70%, young population with strong consumption willingness.'},
+   trade:{zh:'中伊贸易额超300亿美元/年，中国是伊拉克最大贸易伙伴。主要出口：机电设备、建材、日用百货、箱包服饰。',en:'Bilateral trade exceeds $30B/year. China is Iraq\'s largest trading partner. Key exports: machinery, building materials, daily goods, bags & apparel.'},
+   products:{zh:'箱包皮具、服装纺织、家居日用、电子电器——伊拉克轻工业薄弱，消费品几乎全靠进口，中国产品价格优势明显。',en:'Bags & leather, textiles, home goods, electronics — Iraq\'s light industry is weak, consumer goods rely almost entirely on imports.'},
+   prospect:{zh:'2024-2026：石油收入支撑政府支出，基建项目持续上马。世界银行预测GDP增长2.5-3.5%。一带一路合作深化，中企参与基建增多，带动消费品需求。',en:'2024-2026: Oil revenues support government spending, infrastructure projects continue. World Bank forecasts 2.5-3.5% GDP growth. B&R cooperation deepens.'}},
+
+  {id:'srilanka',flag:'🇱🇰',name:{zh:'斯里兰卡',en:'Sri Lanka',fr:'Sri Lanka',ar:'سريلانكا'},tag:'南亚',
+   pop:'2,200万',gdp:'740亿美元',
+   overview:{zh:'斯里兰卡位于印度洋航运要道，战略位置重要。经历2022经济危机后正在IMF援助下复苏。旅游业回升带动消费。中斯关系密切，汉班托塔港由中企运营。',en:'Strategic Indian Ocean shipping hub. Recovering from 2022 economic crisis with IMF support. Tourism rebound drives consumption. Strong China ties, Hambantota Port operated by Chinese firm.'},
+   trade:{zh:'中斯贸易额约50亿美元/年。中国援建大量基建项目。主要出口：机电、纺织、建材、日用品。',en:'Bilateral trade ~$5B/year. China funds major infrastructure. Key exports: machinery, textiles, building materials.'},
+   products:{zh:'服装纺织（斯自有纺织业但面料依赖进口）、箱包、家居用品、食品饮料。旅游复苏带动酒店用品需求。',en:'Textiles (local industry but fabric relies on imports), bags, home goods, food & beverage. Tourism recovery drives hotel supplies demand.'},
+   prospect:{zh:'2024-2026：IMF计划下经济逐步恢复，预计GDP增长3-4%。债务重组完成后投资环境改善。旅游人数回升至2019年水平。',en:'2024-2026: Gradual recovery under IMF program, GDP growth 3-4%. Investment climate improves after debt restructuring.'}},
+
+  {id:'serbia',flag:'🇷🇸',name:{zh:'塞尔维亚',en:'Serbia',fr:'Serbie',ar:'صربيا'},tag:'欧洲',
+   pop:'690万',gdp:'630亿美元',
+   overview:{zh:'塞尔维亚是西巴尔干地区最大经济体，欧盟候选国。与中国签署自贸协定（2024生效），是首个与中国签自贸协定的欧洲国家。基建投资活跃。',en:'Largest economy in Western Balkans, EU candidate. Signed FTA with China (effective 2024) — first European country to do so. Active infrastructure investment.'},
+   trade:{zh:'中塞贸易额约40亿美元，自贸协定生效后大幅增长。匈塞铁路、E763高速等中企参建项目推进。',en:'Bilateral trade ~$4B, growing rapidly after FTA. Chinese firms building Hungary-Serbia railway, E763 highway.'},
+   products:{zh:'电子产品、家电、汽车配件（塞尔维亚有汽车组装业）、建材、日用百货。自贸协定降关税带来价格优势。',en:'Electronics, home appliances, auto parts (Serbia has auto assembly), building materials. FTA tariff reductions create price advantage.'},
+   prospect:{zh:'2024-2026：自贸协定红利释放，双边贸易年增15-20%。GDP增长3-4%。欧盟入盟谈判推进，市场规范性提升。',en:'2024-2026: FTA benefits unlocking, bilateral trade growing 15-20% annually. GDP growth 3-4%. EU accession talks advance.'}},
+
+  {id:'morocco',flag:'🇲🇦',name:{zh:'摩洛哥',en:'Morocco',fr:'Maroc',ar:'المغرب'},tag:'北非',
+   pop:'3,700万',gdp:'1,430亿美元',
+   overview:{zh:'摩洛哥是北非经济最稳定国家之一，旅游、磷矿、汽车制造为支柱。毗邻欧洲，享有欧盟贸易优惠。丹吉尔港成为地中海物流枢纽。绿色能源转型全球领先。',en:'One of North Africa\'s most stable economies. Tourism, phosphates, auto manufacturing are key pillars. Adjacent to Europe with EU trade preferences. Tangier Port is Mediterranean logistics hub.'},
+   trade:{zh:'中摩贸易额约70亿美元。中国在摩投资新能源、电动车电池等。摩是中国在非洲第四大贸易伙伴。',en:'Bilateral trade ~$7B. China invests in renewable energy, EV batteries. Morocco is China\'s 4th largest African trade partner.'},
+   products:{zh:'电子电器、新能源设备、汽车配件、纺织服装、建材。摩洛哥汽车制造业发达，零配件需求大。',en:'Electronics, renewable energy equipment, auto parts, textiles, building materials. Morocco\'s auto industry creates parts demand.'},
+   prospect:{zh:'2024-2026：GDP增长3-4%。世界杯联合申办带动基建。绿色氢能项目吸引百亿投资。中摩新能源合作深化。',en:'2024-2026: GDP growth 3-4%. World Cup bid drives infrastructure. Green hydrogen projects attract billions in investment.'}},
+
+  {id:'mauritania',flag:'🇲🇷',name:{zh:'毛里塔尼亚',en:'Mauritania',fr:'Mauritanie',ar:'موريتانيا'},tag:'西非',
+   pop:'480万',gdp:'100亿美元',
+   overview:{zh:'毛里塔尼亚以铁矿石和渔业为经济支柱。中国在毛里塔尼亚投资渔业和矿业，努瓦迪布港扩建。人均GDP较低但资源出口收入支撑消费。',en:'Iron ore and fishing are economic pillars. China invests in fishing and mining. Nouadhibou Port expansion underway. Low per capita GDP but resource exports support consumption.'},
+   trade:{zh:'中毛贸易以铁矿石出口为主，中国对毛出口机电设备、日用百货、建材。中国是最大投资来源国之一。',en:'Trade centered on iron ore exports. China exports machinery, daily goods, building materials. China is a top investment source.'},
+   products:{zh:'日用百货、食品饮料、建材、小型机电、渔具渔船配件。民生消费品市场空间大。',en:'Daily goods, food & beverage, building materials, small machinery, fishing equipment. Consumer goods market has significant space.'},
+   prospect:{zh:'2024-2026：铁矿石价格高位支撑经济，GDP增长3-5%。港口扩建提升物流能力。中国"一带一路"项目持续推进。',en:'2024-2026: Iron ore prices support economy, GDP growth 3-5%. Port expansion improves logistics. B&R projects continue.'}},
+
+  {id:'cuba',flag:'🇨🇺',name:{zh:'古巴',en:'Cuba',fr:'Cuba',ar:'كوبا'},tag:'加勒比',
+   pop:'1,120万',gdp:'1,070亿美元',
+   overview:{zh:'古巴是加勒比最大岛国，医疗和旅游为传统优势产业。长期受美国制裁，物资短缺严重。近年逐步开放私营经济，消费品需求释放。中古关系深厚。',en:'Largest Caribbean island nation. Healthcare and tourism are traditional strengths. Long under US sanctions, severe goods shortage. Recent opening of private economy releases consumer demand.'},
+   trade:{zh:'中古贸易额约10亿美元。中国出口机电设备、交通工具、日用百货。古巴进口依赖度高。',en:'Bilateral trade ~$1B. China exports machinery, vehicles, daily goods. Cuba has high import dependency.'},
+   products:{zh:'日用百货、家电、食品饮料、医疗设备、服装箱包。物资短缺意味着几乎所有消费品都有市场。',en:'Daily goods, home appliances, food, medical equipment, apparel & bags. Goods shortage means nearly all consumer products have a market.'},
+   prospect:{zh:'2024-2026：私营经济持续开放，消费需求释放。美国制裁松动预期带来投资增加。旅游业恢复提振消费。',en:'2024-2026: Private economy opening continues. US sanctions easing expectation brings investment. Tourism recovery boosts consumption.'}},
+
+  {id:'algeria',flag:'🇩🇿',name:{zh:'阿尔及利亚',en:'Algeria',fr:'Algérie',ar:'الجزائر'},tag:'北非',
+   pop:'4,500万',gdp:'2,100亿美元',
+   overview:{zh:'阿尔及利亚是非洲面积最大国家，天然气出口为经济支柱。人口年轻（平均28岁），城市化率73%。消费品大量依赖进口，政府补贴维持消费力。',en:'Largest country in Africa by area. Natural gas exports are economic pillar. Young population (average 28), urbanization 73%. Consumer goods heavily rely on imports.'},
+   trade:{zh:'中阿贸易额超90亿美元，中国是阿最大进口来源国。主要出口：机电设备、汽车、建材、日用百货。',en:'Bilateral trade exceeds $9B. China is Algeria\'s largest import source. Key exports: machinery, vehicles, building materials.'},
+   products:{zh:'汽车及配件（阿汽车市场增长快）、电子电器、建材、日用百货、服装箱包。阿工业基础薄弱，进口替代空间巨大。',en:'Auto & parts (fast-growing market), electronics, building materials, daily goods, apparel & bags. Weak industrial base means huge import substitution space.'},
+   prospect:{zh:'2024-2026：新投资法放宽外资限制，GDP增长3-4%。天然气出口收入支撑消费。基建投资年超200亿美元。',en:'2024-2026: New investment law eases foreign restrictions. GDP growth 3-4%. Gas export revenues support consumption. Infrastructure investment exceeds $20B/year.'}}
+];
+
+var REGIONS=[
+  {id:'belt_road',icon:'🛤️',name:{zh:'一带一路国家',en:'Belt & Road Countries',fr:'Pays de la Belt & Road',ar:'دول الحزام والطريق'},
+   desc:{zh:'覆盖150+国家，占全球GDP的40%。基础设施互联互通带动贸易便利化，消费品出口持续增长。2024年一带一路贸易额突破20万亿元人民币。',en:'Covering 150+ countries, 40% of global GDP. Infrastructure connectivity drives trade facilitation. B&R trade exceeded 20 trillion RMB in 2024.'}},
+  {id:'arab',icon:'🕌',name:{zh:'阿拉伯国家',en:'Arab States',fr:'États Arabes',ar:'الدول العربية'},
+   desc:{zh:'22个阿拉伯国家，总人口超4亿，GDP超3万亿美元。石油经济转型推动多元化进口，中阿贸易额超3000亿美元。',en:'22 Arab states, 4B+ population, $3T+ GDP. Oil economy transition drives diversified imports. China-Arab trade exceeds $300B.'}},
+  {id:'asean',icon:'🌴',name:{zh:'东盟/ASEAN',en:'ASEAN',fr:'ASEAN',ar:'آسيان'},
+   desc:{zh:'10国6.8亿人口，GDP超3.6万亿美元。中国-东盟自贸区升级，双边贸易额超9000亿美元，是中国最大贸易伙伴。',en:'10 nations, 680M population, $3.6T+ GDP. Upgraded FTA, bilateral trade exceeds $900B, largest trade partner of China.'}},
+  {id:'caribbean',icon:'🏝️',name:{zh:'加勒比国家',en:'Caribbean States',fr:'États Caribéens',ar:'دول الكاريبي'},
+   desc:{zh:'30+国家和地区，人口超4400万。旅游业为核心产业，酒店用品、消费品、建材需求大。中国与加勒比建交国贸易稳步增长。',en:'30+ countries/territories, 44M+ population. Tourism is core industry, driving hotel supplies & consumer goods demand.'}}
+];
+
+function getName(obj){return obj.name[lang]||obj.name.en||obj.name.zh;}
+function getDesc(obj){return(obj.desc&&obj.desc[lang])||obj.desc.en||'';}
+function getOverview(obj){return(obj.overview&&obj.overview[lang])||obj.overview.en||'';}
+function getTrade(obj){return(obj.trade&&obj.trade[lang])||obj.trade.en||'';}
+function getProducts(obj){return(obj.products&&obj.products[lang])||obj.products.en||'';}
+function getProspect(obj){return(obj.prospect&&obj.prospect[lang])||obj.prospect.en||'';}
+
+function render(){
+  /* Stats */
+  document.getElementById('statsBar').innerHTML=
+    '<div class="stat-card"><div class="num">'+COUNTRIES.length+'</div><div class="unit">'+t('stat_countries')+'</div></div>'+
+    '<div class="stat-card"><div class="num">'+REGIONS.length+'</div><div class="unit">'+t('stat_regions')+'</div></div>'+
+    '<div class="stat-card"><div class="num">150+</div><div class="unit">'+t('stat_belt')+'</div></div>';
+
+  /* Countries */
+  var cg=document.getElementById('countryGrid');cg.innerHTML='';
+  COUNTRIES.forEach(function(c){
+    var d=document.createElement('div');d.className='country-card';
+    d.innerHTML='<div class="flag">'+c.flag+'</div><div class="name">'+getName(c)+'</div><div class="name-en">'+c.name.en+'</div><div class="tag">'+c.tag+'</div>';
+    d.onclick=function(){showDetail(c);};
+    cg.appendChild(d);
+  });
+
+  /* Regions */
+  var rg=document.getElementById('regionGrid');rg.innerHTML='';
+  REGIONS.forEach(function(r){
+    var d=document.createElement('div');d.className='region-card';
+    d.innerHTML='<div class="icon">'+r.icon+'</div><div class="name">'+getName(r)+'</div><div class="desc">'+getDesc(r)+'</div>';
+    rg.appendChild(d);
+  });
+}
+
+function showDetail(c){
+  var box=document.getElementById('detailBox');
+  box.innerHTML=
+    '<div class="top"><div class="flag">'+c.flag+'</div><div><h2>'+getName(c)+'</h2><div class="en">'+c.name.en+' · '+c.tag+'</div></div></div>'+
+    '<div class="block"><div class="lbl">📊 '+t('lbl_overview')+'</div><div class="val"><strong>'+c.pop+'</strong> 人口 · <strong>'+c.gdp+'</strong> GDP<br>'+getOverview(c)+'</div></div>'+
+    '<div class="block"><div class="lbl">🤝 '+t('lbl_trade')+'</div><div class="val">'+getTrade(c)+'</div></div>'+
+    '<div class="block"><div class="lbl">📦 '+t('lbl_products')+'</div><div class="val">'+getProducts(c)+'</div></div>'+
+    '<div class="block"><div class="lbl">📈 '+t('lbl_prospect')+'</div><div class="val">'+getProspect(c)+'</div></div>'+
+    '<button class="close-btn" onclick="closeDetail()">'+t('close')+'</button>';
+  document.getElementById('overlay').classList.add('show');
+}
+function closeDetail(){document.getElementById('overlay').classList.remove('show');}
+document.getElementById('overlay').addEventListener('click',function(e){if(e.target.id==='overlay')closeDetail();});
+
+render();
+</script>
+</body>
+</html>

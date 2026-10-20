@@ -111,6 +111,7 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
     <div class="nav-right">
       <span class="nav-link on" id="navHome" onclick="showHome()" data-i18n="nav_products">产品</span>
       <span class="nav-link" id="navMembers" onclick="showMembers()" data-i18n="nav_members">会员企业</span>
+      <a class="nav-link" href="market.html" style="color:inherit;text-decoration:none;" data-i18n="nav_market">市场</a>
       <div class="lang-wrap">
         <button class="lang-btn" id="langBtn">EN</button>
         <div class="lang-menu" id="langMenu">
@@ -192,7 +193,7 @@ const LANG_LABELS = {zh:'中文',en:'EN',fr:'FR',ar:'عربي'};
 const I18N = {
   zh: {
     brand:'云桥国际 · 会员专属平台', brand_sub:'YUNQIAO INTERNATIONAL MEMBERS PLATFORM',
-    nav_products:'产品', nav_members:'会员企业',
+    nav_products:'产品', nav_members:'会员企业', nav_market:'市场',
     platform_name:'云桥国际文化交流有限公司', platform_sub:'会员专属平台 · 优质产品展示',
     platform_desc:'精选会员企业优质产品，向海内外意向客户展示。',
     back:'返回产品', loading:'加载中...', no_products:'暂无产品',
@@ -212,7 +213,7 @@ const I18N = {
   },
   en: {
     brand:'Yunqiao International', brand_sub:'MEMBERS PLATFORM',
-    nav_products:'Products', nav_members:'Members',
+    nav_products:'Products', nav_members:'Members', nav_market:'Markets',
     platform_name:'Yunqiao International Cultural Exchange Co., Ltd.', platform_sub:'Members Exclusive Platform · Quality Products',
     platform_desc:'Curated quality products from member enterprises, showcased to customers worldwide.',
     back:'Back to Products', loading:'Loading...', no_products:'No products yet',
@@ -232,7 +233,7 @@ const I18N = {
   },
   fr: {
     brand:'Yunqiao International', brand_sub:'PLATEFORME DES MEMBRES',
-    nav_products:'Produits', nav_members:'Membres',
+    nav_products:'Produits', nav_members:'Membres', nav_market:'Marchés',
     platform_name:'Yunqiao International Culture Exchange Co., Ltd.', platform_sub:'Plateforme Membres · Produits de Qualité',
     platform_desc:'Sélection de produits de qualité des entreprises membres, présentés aux clients du monde entier.',
     back:'Retour aux Produits', loading:'Chargement...', no_products:'Aucun produit',
@@ -252,7 +253,7 @@ const I18N = {
   },
   ar: {
     brand:'يونتشياو الدولية · منصة الأعضاء', brand_sub:'منصة الأعضاء يونتشياو الدولية',
-    nav_products:'المنتجات', nav_members:'الأعضاء',
+    nav_products:'المنتجات', nav_members:'الأعضاء', nav_market:'الأسواق',
     platform_name:'شركة يونتشياو الدولية للتبادل الثقافي', platform_sub:'منصة الأعضاء · منتجات عالية الجودة',
     platform_desc:'منتجات مختارة من الشركات الأعضاء، معروضة للعملاء حول العالم.',
     back:'العودة إلى المنتجات', loading:'جارٍ التحميل...', no_products:'لا توجد منتجات',
