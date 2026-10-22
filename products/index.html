@@ -47,6 +47,27 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .card .price .rmb{font-size:12px;font-weight:700}
 .card .by{display:inline-block;font-size:11px;color:#999;margin-top:8px;background:#f5f5f5;padding:2px 8px;border-radius:4px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card .inquiry{display:inline-block;margin-left:6px;font-size:11px;color:#ff5000;border:1px solid #ff5000;border-radius:4px;padding:2px 8px;font-weight:600}
+/* 侧边栏布局 */
+.layout{display:flex;gap:20px;align-items:flex-start}
+.sidebar{width:220px;flex-shrink:0;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow-y:auto;background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.05);padding:6px 0}
+.main{flex:1;min-width:0}
+.cat-group{border-bottom:1px solid #f0f0f0}
+.cat-group:last-child{border-bottom:none}
+.cat-group-title{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;font-size:14px;font-weight:700;color:var(--navy);cursor:pointer;user-select:none}
+.cat-group-title:hover{background:#f7f8fa}
+.cat-group-title .arrow{font-size:11px;transition:transform .2s;color:#999}
+.cat-group.collapsed .arrow{transform:rotate(-90deg)}
+.cat-group-items{display:flex;flex-direction:column;padding:0 8px 8px;overflow:hidden;transition:max-height .25s}
+.cat-group.collapsed .cat-group-items{display:none}
+.cat-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;font-size:13px;color:#666;cursor:pointer;transition:.15s;white-space:nowrap}
+.cat-item:hover{background:#f5f5f5}
+.cat-item.on{background:#fff1eb;color:#ff5000;font-weight:600}
+.cat-item .cnt{font-size:11px;color:#bbb;margin-left:6px}
+@media(max-width:768px){
+ .layout{flex-direction:column}
+ .sidebar{width:100%;position:static;max-height:none;box-shadow:none}
+ .cat-group-items{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+}
 /* 产品详情弹窗 */
 .mask{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .mask.show{display:flex}
@@ -131,8 +152,12 @@ footer.co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
  <div class="desc" data-i18n="platform_desc">精选会员企业优质产品，向海内外意向客户展示。</div>
  </div>
  <div class="wrap">
- <div class="tabs" id="ptabs"></div>
+ <div class="layout">
+ <aside class="sidebar" id="sidebar"></aside>
+ <div class="main">
  <div class="grid" id="pgrid"><div class="loading" data-i18n="loading">加载中...</div></div>
+ </div>
+ </div>
  </div>
 </div>
 
@@ -451,16 +476,47 @@ function loadProducts(){
 }
 function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.category]=1;}); return Object.keys(s); }
 
-function renderTabs(){
- var box=document.getElementById('ptabs'); box.innerHTML='';
- getVisibleCats().forEach(function(cat){
- var prodsInCat=allProducts.filter(function(p){return p.category===cat;});
- var membersInCat=[];prodsInCat.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
- var el=document.createElement('div');
- el.className='tab'+(cat===curCat?' on':'');
- el.innerHTML='<span>'+t(CAT_I18N[cat]||cat)+'</span><span style="font-size:10px;opacity:.5;margin-left:4px">'+prodsInCat.length+'</span>';
- el.onclick=function(){curCat=cat;renderTabs();renderProducts();};
- box.appendChild(el);
+function renderTabs(){ renderSidebar(); }
+
+// 大类分组（侧边栏）
+const CATEGORY_GROUPS = [
+ { key:'bags', label:'箱包', cats:['cosmetic','bags','school','backpack','woman'] },
+ { key:'electronics', label:'电子电器', cats:['electronics'] },
+ { key:'auto', label:'汽车', cats:['auto','used_car','vehicle_service'] },
+ { key:'home', label:'家居生活', cats:['home','food','mom_baby'] },
+ { key:'fashion', label:'服饰美妆', cats:['clothing','beauty','jewelry'] },
+ { key:'stationery', label:'办公文教', cats:['stationery'] },
+ { key:'sports', label:'运动户外', cats:['sports','furniture'] },
+ { key:'other', label:'其他', cats:['other'] },
+];
+let collapsedGroups = {};
+function renderSidebar(){
+ var box=document.getElementById('sidebar');
+ if(!box) return;
+ box.innerHTML='';
+ var visibleCats = getVisibleCats();
+ CATEGORY_GROUPS.forEach(function(g){
+  var catsInGroup = g.cats.filter(function(c){ return visibleCats.indexOf(c)!==-1; });
+  if(!catsInGroup.length) return;
+  var group = document.createElement('div');
+  group.className = 'cat-group' + (collapsedGroups[g.key] ? ' collapsed' : '');
+  var title = document.createElement('div');
+  title.className = 'cat-group-title';
+  title.innerHTML = '<span>'+g.label+'</span><span class="arrow">▾</span>';
+  title.onclick = function(){ collapsedGroups[g.key] = !collapsedGroups[g.key]; renderSidebar(); };
+  group.appendChild(title);
+  var items = document.createElement('div');
+  items.className = 'cat-group-items';
+  catsInGroup.forEach(function(cat){
+   var prodsInCat = allProducts.filter(function(p){ return p.category===cat; });
+   var item = document.createElement('div');
+   item.className = 'cat-item' + (cat===curCat ? ' on' : '');
+   item.innerHTML = '<span>'+t(CAT_I18N[cat]||cat)+'</span><span class="cnt">'+prodsInCat.length+'</span>';
+   item.onclick = function(){ curCat=cat; renderSidebar(); renderProducts(); };
+   items.appendChild(item);
+  });
+  group.appendChild(items);
+  box.appendChild(group);
  });
 }
 function renderProducts(){
