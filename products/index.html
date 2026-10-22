@@ -11,10 +11,10 @@ html{scroll-behavior:smooth}
 body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
 [dir="rtl"] body{font-family:"Segoe UI","Tahoma",system-ui,sans-serif}
 .nav{position:fixed;top:0;left:0;right:0;background:var(--navy);color:#fff;z-index:100;box-shadow:0 1px 6px rgba(0,0,0,.15);direction:ltr}
-.nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:56px;direction:ltr}
-.brand{font-size:15px;font-weight:800}
+.nav-inner{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 16px;gap:8px;direction:ltr}
+.brand{font-size:16px;font-weight:800;text-align:center}
 .brand.sub{display:block;font-size:10px;font-weight:400;opacity:.7;letter-spacing:1px}
-.nav-right{display:flex;align-items:center;gap:10px}
+.nav-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
 .nav-link{color:#cfd8e6;font-size:13px;text-decoration:none;cursor:pointer;padding:5px 10px;border-radius:6px}
 .nav-link.on{color:#fff;background:rgba(255,255,255,.14)}
 /* 语言选择器 */
@@ -22,7 +22,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .lang-btn:hover,.lang-btn.on{background:var(--gold);color:var(--navy)}
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px 40px}
 /* 首页 hero */
-.hero{padding:96px 20px 36px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center}
+.hero{padding:122px 20px 36px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center}
 .hero.logo-zone{font-size:44px;margin-bottom:10px}
 .hero h1{font-size:22px;font-weight:800}
 .hero.sub{font-size:13px;opacity:.85;margin-top:6px;letter-spacing:1px}
@@ -67,15 +67,14 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
  .layout{flex-direction:column}
  .sidebar{width:100%;position:static;max-height:none;box-shadow:none}
  .cat-group-items{display:grid;grid-template-columns:1fr 1fr;gap:4px}
- /* 移动端导航：两行布局（平台名 + 选项卡和语言） */
- .nav-inner{flex-direction:column;height:auto;padding:8px 12px;gap:6px}
- .brand{font-size:14px;text-align:center}
+ /* 移动端导航优化 */
+ .nav-inner{padding:8px 12px;gap:6px}
+ .brand{font-size:14px}
  .brand .sub{display:none}
  .nav-extra{display:none}
- .nav-right{justify-content:center;gap:4px;flex-wrap:wrap}
  .nav-link{padding:5px 8px;font-size:12px}
  .lang-btn{padding:3px 6px;font-size:10px;margin-left:1px}
- .hero{padding:96px 16px 24px}
+ .hero{padding:108px 16px 24px}
  .hero h1{font-size:19px}
 }
 /* 产品详情弹窗 */
