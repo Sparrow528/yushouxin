@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>出海财税双向服务 - 云桥国际</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--p:#1a5276;--a:#2e86c1;--g:#d4a017;--bg:#f8f9fa;--card:#fff;--t:#2c3e50;--l:#7f8c8d;--bd:#e0e0e0;--r:12px;--green:#1a8a5e}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{background:linear-gradient(135deg,var(--p),var(--a));padding:12px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+nav .logo{color:#fff;font-size:20px;font-weight:700;letter-spacing:1px}
+nav .links{display:flex;gap:16px;align-items:center}
+nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;transition:.2s}
+nav a:hover{color:#fff}
+.lang-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px;transition:.2s}
+.lang-btn:hover,.lang-btn.active{background:rgba(255,255,255,.3)}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--p) 0%,var(--a) 40%,var(--green) 100%);color:#fff;padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(255,255,255,.05) 0%,transparent 50%);animation:heroGlow 8s ease-in-out infinite}
+@keyframes heroGlow{0%,100%{transform:translate(0,0)}50%{transform:translate(5%,3%)}}
+.hero h1{font-size:40px;margin-bottom:8px;letter-spacing:3px}
+.hero .sub{font-size:20px;opacity:.9;margin-bottom:20px;font-weight:300}
+.hero .formula{font-size:18px;padding:12px 24px;background:rgba(255,255,255,.12);border-radius:30px;display:inline-block;margin-top:12px;backdrop-filter:blur(4px)}
+.hero .badge{margin-top:20px;font-size:13px;opacity:.75}
+
+/* Dual Model */
+.dual-section{padding:60px 24px;max-width:1100px;margin:0 auto}
+.dual-section h2{text-align:center;font-size:28px;color:var(--p);margin-bottom:8px}
+.dual-section .subtitle{text-align:center;color:var(--l);margin-bottom:40px;font-size:15px}
+.dual-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch}
+.dual-card{background:var(--card);border-radius:var(--r);padding:32px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid var(--bd)}
+.dual-card h3{font-size:22px;margin-bottom:4px}
+.dual-card .arrow-label{font-size:12px;color:var(--a);font-weight:600;letter-spacing:1px;margin-bottom:12px}
+.dual-card .target{font-size:13px;color:var(--l);margin-bottom:16px;line-height:1.6}
+.dual-center{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;font-size:36px;color:var(--a)}
+.outbound h3{color:var(--a)}
+.inbound h3{color:var(--green)}
+.dual-card .items{list-style:none;padding:0}
+.dual-card .items li{padding:8px 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:14px;display:flex;gap:8px;align-items:flex-start}
+.dual-card .items li:last-child{border:none}
+.dual-card .items li .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.outbound .dot{background:var(--a)}
+.inbound .dot{background:var(--green)}
+
+/* Four Lines */
+.lines-section{background:#fff;padding:60px 24px}
+.lines-section h2{text-align:center;font-size:28px;color:var(--p);margin-bottom:8px}
+.lines-section .subtitle{text-align:center;color:var(--l);margin-bottom:40px;font-size:15px}
+.lines-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.line-card{background:var(--bg);border-radius:var(--r);padding:24px;border:1px solid var(--bd);transition:transform .2s,box-shadow .2s}
+.line-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.line-card .icon{font-size:32px;margin-bottom:8px}
+.line-card h4{font-size:16px;color:var(--p);margin-bottom:4px}
+.line-card .dir{font-size:11px;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:8px}
+.dir-out{background:rgba(46,134,193,.1);color:var(--a)}
+.dir-in{background:rgba(26,138,94,.1);color:var(--green)}
+.line-card p{font-size:13px;color:var(--l);line-height:1.5}
+.line-card .value{font-size:12px;color:var(--g);font-weight:600;margin-top:8px}
+
+/* Four Capabilities */
+.caps-section{padding:60px 24px;max-width:1100px;margin:0 auto}
+.caps-section h2{text-align:center;font-size:28px;color:var(--p);margin-bottom:40px}
+.caps-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.cap-item{text-align:center;padding:24px;background:var(--card);border-radius:var(--r);border:1px solid var(--bd)}
+.cap-item .num{font-size:48px;font-weight:700;color:var(--a);opacity:.2;position:relative;top:-4px}
+.cap-item h4{font-size:16px;color:var(--p);margin:4px 0}
+.cap-item p{font-size:13px;color:var(--l);line-height:1.5}
+
+/* Doing Now */
+.doing-section{background:linear-gradient(135deg,var(--p),var(--a));color:#fff;padding:60px 24px}
+.doing-section h2{text-align:center;font-size:28px;margin-bottom:32px}
+.doing-grid{max-width:800px;margin:0 auto;display:grid;gap:16px}
+.doing-item{background:rgba(255,255,255,.1);border-radius:var(--r);padding:20px;backdrop-filter:blur(4px);display:flex;gap:16px;align-items:flex-start}
+.doing-item .di-icon{font-size:28px;flex-shrink:0}
+.doing-item h4{font-size:15px;margin-bottom:4px}
+.doing-item p{font-size:13px;opacity:.8;line-height:1.5}
+
+/* Bottom quote */
+.quote-section{padding:60px 24px;text-align:center;max-width:800px;margin:0 auto}
+.quote-section blockquote{font-size:22px;color:var(--p);font-style:italic;line-height:1.6;margin-bottom:12px}
+.quote-section cite{font-size:14px;color:var(--l)}
+
+footer{background:var(--p);color:rgba(255,255,255,.7);padding:24px;text-align:center;font-size:12px}
+footer a{color:rgba(255,255,255,.9);text-decoration:none}
+
+[dir="rtl"] nav .links{direction:ltr}
+@media(max-width:768px){
+  .hero h1{font-size:26px} .hero .sub{font-size:16px} .hero .formula{font-size:14px;padding:8px 16px}
+  .dual-grid{grid-template-columns:1fr;gap:16px} .dual-center{flex-direction:row;padding:8px;font-size:24px}
+  .lines-grid,.caps-list{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){.lines-grid,.caps-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">云桥国际</div>
+  <div class="links">
+    <a href="index.html" data-i18n="nav_products">产品</a>
+    <a href="market.html" data-i18n="nav_market">市场</a>
+    <a href="partners.html" data-i18n="nav_partners">合作伙伴</a>
+    <a href="services.html" data-i18n="nav_services" style="color:#fff;font-weight:600">服务</a>
+    <button class="lang-btn" onclick="sw('zh')">中</button>
+    <button class="lang-btn" onclick="sw('en')">EN</button>
+    <button class="lang-btn" onclick="sw('fr')">FR</button>
+    <button class="lang-btn" onclick="sw('ar')">عر</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1 data-i18n="hero_title">出海财税双向服务</h1>
+  <div class="sub" data-i18n="hero_sub">帮中国企业走出去 &nbsp;·&nbsp; 帮外国企业走进来</div>
+  <div class="formula" data-i18n="hero_formula">产品合规 + 资本落地 = 出入双向全周期财税服务</div>
+  <div class="badge" data-i18n="hero_badge">守信财税 · 18年实战经验</div>
+</div>
+
+<!-- Dual Model -->
+<div class="dual-section">
+  <h2 data-i18n="dual_title">双向服务模型</h2>
+  <div class="subtitle" data-i18n="dual_sub">同一套财税能力，读懂两国税制 → 双向复用，两头吃、双边赚</div>
+  <div class="dual-grid">
+    <div class="dual-card outbound">
+      <h3 data-i18n="out_title">中国企业出海</h3>
+      <div class="arrow-label">OUTBOUND →</div>
+      <ul class="items">
+        <li><span class="dot"></span><span data-i18n="out_1"><b>产品出海</b>：目标国关税/税收/合规评估</span></li>
+        <li><span class="dot"></span><span data-i18n="out_2"><b>资本出海(ODI)</b>：备案、架构、落地、持续合规</span></li>
+        <li><span class="dot"></span><span data-i18n="out_3"><b>服务对象</b>：出口企业、跨境电商、合资投资、独资建厂、个人海外开公司</span></li>
+      </ul>
+    </div>
+    <div class="dual-center">⇌</div>
+    <div class="dual-card inbound">
+      <h3 data-i18n="in_title">外国企业入华</h3>
+      <div class="arrow-label">← INBOUND</div>
+      <ul class="items">
+        <li><span class="dot"></span><span data-i18n="in_1"><b>产品入华</b>：中国关税/税收/合规评估</span></li>
+        <li><span class="dot"></span><span data-i18n="in_2"><b>资本入华(FDI)</b>：架构设计、落地设立、持续合规</span></li>
+        <li><span class="dot"></span><span data-i18n="in_3"><b>服务对象</b>：进口企业、外资设立、合资合作、来华投资</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Four Business Lines -->
+<div class="lines-section">
+  <h2 data-i18n="lines_title">四条业务线</h2>
+  <div class="subtitle" data-i18n="lines_sub">覆盖产品与资本的双向全周期服务</div>
+  <div class="lines-grid">
+    <div class="line-card">
+      <div class="icon">📦</div>
+      <span class="dir dir-out" data-i18n="dir_out">出海</span>
+      <h4 data-i18n="line1_t">产品出海</h4>
+      <p data-i18n="line1_d">目标国关税/税收/合规评估，看清再出海，避免踩坑</p>
+      <div class="value" data-i18n="line1_v">价值：看清税负 → 落地+守住利润+合规到底</div>
+    </div>
+    <div class="line-card">
+      <div class="icon">🏗️</div>
+      <span class="dir dir-out" data-i18n="dir_out">出海</span>
+      <h4 data-i18n="line2_t">资本出海(ODI)</h4>
+      <p data-i18n="line2_d">ODI备案+架构+落地，架构/税务/申报全周期管理</p>
+      <div class="value" data-i18n="line2_v">价值：高效落地+税优+合规到底</div>
+    </div>
+    <div class="line-card">
+      <div class="icon">📥</div>
+      <span class="dir dir-in" data-i18n="dir_in">入华</span>
+      <h4 data-i18n="line3_t">产品入华</h4>
+      <p data-i18n="line3_d">中国关税/税收/合规评估，看清再入华，少走弯路</p>
+      <div class="value" data-i18n="line3_v">价值：看清合规 → 合法进入+优化税负</div>
+    </div>
+    <div class="line-card">
+      <div class="icon">🏢</div>
+      <span class="dir dir-in" data-i18n="dir_in">入华</span>
+      <h4 data-i18n="line4_t">资本入华(FDI)</h4>
+      <p data-i18n="line4_d">FDI架构+设立+合规，外资设立/汇回一站式解决</p>
+      <div class="value" data-i18n="line4_v">价值：高效设立+税优+合规到底</div>
+    </div>
+  </div>
+</div>
+
+<!-- Four Capabilities -->
+<div class="caps-section">
+  <h2 data-i18n="caps_title">四个核心能力</h2>
+  <div class="caps-list">
+    <div class="cap-item"><div class="num">1</div><h4 data-i18n="cap1_t">读懂两国税制</h4><p data-i18n="cap1_d">中国税制18年实战 + 目标国全口径拆解（关税/所得税/VAT/预提税/外汇）</p></div>
+    <div class="cap-item"><div class="num">2</div><h4 data-i18n="cap2_t">设计最优架构</h4><p data-i18n="cap2_d">出海：独资/合资选择、BOI/特区优惠、税收协定利用；入华：外资架构、税收优惠、利润汇回</p></div>
+    <div class="cap-item"><div class="num">3</div><h4 data-i18n="cap3_t">打通两国合规</h4><p data-i18n="cap3_d">出海：国内ODI备案+海外申报；入华：外资设立审批+中国税务合规，两头不能漏</p></div>
+    <div class="cap-item"><div class="num">4</div><h4 data-i18n="cap4_t">对接政府资源</h4><p data-i18n="cap4_d">海外：海关/财政部/投资委；国内：税务局/商务部/外汇局，双向政府通道</p></div>
+  </div>
+</div>
+
+<!-- Doing Now -->
+<div class="doing-section">
+  <h2 data-i18n="doing_title">正在推进</h2>
+  <div class="doing-grid">
+    <div class="doing-item"><div class="di-icon">🇱🇰</div><div><h4 data-i18n="d1_t">斯里兰卡财税全景分析</h4><p data-i18n="d1_d">CIT/VAT/关税/外汇/十大行业深度拆解已完成，对接6大核心部委30名官员，打通双向通道</p></div></div>
+    <div class="doing-item"><div class="di-icon">🇺🇿</div><div><h4 data-i18n="d2_t">乌兹别克斯坦ODI项目</h4><p data-i18n="d2_d">Jian Yi Group汽车零部件本地化合作——典型资本出海场景在推进中</p></div></div>
+    <div class="doing-item"><div class="di-icon">🏆</div><div><h4 data-i18n="d3_t">18年实战根基</h4><p data-i18n="d3_d">守信财税品牌，北京乾坤生会计师事务所创始人，财税领域深厚积淀</p></div></div>
+  </div>
+</div>
+
+<!-- Quote -->
+<div class="quote-section">
+  <blockquote data-i18n="quote">别人只做单边——要么帮出海，要么帮招商。<br>我们做双边——帮中国企业走出去，也帮外国企业走进来。<br>云桥：跨境财税的双向桥梁。</blockquote>
+  <cite>— 云桥国际</cite>
+</div>
+
+<footer><p>© 2026 云桥国际 Yunqiao International &nbsp;|&nbsp; <a href="index.html" data-i18n="back_home">返回首页</a></p></footer>
+
+<script>
+var lang=localStorage.getItem('yq_lang')||'zh';
+var I18N={
+zh:{
+  nav_products:'产品',nav_market:'市场',nav_partners:'合作伙伴',nav_services:'服务',
+  hero_title:'出海财税双向服务',hero_sub:'帮中国企业走出去 · 帮外国企业走进来',hero_formula:'产品合规 + 资本落地 = 出入双向全周期财税服务',hero_badge:'守信财税 · 18年实战经验',
+  dual_title:'双向服务模型',dual_sub:'同一套财税能力，读懂两国税制 → 双向复用，两头吃、双边赚',
+  out_title:'中国企业出海',out_1:'<b>产品出海</b>：目标国关税/税收/合规评估',out_2:'<b>资本出海(ODI)</b>：备案、架构、落地、持续合规',out_3:'<b>服务对象</b>：出口企业、跨境电商、合资投资、独资建厂、个人海外开公司',
+  in_title:'外国企业入华',in_1:'<b>产品入华</b>：中国关税/税收/合规评估',in_2:'<b>资本入华(FDI)</b>：架构设计、落地设立、持续合规',in_3:'<b>服务对象</b>：进口企业、外资设立、合资合作、来华投资',
+  lines_title:'四条业务线',lines_sub:'覆盖产品与资本的双向全周期服务',dir_out:'出海',dir_in:'入华',
+  line1_t:'产品出海',line1_d:'目标国关税/税收/合规评估，看清再出海，避免踩坑',line1_v:'价值：看清税负 → 落地+守住利润+合规到底',
+  line2_t:'资本出海(ODI)',line2_d:'ODI备案+架构+落地，架构/税务/申报全周期管理',line2_v:'价值：高效落地+税优+合规到底',
+  line3_t:'产品入华',line3_d:'中国关税/税收/合规评估，看清再入华，少走弯路',line3_v:'价值：看清合规 → 合法进入+优化税负',
+  line4_t:'资本入华(FDI)',line4_d:'FDI架构+设立+合规，外资设立/汇回一站式解决',line4_v:'价值：高效设立+税优+合规到底',
+  caps_title:'四个核心能力',
+  cap1_t:'读懂两国税制',cap1_d:'中国税制18年实战 + 目标国全口径拆解（关税/所得税/VAT/预提税/外汇）',
+  cap2_t:'设计最优架构',cap2_d:'出海：独资/合资选择、BOI/特区优惠、税收协定利用；入华：外资架构、税收优惠、利润汇回',
+  cap3_t:'打通两国合规',cap3_d:'出海：国内ODI备案+海外申报；入华：外资设立审批+中国税务合规，两头不能漏',
+  cap4_t:'对接政府资源',cap4_d:'海外：海关/财政部/投资委；国内：税务局/商务部/外汇局，双向政府通道',
+  doing_title:'正在推进',
+  d1_t:'斯里兰卡财税全景分析',d1_d:'CIT/VAT/关税/外汇/十大行业深度拆解已完成，对接6大核心部委30名官员，打通双向通道',
+  d2_t:'乌兹别克斯坦ODI项目',d2_d:'Jian Yi Group汽车零部件本地化合作——典型资本出海场景在推进中',
+  d3_t:'18年实战根基',d3_d:'守信财税品牌，北京乾坤生会计师事务所创始人，财税领域深厚积淀',
+  quote:'别人只做单边——要么帮出海，要么帮招商。<br>我们做双边——帮中国企业走出去，也帮外国企业走进来。<br>云桥：跨境财税的双向桥梁。',
+  back_home:'返回首页'
+},
+en:{
+  nav_products:'Products',nav_market:'Market',nav_partners:'Partners',nav_services:'Services',
+  hero_title:'Outbound & Inbound Tax-Finance Services',hero_sub:'Help Chinese companies go global · Help foreign companies enter China',hero_formula:'Product Compliance + Capital Landing = Bi-directional Full-cycle Tax Services',hero_badge:'Shouxin Tax · 18 Years of Practice',
+  dual_title:'Bi-directional Service Model',dual_sub:'One set of capabilities, understand two tax systems → dual reuse, earn from both sides',
+  out_title:'Chinese Companies Going Out',out_1:'<b>Product Export</b>: Target country tariff/tax/compliance assessment',out_2:'<b>Capital Outbound (ODI)</b>: Filing, structure, landing, ongoing compliance',out_3:'<b>Clients</b>: Exporters, cross-border e-commerce, JV investment, wholly-owned setup, individuals',
+  in_title:'Foreign Companies Coming In',in_1:'<b>Product Import</b>: China tariff/tax/compliance assessment',in_2:'<b>Capital Inbound (FDI)</b>: Structure design, entity setup, ongoing compliance',in_3:'<b>Clients</b>: Importers, foreign entity setup, JV cooperation, inbound investment',
+  lines_title:'Four Business Lines',lines_sub:'Full-cycle coverage for products and capital in both directions',dir_out:'Outbound',dir_in:'Inbound',
+  line1_t:'Product Export',line1_d:'Target country tariff/tax/compliance assessment — see clearly before going out',line1_v:'Value: See tax burden → Land + Protect profit + Stay compliant',
+  line2_t:'Capital Outbound (ODI)',line2_d:'ODI filing + structure + landing, full-cycle management',line2_v:'Value: Efficient landing + Tax optimization + Stay compliant',
+  line3_t:'Product Import',line3_d:'China tariff/tax/compliance assessment — see clearly before entering',line3_v:'Value: See compliance → Legal entry + Optimize tax',
+  line4_t:'Capital Inbound (FDI)',line4_d:'FDI structure + setup + compliance, one-stop solution',line4_v:'Value: Efficient setup + Tax optimization + Stay compliant',
+  caps_title:'Four Core Capabilities',
+  cap1_t:'Read Two Tax Systems',cap1_d:'18 years China practice + Full analysis of target country (tariff/CIT/VAT/WHT/FX)',
+  cap2_t:'Design Optimal Structure',cap2_d:'Outbound: WFOE/JV choice, BOI/SEZ incentives, tax treaty utilization; Inbound: foreign structure, tax incentives, profit repatriation',
+  cap3_t:'Bridge Two Compliance Systems',cap3_d:'Outbound: ODI filing + overseas reporting; Inbound: foreign entity approval + China tax compliance — neither side can be missed',
+  cap4_t:'Connect Government Resources',cap4_d:'Overseas: Customs/Finance/Investment boards; Domestic: Tax Bureau/MOC/SAFE — bi-directional government channel',
+  doing_title:'In Progress',
+  d1_t:'Sri Lanka Tax & Finance Analysis',d1_d:'CIT/VAT/tariff/FX/10-sector deep analysis completed, connected with 6 ministries & 30 officials',
+  d2_t:'Uzbekistan ODI Project',d2_d:'Jian Yi Group auto parts localization — typical capital outbound scenario in progress',
+  d3_t:'18 Years of Foundation',d3_d:'Shouxin Tax brand, founder of Beijing Qiankunsheng CPA, deep tax expertise',
+  quote:'Others do one side — either help going out or attracting investment.<br>We do both — help Chinese companies go out, and foreign companies come in.<br>Yunqiao: The bi-directional bridge for cross-border tax & finance.',
+  back_home:'Home'
+},
+fr:{
+  nav_products:'Produits',nav_market:'Marché',nav_partners:'Partenaires',nav_services:'Services',
+  hero_title:'Services Fiscaux Bidirectionnels',hero_sub:'Aider les entreprises chinoises à sortir · Aider les entreprises étrangères à entrer',hero_formula:'Conformité produit + Implantation capital = Services fiscaux bidirectionnels',hero_badge:'Shouxin Tax · 18 ans d\'expérience',
+  dual_title:'Modèle de Service Bidirectionnel',dual_sub:'Un même savoir-faire, comprendre deux systèmes fiscaux → réutilisation bidirectionnelle',
+  out_title:'Entreprises chinoises à l\'international',out_1:'<b>Export produit</b>: Évaluation tarif/fiscalité/conformité du pays cible',out_2:'<b>Capital sortant (ODI)</b>: Enregistrement, structure, implantation, conformité',out_3:'<b>Clients</b>: Exportateurs, e-commerce transfrontalier, co-entreprises',
+  in_title:'Entreprises étrangères en Chine',in_1:'<b>Import produit</b>: Évaluation tarif/fiscalité/conformité chinoise',in_2:'<b>Capital entrant (FDI)</b>: Conception structure, création entité, conformité',in_3:'<b>Clients</b>: Importateurs, implantation étrangère, co-entreprises',
+  lines_title:'Quatre Lignes Métier',lines_sub:'Couverture cycle complet produit et capital dans les deux sens',dir_out:'Sortant',dir_in:'Entrant',
+  line1_t:'Export Produit',line1_d:'Évaluation tarif/fiscalité du pays cible',line1_v:'Valeur: Voir la charge fiscale → Implanter + Protéger + Conforme',
+  line2_t:'Capital Sortant (ODI)',line2_d:'Enregistrement ODI + structure + implantation',line2_v:'Valeur: Implantation efficace + Optimisation fiscale',
+  line3_t:'Import Produit',line3_d:'Évaluation tarif/fiscalité chinoise',line3_v:'Valeur: Voir la conformité → Entrée légale + Optimiser',
+  line4_t:'Capital Entrant (FDI)',line4_d:'Structure FDI + création + conformité',line4_v:'Valeur: Création efficace + Optimisation fiscale',
+  caps_title:'Quatre Capacités Clés',
+  cap1_t:'Comprendre Deux Systèmes',cap1_d:'18 ans en Chine + Analyse complète du pays cible',
+  cap2_t:'Concevoir Structure Optimale',cap2_d:'Choix WFOE/JV, incitations BOI/SEZ, traités fiscaux',
+  cap3_t:'Connecter Deux Conformités',cap3_d:'Enregistrement ODI + déclarations étrangères; approbation Chine + conformité',
+  cap4_t:'Ressources Gouvernementales',cap4_d:'Douanes/Finance/Investissement; Impôts/MOC/SAFE — canal bidirectionnel',
+  doing_title:'En Cours',d1_t:'Analyse Sri Lanka',d1_d:'CIT/TVA/tarif/FX — 6 ministères connectés',d2_t:'Projet ODI Ouzbékistan',d2_d:'Jian Yi Group — localisation pièces auto',d3_t:'18 Ans de Fondation',d3_d:'Shouxin Tax, fondateur Qiankunsheng CPA',
+  quote:'Les autres font un seul côté.<br>Nous faisons les deux — sortir et entrer.<br>Yunqiao: Le pont bidirectionnel.',back_home:'Accueil'
+},
+ar:{
+  nav_products:'منتجات',nav_market:'سوق',nav_partners:'شركاء',nav_services:'خدمات',
+  hero_title:'خدمات مالية ضريبية ثنائية الاتجاه',hero_sub:'مساعدة الشركات الصينية على الخروج · مساعدة الشركات الأجنبية على الدخول',hero_formula:'امتثال المنتج + رسملة = خدمات مالية ضريبية شاملة',hero_badge:'شوكسين للضرائب · 18 عاماً',
+  dual_title:'نموذج خدمة ثنائي',dual_sub:'نفس القدرات، فهم نظامين ضريبيين',out_title:'الشركات الصينية للخروج',out_1:'تصدير المنتجات: تقييم الضرائب والامتثال',out_2:'رأس المال الصادر: تسجيل وهبطة وامتثال',out_3:'العملاء: المصدرين والتجارة الإلكترونية',
+  in_title:'الشركات الأجنبية للدخول',in_1:'استيراد المنتجات: تقييم الضرائب الصينية',in_2:'رأس المال الوارد: تصميم وإنشاء وامتثال',in_3:'العملاء: المستوردين والاستثمار الأجنبي',
+  lines_title:'أربعة خطوط أعمال',lines_sub:'تغطية شاملة للمنتجات ورأس المال',dir_out:'صادر',dir_in:'وارد',
+  line1_t:'تصدير المنتجات',line1_d:'تقييم الضرائب والامتثال',line1_v:'القيمة: رؤية العبء الضريبي',
+  line2_t:'رأس المال الصادر',line2_d:'تسجيل وبنية وهبطة',line2_v:'القيمة: هبطة فعالة + تحسين ضريبي',
+  line3_t:'استيراد المنتجات',line3_d:'تقييم الضرائب الصينية',line3_v:'القيمة: الدخول القانوني',
+  line4_t:'رأس المال الوارد',line4_d:'بنية وإنشاء وامتثال',line4_v:'القيمة: إنشاء فعال + تحسين ضريبي',
+  caps_title:'أربع قدرات أساسية',cap1_t:'فهم نظامين ضريبيين',cap1_d:'18 عاماً في الصين + تحليل كامل للبلد المستهدف',cap2_t:'تصميم البنية المثلى',cap2_d:'اختيار WFOE/JV وحوافز BOI/SEZ',cap3_t:'ربط نظامي امتثال',cap3_d:'تسجيل ODI + تقارير خارجية; موافقة الصين + امتثال',cap4_t:'موارد حكومية',cap4_d:'جمارك/مالية/استثمار — قناة ثنائية',
+  doing_title:'قيد التنفيذ',d1_t:'تحليل سريلانكا',d1_d:'تحليل شامل للضرائب والجمارك',d2_t:'مشروع ODI أوزبكستان',d2_d:'توطين قطع السيارات',d3_t:'18 عاماً من الأساس',d3_d:'شوكسين للضرائب',
+  quote:'الآخرون يفعلون جانباً واحداً.<br>نحن نفعل كلا الجانبين.<br>يونتشياو: الجسر الثنائي.',back_home:'الرئيسية'
+}
+};
+function t(k){return(I18N[lang]||I18N.zh)[k]||k}
+function sw(l){
+  lang=l;localStorage.setItem('yq_lang',l);
+  if(l==='ar')document.documentElement.dir='rtl';else document.documentElement.dir='ltr';
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    var k=el.getAttribute('data-i18n'),v=t(k);
+    if(v&&v.indexOf('<')>-1)el.innerHTML=v;else el.textContent=v;
+  });
+}
+sw(lang);
+</script>
+</body>
+</html>

@@ -87,6 +87,7 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px;}
   <div class="links">
     <a href="index.html" data-i18n="nav_products">产品</a>
     <a href="#" class="on" data-i18n="nav_market">市场</a>
+    <a href="services.html" data-i18n="nav_services">服务</a>
     <a href="partners.html" data-i18n="nav_partners">合作伙伴</a>
     <div class="lang-dd">
       <button class="lang-btn" id="langBtn">中文</button>
@@ -130,10 +131,10 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px;}
 <script>
 /* ===== i18n ===== */
 var I18N={
-  zh:{nav_products:'产品',nav_market:'市场',nav_partners:'合作伙伴',hero_title:'全球市场布局',hero_sub:'深耕一带一路沿线与新兴市场，为会员企业打开海外增长通道',sec_countries:'重点国家市场',sec_regions:'区域市场',lbl_overview:'市场概况',lbl_trade:'与中国贸易',lbl_products:'产品机会',lbl_prospect:'发展前景',close:'关闭',stat_countries:'个国家',stat_regions:'个区域',stat_belt:'一带一路覆盖'},
-  en:{nav_products:'Products',nav_market:'Markets',nav_partners:'Partners',hero_title:'Global Market Footprint',hero_sub:'Deep presence along the Belt & Road and emerging markets, opening overseas growth channels for member enterprises',sec_countries:'Key Country Markets',sec_regions:'Regional Markets',lbl_overview:'Market Overview',lbl_trade:'Trade with China',lbl_products:'Product Opportunities',lbl_prospect:'Growth Outlook',close:'Close',stat_countries:'Countries',stat_regions:'Regions',stat_belt:'B&R Coverage'},
-  fr:{nav_products:'Produits',nav_market:'Marchés',nav_partners:'Partenaires',hero_title:'Présence Mondiale',hero_sub:'Présence forte le long de la Belt & Road et des marchés émergents',sec_countries:'Marchés Nationaux Clés',sec_regions:'Marchés Régionaux',lbl_overview:'Aperçu du Marché',lbl_trade:'Commerce avec la Chine',lbl_products:'Opportunités Produits',lbl_prospect:'Perspectives de Croissance',close:'Fermer',stat_countries:'Pays',stat_regions:'Régions',stat_belt:'Couverture B&R'},
-  ar:{nav_products:'المنتجات',nav_market:'الأسواق',nav_partners:'الشركاء',hero_title:'التواجد العالمي',hero_sub:'حضور قوي على طول مبادرة الحزام والطريق والأسواق الناشئة',sec_countries:'أسواق دولية رئيسية',sec_regions:'أسواق إقليمية',lbl_overview:'نظرة عامة',lbl_trade:'التجارة مع الصين',lbl_products:'فرص المنتجات',lbl_prospect:'آفاق النمو',close:'إغلاق',stat_countries:'دول',stat_regions:'مناطق',stat_belt:'تغطية الحزام والطريق'}
+  zh:{nav_products:'产品',nav_market:'市场',nav_partners:'合作伙伴', nav_services:'服务',hero_title:'全球市场布局',hero_sub:'深耕一带一路沿线与新兴市场，为会员企业打开海外增长通道',sec_countries:'重点国家市场',sec_regions:'区域市场',lbl_overview:'市场概况',lbl_trade:'与中国贸易',lbl_products:'产品机会',lbl_prospect:'发展前景',close:'关闭',stat_countries:'个国家',stat_regions:'个区域',stat_belt:'一带一路覆盖'},
+  en:{nav_products:'Products',nav_market:'Markets',nav_partners:'Partners', nav_services:'Services',hero_title:'Global Market Footprint',hero_sub:'Deep presence along the Belt & Road and emerging markets, opening overseas growth channels for member enterprises',sec_countries:'Key Country Markets',sec_regions:'Regional Markets',lbl_overview:'Market Overview',lbl_trade:'Trade with China',lbl_products:'Product Opportunities',lbl_prospect:'Growth Outlook',close:'Close',stat_countries:'Countries',stat_regions:'Regions',stat_belt:'B&R Coverage'},
+  fr:{nav_products:'Produits',nav_market:'Marchés',nav_partners:'Partenaires', nav_services:'Services',hero_title:'Présence Mondiale',hero_sub:'Présence forte le long de la Belt & Road et des marchés émergents',sec_countries:'Marchés Nationaux Clés',sec_regions:'Marchés Régionaux',lbl_overview:'Aperçu du Marché',lbl_trade:'Commerce avec la Chine',lbl_products:'Opportunités Produits',lbl_prospect:'Perspectives de Croissance',close:'Fermer',stat_countries:'Pays',stat_regions:'Régions',stat_belt:'Couverture B&R'},
+  ar:{nav_products:'المنتجات',nav_market:'الأسواق',nav_partners:'الشركاء', nav_services:'خدمات',hero_title:'التواجد العالمي',hero_sub:'حضور قوي على طول مبادرة الحزام والطريق والأسواق الناشئة',sec_countries:'أسواق دولية رئيسية',sec_regions:'أسواق إقليمية',lbl_overview:'نظرة عامة',lbl_trade:'التجارة مع الصين',lbl_products:'فرص المنتجات',lbl_prospect:'آفاق النمو',close:'إغلاق',stat_countries:'دول',stat_regions:'مناطق',stat_belt:'تغطية الحزام والطريق'}
 };
 var lang='zh';
 function t(k){return(I18N[lang]&&I18N[lang][k])||I18N.zh[k]||k;}
