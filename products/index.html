@@ -391,7 +391,17 @@ const MEMBERS = [
  introFr:'Service d\'exportation de voitures d\'occasion: inspection, conformité, modification volant à droite, logistique. Marchés: Moyen-Orient/Afrique/Asie du SE.',
  introAr:'خدمة تصدير سيارات مستعملة شاملة: فحص وامتثال وتعديل وخدمات لوجستية. أسواق: الشرق الأوسط/أفريقيا/آسيا.',
  hasDetail:false,
- }
+ },
+ {
+ id:'allens-house', name:"Allen's House", nameEn:"Allen's House",
+ nameFr:"Allen's House", nameAr:"Allen's House",
+ category:'消费电子/数据线', categoryEn:'Consumer Electronics / Cables', categoryFr:'Électronique Grand Public / Câbles', categoryAr:'إلكترونيات استهلاكية / كابلات',
+ intro:"Allen's House 消费电子品牌（HICELL 技术支持），专业生产高品质数据线/充电线，符合 CE、RoHS 标准，支持 OEM/ODM 贴牌。",
+ introEn:"Allen's House consumer electronics brand (powered by HICELL), specialized in high-quality data/charging cables, CE & RoHS compliant, OEM/ODM available.",
+ introFr:"Marque d'électronique grand public Allen's House (propulsée par HICELL), spécialisée dans les câbles de données/charge de haute qualité, conforme CE & RoHS, OEM/ODM disponible.",
+ introAr:"علامة Allen's House للإلكترونيات الاستهلاكية (بدعم من HICELL)، متخصصة في كابلات البيانات/الشحن عالية الجودة، متوافقة مع CE وRoHS.",
+ hasDetail:false,
+ },
 ];
 
 function getMemberName(m){
@@ -454,6 +464,7 @@ function loadProducts(){
      else if(/手提袋|牛津布包|网纱|笔袋/.test(p.name)) p.member_id='tianyang-stationery';
      else if(/温显|星星壶|子弹头|弹跳|保温杯/.test(p.name)) p.member_id='thermal-cup-maker';
      else if(/二手|丰田|本田|宝马|日产|现代|右舵|整备|出口服务/.test(p.name)) p.member_id='usedcar-service';
+     else if(/数据线|充电线|USB|Lightning|Micro-B|电缆|Type-C/.test(p.name)) p.member_id='allens-house';
      else p.member_id='unknown';
    }
  });
