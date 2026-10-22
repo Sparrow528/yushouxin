@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>财税体检报告 · 格力电器</title>
+<style>
+:root{
+  --bg:#0f2544;
+  --fg:#f5f7fa;
+  --muted:#8fa3c4;
+  --accent:#d5a84d;
+  --accent-end:#f0d48a;
+  --card:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.12);
+  --good:#2dd4a7;
+  --warn:#f5b84b;
+  --bad:#f0655a;
+  --title-size:clamp(36px,5vw,64px);
+  --body-size:clamp(18px,2.2vw,24px);
+  --small-size:clamp(14px,1.6vw,18px);
+}
+.slide{color:var(--fg);background:var(--bg)}
+*{margin:0;padding:0;box-sizing:border-box}
+.presentation{position:relative;width:100vw;height:100vh;overflow:hidden;background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5vh 8vw;opacity:0;visibility:hidden;transform:translateX(60px);transition:opacity .5s ease,transform .5s ease,visibility 0s .5s;overflow:hidden}
+.slide.active{opacity:1;visibility:visible;transform:translateX(0);transition:opacity .5s ease,transform .5s ease,visibility 0s 0s}
+.slide.prev{transform:translateX(-60px)}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-end));z-index:100;transition:width .4s ease}
+.slide-counter{position:fixed;bottom:20px;right:28px;font-size:14px;color:rgba(255,255,255,.4);z-index:100;font-variant-numeric:tabular-nums}
+.slide-nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:100}
+.slide-nav button{width:36px;height:36px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.6);font-size:16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.slide-nav button:hover{background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.4)}
+.slide-nav .btn-fs{margin-left:12px}
+.speaker-notes{position:fixed;bottom:0;left:0;right:0;max-height:30vh;padding:16px 24px;background:rgba(0,0,0,.92);color:rgba(255,255,255,.7);font-size:15px;line-height:1.6;transform:translateY(100%);transition:transform .3s ease;z-index:90;overflow-y:auto;border-top:1px solid rgba(255,255,255,.1)}
+.speaker-notes.visible{transform:translateY(0)}
+.speaker-notes .note-label{font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.slide-overview{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:200;display:none;padding:40px;overflow-y:auto}
+.slide-overlay.open .slide-overview{display:flex;flex-wrap:wrap;gap:16px;align-content:flex-start}
+.slide-overview .thumb{width:180px;height:100px;border:2px solid rgba(255,255,255,.15);border-radius:8px;cursor:pointer;overflow:hidden;transition:border-color .2s,transform .2s;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.03);color:rgba(255,255,255,.5);font-size:13px}
+.slide-overview .thumb:hover{border-color:var(--accent);transform:scale(1.05)}
+.slide-overview .thumb.current{border-color:var(--accent);box-shadow:0 0 20px rgba(213,168,77,.3)}
+@media(max-width:768px){.slide{padding:4vh 5vw}.slide-nav button{width:32px;height:32px;font-size:14px}.slide-overview .thumb{width:120px;height:68px}}
+@media(max-width:480px){.slide{padding:3vh 4vw}.slide-nav{bottom:12px}.slide-counter{bottom:12px;right:16px;font-size:12px}}
+@media print{.presentation{height:auto;overflow:visible;background:#fff}.slide{position:relative;opacity:1;visibility:visible;transform:none;page-break-after:always;padding:20px 30px;border-bottom:1px solid #eee;min-height:100vh}.progress-bar,.slide-nav,.slide-counter,.speaker-notes,.slide-overview{display:none!important}}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center}
+.metric-val{font-size:clamp(36px,5vw,56px);font-weight:700}
+.metric-name{font-size:var(--small-size);color:var(--muted);margin-top:8px}
+.metric-note{font-size:13px;margin-top:6px;opacity:.9}
+</style>
+</head>
+<body>
+<div class="presentation">
+  <div class="progress-bar"></div>
+  <div class="slide-counter"></div>
+
+  <section class="slide cover" id="slide-1">
+    <div style="text-align:center;max-width:80vw">
+      <p style="font-size:var(--small-size);color:var(--accent);letter-spacing:4px;margin-bottom:16px">财税健康体检 · 2025 第三季度</p>
+      <h1 style="font-size:var(--title-size);font-weight:700;line-height:1.2;margin-bottom:24px;background:linear-gradient(135deg,#f0d48a,#d5a84d,#a87e2e);-webkit-background-clip:text;background-clip:text;color:transparent">财税体检报告</h1>
+      <p style="font-size:var(--body-size);color:var(--muted)">格力电器</p>
+      <p style="font-size:var(--small-size);color:var(--muted);margin-top:12px">上传报表 · 自动分析 · 一键出报告</p>
+    </div>
+  </section>
+
+  <section class="slide metrics" id="slide-2">
+    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">盈利能力</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:80vw;max-width:1000px">
+      <div class="metric-card"><div class="metric-val" style="color:var(--good)">28.44%</div><div class="metric-name">毛利率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+      <div class="metric-card"><div class="metric-val" style="color:var(--good)">15.73%</div><div class="metric-name">净利率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+      <div class="metric-card"><div class="metric-val" style="color:var(--good)">6.27%</div><div class="metric-name">期间费用率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+    </div>
+  </section>
+
+  <section class="slide metrics" id="slide-3">
+    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">税负水平</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;width:80vw;max-width:800px">
+      <div class="metric-card" style="border-color:var(--bad)"><div class="metric-val" style="color:var(--bad)">8.59%</div><div class="metric-name">增值税税负率（估算）</div><div class="metric-note" style="color:var(--bad)">🔴 偏高 · 建议核实</div></div>
+      <div class="metric-card"><div class="metric-val" style="color:var(--good)">2.58%</div><div class="metric-name">所得税税负率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+    </div>
+  </section>
+
+  <section class="slide metrics" id="slide-4">
+    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">偿债能力</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;width:80vw;max-width:800px">
+      <div class="metric-card" style="border-color:var(--warn)"><div class="metric-val" style="color:var(--warn)">62.80%</div><div class="metric-name">资产负债率</div><div class="metric-note" style="color:var(--warn)">🟡 预警区间</div></div>
+      <div class="metric-card"><div class="metric-val" style="color:var(--good)">1.08</div><div class="metric-name">流动比率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+    </div>
+  </section>
+
+  <section class="slide bullets" id="slide-5">
+    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">需关注的风险点</h2>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:20px;max-width:70vw">
+      <li style="font-size:var(--body-size);display:flex;align-items:flex-start;gap:12px"><span style="color:var(--bad);font-size:24px">▲</span><span>增值税税负率 8.59% 偏高 —— 反推估算值，建议核对申报表</span></li>
+      <li style="font-size:var(--body-size);display:flex;align-items:flex-start;gap:12px"><span style="color:var(--warn);font-size:24px">▲</span><span>资产负债率 62.80% 预警 —— 高于 60% 参考线，关注偿债压力</span></li>
+    </ul>
+    <div style="margin-top:40px;font-size:var(--small-size);color:var(--muted);max-width:70vw;line-height:1.8">制造业自查：研发费用加计扣除用足了吗？存货跌价、报废损失做税前扣除了吗？固定资产加速折旧政策用了吗？</div>
+  </section>
+
+  <section class="slide comparison" id="slide-6">
+    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">体检结论</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;width:80vw;max-width:900px">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px"><h3 style="color:var(--good);margin-bottom:16px">✅ 5 项平稳</h3><ul style="font-size:var(--small-size);color:var(--muted);line-height:2.2"><li>所得税税负率 2.58%</li><li>毛利率 28.44%</li><li>净利率 15.73%</li><li>期间费用率 6.27%</li><li>流动比率 1.08</li></ul></div>
+      <div style="background:var(--card);border:2px solid var(--warn);border-radius:16px;padding:32px;box-shadow:0 0 30px rgba(245,184,75,.15)"><h3 style="color:var(--warn);margin-bottom:16px">⚠ 2 项需关注</h3><ul style="font-size:var(--small-size);color:var(--muted);line-height:2.2"><li>增值税税负率 8.59%（偏高）</li><li>资产负债率 62.80%（预警）</li></ul></div>
+    </div>
+    <div style="margin-top:36px;font-size:clamp(40px,6vw,72px);font-weight:800;color:var(--warn);letter-spacing:6px">建议关注</div>
+  </section>
+
+  <section class="slide ending" id="slide-end">
+    <div style="text-align:center">
+      <h2 style="font-size:var(--title-size);font-weight:700;margin-bottom:24px;background:linear-gradient(135deg,#f0d48a,#d5a84d,#a87e2e);-webkit-background-clip:text;background-clip:text;color:transparent">财税体检 · 一分钟出报告</h2>
+      <p style="font-size:var(--body-size);color:var(--muted);line-height:1.8">税负率 · 毛利率 · 资产负债率<br>风险点一眼看清</p>
+      <p style="font-size:var(--small-size);color:var(--accent);margin-top:32px">上传利润表 + 资产负债表 · 免费体检</p>
+    </div>
+  </section>
+
+  <div class="slide-nav">
+    <button class="nav-prev">←</button>
+    <button class="nav-next">→</button>
+    <button class="btn-fs">⛶</button>
+    <button class="btn-overview">☰</button>
+  </div>
+  <div class="speaker-notes">
+    <div class="note-label">讲演者备注</div>
+    <div class="note-text"></div>
+  </div>
+  <div class="slide-overlay">
+    <div class="slide-overview"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  let isOverviewOpen = false;
+  const progressBar = document.querySelector('.progress-bar');
+  const counter = document.querySelector('.slide-counter');
+  const notesPanel = document.querySelector('.speaker-notes');
+  const overview = document.querySelector('.slide-overview');
+  const overlay = document.querySelector('.slide-overlay') || document.body;
+  function updateSlide(){
+    slides.forEach((s,i) => {
+      s.classList.remove('active','prev');
+      if(i === current) s.classList.add('active');
+      else if(i < current) s.classList.add('prev');
+    });
+    if(progressBar) progressBar.style.width = ((current+1)/total*100)+'%';
+    if(counter) counter.textContent = (current+1)+' / '+total;
+    if(notesPanel){
+      const note = slides[current].querySelector('.note-content');
+      const label = notesPanel.querySelector('.note-label');
+      const text = notesPanel.querySelector('.note-text');
+      if(note && note.textContent.trim()){if(label) label.textContent = '讲演者备注 · 第'+(current+1)+'页';if(text) text.textContent = note.textContent;}
+      else {if(label) label.textContent = '讲演者备注';if(text) text.textContent = '（本页无备注）';}
+    }
+    document.querySelectorAll('.slide-overview .thumb').forEach((t,i)=>{t.classList.toggle('current',i===current);});
+  }
+  function go(n){current = Math.max(0,Math.min(total-1,n));updateSlide();}
+  document.addEventListener('keydown', e => {
+    if(isOverviewOpen){if(e.key==='Escape'){closeOverview();e.preventDefault()}return;}
+    switch(e.key){
+      case 'ArrowRight':case ' ':case 'PageDown': go(current+1);e.preventDefault();break;
+      case 'ArrowLeft':case 'PageUp': go(current-1);e.preventDefault();break;
+      case 'Home': go(0);e.preventDefault();break;
+      case 'End': go(total-1);e.preventDefault();break;
+      case 'Escape': toggleOverview();e.preventDefault();break;
+      case 'f':case 'F': if(!e.ctrlKey&&!e.metaKey){toggleFullscreen();e.preventDefault()}break;
+      case 'n':case 'N': if(notesPanel){notesPanel.classList.toggle('visible');e.preventDefault()}break;
+    }
+  });
+  let touchX=0,touchY=0;
+  document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;touchY=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?go(current+1):go(current-1);}});
+  document.querySelector('.nav-prev')?.addEventListener('click',()=>go(current-1));
+  document.querySelector('.nav-next')?.addEventListener('click',()=>go(current+1));
+  document.querySelector('.btn-fs')?.addEventListener('click',toggleFullscreen);
+  document.querySelector('.btn-overview')?.addEventListener('click',toggleOverview);
+  function toggleFullscreen(){if(!document.fullscreenElement) document.documentElement.requestFullscreen?.();else document.exitFullscreen?.();}
+  function buildOverview(){if(!overview) return;overview.innerHTML='';slides.forEach((s,i)=>{const t=document.createElement('div');t.className='thumb'+(i===current?' current':'');t.textContent='第'+(i+1)+'页';t.addEventListener('click',()=>{go(i);closeOverview()});overview.appendChild(t);});}
+  function toggleOverview(){isOverviewOpen=!isOverviewOpen;if(isOverviewOpen){buildOverview();overlay.classList.add('open')}else closeOverview();}
+  function closeOverview(){isOverviewOpen=false;overlay.classList.remove('open')}
+  updateSlide();
+  buildOverview();
+  if(location.hash){const idx=parseInt(location.hash.slice(1))-1;if(idx>=0&&idx<total) go(idx);}
+})();
+</script>
+</body>
+</html>
