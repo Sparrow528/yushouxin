@@ -57,6 +57,37 @@ input[type=file]{display:none}
 .issue .dot.r{background:var(--red)}.issue .dot.y{background:var(--yellow)}.issue .dot.g{background:var(--green)}
 .disclaimer{font-size:11px;color:#AAB3C0;margin-top:20px;line-height:1.6;text-align:center}
 .hidden{display:none}
+
+/* ========== 现实宝石全屏报告 ========== */
+#step3{position:fixed;inset:0;z-index:1000;background:#0a0a0a}
+.presentation{position:relative;width:100%;height:100vh;height:100dvh;overflow:hidden;background:#0f2544;color:#f5f7fa;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+.presentation .slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5vh 7vw;opacity:0;visibility:hidden;transform:translateX(60px);transition:opacity .5s ease,transform .5s ease,visibility 0s .5s;overflow:hidden}
+.presentation .slide.active{opacity:1;visibility:visible;transform:translateX(0);transition:opacity .5s ease,transform .5s ease,visibility 0s 0s}
+.presentation .slide.prev{transform:translateX(-60px)}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#d5a84d,#f0d48a);z-index:1100;transition:width .4s ease}
+.slide-counter{position:fixed;bottom:22px;right:28px;font-size:14px;color:rgba(255,255,255,.4);z-index:1100;font-variant-numeric:tabular-nums}
+.slide-nav{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:1100}
+.slide-nav button{width:40px;height:40px;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);font-size:18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.slide-nav button:hover{background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.4)}
+.slide-nav .btn-close{margin-left:16px;border-color:rgba(213,168,77,.5);color:#d5a84d}
+.slide-nav .btn-close:hover{background:rgba(213,168,77,.15);border-color:#d5a84d}
+
+/* ===== 数据流动动画 ===== */
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:84vw;max-width:900px}
+.mgrid.two{grid-template-columns:repeat(2,1fr);max-width:640px}
+.metric-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:24px;text-align:center;opacity:0;transform:translateY(24px)}
+.slide.active .metric-card{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease}
+.metric-val{font-size:clamp(30px,4.5vw,48px);font-weight:700;font-variant-numeric:tabular-nums}
+.metric-name{font-size:14px;color:#8fa3c4;margin-top:8px}
+.metric-note{font-size:12px;margin-top:6px;opacity:.9}
+.metric-bar{width:100%;height:6px;border-radius:3px;background:rgba(255,255,255,.1);margin-top:12px;overflow:hidden}
+.metric-bar-fill{height:100%;border-radius:3px;width:0;transition:width 1s cubic-bezier(.22,.61,.36,1)}
+.slide-title{opacity:0;transform:translateY(16px)}
+.slide.active .slide-title{opacity:1;transform:translateY(0);transition:opacity .5s ease .1s,transform .5s ease .1s}
+.risk-item{opacity:0;transform:translateX(24px)}
+.slide.active .risk-item{opacity:1;transform:translateX(0);transition:opacity .5s ease,transform .5s ease}
+.verdict-big{opacity:0;transform:scale(.8);font-size:clamp(40px,7vw,76px);font-weight:800;letter-spacing:6px}
+.slide.active .verdict-big{opacity:1;transform:scale(1);transition:opacity .6s ease .3s,transform .6s cubic-bezier(.34,1.56,.64,1) .3s}
 </style>
 </head>
 <body>
@@ -126,19 +157,61 @@ input[type=file]{display:none}
     <button class="btn btn-gold" id="btnAnalyze" style="margin-top:16px">开始体检</button>
   </div>
 
-  <!-- 步骤3：报告 -->
-  <div id="step3" class="card hidden">
-    <h2><span class="n">3</span>体检报告</h2>
-    <div class="score-bar">
-      <div class="score-label">综合评估</div>
-      <div class="verdict" id="verdict"></div>
+  <!-- 步骤3：报告（现实宝石全屏演示稿） -->
+  <div id="step3" class="hidden">
+    <div class="presentation">
+      <div class="progress-bar"></div>
+      <div class="slide-counter"></div>
+
+      <section class="slide cover">
+        <div style="text-align:center;max-width:80vw">
+          <img src="images/logo-gold.png" alt="logo" style="width:100px;margin-bottom:28px">
+          <p style="font-size:14px;color:#C9A960;letter-spacing:4px;margin-bottom:16px">财税健康体检 · 第三季度</p>
+          <h1 style="font-size:clamp(34px,5vw,56px);font-weight:800;line-height:1.25;margin-bottom:20px;background:linear-gradient(135deg,#f0d48a,#d5a84d,#a87e2e);-webkit-background-clip:text;background-clip:text;color:transparent">财税体检报告</h1>
+          <p style="font-size:18px;color:#8fa3c4">您的企业</p>
+        </div>
+      </section>
+
+      <section class="slide metrics">
+        <h2 class="slide-title" style="font-size:clamp(26px,3.5vw,44px);margin-bottom:32px;font-weight:600">盈利能力</h2>
+        <div class="mgrid" id="gridProfit"></div>
+      </section>
+
+      <section class="slide metrics">
+        <h2 class="slide-title" style="font-size:clamp(26px,3.5vw,44px);margin-bottom:32px;font-weight:600">税负水平</h2>
+        <div class="mgrid" id="gridTax"></div>
+      </section>
+
+      <section class="slide metrics">
+        <h2 class="slide-title" style="font-size:clamp(26px,3.5vw,44px);margin-bottom:32px;font-weight:600">偿债能力</h2>
+        <div class="mgrid" id="gridDebt"></div>
+      </section>
+
+      <section class="slide bullets">
+        <h2 class="slide-title" style="font-size:clamp(26px,3.5vw,44px);margin-bottom:32px;font-weight:600">需关注的风险点</h2>
+        <ul class="risk-list" id="riskList" style="list-style:none;display:flex;flex-direction:column;gap:18px;max-width:76vw"></ul>
+      </section>
+
+      <section class="slide">
+        <h2 class="slide-title" style="font-size:clamp(26px,3.5vw,44px);margin-bottom:36px;font-weight:600">体检结论</h2>
+        <div class="verdict-big" id="verdictBig"></div>
+        <div id="verdictDetail" style="font-size:15px;color:#8fa3c4;margin-top:24px;text-align:center"></div>
+      </section>
+
+      <section class="slide ending">
+        <div style="text-align:center">
+          <h2 style="font-size:clamp(30px,5vw,52px);font-weight:800;margin-bottom:20px;background:linear-gradient(135deg,#f0d48a,#d5a84d,#a87e2e);-webkit-background-clip:text;background-clip:text;color:transparent">财税体检 · 一分钟出报告</h2>
+          <p style="font-size:16px;color:#8fa3c4;line-height:1.8">税负率 · 毛利率 · 资产负债率<br>风险点一眼看清</p>
+          <img src="images/logo-gold.png" alt="logo" style="width:80px;margin-top:40px">
+        </div>
+      </section>
+
+      <div class="slide-nav">
+        <button class="nav-prev">←</button>
+        <button class="nav-next">→</button>
+        <button class="btn-close" title="返回">✕</button>
+      </div>
     </div>
-    <div id="metrics"></div>
-    <h2 style="margin-top:20px"><span class="n">!</span>风险点与建议</h2>
-    <div id="issues"></div>
-    <h2 style="margin-top:20px"><span class="n">!</span>本行业常见风险自查</h2>
-    <div id="industryRisks"></div>
-    <div class="disclaimer">⚠️ 本报告为算法估算，不构成专业税务意见。增值税额可能为反推估算值，行业预警值为参考区间。如出现任何风险提示，请务必人工复核原始报表，或咨询专业财税顾问。</div>
   </div>
 </div>
 
@@ -438,63 +511,162 @@ function metricRow(name,val,formula,lv,msg){
 
 // ============ 渲染报告 ============
 function renderReport(metrics,issues){
+  // 按 name 分组
+  const profit = metrics.filter(m => ['毛利率','净利率','期间费用率'].includes(m.name));
+  const tax = metrics.filter(m => ['增值税税负率','所得税税负率'].includes(m.name));
+  const debt = metrics.filter(m => ['资产负债率','流动比率'].includes(m.name));
+  fillGrid('gridProfit', profit, false);
+  fillGrid('gridTax', tax, true);
+  fillGrid('gridDebt', debt, true);
+  fillRisks(issues);
   const badCount=metrics.filter(m=>m.lv==='bad').length;
   const warnCount=metrics.filter(m=>m.lv==='warn').length;
-  const verdict=document.getElementById('verdict');
-  verdict.classList.remove('show');
-  if(badCount===0 && warnCount===0){ verdict.textContent='整体平稳'; verdict.className='verdict good'; }
-  else if(badCount===0){ verdict.textContent='建议关注'; verdict.className='verdict warn'; }
-  else{ verdict.textContent='建议尽快核实'; verdict.className='verdict bad'; }
-  requestAnimationFrame(()=>requestAnimationFrame(()=>verdict.classList.add('show')));
+  const vText = badCount===0 && warnCount===0 ? '整体平稳' : (badCount===0 ? '建议关注' : '建议尽快核实');
+  const vColor = badCount===0 && warnCount===0 ? '#2dd4a7' : (badCount===0 ? '#f5b84b' : '#f0655a');
+  const vb=document.getElementById('verdictBig');
+  if(vb){ vb.textContent=vText; vb.style.color=vColor; }
+  const vd=document.getElementById('verdictDetail');
+  if(vd){
+    const warnTotal=badCount+warnCount;
+    vd.textContent = warnTotal===0 ? '共 '+metrics.length+' 项指标，全部在参考区间内' : '共 '+metrics.length+' 项指标 · '+warnTotal+' 项需关注';
+  }
+  initPresentation();
+}
 
-  const metricsBox=document.getElementById('metrics');
-  metricsBox.innerHTML='';
-  metrics.forEach((m,idx)=>{
+// 量程（进度条 = 值/量程）
+function metricScale(name){
+  const map={'增值税税负率':15,'所得税税负率':5,'毛利率':50,'净利率':30,'期间费用率':25,'资产负债率':100,'流动比率':2};
+  return map[name]||100;
+}
+
+// 填充指标 grid
+function fillGrid(gridId, list, twoCols){
+  const grid=document.getElementById(gridId);
+  if(!grid) return;
+  grid.innerHTML='';
+  if(twoCols) grid.classList.add('two'); else grid.classList.remove('two');
+  list.forEach((m,idx)=>{
+    const color=m.lv==='bad'?'#f0655a':(m.lv==='warn'?'#f5b84b':'#2dd4a7');
+    const noteIcon=m.lv==='bad'?'🔴':(m.lv==='warn'?'🟡':'✅');
+    const noteTxt=m.lv==='bad'?'偏高':(m.lv==='warn'?'预警':'正常');
+    const vm=m.val.match(/^([-+]?\d+(\.\d+)?)(.*)$/);
+    const num=vm?parseFloat(vm[1]):0;
+    const suffix=vm?(vm[3]||''):'';
+    const pctW=Math.min(Math.max(num/metricScale(m.name)*100,3),100).toFixed(0);
     const div=document.createElement('div');
-    div.className='metric';
-    const color=m.lv==='bad'?'var(--red)':(m.lv==='warn'?'var(--yellow)':'var(--green)');
-    const pctW=m.lv==='bad'?100:(m.lv==='warn'?60:30);
+    div.className='metric-card';
+    div.style.transitionDelay=(idx*0.15)+'s';
+    if(m.lv==='bad') div.style.borderColor='rgba(240,101,90,.55)';
+    else if(m.lv==='warn') div.style.borderColor='rgba(245,184,75,.55)';
     div.innerHTML=`
-      <div class="metric-top"><span class="metric-name">${m.name}</span><span class="metric-val" style="color:${color}">--</span></div>
-      <div class="metric-bar"><div class="fill" style="width:0;background:${color}"></div></div>
-      <div class="metric-msg">${m.formula} · ${m.msg}</div>`;
-    metricsBox.appendChild(div);
-    setTimeout(()=>{
-      div.classList.add('show');
-      animateValue(div.querySelector('.metric-val'), m.val);
-      div.querySelector('.fill').style.width=pctW+'%';
-    }, 200+idx*140);
+      <div class="metric-val" style="color:${color}" data-value="${num}" data-decimals="2" data-suffix="${suffix}">0.00</div>
+      <div class="metric-name">${m.name}</div>
+      <div class="metric-bar"><div class="metric-bar-fill" style="background:${color}" data-width="${pctW}%"></div></div>
+      <div class="metric-note" style="color:${color}">${noteIcon} ${noteTxt}</div>`;
+    grid.appendChild(div);
   });
+}
 
-  const issuesBox=document.getElementById('issues');
-  issuesBox.innerHTML='';
+// 填充风险点
+function fillRisks(issues){
+  const ul=document.getElementById('riskList');
+  if(!ul) return;
+  ul.innerHTML='';
   if(issues.length===0){
-    issuesBox.innerHTML='<div class="issue"><div class="dot g"></div><div>未发现明显风险点，各项指标均在参考区间内。</div></div>';
+    const li=document.createElement('li');
+    li.className='risk-item';
+    li.style.cssText='font-size:16px;color:#2dd4a7;display:flex;gap:10px;align-items:flex-start;line-height:1.6';
+    li.innerHTML='<span>✅</span><span>未发现明显风险点，各项指标均在参考区间内。</span>';
+    ul.appendChild(li);
   }else{
-    issues.forEach(i=>{
-      const div=document.createElement('div');
-      div.className='issue';
-      div.innerHTML=`<div class="dot ${i.lv}"></div><div><strong>${i.t}</strong>：${i.m}</div>`;
-      issuesBox.appendChild(div);
+    issues.forEach((i,idx)=>{
+      const color=i.lv==='r'?'#f0655a':'#f5b84b';
+      const icon=i.lv==='r'?'🔴':'🟡';
+      const li=document.createElement('li');
+      li.className='risk-item';
+      li.style.transitionDelay=(idx*0.15)+'s';
+      li.style.cssText='font-size:16px;display:flex;gap:10px;align-items:flex-start;line-height:1.6';
+      li.innerHTML=`<span style="color:${color}">${icon}</span><span><strong style="color:#f5f7fa">${i.t}</strong><br><span style="color:#8fa3c4;font-size:14px">${i.m}</span></span>`;
+      ul.appendChild(li);
     });
   }
-
-  // 行业常见风险提示（引流）
-  const indName=document.getElementById('industry').value;
-  const risks=INDUSTRY_RISKS[indName]||INDUSTRY_RISKS['通用'];
-  const indBox=document.getElementById('industryRisks');
-  indBox.innerHTML='';
-  risks.forEach(r=>{
-    const div=document.createElement('div');
-    div.className='issue';
-    div.innerHTML=`<div class="dot y"></div><div>${r}</div>`;
-    indBox.appendChild(div);
-  });
-  const cta=document.createElement('div');
-  cta.style.cssText='margin-top:12px;padding:12px 16px;background:#FDF3E3;border-radius:8px;font-size:13px;color:#8a6d1a;text-align:center;';
-  cta.textContent='以上是本行业常见的自查点，如有拿不准的，欢迎预约免费一对一诊断';
-  indBox.appendChild(cta);
 }
+
+// ============ 现实宝石翻页引擎 ============
+let presCurrent=0;
+let presTotal=0;
+function initPresentation(){
+  const slides=document.querySelectorAll('#step3 .slide');
+  presTotal=slides.length;
+  presCurrent=0;
+  slides.forEach(s=>{
+    s.querySelectorAll('.metric-val').forEach(el=>{el.textContent='0.00';});
+    s.querySelectorAll('.metric-bar-fill').forEach(el=>{el.style.width='0';});
+  });
+  updatePres();
+}
+function updatePres(){
+  const slides=document.querySelectorAll('#step3 .slide');
+  slides.forEach((s,i)=>{
+    s.classList.remove('active','prev');
+    if(i===presCurrent){s.classList.add('active');animateSlide(s);}
+    else if(i<presCurrent) s.classList.add('prev');
+  });
+  const pb=document.querySelector('#step3 .progress-bar');
+  if(pb) pb.style.width=((presCurrent+1)/presTotal*100)+'%';
+  const sc=document.querySelector('#step3 .slide-counter');
+  if(sc) sc.textContent=(presCurrent+1)+' / '+presTotal;
+}
+function presGo(n){presCurrent=Math.max(0,Math.min(presTotal-1,n));updatePres();}
+function animateSlide(slide){
+  slide.querySelectorAll('.metric-val[data-value]').forEach((el,idx)=>{
+    const target=parseFloat(el.dataset.value);
+    const decimals=parseInt(el.dataset.decimals||'0');
+    const suffix=el.dataset.suffix||'';
+    const delay=idx*120;
+    setTimeout(()=>{
+      const start=performance.now();
+      function step(now){
+        const p=Math.min((now-start)/900,1);
+        const eased=1-Math.pow(1-p,3);
+        el.textContent=(target*eased).toFixed(decimals)+suffix;
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    },delay);
+  });
+  slide.querySelectorAll('.metric-bar-fill[data-width]').forEach((el,idx)=>{
+    setTimeout(()=>{el.style.width=el.dataset.width;},200+idx*120);
+  });
+}
+function closePresentation(){
+  document.getElementById('step3').classList.add('hidden');
+  document.getElementById('step2').classList.remove('hidden');
+}
+// 键盘导航
+document.addEventListener('keydown',function(e){
+  if(document.getElementById('step3').classList.contains('hidden')) return;
+  switch(e.key){
+    case 'ArrowRight':case ' ':case 'PageDown': presGo(presCurrent+1); e.preventDefault(); break;
+    case 'ArrowLeft':case 'PageUp': presGo(presCurrent-1); e.preventDefault(); break;
+    case 'Escape': closePresentation(); e.preventDefault(); break;
+  }
+});
+// 触摸导航
+let presTouchX=0;
+document.addEventListener('touchstart',function(e){
+  if(document.getElementById('step3').classList.contains('hidden')) return;
+  presTouchX=e.touches[0].clientX;
+},{passive:true});
+document.addEventListener('touchend',function(e){
+  if(document.getElementById('step3').classList.contains('hidden')) return;
+  const dx=e.changedTouches[0].clientX-presTouchX;
+  if(Math.abs(dx)>50){dx<0?presGo(presCurrent+1):presGo(presCurrent-1);}
+});
+// 按钮绑定
+document.querySelector('#step3 .nav-prev')?.addEventListener('click',()=>presGo(presCurrent-1));
+document.querySelector('#step3 .nav-next')?.addEventListener('click',()=>presGo(presCurrent+1));
+document.querySelector('#step3 .btn-close')?.addEventListener('click',closePresentation);
 
 // 数字滚动动画
 function animateValue(el, text){
