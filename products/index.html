@@ -18,15 +18,8 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .nav-link{color:#cfd8e6;font-size:13px;text-decoration:none;cursor:pointer;padding:5px 10px;border-radius:6px}
 .nav-link.on{color:#fff;background:rgba(255,255,255,.14)}
 /* 语言选择器 */
-.lang-wrap{position:relative}
-.lang-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:4px}
-.lang-btn::after{content:'▾';font-size:10px}
-.lang-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.15);padding:6px 0;min-width:100px;display:none;z-index:300;direction:ltr}
-.lang-menu.open{display:block}
-.lang-opt{display:block;width:100%;padding:8px 14px;font-size:13px;color:var(--ink);background:none;border:none;text-align:left;cursor:pointer;font-weight:500}
-[dir="rtl"] .lang-opt{text-align:right}
-.lang-opt:hover{background:#f0f2f5}
-.lang-opt.on{color:var(--navy);font-weight:700}
+.lang-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:11px;font-weight:700;padding:4px 9px;border-radius:6px;cursor:pointer;margin-left:2px;transition:.15s}
+.lang-btn:hover,.lang-btn.on{background:var(--gold);color:var(--navy)}
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px 40px}
 /* 首页 hero */
 .hero{padding:96px 20px 36px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center}
@@ -114,15 +107,10 @@ footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
       <a class="nav-link" href="market.html" style="color:inherit;text-decoration:none;" data-i18n="nav_market">市场</a>
       <a class="nav-link" href="services.html" style="color:inherit;text-decoration:none;" data-i18n="nav_services">服务</a>
       <a class="nav-link" href="partners.html" style="color:inherit;text-decoration:none;" data-i18n="nav_partners">合作伙伴</a>
-      <div class="lang-wrap">
-        <button class="lang-btn" id="langBtn">EN</button>
-        <div class="lang-menu" id="langMenu">
-          <button class="lang-opt on" data-lang="zh">中文</button>
-          <button class="lang-opt" data-lang="en">EN</button>
-          <button class="lang-opt" data-lang="fr">FR</button>
-          <button class="lang-opt" data-lang="ar">عربي</button>
-        </div>
-      </div>
+      <button class="lang-btn" onclick="switchLang('zh')">中</button>
+      <button class="lang-btn" onclick="switchLang('en')">EN</button>
+      <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+      <button class="lang-btn" onclick="switchLang('ar')">عر</button>
     </div>
   </div>
 </div>
@@ -206,6 +194,7 @@ const I18N = {
     foot_co:'云桥国际文化交流有限公司 · 会员专属平台', foot:'为会员企业提供产品展示服务',
     by:'由 {name} 提供', view_member:'查看企业介绍',
     member_list_title:'会员企业', back_to_list:'返回列表',
+    label_products:'款产品', label_members:'家会员',
     pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
     pc_clothing:'服装纺织', pc_beauty:'美妆个护', pc_home:'家居日用', pc_food:'食品饮料',
     pc_mom_baby:'母婴用品', pc_electronics:'电子电器', pc_sports:'运动户外', pc_furniture:'家装建材',
@@ -283,37 +272,20 @@ let lang = 'zh';
 function t(k){ return (I18N[lang] && I18N[lang][k]) || I18N.zh[k] || k; }
 
 /* 语言切换 */
-const langBtn = document.getElementById('langBtn');
-const langMenu = document.getElementById('langMenu');
-langBtn.onclick = function(e){
-  e.stopPropagation();
-  langMenu.classList.toggle('open');
-};
-document.addEventListener('click', ()=> langMenu.classList.remove('open'));
-
-document.querySelectorAll('.lang-opt').forEach(opt=>{
-  opt.onclick = function(e){
-    e.stopPropagation();
-    setLang(this.getAttribute('data-lang'));
-    langMenu.classList.remove('open');
-  };
-});
-
-function setLang(newLang){
+function switchLang(newLang){
   lang = newLang;
-  // RTL for Arabic
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
-  // Update button label
-  langBtn.textContent = LANG_LABELS[lang];
-  // Highlight current option
-  document.querySelectorAll('.lang-opt').forEach(o=>{
-    o.classList.toggle('on', o.getAttribute('data-lang') === lang);
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('on', b.textContent.trim() === LANG_LABELS[lang].trim() || (lang==='zh'&&b.textContent.trim()==='中') || (lang==='en'&&b.textContent.trim()==='EN') || (lang==='fr'&&b.textContent.trim()==='FR') || (lang==='ar'&&b.textContent.includes('عر')));
   });
-  // Apply translations
   document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent = t(el.getAttribute('data-i18n')));
   renderTabs(); renderProducts(); renderMHero(); renderFactory(); renderQuality(); renderDesign(); renderCert();
 }
+// Mark initial lang button
+document.querySelectorAll('.lang-btn').forEach(b=>{
+  if((lang==='zh'&&b.textContent.trim()==='中')||(lang==='en'&&b.textContent.trim()==='EN')||(lang==='fr'&&b.textContent.trim()==='FR')||(lang==='ar'&&b.textContent.includes('عر'))) b.classList.add('on');
+});
 
 // ============ 会员 + 产品数据 ============
 const MEMBERS = [
@@ -434,6 +406,8 @@ function loadProducts(){
           /* 兜底中不属于Supabase分类的产品 */
           var remainFb=FALLBACK.filter(function(p){return !sbCats[p.category];});
           allProducts=sbProds.concat(remainFb);
+          /* 每个会员企业产品不超过10个 */
+          var memberCount={};allProducts=allProducts.filter(function(p){memberCount[p.member_id]=(memberCount[p.member_id]||0)+1;return memberCount[p.member_id]<=10;});
           var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
           renderTabs();renderProducts();
         }
@@ -446,9 +420,12 @@ function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.categor
 function renderTabs(){
   var box=document.getElementById('ptabs'); box.innerHTML='';
   getVisibleCats().forEach(function(cat){
+    var prodsInCat=allProducts.filter(function(p){return p.category===cat;});
+    var membersInCat=[];prodsInCat.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
     var el=document.createElement('div');
     el.className='tab'+(cat===curCat?' on':'');
-    el.textContent=t(CAT_I18N[cat]||cat);
+    el.innerHTML='<span>'+t(CAT_I18N[cat]||cat)+'</span><span style="font-size:10px;opacity:.6;margin-left:4px">'+prodsInCat.length+'</span>';
+    el.title=prodsInCat.length+'产品 / '+membersInCat.length+'企业';
     el.onclick=function(){curCat=cat;renderTabs();renderProducts();};
     box.appendChild(el);
   });
@@ -457,7 +434,15 @@ function renderProducts(){
   var grid=document.getElementById('pgrid');
   var prods=allProducts.filter(function(p){return p.category===curCat;});
   if(!prods.length){grid.innerHTML='<div class="loading">'+t('no_products')+'</div>';return;}
-  grid.innerHTML='';
+  /* 分类汇总条 */
+  var membersInCat=[];prods.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
+  var summary='<div style="padding:8px 0 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">';
+  summary+='<span style="font-size:13px;font-weight:700;color:var(--navy)">'+t(CAT_I18N[curCat]||curCat)+'</span>';
+  summary+='<span style="font-size:12px;color:var(--muted)">'+prods.length+' '+t('label_products')+' · '+membersInCat.length+' '+t('label_members')+'</span>';
+  summary+='<span style="font-size:11px;color:var(--gold)">';
+  membersInCat.forEach(function(mid){var m=MEMBERS.find(function(x){return x.id===mid;});if(m)summary+=(m.emoji||'')+' ';});
+  summary+='</span></div>';
+  grid.innerHTML=summary;
   prods.forEach(function(p){
     var m=MEMBERS.find(function(x){return x.id===p.member_id;})||MEMBERS[0];
     var d=document.createElement('div');d.className='card';
