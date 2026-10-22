@@ -523,15 +523,7 @@ function renderProducts(){
  var grid=document.getElementById('pgrid');
  var prods=allProducts.filter(function(p){return p.category===curCat;});
  if(!prods.length){grid.innerHTML='<div class="loading">'+t('no_products')+'</div>';return;}
- /* 分类汇总条 */
- var membersInCat=[];prods.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
- var summary='<div style="padding:8px 0 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">';
- summary+='<span style="font-size:13px;font-weight:700;color:var(--navy)">'+t(CAT_I18N[curCat]||curCat)+'</span>';
- summary+='<span style="font-size:12px;color:var(--muted)">'+prods.length+' '+t('label_products')+' · '+membersInCat.length+' '+t('label_members')+'</span>';
- summary+='<span style="font-size:11px;color:var(--gold)">';
- membersInCat.forEach(function(mid){var m=MEMBERS.find(function(x){return x.id===mid;});if(m)summary+='';});
- summary+='</span></div>';
- grid.innerHTML=summary;
+ grid.innerHTML='';
  prods.forEach(function(p){
   var m=MEMBERS.find(function(x){return x.id===p.member_id;})||MEMBERS[0];
   var d=document.createElement('div');d.className='card';
