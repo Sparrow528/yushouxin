@@ -52,8 +52,8 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .mask.show{display:flex}
 .sheet{background:#fff;width:100%;max-width:760px;border-radius:18px 18px 0 0;padding:0 0 30px;max-height:88vh;overflow-y:auto;animation:up.25s ease}
 @keyframes up{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
-.sheet .big{width:100%;height:280px;background:#E8EDF5}
-.sheet .big img{width:100%;height:100%;object-fit:cover;display:block}
+.sheet .big{width:100%;height:300px;background:#F2F4F8;display:flex;align-items:center;justify-content:center;padding:12px}
+.sheet .big img{max-width:100%;max-height:100%;object-fit:contain;display:block}
 .sheet .pd{padding:16px 20px}
 .sheet h2{font-size:18px;font-weight:800;margin-bottom:4px}
 .sheet .by{font-size:12px;color:var(--muted);margin-bottom:12px}
@@ -141,6 +141,12 @@ footer.co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
  <div class="wrap">
  <button class="back-btn" onclick="showHome()"> <span data-i18n="back">返回产品</span></button>
  <div class="m-hero" id="mHero"></div>
+ <section id="secProducts">
+ <div class="sec-tag">PRODUCTS</div>
+ <div class="sec-title" data-i18n="products_title">产品展示</div>
+ <div class="sec-sub" data-i18n="products_sub">该会员企业的产品</div>
+ <div class="grid" id="mgrid"></div>
+ </section>
  <section id="secFactory">
  <div class="sec-tag" data-i18n="sec_factory_tag">FACTORY</div>
  <div class="sec-title" data-i18n="factory_title">工厂环境</div>
@@ -213,7 +219,7 @@ const I18N = {
  pc_jewelry:'珠宝饰品', pc_stationery:'办公文教', pc_auto:'汽车配件', pc_other:'其他',
  fc_sample:'样品间', fc_warehouse:'仓库', fc_cut:'裁剪车间', fc_sew:'缝纫车间', fc_inspect:'检验包装车间',
  qc1t:'原料检验', qc1d:'', qc2t:'裁剪/印花检验', qc2d:'', qc3t:'生产过程巡检', qc3d:'', qc4t:'成品检验', qc4d:'',
- desc_placeholder:'（产品介绍待补充）', close:'关闭', label_desc:'产品介绍', label_specs:'规格',
+ desc_placeholder:'（产品介绍待补充）', close:'关闭', label_desc:'产品介绍', label_specs:'规格', products_title:'产品展示', products_sub:'该会员企业的产品',
  },
  en: {
  brand:'Yunqiao International', brand_sub:'MEMBERS PLATFORM',
@@ -383,7 +389,7 @@ function getMemberIntro(m){
 }
 
 function showHome(){ document.getElementById('home').style.display='block'; document.getElementById('members').classList.remove('show'); document.getElementById('navHome').classList.add('on'); document.getElementById('navMembers').classList.remove('on'); window.scrollTo(0,0); }
-function showMembers(){ document.getElementById('home').style.display='none'; document.getElementById('members').classList.add('show'); document.getElementById('navMembers').classList.add('on'); document.getElementById('navHome').classList.remove('on'); window.scrollTo(0,0); renderMHero(); renderFactory(); renderQuality(); renderDesign(); renderCert(); }
+function showMembers(){ document.getElementById('home').style.display='none'; document.getElementById('members').classList.add('show'); document.getElementById('navMembers').classList.add('on'); document.getElementById('navHome').classList.remove('on'); window.scrollTo(0,0); renderMHero(); renderMemberProducts(); renderFactory(); renderQuality(); renderDesign(); renderCert(); }
 
 // ============ 产品（Supabase 动态加载）============
 let allProducts = [];
@@ -497,7 +503,7 @@ function openDetail(p, m){
  }
  var desc=p.description?'<div class="lbl">'+t('label_desc')+'</div><div class="desc">'+p.description+'</div>':'<div class="lbl">'+t('label_desc')+'</div><div class="desc" style="color:#999">'+t('desc_placeholder')+'</div>';
  var specs=p.specs?'<div class="lbl">'+t('label_specs')+'</div><div class="specs">'+p.specs+'</div>':'';
- sheet.innerHTML=img+'<div class="pd"><h2>'+p.name+'</h2><div class="by">'+t('by').replace('{name}',getMemberName(m))+' · <a onclick="closeDetail();showMembers();selectedMember=MEMBERS.find(function(x){return x.id===\''+m.id+'\'});renderMHero();renderFactory();renderQuality();renderDesign();renderCert();">'+t('view_member')+'</a></div>'+priceHtml+desc+specs+'</div><button class="close" onclick="closeDetail()">'+t('close')+'</button>';
+ sheet.innerHTML=img+'<div class="pd"><h2>'+p.name+'</h2><div class="by">'+t('by').replace('{name}',getMemberName(m))+' · <a onclick="closeDetail();showMembers();selectedMember=MEMBERS.find(function(x){return x.id===\''+m.id+'\'});renderMHero();renderMemberProducts();renderFactory();renderQuality();renderDesign();renderCert();">'+t('view_member')+'</a></div>'+priceHtml+desc+specs+'</div><button class="close" onclick="closeDetail()">'+t('close')+'</button>';
  document.getElementById('mask').classList.add('show');
  document.body.style.overflow='hidden';
 }
@@ -514,7 +520,7 @@ function renderMHero(){
  const m = selectedMember || MEMBERS[0];
  const mainName = getMemberName(m);
  const subName = lang==='zh' ? m.nameEn : (lang==='en' ? m.name : (lang==='fr' ? (m.nameFr||m.nameEn) : (m.nameAr||m.nameEn)));
- let backBtn = MEMBERS.length>1 ? `<button onclick="selectedMember=null;renderMHero();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;margin-bottom:12px"> ${t('back_to_list')||'返回列表'}</button><br>` : '';
+ let backBtn = MEMBERS.length>1 ? `<button onclick="selectedMember=null;renderMHero();renderMemberProducts();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;margin-bottom:12px"> ${t('back_to_list')||'返回列表'}</button><br>` : '';
  hero.innerHTML = `${backBtn}<div class="logo-zone"></div>
  <h2>${mainName}</h2>
  <div class="en">${lang==='zh' ? m.nameEn : m.name}</div>
@@ -523,13 +529,28 @@ function renderMHero(){
  } else {
  hero.innerHTML = `<h2 style="font-size:22px;font-weight:800;margin-bottom:16px">${t('member_list_title')||'会员企业'}</h2>
  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;text-align:left">
- ${MEMBERS.map(m=>`<div onclick="selectedMember=MEMBERS.find(x=>x.id==='${m.id}');renderMHero();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:18px;cursor:pointer;transition:all.2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,.15)'">
+ ${MEMBERS.map(m=>`<div onclick="selectedMember=MEMBERS.find(x=>x.id==='${m.id}');renderMHero();renderMemberProducts();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:18px;cursor:pointer;transition:all.2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,.15)'">
  <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:4px">${getMemberName(m)}</div>
  <div style="font-size:11px;opacity:.7;margin-bottom:8px">${getMemberCategory(m)}</div>
  <div style="font-size:12px;opacity:.8;line-height:1.5">${getMemberIntro(m).substring(0,80)}…</div>
  </div>`).join('')}
  </div>`;
  }
+}
+function renderMemberProducts(){
+ var m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
+ var grid = document.getElementById('mgrid');
+ if(!m || !grid) return;
+ var prods = allProducts.filter(function(p){ return p.member_id===m.id; });
+ grid.innerHTML = '';
+ if(!prods.length){ grid.innerHTML = '<div class="loading">'+t('no_products')+'</div>'; return; }
+ prods.forEach(function(p){
+  var d=document.createElement('div');d.className='card';
+  d.onclick=function(){ openDetail(p,m); };
+  var priceHtml = (p.price && p.price!=='询价') ? '<div class="price"><span class="rmb">¥</span>'+p.price+'</div>' : '<div class="price" style="font-size:15px">询价</div>';
+  d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+p.name+'"></div><div class="info"><div class="nm">'+p.name+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
+  grid.appendChild(d);
+ });
 }
 const FACTORY = [{n:3,cap:'fc_sample'},{n:2,cap:'fc_warehouse'},{n:2,cap:'fc_cut'},{n:2,cap:'fc_sew'},{n:2,cap:'fc_inspect'}];
 function renderFactory(){
