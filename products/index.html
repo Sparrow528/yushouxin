@@ -203,6 +203,7 @@ const I18N = {
     sec_cert_tag:'证书', cert_title:'认证证书', cert_sub:'通过国际社会责任与商业道德认证',
     foot_co:'云桥国际文化交流有限公司 · 会员专属平台', foot:'为会员企业提供产品展示服务',
     by:'由 {name} 提供', view_member:'查看企业介绍',
+    member_list_title:'会员企业', back_to_list:'返回列表',
     pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
     pc_clothing:'服装纺织', pc_beauty:'美妆个护', pc_home:'家居日用', pc_food:'食品饮料',
     pc_mom_baby:'母婴用品', pc_electronics:'电子电器', pc_sports:'运动户外', pc_furniture:'家装建材',
@@ -223,6 +224,7 @@ const I18N = {
     sec_cert_tag:'CERTIFICATES', cert_title:'Certificates', cert_sub:'BSCI & SMETA certified',
     foot_co:'Yunqiao International Cultural Exchange Co., Ltd. · Members Platform', foot:'Product display service for member enterprises',
     by:'Provided by {name}', view_member:'View Company',
+    member_list_title:'Member Enterprises', back_to_list:'Back to List',
     pc_cosmetic:'Cosmetic Bags', pc_bags:'Bag Products', pc_school:'School Bags', pc_backpack:'Backpacks', pc_woman:'Woman Bags',
     pc_clothing:'Clothing & Textile', pc_beauty:'Beauty & Personal Care', pc_home:'Home & Living', pc_food:'Food & Beverage',
     pc_mom_baby:'Mom & Baby', pc_electronics:'Electronics', pc_sports:'Sports & Outdoor', pc_furniture:'Furniture & Decor',
@@ -243,6 +245,7 @@ const I18N = {
     sec_cert_tag:'CERTIFICATS', cert_title:'Certificats', cert_sub:'Certifié BSCI & SMETA',
     foot_co:'Yunqiao International Culture Exchange Co., Ltd. · Plateforme Membres', foot:'Service de présentation de produits pour les entreprises membres',
     by:'Fourni par {name}', view_member:'Voir l\'Entreprise',
+    member_list_title:'Entreprises Membres', back_to_list:'Retour à la liste',
     pc_cosmetic:'Sacs Cosmétiques', pc_bags:'Sacs', pc_school:'Cartables', pc_backpack:'Sacs à Dos', pc_woman:'Sacs Femme',
     pc_clothing:'Vêtements & Textile', pc_beauty:'Beauté & Soins', pc_home:'Maison & Vie', pc_food:'Alimentation',
     pc_mom_baby:'Maternité & Bébé', pc_electronics:'Électronique', pc_sports:'Sport & Plein Air', pc_furniture:'Meubles & Déco',
@@ -263,6 +266,7 @@ const I18N = {
     sec_cert_tag:'الشهادات', cert_title:'شهادات الاعتماد', cert_sub:'حاصل على شهادات BSCI و SMETA',
     foot_co:'شركة يونتشياو الدولية للتبادل الثقافي · منصة الأعضاء', foot:'خدمة عرض المنتجات للشركات الأعضاء',
     by:'مقدم من {name}', view_member:'عرض الشركة',
+    member_list_title:'الشركات الأعضاء', back_to_list:'العودة إلى القائمة',
     pc_cosmetic:'حقائب مستحضرات', pc_bags:'حقائب', pc_school:'حقائب مدرسية', pc_backpack:'حقائب ظهر', pc_woman:'حقائب نسائية',
     pc_clothing:'ملابس ونسيج', pc_beauty:'تجميل وعناية', pc_home:'منزل ومعيشة', pc_food:'أغذية ومشروبات',
     pc_mom_baby:'أمومة وطفولة', pc_electronics:'إلكترونيات', pc_sports:'رياضة وهواية', pc_furniture:'أثاث وديكور',
@@ -320,6 +324,18 @@ const MEMBERS = [
     introEn:'Established in 2004, 21 years specializing in clothes/bags design, development and production. BSCI & SMETA certified.',
     introFr:'Fondée en 2004, 21 ans de spécialisation en conception/développement de vêtements et sacs. Certifiée BSCI & SMETA.',
     introAr:'تأسست عام 2004، 21 عاماً من التخصص في تصميم وتطوير وإنتاج الملابس والحقائب. حاصلة على شهادات BSCI و SMETA.',
+    hasDetail:true,
+  },
+  {
+    id:'huizhi-guoke', name:'汇智国科船舶智能装备', nameEn:'HUIZHI GUOKE MARINE INTELLIGENT EQUIPMENT',
+    nameFr:'HUIZHI GUOKE ÉQUIPEMENT MARITIME INTELLIGENT', nameAr:'هويتشي قوهكي للمعدات البحرية الذكية',
+    category:'智能装备/水下机器人', categoryEn:'Intelligent Equipment / Underwater Robotics', categoryFr:'Équipement Intelligent / Robotique Sous-marine', categoryAr:'معدات ذكية / روبوتات تحت الماء',
+    emoji:'🤖',
+    intro:'专注模块化智能水下作业机器人（ROV）研发与服务，核心产品集成超声探伤、空化清洗、水质监测三大功能模块。全向矢量推进、AI缺陷识别、100m水深作业能力，服务于航运船舶、海上风电、水利大坝、港口设施等领域，替代高危潜水作业，降本增效40%以上。',
+    introEn:'Specializing in modular intelligent underwater ROV R&D and services. Core product integrates ultrasonic inspection, cavitation cleaning, and water quality monitoring. All-direction vector propulsion, AI defect recognition, 100m depth capability. Serving shipping, offshore wind, dams, and port infrastructure. Replacing dangerous diving operations, reducing costs by 40%+.',
+    introFr:'Spécialisé dans les ROV sous-marins intelligents modulaires. Produit principal intégrant inspection ultrasonique, nettoyage par cavitation et surveillance de la qualité de l\'eau. Propulsion vectorielle omnidirectionnelle, reconnaissance IA des défauts, capacité 100m de profondeur.',
+    introAr:'متخص في تطوير وخدمات الروبوتات المائية الذكية المعيارية. منتج رئيسي يدمج الفحص بالموجات فوق الصوتية والتنظيف بالتكييف ومراقبة جودة المياه. دفع متجهي شامل، تعرف AI على العيوب، عمق 100م.',
+    hasDetail:false,
   }
 ];
 
@@ -426,20 +442,38 @@ function closeDetail(){document.getElementById('mask').classList.remove('show');
 document.getElementById('mask').addEventListener('click',function(e){if(e.target.id==='mask')closeDetail();});
 
 // ============ 会员企业 ============
+let selectedMember = null;
 function renderMHero(){
-  const m = MEMBERS[0];
-  const mainName = getMemberName(m);
-  const subName = lang==='zh' ? m.nameEn : (lang==='en' ? m.name : (lang==='fr' ? (m.nameFr||m.nameEn) : (m.nameAr||m.nameEn)));
-  document.getElementById('mHero').innerHTML = `
-    <div class="logo-zone">${m.emoji}</div>
-    <h2>${mainName}</h2>
-    <div class="en">${lang==='zh' ? m.nameEn : m.name}</div>
-    <div class="cat">${getMemberCategory(m)}</div>
-    <div class="intro">${getMemberIntro(m)}</div>`;
+  const hero = document.getElementById('mHero');
+  if(MEMBERS.length===1 || selectedMember){
+    const m = selectedMember || MEMBERS[0];
+    const mainName = getMemberName(m);
+    const subName = lang==='zh' ? m.nameEn : (lang==='en' ? m.name : (lang==='fr' ? (m.nameFr||m.nameEn) : (m.nameAr||m.nameEn)));
+    let backBtn = MEMBERS.length>1 ? `<button onclick="selectedMember=null;renderMHero();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;margin-bottom:12px">← ${t('back_to_list')||'返回列表'}</button><br>` : '';
+    hero.innerHTML = `${backBtn}<div class="logo-zone">${m.emoji}</div>
+      <h2>${mainName}</h2>
+      <div class="en">${lang==='zh' ? m.nameEn : m.name}</div>
+      <div class="cat">${getMemberCategory(m)}</div>
+      <div class="intro">${getMemberIntro(m)}</div>`;
+  } else {
+    hero.innerHTML = `<h2 style="font-size:22px;font-weight:800;margin-bottom:16px">${t('member_list_title')||'会员企业'}</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;text-align:left">
+        ${MEMBERS.map(m=>`<div onclick="selectedMember=MEMBERS.find(x=>x.id==='${m.id}');renderMHero();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:18px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,.15)'">
+          <div style="font-size:32px;margin-bottom:8px">${m.emoji}</div>
+          <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:4px">${getMemberName(m)}</div>
+          <div style="font-size:11px;opacity:.7;margin-bottom:8px">${getMemberCategory(m)}</div>
+          <div style="font-size:12px;opacity:.8;line-height:1.5">${getMemberIntro(m).substring(0,80)}…</div>
+        </div>`).join('')}
+      </div>`;
+  }
 }
 const FACTORY = [{n:3,cap:'fc_sample'},{n:2,cap:'fc_warehouse'},{n:2,cap:'fc_cut'},{n:2,cap:'fc_sew'},{n:2,cap:'fc_inspect'}];
 function renderFactory(){
+  const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
   const grid = document.getElementById('fgrid');
+  const sec = document.getElementById('secFactory');
+  if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
+  sec.style.display='';
   grid.innerHTML = '';
   let idx = 0;
   FACTORY.forEach(f=>{
@@ -453,6 +487,10 @@ function renderFactory(){
   });
 }
 function renderQuality(){
+  const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
+  const sec = document.getElementById('secQuality');
+  if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
+  sec.style.display='';
   const steps = document.getElementById('qsteps');
   steps.innerHTML = '';
   for(let i=1;i<=4;i++){
@@ -468,6 +506,10 @@ function renderQuality(){
   }
 }
 function renderDesign(){
+  const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
+  const sec = document.getElementById('secDesign');
+  if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
+  sec.style.display='';
   const grid = document.getElementById('dgrid');
   grid.innerHTML = '';
   for(let i=1;i<=26;i++){
@@ -478,6 +520,10 @@ function renderDesign(){
   }
 }
 function renderCert(){
+  const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
+  const sec = document.getElementById('secCert');
+  if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
+  sec.style.display='';
   const grid = document.getElementById('cgrid');
   grid.innerHTML = '';
   for(let i=1;i<=4;i++){
