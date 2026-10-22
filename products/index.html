@@ -380,7 +380,7 @@ const CAT_I18N = {
  cosmetic:'pc_cosmetic', bags:'pc_bags', school:'pc_school', backpack:'pc_backpack', woman:'pc_woman',
  clothing:'pc_clothing', beauty:'pc_beauty', home:'pc_home', food:'pc_food',
  mom_baby:'pc_mom_baby', electronics:'pc_electronics', sports:'pc_sports', furniture:'pc_furniture',
- jewelry:'pc_jewelry', stationery:'pc_stationery', auto:'pc_auto', used_car:'pc_used_car', other:'pc_other'
+ jewelry:'pc_jewelry', stationery:'pc_stationery', auto:'pc_auto', used_car:'pc_used_car', vehicle_service:'pc_vehicle_service', other:'pc_other'
 };
 
 /* 静态兜底：Supabase不可用时用本地图片 */
@@ -413,28 +413,23 @@ function loadProducts(){
  allProducts=sbProds.concat(remainFb);
  /* 每个会员企业产品不超过10个 */
  var memberCount={};allProducts=allProducts.filter(function(p){memberCount[p.member_id]=(memberCount[p.member_id]||0)+1;return memberCount[p.member_id]<=10;});
- var cats=Object.keys(CAT_I18N);if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
+ var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
  renderTabs();renderProducts();
  }
  }
  })
 .catch(function(){ /* 兜底已在上面渲染 */ });
 }
-function getVisibleCats(){ return Object.keys(CAT_I18N); }
+function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.category]=1;}); return Object.keys(s); }
 
 function renderTabs(){
  var box=document.getElementById('ptabs'); box.innerHTML='';
- Object.keys(CAT_I18N).forEach(function(cat){
+ getVisibleCats().forEach(function(cat){
  var prodsInCat=allProducts.filter(function(p){return p.category===cat;});
  var membersInCat=[];prodsInCat.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
  var el=document.createElement('div');
  el.className='tab'+(cat===curCat?' on':'');
- if(prodsInCat.length){
-   el.innerHTML='<span>'+t(CAT_I18N[cat]||cat)+'</span><span style="font-size:10px;opacity:.5;margin-left:4px">'+prodsInCat.length+'</span>';
-   el.title=prodsInCat.length+' / '+membersInCat.length+' ';
- }else{
-   el.innerHTML='<span style="opacity:.4">'+t(CAT_I18N[cat]||cat)+'</span>';
- }
+ el.innerHTML='<span>'+t(CAT_I18N[cat]||cat)+'</span><span style="font-size:10px;opacity:.5;margin-left:4px">'+prodsInCat.length+'</span>';
  el.onclick=function(){curCat=cat;renderTabs();renderProducts();};
  box.appendChild(el);
  });
