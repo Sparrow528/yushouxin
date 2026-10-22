@@ -408,7 +408,7 @@ const CAT_I18N = {
 
 /* 静态兜底：Supabase不可用时用本地图片 */
 var FALLBACK = [];
-[{k:'cosmetic',n:17},{k:'bags',n:6},{k:'school',n:2},{k:'backpack',n:2},{k:'woman',n:2}].forEach(function(c){
+[{k:'cosmetic',n:3},{k:'bags',n:2},{k:'school',n:1},{k:'backpack',n:1},{k:'woman',n:1}].forEach(function(c){
   for(var i=1;i<=c.n;i++) FALLBACK.push({id:1000+FALLBACK.length,name:t(CAT_I18N[c.k]||c.k)+' '+i,category:c.k,price:null,description:'',image:'images/'+c.k+'/'+c.k+i+'.png',specs:'',member_id:'stage-leather'});
 });
 /* 先用兜底数据渲染，Supabase成功后刷新 */
