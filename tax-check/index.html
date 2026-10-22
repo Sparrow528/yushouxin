@@ -530,7 +530,6 @@ function renderReport(metrics,issues){
     const warnTotal=badCount+warnCount;
     vd.textContent = warnTotal===0 ? '共 '+metrics.length+' 项指标，全部在参考区间内' : '共 '+metrics.length+' 项指标 · '+warnTotal+' 项需关注';
   }
-  initPresentation();
 }
 
 // 量程（进度条 = 值/量程）
@@ -691,7 +690,7 @@ function showStep(n){
   document.getElementById('step2').classList.add('hidden');
   document.getElementById('step3').classList.add('hidden');
   document.getElementById('step'+n).classList.remove('hidden');
-  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===3){ initPresentation(); } else { window.scrollTo({top:0,behavior:'smooth'}); }
 }
 </script>
 </body>
