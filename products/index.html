@@ -71,7 +71,6 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
  .nav-inner{padding:8px 12px;gap:6px}
  .brand{font-size:14px}
  .brand .sub{display:none}
- .nav-extra{display:none}
  .nav-link{padding:5px 8px;font-size:12px}
  .lang-btn{padding:3px 6px;font-size:10px;margin-left:1px}
  .hero{padding:108px 16px 24px}
@@ -460,7 +459,7 @@ function loadProducts(){
 
  /* 再尝试从 Supabase 加载真实产品，与兜底合并 */
  var controller = new AbortController();
- var timer = setTimeout(function(){ controller.abort(); }, 6000);
+ var timer = setTimeout(function(){ controller.abort(); }, 12000);
  fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_HEADERS,signal:controller.signal})
 .then(function(r){ clearTimeout(timer); if(!r.ok) throw new Error(); return r.json(); })
 .then(function(d){
