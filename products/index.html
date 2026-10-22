@@ -413,24 +413,28 @@ function loadProducts(){
  allProducts=sbProds.concat(remainFb);
  /* 每个会员企业产品不超过10个 */
  var memberCount={};allProducts=allProducts.filter(function(p){memberCount[p.member_id]=(memberCount[p.member_id]||0)+1;return memberCount[p.member_id]<=10;});
- var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
+ var cats=Object.keys(CAT_I18N);if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
  renderTabs();renderProducts();
  }
  }
  })
 .catch(function(){ /* 兜底已在上面渲染 */ });
 }
-function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.category]=1;}); return Object.keys(s); }
+function getVisibleCats(){ return Object.keys(CAT_I18N); }
 
 function renderTabs(){
  var box=document.getElementById('ptabs'); box.innerHTML='';
- getVisibleCats().forEach(function(cat){
+ Object.keys(CAT_I18N).forEach(function(cat){
  var prodsInCat=allProducts.filter(function(p){return p.category===cat;});
  var membersInCat=[];prodsInCat.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
  var el=document.createElement('div');
  el.className='tab'+(cat===curCat?' on':'');
- el.innerHTML='<span>'+t(CAT_I18N[cat]||cat)+'</span><span style="font-size:10px;opacity:.6;margin-left:4px">'+prodsInCat.length+'</span>';
- el.title=prodsInCat.length+'产品 / '+membersInCat.length+'企业';
+ if(prodsInCat.length){
+   el.innerHTML='<span>'+t(CAT_I18N[cat]||cat)+'</span><span style="font-size:10px;opacity:.5;margin-left:4px">'+prodsInCat.length+'</span>';
+   el.title=prodsInCat.length+' / '+membersInCat.length+' ';
+ }else{
+   el.innerHTML='<span style="opacity:.4">'+t(CAT_I18N[cat]||cat)+'</span>';
+ }
  el.onclick=function(){curCat=cat;renderTabs();renderProducts();};
  box.appendChild(el);
  });
