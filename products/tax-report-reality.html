@@ -43,10 +43,25 @@
 @media(max-width:768px){.slide{padding:4vh 5vw}.slide-nav button{width:32px;height:32px;font-size:14px}.slide-overview .thumb{width:120px;height:68px}}
 @media(max-width:480px){.slide{padding:3vh 4vw}.slide-nav{bottom:12px}.slide-counter{bottom:12px;right:16px;font-size:12px}}
 @media print{.presentation{height:auto;overflow:visible;background:#fff}.slide{position:relative;opacity:1;visibility:visible;transform:none;page-break-after:always;padding:20px 30px;border-bottom:1px solid #eee;min-height:100vh}.progress-bar,.slide-nav,.slide-counter,.speaker-notes,.slide-overview{display:none!important}}
-.metric-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center}
-.metric-val{font-size:clamp(36px,5vw,56px);font-weight:700}
+
+/* ===== 数据流动动画 ===== */
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;opacity:0;transform:translateY(24px)}
+.slide.active .metric-card{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease}
+.metric-val{font-size:clamp(36px,5vw,56px);font-weight:700;font-variant-numeric:tabular-nums}
 .metric-name{font-size:var(--small-size);color:var(--muted);margin-top:8px}
 .metric-note{font-size:13px;margin-top:6px;opacity:.9}
+/* 量程进度条 */
+.metric-bar{width:100%;height:6px;border-radius:3px;background:rgba(255,255,255,.1);margin-top:14px;overflow:hidden}
+.metric-bar-fill{height:100%;border-radius:3px;width:0;transition:width 1s cubic-bezier(.22,.61,.36,1)}
+/* 标题动画 */
+.slide-title{opacity:0;transform:translateY(16px)}
+.slide.active .slide-title{opacity:1;transform:translateY(0);transition:opacity .5s ease .1s,transform .5s ease .1s}
+/* 风险条目动画 */
+.risk-item{opacity:0;transform:translateX(24px)}
+.slide.active .risk-item{opacity:1;transform:translateX(0);transition:opacity .5s ease,transform .5s ease}
+/* 结论大字动画 */
+.verdict-big{opacity:0;transform:scale(.8)}
+.slide.active .verdict-big{opacity:1;transform:scale(1);transition:opacity .6s ease .3s,transform .6s cubic-bezier(.34,1.56,.64,1) .3s}
 </style>
 </head>
 <body>
@@ -54,6 +69,7 @@
   <div class="progress-bar"></div>
   <div class="slide-counter"></div>
 
+  <!-- 1 封面 -->
   <section class="slide cover" id="slide-1">
     <div style="text-align:center;max-width:80vw">
       <p style="font-size:var(--small-size);color:var(--accent);letter-spacing:4px;margin-bottom:16px">财税健康体检 · 2025 第三季度</p>
@@ -63,49 +79,55 @@
     </div>
   </section>
 
+  <!-- 2 盈利能力 -->
   <section class="slide metrics" id="slide-2">
-    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">盈利能力</h2>
+    <h2 class="slide-title" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">盈利能力</h2>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:80vw;max-width:1000px">
-      <div class="metric-card"><div class="metric-val" style="color:var(--good)">28.44%</div><div class="metric-name">毛利率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
-      <div class="metric-card"><div class="metric-val" style="color:var(--good)">15.73%</div><div class="metric-name">净利率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
-      <div class="metric-card"><div class="metric-val" style="color:var(--good)">6.27%</div><div class="metric-name">期间费用率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+      <div class="metric-card" style="transition-delay:.15s"><div class="metric-val" style="color:var(--good)" data-value="28.44" data-decimals="2">0.00</div><div class="metric-name">毛利率</div><div class="metric-bar"><div class="metric-bar-fill" style="background:var(--good)" data-width="57%"></div></div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+      <div class="metric-card" style="transition-delay:.3s"><div class="metric-val" style="color:var(--good)" data-value="15.73" data-decimals="2">0.00</div><div class="metric-name">净利率</div><div class="metric-bar"><div class="metric-bar-fill" style="background:var(--good)" data-width="52%"></div></div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+      <div class="metric-card" style="transition-delay:.45s"><div class="metric-val" style="color:var(--good)" data-value="6.27" data-decimals="2">0.00</div><div class="metric-name">期间费用率</div><div class="metric-bar"><div class="metric-bar-fill" style="background:var(--good)" data-width="25%"></div></div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
     </div>
   </section>
 
+  <!-- 3 税负水平 -->
   <section class="slide metrics" id="slide-3">
-    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">税负水平</h2>
+    <h2 class="slide-title" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">税负水平</h2>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;width:80vw;max-width:800px">
-      <div class="metric-card" style="border-color:var(--bad)"><div class="metric-val" style="color:var(--bad)">8.59%</div><div class="metric-name">增值税税负率（估算）</div><div class="metric-note" style="color:var(--bad)">🔴 偏高 · 建议核实</div></div>
-      <div class="metric-card"><div class="metric-val" style="color:var(--good)">2.58%</div><div class="metric-name">所得税税负率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+      <div class="metric-card" style="transition-delay:.15s;border-color:var(--bad)"><div class="metric-val" style="color:var(--bad)" data-value="8.59" data-decimals="2">0.00</div><div class="metric-name">增值税税负率（估算）</div><div class="metric-bar"><div class="metric-bar-fill" style="background:var(--bad)" data-width="57%"></div></div><div class="metric-note" style="color:var(--bad)">🔴 偏高 · 建议核实</div></div>
+      <div class="metric-card" style="transition-delay:.3s"><div class="metric-val" style="color:var(--good)" data-value="2.58" data-decimals="2">0.00</div><div class="metric-name">所得税税负率</div><div class="metric-bar"><div class="metric-bar-fill" style="background:var(--good)" data-width="52%"></div></div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
     </div>
   </section>
 
+  <!-- 4 偿债能力 -->
   <section class="slide metrics" id="slide-4">
-    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">偿债能力</h2>
+    <h2 class="slide-title" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">偿债能力</h2>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;width:80vw;max-width:800px">
-      <div class="metric-card" style="border-color:var(--warn)"><div class="metric-val" style="color:var(--warn)">62.80%</div><div class="metric-name">资产负债率</div><div class="metric-note" style="color:var(--warn)">🟡 预警区间</div></div>
-      <div class="metric-card"><div class="metric-val" style="color:var(--good)">1.08</div><div class="metric-name">流动比率</div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
+      <div class="metric-card" style="transition-delay:.15s;border-color:var(--warn)"><div class="metric-val" style="color:var(--warn)" data-value="62.80" data-decimals="2">0.00</div><div class="metric-name">资产负债率</div><div class="metric-bar"><div class="metric-bar-fill" style="background:var(--warn)" data-width="63%"></div></div><div class="metric-note" style="color:var(--warn)">🟡 预警区间</div></div>
+      <div class="metric-card" style="transition-delay:.3s"><div class="metric-val" style="color:var(--good)" data-value="1.08" data-decimals="2">0.00</div><div class="metric-name">流动比率</div><div class="metric-bar"><div class="metric-bar-fill" style="background:var(--good)" data-width="54%"></div></div><div class="metric-note" style="color:var(--good)">✅ 正常</div></div>
     </div>
   </section>
 
+  <!-- 5 风险点 -->
   <section class="slide bullets" id="slide-5">
-    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">需关注的风险点</h2>
+    <h2 class="slide-title" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">需关注的风险点</h2>
     <ul style="list-style:none;display:flex;flex-direction:column;gap:20px;max-width:70vw">
-      <li style="font-size:var(--body-size);display:flex;align-items:flex-start;gap:12px"><span style="color:var(--bad);font-size:24px">▲</span><span>增值税税负率 8.59% 偏高 —— 反推估算值，建议核对申报表</span></li>
-      <li style="font-size:var(--body-size);display:flex;align-items:flex-start;gap:12px"><span style="color:var(--warn);font-size:24px">▲</span><span>资产负债率 62.80% 预警 —— 高于 60% 参考线，关注偿债压力</span></li>
+      <li class="risk-item" style="font-size:var(--body-size);display:flex;align-items:flex-start;gap:12px;transition-delay:.15s"><span style="color:var(--bad);font-size:24px">▲</span><span>增值税税负率 8.59% 偏高 —— 反推估算值，建议核对申报表</span></li>
+      <li class="risk-item" style="font-size:var(--body-size);display:flex;align-items:flex-start;gap:12px;transition-delay:.3s"><span style="color:var(--warn);font-size:24px">▲</span><span>资产负债率 62.80% 预警 —— 高于 60% 参考线，关注偿债压力</span></li>
     </ul>
     <div style="margin-top:40px;font-size:var(--small-size);color:var(--muted);max-width:70vw;line-height:1.8">制造业自查：研发费用加计扣除用足了吗？存货跌价、报废损失做税前扣除了吗？固定资产加速折旧政策用了吗？</div>
   </section>
 
+  <!-- 6 结论 -->
   <section class="slide comparison" id="slide-6">
-    <h2 style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">体检结论</h2>
+    <h2 class="slide-title" style="font-size:clamp(28px,3.5vw,48px);margin-bottom:40px;font-weight:600">体检结论</h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;width:80vw;max-width:900px">
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px"><h3 style="color:var(--good);margin-bottom:16px">✅ 5 项平稳</h3><ul style="font-size:var(--small-size);color:var(--muted);line-height:2.2"><li>所得税税负率 2.58%</li><li>毛利率 28.44%</li><li>净利率 15.73%</li><li>期间费用率 6.27%</li><li>流动比率 1.08</li></ul></div>
-      <div style="background:var(--card);border:2px solid var(--warn);border-radius:16px;padding:32px;box-shadow:0 0 30px rgba(245,184,75,.15)"><h3 style="color:var(--warn);margin-bottom:16px">⚠ 2 项需关注</h3><ul style="font-size:var(--small-size);color:var(--muted);line-height:2.2"><li>增值税税负率 8.59%（偏高）</li><li>资产负债率 62.80%（预警）</li></ul></div>
+      <div class="metric-card" style="transition-delay:.15s"><h3 style="color:var(--good);margin-bottom:16px">✅ 5 项平稳</h3><ul style="font-size:var(--small-size);color:var(--muted);line-height:2.2"><li>所得税税负率 2.58%</li><li>毛利率 28.44%</li><li>净利率 15.73%</li><li>期间费用率 6.27%</li><li>流动比率 1.08</li></ul></div>
+      <div class="metric-card" style="transition-delay:.3s;border:2px solid var(--warn);box-shadow:0 0 30px rgba(245,184,75,.15)"><h3 style="color:var(--warn);margin-bottom:16px">⚠ 2 项需关注</h3><ul style="font-size:var(--small-size);color:var(--muted);line-height:2.2"><li>增值税税负率 8.59%（偏高）</li><li>资产负债率 62.80%（预警）</li></ul></div>
     </div>
-    <div style="margin-top:36px;font-size:clamp(40px,6vw,72px);font-weight:800;color:var(--warn);letter-spacing:6px">建议关注</div>
+    <div class="verdict-big" style="margin-top:36px;font-size:clamp(40px,6vw,72px);font-weight:800;color:var(--warn);letter-spacing:6px">建议关注</div>
   </section>
 
+  <!-- 7 结束 -->
   <section class="slide ending" id="slide-end">
     <div style="text-align:center">
       <h2 style="font-size:var(--title-size);font-weight:700;margin-bottom:24px;background:linear-gradient(135deg,#f0d48a,#d5a84d,#a87e2e);-webkit-background-clip:text;background-clip:text;color:transparent">财税体检 · 一分钟出报告</h2>
@@ -140,10 +162,38 @@
   const notesPanel = document.querySelector('.speaker-notes');
   const overview = document.querySelector('.slide-overview');
   const overlay = document.querySelector('.slide-overlay') || document.body;
+
+  /* ===== 数据流动动画：数字 count-up + 进度条填充 ===== */
+  function animateSlide(slide){
+    // 数字从 0 滚动到目标值
+    slide.querySelectorAll('.metric-val[data-value]').forEach((el, idx) => {
+      const target = parseFloat(el.dataset.value);
+      const decimals = parseInt(el.dataset.decimals || '0');
+      const delay = idx * 120; // 卡片间错开
+      const dur = 900;
+      setTimeout(() => {
+        const start = performance.now();
+        function step(now){
+          const p = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = (target * eased).toFixed(decimals);
+          if(p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }, delay);
+    });
+    // 进度条从 0 填充到目标宽度
+    slide.querySelectorAll('.metric-bar-fill[data-width]').forEach((el, idx) => {
+      setTimeout(() => {
+        el.style.width = el.dataset.width;
+      }, 200 + idx * 120);
+    });
+  }
+
   function updateSlide(){
     slides.forEach((s,i) => {
       s.classList.remove('active','prev');
-      if(i === current) s.classList.add('active');
+      if(i === current){ s.classList.add('active'); animateSlide(s); }
       else if(i < current) s.classList.add('prev');
     });
     if(progressBar) progressBar.style.width = ((current+1)/total*100)+'%';
