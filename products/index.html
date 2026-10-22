@@ -67,15 +67,15 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
  .layout{flex-direction:column}
  .sidebar{width:100%;position:static;max-height:none;box-shadow:none}
  .cat-group-items{display:grid;grid-template-columns:1fr 1fr;gap:4px}
- /* 移动端导航优化 */
- .nav-inner{height:48px;padding:0 12px}
- .brand{font-size:13px}
+ /* 移动端导航：两行布局（平台名 + 选项卡和语言） */
+ .nav-inner{flex-direction:column;height:auto;padding:8px 12px;gap:6px}
+ .brand{font-size:14px;text-align:center}
  .brand .sub{display:none}
  .nav-extra{display:none}
- .nav-right{gap:4px}
- .nav-link{padding:5px 6px;font-size:12px}
+ .nav-right{justify-content:center;gap:4px;flex-wrap:wrap}
+ .nav-link{padding:5px 8px;font-size:12px}
  .lang-btn{padding:3px 6px;font-size:10px;margin-left:1px}
- .hero{padding:72px 16px 24px}
+ .hero{padding:96px 16px 24px}
  .hero h1{font-size:19px}
 }
 /* 产品详情弹窗 */
