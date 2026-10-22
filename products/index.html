@@ -240,7 +240,7 @@ const I18N = {
  label_products:'款产品', label_members:'家会员',
  pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
  pc_clothing:'服装纺织', pc_beauty:'美妆个护', pc_home:'家居日用', pc_food:'食品饮料',
- pc_mom_baby:'母婴用品', pc_electronics:'电子电器', pc_sports:'运动户外', pc_furniture:'家装建材',
+ pc_mom_baby:'母婴用品', pc_electronics:'电子电器', pc_phone_acc:'手机配件', pc_sports:'运动户外', pc_furniture:'家装建材',
  pc_jewelry:'珠宝饰品', pc_stationery:'办公文教', pc_auto:'汽车配件', pc_used_car:'二手车', pc_vehicle_service:'二手车服务', pc_other:'其他',
  fc_sample:'样品间', fc_warehouse:'仓库', fc_cut:'裁剪车间', fc_sew:'缝纫车间', fc_inspect:'检验包装车间',
  qc1t:'原料检验', qc1d:'', qc2t:'裁剪/印花检验', qc2d:'', qc3t:'生产过程巡检', qc3d:'', qc4t:'成品检验', qc4d:'',
@@ -261,7 +261,7 @@ const I18N = {
  member_list_title:'Member Enterprises', back_to_list:'Back to List',
  pc_cosmetic:'Cosmetic Bags', pc_bags:'Bag Products', pc_school:'School Bags', pc_backpack:'Backpacks', pc_woman:'Woman Bags',
  pc_clothing:'Clothing & Textile', pc_beauty:'Beauty & Personal Care', pc_home:'Home & Living', pc_food:'Food & Beverage',
- pc_mom_baby:'Mom & Baby', pc_electronics:'Electronics', pc_sports:'Sports & Outdoor', pc_furniture:'Furniture & Decor',
+ pc_mom_baby:'Mom & Baby', pc_electronics:'Electronics', pc_phone_acc:'Phone Accessories', pc_sports:'Sports & Outdoor', pc_furniture:'Furniture & Decor',
  pc_jewelry:'Jewelry & Accessories', pc_stationery:'Office & Stationery', pc_auto:'Auto Parts', pc_used_car:'Used Cars', pc_vehicle_service:'Vehicle Services', pc_other:'Other',
  fc_sample:'Sample Room', fc_warehouse:'Warehouse', fc_cut:'Cut Workshop', fc_sew:'Sewing Workshop', fc_inspect:'Inspect & Package Workshop',
  qc1t:'Raw material inspection', qc1d:'', qc2t:'Cut / print part inspection', qc2d:'', qc3t:'Patrol inspection', qc3d:'', qc4t:'Final inspection', qc4d:'',
@@ -282,7 +282,7 @@ const I18N = {
  member_list_title:'Entreprises Membres', back_to_list:'Retour à la liste',
  pc_cosmetic:'Sacs Cosmétiques', pc_bags:'Sacs', pc_school:'Cartables', pc_backpack:'Sacs à Dos', pc_woman:'Sacs Femme',
  pc_clothing:'Vêtements & Textile', pc_beauty:'Beauté & Soins', pc_home:'Maison & Vie', pc_food:'Alimentation',
- pc_mom_baby:'Maternité & Bébé', pc_electronics:'Électronique', pc_sports:'Sport & Plein Air', pc_furniture:'Meubles & Déco',
+ pc_mom_baby:'Maternité & Bébé', pc_electronics:'Électronique', pc_phone_acc:'Accessoires Téléphone', pc_sports:'Sport & Plein Air', pc_furniture:'Meubles & Déco',
  pc_jewelry:'Bijoux & Accessoires', pc_stationery:'Bureau & Papeterie', pc_auto:'Pièces Auto', pc_used_car:'Voitures d\'Occasion', pc_vehicle_service:'Services Véhicules', pc_other:'Autres',
  fc_sample:'Salle d\'Échantillons', fc_warehouse:'Entrepôt', fc_cut:'Atelier de Coupe', fc_sew:'Atelier de Couture', fc_inspect:'Atelier d\'Inspection',
  qc1t:'Inspection matière première', qc1d:'', qc2t:'Inspection coupe/impression', qc2d:'', qc3t:'Inspection en cours', qc3d:'', qc4t:'Inspection finale', qc4d:'',
@@ -303,7 +303,7 @@ const I18N = {
  member_list_title:'الشركات الأعضاء', back_to_list:'العودة إلى القائمة',
  pc_cosmetic:'حقائب مستحضرات', pc_bags:'حقائب', pc_school:'حقائب مدرسية', pc_backpack:'حقائب ظهر', pc_woman:'حقائب نسائية',
  pc_clothing:'ملابس ونسيج', pc_beauty:'تجميل وعناية', pc_home:'منزل ومعيشة', pc_food:'أغذية ومشروبات',
- pc_mom_baby:'أمومة وطفولة', pc_electronics:'إلكترونيات', pc_sports:'رياضة وهواية', pc_furniture:'أثاث وديكور',
+ pc_mom_baby:'أمومة وطفولة', pc_electronics:'إلكترونيات', pc_phone_acc:'إكسسوارات الهاتف', pc_sports:'رياضة وهواية', pc_furniture:'أثاث وديكور',
  pc_jewelry:'مجوهرات وإكسسوارات', pc_stationery:'مكتبية وقرطاسية', pc_auto:'قطع سيارات', pc_used_car:'سيارات مستعملة', pc_vehicle_service:'خدمات المركبات', pc_other:'أخرى',
  fc_sample:'غرفة العينات', fc_warehouse:'المستودع', fc_cut:'ورشة القص', fc_sew:'ورشة الخياطة', fc_inspect:'ورشة التفتيش والتغليف',
  qc1t:'تفتيش المواد الخام', qc1d:'', qc2t:'تفتيش القص/الطباعة', qc2d:'', qc3t:'تفتيش دوري', qc3d:'', qc4t:'تفتيش نهائي', qc4d:'',
@@ -432,7 +432,7 @@ let curCat = '';
 const CAT_I18N = {
  cosmetic:'pc_cosmetic', bags:'pc_bags', school:'pc_school', backpack:'pc_backpack', woman:'pc_woman',
  clothing:'pc_clothing', beauty:'pc_beauty', home:'pc_home', food:'pc_food',
- mom_baby:'pc_mom_baby', electronics:'pc_electronics', sports:'pc_sports', furniture:'pc_furniture',
+ mom_baby:'pc_mom_baby', electronics:'pc_electronics', phone_acc:'pc_phone_acc', sports:'pc_sports', furniture:'pc_furniture',
  jewelry:'pc_jewelry', stationery:'pc_stationery', auto:'pc_auto', used_car:'pc_used_car', vehicle_service:'pc_vehicle_service', other:'pc_other'
 };
 
@@ -492,7 +492,7 @@ function renderTabs(){ renderSidebar(); }
 // 大类分组（侧边栏）
 const CATEGORY_GROUPS = [
  { key:'bags', label:'箱包', cats:['cosmetic','bags','school','backpack','woman'] },
- { key:'electronics', label:'电子电器', cats:['electronics'] },
+ { key:'electronics', label:'电子电器', cats:['electronics','phone_acc'] },
  { key:'auto', label:'汽车', cats:['auto','used_car','vehicle_service'] },
  { key:'home', label:'家居生活', cats:['home','food','mom_baby'] },
  { key:'fashion', label:'服饰美妆', cats:['clothing','beauty','jewelry'] },
