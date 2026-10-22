@@ -67,6 +67,16 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
  .layout{flex-direction:column}
  .sidebar{width:100%;position:static;max-height:none;box-shadow:none}
  .cat-group-items{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+ /* 移动端导航优化 */
+ .nav-inner{height:48px;padding:0 12px}
+ .brand{font-size:13px}
+ .brand .sub{display:none}
+ .nav-extra{display:none}
+ .nav-right{gap:4px}
+ .nav-link{padding:5px 6px;font-size:12px}
+ .lang-btn{padding:3px 6px;font-size:10px;margin-left:1px}
+ .hero{padding:72px 16px 24px}
+ .hero h1{font-size:19px}
 }
 /* 产品详情弹窗 */
 .mask{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:flex-end;justify-content:center}
@@ -132,9 +142,9 @@ footer.co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
  <div class="nav-right">
  <span class="nav-link on" id="navHome" onclick="showHome()" data-i18n="nav_products">产品</span>
  <span class="nav-link" id="navMembers" onclick="showMembers()" data-i18n="nav_members">会员企业</span>
- <a class="nav-link" href="market.html" style="color:inherit;text-decoration:none;" data-i18n="nav_market">市场</a>
- <a class="nav-link" href="services.html" style="color:inherit;text-decoration:none;" data-i18n="nav_services">服务</a>
- <a class="nav-link" href="partners.html" style="color:inherit;text-decoration:none;" data-i18n="nav_partners">合作伙伴</a>
+ <a class="nav-link nav-extra" href="market.html" style="color:inherit;text-decoration:none;" data-i18n="nav_market">市场</a>
+ <a class="nav-link nav-extra" href="services.html" style="color:inherit;text-decoration:none;" data-i18n="nav_services">服务</a>
+ <a class="nav-link nav-extra" href="partners.html" style="color:inherit;text-decoration:none;" data-i18n="nav_partners">合作伙伴</a>
  <button class="lang-btn" onclick="switchLang('zh')">中</button>
  <button class="lang-btn" onclick="switchLang('en')">EN</button>
  <button class="lang-btn" onclick="switchLang('fr')">FR</button>
