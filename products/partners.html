@@ -10,12 +10,12 @@
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 /* Nav */
 nav{background:linear-gradient(135deg,var(--primary),var(--accent));padding:12px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.15)}
-nav .logo{color:#fff;font-size:20px;font-weight:700;letter-spacing:1px}
-nav .links{display:flex;gap:16px;align-items:center}
+nav.logo{color:#fff;font-size:20px;font-weight:700;letter-spacing:1px}
+nav.links{display:flex;gap:16px;align-items:center}
 nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;transition:.2s}
 nav a:hover{color:#fff}
-nav .lang-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px;transition:.2s}
-nav .lang-btn:hover,.lang-btn.active{background:rgba(255,255,255,.3)}
+nav.lang-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px;transition:.2s}
+nav.lang-btn:hover,.lang-btn.active{background:rgba(255,255,255,.3)}
 /* Hero */
 .hero{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 50%,#1a8a5e 100%);color:#fff;padding:60px 24px;text-align:center}
 .hero h1{font-size:36px;margin-bottom:12px;letter-spacing:2px}
@@ -32,12 +32,12 @@ nav .lang-btn:hover,.lang-btn.active{background:rgba(255,255,255,.3)}
 /* Grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;padding:24px;max-width:1200px;margin:0 auto}
 /* Card */
-.card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;cursor:pointer;border:1px solid var(--border)}
+.card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform.2s,box-shadow.2s;cursor:pointer;border:1px solid var(--border)}
 .card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
 .card-icon{height:80px;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,rgba(26,82,118,.06),rgba(46,134,193,.06))}
 .card-body{padding:16px}
 .card-body h3{font-size:16px;margin-bottom:6px;color:var(--primary)}
-.card-body .tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;background:rgba(46,134,193,.1);color:var(--accent);margin-bottom:8px}
+.card-body.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;background:rgba(46,134,193,.1);color:var(--accent);margin-bottom:8px}
 .card-body p{font-size:13px;color:var(--light);line-height:1.5}
 .card-tags{padding:0 16px 12px;display:flex;flex-wrap:wrap;gap:4px}
 .card-tags span{padding:2px 6px;border-radius:8px;font-size:10px;background:rgba(212,160,23,.08);color:var(--gold)}
@@ -46,9 +46,9 @@ nav .lang-btn:hover,.lang-btn.active{background:rgba(255,255,255,.3)}
 .modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:var(--radius);max-width:700px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative}
 .modal-header{padding:24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px}
-.modal-header .m-icon{font-size:48px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:rgba(46,134,193,.08);border-radius:12px}
+.modal-header.m-icon{font-size:48px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:rgba(46,134,193,.08);border-radius:12px}
 .modal-header h2{font-size:20px;color:var(--primary)}
-.modal-header .m-tag{font-size:12px;color:var(--accent)}
+.modal-header.m-tag{font-size:12px;color:var(--accent)}
 .modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,.06);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}
 .modal-close:hover{background:rgba(0,0,0,.12)}
 .modal-body{padding:24px}
@@ -64,221 +64,221 @@ nav .lang-btn:hover,.lang-btn.active{background:rgba(255,255,255,.3)}
 footer{background:var(--primary);color:rgba(255,255,255,.7);padding:24px;text-align:center;font-size:12px}
 footer a{color:rgba(255,255,255,.9);text-decoration:none}
 /* RTL */
-[dir="rtl"] nav .links{direction:ltr}
-[dir="rtl"] .tabs{direction:ltr}
+[dir="rtl"] nav.links{direction:ltr}
+[dir="rtl"].tabs{direction:ltr}
 /* Responsive */
 @media(max-width:640px){
-  .hero h1{font-size:24px}
-  .stats{gap:20px;flex-wrap:wrap}
-  .stat-num{font-size:24px}
-  .grid{grid-template-columns:1fr}
-  nav .links{gap:8px}
+.hero h1{font-size:24px}
+.stats{gap:20px;flex-wrap:wrap}
+.stat-num{font-size:24px}
+.grid{grid-template-columns:1fr}
+ nav.links{gap:8px}
 }
 </style>
 </head>
 <body>
 <nav>
-  <div class="logo">云桥国际</div>
-  <div class="links">
-    <a href="index.html" data-i18n="nav_products">产品</a>
-    <a href="market.html" data-i18n="nav_market">市场</a>
-    <a href="services.html" data-i18n="nav_services">服务</a>
-    <a href="partners.html" data-i18n="nav_partners" style="color:#fff;font-weight:600">合作伙伴</a>
-    <button class="lang-btn" onclick="switchLang('zh')">中</button>
-    <button class="lang-btn" onclick="switchLang('en')">EN</button>
-    <button class="lang-btn" onclick="switchLang('fr')">FR</button>
-    <button class="lang-btn" onclick="switchLang('ar')">عر</button>
-  </div>
+ <div class="logo">云桥国际</div>
+ <div class="links">
+ <a href="index.html" data-i18n="nav_products">产品</a>
+ <a href="market.html" data-i18n="nav_market">市场</a>
+ <a href="services.html" data-i18n="nav_services">服务</a>
+ <a href="partners.html" data-i18n="nav_partners" style="color:#fff;font-weight:600">合作伙伴</a>
+ <button class="lang-btn" onclick="switchLang('zh')">中</button>
+ <button class="lang-btn" onclick="switchLang('en')">EN</button>
+ <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+ <button class="lang-btn" onclick="switchLang('ar')">عر</button>
+ </div>
 </nav>
 
 <div class="hero">
-  <h1 data-i18n="partners_title">核心合作伙伴</h1>
-  <p data-i18n="partners_subtitle">云桥国际精选行业顶尖服务商，为会员企业提供从认证检测到物流仓储的全链条服务保障</p>
+ <h1 data-i18n="partners_title">核心合作伙伴</h1>
+ <p data-i18n="partners_subtitle">云桥国际精选行业顶尖服务商，为会员企业提供从认证检测到物流仓储的全链条服务保障</p>
 </div>
 
 <div class="stats">
-  <div style="text-align:center"><div class="stat-num" id="statPartners">0</div><div class="stat-label" data-i18n="stat_partners">合作伙伴</div></div>
-  <div style="text-align:center"><div class="stat-num" id="statCats">0</div><div class="stat-label" data-i18n="stat_categories">服务领域</div></div>
-  <div style="text-align:center"><div class="stat-num" id="statCountries">0</div><div class="stat-label" data-i18n="stat_countries_covered">覆盖国家</div></div>
+ <div style="text-align:center"><div class="stat-num" id="statPartners">0</div><div class="stat-label" data-i18n="stat_partners">合作伙伴</div></div>
+ <div style="text-align:center"><div class="stat-num" id="statCats">0</div><div class="stat-label" data-i18n="stat_categories">服务领域</div></div>
+ <div style="text-align:center"><div class="stat-num" id="statCountries">0</div><div class="stat-label" data-i18n="stat_countries_covered">覆盖国家</div></div>
 </div>
 
 <div class="tabs" id="tabs"></div>
 <div class="grid" id="grid"></div>
 
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-header" id="modalHeader"></div>
-    <div class="modal-body" id="modalBody"></div>
-  </div>
+ <div class="modal" id="modal">
+ <button class="modal-close" onclick="closeModal()"></button>
+ <div class="modal-header" id="modalHeader"></div>
+ <div class="modal-body" id="modalBody"></div>
+ </div>
 </div>
 
 <footer>
-  <p>© 2026 云桥国际 Yunqiao International &nbsp;|&nbsp; <a href="index.html" data-i18n="back_home">返回首页</a></p>
+ <p>© 2026 云桥国际 Yunqiao International &nbsp;|&nbsp; <a href="index.html" data-i18n="back_home">返回首页</a></p>
 </footer>
 
 <script>
 // ============ i18n ============
 var lang = localStorage.getItem('yq_lang') || 'zh';
 var I18N = {
-  zh:{
-    nav_products:'产品',nav_market:'市场',nav_partners:'合作伙伴', nav_services:'服务',
-    partners_title:'核心合作伙伴',partners_subtitle:'云桥国际精选行业顶尖服务商，为会员企业提供从认证检测到物流仓储的全链条服务保障',
-    stat_partners:'合作伙伴',stat_categories:'服务领域',stat_countries_covered:'覆盖国家',
-    cat_all:'全部',cat_cert:'认证检测',cat_logistics:'物流仓储',cat_finance:'金融保险',cat_legal:'法律合规',cat_digital:'数字营销',cat_exhibition:'展会服务',cat_translate:'翻译本地化',
-    view_detail:'查看详情',close:'关闭',
-    back_home:'返回首页'
-  },
-  en:{
-    nav_products:'Products',nav_market:'Market',nav_partners:'Partners', nav_services:'Services',
-    partners_title:'Core Partners',partners_subtitle:'Yunqiao International selects top-tier service providers to support member enterprises with end-to-end services from certification to logistics',
-    stat_partners:'Partners',stat_categories:'Service Areas',stat_countries_covered:'Countries Covered',
-    cat_all:'All',cat_cert:'Certification & Testing',cat_logistics:'Logistics & Warehousing',cat_finance:'Finance & Insurance',cat_legal:'Legal & Compliance',cat_digital:'Digital Marketing',cat_exhibition:'Exhibition',cat_translate:'Translation & Localization',
-    view_detail:'View Details',close:'Close',
-    back_home:'Home'
-  },
-  fr:{
-    nav_products:'Produits',nav_market:'Marché',nav_partners:'Partenaires', nav_services:'Services',
-    partners_title:'Partenaires Clés',partners_subtitle:'Yunqiao International sélectionne les meilleurs prestataires pour offrir aux entreprises membres des services de bout en bout',
-    stat_partners:'Partenaires',stat_categories:'Domaines',stat_countries_covered:'Pays couverts',
-    cat_all:'Tous',cat_cert:'Certification',cat_logistics:'Logistique',cat_finance:'Finance',cat_legal:'Juridique',cat_digital:'Marketing digital',cat_exhibition:'Expositions',cat_translate:'Traduction',
-    view_detail:'Détails',close:'Fermer',
-    back_home:'Accueil'
-  },
-  ar:{
-    nav_products:'منتجات',nav_market:'سوق',nav_partners:'شركاء',
-    partners_title:'الشركاء الأساسيون',partners_subtitle:'يونتشياو الدولية تختار أفضل مقدمي الخدمات لدعم الشركات الأعضاء',
-    stat_partners:'شركاء',stat_categories:'مجالات',stat_countries_covered:'دول مغطاة',
-    cat_all:'الكل',cat_cert:'شهادات',cat_logistics:'لوجستية',cat_finance:'مالية',cat_legal:'قانوني',cat_digital:'تسويق رقمي',cat_exhibition:'معارض',cat_translate:'ترجمة',
-    view_detail:'تفاصيل',close:'إغلاق',
-    back_home:'الرئيسية'
-  }
+ zh:{
+ nav_products:'产品',nav_market:'市场',nav_partners:'合作伙伴', nav_services:'服务',
+ partners_title:'核心合作伙伴',partners_subtitle:'云桥国际精选行业顶尖服务商，为会员企业提供从认证检测到物流仓储的全链条服务保障',
+ stat_partners:'合作伙伴',stat_categories:'服务领域',stat_countries_covered:'覆盖国家',
+ cat_all:'全部',cat_cert:'认证检测',cat_logistics:'物流仓储',cat_finance:'金融保险',cat_legal:'法律合规',cat_digital:'数字营销',cat_exhibition:'展会服务',cat_translate:'翻译本地化',
+ view_detail:'查看详情',close:'关闭',
+ back_home:'返回首页'
+ },
+ en:{
+ nav_products:'Products',nav_market:'Market',nav_partners:'Partners', nav_services:'Services',
+ partners_title:'Core Partners',partners_subtitle:'Yunqiao International selects top-tier service providers to support member enterprises with end-to-end services from certification to logistics',
+ stat_partners:'Partners',stat_categories:'Service Areas',stat_countries_covered:'Countries Covered',
+ cat_all:'All',cat_cert:'Certification & Testing',cat_logistics:'Logistics & Warehousing',cat_finance:'Finance & Insurance',cat_legal:'Legal & Compliance',cat_digital:'Digital Marketing',cat_exhibition:'Exhibition',cat_translate:'Translation & Localization',
+ view_detail:'View Details',close:'Close',
+ back_home:'Home'
+ },
+ fr:{
+ nav_products:'Produits',nav_market:'Marché',nav_partners:'Partenaires', nav_services:'Services',
+ partners_title:'Partenaires Clés',partners_subtitle:'Yunqiao International sélectionne les meilleurs prestataires pour offrir aux entreprises membres des services de bout en bout',
+ stat_partners:'Partenaires',stat_categories:'Domaines',stat_countries_covered:'Pays couverts',
+ cat_all:'Tous',cat_cert:'Certification',cat_logistics:'Logistique',cat_finance:'Finance',cat_legal:'Juridique',cat_digital:'Marketing digital',cat_exhibition:'Expositions',cat_translate:'Traduction',
+ view_detail:'Détails',close:'Fermer',
+ back_home:'Accueil'
+ },
+ ar:{
+ nav_products:'منتجات',nav_market:'سوق',nav_partners:'شركاء',
+ partners_title:'الشركاء الأساسيون',partners_subtitle:'يونتشياو الدولية تختار أفضل مقدمي الخدمات لدعم الشركات الأعضاء',
+ stat_partners:'شركاء',stat_categories:'مجالات',stat_countries_covered:'دول مغطاة',
+ cat_all:'الكل',cat_cert:'شهادات',cat_logistics:'لوجستية',cat_finance:'مالية',cat_legal:'قانوني',cat_digital:'تسويق رقمي',cat_exhibition:'معارض',cat_translate:'ترجمة',
+ view_detail:'تفاصيل',close:'إغلاق',
+ back_home:'الرئيسية'
+ }
 };
 function t(k){return (I18N[lang]||I18N.zh)[k]||k}
 
 // ============ Partners Data ============
 var PARTNERS = [
-  {
-    id:'yuxinshou', icon:'💼', category:'legal',
-    name:{zh:'宇守信财税咨询',en:'Yuxinshou Tax Consulting',fr:'Yuxinshou Conseil Fiscal',ar:'يوشينشو للاستشارات الضريبية'},
-    tagline:{zh:'云桥国际核心合作伙伴 · 出海财税双向服务',en:'Core Partner of Yunqiao · Bi-directional Tax Services',fr:'Partenaire clé de Yunqiao · Services fiscaux bidirectionnels',ar:'شريك أساسي ليونتشياو · خدمات ضريبية ثنائية'},
-    tags:['出海财税','ODI备案','FDI架构','跨境合规','18年实战'],
-    countries:50,
-    desc:{zh:'宇守信财税咨询是云桥国际的核心合作伙伴，提供出海财税双向服务——帮中国企业走出去，也帮外国企业走进来。18年财税实战经验，北京乾坤生会计师事务所创始人。四条业务线覆盖产品出海、资本出海(ODI)、产品入华、资本入华(FDI)的全周期服务。',en:'Yuxinshou Tax Consulting is the core partner of Yunqiao International, providing bi-directional tax services — helping Chinese companies go out and foreign companies come in. 18 years of practice, founder of Beijing Qiankunsheng CPA. Four business lines: product export, ODI, product import, FDI.',fr:'Yuxinshou est le partenaire clé de Yunqiao, fournissant des services fiscaux bidirectionnels. 18 ans d'expérience, fondateur de Qiankunsheng CPA.',ar:'يوشينشو شريك أساسي ليونتشياو، تقدم خدمات ضريبية ثنائية الاتجاه. 18 عاماً من الخبرة.'},
-    capabilities:[{n:'18年',l:'实战经验'},{n:'4条',l:'业务线'},{n:'2国',l:'税制打通'},{n:'双向',l:'服务模型'}],
-    services:{zh:['产品出海：目标国关税/税收/合规评估','资本出海(ODI)：备案+架构+落地+合规','产品入华：中国关税/税收/合规评估','资本入华(FDI)：架构+设立+合规','读懂两国税制/设计最优架构/打通两国合规/对接政府资源'],en:['Product Export: target country tax/compliance assessment','Capital Outbound (ODI): filing+structure+landing+compliance','Product Import: China tax/compliance assessment','Capital Inbound (FDI): structure+setup+compliance','Read two tax systems / Design optimal structure / Bridge compliance / Connect government']},
-    why:{zh:'云桥国际财税服务核心提供方，18年实战根基，"同一套财税能力双向复用"的独特模型，别人只做单边，我们做双边。',en:'Core tax service provider for Yunqiao. 18 years foundation. Unique bi-directional model — others do one side, we do both.'}
-  },
-  {
-    id:'sgs', icon:'🔬', category:'cert',
-    name:{zh:'SGS通标标准',en:'SGS',fr:'SGS',ar:'SGS'},
-    tagline:{zh:'全球领先的检测认证机构',en:'Global leader in inspection & certification',fr:'Leader mondial en inspection et certification',ar:'رائد عالمي في التفتيش والشهادات'},
-    tags:['ISO 9001','ISO 14001','CE','FCC','RoHS'],
-    countries:140,
-    desc:{zh:'SGS是全球最大的检测、鉴定、测试和认证机构，创建于1878年，总部位于瑞士日内瓦。在全球140多个国家拥有2,600多个分支机构和96,000多名员工。服务覆盖农产食品、消费品、生命科学、工业制造等多个领域。',en:'SGS is the world\'s leading inspection, verification, testing and certification company, founded in 1878, headquartered in Geneva. Operations in 140+ countries with 96,000+ employees.',fr:'SGS est le leader mondial de l\'inspection, de la vérification, des essais et de la certification, fondé en 1878.',ar:'SGS هي الشركة الرائدة عالمياً في التفتيش والتحقق والاختبار والشهادات.'},
-    capabilities:[{n:'140+',l:'覆盖国家'},{n:'96,000+',l:'员工'},{n:'2,600+',l:'分支机构'},{n:'1878',l:'创立年份'}],
-    services:{zh:['产品检测与认证（CE/FCC/RoHS/REACH）','体系认证（ISO 9001/14001/45001/22000）','供应链审核与验货','食品安全检测','环境监测与碳排放验证'],en:['Product testing & certification (CE/FCC/RoHS/REACH)','System certification (ISO 9001/14001/45001/22000)','Supply chain audit & inspection','Food safety testing','Environmental monitoring & carbon verification']},
-    why:{zh:'云桥会员通过SGS可获得出口目标市场准入认证、国际买家信任背书、供应链合规审查，有效降低贸易壁垒。',en:'Members gain market access certification, international buyer trust, and supply chain compliance through SGS.'}
-  },
-  {
-    id:'tuv', icon:'🛡️', category:'cert',
-    name:{zh:'TÜV莱茵',en:'TÜV Rheinland',fr:'TÜV Rheinland',ar:'TÜV راينلاند'},
-    tagline:{zh:'德国权威技术检验机构',en:'Authoritative German technical inspection body',fr:'Organisme allemand d\'inspection technique',ar:'هئة تفتيش فنية ألمانية'},
-    tags:['CE','CB','GS','EMC'],
-    countries:70,
-    desc:{zh:'TÜV莱茵集团是德国最大的技术检验机构，成立于1872年。在全球70个国家设有分支机构，拥有20,000+员工。尤其在工业产品、汽车、医疗器械认证领域享有极高声誉。',en:'TÜV Rheinland is Germany\'s largest technical inspection body, founded in 1872. Branches in 70 countries, 20,000+ employees. Highly reputed in industrial, automotive, and medical device certification.',fr:'TÜV Rheinland est le plus grand organisme d\'inspection technique d\'Allemagne, fondé en 1872.',ar:'TÜV راينلاند هي أكبر هيئة تفتيش فنية في ألمانيا.'},
-    capabilities:[{n:'70',l:'国家'},{n:'20,000+',l:'员工'},{n:'1872',l:'创立'},{n:'150+',l:'年经验'}],
-    services:{zh:['产品安全认证（CE/CB/GS）','电磁兼容性（EMC）测试','汽车功能安全（ISO 26262）','医疗器械（MDR/IVDR）','光伏与储能系统认证'],en:['Product safety certification (CE/CB/GS)','EMC testing','Automotive functional safety (ISO 26262)','Medical devices (MDR/IVDR)','PV & energy storage certification']},
-    why:{zh:'德系品质背书，欧洲市场准入首选认证伙伴，尤其在汽车和工业品领域具有无可替代的权威性。',en:'German quality endorsement, preferred for EU market access, especially authoritative in automotive and industrial products.'}
-  },
-  {
-    id:'cosco', icon:'🚢', category:'logistics',
-    name:{zh:'中远海运',en:'COSCO Shipping',fr:'COSCO Shipping',ar:'كوسكو للشحن'},
-    tagline:{zh:'全球最大的综合航运企业',en:'World\'s largest integrated shipping enterprise',fr:'Plus grande entreprise maritime intégrée au monde',ar:'أكبر شركة شحن متكاملة في العالم'},
-    tags:['集装箱','散货','仓储','供应链'],
-    countries:160,
-    desc:{zh:'中远海运集团是全球最大的综合航运企业集团，拥有综合运力1.13亿载重吨/1407艘船舶，集装箱运力全球第一。在全球160个国家和地区的396个港口均有投资与运营，旗下码头吞吐量全球第一。',en:'COSCO Shipping is the world\'s largest integrated shipping group with 113M DWT capacity and 1,407 vessels. Container capacity ranks #1 globally. Operations in 160 countries/396 ports.',fr:'COSCO Shipping est le plus grand groupe maritime intégré au monde.',ar:'كوسكو للشحن هي أكبر مجموعة شحن متكاملة في العالم.'},
-    capabilities:[{n:'1.13亿',l:'载重吨'},{n:'1,407',l:'船舶'},{n:'#1',l:'集装箱运力'},{n:'160',l:'国家'}],
-    services:{zh:['集装箱海运（全球航线覆盖）','散货/件杂货运输','仓储与配送服务','供应链解决方案','项目物流与特种运输'],en:['Container shipping (global coverage)','Bulk/break-bulk transport','Warehousing & distribution','Supply chain solutions','Project logistics & special transport']},
-    why:{zh:'央企背景+全球最大运力，云桥会员可享优先舱位保障、大客户运价、门到门一体化物流方案。',en:'SOE background + largest capacity. Members get priority space, corporate rates, and door-to-door integrated logistics.'}
-  },
-  {
-    id:'sinotrans', icon:'📦', category:'logistics',
-    name:{zh:'中外运',en:'Sinotrans',fr:'Sinotrans',ar:'سينوترانس'},
-    tagline:{zh:'中国最大的综合物流服务商',en:'China\'s largest integrated logistics provider',fr:'Plus grand prestataire logistique intégré de Chine',ar:'أكبر مزود لوجستيات متكامل في الصين'},
-    tags:['国际快递','空运','跨境电商物流','关务'],
-    countries:100,
-    desc:{zh:'中外运是中国最大的综合物流服务供应商，为中国物流集团核心成员。业务覆盖国际快递、空运海运、公路铁路、仓储配送、跨境电商物流等全链路。在中欧班列、RCEP区域物流具有突出优势。',en:'Sinotrans is China\'s largest integrated logistics provider, core member of China Logistics Group. Covers express, air/ocean, road/rail, warehousing, and e-commerce logistics.',fr:'Sinotrans est le plus grand prestataire logistique intégré de Chine.',ar:'سينوترانس هي أكبر مزود لوجستيات متكامل في الصين.'},
-    capabilities:[{n:'100+',l:'国家'},{n:'7,000+',l:'网点'},{n:'中欧班列',l:'优势线路'},{n:'RCEP',l:'区域覆盖'}],
-    services:{zh:['国际快递与空运','中欧班列铁路物流','跨境电商一站式物流','关务咨询与代理','仓储管理与区域配送'],en:['International express & air freight','China-Europe railway (CRE)','Cross-border e-commerce logistics','Customs consulting & agency','Warehousing & regional distribution']},
-    why:{zh:'中欧班列+RCEP区域优势，为会员企业"一带一路"沿线和RCEP市场提供最具性价比的物流通道。',en:'China-Europe railway + RCEP advantage, providing most cost-effective logistics for Belt & Road and RCEP markets.'}
-  },
-  {
-    id:'picc', icon:'🏦', category:'finance',
-    name:{zh:'中国人保PICC',en:'PICC',fr:'PICC',ar:'بيك'},
-    tagline:{zh:'新中国保险业奠基者',en:'Founding pillar of China\'s insurance industry',fr:'Pilier fondateur de l\'assurance chinoise',ar:'ركن تأسيسي لصناعة التأمين الصينية'},
-    tags:['出口信用险','货运险','财产险','责任险'],
-    countries:80,
-    desc:{zh:'中国人保是中国历史最悠久的保险公司，成立于1949年。出口信用保险为出口企业保驾护航，覆盖买方违约、政治风险、汇率波动等核心风险。2024年承保金额超7,500亿美元。',en:'PICC is China\'s oldest insurance company, founded in 1949. Export credit insurance covers buyer default, political risk, and FX fluctuations. 2024 coverage exceeded $750B.',fr:'PICC est la plus ancienne compagnie d\'assurance de Chine, fondée en 1949.',ar:'بيك هي أقدم شركة تأمين في الصين.'},
-    capabilities:[{n:'7,500亿$',l:'年承保额'},{n:'1949',l:'创立'},{n:'80+',l:'国家覆盖'},{n:'#1',l:'国内市场'}],
-    services:{zh:['出口信用保险（短期/中长期）','国际货运保险','海外投资保险','产品责任险','汇率风险对冲'],en:['Export credit insurance (short/long-term)','International cargo insurance','Overseas investment insurance','Product liability insurance','FX risk hedging']},
-    why:{zh:'出口信用险是外贸企业最核心的风险管理工具，云桥会员可享绿色通道+团体费率优惠。',en:'Export credit insurance is the core risk management tool for foreign trade. Members enjoy fast-track and group rate discounts.'}
-  },
-  {
-    id:'allianz', icon:'🛡️', category:'finance',
-    name:{zh:'安联保险',en:'Allianz',fr:'Allianz',ar:'أليانز'},
-    tagline:{zh:'全球最大保险与资产管理集团',en:'World\'s largest insurance & asset management group',fr:'Plus grand groupe d\'assurance et de gestion d\'actifs',ar:'أكبر مجموعة تأمين وإدارة أصول'},
-    tags:['货运险','责任险','工程险','资管'],
-    countries:70,
-    desc:{zh:'安联集团是全球最大的保险和资产管理集团之一，成立于1890年，总部德国慕尼黑。在全球70多个国家开展业务，服务1.22亿客户。连续多年位列Interbrand全球最佳品牌百强。',en:'Allianz is one of the world\'s largest insurance and asset management groups, founded in 1890, Munich. Operations in 70+ countries, 122M customers.',fr:'Allianz est l\'un des plus grands groupes d\'assurance au monde, fondé en 1890.',ar:'أليانز هي واحدة من أكبر مجموعات التأمين في العالم.'},
-    capabilities:[{n:'70+',l:'国家'},{n:'1.22亿',l:'客户'},{n:'1890',l:'创立'},{n:'AAA',l:'评级'}],
-    services:{zh:['国际货物运输保险','商业综合责任险','工程与建筑险','跨国企业员工福利','贸易信用保险'],en:['International cargo transport insurance','Commercial general liability','Engineering & construction insurance','Cross-border employee benefits','Trade credit insurance']},
-    why:{zh:'欧洲市场首选保险伙伴，信用评级AAA，为会员企业开拓欧美市场提供最可靠的风险保障。',en:'Preferred insurance partner for EU market. AAA rating provides the most reliable risk protection for members entering Western markets.'}
-  },
-  {
-    id:'junhe', icon:'⚖️', category:'legal',
-    name:{zh:'君合律师事务所',en:'JunHe Law Offices',fr:'JunHe',ar:'جون هي'},
-    tagline:{zh:'中国领先的全方位律师事务所',en:'China\'s leading full-service law firm',fr:'Cabinet d\'avocats leader en Chine',ar:'مكتب محاماة رائد في الصين'},
-    tags:['跨境投资','合规','知识产权','争议解决'],
-    countries:20,
-    desc:{zh:'君合律师事务所成立于1989年，是中国最早的合伙制律师事务所之一。在跨境投资、国际贸易、合规审查、知识产权保护领域具有突出优势，连续多年获Chambers亚太第一等评级。',en:'JunHe Law Offices, founded in 1989, is one of China\'s earliest partnership law firms. Leading in cross-border investment, trade, compliance, and IP. Chambers Band 1 rated.',fr:'JunHe, fondé en 1989, est l\'un des premiers cabinets d\'avocats chinois.',ar:'جون هي، تأسست عام 1989، واحدة من أقدم مكاتب المحاماة في الصين.'},
-    capabilities:[{n:'Band 1',l:'Chambers评级'},{n:'1989',l:'创立'},{n:'500+',l:'律师'},{n:'20+',l:'关联办公室'}],
-    services:{zh:['跨境投资与并购法律顾问','国际贸易与WTO合规','海外知识产权保护','国际仲裁与争议解决','出口管制与制裁合规'],en:['Cross-border M&A legal advisory','International trade & WTO compliance','Overseas IP protection','International arbitration','Export control & sanctions compliance']},
-    why:{zh:'Band 1级律所背书，为会员企业出海提供全周期法律保障——从尽调、合规到争议解决。',en:'Band 1 firm provides full-cycle legal protection for members going overseas — from due diligence to dispute resolution.'}
-  },
-  {
-    id:'alibaba', icon:'🌐', category:'digital',
-    name:{zh:'阿里巴巴国际站',en:'Alibaba.com',fr:'Alibaba.com',ar:'علي بابا'},
-    tagline:{zh:'全球最大的B2B跨境电商平台',en:'World\'s largest B2B cross-border e-commerce platform',fr:'Plus grande plateforme B2B transfrontalière',ar:'أكبر منصة تجارة إلكترونية B2B عابرة للحدود'},
-    tags:['B2B','跨境电商','信保','数字化'],
-    countries:200,
-    desc:{zh:'阿里巴巴国际站是全球领先的B2B跨境电商平台，连接超2亿买家和20万+供应商。提供从建站、获客、信保交易到履约的全链路数字化外贸解决方案。2024财年GMV超700亿美元。',en:'Alibaba.com is the global B2B e-commerce platform connecting 200M+ buyers and 200K+ suppliers. Full-stack digital foreign trade solution. FY2024 GMV exceeded $70B.',fr:'Alibaba.com est la plateforme B2B mondiale connectant plus de 200M acheteurs.',ar:'علي بابا هي منصة B2B عالمية تربط أكثر من 200 مليون مشترٍ.'},
-    capabilities:[{n:'2亿+',l:'全球买家'},{n:'20万+',l:'供应商'},{n:'700亿$',l:'年GMV'},{n:'200+',l:'国家'}],
-    services:{zh:['B2B店铺建站与运营','全球买家精准匹配','信保订单与在线交易','数字化履约与物流','数据银行与市场洞察'],en:['B2B storefront setup & operation','Global buyer matching','Trade Assurance orders','Digital fulfillment & logistics','Data bank & market insights']},
-    why:{zh:'全球最大B2B流量池，云桥会员可享专属建站服务+流量扶持+信保交易保障，快速触达海外买家。',en:'World\'s largest B2B traffic pool. Members enjoy dedicated setup, traffic support, and Trade Assurance for quick overseas buyer access.'}
-  },
-  {
-    id:'canton', icon:'🏛️', category:'exhibition',
-    name:{zh:'广交会',en:'Canton Fair',fr:'Foire de Canton',ar:'معرض كانتون'},
-    tagline:{zh:'中国第一展 · 全球贸易盛会',en:'China\'s No.1 Exhibition · Global Trade Event',fr:'Exposition N°1 de Chine',ar:'معرض الصين الأول'},
-    tags:['综合展','采购商对接','线上线下','品牌展'],
-    countries:210,
-    desc:{zh:'中国进出口商品交易会（广交会）创办于1957年，是中国历史最长、规模最大、商品最全的综合性国际贸易盛会。每届吸引超25万境外采购商、2.5万家参展企业，成交额超300亿美元。',en:'China Import and Export Fair (Canton Fair), founded in 1957, is China\'s longest-running, largest comprehensive trade event. 250K+ overseas buyers, 25K exhibitors, $30B+ deals per session.',fr:'Foire de Canton, fondée en 1957, le plus grand événement commercial de Chine.',ar:'معرض كانتون، تأسس عام 1957، أكبر حدث تجاري في الصين.'},
-    capabilities:[{n:'25万+',l:'境外采购商'},{n:'2.5万',l:'参展企业'},{n:'300亿$',l:'成交额'},{n:'1957',l:'创办'}],
-    services:{zh:['展位申请与布展服务','采购商精准对接','线上线下融合参展','品牌展区优先推荐','展会数据与客户追踪'],en:['Booth application & setup','Buyer matching','O2O hybrid exhibition','Brand zone priority','Exhibition data & lead tracking']},
-    why:{zh:'全球最大采购商流量入口，云桥会员可享展位推荐+布展支持+采购商对接，事半功倍拿订单。',en:'Largest global buyer traffic entry. Members enjoy booth priority, setup support, and buyer matching for efficient order acquisition.'}
-  },
-  {
-    id:'transl', icon:'🌍', category:'translate',
-    name:{zh:'传神语联',en:'Transn',fr:'Transn',ar:'ترانس إن'},
-    tagline:{zh:'AI+人工的智能翻译服务商',en:'AI + Human intelligent translation provider',fr:'Traduction intelligente IA + Humain',ar:'مزود ترجمة ذكي بالذكاء الاصطناعي'},
-    tags:['多语种','AI翻译','本地化','外贸'],
-    countries:30,
-    desc:{zh:'传神语联是国内领先的AI+人工智能翻译服务商，支持80+语种、覆盖200+语言对。在跨境电商、外贸合同、技术文档翻译领域拥有丰富经验，独创"人机共译"模式确保质量与效率兼顾。',en:'Transn is a leading AI+human translation provider, supporting 80+ languages and 200+ language pairs. Rich experience in cross-border e-commerce, trade contracts, and technical documentation.',fr:'Transn est un leader de la traduction IA+humain, supportant 80+ langues.',ar:'ترانس إن مزود رائد للترجمة بالذكاء الاصطناعي والبشر.'},
-    capabilities:[{n:'80+',l:'语种'},{n:'200+',l:'语言对'},{n:'人机共译',l:'模式'},{n:'99%+',l:'客户满意度'}],
-    services:{zh:['产品目录多语翻译','外贸合同与单证翻译','技术文档与说明书','网站/App本地化','展会同声传译'],en:['Product catalog multilingual translation','Trade contract & document translation','Technical docs & manuals','Website/App localization','Exhibition simultaneous interpretation']},
-    why:{zh:'AI降本+人工保质的"人机共译"模式，为会员企业提供最具性价比的多语内容解决方案。',en:'AI cost-reduction + human quality "co-translation" model provides the most cost-effective multilingual content solution.'}
-  }
+ {
+ id:'yuxinshou', icon:'', category:'legal',
+ name:{zh:'宇守信财税咨询',en:'Yuxinshou Tax Consulting',fr:'Yuxinshou Conseil Fiscal',ar:'يوشينشو للاستشارات الضريبية'},
+ tagline:{zh:'云桥国际核心合作伙伴 · 出海财税双向服务',en:'Core Partner of Yunqiao · Bi-directional Tax Services',fr:'Partenaire clé de Yunqiao · Services fiscaux bidirectionnels',ar:'شريك أساسي ليونتشياو · خدمات ضريبية ثنائية'},
+ tags:['出海财税','ODI备案','FDI架构','跨境合规','18年实战'],
+ countries:50,
+ desc:{zh:'宇守信财税咨询是云桥国际的核心合作伙伴，提供出海财税双向服务——帮中国企业走出去，也帮外国企业走进来。18年财税实战经验，北京乾坤生会计师事务所创始人。四条业务线覆盖产品出海、资本出海(ODI)、产品入华、资本入华(FDI)的全周期服务。',en:'Yuxinshou Tax Consulting is the core partner of Yunqiao International, providing bi-directional tax services — helping Chinese companies go out and foreign companies come in. 18 years of practice, founder of Beijing Qiankunsheng CPA. Four business lines: product export, ODI, product import, FDI.',fr:'Yuxinshou est le partenaire clé de Yunqiao, fournissant des services fiscaux bidirectionnels. 18 ans d'expérience, fondateur de Qiankunsheng CPA.',ar:'يوشينشو شريك أساسي ليونتشياو، تقدم خدمات ضريبية ثنائية الاتجاه. 18 عاماً من الخبرة.'},
+ capabilities:[{n:'18年',l:'实战经验'},{n:'4条',l:'业务线'},{n:'2国',l:'税制打通'},{n:'双向',l:'服务模型'}],
+ services:{zh:['产品出海：目标国关税/税收/合规评估','资本出海(ODI)：备案+架构+落地+合规','产品入华：中国关税/税收/合规评估','资本入华(FDI)：架构+设立+合规','读懂两国税制/设计最优架构/打通两国合规/对接政府资源'],en:['Product Export: target country tax/compliance assessment','Capital Outbound (ODI): filing+structure+landing+compliance','Product Import: China tax/compliance assessment','Capital Inbound (FDI): structure+setup+compliance','Read two tax systems / Design optimal structure / Bridge compliance / Connect government']},
+ why:{zh:'云桥国际财税服务核心提供方，18年实战根基，"同一套财税能力双向复用"的独特模型，别人只做单边，我们做双边。',en:'Core tax service provider for Yunqiao. 18 years foundation. Unique bi-directional model — others do one side, we do both.'}
+ },
+ {
+ id:'sgs', icon:'', category:'cert',
+ name:{zh:'SGS通标标准',en:'SGS',fr:'SGS',ar:'SGS'},
+ tagline:{zh:'全球领先的检测认证机构',en:'Global leader in inspection & certification',fr:'Leader mondial en inspection et certification',ar:'رائد عالمي في التفتيش والشهادات'},
+ tags:['ISO 9001','ISO 14001','CE','FCC','RoHS'],
+ countries:140,
+ desc:{zh:'SGS是全球最大的检测、鉴定、测试和认证机构，创建于1878年，总部位于瑞士日内瓦。在全球140多个国家拥有2,600多个分支机构和96,000多名员工。服务覆盖农产食品、消费品、生命科学、工业制造等多个领域。',en:'SGS is the world\'s leading inspection, verification, testing and certification company, founded in 1878, headquartered in Geneva. Operations in 140+ countries with 96,000+ employees.',fr:'SGS est le leader mondial de l\'inspection, de la vérification, des essais et de la certification, fondé en 1878.',ar:'SGS هي الشركة الرائدة عالمياً في التفتيش والتحقق والاختبار والشهادات.'},
+ capabilities:[{n:'140+',l:'覆盖国家'},{n:'96,000+',l:'员工'},{n:'2,600+',l:'分支机构'},{n:'1878',l:'创立年份'}],
+ services:{zh:['产品检测与认证（CE/FCC/RoHS/REACH）','体系认证（ISO 9001/14001/45001/22000）','供应链审核与验货','食品安全检测','环境监测与碳排放验证'],en:['Product testing & certification (CE/FCC/RoHS/REACH)','System certification (ISO 9001/14001/45001/22000)','Supply chain audit & inspection','Food safety testing','Environmental monitoring & carbon verification']},
+ why:{zh:'云桥会员通过SGS可获得出口目标市场准入认证、国际买家信任背书、供应链合规审查，有效降低贸易壁垒。',en:'Members gain market access certification, international buyer trust, and supply chain compliance through SGS.'}
+ },
+ {
+ id:'tuv', icon:'', category:'cert',
+ name:{zh:'TÜV莱茵',en:'TÜV Rheinland',fr:'TÜV Rheinland',ar:'TÜV راينلاند'},
+ tagline:{zh:'德国权威技术检验机构',en:'Authoritative German technical inspection body',fr:'Organisme allemand d\'inspection technique',ar:'هئة تفتيش فنية ألمانية'},
+ tags:['CE','CB','GS','EMC'],
+ countries:70,
+ desc:{zh:'TÜV莱茵集团是德国最大的技术检验机构，成立于1872年。在全球70个国家设有分支机构，拥有20,000+员工。尤其在工业产品、汽车、医疗器械认证领域享有极高声誉。',en:'TÜV Rheinland is Germany\'s largest technical inspection body, founded in 1872. Branches in 70 countries, 20,000+ employees. Highly reputed in industrial, automotive, and medical device certification.',fr:'TÜV Rheinland est le plus grand organisme d\'inspection technique d\'Allemagne, fondé en 1872.',ar:'TÜV راينلاند هي أكبر هيئة تفتيش فنية في ألمانيا.'},
+ capabilities:[{n:'70',l:'国家'},{n:'20,000+',l:'员工'},{n:'1872',l:'创立'},{n:'150+',l:'年经验'}],
+ services:{zh:['产品安全认证（CE/CB/GS）','电磁兼容性（EMC）测试','汽车功能安全（ISO 26262）','医疗器械（MDR/IVDR）','光伏与储能系统认证'],en:['Product safety certification (CE/CB/GS)','EMC testing','Automotive functional safety (ISO 26262)','Medical devices (MDR/IVDR)','PV & energy storage certification']},
+ why:{zh:'德系品质背书，欧洲市场准入首选认证伙伴，尤其在汽车和工业品领域具有无可替代的权威性。',en:'German quality endorsement, preferred for EU market access, especially authoritative in automotive and industrial products.'}
+ },
+ {
+ id:'cosco', icon:'', category:'logistics',
+ name:{zh:'中远海运',en:'COSCO Shipping',fr:'COSCO Shipping',ar:'كوسكو للشحن'},
+ tagline:{zh:'全球最大的综合航运企业',en:'World\'s largest integrated shipping enterprise',fr:'Plus grande entreprise maritime intégrée au monde',ar:'أكبر شركة شحن متكاملة في العالم'},
+ tags:['集装箱','散货','仓储','供应链'],
+ countries:160,
+ desc:{zh:'中远海运集团是全球最大的综合航运企业集团，拥有综合运力1.13亿载重吨/1407艘船舶，集装箱运力全球第一。在全球160个国家和地区的396个港口均有投资与运营，旗下码头吞吐量全球第一。',en:'COSCO Shipping is the world\'s largest integrated shipping group with 113M DWT capacity and 1,407 vessels. Container capacity ranks #1 globally. Operations in 160 countries/396 ports.',fr:'COSCO Shipping est le plus grand groupe maritime intégré au monde.',ar:'كوسكو للشحن هي أكبر مجموعة شحن متكاملة في العالم.'},
+ capabilities:[{n:'1.13亿',l:'载重吨'},{n:'1,407',l:'船舶'},{n:'#1',l:'集装箱运力'},{n:'160',l:'国家'}],
+ services:{zh:['集装箱海运（全球航线覆盖）','散货/件杂货运输','仓储与配送服务','供应链解决方案','项目物流与特种运输'],en:['Container shipping (global coverage)','Bulk/break-bulk transport','Warehousing & distribution','Supply chain solutions','Project logistics & special transport']},
+ why:{zh:'央企背景+全球最大运力，云桥会员可享优先舱位保障、大客户运价、门到门一体化物流方案。',en:'SOE background + largest capacity. Members get priority space, corporate rates, and door-to-door integrated logistics.'}
+ },
+ {
+ id:'sinotrans', icon:'', category:'logistics',
+ name:{zh:'中外运',en:'Sinotrans',fr:'Sinotrans',ar:'سينوترانس'},
+ tagline:{zh:'中国最大的综合物流服务商',en:'China\'s largest integrated logistics provider',fr:'Plus grand prestataire logistique intégré de Chine',ar:'أكبر مزود لوجستيات متكامل في الصين'},
+ tags:['国际快递','空运','跨境电商物流','关务'],
+ countries:100,
+ desc:{zh:'中外运是中国最大的综合物流服务供应商，为中国物流集团核心成员。业务覆盖国际快递、空运海运、公路铁路、仓储配送、跨境电商物流等全链路。在中欧班列、RCEP区域物流具有突出优势。',en:'Sinotrans is China\'s largest integrated logistics provider, core member of China Logistics Group. Covers express, air/ocean, road/rail, warehousing, and e-commerce logistics.',fr:'Sinotrans est le plus grand prestataire logistique intégré de Chine.',ar:'سينوترانس هي أكبر مزود لوجستيات متكامل في الصين.'},
+ capabilities:[{n:'100+',l:'国家'},{n:'7,000+',l:'网点'},{n:'中欧班列',l:'优势线路'},{n:'RCEP',l:'区域覆盖'}],
+ services:{zh:['国际快递与空运','中欧班列铁路物流','跨境电商一站式物流','关务咨询与代理','仓储管理与区域配送'],en:['International express & air freight','China-Europe railway (CRE)','Cross-border e-commerce logistics','Customs consulting & agency','Warehousing & regional distribution']},
+ why:{zh:'中欧班列+RCEP区域优势，为会员企业"一带一路"沿线和RCEP市场提供最具性价比的物流通道。',en:'China-Europe railway + RCEP advantage, providing most cost-effective logistics for Belt & Road and RCEP markets.'}
+ },
+ {
+ id:'picc', icon:'', category:'finance',
+ name:{zh:'中国人保PICC',en:'PICC',fr:'PICC',ar:'بيك'},
+ tagline:{zh:'新中国保险业奠基者',en:'Founding pillar of China\'s insurance industry',fr:'Pilier fondateur de l\'assurance chinoise',ar:'ركن تأسيسي لصناعة التأمين الصينية'},
+ tags:['出口信用险','货运险','财产险','责任险'],
+ countries:80,
+ desc:{zh:'中国人保是中国历史最悠久的保险公司，成立于1949年。出口信用保险为出口企业保驾护航，覆盖买方违约、政治风险、汇率波动等核心风险。2024年承保金额超7,500亿美元。',en:'PICC is China\'s oldest insurance company, founded in 1949. Export credit insurance covers buyer default, political risk, and FX fluctuations. 2024 coverage exceeded $750B.',fr:'PICC est la plus ancienne compagnie d\'assurance de Chine, fondée en 1949.',ar:'بيك هي أقدم شركة تأمين في الصين.'},
+ capabilities:[{n:'7,500亿$',l:'年承保额'},{n:'1949',l:'创立'},{n:'80+',l:'国家覆盖'},{n:'#1',l:'国内市场'}],
+ services:{zh:['出口信用保险（短期/中长期）','国际货运保险','海外投资保险','产品责任险','汇率风险对冲'],en:['Export credit insurance (short/long-term)','International cargo insurance','Overseas investment insurance','Product liability insurance','FX risk hedging']},
+ why:{zh:'出口信用险是外贸企业最核心的风险管理工具，云桥会员可享绿色通道+团体费率优惠。',en:'Export credit insurance is the core risk management tool for foreign trade. Members enjoy fast-track and group rate discounts.'}
+ },
+ {
+ id:'allianz', icon:'', category:'finance',
+ name:{zh:'安联保险',en:'Allianz',fr:'Allianz',ar:'أليانز'},
+ tagline:{zh:'全球最大保险与资产管理集团',en:'World\'s largest insurance & asset management group',fr:'Plus grand groupe d\'assurance et de gestion d\'actifs',ar:'أكبر مجموعة تأمين وإدارة أصول'},
+ tags:['货运险','责任险','工程险','资管'],
+ countries:70,
+ desc:{zh:'安联集团是全球最大的保险和资产管理集团之一，成立于1890年，总部德国慕尼黑。在全球70多个国家开展业务，服务1.22亿客户。连续多年位列Interbrand全球最佳品牌百强。',en:'Allianz is one of the world\'s largest insurance and asset management groups, founded in 1890, Munich. Operations in 70+ countries, 122M customers.',fr:'Allianz est l\'un des plus grands groupes d\'assurance au monde, fondé en 1890.',ar:'أليانز هي واحدة من أكبر مجموعات التأمين في العالم.'},
+ capabilities:[{n:'70+',l:'国家'},{n:'1.22亿',l:'客户'},{n:'1890',l:'创立'},{n:'AAA',l:'评级'}],
+ services:{zh:['国际货物运输保险','商业综合责任险','工程与建筑险','跨国企业员工福利','贸易信用保险'],en:['International cargo transport insurance','Commercial general liability','Engineering & construction insurance','Cross-border employee benefits','Trade credit insurance']},
+ why:{zh:'欧洲市场首选保险伙伴，信用评级AAA，为会员企业开拓欧美市场提供最可靠的风险保障。',en:'Preferred insurance partner for EU market. AAA rating provides the most reliable risk protection for members entering Western markets.'}
+ },
+ {
+ id:'junhe', icon:'', category:'legal',
+ name:{zh:'君合律师事务所',en:'JunHe Law Offices',fr:'JunHe',ar:'جون هي'},
+ tagline:{zh:'中国领先的全方位律师事务所',en:'China\'s leading full-service law firm',fr:'Cabinet d\'avocats leader en Chine',ar:'مكتب محاماة رائد في الصين'},
+ tags:['跨境投资','合规','知识产权','争议解决'],
+ countries:20,
+ desc:{zh:'君合律师事务所成立于1989年，是中国最早的合伙制律师事务所之一。在跨境投资、国际贸易、合规审查、知识产权保护领域具有突出优势，连续多年获Chambers亚太第一等评级。',en:'JunHe Law Offices, founded in 1989, is one of China\'s earliest partnership law firms. Leading in cross-border investment, trade, compliance, and IP. Chambers Band 1 rated.',fr:'JunHe, fondé en 1989, est l\'un des premiers cabinets d\'avocats chinois.',ar:'جون هي، تأسست عام 1989، واحدة من أقدم مكاتب المحاماة في الصين.'},
+ capabilities:[{n:'Band 1',l:'Chambers评级'},{n:'1989',l:'创立'},{n:'500+',l:'律师'},{n:'20+',l:'关联办公室'}],
+ services:{zh:['跨境投资与并购法律顾问','国际贸易与WTO合规','海外知识产权保护','国际仲裁与争议解决','出口管制与制裁合规'],en:['Cross-border M&A legal advisory','International trade & WTO compliance','Overseas IP protection','International arbitration','Export control & sanctions compliance']},
+ why:{zh:'Band 1级律所背书，为会员企业出海提供全周期法律保障——从尽调、合规到争议解决。',en:'Band 1 firm provides full-cycle legal protection for members going overseas — from due diligence to dispute resolution.'}
+ },
+ {
+ id:'alibaba', icon:'', category:'digital',
+ name:{zh:'阿里巴巴国际站',en:'Alibaba.com',fr:'Alibaba.com',ar:'علي بابا'},
+ tagline:{zh:'全球最大的B2B跨境电商平台',en:'World\'s largest B2B cross-border e-commerce platform',fr:'Plus grande plateforme B2B transfrontalière',ar:'أكبر منصة تجارة إلكترونية B2B عابرة للحدود'},
+ tags:['B2B','跨境电商','信保','数字化'],
+ countries:200,
+ desc:{zh:'阿里巴巴国际站是全球领先的B2B跨境电商平台，连接超2亿买家和20万+供应商。提供从建站、获客、信保交易到履约的全链路数字化外贸解决方案。2024财年GMV超700亿美元。',en:'Alibaba.com is the global B2B e-commerce platform connecting 200M+ buyers and 200K+ suppliers. Full-stack digital foreign trade solution. FY2024 GMV exceeded $70B.',fr:'Alibaba.com est la plateforme B2B mondiale connectant plus de 200M acheteurs.',ar:'علي بابا هي منصة B2B عالمية تربط أكثر من 200 مليون مشترٍ.'},
+ capabilities:[{n:'2亿+',l:'全球买家'},{n:'20万+',l:'供应商'},{n:'700亿$',l:'年GMV'},{n:'200+',l:'国家'}],
+ services:{zh:['B2B店铺建站与运营','全球买家精准匹配','信保订单与在线交易','数字化履约与物流','数据银行与市场洞察'],en:['B2B storefront setup & operation','Global buyer matching','Trade Assurance orders','Digital fulfillment & logistics','Data bank & market insights']},
+ why:{zh:'全球最大B2B流量池，云桥会员可享专属建站服务+流量扶持+信保交易保障，快速触达海外买家。',en:'World\'s largest B2B traffic pool. Members enjoy dedicated setup, traffic support, and Trade Assurance for quick overseas buyer access.'}
+ },
+ {
+ id:'canton', icon:'', category:'exhibition',
+ name:{zh:'广交会',en:'Canton Fair',fr:'Foire de Canton',ar:'معرض كانتون'},
+ tagline:{zh:'中国第一展 · 全球贸易盛会',en:'China\'s No.1 Exhibition · Global Trade Event',fr:'Exposition N°1 de Chine',ar:'معرض الصين الأول'},
+ tags:['综合展','采购商对接','线上线下','品牌展'],
+ countries:210,
+ desc:{zh:'中国进出口商品交易会（广交会）创办于1957年，是中国历史最长、规模最大、商品最全的综合性国际贸易盛会。每届吸引超25万境外采购商、2.5万家参展企业，成交额超300亿美元。',en:'China Import and Export Fair (Canton Fair), founded in 1957, is China\'s longest-running, largest comprehensive trade event. 250K+ overseas buyers, 25K exhibitors, $30B+ deals per session.',fr:'Foire de Canton, fondée en 1957, le plus grand événement commercial de Chine.',ar:'معرض كانتون، تأسس عام 1957، أكبر حدث تجاري في الصين.'},
+ capabilities:[{n:'25万+',l:'境外采购商'},{n:'2.5万',l:'参展企业'},{n:'300亿$',l:'成交额'},{n:'1957',l:'创办'}],
+ services:{zh:['展位申请与布展服务','采购商精准对接','线上线下融合参展','品牌展区优先推荐','展会数据与客户追踪'],en:['Booth application & setup','Buyer matching','O2O hybrid exhibition','Brand zone priority','Exhibition data & lead tracking']},
+ why:{zh:'全球最大采购商流量入口，云桥会员可享展位推荐+布展支持+采购商对接，事半功倍拿订单。',en:'Largest global buyer traffic entry. Members enjoy booth priority, setup support, and buyer matching for efficient order acquisition.'}
+ },
+ {
+ id:'transl', icon:'', category:'translate',
+ name:{zh:'传神语联',en:'Transn',fr:'Transn',ar:'ترانس إن'},
+ tagline:{zh:'AI+人工的智能翻译服务商',en:'AI + Human intelligent translation provider',fr:'Traduction intelligente IA + Humain',ar:'مزود ترجمة ذكي بالذكاء الاصطناعي'},
+ tags:['多语种','AI翻译','本地化','外贸'],
+ countries:30,
+ desc:{zh:'传神语联是国内领先的AI+人工智能翻译服务商，支持80+语种、覆盖200+语言对。在跨境电商、外贸合同、技术文档翻译领域拥有丰富经验，独创"人机共译"模式确保质量与效率兼顾。',en:'Transn is a leading AI+human translation provider, supporting 80+ languages and 200+ language pairs. Rich experience in cross-border e-commerce, trade contracts, and technical documentation.',fr:'Transn est un leader de la traduction IA+humain, supportant 80+ langues.',ar:'ترانس إن مزود رائد للترجمة بالذكاء الاصطناعي والبشر.'},
+ capabilities:[{n:'80+',l:'语种'},{n:'200+',l:'语言对'},{n:'人机共译',l:'模式'},{n:'99%+',l:'客户满意度'}],
+ services:{zh:['产品目录多语翻译','外贸合同与单证翻译','技术文档与说明书','网站/App本地化','展会同声传译'],en:['Product catalog multilingual translation','Trade contract & document translation','Technical docs & manuals','Website/App localization','Exhibition simultaneous interpretation']},
+ why:{zh:'AI降本+人工保质的"人机共译"模式，为会员企业提供最具性价比的多语内容解决方案。',en:'AI cost-reduction + human quality "co-translation" model provides the most cost-effective multilingual content solution.'}
+ }
 ];
 
 var CATS = ['all','cert','logistics','finance','legal','digital','exhibition','translate'];
@@ -286,19 +286,19 @@ var curCat = 'all';
 
 // ============ Render ============
 function switchLang(l){
-  lang=l; localStorage.setItem('yq_lang',l);
-  if(l==='ar') document.documentElement.dir='rtl'; else document.documentElement.dir='ltr';
-  document.documentElement.lang=l;
-  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t(el.getAttribute('data-i18n')));
-  renderTabs(); renderGrid(); updateStats();
+ lang=l; localStorage.setItem('yq_lang',l);
+ if(l==='ar') document.documentElement.dir='rtl'; else document.documentElement.dir='ltr';
+ document.documentElement.lang=l;
+ document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t(el.getAttribute('data-i18n')));
+ renderTabs(); renderGrid(); updateStats();
 }
 
 function renderTabs(){
-  var html='';
-  CATS.forEach(c=>{
-    html+='<div class="tab'+(c===curCat?' active':'')+'" onclick="setCat(\''+c+'\')">'+t('cat_'+c)+'</div>';
-  });
-  document.getElementById('tabs').innerHTML=html;
+ var html='';
+ CATS.forEach(c=>{
+ html+='<div class="tab'+(c===curCat?' active':'')+'" onclick="setCat(\''+c+'\')">'+t('cat_'+c)+'</div>';
+ });
+ document.getElementById('tabs').innerHTML=html;
 }
 
 function setCat(c){ curCat=c; renderTabs(); renderGrid(); }
@@ -308,54 +308,54 @@ function getTagline(p){ return (p.tagline[lang]||p.tagline.zh); }
 function getDesc(p){ return (p.desc[lang]||p.desc.zh); }
 
 function renderGrid(){
-  var list = curCat==='all' ? PARTNERS : PARTNERS.filter(p=>p.category===curCat);
-  var html='';
-  list.forEach(p=>{
-    html+='<div class="card" onclick="openModal(\''+p.id+'\')">';
-    html+='<div class="card-icon">'+p.icon+'</div>';
-    html+='<div class="card-body"><h3>'+getName(p)+'</h3>';
-    html+='<span class="tag">'+getTagline(p)+'</span>';
-    html+='<p>'+getDesc(p).substring(0,80)+'...</p></div>';
-    html+='<div class="card-tags">';
-    p.tags.forEach(tg=>html+='<span>'+tg+'</span>');
-    html+='</div></div>';
+ var list = curCat==='all' ? PARTNERS : PARTNERS.filter(p=>p.category===curCat);
+ var html='';
+ list.forEach(p=>{
+ html+='<div class="card" onclick="openModal(\''+p.id+'\')">';
+ html+='<div class="card-icon">'+p.icon+'</div>';
+ html+='<div class="card-body"><h3>'+getName(p)+'</h3>';
+ html+='<span class="tag">'+getTagline(p)+'</span>';
+ html+='<p>'+getDesc(p).substring(0,80)+'...</p></div>';
+ html+='<div class="card-tags">';
+ p.tags.forEach(tg=>html+='<span>'+tg+'</span>');
+ html+='</div></div>';
 });
-  document.getElementById('grid').innerHTML=html;
+ document.getElementById('grid').innerHTML=html;
 }
 
 function openModal(id){
-  var p = PARTNERS.find(x=>x.id===id);
-  if(!p) return;
-  var h='<div class="m-icon">'+p.icon+'</div><div><h2>'+getName(p)+'</h2><div class="m-tag">'+getTagline(p)+'</div></div$>';
-  document.getElementById('modalHeader').innerHTML=h;
-  var b='';
-  // Capabilities
-  b+='<div class="capability-grid">';
-  p.capabilities.forEach(c=>b+='<div class="capability-item"><strong>'+c.n+'</strong>'+c.l+'</div>');
-  b+='</div>';
-  // Description
-  b+='<h4>'+(lang==='zh'?'机构简介':'About')+'</h4><p>'+getDesc(p)+'</p>';
-  // Services
-  var svcs = p.services[lang]||p.services.zh;
-  b+='<h4>'+(lang==='zh'?'核心服务':'Core Services')+'</h4><ul>';
-  svcs.forEach(s=>b+='<li>'+s+'</li>');
-  b+='</ul>';
-  // Why partner
-  var why = p.why[lang]||p.why.zh;
-  b+='<h4>'+(lang==='zh'?'合作价值':'Partnership Value')+'</h4><p>'+why+'</p>';
-  document.getElementById('modalBody').innerHTML=b;
-  document.getElementById('modalOverlay').classList.add('show');
+ var p = PARTNERS.find(x=>x.id===id);
+ if(!p) return;
+ var h='<div class="m-icon">'+p.icon+'</div><div><h2>'+getName(p)+'</h2><div class="m-tag">'+getTagline(p)+'</div></div$>';
+ document.getElementById('modalHeader').innerHTML=h;
+ var b='';
+ // Capabilities
+ b+='<div class="capability-grid">';
+ p.capabilities.forEach(c=>b+='<div class="capability-item"><strong>'+c.n+'</strong>'+c.l+'</div>');
+ b+='</div>';
+ // Description
+ b+='<h4>'+(lang==='zh'?'机构简介':'About')+'</h4><p>'+getDesc(p)+'</p>';
+ // Services
+ var svcs = p.services[lang]||p.services.zh;
+ b+='<h4>'+(lang==='zh'?'核心服务':'Core Services')+'</h4><ul>';
+ svcs.forEach(s=>b+='<li>'+s+'</li>');
+ b+='</ul>';
+ // Why partner
+ var why = p.why[lang]||p.why.zh;
+ b+='<h4>'+(lang==='zh'?'合作价值':'Partnership Value')+'</h4><p>'+why+'</p>';
+ document.getElementById('modalBody').innerHTML=b;
+ document.getElementById('modalOverlay').classList.add('show');
 }
 
 function closeModal(){ document.getElementById('modalOverlay').classList.remove('show'); }
 
 function updateStats(){
-  document.getElementById('statPartners').textContent=PARTNERS.length;
-  var cats=new Set(PARTNERS.map(p=>p.category));
-  document.getElementById('statCats').textContent=cats.size;
-  var countries=new Set();
-  PARTNERS.forEach(p=>countries.add(p.countries));
-  document.getElementById('statCountries').textContent=Math.max(...PARTNERS.map(p=>p.countries));
+ document.getElementById('statPartners').textContent=PARTNERS.length;
+ var cats=new Set(PARTNERS.map(p=>p.category));
+ document.getElementById('statCats').textContent=cats.size;
+ var countries=new Set();
+ PARTNERS.forEach(p=>countries.add(p.countries));
+ document.getElementById('statCountries').textContent=Math.max(...PARTNERS.map(p=>p.countries));
 }
 
 // Init

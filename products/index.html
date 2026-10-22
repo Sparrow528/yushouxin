@@ -13,7 +13,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .nav{position:fixed;top:0;left:0;right:0;background:var(--navy);color:#fff;z-index:100;box-shadow:0 1px 6px rgba(0,0,0,.15);direction:ltr}
 .nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:56px;direction:ltr}
 .brand{font-size:15px;font-weight:800}
-.brand .sub{display:block;font-size:10px;font-weight:400;opacity:.7;letter-spacing:1px}
+.brand.sub{display:block;font-size:10px;font-weight:400;opacity:.7;letter-spacing:1px}
 .nav-right{display:flex;align-items:center;gap:10px}
 .nav-link{color:#cfd8e6;font-size:13px;text-decoration:none;cursor:pointer;padding:5px 10px;border-radius:6px}
 .nav-link.on{color:#fff;background:rgba(255,255,255,.14)}
@@ -23,152 +23,152 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px 40px}
 /* 首页 hero */
 .hero{padding:96px 20px 36px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center}
-.hero .logo-zone{font-size:44px;margin-bottom:10px}
+.hero.logo-zone{font-size:44px;margin-bottom:10px}
 .hero h1{font-size:22px;font-weight:800}
-.hero .sub{font-size:13px;opacity:.85;margin-top:6px;letter-spacing:1px}
-.hero .desc{max-width:640px;margin:14px auto 0;font-size:13px;opacity:.8;padding:0 20px}
+.hero.sub{font-size:13px;opacity:.85;margin-top:6px;letter-spacing:1px}
+.hero.desc{max-width:640px;margin:14px auto 0;font-size:13px;opacity:.8;padding:0 20px}
 /* 分类 tab */
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 16px}
 .tab{padding:8px 18px;border-radius:20px;font-size:14px;font-weight:600;color:var(--muted);background:#fff;border:1px solid var(--line);cursor:pointer;transition:.2s}
 .tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
 /* 产品网格 */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:pointer;transition:transform .15s}
+.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:pointer;transition:transform.15s}
 .card:active{transform:scale(.97)}
-.card .thumb{height:180px;overflow:hidden;background:#E8EDF5}
-.card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.card .info{padding:12px 14px}
-.card .nm{font-size:14px;font-weight:700;color:var(--ink);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
-.card .by{font-size:11px;color:var(--muted);margin-top:4px}
+.card.thumb{height:180px;overflow:hidden;background:#E8EDF5}
+.card.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.card.info{padding:12px 14px}
+.card.nm{font-size:14px;font-weight:700;color:var(--ink);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.card.by{font-size:11px;color:var(--muted);margin-top:4px}
 /* 产品详情弹窗 */
 .mask{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .mask.show{display:flex}
-.sheet{background:#fff;width:100%;max-width:760px;border-radius:18px 18px 0 0;padding:0 0 30px;max-height:88vh;overflow-y:auto;animation:up .25s ease}
+.sheet{background:#fff;width:100%;max-width:760px;border-radius:18px 18px 0 0;padding:0 0 30px;max-height:88vh;overflow-y:auto;animation:up.25s ease}
 @keyframes up{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
-.sheet .big{width:100%;height:260px;background:#E8EDF5}
-.sheet .big img{width:100%;height:100%;object-fit:cover}
-.sheet .pd{padding:16px 20px}
+.sheet.big{width:100%;height:260px;background:#E8EDF5}
+.sheet.big img{width:100%;height:100%;object-fit:cover}
+.sheet.pd{padding:16px 20px}
 .sheet h2{font-size:18px;font-weight:800;margin-bottom:4px}
-.sheet .by{font-size:12px;color:var(--muted);margin-bottom:12px}
-.sheet .by a{color:var(--gold);text-decoration:none;font-weight:700;cursor:pointer}
-.sheet .lbl{font-size:11px;color:var(--muted);margin:12px 0 4px}
-.sheet .desc{font-size:14px;color:var(--ink);line-height:1.7}
-.sheet .close{width:calc(100% - 40px);margin:18px 20px 0;padding:13px;border:none;border-radius:10px;background:var(--navy);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
+.sheet.by{font-size:12px;color:var(--muted);margin-bottom:12px}
+.sheet.by a{color:var(--gold);text-decoration:none;font-weight:700;cursor:pointer}
+.sheet.lbl{font-size:11px;color:var(--muted);margin:12px 0 4px}
+.sheet.desc{font-size:14px;color:var(--ink);line-height:1.7}
+.sheet.close{width:calc(100% - 40px);margin:18px 20px 0;padding:13px;border:none;border-radius:10px;background:var(--navy);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
 /* 会员企业页 */
 .members{display:none}
 .members.show{display:block}
 .back-btn{display:inline-flex;align-items:center;gap:6px;margin:80px 0 0;padding:8px 16px;background:#fff;border:1px solid var(--line);border-radius:8px;color:var(--navy);font-size:14px;font-weight:600;cursor:pointer}
 .m-hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center;padding:40px 20px;margin-top:14px;border-radius:14px}
-.m-hero .logo-zone{font-size:44px}
+.m-hero.logo-zone{font-size:44px}
 .m-hero h2{font-size:22px;font-weight:800;margin-top:10px}
-.m-hero .en{font-size:12px;opacity:.8;margin-top:4px}
-.m-hero .cat{display:inline-block;margin-top:12px;background:rgba(201,162,75,.2);color:var(--gold);font-size:12px;font-weight:700;padding:4px 14px;border-radius:12px;border:1px solid rgba(201,162,75,.5)}
-.m-hero .intro{max-width:680px;margin:16px auto 0;font-size:13px;opacity:.88;text-align:left}
-[dir="rtl"] .m-hero .intro{text-align:right}
+.m-hero.en{font-size:12px;opacity:.8;margin-top:4px}
+.m-hero.cat{display:inline-block;margin-top:12px;background:rgba(201,162,75,.2);color:var(--gold);font-size:12px;font-weight:700;padding:4px 14px;border-radius:12px;border:1px solid rgba(201,162,75,.5)}
+.m-hero.intro{max-width:680px;margin:16px auto 0;font-size:13px;opacity:.88;text-align:left}
+[dir="rtl"].m-hero.intro{text-align:right}
 section{padding:34px 0 6px}
 .sec-tag{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
 .sec-title{font-size:21px;font-weight:800;color:var(--navy);margin:4px 0 4px}
 .sec-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.gallery .g{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.gallery .g img{width:100%;height:100%;object-fit:cover;display:block}
-.gallery .g .cap{font-size:11px;color:var(--muted);padding:6px 10px;text-align:center}
+.gallery.g{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.gallery.g img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery.g.cap{font-size:11px;color:var(--muted);padding:6px 10px;text-align:center}
 .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
 .step{background:#fff;border-radius:10px;padding:14px;border:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}
-.step .num{width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--gold);font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
-.step .t{font-size:13px;font-weight:700;color:var(--navy)}
-.step .d{font-size:11px;color:var(--muted);margin-top:2px}
+.step.num{width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--gold);font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.step.t{font-size:13px;font-weight:700;color:var(--navy)}
+.step.d{font-size:11px;color:var(--muted);margin-top:2px}
 .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.cert-grid .g{background:#fff;border-radius:10px;overflow:hidden;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.cert-grid.g{background:#fff;border-radius:10px;overflow:hidden;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .cert-grid img{width:100%;height:200px;object-fit:contain;padding:10px}
-.cert-grid .cap{font-size:13px;font-weight:700;color:var(--navy);padding:8px}
+.cert-grid.cap{font-size:13px;font-weight:700;color:var(--navy);padding:8px}
 footer{background:var(--navy);color:#7f8ea6;text-align:center;padding:24px 16px;font-size:12px;margin-top:30px}
-footer .co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
+footer.co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
 .loading{text-align:center;padding:40px;color:var(--muted);font-size:14px}
-.card .price-tag{font-size:14px;font-weight:700;color:var(--price);margin-top:4px}
-.sheet .price-big{font-size:22px;font-weight:800;color:var(--price);margin:6px 0}
-.sheet .specs{font-size:13px;color:var(--muted);line-height:1.6}
+.card.price-tag{font-size:14px;font-weight:700;color:var(--price);margin-top:4px}
+.sheet.price-big{font-size:22px;font-weight:800;color:var(--price);margin:6px 0}
+.sheet.specs{font-size:13px;color:var(--muted);line-height:1.6}
 @media(min-width:640px){
-  .grid{grid-template-columns:repeat(3,1fr)}
-  .gallery{grid-template-columns:repeat(3,1fr)}
-  .steps{grid-template-columns:repeat(4,1fr)}
-  .hero h1{font-size:28px}
+.grid{grid-template-columns:repeat(3,1fr)}
+.gallery{grid-template-columns:repeat(3,1fr)}
+.steps{grid-template-columns:repeat(4,1fr)}
+.hero h1{font-size:28px}
 }
 </style>
 </head>
 <body>
 
 <div class="nav">
-  <div class="nav-inner">
-    <div class="brand"><span data-i18n="brand">云桥国际 · 会员专属平台</span><span class="sub" data-i18n="brand_sub">YUNQIAO INTERNATIONAL MEMBERS PLATFORM</span></div>
-    <div class="nav-right">
-      <span class="nav-link on" id="navHome" onclick="showHome()" data-i18n="nav_products">产品</span>
-      <span class="nav-link" id="navMembers" onclick="showMembers()" data-i18n="nav_members">会员企业</span>
-      <a class="nav-link" href="market.html" style="color:inherit;text-decoration:none;" data-i18n="nav_market">市场</a>
-      <a class="nav-link" href="services.html" style="color:inherit;text-decoration:none;" data-i18n="nav_services">服务</a>
-      <a class="nav-link" href="partners.html" style="color:inherit;text-decoration:none;" data-i18n="nav_partners">合作伙伴</a>
-      <button class="lang-btn" onclick="switchLang('zh')">中</button>
-      <button class="lang-btn" onclick="switchLang('en')">EN</button>
-      <button class="lang-btn" onclick="switchLang('fr')">FR</button>
-      <button class="lang-btn" onclick="switchLang('ar')">عر</button>
-    </div>
-  </div>
+ <div class="nav-inner">
+ <div class="brand"><span data-i18n="brand">云桥国际 · 会员专属平台</span><span class="sub" data-i18n="brand_sub">YUNQIAO INTERNATIONAL MEMBERS PLATFORM</span></div>
+ <div class="nav-right">
+ <span class="nav-link on" id="navHome" onclick="showHome()" data-i18n="nav_products">产品</span>
+ <span class="nav-link" id="navMembers" onclick="showMembers()" data-i18n="nav_members">会员企业</span>
+ <a class="nav-link" href="market.html" style="color:inherit;text-decoration:none;" data-i18n="nav_market">市场</a>
+ <a class="nav-link" href="services.html" style="color:inherit;text-decoration:none;" data-i18n="nav_services">服务</a>
+ <a class="nav-link" href="partners.html" style="color:inherit;text-decoration:none;" data-i18n="nav_partners">合作伙伴</a>
+ <button class="lang-btn" onclick="switchLang('zh')">中</button>
+ <button class="lang-btn" onclick="switchLang('en')">EN</button>
+ <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+ <button class="lang-btn" onclick="switchLang('ar')">عر</button>
+ </div>
+ </div>
 </div>
 
 <!-- 首页：产品展示 -->
 <div class="home" id="home">
-  <div class="hero">
-    <div class="logo-zone">🌉</div>
-    <h1 data-i18n="platform_name">云桥国际文化交流有限公司</h1>
-    <div class="sub" data-i18n="platform_sub">会员专属平台 · 优质产品展示</div>
-    <div class="desc" data-i18n="platform_desc">精选会员企业优质产品，向海内外意向客户展示。</div>
-  </div>
-  <div class="wrap">
-    <div class="tabs" id="ptabs"></div>
-    <div class="grid" id="pgrid"><div class="loading" data-i18n="loading">加载中...</div></div>
-  </div>
+ <div class="hero">
+ <div class="logo-zone"></div>
+ <h1 data-i18n="platform_name">云桥国际文化交流有限公司</h1>
+ <div class="sub" data-i18n="platform_sub">会员专属平台 · 优质产品展示</div>
+ <div class="desc" data-i18n="platform_desc">精选会员企业优质产品，向海内外意向客户展示。</div>
+ </div>
+ <div class="wrap">
+ <div class="tabs" id="ptabs"></div>
+ <div class="grid" id="pgrid"><div class="loading" data-i18n="loading">加载中...</div></div>
+ </div>
 </div>
 
 <!-- 会员企业页 -->
 <div class="members" id="members">
-  <div class="wrap">
-    <button class="back-btn" onclick="showHome()">← <span data-i18n="back">返回产品</span></button>
-    <div class="m-hero" id="mHero"></div>
-    <section id="secFactory">
-      <div class="sec-tag" data-i18n="sec_factory_tag">FACTORY</div>
-      <div class="sec-title" data-i18n="factory_title">工厂环境</div>
-      <div class="sec-sub" data-i18n="factory_sub">从原料到成品的完整生产线</div>
-      <div class="gallery" id="fgrid"></div>
-    </section>
-    <section id="secQuality">
-      <div class="sec-tag" data-i18n="sec_quality_tag">QUALITY</div>
-      <div class="sec-title" data-i18n="quality_title">质量控制</div>
-      <div class="sec-sub" data-i18n="quality_sub">21年零质量投诉，四道质检把关</div>
-      <div class="steps" id="qsteps"></div>
-      <div class="sec-title" style="font-size:17px" data-i18n="test_title">测试设备</div>
-      <div class="gallery" id="tgrid"></div>
-    </section>
-    <section id="secDesign">
-      <div class="sec-tag" data-i18n="sec_design_tag">DESIGN</div>
-      <div class="sec-title" data-i18n="design_title">设计能力</div>
-      <div class="sec-sub" data-i18n="design_sub">自有设计团队，支持来样定制</div>
-      <div class="gallery" id="dgrid"></div>
-    </section>
-    <section id="secCert">
-      <div class="sec-tag" data-i18n="sec_cert_tag">CERTIFICATES</div>
-      <div class="sec-title" data-i18n="cert_title">认证证书</div>
-      <div class="sec-sub" data-i18n="cert_sub">通过国际社会责任与商业道德认证</div>
-      <div class="cert-grid" id="cgrid"></div>
-    </section>
-  </div>
+ <div class="wrap">
+ <button class="back-btn" onclick="showHome()"> <span data-i18n="back">返回产品</span></button>
+ <div class="m-hero" id="mHero"></div>
+ <section id="secFactory">
+ <div class="sec-tag" data-i18n="sec_factory_tag">FACTORY</div>
+ <div class="sec-title" data-i18n="factory_title">工厂环境</div>
+ <div class="sec-sub" data-i18n="factory_sub">从原料到成品的完整生产线</div>
+ <div class="gallery" id="fgrid"></div>
+ </section>
+ <section id="secQuality">
+ <div class="sec-tag" data-i18n="sec_quality_tag">QUALITY</div>
+ <div class="sec-title" data-i18n="quality_title">质量控制</div>
+ <div class="sec-sub" data-i18n="quality_sub">21年零质量投诉，四道质检把关</div>
+ <div class="steps" id="qsteps"></div>
+ <div class="sec-title" style="font-size:17px" data-i18n="test_title">测试设备</div>
+ <div class="gallery" id="tgrid"></div>
+ </section>
+ <section id="secDesign">
+ <div class="sec-tag" data-i18n="sec_design_tag">DESIGN</div>
+ <div class="sec-title" data-i18n="design_title">设计能力</div>
+ <div class="sec-sub" data-i18n="design_sub">自有设计团队，支持来样定制</div>
+ <div class="gallery" id="dgrid"></div>
+ </section>
+ <section id="secCert">
+ <div class="sec-tag" data-i18n="sec_cert_tag">CERTIFICATES</div>
+ <div class="sec-title" data-i18n="cert_title">认证证书</div>
+ <div class="sec-sub" data-i18n="cert_sub">通过国际社会责任与商业道德认证</div>
+ <div class="cert-grid" id="cgrid"></div>
+ </section>
+ </div>
 </div>
 
 <!-- 产品详情弹窗 -->
 <div class="mask" id="mask"><div class="sheet" id="sheet"></div></div>
 
 <footer>
-  <div class="co" data-i18n="foot_co">云桥国际文化交流有限公司 · 会员专属平台</div>
-  <div data-i18n="foot">为会员企业提供产品展示服务</div>
+ <div class="co" data-i18n="foot_co">云桥国际文化交流有限公司 · 会员专属平台</div>
+ <div data-i18n="foot">为会员企业提供产品展示服务</div>
 </footer>
 
 <script>
@@ -181,91 +181,91 @@ const LANGS = ['zh','en','fr','ar'];
 const LANG_LABELS = {zh:'中文',en:'EN',fr:'FR',ar:'عربي'};
 
 const I18N = {
-  zh: {
-    brand:'云桥国际 · 会员专属平台', brand_sub:'YUNQIAO INTERNATIONAL MEMBERS PLATFORM',
-    nav_products:'产品', nav_members:'会员企业', nav_market:'市场', nav_partners:'合作伙伴', nav_services:'服务',
-    platform_name:'云桥国际文化交流有限公司', platform_sub:'会员专属平台 · 优质产品展示',
-    platform_desc:'精选会员企业优质产品，向海内外意向客户展示。',
-    back:'返回产品', loading:'加载中...', no_products:'暂无产品',
-    sec_factory_tag:'工厂', factory_title:'工厂环境', factory_sub:'从原料到成品的完整生产线',
-    sec_quality_tag:'质量', quality_title:'质量控制', quality_sub:'21年零质量投诉，四道质检把关', test_title:'测试设备',
-    sec_design_tag:'设计', design_title:'设计能力', design_sub:'自有设计团队，支持来样定制',
-    sec_cert_tag:'证书', cert_title:'认证证书', cert_sub:'通过国际社会责任与商业道德认证',
-    foot_co:'云桥国际文化交流有限公司 · 会员专属平台', foot:'为会员企业提供产品展示服务',
-    by:'由 {name} 提供', view_member:'查看企业介绍',
-    member_list_title:'会员企业', back_to_list:'返回列表',
-    label_products:'款产品', label_members:'家会员',
-    pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
-    pc_clothing:'服装纺织', pc_beauty:'美妆个护', pc_home:'家居日用', pc_food:'食品饮料',
-    pc_mom_baby:'母婴用品', pc_electronics:'电子电器', pc_sports:'运动户外', pc_furniture:'家装建材',
-    pc_jewelry:'珠宝饰品', pc_stationery:'办公文教', pc_auto:'汽车配件', pc_other:'其他',
-    fc_sample:'样品间', fc_warehouse:'仓库', fc_cut:'裁剪车间', fc_sew:'缝纫车间', fc_inspect:'检验包装车间',
-    qc1t:'原料检验', qc1d:'', qc2t:'裁剪/印花检验', qc2d:'', qc3t:'生产过程巡检', qc3d:'', qc4t:'成品检验', qc4d:'',
-    desc_placeholder:'（产品介绍待补充）', close:'关闭', label_desc:'产品介绍', label_specs:'规格',
-  },
-  en: {
-    brand:'Yunqiao International', brand_sub:'MEMBERS PLATFORM',
-    nav_products:'Products', nav_members:'Members', nav_market:'Markets', nav_partners:'Partners', nav_services:'Services',
-    platform_name:'Yunqiao International Cultural Exchange Co., Ltd.', platform_sub:'Members Exclusive Platform · Quality Products',
-    platform_desc:'Curated quality products from member enterprises, showcased to customers worldwide.',
-    back:'Back to Products', loading:'Loading...', no_products:'No products yet',
-    sec_factory_tag:'FACTORY', factory_title:'Factory Environment', factory_sub:'Complete production line from raw material to finished goods',
-    sec_quality_tag:'QUALITY', quality_title:'Quality Control', quality_sub:'Zero quality complaint in 21 years, 4-stage inspection', test_title:'Testing Equipment',
-    sec_design_tag:'DESIGN', design_title:'Design Capability', design_sub:'In-house design team, sample customization supported',
-    sec_cert_tag:'CERTIFICATES', cert_title:'Certificates', cert_sub:'BSCI & SMETA certified',
-    foot_co:'Yunqiao International Cultural Exchange Co., Ltd. · Members Platform', foot:'Product display service for member enterprises',
-    by:'Provided by {name}', view_member:'View Company',
-    member_list_title:'Member Enterprises', back_to_list:'Back to List',
-    pc_cosmetic:'Cosmetic Bags', pc_bags:'Bag Products', pc_school:'School Bags', pc_backpack:'Backpacks', pc_woman:'Woman Bags',
-    pc_clothing:'Clothing & Textile', pc_beauty:'Beauty & Personal Care', pc_home:'Home & Living', pc_food:'Food & Beverage',
-    pc_mom_baby:'Mom & Baby', pc_electronics:'Electronics', pc_sports:'Sports & Outdoor', pc_furniture:'Furniture & Decor',
-    pc_jewelry:'Jewelry & Accessories', pc_stationery:'Office & Stationery', pc_auto:'Auto Parts', pc_other:'Other',
-    fc_sample:'Sample Room', fc_warehouse:'Warehouse', fc_cut:'Cut Workshop', fc_sew:'Sewing Workshop', fc_inspect:'Inspect & Package Workshop',
-    qc1t:'Raw material inspection', qc1d:'', qc2t:'Cut / print part inspection', qc2d:'', qc3t:'Patrol inspection', qc3d:'', qc4t:'Final inspection', qc4d:'',
-    desc_placeholder:'(Description to be added)', close:'Close', label_desc:'Description', label_specs:'Specifications',
-  },
-  fr: {
-    brand:'Yunqiao International', brand_sub:'PLATEFORME DES MEMBRES',
-    nav_products:'Produits', nav_members:'Membres', nav_market:'Marchés', nav_partners:'Partenaires', nav_services:'Services',
-    platform_name:'Yunqiao International Culture Exchange Co., Ltd.', platform_sub:'Plateforme Membres · Produits de Qualité',
-    platform_desc:'Sélection de produits de qualité des entreprises membres, présentés aux clients du monde entier.',
-    back:'Retour aux Produits', loading:'Chargement...', no_products:'Aucun produit',
-    sec_factory_tag:'USINE', factory_title:'Environnement d\'Usine', factory_sub:'Ligne de production complète, de la matière première au produit fini',
-    sec_quality_tag:'QUALITÉ', quality_title:'Contrôle Qualité', quality_sub:'Zéro plainte qualité en 21 ans, inspection en 4 étapes', test_title:'Équipement de Test',
-    sec_design_tag:'DESIGN', design_title:'Capacité de Design', design_sub:'Équipe de design interne, personnalisation sur échantillon',
-    sec_cert_tag:'CERTIFICATS', cert_title:'Certificats', cert_sub:'Certifié BSCI & SMETA',
-    foot_co:'Yunqiao International Culture Exchange Co., Ltd. · Plateforme Membres', foot:'Service de présentation de produits pour les entreprises membres',
-    by:'Fourni par {name}', view_member:'Voir l\'Entreprise',
-    member_list_title:'Entreprises Membres', back_to_list:'Retour à la liste',
-    pc_cosmetic:'Sacs Cosmétiques', pc_bags:'Sacs', pc_school:'Cartables', pc_backpack:'Sacs à Dos', pc_woman:'Sacs Femme',
-    pc_clothing:'Vêtements & Textile', pc_beauty:'Beauté & Soins', pc_home:'Maison & Vie', pc_food:'Alimentation',
-    pc_mom_baby:'Maternité & Bébé', pc_electronics:'Électronique', pc_sports:'Sport & Plein Air', pc_furniture:'Meubles & Déco',
-    pc_jewelry:'Bijoux & Accessoires', pc_stationery:'Bureau & Papeterie', pc_auto:'Pièces Auto', pc_other:'Autres',
-    fc_sample:'Salle d\'Échantillons', fc_warehouse:'Entrepôt', fc_cut:'Atelier de Coupe', fc_sew:'Atelier de Couture', fc_inspect:'Atelier d\'Inspection',
-    qc1t:'Inspection matière première', qc1d:'', qc2t:'Inspection coupe/impression', qc2d:'', qc3t:'Inspection en cours', qc3d:'', qc4t:'Inspection finale', qc4d:'',
-    desc_placeholder:'(Description à ajouter)', close:'Fermer', label_desc:'Description', label_specs:'Spécifications',
-  },
-  ar: {
-    brand:'يونتشياو الدولية · منصة الأعضاء', brand_sub:'منصة الأعضاء يونتشياو الدولية',
-    nav_products:'المنتجات', nav_members:'الأعضاء', nav_market:'الأسواق', nav_partners:'الشركاء', nav_services:'خدمات',
-    platform_name:'شركة يونتشياو الدولية للتبادل الثقافي', platform_sub:'منصة الأعضاء · منتجات عالية الجودة',
-    platform_desc:'منتجات مختارة من الشركات الأعضاء، معروضة للعملاء حول العالم.',
-    back:'العودة إلى المنتجات', loading:'جارٍ التحميل...', no_products:'لا توجد منتجات',
-    sec_factory_tag:'المصنع', factory_title:'بيئة المصنع', factory_sub:'خط إنتاج كامل من المواد الخام إلى المنتج النهائي',
-    sec_quality_tag:'الجودة', quality_title:'مراقبة الجودة', quality_sub:'صفر شكوى جودة في 21 عاماً، تفتيش في 4 مراحل', test_title:'معدات الاختبار',
-    sec_design_tag:'التصميم', design_title:'قدرة التصميم', design_sub:'فريق تصميم داخلي، تخصيص حسب العينة',
-    sec_cert_tag:'الشهادات', cert_title:'شهادات الاعتماد', cert_sub:'حاصل على شهادات BSCI و SMETA',
-    foot_co:'شركة يونتشياو الدولية للتبادل الثقافي · منصة الأعضاء', foot:'خدمة عرض المنتجات للشركات الأعضاء',
-    by:'مقدم من {name}', view_member:'عرض الشركة',
-    member_list_title:'الشركات الأعضاء', back_to_list:'العودة إلى القائمة',
-    pc_cosmetic:'حقائب مستحضرات', pc_bags:'حقائب', pc_school:'حقائب مدرسية', pc_backpack:'حقائب ظهر', pc_woman:'حقائب نسائية',
-    pc_clothing:'ملابس ونسيج', pc_beauty:'تجميل وعناية', pc_home:'منزل ومعيشة', pc_food:'أغذية ومشروبات',
-    pc_mom_baby:'أمومة وطفولة', pc_electronics:'إلكترونيات', pc_sports:'رياضة وهواية', pc_furniture:'أثاث وديكور',
-    pc_jewelry:'مجوهرات وإكسسوارات', pc_stationery:'مكتبية وقرطاسية', pc_auto:'قطع سيارات', pc_other:'أخرى',
-    fc_sample:'غرفة العينات', fc_warehouse:'المستودع', fc_cut:'ورشة القص', fc_sew:'ورشة الخياطة', fc_inspect:'ورشة التفتيش والتغليف',
-    qc1t:'تفتيش المواد الخام', qc1d:'', qc2t:'تفتيش القص/الطباعة', qc2d:'', qc3t:'تفتيش دوري', qc3d:'', qc4t:'تفتيش نهائي', qc4d:'',
-    desc_placeholder:'(الوصف سيتم إضافته لاحقاً)', close:'إغلاق', label_desc:'وصف المنتج', label_specs:'المواصفات',
-  }
+ zh: {
+ brand:'云桥国际 · 会员专属平台', brand_sub:'YUNQIAO INTERNATIONAL MEMBERS PLATFORM',
+ nav_products:'产品', nav_members:'会员企业', nav_market:'市场', nav_partners:'合作伙伴', nav_services:'服务',
+ platform_name:'云桥国际文化交流有限公司', platform_sub:'会员专属平台 · 优质产品展示',
+ platform_desc:'精选会员企业优质产品，向海内外意向客户展示。',
+ back:'返回产品', loading:'加载中...', no_products:'暂无产品',
+ sec_factory_tag:'工厂', factory_title:'工厂环境', factory_sub:'从原料到成品的完整生产线',
+ sec_quality_tag:'质量', quality_title:'质量控制', quality_sub:'21年零质量投诉，四道质检把关', test_title:'测试设备',
+ sec_design_tag:'设计', design_title:'设计能力', design_sub:'自有设计团队，支持来样定制',
+ sec_cert_tag:'证书', cert_title:'认证证书', cert_sub:'通过国际社会责任与商业道德认证',
+ foot_co:'云桥国际文化交流有限公司 · 会员专属平台', foot:'为会员企业提供产品展示服务',
+ by:'由 {name} 提供', view_member:'查看企业介绍',
+ member_list_title:'会员企业', back_to_list:'返回列表',
+ label_products:'款产品', label_members:'家会员',
+ pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
+ pc_clothing:'服装纺织', pc_beauty:'美妆个护', pc_home:'家居日用', pc_food:'食品饮料',
+ pc_mom_baby:'母婴用品', pc_electronics:'电子电器', pc_sports:'运动户外', pc_furniture:'家装建材',
+ pc_jewelry:'珠宝饰品', pc_stationery:'办公文教', pc_auto:'汽车配件', pc_other:'其他',
+ fc_sample:'样品间', fc_warehouse:'仓库', fc_cut:'裁剪车间', fc_sew:'缝纫车间', fc_inspect:'检验包装车间',
+ qc1t:'原料检验', qc1d:'', qc2t:'裁剪/印花检验', qc2d:'', qc3t:'生产过程巡检', qc3d:'', qc4t:'成品检验', qc4d:'',
+ desc_placeholder:'（产品介绍待补充）', close:'关闭', label_desc:'产品介绍', label_specs:'规格',
+ },
+ en: {
+ brand:'Yunqiao International', brand_sub:'MEMBERS PLATFORM',
+ nav_products:'Products', nav_members:'Members', nav_market:'Markets', nav_partners:'Partners', nav_services:'Services',
+ platform_name:'Yunqiao International Cultural Exchange Co., Ltd.', platform_sub:'Members Exclusive Platform · Quality Products',
+ platform_desc:'Curated quality products from member enterprises, showcased to customers worldwide.',
+ back:'Back to Products', loading:'Loading...', no_products:'No products yet',
+ sec_factory_tag:'FACTORY', factory_title:'Factory Environment', factory_sub:'Complete production line from raw material to finished goods',
+ sec_quality_tag:'QUALITY', quality_title:'Quality Control', quality_sub:'Zero quality complaint in 21 years, 4-stage inspection', test_title:'Testing Equipment',
+ sec_design_tag:'DESIGN', design_title:'Design Capability', design_sub:'In-house design team, sample customization supported',
+ sec_cert_tag:'CERTIFICATES', cert_title:'Certificates', cert_sub:'BSCI & SMETA certified',
+ foot_co:'Yunqiao International Cultural Exchange Co., Ltd. · Members Platform', foot:'Product display service for member enterprises',
+ by:'Provided by {name}', view_member:'View Company',
+ member_list_title:'Member Enterprises', back_to_list:'Back to List',
+ pc_cosmetic:'Cosmetic Bags', pc_bags:'Bag Products', pc_school:'School Bags', pc_backpack:'Backpacks', pc_woman:'Woman Bags',
+ pc_clothing:'Clothing & Textile', pc_beauty:'Beauty & Personal Care', pc_home:'Home & Living', pc_food:'Food & Beverage',
+ pc_mom_baby:'Mom & Baby', pc_electronics:'Electronics', pc_sports:'Sports & Outdoor', pc_furniture:'Furniture & Decor',
+ pc_jewelry:'Jewelry & Accessories', pc_stationery:'Office & Stationery', pc_auto:'Auto Parts', pc_other:'Other',
+ fc_sample:'Sample Room', fc_warehouse:'Warehouse', fc_cut:'Cut Workshop', fc_sew:'Sewing Workshop', fc_inspect:'Inspect & Package Workshop',
+ qc1t:'Raw material inspection', qc1d:'', qc2t:'Cut / print part inspection', qc2d:'', qc3t:'Patrol inspection', qc3d:'', qc4t:'Final inspection', qc4d:'',
+ desc_placeholder:'(Description to be added)', close:'Close', label_desc:'Description', label_specs:'Specifications',
+ },
+ fr: {
+ brand:'Yunqiao International', brand_sub:'PLATEFORME DES MEMBRES',
+ nav_products:'Produits', nav_members:'Membres', nav_market:'Marchés', nav_partners:'Partenaires', nav_services:'Services',
+ platform_name:'Yunqiao International Culture Exchange Co., Ltd.', platform_sub:'Plateforme Membres · Produits de Qualité',
+ platform_desc:'Sélection de produits de qualité des entreprises membres, présentés aux clients du monde entier.',
+ back:'Retour aux Produits', loading:'Chargement...', no_products:'Aucun produit',
+ sec_factory_tag:'USINE', factory_title:'Environnement d\'Usine', factory_sub:'Ligne de production complète, de la matière première au produit fini',
+ sec_quality_tag:'QUALITÉ', quality_title:'Contrôle Qualité', quality_sub:'Zéro plainte qualité en 21 ans, inspection en 4 étapes', test_title:'Équipement de Test',
+ sec_design_tag:'DESIGN', design_title:'Capacité de Design', design_sub:'Équipe de design interne, personnalisation sur échantillon',
+ sec_cert_tag:'CERTIFICATS', cert_title:'Certificats', cert_sub:'Certifié BSCI & SMETA',
+ foot_co:'Yunqiao International Culture Exchange Co., Ltd. · Plateforme Membres', foot:'Service de présentation de produits pour les entreprises membres',
+ by:'Fourni par {name}', view_member:'Voir l\'Entreprise',
+ member_list_title:'Entreprises Membres', back_to_list:'Retour à la liste',
+ pc_cosmetic:'Sacs Cosmétiques', pc_bags:'Sacs', pc_school:'Cartables', pc_backpack:'Sacs à Dos', pc_woman:'Sacs Femme',
+ pc_clothing:'Vêtements & Textile', pc_beauty:'Beauté & Soins', pc_home:'Maison & Vie', pc_food:'Alimentation',
+ pc_mom_baby:'Maternité & Bébé', pc_electronics:'Électronique', pc_sports:'Sport & Plein Air', pc_furniture:'Meubles & Déco',
+ pc_jewelry:'Bijoux & Accessoires', pc_stationery:'Bureau & Papeterie', pc_auto:'Pièces Auto', pc_other:'Autres',
+ fc_sample:'Salle d\'Échantillons', fc_warehouse:'Entrepôt', fc_cut:'Atelier de Coupe', fc_sew:'Atelier de Couture', fc_inspect:'Atelier d\'Inspection',
+ qc1t:'Inspection matière première', qc1d:'', qc2t:'Inspection coupe/impression', qc2d:'', qc3t:'Inspection en cours', qc3d:'', qc4t:'Inspection finale', qc4d:'',
+ desc_placeholder:'(Description à ajouter)', close:'Fermer', label_desc:'Description', label_specs:'Spécifications',
+ },
+ ar: {
+ brand:'يونتشياو الدولية · منصة الأعضاء', brand_sub:'منصة الأعضاء يونتشياو الدولية',
+ nav_products:'المنتجات', nav_members:'الأعضاء', nav_market:'الأسواق', nav_partners:'الشركاء', nav_services:'خدمات',
+ platform_name:'شركة يونتشياو الدولية للتبادل الثقافي', platform_sub:'منصة الأعضاء · منتجات عالية الجودة',
+ platform_desc:'منتجات مختارة من الشركات الأعضاء، معروضة للعملاء حول العالم.',
+ back:'العودة إلى المنتجات', loading:'جارٍ التحميل...', no_products:'لا توجد منتجات',
+ sec_factory_tag:'المصنع', factory_title:'بيئة المصنع', factory_sub:'خط إنتاج كامل من المواد الخام إلى المنتج النهائي',
+ sec_quality_tag:'الجودة', quality_title:'مراقبة الجودة', quality_sub:'صفر شكوى جودة في 21 عاماً، تفتيش في 4 مراحل', test_title:'معدات الاختبار',
+ sec_design_tag:'التصميم', design_title:'قدرة التصميم', design_sub:'فريق تصميم داخلي، تخصيص حسب العينة',
+ sec_cert_tag:'الشهادات', cert_title:'شهادات الاعتماد', cert_sub:'حاصل على شهادات BSCI و SMETA',
+ foot_co:'شركة يونتشياو الدولية للتبادل الثقافي · منصة الأعضاء', foot:'خدمة عرض المنتجات للشركات الأعضاء',
+ by:'مقدم من {name}', view_member:'عرض الشركة',
+ member_list_title:'الشركات الأعضاء', back_to_list:'العودة إلى القائمة',
+ pc_cosmetic:'حقائب مستحضرات', pc_bags:'حقائب', pc_school:'حقائب مدرسية', pc_backpack:'حقائب ظهر', pc_woman:'حقائب نسائية',
+ pc_clothing:'ملابس ونسيج', pc_beauty:'تجميل وعناية', pc_home:'منزل ومعيشة', pc_food:'أغذية ومشروبات',
+ pc_mom_baby:'أمومة وطفولة', pc_electronics:'إلكترونيات', pc_sports:'رياضة وهواية', pc_furniture:'أثاث وديكور',
+ pc_jewelry:'مجوهرات وإكسسوارات', pc_stationery:'مكتبية وقرطاسية', pc_auto:'قطع سيارات', pc_other:'أخرى',
+ fc_sample:'غرفة العينات', fc_warehouse:'المستودع', fc_cut:'ورشة القص', fc_sew:'ورشة الخياطة', fc_inspect:'ورشة التفتيش والتغليف',
+ qc1t:'تفتيش المواد الخام', qc1d:'', qc2t:'تفتيش القص/الطباعة', qc2d:'', qc3t:'تفتيش دوري', qc3d:'', qc4t:'تفتيش نهائي', qc4d:'',
+ desc_placeholder:'(الوصف سيتم إضافته لاحقاً)', close:'إغلاق', label_desc:'وصف المنتج', label_specs:'المواصفات',
+ }
 };
 
 let lang = 'zh';
@@ -273,107 +273,101 @@ function t(k){ return (I18N[lang] && I18N[lang][k]) || I18N.zh[k] || k; }
 
 /* 语言切换 */
 function switchLang(newLang){
-  lang = newLang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
-  document.querySelectorAll('.lang-btn').forEach(b=>{
-    b.classList.toggle('on', b.textContent.trim() === LANG_LABELS[lang].trim() || (lang==='zh'&&b.textContent.trim()==='中') || (lang==='en'&&b.textContent.trim()==='EN') || (lang==='fr'&&b.textContent.trim()==='FR') || (lang==='ar'&&b.textContent.includes('عر')));
-  });
-  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent = t(el.getAttribute('data-i18n')));
-  renderTabs(); renderProducts(); renderMHero(); renderFactory(); renderQuality(); renderDesign(); renderCert();
+ lang = newLang;
+ document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+ document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+ document.querySelectorAll('.lang-btn').forEach(b=>{
+ b.classList.toggle('on', b.textContent.trim() === LANG_LABELS[lang].trim() || (lang==='zh'&&b.textContent.trim()==='中') || (lang==='en'&&b.textContent.trim()==='EN') || (lang==='fr'&&b.textContent.trim()==='FR') || (lang==='ar'&&b.textContent.includes('عر')));
+ });
+ document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent = t(el.getAttribute('data-i18n')));
+ renderTabs(); renderProducts(); renderMHero(); renderFactory(); renderQuality(); renderDesign(); renderCert();
 }
 // Mark initial lang button
 document.querySelectorAll('.lang-btn').forEach(b=>{
-  if((lang==='zh'&&b.textContent.trim()==='中')||(lang==='en'&&b.textContent.trim()==='EN')||(lang==='fr'&&b.textContent.trim()==='FR')||(lang==='ar'&&b.textContent.includes('عر'))) b.classList.add('on');
+ if((lang==='zh'&&b.textContent.trim()==='中')||(lang==='en'&&b.textContent.trim()==='EN')||(lang==='fr'&&b.textContent.trim()==='FR')||(lang==='ar'&&b.textContent.includes('عر'))) b.classList.add('on');
 });
 
 // ============ 会员 + 产品数据 ============
 const MEMBERS = [
-  {
-    id:'stage-leather', name:'浙江实达皮革服饰有限公司', nameEn:'ZHEJIANG STAGE LEATHER APPAREL CO., LTD.',
-    nameFr:'ZHEJIANG STAGE LEATHER APPAREL CO., LTD.', nameAr:'شركة تشجيانغ شتاج ليثير للملابس الجلدية',
-    category:'箱包制造', categoryEn:'Bags Manufacturing', categoryFr:'Fabrication de Sacs', categoryAr:'تصنيع الحقائب',
-    emoji:'🧳',
-    intro:'2004年成立，21年专注服饰/箱包的设计、开发与生产，通过 BSCI、SMETA 认证。',
-    introEn:'Established in 2004, 21 years specializing in clothes/bags design, development and production. BSCI & SMETA certified.',
-    introFr:'Fondée en 2004, 21 ans de spécialisation en conception/développement de vêtements et sacs. Certifiée BSCI & SMETA.',
-    introAr:'تأسست عام 2004، 21 عاماً من التخصص في تصميم وتطوير وإنتاج الملابس والحقائب. حاصلة على شهادات BSCI و SMETA.',
-    hasDetail:true,
-  },
-  {
-    id:'huizhi-guoke', name:'汇智国科船舶智能装备', nameEn:'HUIZHI GUOKE MARINE INTELLIGENT EQUIPMENT',
-    nameFr:'HUIZHI GUOKE ÉQUIPEMENT MARITIME INTELLIGENT', nameAr:'هويتشي قوهكي للمعدات البحرية الذكية',
-    category:'智能装备/水下机器人', categoryEn:'Intelligent Equipment / Underwater Robotics', categoryFr:'Équipement Intelligent / Robotique Sous-marine', categoryAr:'معدات ذكية / روبوتات تحت الماء',
-    emoji:'🤖',
-    intro:'专注模块化智能水下作业机器人（ROV）研发与服务，核心产品集成超声探伤、空化清洗、水质监测三大功能模块。全向矢量推进、AI缺陷识别、100m水深作业能力，服务于航运船舶、海上风电、水利大坝、港口设施等领域，替代高危潜水作业，降本增效40%以上。',
-    introEn:'Specializing in modular intelligent underwater ROV R&D and services. Core product integrates ultrasonic inspection, cavitation cleaning, and water quality monitoring. All-direction vector propulsion, AI defect recognition, 100m depth capability. Serving shipping, offshore wind, dams, and port infrastructure. Replacing dangerous diving operations, reducing costs by 40%+.',
-    introFr:'Spécialisé dans les ROV sous-marins intelligents modulaires. Produit principal intégrant inspection ultrasonique, nettoyage par cavitation et surveillance de la qualité de l\'eau. Propulsion vectorielle omnidirectionnelle, reconnaissance IA des défauts, capacité 100m de profondeur.',
-    introAr:'متخص في تطوير وخدمات الروبوتات المائية الذكية المعيارية. منتج رئيسي يدمج الفحص بالموجات فوق الصوتية والتنظيف بالتكييف ومراقبة جودة المياه. دفع متجهي شامل، تعرف AI على العيوب، عمق 100م.',
-    hasDetail:false,
-  },
-  {
-    id:'foosung-nb', name:'厚成精工(宁波)汽车部件有限公司', nameEn:'NINGBO FOOSUNG PRECISION CO., LTD.',
-    nameFr:'NINGBO FOOSUNG PRECISION CO., LTD.', nameAr:'نينغبو فوسونغ بريسيشن للقطع السيارات',
-    category:'汽车悬架/制动系统', categoryEn:'Automotive Suspension & Brake Systems', categoryFr:'Suspension et Systèmes de Freinage Automobile', categoryAr:'أنظمة التعليق والفرامل للسيارات',
-    emoji:'⚙️',
-    intro:'韩资企业，隶属韩国厚成精工集团。2011年落户宁波，专业生产汽车悬架装置（Base Ass\'y、UPP Ass\'y）和制动系统（S/ABS）。具备冲压、焊接、电泳涂装全工艺链，通过IATF16949等体系认证（至2027年）。客户涵盖万都、万向、蓝讯等知名车企。',
-    introEn:'Korean-invested enterprise, part of Foosung Precision Group. Established in Ningbo in 2011, specializing in automotive suspension (Base Ass\'y, UPP Ass\'y) and brake systems (S/ABS). Full process chain: stamping, welding, e-coating. IATF16949 certified (through 2027). Customers include Mando, Wanxiang, Lanxun.',
-    introFr:'Entreprise à capital coréen, filiale du groupe Foosung Precision. Établie à Ningbo en 2011, spécialisée en suspension automobile et systèmes de freinage. Chaîne complète: emboutissage, soudage, cataphorèse. Certifiée IATF16949 (jusqu\'en 2027).',
-    introAr:'شركة كورية الاستثمار، جزء من مجموعة فوسونغ. تأسست في نينغبو 2011، متخصصة في أنظمة التعليق والفرامل للسيارات. سلسلة إنتاج كاملة: ختم، لحام، طلاء كهربائي. شهادة IATF16949.',
-    hasDetail:false,
-  },
-  {
-    id:'tianyang-stationery', name:'天扬文具', nameEn:'TIANYANG STATIONERY',
-    nameFr:'TIANYANG STATIONERY', nameAr:'تيانيانغ للأدوات المكتبية',
-    category:'箱包/文具', categoryEn:'Bags & Stationery', categoryFr:'Sacs et Papeterie', categoryAr:'حقائب وأدوات مكتبية',
-    emoji:'✏️',
-    intro:'专业文具箱包制造商，产品线覆盖手提袋、牛津布包、网纱笔袋、PU包、背包等全品类。拥有迪士尼三丽鸥等IP授权，产品远销海外，性价比突出。',
-    introEn:'Professional stationery & bag manufacturer. Full product line: handbags, Oxford cloth bags, mesh pencil cases, PU bags, backpacks. Licensed by Disney & Sanrio. Strong cost-performance ratio for overseas markets.',
-    introFr:'Fabricant professionnel de sacs et papeterie. Produits sous licence Disney & Sanrio. Excellent rapport qualité-prix.',
-    introAr:'شركة متخصصة في الأدوات المكتبية والحقائب. منتجات مرخصة من ديزني وسانريو.',
-    hasDetail:false,
-  },
-  {
-    id:'thermal-cup-maker', name:'智能保温杯厂商', nameEn:'SMART THERMAL CUP MANUFACTURER',
-    nameFr:'FABRICANT DE GOBELETS THERMIQUES', nameAr:'مصنّع أكواب حرارية ذكية',
-    category:'保温杯/水壶', categoryEn:'Thermal Cups & Flasks', categoryFr:'Gobelets Thermiques', categoryAr:'أكواب حرارية',
-    emoji:'🥤',
-    intro:'专业保温杯水壶制造商，产品线涵盖智能温显杯、星星壶、太阳壶、子弹头杯、弹跳杯等150+款式。500ML-1000ML全容量覆盖，316不锈钢内胆，真空双层隔热，现货+定制灵活供应。',
-    introEn:'Professional thermal cup manufacturer with 150+ models: smart temp display cups, star pots, bullet cups, pop-top cups. 500-1000ML capacity, 316 stainless steel, vacuum insulated. In-stock + custom available.',
-    introFr:'Fabricant professionnel de gobelets thermiques, 150+ modèles. Acier 316, isolation vide. Stock + personnalisation.',
-    introAr:'مصنّع متخصص للأكواب الحرارية، أكثر من 150 طراز. فولاذ 316، عزل مفرغ.',
-    hasDetail:false,
-  },
-  {
-    id:'usedcar-service', name:'二手车出口服务', nameEn:'USED CAR EXPORT SERVICE',
-    nameFr:'SERVICE D\'EXPORTATION VOITURES D\'OCCASION', nameAr:'خدمة تصدير السيارات المستعملة',
-    category:'二手车出口/改装/检测', categoryEn:'Used Car Export / Modification / Inspection', categoryFr:'Export VO / Modification / Inspection', categoryAr:'تصدير سيارات مستعملة',
-    emoji:'🚗',
-    intro:'专业二手车出口一站式服务商，覆盖车辆检测评估、出口合规、右舵改装、目标国认证适配、国际物流、清关代理。主攻中东/非洲/东南亚/中亚市场，Toyota/Honda/Nissan/BMW等主流品牌整车出口，年出口量持续增长。',
-    introEn:'Professional used car export one-stop service: inspection, compliance, RHD modification, destination certification, logistics, customs. Focus on Middle East/Africa/SE Asia/Central Asia markets.',
-    introFr:'Service d\'exportation de voitures d\'occasion: inspection, conformité, modification volant à droite, logistique. Marchés: Moyen-Orient/Afrique/Asie du SE.',
-    introAr:'خدمة تصدير سيارات مستعملة شاملة: فحص وامتثال وتعديل وخدمات لوجستية. أسواق: الشرق الأوسط/أفريقيا/آسيا.',
-    hasDetail:false,
-  }
+ {
+ id:'stage-leather', name:'浙江实达皮革服饰有限公司', nameEn:'ZHEJIANG STAGE LEATHER APPAREL CO., LTD.',
+ nameFr:'ZHEJIANG STAGE LEATHER APPAREL CO., LTD.', nameAr:'شركة تشجيانغ شتاج ليثير للملابس الجلدية',
+ category:'箱包制造', categoryEn:'Bags Manufacturing', categoryFr:'Fabrication de Sacs', categoryAr:'تصنيع الحقائب',
+ intro:'2004年成立，21年专注服饰/箱包的设计、开发与生产，通过 BSCI、SMETA 认证。',
+ introEn:'Established in 2004, 21 years specializing in clothes/bags design, development and production. BSCI & SMETA certified.',
+ introFr:'Fondée en 2004, 21 ans de spécialisation en conception/développement de vêtements et sacs. Certifiée BSCI & SMETA.',
+ introAr:'تأسست عام 2004، 21 عاماً من التخصص في تصميم وتطوير وإنتاج الملابس والحقائب. حاصلة على شهادات BSCI و SMETA.',
+ hasDetail:true,
+ },
+ {
+ id:'huizhi-guoke', name:'汇智国科船舶智能装备', nameEn:'HUIZHI GUOKE MARINE INTELLIGENT EQUIPMENT',
+ nameFr:'HUIZHI GUOKE ÉQUIPEMENT MARITIME INTELLIGENT', nameAr:'هويتشي قوهكي للمعدات البحرية الذكية',
+ category:'智能装备/水下机器人', categoryEn:'Intelligent Equipment / Underwater Robotics', categoryFr:'Équipement Intelligent / Robotique Sous-marine', categoryAr:'معدات ذكية / روبوتات تحت الماء',
+ intro:'专注模块化智能水下作业机器人（ROV）研发与服务，核心产品集成超声探伤、空化清洗、水质监测三大功能模块。全向矢量推进、AI缺陷识别、100m水深作业能力，服务于航运船舶、海上风电、水利大坝、港口设施等领域，替代高危潜水作业，降本增效40%以上。',
+ introEn:'Specializing in modular intelligent underwater ROV R&D and services. Core product integrates ultrasonic inspection, cavitation cleaning, and water quality monitoring. All-direction vector propulsion, AI defect recognition, 100m depth capability. Serving shipping, offshore wind, dams, and port infrastructure. Replacing dangerous diving operations, reducing costs by 40%+.',
+ introFr:'Spécialisé dans les ROV sous-marins intelligents modulaires. Produit principal intégrant inspection ultrasonique, nettoyage par cavitation et surveillance de la qualité de l\'eau. Propulsion vectorielle omnidirectionnelle, reconnaissance IA des défauts, capacité 100m de profondeur.',
+ introAr:'متخص في تطوير وخدمات الروبوتات المائية الذكية المعيارية. منتج رئيسي يدمج الفحص بالموجات فوق الصوتية والتنظيف بالتكييف ومراقبة جودة المياه. دفع متجهي شامل، تعرف AI على العيوب، عمق 100م.',
+ hasDetail:false,
+ },
+ {
+ id:'foosung-nb', name:'厚成精工(宁波)汽车部件有限公司', nameEn:'NINGBO FOOSUNG PRECISION CO., LTD.',
+ nameFr:'NINGBO FOOSUNG PRECISION CO., LTD.', nameAr:'نينغبو فوسونغ بريسيشن للقطع السيارات',
+ category:'汽车悬架/制动系统', categoryEn:'Automotive Suspension & Brake Systems', categoryFr:'Suspension et Systèmes de Freinage Automobile', categoryAr:'أنظمة التعليق والفرامل للسيارات',
+ intro:'韩资企业，隶属韩国厚成精工集团。2011年落户宁波，专业生产汽车悬架装置（Base Ass\'y、UPP Ass\'y）和制动系统（S/ABS）。具备冲压、焊接、电泳涂装全工艺链，通过IATF16949等体系认证（至2027年）。客户涵盖万都、万向、蓝讯等知名车企。',
+ introEn:'Korean-invested enterprise, part of Foosung Precision Group. Established in Ningbo in 2011, specializing in automotive suspension (Base Ass\'y, UPP Ass\'y) and brake systems (S/ABS). Full process chain: stamping, welding, e-coating. IATF16949 certified (through 2027). Customers include Mando, Wanxiang, Lanxun.',
+ introFr:'Entreprise à capital coréen, filiale du groupe Foosung Precision. Établie à Ningbo en 2011, spécialisée en suspension automobile et systèmes de freinage. Chaîne complète: emboutissage, soudage, cataphorèse. Certifiée IATF16949 (jusqu\'en 2027).',
+ introAr:'شركة كورية الاستثمار، جزء من مجموعة فوسونغ. تأسست في نينغبو 2011، متخصصة في أنظمة التعليق والفرامل للسيارات. سلسلة إنتاج كاملة: ختم، لحام، طلاء كهربائي. شهادة IATF16949.',
+ hasDetail:false,
+ },
+ {
+ id:'tianyang-stationery', name:'天扬文具', nameEn:'TIANYANG STATIONERY',
+ nameFr:'TIANYANG STATIONERY', nameAr:'تيانيانغ للأدوات المكتبية',
+ category:'箱包/文具', categoryEn:'Bags & Stationery', categoryFr:'Sacs et Papeterie', categoryAr:'حقائب وأدوات مكتبية',
+ intro:'专业文具箱包制造商，产品线覆盖手提袋、牛津布包、网纱笔袋、PU包、背包等全品类。拥有迪士尼三丽鸥等IP授权，产品远销海外，性价比突出。',
+ introEn:'Professional stationery & bag manufacturer. Full product line: handbags, Oxford cloth bags, mesh pencil cases, PU bags, backpacks. Licensed by Disney & Sanrio. Strong cost-performance ratio for overseas markets.',
+ introFr:'Fabricant professionnel de sacs et papeterie. Produits sous licence Disney & Sanrio. Excellent rapport qualité-prix.',
+ introAr:'شركة متخصصة في الأدوات المكتبية والحقائب. منتجات مرخصة من ديزني وسانريو.',
+ hasDetail:false,
+ },
+ {
+ id:'thermal-cup-maker', name:'智能保温杯厂商', nameEn:'SMART THERMAL CUP MANUFACTURER',
+ nameFr:'FABRICANT DE GOBELETS THERMIQUES', nameAr:'مصنّع أكواب حرارية ذكية',
+ category:'保温杯/水壶', categoryEn:'Thermal Cups & Flasks', categoryFr:'Gobelets Thermiques', categoryAr:'أكواب حرارية',
+ intro:'专业保温杯水壶制造商，产品线涵盖智能温显杯、星星壶、太阳壶、子弹头杯、弹跳杯等150+款式。500ML-1000ML全容量覆盖，316不锈钢内胆，真空双层隔热，现货+定制灵活供应。',
+ introEn:'Professional thermal cup manufacturer with 150+ models: smart temp display cups, star pots, bullet cups, pop-top cups. 500-1000ML capacity, 316 stainless steel, vacuum insulated. In-stock + custom available.',
+ introFr:'Fabricant professionnel de gobelets thermiques, 150+ modèles. Acier 316, isolation vide. Stock + personnalisation.',
+ introAr:'مصنّع متخصص للأكواب الحرارية، أكثر من 150 طراز. فولاذ 316، عزل مفرغ.',
+ hasDetail:false,
+ },
+ {
+ id:'usedcar-service', name:'二手车出口服务', nameEn:'USED CAR EXPORT SERVICE',
+ nameFr:'SERVICE D\'EXPORTATION VOITURES D\'OCCASION', nameAr:'خدمة تصدير السيارات المستعملة',
+ category:'二手车出口/改装/检测', categoryEn:'Used Car Export / Modification / Inspection', categoryFr:'Export VO / Modification / Inspection', categoryAr:'تصدير سيارات مستعملة',
+ intro:'专业二手车出口一站式服务商，覆盖车辆检测评估、出口合规、右舵改装、目标国认证适配、国际物流、清关代理。主攻中东/非洲/东南亚/中亚市场，Toyota/Honda/Nissan/BMW等主流品牌整车出口，年出口量持续增长。',
+ introEn:'Professional used car export one-stop service: inspection, compliance, RHD modification, destination certification, logistics, customs. Focus on Middle East/Africa/SE Asia/Central Asia markets.',
+ introFr:'Service d\'exportation de voitures d\'occasion: inspection, conformité, modification volant à droite, logistique. Marchés: Moyen-Orient/Afrique/Asie du SE.',
+ introAr:'خدمة تصدير سيارات مستعملة شاملة: فحص وامتثال وتعديل وخدمات لوجستية. أسواق: الشرق الأوسط/أفريقيا/آسيا.',
+ hasDetail:false,
+ }
 ];
 
 function getMemberName(m){
-  if(lang==='zh') return m.name;
-  if(lang==='fr') return m.nameFr || m.nameEn;
-  if(lang==='ar') return m.nameAr || m.nameEn;
-  return m.nameEn;
+ if(lang==='zh') return m.name;
+ if(lang==='fr') return m.nameFr || m.nameEn;
+ if(lang==='ar') return m.nameAr || m.nameEn;
+ return m.nameEn;
 }
 function getMemberCategory(m){
-  if(lang==='zh') return m.category;
-  if(lang==='fr') return m.categoryFr || m.categoryEn;
-  if(lang==='ar') return m.categoryAr || m.categoryEn;
-  return m.categoryEn;
+ if(lang==='zh') return m.category;
+ if(lang==='fr') return m.categoryFr || m.categoryEn;
+ if(lang==='ar') return m.categoryAr || m.categoryEn;
+ return m.categoryEn;
 }
 function getMemberIntro(m){
-  if(lang==='zh') return m.intro;
-  if(lang==='fr') return m.introFr || m.introEn;
-  if(lang==='ar') return m.introAr || m.introEn;
-  return m.introEn;
+ if(lang==='zh') return m.intro;
+ if(lang==='fr') return m.introFr || m.introEn;
+ if(lang==='ar') return m.introAr || m.introEn;
+ return m.introEn;
 }
 
 function showHome(){ document.getElementById('home').style.display='block'; document.getElementById('members').classList.remove('show'); document.getElementById('navHome').classList.add('on'); document.getElementById('navMembers').classList.remove('on'); window.scrollTo(0,0); }
@@ -383,91 +377,91 @@ function showMembers(){ document.getElementById('home').style.display='none'; do
 let allProducts = [];
 let curCat = '';
 const CAT_I18N = {
-  cosmetic:'pc_cosmetic', bags:'pc_bags', school:'pc_school', backpack:'pc_backpack', woman:'pc_woman',
-  clothing:'pc_clothing', beauty:'pc_beauty', home:'pc_home', food:'pc_food',
-  mom_baby:'pc_mom_baby', electronics:'pc_electronics', sports:'pc_sports', furniture:'pc_furniture',
-  jewelry:'pc_jewelry', stationery:'pc_stationery', auto:'pc_auto', used_car:'pc_used_car', other:'pc_other'
+ cosmetic:'pc_cosmetic', bags:'pc_bags', school:'pc_school', backpack:'pc_backpack', woman:'pc_woman',
+ clothing:'pc_clothing', beauty:'pc_beauty', home:'pc_home', food:'pc_food',
+ mom_baby:'pc_mom_baby', electronics:'pc_electronics', sports:'pc_sports', furniture:'pc_furniture',
+ jewelry:'pc_jewelry', stationery:'pc_stationery', auto:'pc_auto', used_car:'pc_used_car', other:'pc_other'
 };
 
 /* 静态兜底：Supabase不可用时用本地图片 */
 var FALLBACK = [];
 [{k:'cosmetic',n:3},{k:'bags',n:2},{k:'school',n:1},{k:'backpack',n:1},{k:'woman',n:1}].forEach(function(c){
-  for(var i=1;i<=c.n;i++) FALLBACK.push({id:1000+FALLBACK.length,name:t(CAT_I18N[c.k]||c.k)+' '+i,category:c.k,price:null,description:'',image:'images/'+c.k+'/'+c.k+i+'.png',specs:'',member_id:'stage-leather'});
+ for(var i=1;i<=c.n;i++) FALLBACK.push({id:1000+FALLBACK.length,name:t(CAT_I18N[c.k]||c.k)+' '+i,category:c.k,price:null,description:'',image:'images/'+c.k+'/'+c.k+i+'.png',specs:'',member_id:'stage-leather'});
 });
 /* 先用兜底数据渲染，Supabase成功后刷新 */
 allProducts = FALLBACK.slice();
 curCat = 'cosmetic';
 
 function loadProducts(){
-  /* 先渲染兜底数据，用户立刻看到内容 */
-  renderTabs(); renderProducts();
+ /* 先渲染兜底数据，用户立刻看到内容 */
+ renderTabs(); renderProducts();
 
-  /* 再尝试从 Supabase 加载真实产品，与兜底合并 */
-  var controller = new AbortController();
-  var timer = setTimeout(function(){ controller.abort(); }, 6000);
-  fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_HEADERS,signal:controller.signal})
-    .then(function(r){ clearTimeout(timer); if(!r.ok) throw new Error(); return r.json(); })
-    .then(function(d){
-      if(d && d.length){
-        /* 只保留有图片的Supabase产品 */
-        var sbProds=d.filter(function(p){return p.image && p.image.length>0;});
-        if(sbProds.length){
-          /* Supabase产品覆盖的分类 */
-          var sbCats={};sbProds.forEach(function(p){sbCats[p.category]=1;});
-          /* 兜底中不属于Supabase分类的产品 */
-          var remainFb=FALLBACK.filter(function(p){return !sbCats[p.category];});
-          allProducts=sbProds.concat(remainFb);
-          /* 每个会员企业产品不超过10个 */
-          var memberCount={};allProducts=allProducts.filter(function(p){memberCount[p.member_id]=(memberCount[p.member_id]||0)+1;return memberCount[p.member_id]<=10;});
-          var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
-          renderTabs();renderProducts();
-        }
-      }
-    })
-    .catch(function(){ /* 兜底已在上面渲染 */ });
+ /* 再尝试从 Supabase 加载真实产品，与兜底合并 */
+ var controller = new AbortController();
+ var timer = setTimeout(function(){ controller.abort(); }, 6000);
+ fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_HEADERS,signal:controller.signal})
+.then(function(r){ clearTimeout(timer); if(!r.ok) throw new Error(); return r.json(); })
+.then(function(d){
+ if(d && d.length){
+ /* 只保留有图片的Supabase产品 */
+ var sbProds=d.filter(function(p){return p.image && p.image.length>0;});
+ if(sbProds.length){
+ /* Supabase产品覆盖的分类 */
+ var sbCats={};sbProds.forEach(function(p){sbCats[p.category]=1;});
+ /* 兜底中不属于Supabase分类的产品 */
+ var remainFb=FALLBACK.filter(function(p){return !sbCats[p.category];});
+ allProducts=sbProds.concat(remainFb);
+ /* 每个会员企业产品不超过10个 */
+ var memberCount={};allProducts=allProducts.filter(function(p){memberCount[p.member_id]=(memberCount[p.member_id]||0)+1;return memberCount[p.member_id]<=10;});
+ var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
+ renderTabs();renderProducts();
+ }
+ }
+ })
+.catch(function(){ /* 兜底已在上面渲染 */ });
 }
 function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.category]=1;}); return Object.keys(s); }
 
 function renderTabs(){
-  var box=document.getElementById('ptabs'); box.innerHTML='';
-  getVisibleCats().forEach(function(cat){
-    var prodsInCat=allProducts.filter(function(p){return p.category===cat;});
-    var membersInCat=[];prodsInCat.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
-    var el=document.createElement('div');
-    el.className='tab'+(cat===curCat?' on':'');
-    el.innerHTML='<span>'+t(CAT_I18N[cat]||cat)+'</span><span style="font-size:10px;opacity:.6;margin-left:4px">'+prodsInCat.length+'</span>';
-    el.title=prodsInCat.length+'产品 / '+membersInCat.length+'企业';
-    el.onclick=function(){curCat=cat;renderTabs();renderProducts();};
-    box.appendChild(el);
-  });
+ var box=document.getElementById('ptabs'); box.innerHTML='';
+ getVisibleCats().forEach(function(cat){
+ var prodsInCat=allProducts.filter(function(p){return p.category===cat;});
+ var membersInCat=[];prodsInCat.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
+ var el=document.createElement('div');
+ el.className='tab'+(cat===curCat?' on':'');
+ el.innerHTML='<span>'+t(CAT_I18N[cat]||cat)+'</span><span style="font-size:10px;opacity:.6;margin-left:4px">'+prodsInCat.length+'</span>';
+ el.title=prodsInCat.length+'产品 / '+membersInCat.length+'企业';
+ el.onclick=function(){curCat=cat;renderTabs();renderProducts();};
+ box.appendChild(el);
+ });
 }
 function renderProducts(){
-  var grid=document.getElementById('pgrid');
-  var prods=allProducts.filter(function(p){return p.category===curCat;});
-  if(!prods.length){grid.innerHTML='<div class="loading">'+t('no_products')+'</div>';return;}
-  /* 分类汇总条 */
-  var membersInCat=[];prods.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
-  var summary='<div style="padding:8px 0 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">';
-  summary+='<span style="font-size:13px;font-weight:700;color:var(--navy)">'+t(CAT_I18N[curCat]||curCat)+'</span>';
-  summary+='<span style="font-size:12px;color:var(--muted)">'+prods.length+' '+t('label_products')+' · '+membersInCat.length+' '+t('label_members')+'</span>';
-  summary+='<span style="font-size:11px;color:var(--gold)">';
-  membersInCat.forEach(function(mid){var m=MEMBERS.find(function(x){return x.id===mid;});if(m)summary+=(m.emoji||'')+' ';});
-  summary+='</span></div>';
-  grid.innerHTML=summary;
-  prods.forEach(function(p){
-    var m=MEMBERS.find(function(x){return x.id===p.member_id;})||MEMBERS[0];
-    var d=document.createElement('div');d.className='card';
-    var ph=p.price?'<div class="price-tag">'+p.price+'</div>':'';
-    d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+p.name+'"></div><div class="info"><div class="nm">'+p.name+'</div>'+ph+'<div class="by">'+t('by').replace('{name}',getMemberName(m))+'</div></div>';
-    d.onclick=function(){openDetail(p);}; grid.appendChild(d);
-  });
+ var grid=document.getElementById('pgrid');
+ var prods=allProducts.filter(function(p){return p.category===curCat;});
+ if(!prods.length){grid.innerHTML='<div class="loading">'+t('no_products')+'</div>';return;}
+ /* 分类汇总条 */
+ var membersInCat=[];prods.forEach(function(p){if(membersInCat.indexOf(p.member_id)===-1)membersInCat.push(p.member_id);});
+ var summary='<div style="padding:8px 0 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">';
+ summary+='<span style="font-size:13px;font-weight:700;color:var(--navy)">'+t(CAT_I18N[curCat]||curCat)+'</span>';
+ summary+='<span style="font-size:12px;color:var(--muted)">'+prods.length+' '+t('label_products')+' · '+membersInCat.length+' '+t('label_members')+'</span>';
+ summary+='<span style="font-size:11px;color:var(--gold)">';
+ membersInCat.forEach(function(mid){var m=MEMBERS.find(function(x){return x.id===mid;});if(m)summary+='';});
+ summary+='</span></div>';
+ grid.innerHTML=summary;
+ prods.forEach(function(p){
+ var m=MEMBERS.find(function(x){return x.id===p.member_id;})||MEMBERS[0];
+ var d=document.createElement('div');d.className='card';
+ var ph=p.price?'<div class="price-tag">'+p.price+'</div>':'';
+ d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+p.name+'"></div><div class="info"><div class="nm">'+p.name+'</div>'+ph+'<div class="by">'+t('by').replace('{name}',getMemberName(m))+'</div></div>';
+ d.onclick=function(){openDetail(p);}; grid.appendChild(d);
+ });
 }
 function openDetail(p){
-  var m=MEMBERS.find(function(x){return x.id===p.member_id;})||MEMBERS[0];
-  var ph=p.price?'<div class="price-big">'+p.price+'</div>':'';
-  var sh=p.specs?'<div class="lbl">'+t('label_specs')+'</div><div class="specs">'+p.specs+'</div>':'';
-  document.getElementById('sheet').innerHTML='<div class="big"><img src="'+p.image+'" alt="'+p.name+'"></div><div class="pd"><h2>'+p.name+'</h2>'+ph+'<div class="by">'+t('by').replace('{name}',getMemberName(m))+' · <a onclick="closeDetail();showMembers()">'+t('view_member')+'</a></div><div class="lbl">'+t('label_desc')+'</div><div class="desc">'+(p.description||t('desc_placeholder'))+'</div>'+sh+'</div><button class="close" onclick="closeDetail()">'+t('close')+'</button>';
-  document.getElementById('mask').classList.add('show');
+ var m=MEMBERS.find(function(x){return x.id===p.member_id;})||MEMBERS[0];
+ var ph=p.price?'<div class="price-big">'+p.price+'</div>':'';
+ var sh=p.specs?'<div class="lbl">'+t('label_specs')+'</div><div class="specs">'+p.specs+'</div>':'';
+ document.getElementById('sheet').innerHTML='<div class="big"><img src="'+p.image+'" alt="'+p.name+'"></div><div class="pd"><h2>'+p.name+'</h2>'+ph+'<div class="by">'+t('by').replace('{name}',getMemberName(m))+' · <a onclick="closeDetail();showMembers()">'+t('view_member')+'</a></div><div class="lbl">'+t('label_desc')+'</div><div class="desc">'+(p.description||t('desc_placeholder'))+'</div>'+sh+'</div><button class="close" onclick="closeDetail()">'+t('close')+'</button>';
+ document.getElementById('mask').classList.add('show');
 }
 function closeDetail(){document.getElementById('mask').classList.remove('show');}
 document.getElementById('mask').addEventListener('click',function(e){if(e.target.id==='mask')closeDetail();});
@@ -475,95 +469,95 @@ document.getElementById('mask').addEventListener('click',function(e){if(e.target
 // ============ 会员企业 ============
 let selectedMember = null;
 function renderMHero(){
-  const hero = document.getElementById('mHero');
-  if(MEMBERS.length===1 || selectedMember){
-    const m = selectedMember || MEMBERS[0];
-    const mainName = getMemberName(m);
-    const subName = lang==='zh' ? m.nameEn : (lang==='en' ? m.name : (lang==='fr' ? (m.nameFr||m.nameEn) : (m.nameAr||m.nameEn)));
-    let backBtn = MEMBERS.length>1 ? `<button onclick="selectedMember=null;renderMHero();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;margin-bottom:12px">← ${t('back_to_list')||'返回列表'}</button><br>` : '';
-    hero.innerHTML = `${backBtn}<div class="logo-zone">${m.emoji}</div>
-      <h2>${mainName}</h2>
-      <div class="en">${lang==='zh' ? m.nameEn : m.name}</div>
-      <div class="cat">${getMemberCategory(m)}</div>
-      <div class="intro">${getMemberIntro(m)}</div>`;
-  } else {
-    hero.innerHTML = `<h2 style="font-size:22px;font-weight:800;margin-bottom:16px">${t('member_list_title')||'会员企业'}</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;text-align:left">
-        ${MEMBERS.map(m=>`<div onclick="selectedMember=MEMBERS.find(x=>x.id==='${m.id}');renderMHero();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:18px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,.15)'">
-          <div style="font-size:32px;margin-bottom:8px">${m.emoji}</div>
-          <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:4px">${getMemberName(m)}</div>
-          <div style="font-size:11px;opacity:.7;margin-bottom:8px">${getMemberCategory(m)}</div>
-          <div style="font-size:12px;opacity:.8;line-height:1.5">${getMemberIntro(m).substring(0,80)}…</div>
-        </div>`).join('')}
-      </div>`;
-  }
+ const hero = document.getElementById('mHero');
+ if(MEMBERS.length===1 || selectedMember){
+ const m = selectedMember || MEMBERS[0];
+ const mainName = getMemberName(m);
+ const subName = lang==='zh' ? m.nameEn : (lang==='en' ? m.name : (lang==='fr' ? (m.nameFr||m.nameEn) : (m.nameAr||m.nameEn)));
+ let backBtn = MEMBERS.length>1 ? `<button onclick="selectedMember=null;renderMHero();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;margin-bottom:12px"> ${t('back_to_list')||'返回列表'}</button><br>` : '';
+ hero.innerHTML = `${backBtn}<div class="logo-zone">${m.emoji}</div>
+ <h2>${mainName}</h2>
+ <div class="en">${lang==='zh' ? m.nameEn : m.name}</div>
+ <div class="cat">${getMemberCategory(m)}</div>
+ <div class="intro">${getMemberIntro(m)}</div>`;
+ } else {
+ hero.innerHTML = `<h2 style="font-size:22px;font-weight:800;margin-bottom:16px">${t('member_list_title')||'会员企业'}</h2>
+ <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;text-align:left">
+ ${MEMBERS.map(m=>`<div onclick="selectedMember=MEMBERS.find(x=>x.id==='${m.id}');renderMHero();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:18px;cursor:pointer;transition:all.2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,.15)'">
+ <div style="font-size:32px;margin-bottom:8px">${m.emoji}</div>
+ <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:4px">${getMemberName(m)}</div>
+ <div style="font-size:11px;opacity:.7;margin-bottom:8px">${getMemberCategory(m)}</div>
+ <div style="font-size:12px;opacity:.8;line-height:1.5">${getMemberIntro(m).substring(0,80)}…</div>
+ </div>`).join('')}
+ </div>`;
+ }
 }
 const FACTORY = [{n:3,cap:'fc_sample'},{n:2,cap:'fc_warehouse'},{n:2,cap:'fc_cut'},{n:2,cap:'fc_sew'},{n:2,cap:'fc_inspect'}];
 function renderFactory(){
-  const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
-  const grid = document.getElementById('fgrid');
-  const sec = document.getElementById('secFactory');
-  if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
-  sec.style.display='';
-  grid.innerHTML = '';
-  let idx = 0;
-  FACTORY.forEach(f=>{
-    for(let i=0;i<f.n;i++){
-      idx++;
-      const d = document.createElement('div');
-      d.className='g';
-      d.innerHTML = `<img src="images/factory/factory${idx}.png" loading="lazy" alt=""><div class="cap">${t(f.cap)}</div>`;
-      grid.appendChild(d);
-    }
-  });
+ const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
+ const grid = document.getElementById('fgrid');
+ const sec = document.getElementById('secFactory');
+ if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
+ sec.style.display='';
+ grid.innerHTML = '';
+ let idx = 0;
+ FACTORY.forEach(f=>{
+ for(let i=0;i<f.n;i++){
+ idx++;
+ const d = document.createElement('div');
+ d.className='g';
+ d.innerHTML = `<img src="images/factory/factory${idx}.png" loading="lazy" alt=""><div class="cap">${t(f.cap)}</div>`;
+ grid.appendChild(d);
+ }
+ });
 }
 function renderQuality(){
-  const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
-  const sec = document.getElementById('secQuality');
-  if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
-  sec.style.display='';
-  const steps = document.getElementById('qsteps');
-  steps.innerHTML = '';
-  for(let i=1;i<=4;i++){
-    steps.innerHTML += `<div class="step"><div class="num">${i}</div><div><div class="t">${t('qc'+i+'t')}</div><div class="d">${t('qc'+i+'d')}</div></div></div>`;
-  }
-  const grid = document.getElementById('tgrid');
-  grid.innerHTML = '';
-  for(let i=2;i<=6;i++){
-    const d = document.createElement('div');
-    d.className='g';
-    d.innerHTML = `<img src="images/quality/quality${i}.png" loading="lazy" alt="testing">`;
-    grid.appendChild(d);
-  }
+ const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
+ const sec = document.getElementById('secQuality');
+ if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
+ sec.style.display='';
+ const steps = document.getElementById('qsteps');
+ steps.innerHTML = '';
+ for(let i=1;i<=4;i++){
+ steps.innerHTML += `<div class="step"><div class="num">${i}</div><div><div class="t">${t('qc'+i+'t')}</div><div class="d">${t('qc'+i+'d')}</div></div></div>`;
+ }
+ const grid = document.getElementById('tgrid');
+ grid.innerHTML = '';
+ for(let i=2;i<=6;i++){
+ const d = document.createElement('div');
+ d.className='g';
+ d.innerHTML = `<img src="images/quality/quality${i}.png" loading="lazy" alt="testing">`;
+ grid.appendChild(d);
+ }
 }
 function renderDesign(){
-  const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
-  const sec = document.getElementById('secDesign');
-  if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
-  sec.style.display='';
-  const grid = document.getElementById('dgrid');
-  grid.innerHTML = '';
-  for(let i=1;i<=26;i++){
-    const d = document.createElement('div');
-    d.className='g';
-    d.innerHTML = `<img src="images/design/design${i}.png" loading="lazy" alt="design">`;
-    grid.appendChild(d);
-  }
+ const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
+ const sec = document.getElementById('secDesign');
+ if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
+ sec.style.display='';
+ const grid = document.getElementById('dgrid');
+ grid.innerHTML = '';
+ for(let i=1;i<=26;i++){
+ const d = document.createElement('div');
+ d.className='g';
+ d.innerHTML = `<img src="images/design/design${i}.png" loading="lazy" alt="design">`;
+ grid.appendChild(d);
+ }
 }
 function renderCert(){
-  const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
-  const sec = document.getElementById('secCert');
-  if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
-  sec.style.display='';
-  const grid = document.getElementById('cgrid');
-  grid.innerHTML = '';
-  for(let i=1;i<=4;i++){
-    const nm = i<=2 ? 'BSCI' : 'SMETA';
-    const d = document.createElement('div');
-    d.className='g';
-    d.innerHTML = `<img src="images/cert/cert${i}.png" loading="lazy" alt="${nm}"><div class="cap">${nm}</div>`;
-    grid.appendChild(d);
-  }
+ const m = selectedMember || (MEMBERS.length===1?MEMBERS[0]:null);
+ const sec = document.getElementById('secCert');
+ if(!m || m.id!=='stage-leather'){ sec.style.display='none'; return; }
+ sec.style.display='';
+ const grid = document.getElementById('cgrid');
+ grid.innerHTML = '';
+ for(let i=1;i<=4;i++){
+ const nm = i<=2 ? 'BSCI' : 'SMETA';
+ const d = document.createElement('div');
+ d.className='g';
+ d.innerHTML = `<img src="images/cert/cert${i}.png" loading="lazy" alt="${nm}"><div class="cap">${nm}</div>`;
+ grid.appendChild(d);
+ }
 }
 
 // 初始化
