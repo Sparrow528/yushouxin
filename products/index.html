@@ -445,6 +445,16 @@ const MEMBERS = [
  introAr:'شيخي روبوت، تأسست عام 2015 على يد فريق دكتوراه من تسينغهوا، أول شركة صينية تصنّع الروبوتات الجوية صناعياً.',
  hasDetail:false,
  },
+ {
+ id:'liangzi-dongli', name:'北京量子动力贸易', nameEn:'Beijing Liangzi Dongli Trading',
+ nameFr:'Beijing Liangzi Dongli Trading', nameAr:'بكين ليانغزي دونغلي للتجارة',
+ category:'进口食品饮料代理', categoryEn:'Imported Food & Beverage Agency', categoryFr:'Agence Alimentaire Importée', categoryAr:'وكالة أغذية ومشروبات مستوردة',
+ intro:'北京量子动力贸易有限公司成立于2014年，坐落于望京SOHO，综合性营销公司。代理韩国济州三多水、艾唯倪健康零食、OKF饮料等品牌，线上覆盖天猫/京东/抖音，线下覆盖7-11/盒马/胖东来等渠道，获中韩贸易突出贡献奖。',
+ introEn:'Beijing Liangzi Dongli Trading Co., Ltd., founded in 2014 in Wangjing SOHO. Agency for Korean brands Jeju Samdasoo, ivenet snacks, OKF beverages. Online: Tmall/JD/Douyin; offline: 7-11/Hema/Pang Dong Lai. Awarded China-Korea Trade Contribution Award.',
+ introFr:'Fondée en 2014, agence de marques coréennes (Samdasoo, ivenet, OKF).',
+ introAr:'تأسست عام 2014، وكالة علامات كورية (سامداسو، إيفنيت، OKF).',
+ hasDetail:false,
+ },
 ];
 
 function getMemberName(m){
@@ -513,6 +523,7 @@ function loadProducts(){
      else if(/数据线|充电线|USB|Lightning|Micro-B|电缆|Type-C/.test(p.name)) p.member_id='allens-house';
      else if(/行李箱|拉杆箱|铝框|布箱/.test(p.name)) p.member_id='luggage-maker';
      else if(/除锈|防腐|风电|外墙|高空/.test(p.name)) p.member_id='shihe-robot';
+     else if(/三多水|艾唯倪|OKF|米饼|泡芙|米脆|芦荟|康普茶|苹果醋|乳酸菌|奶茶|米露|矿泉水/.test(p.name)) p.member_id='liangzi-dongli';
      else p.member_id='unknown';
    }
  });
@@ -525,7 +536,7 @@ function loadProducts(){
  var remainFb=FALLBACK.filter(function(p){return !sbCats[p.category];});
  allProducts=sbProds.concat(remainFb);
  /* 每个会员企业产品不超过10个 */
- var memberCount={};allProducts=allProducts.filter(function(p){var mid=p.member_id||'unknown';memberCount[mid]=(memberCount[mid]||0)+1;return memberCount[mid]<=10;});
+ var memberLimit={'liangzi-dongli':30};var memberCount={};allProducts=allProducts.filter(function(p){var mid=p.member_id||'unknown';var lim=memberLimit[mid]||10;memberCount[mid]=(memberCount[mid]||0)+1;return memberCount[mid]<=lim;});
  /* 缓存到 localStorage */
  try{ localStorage.setItem('yq_products', JSON.stringify(allProducts)); }catch(e){}
  }
