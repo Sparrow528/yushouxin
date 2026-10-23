@@ -77,6 +77,13 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
  .hero h1{font-size:19px}
 }
 /* 产品详情弹窗 */
+/* 市场/服务 iframe（单页应用） */
+.framemask{position:fixed;inset:0;background:#fff;z-index:150;display:none;flex-direction:column}
+.framemask.show{display:flex}
+.framebar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--navy);color:#fff;flex-shrink:0}
+.frame-title{font-size:15px;font-weight:700}
+.frame-close{background:transparent;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1}
+#frameBox{flex:1;width:100%;border:none}
 .mask{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .mask.show{display:flex}
 .sheet{background:#fff;width:100%;max-width:760px;border-radius:18px 18px 0 0;padding:0 0 30px;max-height:88vh;overflow-y:auto;animation:up.25s ease}
@@ -140,8 +147,8 @@ footer.co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
  <div class="nav-right">
  <span class="nav-link on" id="navHome" onclick="showHome()" data-i18n="nav_products">产品</span>
  <span class="nav-link" id="navMembers" onclick="showMembers()" data-i18n="nav_members">会员企业</span>
- <a class="nav-link nav-extra" href="market.html" style="color:inherit;text-decoration:none;" data-i18n="nav_market">市场</a>
- <a class="nav-link nav-extra" href="services.html" style="color:inherit;text-decoration:none;" data-i18n="nav_services">服务</a>
+ <a class="nav-link nav-extra" onclick="openFrame('market.html','市场')" style="color:inherit;text-decoration:none;cursor:pointer" data-i18n="nav_market">市场</a>
+ <a class="nav-link nav-extra" onclick="openFrame('services.html','服务')" style="color:inherit;text-decoration:none;cursor:pointer" data-i18n="nav_services">服务</a>
  <button class="lang-btn" onclick="switchLang('zh')">中</button>
  <button class="lang-btn" onclick="switchLang('en')">EN</button>
  <button class="lang-btn" onclick="switchLang('fr')">FR</button>
@@ -215,6 +222,15 @@ footer.co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
  <div class="co" data-i18n="foot_co">云桥国际文化交流有限公司 · 会员专属平台</div>
  <div data-i18n="foot">为会员企业提供产品展示服务</div>
 </footer>
+
+<!-- 市场/服务 iframe 容器（单页应用，不跳转） -->
+<div class="framemask" id="framemask">
+ <div class="framebar">
+  <span class="frame-title" id="frameTitle">市场</span>
+  <button class="frame-close" onclick="closeFrame()">✕</button>
+ </div>
+ <iframe id="frameBox" src=""></iframe>
+</div>
 
 <!-- 产品详情弹窗 -->
 <div class="mask" id="mask" onclick="if(event.target===this)closeDetail()">
@@ -610,6 +626,19 @@ function openDetail(p, m){
 function closeDetail(){
  document.getElementById('mask').classList.remove('show');
  document.body.style.overflow='';
+}
+
+// ============ 市场/服务 iframe ============
+function openFrame(page, title){
+ document.getElementById('frameTitle').textContent = title;
+ document.getElementById('frameBox').src = page;
+ document.getElementById('framemask').classList.add('show');
+ document.body.style.overflow = 'hidden';
+}
+function closeFrame(){
+ document.getElementById('framemask').classList.remove('show');
+ document.getElementById('frameBox').src = '';
+ document.body.style.overflow = '';
 }
 
 // ============ 会员企业 ============
