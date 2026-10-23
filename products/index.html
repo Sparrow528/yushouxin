@@ -492,7 +492,7 @@ const CAT_I18N = {
 /* 静态兜底：Supabase不可用时用本地图片 */
 var FALLBACK = [];
 [{k:'cosmetic',n:3},{k:'bags',n:2},{k:'school',n:1},{k:'backpack',n:1},{k:'woman',n:1}].forEach(function(c){
- for(var i=1;i<=c.n;i++) FALLBACK.push({id:1000+FALLBACK.length,name:t(CAT_I18N[c.k]||c.k)+' '+i,category:c.k,price:null,description:'',image:'images/'+c.k+'/'+c.k+i+'.png',specs:'',member_id:'stage-leather'});
+ for(var i=1;i<=c.n;i++) FALLBACK.push({id:1000+FALLBACK.length,name:t(CAT_I18N[c.k]||c.k)+' '+i,category:c.k,price:null,description:'',image:'images/'+c.k+'/'+c.k+i+'.jpg',specs:'',member_id:'stage-leather'});
 });
 /* 等 Supabase 加载后再渲染（避免先显示兜底包类再跳全品类的闪烁） */
 curCat = '';
@@ -706,7 +706,7 @@ function renderFactory(){
  idx++;
  const d = document.createElement('div');
  d.className='g';
- d.innerHTML = `<img src="images/factory/factory${idx}.png" loading="lazy" alt=""><div class="cap">${t(f.cap)}</div>`;
+ d.innerHTML = `<img src="images/factory/factory${idx}.jpg" loading="lazy" alt=""><div class="cap">${t(f.cap)}</div>`;
  grid.appendChild(d);
  }
  });
@@ -726,7 +726,7 @@ function renderQuality(){
  for(let i=2;i<=6;i++){
  const d = document.createElement('div');
  d.className='g';
- d.innerHTML = `<img src="images/quality/quality${i}.png" loading="lazy" alt="testing">`;
+ d.innerHTML = `<img src="images/quality/quality${i}.jpg" loading="lazy" alt="testing">`;
  grid.appendChild(d);
  }
 }
@@ -740,7 +740,7 @@ function renderDesign(){
  for(let i=1;i<=26;i++){
  const d = document.createElement('div');
  d.className='g';
- d.innerHTML = `<img src="images/design/design${i}.png" loading="lazy" alt="design">`;
+ d.innerHTML = `<img src="images/design/design${i}.jpg" loading="lazy" alt="design">`;
  grid.appendChild(d);
  }
 }
@@ -755,7 +755,7 @@ function renderCert(){
  const nm = i<=2 ? 'BSCI' : 'SMETA';
  const d = document.createElement('div');
  d.className='g';
- d.innerHTML = `<img src="images/cert/cert${i}.png" loading="lazy" alt="${nm}"><div class="cap">${nm}</div>`;
+ d.innerHTML = `<img src="images/cert/cert${i}.jpg" loading="lazy" alt="${nm}"><div class="cap">${nm}</div>`;
  grid.appendChild(d);
  }
 }
