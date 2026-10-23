@@ -419,6 +419,16 @@ const MEMBERS = [
  introAr:'مصنّع محترف لحقائب السفر بعدة خامات وأحجام.',
  hasDetail:false,
  },
+ {
+ id:'shihe-robot', name:'史河机器人', nameEn:'SHIHE ROBOT',
+ nameFr:'SHIHE ROBOT', nameAr:'شيخي روبوت',
+ category:'高空特种机器人', categoryEn:'Aerial Special Robots', categoryFr:'Robots Aériens Spéciaux', categoryAr:'روبوتات جوية خاصة',
+ intro:'史河机器人成立于2015年，清华大学博士团队创建，国家专精特新"小巨人"、国家高新技术企业。国内首家实现高空机器人产业化，产品覆盖船舶除锈、化工防腐、风电检测、外墙清洗等场景。',
+ introEn:'Shihe Robot, founded in 2015 by a Tsinghua PhD team, is a national "Little Giant" and high-tech enterprise. First in China to industrialize aerial robots, covering ship rust removal, chemical anti-corrosion, wind turbine inspection, and facade cleaning.',
+ introFr:'Shihe Robot, fondée en 2015 par une équipe de doctorants de Tsinghua, première entreprise chinoise à industrialiser les robots aériens.',
+ introAr:'شيخي روبوت، تأسست عام 2015 على يد فريق دكتوراه من تسينغهوا، أول شركة صينية تصنّع الروبوتات الجوية صناعياً.',
+ hasDetail:false,
+ },
 ];
 
 function getMemberName(m){
@@ -458,15 +468,18 @@ var FALLBACK = [];
 [{k:'cosmetic',n:3},{k:'bags',n:2},{k:'school',n:1},{k:'backpack',n:1},{k:'woman',n:1}].forEach(function(c){
  for(var i=1;i<=c.n;i++) FALLBACK.push({id:1000+FALLBACK.length,name:t(CAT_I18N[c.k]||c.k)+' '+i,category:c.k,price:null,description:'',image:'images/'+c.k+'/'+c.k+i+'.png',specs:'',member_id:'stage-leather'});
 });
-/* 先用兜底数据渲染，Supabase成功后刷新 */
-allProducts = FALLBACK.slice();
-curCat = 'cosmetic';
+/* 等 Supabase 加载后再渲染（避免先显示兜底包类再跳全品类的闪烁） */
+curCat = '';
 
 function loadProducts(){
- /* 先渲染兜底数据，用户立刻看到内容 */
- renderTabs(); renderProducts();
+ var grid=document.getElementById('pgrid');
+ if(grid) grid.innerHTML='<div class="loading">'+t('loading')+'</div>';
 
- /* 再尝试从 Supabase 加载真实产品，与兜底合并 */
+ /* 读 localStorage 缓存 */
+ var cached=null;
+ try{ cached=JSON.parse(localStorage.getItem('yq_products')||'null'); }catch(e){}
+
+ /* 尝试从 Supabase 加载真实产品，与兜底合并 */
  var controller = new AbortController();
  var timer = setTimeout(function(){ controller.abort(); }, 12000);
  fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_HEADERS,signal:controller.signal})
@@ -483,6 +496,7 @@ function loadProducts(){
      else if(/二手|丰田|本田|宝马|日产|现代|右舵|整备|出口服务/.test(p.name)) p.member_id='usedcar-service';
      else if(/数据线|充电线|USB|Lightning|Micro-B|电缆|Type-C/.test(p.name)) p.member_id='allens-house';
      else if(/行李箱|拉杆箱|铝框|布箱/.test(p.name)) p.member_id='luggage-maker';
+     else if(/除锈|防腐|风电|外墙|高空/.test(p.name)) p.member_id='shihe-robot';
      else p.member_id='unknown';
    }
  });
@@ -496,12 +510,21 @@ function loadProducts(){
  allProducts=sbProds.concat(remainFb);
  /* 每个会员企业产品不超过10个 */
  var memberCount={};allProducts=allProducts.filter(function(p){var mid=p.member_id||'unknown';memberCount[mid]=(memberCount[mid]||0)+1;return memberCount[mid]<=10;});
+ /* 缓存到 localStorage */
+ try{ localStorage.setItem('yq_products', JSON.stringify(allProducts)); }catch(e){}
+ }
+ } else {
+  allProducts=(cached && cached.length)?cached:FALLBACK.slice();
+ }
  var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
  renderTabs();renderProducts();
- }
- }
- })
-.catch(function(){ /* 兜底已在上面渲染 */ });
+})
+.catch(function(){
+ /* 加载失败：用缓存或兜底 */
+ allProducts=(cached && cached.length)?cached:FALLBACK.slice();
+ var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
+ renderTabs();renderProducts();
+});
 }
 function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.category]=1;}); return Object.keys(s); }
 
