@@ -512,21 +512,8 @@ function loadProducts(){
 .then(function(r){ clearTimeout(timer); if(!r.ok) throw new Error(); return r.json(); })
 .then(function(d){
  if(d && d.length){
- /* 推断缺失的member_id */
- d.forEach(function(p){
-   if(!p.member_id){
-     if(/ROV|水下/.test(p.name)) p.member_id='huizhi-guoke';
-     else if(/悬架|制动|S\/ABS/.test(p.name)) p.member_id='foosung-nb';
-     else if(/手提袋|牛津布包|网纱|笔袋/.test(p.name)) p.member_id='tianyang-stationery';
-     else if(/温显|星星壶|子弹头|弹跳|保温杯/.test(p.name)) p.member_id='thermal-cup-maker';
-     else if(/二手|丰田|本田|宝马|日产|现代|右舵|整备|出口服务/.test(p.name)) p.member_id='usedcar-service';
-     else if(/数据线|充电线|USB|Lightning|Micro-B|电缆|Type-C/.test(p.name)) p.member_id='allens-house';
-     else if(/行李箱|拉杆箱|铝框|布箱/.test(p.name)) p.member_id='luggage-maker';
-     else if(/除锈|防腐|风电|外墙|高空/.test(p.name)) p.member_id='shihe-robot';
-     else if(/三多水|艾唯倪|OKF|米饼|泡芙|米脆|芦荟|康普茶|苹果醋|乳酸菌|奶茶|米露|矿泉水/.test(p.name)) p.member_id='liangzi-dongli';
-     else p.member_id='unknown';
-   }
- });
+ /* member_id 已由数据库直接提供；仅对缺失项兜底为 unknown */
+ d.forEach(function(p){ if(!p.member_id) p.member_id='unknown'; });
  /* 只保留有图片的Supabase产品 */
  var sbProds=d.filter(function(p){return p.image && p.image.length>0;});
  if(sbProds.length){
