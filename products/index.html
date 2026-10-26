@@ -237,6 +237,7 @@ footer.co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
  <div class="sheet" id="sheet"></div>
 </div>
 
+<script src="i18n-products.js"></script>
 <script>
 /* ===== Supabase 配置 ===== */
 const SB_URL = 'https://xvvwdiqxbhhkgnibhbxi.supabase.co';
@@ -476,6 +477,18 @@ function getMemberIntro(m){
  return m.introEn;
 }
 
+/* 产品多语言：查 PRODUCT_I18N 映射，查不到则回退中文原文 */
+function getProductName(p){
+ if(lang==='zh') return p.name;
+ var tr = (window.PRODUCT_I18N && window.PRODUCT_I18N[p.id] && window.PRODUCT_I18N[p.id][lang]);
+ return (tr && tr.name) ? tr.name : p.name;
+}
+function getProductDesc(p){
+ if(lang==='zh') return p.description;
+ var tr = (window.PRODUCT_I18N && window.PRODUCT_I18N[p.id] && window.PRODUCT_I18N[p.id][lang]);
+ return (tr && tr.desc) ? tr.desc : p.description;
+}
+
 function showHome(){ document.getElementById('home').style.display='block'; document.getElementById('members').classList.remove('show'); document.getElementById('navHome').classList.add('on'); document.getElementById('navMembers').classList.remove('on'); window.scrollTo(0,0); }
 function showMembers(){ document.getElementById('home').style.display='none'; document.getElementById('members').classList.add('show'); document.getElementById('navMembers').classList.add('on'); document.getElementById('navHome').classList.remove('on'); window.scrollTo(0,0); renderMHero(); renderMemberProducts(); renderFactory(); renderQuality(); renderDesign(); renderCert(); }
 
@@ -600,7 +613,8 @@ function renderProducts(){
   }else{
     priceHtml='<div class="price" style="font-size:15px">询价</div>';
   }
-  d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+p.name+'"></div><div class="info"><div class="nm">'+p.name+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
+  var pname=getProductName(p);
+  d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+pname+'"></div><div class="info"><div class="nm">'+pname+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
   grid.appendChild(d);
  });
 }
@@ -608,16 +622,18 @@ function renderProducts(){
 // ============ 产品详情 ============
 function openDetail(p, m){
  var sheet=document.getElementById('sheet');
- var img=p.image?'<div class="big"><img src="'+p.image+'" alt="'+p.name+'"></div>':'';
+ var pname=getProductName(p);
+ var pdesc=getProductDesc(p);
+ var img=p.image?'<div class="big"><img src="'+p.image+'" alt="'+pname+'"></div>':'';
  var priceHtml;
  if(p.price && p.price!=='询价'){
   priceHtml='<div class="price-big"><span style="font-size:14px">¥</span> '+p.price+'</div>';
  }else{
   priceHtml='<div class="price-big" style="font-size:20px">询价</div>';
  }
- var desc=p.description?'<div class="lbl">'+t('label_desc')+'</div><div class="desc">'+p.description+'</div>':'<div class="lbl">'+t('label_desc')+'</div><div class="desc" style="color:#999">'+t('desc_placeholder')+'</div>';
+ var desc=pdesc?'<div class="lbl">'+t('label_desc')+'</div><div class="desc">'+pdesc+'</div>':'<div class="lbl">'+t('label_desc')+'</div><div class="desc" style="color:#999">'+t('desc_placeholder')+'</div>';
  var specs=p.specs?'<div class="lbl">'+t('label_specs')+'</div><div class="specs">'+p.specs+'</div>':'';
- sheet.innerHTML=img+'<div class="pd"><h2>'+p.name+'</h2><div class="by">'+t('by').replace('{name}',getMemberName(m))+' · <a onclick="closeDetail();showMembers();selectedMember=MEMBERS.find(function(x){return x.id===\''+m.id+'\'});renderMHero();renderMemberProducts();renderFactory();renderQuality();renderDesign();renderCert();">'+t('view_member')+'</a></div>'+priceHtml+desc+specs+'</div><button class="close" onclick="closeDetail()">'+t('close')+'</button>';
+ sheet.innerHTML=img+'<div class="pd"><h2>'+pname+'</h2><div class="by">'+t('by').replace('{name}',getMemberName(m))+' · <a onclick="closeDetail();showMembers();selectedMember=MEMBERS.find(function(x){return x.id===\''+m.id+'\'});renderMHero();renderMemberProducts();renderFactory();renderQuality();renderDesign();renderCert();">'+t('view_member')+'</a></div>'+priceHtml+desc+specs+'</div><button class="close" onclick="closeDetail()">'+t('close')+'</button>';
  document.getElementById('mask').classList.add('show');
  document.body.style.overflow='hidden';
 }
@@ -675,7 +691,8 @@ function renderMemberProducts(){
   var d=document.createElement('div');d.className='card';
   d.onclick=function(){ openDetail(p,m); };
   var priceHtml = (p.price && p.price!=='询价') ? '<div class="price"><span class="rmb">¥</span>'+p.price+'</div>' : '<div class="price" style="font-size:15px">询价</div>';
-  d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+p.name+'"></div><div class="info"><div class="nm">'+p.name+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
+  var pname=getProductName(p);
+  d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+pname+'"></div><div class="info"><div class="nm">'+pname+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
   grid.appendChild(d);
  });
 }
