@@ -40,6 +40,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .card:active{transform:scale(.97)}
 .card .thumb{position:relative;padding-top:100%;overflow:hidden;background:#f0f2f5}
 .card .thumb img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.card .thumb .noimg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;background:linear-gradient(135deg,#eef2f7 0%,#e3e9f2 100%);color:#8c99ac;font-size:13px;font-weight:600;letter-spacing:.5px}
 .card:hover .thumb img{transform:scale(1.06)}
 .card .info{padding:10px 12px 14px}
 .card .nm{font-size:14px;font-weight:600;color:#1A2333;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:40px}
@@ -266,6 +267,8 @@ const I18N = {
  pc_clothing:'服装纺织', pc_beauty:'美妆个护', pc_home:'家居日用', pc_food:'食品饮料',
  pc_mom_baby:'母婴用品', pc_electronics:'电子电器', pc_phone_acc:'手机配件', pc_luggage:'行李箱', pc_sports:'运动户外', pc_furniture:'家装建材',
  pc_jewelry:'珠宝饰品', pc_stationery:'办公文教', pc_auto:'汽车配件', pc_used_car:'二手车', pc_vehicle_service:'二手车服务', pc_other:'其他',
+ pc_tomato:'番茄', pc_pepper:'辣椒', pc_watermelon:'西瓜', pc_rootstock:'砧木', pc_squash:'南瓜', pc_melon:'甜瓜', pc_cucumber:'黄瓜', pc_bitter_gourd:'苦瓜',
+ pc_carrot:'胡萝卜', pc_radish:'萝卜', pc_cabbage:'甘蓝', pc_chinese_cabbage:'白菜', pc_broccoli:'花椰菜', pc_onion:'洋葱', pc_bunching_onion:'大葱', pc_leafy:'叶菜',
  fc_sample:'样品间', fc_warehouse:'仓库', fc_cut:'裁剪车间', fc_sew:'缝纫车间', fc_inspect:'检验包装车间',
  qc1t:'原料检验', qc1d:'', qc2t:'裁剪/印花检验', qc2d:'', qc3t:'生产过程巡检', qc3d:'', qc4t:'成品检验', qc4d:'',
  desc_placeholder:'（产品介绍待补充）', close:'关闭', label_desc:'产品介绍', label_specs:'规格', products_title:'产品展示', products_sub:'该会员企业的产品',
@@ -287,6 +290,8 @@ const I18N = {
  pc_clothing:'Clothing & Textile', pc_beauty:'Beauty & Personal Care', pc_home:'Home & Living', pc_food:'Food & Beverage',
  pc_mom_baby:'Mom & Baby', pc_electronics:'Electronics', pc_phone_acc:'Phone Accessories', pc_luggage:'Luggage', pc_sports:'Sports & Outdoor', pc_furniture:'Furniture & Decor',
  pc_jewelry:'Jewelry & Accessories', pc_stationery:'Office & Stationery', pc_auto:'Auto Parts', pc_used_car:'Used Cars', pc_vehicle_service:'Vehicle Services', pc_other:'Other',
+ pc_tomato:'Tomato', pc_pepper:'Pepper', pc_watermelon:'Watermelon', pc_rootstock:'Rootstock', pc_squash:'Squash', pc_melon:'Melon', pc_cucumber:'Cucumber', pc_bitter_gourd:'Bitter Gourd',
+ pc_carrot:'Carrot', pc_radish:'Radish', pc_cabbage:'Cabbage', pc_chinese_cabbage:'Chinese Cabbage', pc_broccoli:'Cauliflower', pc_onion:'Onion', pc_bunching_onion:'Bunching Onion', pc_leafy:'Leafy Greens',
  fc_sample:'Sample Room', fc_warehouse:'Warehouse', fc_cut:'Cut Workshop', fc_sew:'Sewing Workshop', fc_inspect:'Inspect & Package Workshop',
  qc1t:'Raw material inspection', qc1d:'', qc2t:'Cut / print part inspection', qc2d:'', qc3t:'Patrol inspection', qc3d:'', qc4t:'Final inspection', qc4d:'',
  desc_placeholder:'(Description to be added)', close:'Close', label_desc:'Description', label_specs:'Specifications',
@@ -308,6 +313,8 @@ const I18N = {
  pc_clothing:'Vêtements & Textile', pc_beauty:'Beauté & Soins', pc_home:'Maison & Vie', pc_food:'Alimentation',
  pc_mom_baby:'Maternité & Bébé', pc_electronics:'Électronique', pc_phone_acc:'Accessoires Téléphone', pc_luggage:'Valises', pc_sports:'Sport & Plein Air', pc_furniture:'Meubles & Déco',
  pc_jewelry:'Bijoux & Accessoires', pc_stationery:'Bureau & Papeterie', pc_auto:'Pièces Auto', pc_used_car:'Voitures d\'Occasion', pc_vehicle_service:'Services Véhicules', pc_other:'Autres',
+ pc_tomato:'Tomate', pc_pepper:'Poivron', pc_watermelon:'Pastèque', pc_rootstock:'Porte-greffe', pc_squash:'Courge', pc_melon:'Melon', pc_cucumber:'Concombre', pc_bitter_gourd:'Concombre Amer',
+ pc_carrot:'Carotte', pc_radish:'Radis', pc_cabbage:'Chou', pc_chinese_cabbage:'Chou Chinois', pc_broccoli:'Chou-fleur', pc_onion:'Oignon', pc_bunching_onion:'Ciboule', pc_leafy:'Légumes-feuilles',
  fc_sample:'Salle d\'Échantillons', fc_warehouse:'Entrepôt', fc_cut:'Atelier de Coupe', fc_sew:'Atelier de Couture', fc_inspect:'Atelier d\'Inspection',
  qc1t:'Inspection matière première', qc1d:'', qc2t:'Inspection coupe/impression', qc2d:'', qc3t:'Inspection en cours', qc3d:'', qc4t:'Inspection finale', qc4d:'',
  desc_placeholder:'(Description à ajouter)', close:'Fermer', label_desc:'Description', label_specs:'Spécifications',
@@ -329,6 +336,8 @@ const I18N = {
  pc_clothing:'ملابس ونسيج', pc_beauty:'تجميل وعناية', pc_home:'منزل ومعيشة', pc_food:'أغذية ومشروبات',
  pc_mom_baby:'أمومة وطفولة', pc_electronics:'إلكترونيات', pc_phone_acc:'إكسسوارات الهاتف', pc_luggage:'حقائب سفر', pc_sports:'رياضة وهواية', pc_furniture:'أثاث وديكور',
  pc_jewelry:'مجوهرات وإكسسوارات', pc_stationery:'مكتبية وقرطاسية', pc_auto:'قطع سيارات', pc_used_car:'سيارات مستعملة', pc_vehicle_service:'خدمات المركبات', pc_other:'أخرى',
+ pc_tomato:'طماطم', pc_pepper:'فلفل', pc_watermelon:'بطيخ', pc_rootstock:'أصل التطعيم', pc_squash:'قرع', pc_melon:'شمام', pc_cucumber:'خيار', pc_bitter_gourd:'قرع مر',
+ pc_carrot:'جزر', pc_radish:'فجل', pc_cabbage:'ملفوف', pc_chinese_cabbage:'ملفوف صيني', pc_broccoli:'قرنبيط', pc_onion:'بصل', pc_bunching_onion:'بصل أخضر', pc_leafy:'خضروات ورقية',
  fc_sample:'غرفة العينات', fc_warehouse:'المستودع', fc_cut:'ورشة القص', fc_sew:'ورشة الخياطة', fc_inspect:'ورشة التفتيش والتغليف',
  qc1t:'تفتيش المواد الخام', qc1d:'', qc2t:'تفتيش القص/الطباعة', qc2d:'', qc3t:'تفتيش دوري', qc3d:'', qc4t:'تفتيش نهائي', qc4d:'',
  desc_placeholder:'(الوصف سيتم إضافته لاحقاً)', close:'إغلاق', label_desc:'وصف المنتج', label_specs:'المواصفات',
@@ -456,6 +465,16 @@ const MEMBERS = [
  introAr:'تأسست عام 2014، وكالة علامات كورية (سامداسو، إيفنيت، OKF).',
  hasDetail:false,
  },
+ {
+ id:'shinong-seed', name:'北京世农种苗有限公司', nameEn:'BEIJING SHINONG SEED CO., LTD.',
+ nameFr:'BEIJING SHINONG SEED CO., LTD.', nameAr:'شركة بكين شينونغ للبذور المحدودة',
+ category:'蔬菜种子育种/生产/销售', categoryEn:'Vegetable Seed Breeding / Production / Sales', categoryFr:'Sélection / Production / Vente de Semences Maraîchères', categoryAr:'تربية وإنتاج وبيع بذور الخضروات',
+ intro:'成立于1994年，韩国 NONGWOO BIO（农友生物，隶属韩国农协）在中国的全资子公司。主营蔬菜种子育种、生产与销售，覆盖番茄、辣椒、西瓜、砧木、南瓜、甜瓜、黄瓜、苦瓜、胡萝卜、萝卜、甘蓝、白菜、花椰菜、洋葱、大葱、叶菜等16大品类。',
+ introEn:'Founded in 1994, a wholly-owned Chinese subsidiary of NONGWOO BIO (Korea, part of the National Agricultural Cooperative Federation). Specialized in vegetable seed breeding, production and sales, covering 16 categories: tomato, pepper, watermelon, rootstock, squash, melon, cucumber, bitter gourd, carrot, radish, cabbage, Chinese cabbage, cauliflower, onion, bunching onion and leafy greens.',
+ introFr:'Fondée en 1994, filiale chinoise à 100% de NONGWOO BIO (Corée, groupe de la Fédération Nationale Coopérative Agricole). Spécialisée en sélection, production et vente de semences maraîchères, couvrant 16 catégories: tomate, poivron, pastèque, porte-greffe, courge, melon, concombre, concombre amer, carotte, radis, chou, chou chinois, chou-fleur, oignon, ciboule et légumes-feuilles.',
+ introAr:'تأسست عام 1994، وهي شركة تابعة مملوكة بالكامل لشركة نونغوو بايو الكورية (التابعة للاتحاد التعاوني الزراعي الوطني). متخصصة في تربية وإنتاج وبيع بذور الخضروات، وتغطي 16 فئة: طماطم، فلفل، بطيخ، أصل التطعيم، قرع، شمام، خيار، قرع مر، جزر، فجل، ملفوف، ملفوف صيني، قرنبيط، بصل، بصل أخضر، وخضروات ورقية.',
+ hasDetail:false,
+ },
 ];
 
 function getMemberName(m){
@@ -481,12 +500,22 @@ function getMemberIntro(m){
 function getProductName(p){
  if(lang==='zh') return p.name;
  var tr = (window.PRODUCT_I18N && window.PRODUCT_I18N[p.id] && window.PRODUCT_I18N[p.id][lang]);
- return (tr && tr.name) ? tr.name : p.name;
+ if(tr && tr.name) return tr.name;
+ /* 世农种苗占位产品无人工翻译：按「品类 序号」用当前语言拼接，避免外语界面显示中文名 */
+ if(p.member_id==='shinong-seed' && CAT_I18N[p.category]){
+  var num = String(p.name||'').replace(/[^0-9]/g,'');
+  return t(CAT_I18N[p.category]) + (num ? ' ' + num : '');
+ }
+ return p.name;
 }
 function getProductDesc(p){
- if(lang==='zh') return p.description;
+ var d = p.description;
+ if(lang==='zh') return d;
  var tr = (window.PRODUCT_I18N && window.PRODUCT_I18N[p.id] && window.PRODUCT_I18N[p.id][lang]);
- return (tr && tr.desc) ? tr.desc : p.description;
+ if(tr && tr.desc) return tr.desc;
+ /* 中文占位文案在外语界面下沉为本地化的「待补充」提示 */
+ if(p.member_id==='shinong-seed' && d === '产品介绍待补充') return '';
+ return d;
 }
 
 function showHome(){ document.getElementById('home').style.display='block'; document.getElementById('members').classList.remove('show'); document.getElementById('navHome').classList.add('on'); document.getElementById('navMembers').classList.remove('on'); window.scrollTo(0,0); }
@@ -499,7 +528,11 @@ const CAT_I18N = {
  cosmetic:'pc_cosmetic', bags:'pc_bags', school:'pc_school', backpack:'pc_backpack', woman:'pc_woman',
  clothing:'pc_clothing', beauty:'pc_beauty', home:'pc_home', food:'pc_food',
  mom_baby:'pc_mom_baby', electronics:'pc_electronics', phone_acc:'pc_phone_acc', luggage:'pc_luggage', sports:'pc_sports', furniture:'pc_furniture',
- jewelry:'pc_jewelry', stationery:'pc_stationery', auto:'pc_auto', used_car:'pc_used_car', vehicle_service:'pc_vehicle_service', other:'pc_other'
+ jewelry:'pc_jewelry', stationery:'pc_stationery', auto:'pc_auto', used_car:'pc_used_car', vehicle_service:'pc_vehicle_service', other:'pc_other',
+ /* 世农种苗 16 个蔬菜种子品类 */
+ tomato:'pc_tomato', pepper:'pc_pepper', watermelon:'pc_watermelon', rootstock:'pc_rootstock', squash:'pc_squash', melon:'pc_melon',
+ cucumber:'pc_cucumber', bitter_gourd:'pc_bitter_gourd', carrot:'pc_carrot', radish:'pc_radish', cabbage:'pc_cabbage', chinese_cabbage:'pc_chinese_cabbage',
+ broccoli:'pc_broccoli', onion:'pc_onion', bunching_onion:'pc_bunching_onion', leafy:'pc_leafy'
 };
 
 /* 静态兜底：Supabase不可用时用本地图片 */
@@ -527,8 +560,8 @@ function loadProducts(){
  if(d && d.length){
  /* member_id 已由数据库直接提供；仅对缺失项兜底为 unknown */
  d.forEach(function(p){ if(!p.member_id) p.member_id='unknown'; });
- /* 只保留有图片的Supabase产品 */
- var sbProds=d.filter(function(p){return p.image && p.image.length>0;});
+ /* 只保留有图片的Supabase产品；世农种苗为占位阶段（暂无配图），保留其空图记录 */
+ var sbProds=d.filter(function(p){return (p.image && p.image.length>0) || p.member_id==='shinong-seed';});
  if(sbProds.length){
  /* Supabase产品覆盖的分类 */
  var sbCats={};sbProds.forEach(function(p){sbCats[p.category]=1;});
@@ -536,7 +569,7 @@ function loadProducts(){
  var remainFb=FALLBACK.filter(function(p){return !sbCats[p.category];});
  allProducts=sbProds.concat(remainFb);
  /* 每个会员企业产品不超过10个 */
- var memberLimit={'liangzi-dongli':30};var memberCount={};allProducts=allProducts.filter(function(p){var mid=p.member_id||'unknown';var lim=memberLimit[mid]||10;memberCount[mid]=(memberCount[mid]||0)+1;return memberCount[mid]<=lim;});
+ var memberLimit={'liangzi-dongli':30,'shinong-seed':200};var memberCount={};allProducts=allProducts.filter(function(p){var mid=p.member_id||'unknown';var lim=memberLimit[mid]||10;memberCount[mid]=(memberCount[mid]||0)+1;return memberCount[mid]<=lim;});
  /* 缓存到 localStorage */
  try{ localStorage.setItem('yq_products', JSON.stringify(allProducts)); }catch(e){}
  }
@@ -555,6 +588,14 @@ function loadProducts(){
 }
 function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.category]=1;}); return Object.keys(s); }
 
+/* 缩略图：无图产品（占位阶段）显示品类占位块，避免破图 */
+function thumbHtml(p){
+ var pname=getProductName(p);
+ if(p.image) return '<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+pname+'"></div>';
+ var lbl = CAT_I18N[p.category] ? t(CAT_I18N[p.category]) : p.category;
+ return '<div class="thumb"><div class="noimg">'+lbl+'</div></div>';
+}
+
 function renderTabs(){ renderSidebar(); }
 
 // 大类分组（侧边栏）
@@ -566,6 +607,7 @@ const CATEGORY_GROUPS = [
  { key:'fashion', label:'服饰美妆', cats:['clothing','beauty','jewelry'] },
  { key:'stationery', label:'办公文教', cats:['stationery'] },
  { key:'sports', label:'运动户外', cats:['sports','furniture'] },
+ { key:'seed', label:'蔬菜种子', cats:['tomato','pepper','watermelon','rootstock','squash','melon','cucumber','bitter_gourd','carrot','radish','cabbage','chinese_cabbage','broccoli','onion','bunching_onion','leafy'] },
  { key:'other', label:'其他', cats:['other'] },
 ];
 let collapsedGroups = {};
@@ -614,7 +656,7 @@ function renderProducts(){
     priceHtml='<div class="price" style="font-size:15px">询价</div>';
   }
   var pname=getProductName(p);
-  d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+pname+'"></div><div class="info"><div class="nm">'+pname+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
+  d.innerHTML=thumbHtml(p)+'<div class="info"><div class="nm">'+pname+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
   grid.appendChild(d);
  });
 }
@@ -692,7 +734,7 @@ function renderMemberProducts(){
   d.onclick=function(){ openDetail(p,m); };
   var priceHtml = (p.price && p.price!=='询价') ? '<div class="price"><span class="rmb">¥</span>'+p.price+'</div>' : '<div class="price" style="font-size:15px">询价</div>';
   var pname=getProductName(p);
-  d.innerHTML='<div class="thumb"><img src="'+p.image+'" loading="lazy" alt="'+pname+'"></div><div class="info"><div class="nm">'+pname+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
+  d.innerHTML=thumbHtml(p)+'<div class="info"><div class="nm">'+pname+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
   grid.appendChild(d);
  });
 }
