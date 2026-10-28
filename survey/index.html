@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国商务考察团 调查问卷 | استبيان وفد الزيارة التجارية إلى الصين</title>
+<style>
+:root{--navy:#0F2544;--navy-l:#1A3A6B;--gold:#C9A24B;--ink:#1A2333;--muted:#6B7686;--line:#E6EAF0;--bg:#F7F8FA;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+[dir="rtl"] body{font-family:"Segoe UI","Tahoma","Arial",system-ui,sans-serif}
+/* ===== 顶栏 ===== */
+.top{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;padding:20px 16px 24px;text-align:center}
+.top img{height:64px;width:auto;margin-bottom:10px;display:inline-block}
+.top h1{font-size:20px;font-weight:800;line-height:1.5}
+.top .sub{font-size:13px;opacity:.85;margin-top:6px}
+.lang-bar{position:sticky;top:0;z-index:50;background:var(--navy);border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:center;gap:8px;padding:8px 12px;direction:ltr}
+.lang-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:13px;font-weight:700;padding:6px 14px;border-radius:6px;cursor:pointer;transition:.15s}
+.lang-btn:hover{background:rgba(201,162,75,.15)}
+.lang-btn.on{background:var(--gold);color:var(--navy)}
+/* ===== 主体 ===== */
+.wrap{max-width:640px;margin:0 auto;padding:18px 14px 48px}
+.sec-head{margin:26px 2px 12px;display:flex;align-items:flex-start;gap:10px}
+.sec-head .bar{width:4px;align-self:stretch;background:var(--gold);border-radius:2px;flex-shrink:0}
+.sec-zh{font-size:16px;font-weight:800;color:var(--navy)}
+.sec-ar{font-size:14px;font-weight:700;color:var(--muted)}
+/* 双语角色：主语言大字深色、辅语言小字灰色；切语言时互换 */
+.t-zh,.t-ar{display:block}
+html[dir="ltr"] .q-main-zh{font-size:15px;font-weight:700;color:var(--ink)}
+html[dir="ltr"] .q-main-zh .t-zh{font-size:15px;font-weight:700;color:var(--ink)}
+html[dir="ltr"] .q-main-zh .t-ar{font-size:12px;font-weight:400;color:var(--muted);margin-top:2px}
+html[dir="rtl"] .q-main-zh .t-zh{font-size:12px;font-weight:400;color:var(--muted)}
+html[dir="rtl"] .q-main-zh .t-ar{font-size:15px;font-weight:700;color:var(--ink)}
+/* 题目卡片 */
+.card{background:var(--white);border-radius:12px;box-shadow:0 1px 4px rgba(15,37,68,.07);padding:16px 14px;margin-bottom:12px}
+.qnum{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--navy);color:var(--gold);font-size:13px;font-weight:800;flex-shrink:0;margin-top:1px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+input[type=text],input[type=tel],input[type=email],textarea{width:100%;font-size:16px; /* ≥16px 防 iOS 缩放 */ font-family:inherit;color:var(--ink);background:#FBFCFE;border:1px solid var(--line);border-radius:8px;padding:11px 12px;margin-top:10px;transition:border .15s}
+input:focus,textarea:focus{outline:none;border-color:var(--navy);background:#fff}
+textarea{resize:vertical;min-height:110px}
+.qnote{font-size:12px;color:var(--muted);margin-top:6px}
+.req{color:#E0433F;font-weight:700}
+/* 错误态 */
+.card.err{border:1px solid #E0433F;box-shadow:0 1px 6px rgba(224,67,63,.18)}
+.err-msg{display:none;color:#E0433F;font-size:13px;font-weight:600;margin-top:8px}
+.card.err .err-msg{display:block}
+/* 提交区 */
+.submit-zone{margin-top:24px;text-align:center}
+.submit-btn{width:100%;max-width:400px;background:var(--navy);color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;padding:15px 16px;cursor:pointer;letter-spacing:.5px;transition:.15s;font-family:inherit}
+.submit-btn:hover{background:var(--navy-l)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed}
+.form-err{display:none;margin-top:12px;background:#FDECEC;border:1px solid #E0433F;color:#B02A26;border-radius:8px;padding:10px 12px;font-size:13px;font-weight:600;text-align:start}
+.form-err.show{display:block}
+/* 成功态 */
+#success{display:none;max-width:640px;margin:0 auto;padding:60px 20px;text-align:center}
+#success .check{width:84px;height:84px;margin:0 auto 22px;border-radius:50%;background:var(--navy);color:var(--gold);font-size:44px;line-height:84px;font-weight:800}
+#success h2{font-size:22px;color:var(--navy);margin-bottom:8px}
+#success .s-sub{font-size:15px;color:var(--muted);margin-bottom:24px}
+#success .s-bless{font-size:15px;color:var(--ink);background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(15,37,68,.07);padding:18px 16px}
+footer{max-width:640px;margin:0 auto;padding:0 20px 40px;text-align:center;font-size:12px;color:#A6AEBB;direction:ltr}
+</style>
+</head>
+<body>
+
+<!-- 顶部 -->
+<header class="top">
+  <img src="../assets/yunqiao-logo.png" alt="Yunqiao logo">
+  <h1 data-i18n="title"></h1>
+  <div class="sub" data-i18n="subtitle"></div>
+</header>
+
+<!-- 语言切换 -->
+<nav class="lang-bar">
+  <button type="button" class="lang-btn" id="btn-ar">العربية</button>
+  <button type="button" class="lang-btn" id="btn-zh">中文</button>
+</nav>
+
+<!-- 表单 -->
+<main class="wrap" id="form-zone">
+  <form id="survey" novalidate>
+
+    <!-- 第一部分 -->
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第一部分 基本信息</span><span class="sec-ar">الجزء الأول: المعلومات الأساسية</span></div></div>
+
+    <div class="card" id="card-q1">
+      <div class="qrow"><span class="qnum">1</span><div class="q-main-zh"><span class="t-zh">姓名 <span class="req">*</span></span><span class="t-ar">الاسم <span class="req">*</span></span></div></div>
+      <input type="text" id="q1_name" autocomplete="name">
+      <div class="err-msg" data-i18n="errRequired"></div>
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">2</span><div class="q-main-zh"><span class="t-zh">任职部门</span><span class="t-ar">الدائرة / الجهة التي تعمل بها</span></div></div>
+      <input type="text" id="q2_dept">
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">3</span><div class="q-main-zh"><span class="t-zh">职位</span><span class="t-ar">المنصب الوظيفي</span></div></div>
+      <input type="text" id="q3_position">
+    </div>
+
+    <div class="card" id="card-q4">
+      <div class="qrow"><span class="qnum">4</span><div class="q-main-zh"><span class="t-zh">联系电话 <span class="req">*</span></span><span class="t-ar">رقم الهاتف <span class="req">*</span></span></div></div>
+      <input type="tel" id="q4_phone" autocomplete="tel" inputmode="tel" dir="ltr">
+      <div class="qnote" data-i18n="phoneNote"></div>
+      <div class="err-msg" data-i18n="errRequired"></div>
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">5</span><div class="q-main-zh"><span class="t-zh">电子邮箱</span><span class="t-ar">البريد الإلكتروني</span></div></div>
+      <input type="email" id="q5_email" autocomplete="email" dir="ltr">
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">6</span><div class="q-main-zh"><span class="t-zh">WhatsApp</span><span class="t-ar">واتساب</span></div></div>
+      <input type="text" id="q6_whatsapp" dir="ltr">
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">7</span><div class="q-main-zh"><span class="t-zh">微信</span><span class="t-ar">وي تشات</span></div></div>
+      <input type="text" id="q7_wechat" dir="ltr">
+    </div>
+
+    <!-- 第二部分 -->
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第二部分 在中国期间想要购买的商品</span><span class="sec-ar">الجزء الثاني: السلع المرغوب في شرائها أثناء الإقامة في الصين</span></div></div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">8</span><div class="q-main-zh"><span class="t-zh">您在中国期间计划购买或采购哪些商品？请写明主要品类和大致数量。</span><span class="t-ar">٨. ما هي السلع التي تخططون لشرائها أو اقتنائها أثناء وجودكم في الصين؟ يرجى ذكر الفئات الرئيسية والكميات التقديرية.</span></div></div>
+      <textarea id="q8_goods" rows="5"></textarea>
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">9</span><div class="q-main-zh"><span class="t-zh">您对拟购商品的质量标准、规格或价格区间有何要求？</span><span class="t-ar">٩. ما هي متطلباتكم بشأن معايير الجودة أو المواصفات أو النطاق السعري للسلع المطلوبة؟</span></div></div>
+      <textarea id="q9_quality" rows="4"></textarea>
+    </div>
+
+    <!-- 第三部分 -->
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第三部分 在中国期间想要参观考察的目标企业</span><span class="sec-ar">الجزء الثالث: الشركات المستهدفة التي ترغبون في زيارتها والاطلاع عليها أثناء الإقامة في الصين</span></div></div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">10</span><div class="q-main-zh"><span class="t-zh">您希望参观考察哪些企业？请写明行业类别、企业名称（如有）和所在城市。</span><span class="t-ar">١٠. ما هي الشركات التي ترغبون في زيارتها؟ يرجى ذكر القطاع واسم الشركة (إن وُجد) والمدينة.</span></div></div>
+      <textarea id="q10_companies" rows="5"></textarea>
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">11</span><div class="q-main-zh"><span class="t-zh">本次参观考察的主要目的是什么？（如技术合作、设备引进、代理采购、投资洽谈等）</span><span class="t-ar">١١. ما هو الهدف الرئيسي من هذه الزيارة؟ (مثل التعاون التقني، استيراد المعدات، الشراء بالوكالة، مباحثات الاستثمار)</span></div></div>
+      <textarea id="q11_purpose" rows="4"></textarea>
+    </div>
+
+    <!-- 第四部分 -->
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第四部分 未来希望从中国进口和向中国出口的产品</span><span class="sec-ar">الجزء الرابع: المنتجات المرغوب في استيرادها من الصين وتصديرها إليها مستقبلاً</span></div></div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">12</span><div class="q-main-zh"><span class="t-zh">未来希望从中国进口的产品（请写明品类和预计年进口量）：</span><span class="t-ar">١٢. المنتجات التي ترغبون في استيرادها من الصين مستقبلاً (يرجى ذكر الفئات والكميات السنوية التقديرية):</span></div></div>
+      <textarea id="q12_import" rows="4"></textarea>
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">13</span><div class="q-main-zh"><span class="t-zh">未来希望向中国出口的产品（请写明品类和预计年出口量）：</span><span class="t-ar">١٣. المنتجات التي ترغبون في تصديرها إلى الصين مستقبلاً (يرجى ذكر الفئات والكميات السنوية التقديرية):</span></div></div>
+      <textarea id="q13_export" rows="4"></textarea>
+    </div>
+
+    <!-- 第五部分 -->
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第五部分 未来希望与中国合作的商务和贸易项目</span><span class="sec-ar">الجزء الخامس: مشاريع التعاون التجاري والاقتصادي المرغوب فيها مع الصين مستقبلاً</span></div></div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">14</span><div class="q-main-zh"><span class="t-zh">未来希望与中国企业开展哪些商务、贸易或投资合作项目？请简要说明合作方式和预期规模。</span><span class="t-ar">١٤. ما هي مشاريع التعاون التجاري أو الاستثماري التي ترغبون في تنفيذها مع الشركات الصينية مستقبلاً؟ يرجى توضيح طريقة التعاون والنطاق المتوقع.</span></div></div>
+      <textarea id="q14_cooperation" rows="5"></textarea>
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">15</span><div class="q-main-zh"><span class="t-zh">其他意见、建议或需要我方协助的事项：</span><span class="t-ar">١٥. ملاحظات أو مقترحات أخرى أو أمور تحتاجون إلى مساعدة بشأنها:</span></div></div>
+      <textarea id="q15_others" rows="4"></textarea>
+    </div>
+
+    <!-- 结尾祝福 -->
+    <div class="q-main-zh" style="margin:22px 4px 0;text-align:center">
+      <span class="t-zh" style="font-size:14px!important;color:var(--navy)!important;font-weight:600!important">感谢您的配合，祝考察顺利、合作成功！</span>
+      <span class="t-ar" style="font-size:14px!important;color:var(--navy)!important;font-weight:600!important">شكراً لتعاونكم، ونتمنى لزيارتكم كل التوفيق ولتعاوننا النجاح!</span>
+    </div>
+
+    <!-- 提交 -->
+    <div class="submit-zone">
+      <button type="submit" class="submit-btn" id="submitBtn" data-i18n="submit"></button>
+      <div class="form-err" id="formErr" data-i18n="errNetwork"></div>
+    </div>
+  </form>
+</main>
+
+<!-- 成功态 -->
+<div id="success">
+  <div class="check">✓</div>
+  <h2 data-i18n="successTitle"></h2>
+  <div class="s-sub" data-i18n="successSub"></div>
+  <div class="s-bless">
+    <div class="t-zh">感谢您的配合，祝考察顺利、合作成功！</div>
+    <div class="t-ar" dir="rtl">شكراً لتعاونكم، ونتمنى لزيارتكم كل التوفيق ولتعاوننا النجاح!</div>
+  </div>
+</div>
+
+<footer>Yunqiao International · 中国商务考察团</footer>
+
+<script>
+/* ===== i18n：UI 级文案（题干为双语常显，不在此列） ===== */
+var I18N = {
+  ar: {
+    title: "استبيان وفد الزيارة التجارية إلى الصين",
+    subtitle: "(وفد من المسؤولين الحكوميين العراقيين)",
+    phoneNote: "يرجى كتابة رمز الدولة مع رقم الهاتف",
+    submit: "إرسال",
+    submitting: "جارٍ الإرسال...",
+    errRequired: "هذا الحقل مطلوب",
+    errNetwork: "تعذر الإرسال، يرجى التحقق من الشبكة والمحاولة مرة أخرى / 提交失败，请检查网络后重试",
+    successTitle: "تم الإرسال بنجاح شكراً لكم!",
+    successSub: "已收到您的问卷 · تم استلام استبيانكم"
+  },
+  zh: {
+    title: "中国商务考察团 调查问卷",
+    subtitle: "（伊拉克政府官员代表团）",
+    phoneNote: "请注明国家代码",
+    submit: "提交",
+    submitting: "提交中...",
+    errRequired: "此项为必填",
+    errNetwork: "提交失败，请检查网络后重试 / تعذر الإرسال، يرجى التحقق من الشبكة والمحاولة مرة أخرى",
+    successTitle: "提交成功 شكراً لكم!",
+    successSub: "已收到您的问卷 · تم استلام استبيانكم"
+  }
+};
+var lang = "ar"; // 默认阿拉伯语 RTL
+
+/* ===== 语言切换 ===== */
+function sw(l) {
+  lang = l;
+  var html = document.documentElement;
+  html.setAttribute("lang", l === "ar" ? "ar" : "zh-CN");
+  html.setAttribute("dir", l === "ar" ? "rtl" : "ltr");
+  document.title = l === "ar"
+    ? "استبيان وفد الزيارة التجارية إلى الصين"
+    : "中国商务考察团 调查问卷";
+  var dict = I18N[l];
+  var nodes = document.querySelectorAll("[data-i18n]");
+  for (var i = 0; i < nodes.length; i++) {
+    var k = nodes[i].getAttribute("data-i18n");
+    if (dict[k]) nodes[i].textContent = dict[k];
+  }
+  document.getElementById("btn-ar").classList.toggle("on", l === "ar");
+  document.getElementById("btn-zh").classList.toggle("on", l === "zh");
+}
+document.getElementById("btn-ar").addEventListener("click", function(){ sw("ar"); });
+document.getElementById("btn-zh").addEventListener("click", function(){ sw("zh"); });
+sw("ar"); // 初始渲染
+
+/* ===== 提交逻辑 ===== */
+var SUPABASE_URL = "https://xvvwdiqxbhhkgnibhbxi.supabase.co/rest/v1/survey_responses";
+var API_KEY = "sb_publishable_E5fa74SZ-2GmAWWv4T4BdA_P5TS9cm_";
+var form = document.getElementById("survey");
+var btn = document.getElementById("submitBtn");
+var formErr = document.getElementById("formErr");
+
+function val(id) {
+  var el = document.getElementById(id);
+  return el ? el.value.trim() : "";
+}
+function setErr(cardId, on) {
+  var c = document.getElementById(cardId);
+  if (c) c.classList.toggle("err", on);
+}
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  /* 必填校验：Q1 姓名、Q4 电话 */
+  var ok = true, firstBad = null;
+  var v1 = val("q1_name"), v4 = val("q4_phone");
+  setErr("card-q1", !v1); if (!v1) { ok = false; firstBad = firstBad || document.getElementById("q1_name"); }
+  setErr("card-q4", !v4); if (!v4) { ok = false; firstBad = firstBad || document.getElementById("q4_phone"); }
+  if (!ok) { if (firstBad) firstBad.focus(); return; }
+
+  /* 防重复：提交中禁用按钮 */
+  var dict = I18N[lang];
+  btn.disabled = true;
+  btn.textContent = dict.submitting;
+  formErr.classList.remove("show");
+
+  var payload = {
+    q1_name: v1,
+    q2_dept: val("q2_dept"),
+    q3_position: val("q3_position"),
+    q4_phone: v4,
+    q5_email: val("q5_email"),
+    q6_whatsapp: val("q6_whatsapp"),
+    q7_wechat: val("q7_wechat"),
+    q8_goods: val("q8_goods"),
+    q9_quality: val("q9_quality"),
+    q10_companies: val("q10_companies"),
+    q11_purpose: val("q11_purpose"),
+    q12_import: val("q12_import"),
+    q13_export: val("q13_export"),
+    q14_cooperation: val("q14_cooperation"),
+    q15_others: val("q15_others"),
+    user_agent: (navigator.userAgent || "").substring(0, 200)
+  };
+
+  fetch(SUPABASE_URL, {
+    method: "POST",
+    headers: {
+      "apikey": API_KEY,
+      "Authorization": "Bearer " + API_KEY,
+      "Content-Type": "application/json",
+      "Prefer": "return=minimal"
+    },
+    body: JSON.stringify(payload)
+  }).then(function (res) {
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    /* 成功：整页替换为成功态，无跳转 */
+    document.getElementById("form-zone").style.display = "none";
+    var s = document.getElementById("success");
+    s.style.display = "block";
+    s.scrollIntoView({ behavior: "auto" });
+    sw(lang); // 用当前语言刷新成功态文案
+  }).catch(function (err) {
+    /* 失败：双语提示、恢复按钮、不清空已填内容 */
+    console.error("Survey submit failed:", err);
+    formErr.textContent = dict.errNetwork;
+    formErr.classList.add("show");
+    btn.disabled = false;
+    btn.textContent = dict.submit;
+    formErr.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+});
+</script>
+</body>
+</html>
