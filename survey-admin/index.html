@@ -39,6 +39,13 @@ th,td{border-bottom:1px solid #eaeef3;padding:9px 11px;text-align:left;vertical-
 th{background:#0F2544;color:#fff;position:sticky;top:0;z-index:2;font-weight:600}
 tbody tr:hover td{background:#f7f9fc}
 td.idx{background:#f4f6f9;color:#8b98a8;text-align:center}
+.tagv2{display:inline-block;background:#2a5ba8;color:#fff;font-size:9px;font-weight:700;border-radius:3px;padding:1px 4px;margin-top:3px}
+.tagv1{display:inline-block;background:#9aa8b8;color:#fff;font-size:9px;font-weight:700;border-radius:3px;padding:1px 4px;margin-top:3px}
+/* 版本筛选 */
+.vgrp{display:flex;gap:6px;flex-shrink:0}
+.vb{padding:10px 14px;background:#fff;border:1px solid #d5dce5;border-radius:8px;font-size:13px;cursor:pointer;color:#37475c}
+.vb:hover{background:#eef2f7}
+.vb.on{background:#0F2544;color:#fff;border-color:#0F2544;font-weight:600}
 td.wrapcell{white-space:normal;max-width:260px;word-break:break-word}
 .empty{padding:44px;text-align:center;color:#8b98a8;font-size:14px}
 /* ===== 自动统计 ===== */
@@ -99,6 +106,11 @@ a{color:#1a5fb4;text-decoration:none}
     </div>
     <div id="statBox"></div>
     <div class="bar">
+      <div class="vgrp">
+        <button class="vb on" id="vb-all" onclick="setVer('all')">全部</button>
+        <button class="vb" id="vb-v2" onclick="setVer('v2')">选择版 V2</button>
+        <button class="vb" id="vb-v1" onclick="setVer('v1')">开放版 V1</button>
+      </div>
       <input type="search" id="q" placeholder="搜索姓名 / 电话 / 单位 / 任意关键词…" oninput="render()">
       <button class="b2" onclick="exportCSV()">导出当前结果</button>
     </div>
@@ -138,6 +150,16 @@ function isV2(r){ return String(r.user_agent||"").indexOf("V2|") === 0; }
 var KEY = "";      // 仅存于内存
 var ROWS = [];     // 原始数据
 var VIEW = [];     // 当前筛选后
+var VER_FILTER = "all";  // 版本筛选：all / v2（选择版）/ v1（开放版）
+
+function setVer(v){
+  VER_FILTER = v;
+  ["all","v2","v1"].forEach(function(x){
+    var b = document.getElementById("vb-"+x);
+    if(b) b.classList.toggle("on", x === v);
+  });
+  render();
+}
 
 function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 
@@ -248,6 +270,10 @@ function buildStats(v2count){
 function render(){
   var q = document.getElementById("q").value.trim().toLowerCase();
   VIEW = ROWS.filter(function(r){
+    /* 版本筛选：V2=选择版（user_agent 前缀 V2|），V1=开放版 */
+    var v2 = isV2(r);
+    if(VER_FILTER === "v2" && !v2) return false;
+    if(VER_FILTER === "v1" &&  v2) return false;
     if(!q) return true;
     return FIELDS.some(function(f){ return String(r[f[0]]==null?"":r[f[0]]).toLowerCase().indexOf(q) >= 0; });
   });
@@ -255,7 +281,7 @@ function render(){
 
   if(!VIEW.length){
     document.getElementById("tableHost").innerHTML =
-      '<div class="empty">' + (ROWS.length ? "没有匹配的记录" : "该表当前没有任何数据") + '</div>';
+      '<div class="empty">' + (ROWS.length ? "没有匹配的记录（试试切换版本筛选或清空搜索）" : "该表当前没有任何数据") + '</div>';
     return;
   }
   var th = FIELDS.map(function(f){ return "<th>"+esc(f[1])+"</th>"; }).join("");
@@ -264,7 +290,8 @@ function render(){
       var cls = LONG_FIELDS[f[0]] ? " class='wrapcell'" : "";
       return "<td"+cls+">"+cellHTML(f[0], r[f[0]])+"</td>";
     }).join("");
-    return "<tr><td class='idx'>"+(i+1)+"</td>"+tds+"</tr>";
+    var tag = isV2(r) ? "<div class='tagv2'>V2</div>" : "<div class='tagv1'>V1</div>";
+    return "<tr><td class='idx'>"+(i+1)+tag+"</td>"+tds+"</tr>";
   }).join("");
   document.getElementById("tableHost").innerHTML =
     "<table><thead><tr><th>#</th>"+th+"</tr></thead><tbody>"+trs+"</tbody></table>";
@@ -272,10 +299,10 @@ function render(){
 
 function exportCSV(){
   if(!VIEW.length){ alert("没有可导出的数据"); return; }
-  var head = ["序号"].concat(FIELDS.map(function(f){return f[1];}));
+  var head = ["序号","问卷版本"].concat(FIELDS.map(function(f){return f[1];}));
   var lines = [head.join(",")];
   VIEW.forEach(function(r,i){
-    var row = [i+1].concat(FIELDS.map(function(f){
+    var row = [i+1, (isV2(r) ? "V2选择版" : "V1开放版")].concat(FIELDS.map(function(f){
       var v = r[f[0]];
       if(f[0]==="created_at") v = fmtTime(v);
       v = String(v==null?"":v).replace(/"/g,'""');
