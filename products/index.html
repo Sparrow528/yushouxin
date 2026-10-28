@@ -24,6 +24,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 /* 首页 hero */
 .hero{padding:122px 20px 36px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;text-align:center}
 .hero.logo-zone{font-size:44px;margin-bottom:10px}
+.logo-zone img{height:84px;width:auto;display:inline-block}
 .hero h1{font-size:22px;font-weight:800}
 .hero.sub{font-size:13px;opacity:.85;margin-top:6px;letter-spacing:1px}
 .hero.desc{max-width:640px;margin:14px auto 0;font-size:13px;opacity:.8;padding:0 20px}
@@ -144,7 +145,7 @@ footer.co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
 
 <div class="nav">
  <div class="nav-inner">
- <div class="brand"><span data-i18n="brand">云桥国际 · 会员专属平台</span><span class="sub" data-i18n="brand_sub">YUNQIAO INTERNATIONAL MEMBERS PLATFORM</span></div>
+ <div class="brand"><img src="../assets/yunqiao-logo.png" style="height:26px;vertical-align:middle;margin-right:6px" alt="云桥国际"><span data-i18n="brand">云桥国际 · 会员专属平台</span><span class="sub" data-i18n="brand_sub">YUNQIAO INTERNATIONAL MEMBERS PLATFORM</span></div>
  <div class="nav-right">
  <span class="nav-link on" id="navHome" onclick="showHome()" data-i18n="nav_products">产品</span>
  <span class="nav-link" id="navMembers" onclick="showMembers()" data-i18n="nav_members">会员企业</span>
@@ -161,7 +162,7 @@ footer.co{color:#cfd8e6;font-weight:700;font-size:13px;margin-bottom:4px}
 <!-- 首页：产品展示 -->
 <div class="home" id="home">
  <div class="hero">
- <div class="logo-zone"></div>
+ <div class="logo-zone"><img src="../assets/yunqiao-logo.png" alt="云桥国际"></div>
  <h1 data-i18n="platform_name">云桥国际文化交流有限公司</h1>
  <div class="sub" data-i18n="platform_sub">会员专属平台 · 优质产品展示</div>
  <div class="desc" data-i18n="platform_desc">精选会员企业优质产品，向海内外意向客户展示。</div>
@@ -706,7 +707,7 @@ function renderMHero(){
  const mainName = getMemberName(m);
  const subName = lang==='zh' ? m.nameEn : (lang==='en' ? m.name : (lang==='fr' ? (m.nameFr||m.nameEn) : (m.nameAr||m.nameEn)));
  let backBtn = MEMBERS.length>1 ? `<button onclick="selectedMember=null;renderMHero();renderMemberProducts();renderFactory();renderQuality();renderDesign();renderCert();" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;margin-bottom:12px"> ${t('back_to_list')||'返回列表'}</button><br>` : '';
- hero.innerHTML = `${backBtn}<div class="logo-zone"></div>
+ hero.innerHTML = `${backBtn}<div class="logo-zone"><img src="../assets/yunqiao-logo.png" alt="云桥国际"></div>
  <h2>${mainName}</h2>
  <div class="en">${lang==='zh' ? m.nameEn : m.name}</div>
  <div class="cat">${getMemberCategory(m)}</div>
