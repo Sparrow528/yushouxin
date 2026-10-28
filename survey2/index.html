@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国商务考察团 调查问卷（选择版）| استبيان وفد الزيارة التجارية إلى الصين</title>
+<style>
+:root{--navy:#0F2544;--navy-l:#1A3A6B;--gold:#C9A24B;--ink:#1A2333;--muted:#6B7686;--line:#E6EAF0;--bg:#F7F8FA;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+[dir="rtl"] body{font-family:"Segoe UI","Tahoma","Arial",system-ui,sans-serif}
+.top{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-l) 100%);color:#fff;padding:20px 16px 24px;text-align:center}
+.top img{height:64px;width:auto;margin-bottom:10px;display:inline-block}
+.top h1{font-size:20px;font-weight:800;line-height:1.5}
+.top .sub{font-size:13px;opacity:.85;margin-top:6px}
+.lang-bar{position:sticky;top:0;z-index:50;background:var(--navy);border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:center;gap:8px;padding:8px 12px;direction:ltr}
+.lang-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:13px;font-weight:700;padding:6px 14px;border-radius:6px;cursor:pointer;transition:.15s}
+.lang-btn.on{background:var(--gold);color:var(--navy)}
+.wrap{max-width:640px;margin:0 auto;padding:18px 14px 48px}
+.sec-head{margin:26px 2px 12px;display:flex;align-items:flex-start;gap:10px}
+.sec-head .bar{width:4px;align-self:stretch;background:var(--gold);border-radius:2px;flex-shrink:0}
+.sec-zh{font-size:16px;font-weight:800;color:var(--navy)}
+.sec-ar{font-size:14px;font-weight:700;color:var(--muted)}
+.t-zh,.t-ar{display:block}
+html[dir="ltr"] .q-main-zh .t-zh{font-size:15px;font-weight:700;color:var(--ink)}
+html[dir="ltr"] .q-main-zh .t-ar{font-size:12px;font-weight:400;color:var(--muted);margin-top:2px}
+html[dir="rtl"] .q-main-zh .t-zh{font-size:12px;font-weight:400;color:var(--muted)}
+html[dir="rtl"] .q-main-zh .t-ar{font-size:15px;font-weight:700;color:var(--ink)}
+.card{background:var(--white);border-radius:12px;box-shadow:0 1px 4px rgba(15,37,68,.07);padding:16px 14px;margin-bottom:12px}
+.qnum{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--navy);color:var(--gold);font-size:13px;font-weight:800;flex-shrink:0;margin-top:1px}
+.qrow{display:flex;gap:10px;align-items:flex-start}
+input[type=text],input[type=tel],input[type=email],textarea{width:100%;font-size:16px;font-family:inherit;color:var(--ink);background:#FBFCFE;border:1px solid var(--line);border-radius:8px;padding:11px 12px;margin-top:10px;transition:border .15s}
+input:focus,textarea:focus{outline:none;border-color:var(--navy);background:#fff}
+textarea{resize:vertical;min-height:90px}
+.qnote{font-size:12px;color:var(--muted);margin-top:6px}
+.req{color:#E0433F;font-weight:700}
+/* ===== 选项 ===== */
+.opt{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;margin-top:8px;border:1px solid var(--line);border-radius:8px;background:#FBFCFE;cursor:pointer;transition:.15s}
+.opt:active{border-color:var(--navy)}
+.opt input[type=checkbox]{width:20px;height:20px;accent-color:var(--navy);flex-shrink:0;margin-top:3px}
+.opt .txt{flex:1}
+html[dir="rtl"] .opt .t-zh{font-size:12px;font-weight:400;color:var(--muted)}
+html[dir="rtl"] .opt .t-ar{font-size:15px;font-weight:600;color:var(--ink)}
+html[dir="ltr"] .opt .t-ar{font-size:12px;font-weight:400;color:var(--muted)}
+html[dir="ltr"] .opt .t-zh{font-size:15px;font-weight:600;color:var(--ink)}
+.optlabel{font-size:12px;color:var(--muted);margin-top:12px}
+/* 错误态 */
+.card.err{border:1px solid #E0433F;box-shadow:0 1px 6px rgba(224,67,63,.18)}
+.err-msg{display:none;color:#E0433F;font-size:13px;font-weight:600;margin-top:8px}
+.card.err .err-msg{display:block}
+.submit-zone{margin-top:24px;text-align:center}
+.submit-btn{width:100%;max-width:400px;background:var(--navy);color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;padding:15px 16px;cursor:pointer;font-family:inherit}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed}
+.form-err{display:none;margin-top:12px;background:#FDECEC;border:1px solid #E0433F;color:#B02A26;border-radius:8px;padding:10px 12px;font-size:13px;font-weight:600;text-align:start}
+.form-err.show{display:block}
+#success{display:none;max-width:640px;margin:0 auto;padding:60px 20px;text-align:center}
+#success .check{width:84px;height:84px;margin:0 auto 22px;border-radius:50%;background:var(--navy);color:var(--gold);font-size:44px;line-height:84px;font-weight:800}
+#success h2{font-size:22px;color:var(--navy);margin-bottom:8px}
+#success .s-sub{font-size:15px;color:var(--muted);margin-bottom:24px}
+#success .s-bless{font-size:15px;color:var(--ink);background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(15,37,68,.07);padding:18px 16px}
+footer{max-width:640px;margin:0 auto;padding:0 20px 40px;text-align:center;font-size:12px;color:#A6AEBB;direction:ltr}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img src="../assets/yunqiao-logo.png" alt="Yunqiao logo">
+  <h1 data-i18n="title"></h1>
+  <div class="sub" data-i18n="subtitle"></div>
+</header>
+
+<nav class="lang-bar">
+  <button type="button" class="lang-btn" id="btn-ar">العربية</button>
+  <button type="button" class="lang-btn" id="btn-zh">中文</button>
+</nav>
+
+<main class="wrap" id="form-zone">
+  <form id="survey" novalidate>
+
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第一部分 基本信息</span><span class="sec-ar">الجزء الأول: المعلومات الأساسية</span></div></div>
+
+    <div class="card" id="card-q1">
+      <div class="qrow"><span class="qnum">1</span><div class="q-main-zh"><span class="t-zh">姓名 <span class="req">*</span></span><span class="t-ar">الاسم <span class="req">*</span></span></div></div>
+      <input type="text" id="q1_name" autocomplete="name">
+      <div class="err-msg" data-i18n="errRequired"></div>
+    </div>
+    <div class="card">
+      <div class="qrow"><span class="qnum">2</span><div class="q-main-zh"><span class="t-zh">任职部门</span><span class="t-ar">الدائرة / الجهة التي تعمل بها</span></div></div>
+      <input type="text" id="q2_dept">
+    </div>
+    <div class="card">
+      <div class="qrow"><span class="qnum">3</span><div class="q-main-zh"><span class="t-zh">职位</span><span class="t-ar">المنصب الوظيفي</span></div></div>
+      <input type="text" id="q3_position">
+    </div>
+    <div class="card" id="card-q4">
+      <div class="qrow"><span class="qnum">4</span><div class="q-main-zh"><span class="t-zh">联系电话 <span class="req">*</span></span><span class="t-ar">رقم الهاتف <span class="req">*</span></span></div></div>
+      <input type="tel" id="q4_phone" autocomplete="tel" inputmode="tel" dir="ltr">
+      <div class="err-msg" data-i18n="errRequired"></div>
+    </div>
+    <div class="card">
+      <div class="qrow"><span class="qnum">5</span><div class="q-main-zh"><span class="t-zh">电子邮箱</span><span class="t-ar">البريد الإلكتروني</span></div></div>
+      <input type="email" id="q5_email" autocomplete="email" dir="ltr">
+    </div>
+    <div class="card">
+      <div class="qrow"><span class="qnum">6</span><div class="q-main-zh"><span class="t-zh">WhatsApp</span><span class="t-ar">واتساب</span></div></div>
+      <input type="text" id="q6_whatsapp" dir="ltr">
+    </div>
+    <div class="card">
+      <div class="qrow"><span class="qnum">7</span><div class="q-main-zh"><span class="t-zh">微信</span><span class="t-ar">وي تشات</span></div></div>
+      <input type="text" id="q7_wechat" dir="ltr">
+    </div>
+
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第二部分 采购意向（可多选）</span><span class="sec-ar">الجزء الثاني: نوايا الشراء (اختيار متعدد)</span></div></div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">8</span><div class="q-main-zh"><span class="t-zh">您计划在中国采购哪些商品？（可多选）</span><span class="t-ar">٨. ما هي السلع التي تخططون لشرائها من الصين؟ (اختيار متعدد)</span></div></div>
+      <div id="opts-q8"></div>
+      <div class="optlabel">其他 / أخرى</div>
+      <input type="text" id="q8_other" placeholder="其他品类，请说明 / أخرى، يرجى التوضيح">
+      <div class="optlabel">大致采购数量 / الكميات التقديرية</div>
+      <input type="text" id="q8_qty" placeholder="如：100台、2个柜 / مثال: 100 جهاز، حاويتان">
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">9</span><div class="q-main-zh"><span class="t-zh">对商品质量、标准或价格有何要求？（可多选）</span><span class="t-ar">٩. ما هي متطلباتكم للجودة أو المواصفات أو السعر؟ (اختيار متعدد)</span></div></div>
+      <div id="opts-q9"></div>
+      <div class="optlabel">其他 / أخرى</div>
+      <input type="text" id="q9_other" placeholder="其他要求 / متطلبات أخرى">
+    </div>
+
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第三部分 企业考察意向</span><span class="sec-ar">الجزء الثالث: نوايا زيارة الشركات</span></div></div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">10</span><div class="q-main-zh"><span class="t-zh">希望考察哪类企业？（可多选）</span><span class="t-ar">١٠. ما نوع الشركات التي ترغبون في زيارتها؟ (اختيار متعدد)</span></div></div>
+      <div id="opts-q10"></div>
+      <div class="optlabel">具体企业名称与所在城市 / أسماء الشركات والمدن</div>
+      <input type="text" id="q10_detail" placeholder="如：某某集团（深圳）/ مثال: شركة كذا (شنتشن)">
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">11</span><div class="q-main-zh"><span class="t-zh">本次考察的主要目的？（可多选）</span><span class="t-ar">١١. ما هو الهدف الرئيسي من هذه الزيارة؟ (اختيار متعدد)</span></div></div>
+      <div id="opts-q11"></div>
+      <div class="optlabel">其他 / أخرى</div>
+      <input type="text" id="q11_other" placeholder="其他目的 / أهداف أخرى">
+    </div>
+
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第四部分 进出口意向</span><span class="sec-ar">الجزء الرابع: نوايا الاستيراد والتصدير</span></div></div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">12</span><div class="q-main-zh"><span class="t-zh">未来希望从中国进口的产品类别（可多选）</span><span class="t-ar">١٢. المنتجات المرغوب استيرادها من الصين (اختيار متعدد)</span></div></div>
+      <div id="opts-q12"></div>
+      <div class="optlabel">其他 / أخرى</div>
+      <input type="text" id="q12_other" placeholder="其他品类 / فئات أخرى">
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">13</span><div class="q-main-zh"><span class="t-zh">未来希望向中国出口的产品类别（可多选）</span><span class="t-ar">١٣. المنتجات المرغوب تصديرها إلى الصين (اختيار متعدد)</span></div></div>
+      <div id="opts-q13"></div>
+      <div class="optlabel">其他 / أخرى</div>
+      <input type="text" id="q13_other" placeholder="其他品类 / فئات أخرى">
+    </div>
+
+    <div class="sec-head"><span class="bar"></span><div><span class="sec-zh">第五部分 合作方式与建议</span><span class="sec-ar">الجزء الخامس: أساليب التعاون والمقترحات</span></div></div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">14</span><div class="q-main-zh"><span class="t-zh">希望采用哪种合作方式？（可多选）</span><span class="t-ar">١٤. ما هو أسلوب التعاون المفضل؟ (اختيار متعدد)</span></div></div>
+      <div id="opts-q14"></div>
+      <div class="optlabel">其他 / أخرى</div>
+      <input type="text" id="q14_other" placeholder="其他方式 / أساليب أخرى">
+    </div>
+
+    <div class="card">
+      <div class="qrow"><span class="qnum">15</span><div class="q-main-zh"><span class="t-zh">其他需求或建议</span><span class="t-ar">١٥. احتياجات أو مقترحات أخرى</span></div></div>
+      <textarea id="q15_others" rows="4"></textarea>
+    </div>
+
+    <div class="submit-zone">
+      <button type="submit" class="submit-btn" id="submitBtn" data-i18n="submit"></button>
+      <div class="form-err" id="formErr" data-i18n="errNetwork"></div>
+    </div>
+  </form>
+</main>
+
+<div id="success">
+  <div class="check">✓</div>
+  <h2 data-i18n="successTitle"></h2>
+  <div class="s-sub" data-i18n="successSub"></div>
+  <div class="s-bless" data-i18n="blessing"></div>
+</div>
+
+<footer>© 2026 Yunqiao International · 问卷版本 V2（结构化版）</footer>
+
+<script>
+/* ================= 选项数据 ================= */
+var CATS = [
+  ["机械设备","الآلات والمعدات"],
+  ["电子电器","الإلكترونيات والأجهزة الكهربائية"],
+  ["建材五金","مواد البناء والأدوات المعدنية"],
+  ["纺织服装","المنسوجات والملابس"],
+  ["家居家具","الأثاث والمفروشات"],
+  ["农产品食品","المنتجات الزراعية والأغذية"],
+  ["汽摩配件","قطع غيار السيارات والدراجات النارية"],
+  ["医疗器械","الأجهزة والمستلزمات الطبية"],
+  ["新能源光伏","الطاقة الجديدة والطاقة الشمسية"],
+  ["化工原料","المواد الكيميائية"],
+  ["日用消费品","السلع الاستهلاكية اليومية"]
+];
+var OPT9 = [
+  ["需要国际认证（CE/ISO 等）","يلزم شهادات دولية (CE/ISO...)"],
+  ["符合中国国标即可","المعيار الوطني الصيني كافٍ"],
+  ["高端品质优先","الجودة العالية أولاً"],
+  ["性价比优先","أفضل قيمة مقابل السعر"],
+  ["价格敏感（追求低价）","حساسية للسعر (الأقل سعراً)"],
+  ["需先提供样品测试","يلزم تقديم عينات للاختبار أولاً"],
+  ["需验厂或第三方验货","يلزم فحص المصنع أو فحص من طرف ثالث"]
+];
+var OPT10 = CATS;
+var OPT11 = [
+  ["寻找供应商","البحث عن موردين"],
+  ["技术合作","تعاون تقني"],
+  ["设备引进","استيراد المعدات"],
+  ["代理采购","الشراء بالوكالة"],
+  ["投资洽谈","مباحثات الاستثمار"],
+  ["市场考察","دراسة السوق"],
+  ["参加展会洽谈","المشاركة في المعارض"]
+];
+var OPT14 = [
+  ["独家代理","وكالة حصرية"],
+  ["经销分销","توزيع"],
+  ["OEM/ODM 代工","تصنيع OEM/ODM"],
+  ["合资建厂","مشروع مشترك"],
+  ["技术引进/转让","نقل التكنولوجيا"],
+  ["长期供货协议","اتفاقية توريد طويلة الأمد"],
+  ["物流与仓储合作","تعاون في اللوجستيات والتخزين"]
+];
+
+/* ================= 渲染选项 ================= */
+function render(hostId, name, opts){
+  var host = document.getElementById(hostId);
+  if(!host) return;
+  var h = "";
+  for(var i=0;i<opts.length;i++){
+    var zh = opts[i][0], ar = opts[i][1];
+    h += '<label class="opt"><input type="checkbox" name="'+name+'" value="'+zh+'">'
+       + '<span class="txt"><span class="t-zh">'+zh+'</span><span class="t-ar">'+ar+'</span></span></label>';
+  }
+  host.innerHTML = h;
+}
+render("opts-q8","o8",CATS);
+render("opts-q9","o9",OPT9);
+render("opts-q10","o10",OPT10);
+render("opts-q11","o11",OPT11);
+render("opts-q12","o12",CATS);
+render("opts-q13","o13",CATS);
+render("opts-q14","o14",OPT14);
+
+/* 收集：选项用 、 连接；自由文本用 ｜ 标记，便于后台结构化统计 */
+function collect(name, otherId, extraId, extraLabel){
+  var arr = [];
+  var els = document.querySelectorAll('input[name="'+name+'"]:checked');
+  for(var i=0;i<els.length;i++) arr.push(els[i].value);
+  var s = arr.join("、");
+  var o = otherId ? (document.getElementById(otherId).value.trim()) : "";
+  if(o) s = (s ? s+"、" : "") + "其他：" + o;
+  if(extraId){
+    var e = document.getElementById(extraId).value.trim();
+    if(e) s += "｜"+extraLabel+"：" + e;
+  }
+  return s;
+}
+
+var I18N = {
+  zh:{ title:"中国商务考察团 调查问卷", subtitle:"结构化版 V2 · 便于统计分析",
+    submit:"提交问卷", submitting:"提交中…", errRequired:"此项为必填",
+    errNetwork:"提交失败，请检查网络后重试", successTitle:"提交成功",
+    successSub:"已收到您的问卷", blessing:"感谢您的参与，我们会尽快与您联系！" },
+  ar:{ title:"استبيان وفد الزيارة التجارية إلى الصين", subtitle:"النسخة المنظمة V2 · لتسهيل التحليل الإحصائي",
+    submit:"إرسال الاستبيان", submitting:"جارٍ الإرسال…", errRequired:"هذا الحقل مطلوب",
+    errNetwork:"تعذر الإرسال، يرجى التحقق من الشبكة والمحاولة مرة أخرى", successTitle:"تم الإرسال بنجاح",
+    successSub:"تم استلام استبيانكم", blessing:"شكراً لمشاركتكم، سنتواصل معكم في أقرب وقت!" }
+};
+var lang = "ar";
+function sw(l){
+  lang = l;
+  var html = document.documentElement;
+  html.setAttribute("lang", l==="ar"?"ar":"zh-CN");
+  html.setAttribute("dir", l==="ar"?"rtl":"ltr");
+  document.title = l==="ar" ? "استبيان وفد الزيارة التجارية إلى الصين" : "中国商务考察团 调查问卷（选择版）";
+  var d = I18N[l], ns = document.querySelectorAll("[data-i18n]");
+  for(var i=0;i<ns.length;i++){ var k=ns[i].getAttribute("data-i18n"); if(d[k]) ns[i].textContent = d[k]; }
+  document.getElementById("btn-ar").classList.toggle("on", l==="ar");
+  document.getElementById("btn-zh").classList.toggle("on", l==="zh");
+}
+document.getElementById("btn-ar").addEventListener("click",function(){sw("ar");});
+document.getElementById("btn-zh").addEventListener("click",function(){sw("zh");});
+sw("ar");
+
+/* ================= 提交 ================= */
+var SUPABASE_URL = "https://mbrkbqbauhzugmqlldot.supabase.co/rest/v1/survey_responses";
+var API_KEY = "sb_publishable_P8lng4HV6HlhkpB6H8zXmg__BtlISBb";
+var form = document.getElementById("survey");
+var btn = document.getElementById("submitBtn");
+var formErr = document.getElementById("formErr");
+
+function val(id){ var el=document.getElementById(id); return el?el.value.trim():""; }
+function setErr(id,on){ var c=document.getElementById(id); if(c) c.classList.toggle("err",on); }
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  var ok = true, fb = null;
+  var v1 = val("q1_name"), v4 = val("q4_phone");
+  setErr("card-q1", !v1); if(!v1){ ok=false; fb = fb||document.getElementById("q1_name"); }
+  setErr("card-q4", !v4); if(!v4){ ok=false; fb = fb||document.getElementById("q4_phone"); }
+  if(!ok){ if(fb) fb.focus(); return; }
+
+  btn.disabled = true; btn.textContent = I18N[lang].submitting;
+  formErr.classList.remove("show");
+
+  var payload = {
+    q1_name: v1,
+    q2_dept: val("q2_dept"),
+    q3_position: val("q3_position"),
+    q4_phone: v4,
+    q5_email: val("q5_email"),
+    q6_whatsapp: val("q6_whatsapp"),
+    q7_wechat: val("q7_wechat"),
+    q8_goods: collect("o8","q8_other","q8_qty","采购数量"),
+    q9_quality: collect("o9","q9_other"),
+    q10_companies: collect("o10",null,"q10_detail","具体企业与城市"),
+    q11_purpose: collect("o11","q11_other"),
+    q12_import: collect("o12","q12_other"),
+    q13_export: collect("o13","q13_other"),
+    q14_cooperation: collect("o14","q14_other"),
+    q15_others: val("q15_others"),
+    /* 版本标记：V2 填结构化版，便于后台区分两版问卷 */
+    user_agent: "V2|" + (navigator.userAgent||"").substring(0,180)
+  };
+
+  fetch(SUPABASE_URL,{
+    method:"POST",
+    headers:{ "apikey":API_KEY, "Authorization":"Bearer "+API_KEY,
+              "Content-Type":"application/json", "Prefer":"return=minimal" },
+    body: JSON.stringify(payload)
+  }).then(function(res){
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    document.getElementById("form-zone").style.display="none";
+    var s=document.getElementById("success"); s.style.display="block";
+    s.scrollIntoView({behavior:"auto"}); sw(lang);
+  }).catch(function(){
+    formErr.classList.add("show");
+    btn.disabled=false; btn.textContent=I18N[lang].submit;
+  });
+});
+</script>
+</body>
+</html>

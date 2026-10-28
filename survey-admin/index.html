@@ -41,6 +41,17 @@ tbody tr:hover td{background:#f7f9fc}
 td.idx{background:#f4f6f9;color:#8b98a8;text-align:center}
 td.wrapcell{white-space:normal;max-width:260px;word-break:break-word}
 .empty{padding:44px;text-align:center;color:#8b98a8;font-size:14px}
+/* ===== 自动统计 ===== */
+#statBox{margin-bottom:16px}
+.stat-head{font-size:15px;font-weight:700;color:#0F2544;margin:16px 0 10px;padding-bottom:6px;border-bottom:2px solid #e6eaf0}
+.stat-head span{font-size:12px;font-weight:400;color:#6b7c90;margin-left:8px}
+.srow{display:flex;align-items:center;gap:10px;margin-bottom:5px;font-size:13px}
+.srow .nm{width:170px;flex-shrink:0;color:#37475c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srow .bar-bg{flex:1;background:#eef2f7;border-radius:5px;height:18px;overflow:hidden;min-width:80px}
+.srow .bar-fill{height:100%;background:linear-gradient(90deg,#0F2544,#2a5ba8);border-radius:5px;transition:width .3s}
+.srow .vv{width:78px;flex-shrink:0;text-align:right;color:#6b7c90;font-size:12px}
+.stat-note{background:#eef4ff;border:1px solid #cfe0f5;border-radius:9px;padding:11px 14px;font-size:12.5px;color:#2a4a75;line-height:1.7;margin-bottom:8px}
+@media(max-width:640px){.srow .nm{width:110px}.srow .vv{width:62px}}
 a{color:#1a5fb4;text-decoration:none}
 /* ===== 移动端 ===== */
 @media(max-width:640px){
@@ -81,9 +92,12 @@ a{color:#1a5fb4;text-decoration:none}
     <div class="cards">
       <div class="card"><div class="n" id="cTotal">0</div><div class="l">总提交数</div></div>
       <div class="card"><div class="n" id="cToday">0</div><div class="l">今日新增</div></div>
+      <div class="card"><div class="n" id="cV2">0</div><div class="l">选择版(V2)</div></div>
+      <div class="card"><div class="n" id="cV1">0</div><div class="l">开放版(V1)</div></div>
       <div class="card"><div class="n" id="cLast">-</div><div class="l">最近提交</div></div>
       <div class="card"><div class="n" id="cShow">0</div><div class="l">当前显示</div></div>
     </div>
+    <div id="statBox"></div>
     <div class="bar">
       <input type="search" id="q" placeholder="搜索姓名 / 电话 / 单位 / 任意关键词…" oninput="render()">
       <button class="b2" onclick="exportCSV()">导出当前结果</button>
@@ -107,6 +121,19 @@ var FIELDS = [
   ["created_at","提交时间"]
 ];
 var LONG_FIELDS = {q8_goods:1,q9_quality:1,q10_companies:1,q11_purpose:1,q12_import:1,q13_export:1,q14_cooperation:1,q15_others:1};
+
+/* 可自动统计的结构化字段（对应选择版 V2 的多选题） */
+var STAT_FIELDS = [
+  ["q8_goods","第8题 拟采购品类"],
+  ["q9_quality","第9题 质量/价格要求"],
+  ["q10_companies","第10题 拟考察企业类型"],
+  ["q11_purpose","第11题 考察目的"],
+  ["q12_import","第12题 拟进口品类"],
+  ["q13_export","第13题 拟出口品类"],
+  ["q14_cooperation","第14题 希望合作方式"]
+];
+/* V2 版本标记写在 user_agent 前缀 */
+function isV2(r){ return String(r.user_agent||"").indexOf("V2|") === 0; }
 
 var KEY = "";      // 仅存于内存
 var ROWS = [];     // 原始数据
@@ -138,7 +165,7 @@ function doLoad(){
   if(!k){ msg.textContent = "请先粘贴 service_role 密钥"; return; }
   msg.textContent = "正在读取…";
   KEY = k;
-  var select = FIELDS.map(function(f){return f[0];}).join(",");
+  var select = FIELDS.map(function(f){return f[0];}).join(",") + ",user_agent";
   fetch(API + "?select=" + select + "&order=id.asc&limit=5000", {
     headers: { "apikey": KEY, "Authorization": "Bearer " + KEY, "Accept": "application/json" }
   }).then(function(r){
@@ -159,14 +186,63 @@ function doLoad(){
 function stats(){
   document.getElementById("cTotal").textContent = ROWS.length;
   var today = new Date(); today.setHours(0,0,0,0);
-  var n = 0;
+  var n = 0, v2 = 0;
   ROWS.forEach(function(r){
+    if(isV2(r)) v2++;
     if(!r.created_at) return;
     var d = new Date(r.created_at);
     if(!isNaN(d) && d >= today) n++;
   });
   document.getElementById("cToday").textContent = n;
+  document.getElementById("cV2").textContent = v2;
+  document.getElementById("cV1").textContent = ROWS.length - v2;
   document.getElementById("cLast").textContent = ROWS.length ? fmtTime(ROWS[ROWS.length-1].created_at) : "-";
+  buildStats(v2);
+}
+
+/* ===== 结构化选项自动统计（仅统计 V2 选择版） ===== */
+function buildStats(v2count){
+  var box = document.getElementById("statBox");
+  if(!box) return;
+  var v2rows = ROWS.filter(isV2);
+  if(!v2rows.length){
+    box.innerHTML = '<div class="stat-note">当前还没有「选择版(V2)」数据。若有开放版(V1)填写的自由文本，'
+      + '可在下方表格逐条查看，或用搜索框检索关键词。</div>';
+    return;
+  }
+  var html = '<div class="stat-note">以下为「选择版(V2)」问卷的自动统计，共 <b>'+v2rows.length
+    + '</b> 份；百分比＝勾选该项的人数 ÷ 该题有效填写人数（多选题合计可超过 100%）。</div>';
+  STAT_FIELDS.forEach(function(f){
+    var key = f[0], label = f[1];
+    var cnt = {}, answered = 0;
+    v2rows.forEach(function(r){
+      var raw = String(r[key]||"").trim();
+      if(!raw) return;
+      answered++;
+      var opts = raw.split("｜")[0];          // 去掉｜后的自由文本备注
+      opts.split("、").forEach(function(t){
+        t = String(t||"").trim();
+        if(!t) return;
+        if(t.indexOf("其他：") === 0) t = "其他（自定义）";
+        cnt[t] = (cnt[t]||0) + 1;
+      });
+    });
+    html += '<div class="stat-head">'+esc(label)+'<span>有效填写 '+answered+' 份</span></div>';
+    if(!answered){
+      html += '<div class="empty" style="padding:14px">该题暂无数据</div>';
+      return;
+    }
+    var arr = Object.keys(cnt).map(function(k){return [k,cnt[k]];})
+                    .sort(function(a,b){return b[1]-a[1];});
+    var max = arr[0][1] || 1;
+    arr.forEach(function(it){
+      var pct = Math.round(it[1] / answered * 100);
+      html += '<div class="srow"><div class="nm" title="'+esc(it[0])+'">'+esc(it[0])+'</div>'
+           +  '<div class="bar-bg"><div class="bar-fill" style="width:'+Math.round(it[1]/max*100)+'%"></div></div>'
+           +  '<div class="vv">'+it[1]+' 人 · '+pct+'%</div></div>';
+    });
+  });
+  box.innerHTML = html;
 }
 
 function render(){
