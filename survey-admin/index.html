@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>问卷数据中心 | 云桥国际</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:#f4f6f9;color:#1c2733;min-height:100vh}
+/* ===== 密钥门 ===== */
+#gate{max-width:460px;margin:12vh auto;background:#fff;border-radius:16px;padding:38px 34px;box-shadow:0 6px 28px rgba(15,37,68,.10)}
+#gate h1{font-size:22px;color:#0F2544;margin-bottom:6px}
+#gate .sub{font-size:13px;color:#6b7c90;margin-bottom:22px;line-height:1.7}
+#gate input{width:100%;padding:13px 14px;border:1px solid #d5dce5;border-radius:9px;font-size:13px;font-family:Consolas,monospace;outline:none}
+#gate input:focus{border-color:#0F2544}
+#gate button{width:100%;margin-top:12px;padding:13px;background:#0F2544;color:#fff;border:0;border-radius:9px;font-size:15px;cursor:pointer;font-weight:600}
+#gate button:hover{background:#16386a}
+.tipbox{margin-top:16px;background:#fff8e6;border:1px solid #f0d89a;border-radius:9px;padding:12px 14px;font-size:12px;color:#8a6d20;line-height:1.75}
+#gateMsg{margin-top:14px;font-size:13px;color:#c0392b;min-height:18px}
+/* ===== 主体 ===== */
+header{background:#0F2544;color:#fff;padding:16px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header h2{font-size:18px;font-weight:600}
+header .sp{flex:1}
+.btn{background:rgba(255,255,255,.14);color:#fff;border:0;padding:8px 14px;border-radius:7px;font-size:13px;cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.24)}
+.wrap{padding:18px 22px}
+.cards{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.card{background:#fff;border-radius:11px;padding:16px 20px;box-shadow:0 2px 10px rgba(15,37,68,.07);min-width:132px}
+.card .n{font-size:27px;font-weight:700;color:#0F2544}
+.card .l{font-size:12px;color:#6b7c90;margin-top:3px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.bar input[type=search]{flex:1;min-width:200px;padding:10px 13px;border:1px solid #d5dce5;border-radius:8px;font-size:14px;outline:none}
+.bar input[type=search]:focus{border-color:#0F2544}
+.bar .b2{padding:10px 16px;background:#fff;border:1px solid #d5dce5;border-radius:8px;font-size:13px;cursor:pointer;color:#0F2544}
+.bar .b2:hover{background:#eef2f7}
+.tablebox{background:#fff;border-radius:11px;box-shadow:0 2px 10px rgba(15,37,68,.07);overflow:auto;max-height:70vh}
+table{border-collapse:collapse;width:100%;font-size:13px;white-space:nowrap}
+th,td{border-bottom:1px solid #eaeef3;padding:9px 11px;text-align:left;vertical-align:top}
+th{background:#0F2544;color:#fff;position:sticky;top:0;z-index:2;font-weight:600}
+tbody tr:hover td{background:#f7f9fc}
+td.idx{background:#f4f6f9;color:#8b98a8;text-align:center}
+td.wrapcell{white-space:normal;max-width:260px;word-break:break-word}
+.empty{padding:44px;text-align:center;color:#8b98a8;font-size:14px}
+a{color:#1a5fb4;text-decoration:none}
+/* ===== 移动端 ===== */
+@media(max-width:640px){
+  .wrap{padding:14px}
+  header{padding:14px}
+  header h2{font-size:16px;width:100%}
+  .card .n{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 密钥输入门 ============ -->
+<div id="gate">
+  <h1>问卷数据中心</h1>
+  <div class="sub">中国商务考察团调查问卷 · 数据查看与导出</div>
+  <input type="password" id="keyInput" placeholder="粘贴 Supabase service_role 密钥 (sb_secret_...)" autocomplete="off">
+  <button onclick="doLoad()">载入数据</button>
+  <div id="gateMsg"></div>
+  <div class="tipbox">
+    <b>安全说明</b><br>
+    · 密钥仅用于本次请求，保存在浏览器内存中，<b>不会上传、不会写入任何文件、不会进代码仓库</b><br>
+    · 关闭或刷新页面即自动清除<br>
+    · 建议用完后到 Supabase 后台重置该密钥
+  </div>
+</div>
+
+<!-- ============ 数据主体 ============ -->
+<div id="app" style="display:none">
+  <header>
+    <h2>问卷数据中心</h2>
+    <span class="sp"></span>
+    <button class="btn" onclick="doLoad()">刷新</button>
+    <button class="btn" onclick="exportCSV()">导出 CSV</button>
+    <button class="btn" onclick="logout()">清除密钥</button>
+  </header>
+  <div class="wrap">
+    <div class="cards">
+      <div class="card"><div class="n" id="cTotal">0</div><div class="l">总提交数</div></div>
+      <div class="card"><div class="n" id="cToday">0</div><div class="l">今日新增</div></div>
+      <div class="card"><div class="n" id="cLast">-</div><div class="l">最近提交</div></div>
+      <div class="card"><div class="n" id="cShow">0</div><div class="l">当前显示</div></div>
+    </div>
+    <div class="bar">
+      <input type="search" id="q" placeholder="搜索姓名 / 电话 / 单位 / 任意关键词…" oninput="render()">
+      <button class="b2" onclick="exportCSV()">导出当前结果</button>
+    </div>
+    <div class="tablebox"><div id="tableHost"></div></div>
+  </div>
+</div>
+
+<script>
+/* ===== 配置 ===== */
+var PROJECT = "mbrkbqbauhzugmqlldot";
+var API = "https://" + PROJECT + ".supabase.co/rest/v1/survey_responses";
+
+/* 字段 -> 中文表头（顺序与数据库一致） */
+var FIELDS = [
+  ["q1_name","姓名"],["q2_dept","部门/单位"],["q3_position","职务"],
+  ["q4_phone","电话"],["q5_email","邮箱"],["q6_whatsapp","WhatsApp"],["q7_wechat","微信"],
+  ["q8_goods","主要商品"],["q9_quality","品质要求"],["q10_companies","合作过的中国公司"],
+  ["q11_purpose","本次考察目的"],["q12_import","主要进口品类"],["q13_export","主要出口品类"],
+  ["q14_cooperation","希望合作方向"],["q15_others","其他需求/备注"],
+  ["created_at","提交时间"]
+];
+var LONG_FIELDS = {q8_goods:1,q9_quality:1,q10_companies:1,q11_purpose:1,q12_import:1,q13_export:1,q14_cooperation:1,q15_others:1};
+
+var KEY = "";      // 仅存于内存
+var ROWS = [];     // 原始数据
+var VIEW = [];     // 当前筛选后
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+function fmtTime(v){
+  if(!v) return "";
+  var d = new Date(v);
+  if(isNaN(d)) return String(v);
+  var p = function(n){return n<10?"0"+n:n;};
+  return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());
+}
+
+function cellHTML(k,v){
+  v = v==null?"":String(v);
+  if(!v) return "";
+  if(k==="q4_phone") return '<a href="tel:'+esc(v)+'">'+esc(v)+'</a>';
+  if(k==="q5_email") return '<a href="mailto:'+esc(v)+'">'+esc(v)+'</a>';
+  if(k==="created_at") return esc(fmtTime(v));
+  return esc(v);
+}
+
+function doLoad(){
+  var input = document.getElementById("keyInput");
+  var msg = document.getElementById("gateMsg");
+  var k = (KEY || (input?input.value.trim():""));
+  if(!k){ msg.textContent = "请先粘贴 service_role 密钥"; return; }
+  msg.textContent = "正在读取…";
+  KEY = k;
+  var select = FIELDS.map(function(f){return f[0];}).join(",");
+  fetch(API + "?select=" + select + "&order=id.asc&limit=5000", {
+    headers: { "apikey": KEY, "Authorization": "Bearer " + KEY, "Accept": "application/json" }
+  }).then(function(r){
+    if(!r.ok){ throw new Error("HTTP " + r.status + "（密钥可能不正确或已失效）"); }
+    return r.json();
+  }).then(function(rows){
+    if(!Array.isArray(rows)) throw new Error("返回格式异常");
+    ROWS = rows;
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    stats(); render();
+  }).catch(function(e){
+    msg.textContent = "读取失败：" + e.message;
+    if(e.message.indexOf("Failed to fetch")>=0) msg.textContent += "（网络不通，请检查连接）";
+  });
+}
+
+function stats(){
+  document.getElementById("cTotal").textContent = ROWS.length;
+  var today = new Date(); today.setHours(0,0,0,0);
+  var n = 0;
+  ROWS.forEach(function(r){
+    if(!r.created_at) return;
+    var d = new Date(r.created_at);
+    if(!isNaN(d) && d >= today) n++;
+  });
+  document.getElementById("cToday").textContent = n;
+  document.getElementById("cLast").textContent = ROWS.length ? fmtTime(ROWS[ROWS.length-1].created_at) : "-";
+}
+
+function render(){
+  var q = document.getElementById("q").value.trim().toLowerCase();
+  VIEW = ROWS.filter(function(r){
+    if(!q) return true;
+    return FIELDS.some(function(f){ return String(r[f[0]]==null?"":r[f[0]]).toLowerCase().indexOf(q) >= 0; });
+  });
+  document.getElementById("cShow").textContent = VIEW.length;
+
+  if(!VIEW.length){
+    document.getElementById("tableHost").innerHTML =
+      '<div class="empty">' + (ROWS.length ? "没有匹配的记录" : "该表当前没有任何数据") + '</div>';
+    return;
+  }
+  var th = FIELDS.map(function(f){ return "<th>"+esc(f[1])+"</th>"; }).join("");
+  var trs = VIEW.map(function(r,i){
+    var tds = FIELDS.map(function(f){
+      var cls = LONG_FIELDS[f[0]] ? " class='wrapcell'" : "";
+      return "<td"+cls+">"+cellHTML(f[0], r[f[0]])+"</td>";
+    }).join("");
+    return "<tr><td class='idx'>"+(i+1)+"</td>"+tds+"</tr>";
+  }).join("");
+  document.getElementById("tableHost").innerHTML =
+    "<table><thead><tr><th>#</th>"+th+"</tr></thead><tbody>"+trs+"</tbody></table>";
+}
+
+function exportCSV(){
+  if(!VIEW.length){ alert("没有可导出的数据"); return; }
+  var head = ["序号"].concat(FIELDS.map(function(f){return f[1];}));
+  var lines = [head.join(",")];
+  VIEW.forEach(function(r,i){
+    var row = [i+1].concat(FIELDS.map(function(f){
+      var v = r[f[0]];
+      if(f[0]==="created_at") v = fmtTime(v);
+      v = String(v==null?"":v).replace(/"/g,'""');
+      return '"'+v+'"';
+    }));
+    lines.push(row.join(","));
+  });
+  var blob = new Blob(["\ufeff"+lines.join("\r\n")], {type:"text/csv;charset=utf-8;"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  var d = new Date(), p=function(n){return n<10?"0"+n:n;};
+  a.download = "问卷数据_"+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+".csv";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function logout(){
+  KEY = ""; ROWS = []; VIEW = [];
+  var inp = document.getElementById("keyInput"); if(inp) inp.value = "";
+  document.getElementById("app").style.display = "none";
+  document.getElementById("gate").style.display = "block";
+  document.getElementById("gateMsg").textContent = "已清除密钥";
+}
+
+/* 回车即载入 */
+document.getElementById("keyInput").addEventListener("keydown", function(e){
+  if(e.key === "Enter") doLoad();
+});
+</script>
+</body>
+</html>
