@@ -23,6 +23,12 @@ header h2{font-size:18px;font-weight:600}
 header .sp{flex:1}
 .btn{background:rgba(255,255,255,.14);color:#fff;border:0;padding:8px 14px;border-radius:7px;font-size:13px;cursor:pointer}
 .btn:hover{background:rgba(255,255,255,.24)}
+.btn.danger{background:#c0392b}
+.btn.danger:hover{background:#a93226}
+.btn.danger:disabled{opacity:.4;cursor:not-allowed}
+th.selcol,td.selcol{width:34px;text-align:center;padding:8px 4px}
+th.selcol input,td.selcol input{width:16px;height:16px;cursor:pointer;accent-color:#c0392b}
+tr.picked td{background:#fff5f4}
 .wrap{padding:18px 22px}
 .cards{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
 .card{background:#fff;border-radius:11px;padding:16px 20px;box-shadow:0 2px 10px rgba(15,37,68,.07);min-width:132px}
@@ -93,6 +99,7 @@ a{color:#1a5fb4;text-decoration:none}
     <span class="sp"></span>
     <button class="btn" onclick="doLoad()">刷新</button>
     <button class="btn" onclick="exportCSV()">导出 CSV</button>
+    <button class="btn danger" id="delBtn" onclick="deleteSelected()" disabled>删除选中</button>
     <button class="btn" onclick="logout()">清除密钥</button>
   </header>
   <div class="wrap">
@@ -147,6 +154,7 @@ var STAT_FIELDS = [
 /* V2 版本标记写在 user_agent 前缀 */
 function isV2(r){ return String(r.user_agent||"").indexOf("V2|") === 0; }
 
+var SEL = {};      // 勾选状态 {id:true}
 var KEY = "";      // 仅存于内存
 var ROWS = [];     // 原始数据
 var VIEW = [];     // 当前筛选后
@@ -204,7 +212,7 @@ function doLoad(){
   }
   msg.textContent = "正在读取…";
   KEY = k;
-  var select = FIELDS.map(function(f){return f[0];}).join(",") + ",user_agent";
+  var select = "id," + FIELDS.map(function(f){return f[0];}).join(",") + ",user_agent";
   fetch(API + "?select=" + select + "&order=id.asc&limit=5000", {
     headers: { "apikey": KEY, "Authorization": "Bearer " + KEY, "Accept": "application/json" }
   }).then(function(r){
@@ -221,6 +229,7 @@ function doLoad(){
   }).then(function(rows){
     if(!Array.isArray(rows)) throw new Error("返回格式异常");
     ROWS = rows;
+    SEL = {};
     document.getElementById("gate").style.display = "none";
     document.getElementById("app").style.display = "block";
     stats(); render();
@@ -309,17 +318,90 @@ function render(){
       '<div class="empty">' + (ROWS.length ? "没有匹配的记录（试试切换版本筛选或清空搜索）" : "该表当前没有任何数据") + '</div>';
     return;
   }
-  var th = FIELDS.map(function(f){ return "<th>"+esc(f[1])+"</th>"; }).join("");
+  var th = "<th class='selcol'><input type='checkbox' id='ckAll' title='全选当前显示' onchange='toggleAll(this.checked)'></th>" +
+           "<th>#</th>" + FIELDS.map(function(f){ return "<th>"+esc(f[1])+"</th>"; }).join("");
   var trs = VIEW.map(function(r,i){
+    var ckOn = SEL[String(r.id)] ? " checked" : "";
+    var ck = "<td class='selcol'><input type='checkbox' class='rowck' data-id='"+esc(String(r.id))+"'"+
+             ckOn+" onchange='toggleRow(this)'></td>";
     var tds = FIELDS.map(function(f){
       var cls = LONG_FIELDS[f[0]] ? " class='wrapcell'" : "";
       return "<td"+cls+">"+cellHTML(f[0], r[f[0]])+"</td>";
     }).join("");
     var tag = isV2(r) ? "<div class='tagv2'>V2</div>" : "<div class='tagv1'>V1</div>";
-    return "<tr><td class='idx'>"+(i+1)+tag+"</td>"+tds+"</tr>";
+    return "<tr"+(ckOn?" class='picked'":"")+">"+ck+"<td class='idx'>"+(i+1)+tag+"</td>"+tds+"</tr>";
   }).join("");
   document.getElementById("tableHost").innerHTML =
-    "<table><thead><tr><th>#</th>"+th+"</tr></thead><tbody>"+trs+"</tbody></table>";
+    "<table><thead><tr>"+th+"</tr></thead><tbody>"+trs+"</tbody></table>";
+  syncAllBox();
+  updateDelBtn();
+}
+
+/* ---------- 勾选与删除 ---------- */
+function toggleRow(el){
+  var id = el.getAttribute("data-id");
+  if(el.checked) SEL[id] = true; else delete SEL[id];
+  el.closest("tr").className = el.checked ? "picked" : "";
+  syncAllBox(); updateDelBtn();
+}
+
+function toggleAll(on){
+  VIEW.forEach(function(r){ if(on) SEL[String(r.id)] = true; else delete SEL[String(r.id)]; });
+  render();
+}
+
+function syncAllBox(){
+  var box = document.getElementById("ckAll");
+  if(!box) return;
+  var total = VIEW.length, picked = 0;
+  VIEW.forEach(function(r){ if(SEL[String(r.id)]) picked++; });
+  box.checked = total > 0 && picked === total;
+  box.indeterminate = picked > 0 && picked < total;
+}
+
+function pickedIds(){
+  return ROWS.filter(function(r){ return SEL[String(r.id)]; }).map(function(r){ return r.id; });
+}
+
+function updateDelBtn(){
+  var btn = document.getElementById("delBtn");
+  if(!btn) return;
+  var n = pickedIds().length;
+  btn.disabled = n === 0;
+  btn.textContent = n ? "删除选中 (" + n + ")" : "删除选中";
+}
+
+function deleteSelected(){
+  var ids = pickedIds();
+  if(!ids.length){ alert("请先勾选要删除的记录"); return; }
+  var rows = ROWS.filter(function(r){ return SEL[String(r.id)]; });
+  var preview = rows.slice(0,8).map(function(r,i){
+    return (i+1) + ". " + (r.q1_name || "(无姓名)") + "  #" + r.id + "  " + fmtTime(r.created_at);
+  }).join("\n");
+  var more = rows.length > 8 ? "\n… 共 " + rows.length + " 条" : "";
+  if(!confirm("⚠️ 即将永久删除以下 " + rows.length + " 条记录，删除后无法恢复！\n\n" +
+              preview + more + "\n\n确认删除请点「确定」")) return;
+
+  var btn = document.getElementById("delBtn");
+  btn.disabled = true; btn.textContent = "删除中…";
+  fetch(API + "?id=in.(" + ids.join(",") + ")", {
+    method: "DELETE",
+    headers: { "apikey": KEY, "Authorization": "Bearer " + KEY, "Prefer": "return=minimal" }
+  }).then(function(r){
+    if(!r.ok){
+      return r.json().then(function(err){
+        var d = (err && (err.message || err.msg)) || "";
+        throw new Error("HTTP " + r.status + (d ? "（" + d + "）" : ""));
+      }, function(){ throw new Error("HTTP " + r.status); });
+    }
+    ROWS = ROWS.filter(function(r){ return !SEL[String(r.id)]; });
+    SEL = {};
+    stats(); render();
+    alert("已删除 " + ids.length + " 条记录 ✅");
+  }).catch(function(e){
+    alert("删除失败：" + e.message + "\n\n（service_role 密钥才有删除权限，请确认用的是 Legacy service_role）");
+    updateDelBtn();
+  });
 }
 
 function exportCSV(){
