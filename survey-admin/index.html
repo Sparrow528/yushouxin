@@ -211,6 +211,9 @@ function doLoad(){
     if(!r.ok){
       return r.json().then(function(err){
         var d = (err && (err.message || err.error_description || err.msg)) || "";
+        if(d.indexOf("Forbidden use of secret")>=0){
+          throw new Error("HTTP 401：Supabase 新版安全机制禁止在浏览器用新版 secret key。→ 解决：回 API Keys 页面，顶部切到 Legacy API keys 标签 → 启用后复制 eyJ 开头的 service_role → 粘到这里");
+        }
         throw new Error("HTTP " + r.status + (d ? "（Supabase 说：" + d + "）" : "（密钥被拒绝）"));
       }, function(){ throw new Error("HTTP " + r.status + "（密钥被拒绝）"); });
     }
