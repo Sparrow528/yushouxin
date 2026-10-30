@@ -183,15 +183,37 @@ function cellHTML(k,v){
 function doLoad(){
   var input = document.getElementById("keyInput");
   var msg = document.getElementById("gateMsg");
-  var k = (KEY || (input?input.value.trim():""));
+  var k = (KEY || (input?input.value.trim().replace(/[\u00A0\u3000]/g,""):""));
   if(!k){ msg.textContent = "请先粘贴 service_role 密钥"; return; }
+  /* ---- 密钥格式自检：把常见坑直接挡在门外 ---- */
+  if(k.indexOf("\u2022")>=0 || k.indexOf("...")>=0){
+    msg.textContent = "❌ 你复制的是打码文本（含 •••• 或 ...），不是真密钥。请先点密钥右边的眼睛图标👁显示完整内容，再点旁边的复制按钮📋";
+    return;
+  }
+  if(k.indexOf("sb_publishable_")===0){
+    msg.textContent = "❌ 这是公开 key（publishable），只有写入权限、读不了数据。请复制页面下方 Secret keys 区域 sb_secret_ 开头的那串";
+    return;
+  }
+  if(k.indexOf("sb_secret_")!==0 && k.indexOf("eyJ")!==0){
+    msg.textContent = "⚠️ 密钥格式可疑：service_role 应以 sb_secret_ 开头（旧版是 eyJ 开头）。请回 Supabase → Settings → API Keys → Secret keys 重新复制";
+    return;
+  }
+  if(k.length < 30){
+    msg.textContent = "❌ 密钥长度不足（当前 " + k.length + " 字符），大概率复制不完整。请用眼睛图标显示后点复制按钮，不要手动拖选";
+    return;
+  }
   msg.textContent = "正在读取…";
   KEY = k;
   var select = FIELDS.map(function(f){return f[0];}).join(",") + ",user_agent";
   fetch(API + "?select=" + select + "&order=id.asc&limit=5000", {
     headers: { "apikey": KEY, "Authorization": "Bearer " + KEY, "Accept": "application/json" }
   }).then(function(r){
-    if(!r.ok){ throw new Error("HTTP " + r.status + "（密钥可能不正确或已失效）"); }
+    if(!r.ok){
+      return r.json().then(function(err){
+        var d = (err && (err.message || err.error_description || err.msg)) || "";
+        throw new Error("HTTP " + r.status + (d ? "（Supabase 说：" + d + "）" : "（密钥被拒绝）"));
+      }, function(){ throw new Error("HTTP " + r.status + "（密钥被拒绝）"); });
+    }
     return r.json();
   }).then(function(rows){
     if(!Array.isArray(rows)) throw new Error("返回格式异常");
