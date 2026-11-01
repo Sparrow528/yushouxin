@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 3 * * *'
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/scripts/build_products.py'
+      - '.github/workflows/sync-products.yml'
 
 jobs:
   sync:
