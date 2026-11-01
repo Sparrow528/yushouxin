@@ -552,40 +552,44 @@ function loadProducts(){
  var cached=null;
  try{ cached=JSON.parse(localStorage.getItem('yq_products')||'null'); }catch(e){}
 
- /* 尝试从 Supabase 加载真实产品，与兜底合并 */
- var controller = new AbortController();
- var timer = setTimeout(function(){ controller.abort(); }, 12000);
- fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_HEADERS,signal:controller.signal})
-.then(function(r){ clearTimeout(timer); if(!r.ok) throw new Error(); return r.json(); })
-.then(function(d){
- if(d && d.length){
- /* member_id 已由数据库直接提供；仅对缺失项兜底为 unknown */
- d.forEach(function(p){ if(!p.member_id) p.member_id='unknown'; });
- /* 只保留有图片的Supabase产品；世农种苗为占位阶段（暂无配图），保留其空图记录 */
- var sbProds=d.filter(function(p){return (p.image && p.image.length>0) || p.member_id==='shinong-seed';});
- if(sbProds.length){
- /* Supabase产品覆盖的分类 */
- var sbCats={};sbProds.forEach(function(p){sbCats[p.category]=1;});
- /* 兜底中不属于Supabase分类的产品 */
- var remainFb=FALLBACK.filter(function(p){return !sbCats[p.category];});
- allProducts=sbProds.concat(remainFb);
- /* 每个会员企业产品不超过10个 */
- var memberLimit={'liangzi-dongli':30,'shinong-seed':200};var memberCount={};allProducts=allProducts.filter(function(p){var mid=p.member_id||'unknown';var lim=memberLimit[mid]||10;memberCount[mid]=(memberCount[mid]||0)+1;return memberCount[mid]<=lim;});
- /* 缓存到 localStorage */
- try{ localStorage.setItem('yq_products', JSON.stringify(allProducts)); }catch(e){}
+ /* 拿到产品数组后的统一落地逻辑：补全会员、限流、缓存、渲染 */
+ function finish(){
+  var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
+  renderTabs();renderProducts();
  }
- } else {
-  allProducts=(cached && cached.length)?cached:FALLBACK.slice();
+ function useFallback(){ allProducts=(cached&&cached.length)?cached:FALLBACK.slice(); finish(); }
+
+ function applyProducts(d){
+  if(!(d && d.length)) throw new Error('empty');
+  /* member_id 已由数据库直接提供；仅对缺失项兜底为 unknown */
+  d.forEach(function(p){ if(!p.member_id) p.member_id='unknown'; });
+  /* 只保留有图片的产品；世农种苗为占位阶段（暂无配图），保留其空图记录 */
+  var prods=d.filter(function(p){return (p.image && p.image.length>0) || p.member_id==='shinong-seed';});
+  if(!prods.length) throw new Error('empty');
+  var pcats={};prods.forEach(function(p){pcats[p.category]=1;});
+  var remainFb=FALLBACK.filter(function(p){return !pcats[p.category];});
+  allProducts=prods.concat(remainFb);
+  /* 每个会员企业产品不超过10个 */
+  var memberLimit={'liangzi-dongli':30,'shinong-seed':200};var memberCount={};
+  allProducts=allProducts.filter(function(p){var mid=p.member_id||'unknown';var lim=memberLimit[mid]||10;memberCount[mid]=(memberCount[mid]||0)+1;return memberCount[mid]<=lim;});
+  try{ localStorage.setItem('yq_products', JSON.stringify(allProducts)); }catch(e){}
+  finish();
  }
- var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
- renderTabs();renderProducts();
-})
-.catch(function(){
- /* 加载失败：用缓存或兜底 */
- allProducts=(cached && cached.length)?cached:FALLBACK.slice();
- var cats=getVisibleCats();if(cats.indexOf(curCat)===-1)curCat=cats[0]||'';
- renderTabs();renderProducts();
-});
+
+ /* 首选仓库内静态数据：随 GitHub Pages CDN 分发，国内外都不会被网络干扰 */
+ fetch('../data/products.json',{cache:'no-store'})
+ .then(function(r){ if(!r.ok) throw new Error('no-static'); return r.json(); })
+ .then(function(j){ return (j && j.products) ? j.products : null; })
+ .then(applyProducts)
+ .catch(function(){
+  /* 静态数据不可用，回退到 Supabase 实时接口 */
+  var controller = new AbortController();
+  var timer = setTimeout(function(){ controller.abort(); }, 12000);
+  return fetch(SB_URL+'/rest/v1/products?select=*&order=created_at.desc',{headers:SB_HEADERS,signal:controller.signal})
+  .then(function(r){ clearTimeout(timer); if(!r.ok) throw new Error('sb-fail'); return r.json(); })
+  .then(applyProducts);
+ })
+ .catch(useFallback);
 }
 function getVisibleCats(){ var s={}; allProducts.forEach(function(p){s[p.category]=1;}); return Object.keys(s); }
 
