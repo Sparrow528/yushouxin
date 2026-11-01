@@ -3,315 +3,410 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>宇守信咨询 — 企业财税顾问</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<title>云桥国际 | 双向进出口贸易服务平台</title>
+<meta name="description" content="云桥国际文化交流有限公司 — 双向进出口贸易服务平台。出海财税、研学培训、国际物流、检测认证四大板块，帮中国企业走出去，也帮外国企业走进来。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="云桥国际 | 双向进出口贸易服务平台">
+<meta property="og:description" content="出海财税 · 研学培训 · 国际物流 · 检测认证 — 帮中国企业走出去，也帮外国企业走进来。">
+<meta property="og:image" content="https://sparrow528.github.io/yushouxin/assets/yunqiao-logo.png">
+<meta property="og:url" content="https://sparrow528.github.io/yushouxin/">
+<link rel="icon" href="assets/logo-round.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif;color:#1a1a2e;background:#fafafa;line-height:1.7}
+:root{--brand:#00695c;--brand-dark:#004d40;--ink:#1a1a2e;--muted:#666;--line:#e6e8ea;--bg:#fafafa}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","Noto Sans Arabic","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);line-height:1.7}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
-/* Nav */
-nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid #eef0f2}
-.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:68px;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-logo img{height:36px;width:auto}
-.nav-logo span{font-size:20px;font-weight:700;color:#00695c;letter-spacing:2px}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{text-decoration:none;font-size:14px;font-weight:500;color:#444;transition:color .2s}
-.nav-links a:hover{color:#00695c}
-.nav-cta{background:#00695c;color:#fff!important;padding:8px 20px;border-radius:6px;font-weight:600!important}
-.nav-cta:hover{background:#004d40!important;color:#fff!important}
-.menu-btn{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:#333}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:500;font-size:17px;color:var(--brand);letter-spacing:1px}
+.brand img{height:34px;width:auto}
+.nav-links{display:flex;gap:26px;list-style:none;font-size:14px;color:#444}
+.nav-links a:hover{color:var(--brand)}
+.langs{display:flex;gap:4px}
+.langs button{border:1px solid var(--line);background:#fff;color:#555;font-size:12px;padding:5px 11px;border-radius:6px;cursor:pointer;font-family:inherit}
+.langs button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.cta-sm{background:var(--brand);color:#fff!important;padding:7px 16px;border-radius:6px;font-weight:500}
+.burger{display:none;border:none;background:none;font-size:22px;cursor:pointer;color:#333}
 
-/* Hero */
-.hero{min-height:85vh;display:flex;align-items:center;background:linear-gradient(135deg,#f0f7f0 0%,#e8f5e9 50%,#f0f7f0 100%);padding:100px 24px 60px}
-.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.hero h1{font-size:48px;font-weight:900;color:#00695c;line-height:1.2;letter-spacing:-1px}
-.hero .sub{font-size:18px;color:#555;margin:20px 0 32px;max-width:520px}
-.hero-btns{display:flex;gap:16px}
-.hero-btns a{padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;transition:all .2s}
-.btn-primary{background:#00695c;color:#fff}
-.btn-primary:hover{background:#004d40;transform:translateY(-2px)}
-.btn-outline{border:2px solid #00695c;color:#00695c}
-.btn-outline:hover{background:#00695c;color:#fff}
-.hero-right{text-align:center}
-.hero-logo{width:200px;height:auto}
+.hero{background:#fff;border-bottom:1px solid var(--line);padding:80px 0 72px}
+.hero h1{font-size:44px;font-weight:500;color:var(--brand);line-height:1.25;letter-spacing:-.5px;max-width:720px}
+.hero .lead{font-size:18px;color:#555;margin:20px 0 34px;max-width:640px}
+.hero .btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:13px 30px;border-radius:8px;font-size:15px;font-weight:500;transition:all .2s}
+.btn-p{background:var(--brand);color:#fff}
+.btn-p:hover{background:var(--brand-dark)}
+.btn-o{border:2px solid var(--brand);color:var(--brand)}
+.btn-o:hover{background:var(--brand);color:#fff}
+.hero-facts{display:flex;gap:36px;margin-top:48px;flex-wrap:wrap}
+.hero-facts div b{display:block;font-size:28px;color:var(--brand);font-weight:500}
+.hero-facts div span{font-size:13px;color:var(--muted)}
 
-/* Section */
-section{padding:80px 24px}
-.section-inner{max-width:1200px;margin:0 auto}
-.section-label{font-size:12px;font-weight:600;color:#00695c;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px}
-.section-title{font-size:36px;font-weight:800;color:#1a1a2e;margin-bottom:16px}
-.section-desc{font-size:16px;color:#666;max-width:640px;margin-bottom:40px}
+section{padding:72px 0}
+.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.label{font-size:12px;font-weight:500;color:var(--brand);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+h2{font-size:32px;font-weight:500;margin-bottom:14px}
+.sub{font-size:16px;color:var(--muted);max-width:660px;margin-bottom:40px}
 
-/* Services */
-.service-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
-.service-card{background:#fff;border-radius:12px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid #eef0f2;transition:all .3s}
-.service-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.06);transform:translateY(-4px)}
-.service-card .icon{font-size:32px;margin-bottom:12px}
-.service-card h3{font-size:18px;font-weight:700;color:#00695c;margin-bottom:8px}
-.service-card p{font-size:14px;color:#666;line-height:1.6}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:26px;transition:all .25s}
+.card:hover{border-color:var(--brand)}
+.card .tag{font-size:12px;color:var(--brand);letter-spacing:1px;margin-bottom:10px}
+.card h3{font-size:18px;font-weight:500;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted)}
+.card ul{list-style:none;margin-top:14px;font-size:13px;color:#555}
+.card li{padding:3px 0}
 
-/* Pricing */
-.price-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
-.price-card{background:#fff;border-radius:12px;padding:24px;border:1px solid #eef0f2;text-align:center;transition:all .3s}
-.price-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.06);transform:translateY(-4px)}
-.price-card.featured{border:2px solid #00695c;position:relative}
-.price-card.featured::before{content:'推荐';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#00695c;color:#fff;padding:2px 14px;border-radius:12px;font-size:11px;font-weight:700}
-.price-card .tier{font-size:14px;font-weight:700;color:#00695c;margin-bottom:4px}
-.price-card .price{font-size:32px;font-weight:900;color:#1a1a2e;margin:8px 0}
-.price-card .price span{font-size:14px;font-weight:400;color:#888}
-.price-card ul{text-align:left;list-style:none;margin:16px 0;padding:0}
-.price-card li{font-size:13px;color:#555;padding:4px 0;border-bottom:1px solid #f5f5f5}
-.price-card li:last-child{border:none}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tier{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;text-align:center;position:relative}
+.tier.hot{border:2px solid var(--brand)}
+.tier.hot::before{content:attr(data-badge);position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--brand);color:#fff;padding:2px 14px;border-radius:12px;font-size:11px;white-space:nowrap}
+.tier .n{font-size:14px;font-weight:500;color:var(--brand);margin-bottom:6px}
+.tier .p{font-size:30px;font-weight:500;margin:6px 0}
+.tier .p small{font-size:13px;font-weight:400;color:#999}
+.tier ul{list-style:none;text-align:left;margin:16px 0;padding:0}
+.tier li{font-size:13px;color:#555;padding:4px 0;border-bottom:1px solid #f2f3f4}
+.tier li:last-child{border:none}
 
-/* Tools */
-.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.tool-card{background:#fff;border-radius:10px;padding:20px;border:1px solid #eef0f2;display:flex;align-items:center;gap:16px;transition:all .2s;text-decoration:none}
-.tool-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06)}
-.tool-card .icon{font-size:28px}
-.tool-card .info h4{font-size:15px;font-weight:600;color:#1a1a2e;margin-bottom:2px}
-.tool-card .info p{font-size:12px;color:#888}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.citem{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+.citem .ic{width:38px;height:38px;flex:none;background:#e8f5e9;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.qrbox{background:#f2f8f2;border-radius:14px;padding:28px;text-align:center}
+.qrbox img{width:172px;height:172px;border-radius:8px;margin:0 auto 12px}
 
-/* About */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.stat-card{background:#fff;border-radius:10px;padding:20px;text-align:center;border:1px solid #eef0f2}
-.stat-card .num{font-size:32px;font-weight:900;color:#00695c}
-.stat-card .label{font-size:13px;color:#666;margin-top:4px}
-
-/* Contact */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.contact-item{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.contact-item .icon{font-size:20px;width:40px;height:40px;background:#e8f5e9;border-radius:10px;display:flex;align-items:center;justify-content:center}
-
-/* Footer */
-footer{background:#1a1a2e;color:rgba(255,255,255,.7);padding:40px 24px;text-align:center;font-size:13px}
+footer{background:var(--ink);color:rgba(255,255,255,.65);padding:38px 0;text-align:center;font-size:13px}
 footer strong{color:#fff}
 
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;text-align:center;gap:40px}
-  .hero h1{font-size:36px}
-  .hero .sub{margin-left:auto;margin-right:auto}
-  .hero-btns{justify-content:center}
-  .service-grid,.price-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
-  .tool-grid{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr 1fr}
-  .nav-links{display:none}
-  .menu-btn{display:block}
+@media(max-width:960px){
+ .grid4,.tiers{grid-template-columns:1fr 1fr}
+ .nav-links{display:none}
+ .burger{display:block}
+ .hero h1{font-size:32px}
+ .contact,.grid2{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  .price-grid{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr}
+ .grid4,.tiers{grid-template-columns:1fr}
+ .hero-facts{gap:24px}
 }
 </style>
 </head>
 <body>
 
-<!-- Nav -->
 <nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="assets/logo.png" alt="宇守信">
-      <span>宇守信</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#services">服务</a></li>
-      <li><a href="#pricing">会员方案</a></li>
-      <li><a href="#tools">工具</a></li>
-      <li><a href="#about">关于</a></li>
-      <li><a href="#contact" class="nav-cta">联系我</a></li>
-    </ul>
-    <button class="menu-btn" onclick="document.querySelector('.nav-links').style.display='flex'">☰</button>
+ <div class="wrap nav-in">
+  <a href="#" class="brand"><img src="assets/yunqiao-logo.png" alt=""><span data-i18n="brand"></span></a>
+  <ul class="nav-links">
+   <li><a href="#services" data-i18n="nav_service"></a></li>
+   <li><a href="#membership" data-i18n="nav_member"></a></li>
+   <li><a href="#partners" data-i18n="nav_partner"></a></li>
+   <li><a href="#contact" class="cta-sm" data-i18n="nav_contact"></a></li>
+  </ul>
+  <div class="langs">
+   <button data-lang="zh" class="on">中文</button>
+   <button data-lang="en">EN</button>
+   <button data-lang="fr">FR</button>
+   <button data-lang="ar">عربي</button>
   </div>
+  <button class="burger" onclick="var n=document.querySelector('.nav-links');n.style.display=n.style.display==='flex'?'none':'flex'">☰</button>
+ </div>
 </nav>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <h1>企业财税顾问<br>就找宇守信</h1>
-      <p class="sub">18年实战经验 · 税务合规审查 · 稽查应对 · 会员制财税顾问服务<br>先诊断后开方 · 可落地的财税解决方案</p>
-      <div class="hero-btns">
-        <a href="#contact" class="btn-primary">免费咨询</a>
-        <a href="#pricing" class="btn-outline">查看会员方案</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <img src="assets/logo.png" class="hero-logo" alt="宇守信">
-      <p style="margin-top:12px;font-size:14px;color:#888;">宇你同行 · 信守承诺</p>
-    </div>
+<header class="hero">
+ <div class="wrap">
+  <div class="label" data-i18n="hero_label"></div>
+  <h1 data-i18n="hero_title"></h1>
+  <p class="lead" data-i18n="hero_lead"></p>
+  <div class="btns">
+   <a href="products/" class="btn btn-p" data-i18n="hero_cta1"></a>
+   <a href="#services" class="btn btn-o" data-i18n="hero_cta2"></a>
   </div>
+  <div class="hero-facts">
+   <div><b data-i18n="f1n"></b><span data-i18n="f1t"></span></div>
+   <div><b data-i18n="f2n"></b><span data-i18n="f2t"></span></div>
+   <div><b data-i18n="f3n"></b><span data-i18n="f3t"></span></div>
+   <div><b data-i18n="f4n"></b><span data-i18n="f4t"></span></div>
+  </div>
+ </div>
+</header>
+
+<section id="services" class="alt">
+ <div class="wrap">
+  <div class="label" data-i18n="svc_label"></div>
+  <h2 data-i18n="svc_title"></h2>
+  <p class="sub" data-i18n="svc_sub"></p>
+  <div class="grid4">
+   <div class="card">
+    <div class="tag">01</div>
+    <h3 data-i18n="s1t"></h3>
+    <p data-i18n="s1d"></p>
+    <ul><li data-i18n="s1a"></li><li data-i18n="s1b"></li><li data-i18n="s1c"></li></ul>
+   </div>
+   <div class="card">
+    <div class="tag">02</div>
+    <h3 data-i18n="s2t"></h3>
+    <p data-i18n="s2d"></p>
+    <ul><li data-i18n="s2a"></li><li data-i18n="s2b"></li><li data-i18n="s2c"></li></ul>
+   </div>
+   <div class="card">
+    <div class="tag">03</div>
+    <h3 data-i18n="s3t"></h3>
+    <p data-i18n="s3d"></p>
+    <ul><li data-i18n="s3a"></li><li data-i18n="s3b"></li><li data-i18n="s3c"></li></ul>
+   </div>
+   <div class="card">
+    <div class="tag">04</div>
+    <h3 data-i18n="s4t"></h3>
+    <p data-i18n="s4d"></p>
+    <ul><li data-i18n="s4a"></li><li data-i18n="s4b"></li><li data-i18n="s4c"></li></ul>
+   </div>
+  </div>
+ </div>
 </section>
 
-<!-- Services -->
-<section id="services" style="background:#fff;">
-  <div class="section-inner">
-    <div class="section-label">Services</div>
-    <h2 class="section-title">核心服务能力</h2>
-    <p class="section-desc">从日常财税咨询到专项筹划，覆盖企业全生命周期的财税需求。</p>
-    <div class="service-grid">
-      <div class="service-card">
-        <div class="icon">📋</div>
-        <h3>税务合规审查</h3>
-        <p>企业所得税汇算清缴、增值税核查、研发加计扣除合规自查、发票合规44条红线体检。</p>
-      </div>
-      <div class="service-card">
-        <div class="icon">🛡️</div>
-        <h3>税务稽查应对</h3>
-        <p>稽查预评估、现场陪护、应对话术编制、稽查风险自测、历史问题排查整改。</p>
-      </div>
-      <div class="service-card">
-        <div class="icon">📐</div>
-        <h3>专项筹划方案</h3>
-        <p>股权架构设计、并购重组税务模拟、跨境税务合规、个税高管优化、关联交易合规。</p>
-      </div>
-      <div class="service-card">
-        <div class="icon">🏛️</div>
-        <h3>内控体系建设</h3>
-        <p>年度税务风险内控手册、财务制度规范、发票管理体系、合同审批流程优化。</p>
-      </div>
-      <div class="service-card">
-        <div class="icon">🎓</div>
-        <h3>高管税务培训</h3>
-        <p>半天/全天定制化内训，12大专题覆盖全年，企业税务健康值自评+免费诊断。</p>
-      </div>
-      <div class="service-card">
-        <div class="icon">🌐</div>
-        <h3>上市前合规整改</h3>
-        <p>历史风险排查、股权架构整改、关联交易合规、财务数据清理、监管问询应对。</p>
-      </div>
-    </div>
+<section id="membership">
+ <div class="wrap">
+  <div class="label" data-i18n="mb_label"></div>
+  <h2 data-i18n="mb_title"></h2>
+  <p class="sub" data-i18n="mb_sub"></p>
+  <div class="tiers">
+   <div class="tier">
+    <div class="n" data-i18n="t1n"></div>
+    <div class="p" data-i18n="t1p"></div>
+    <ul><li data-i18n="t1a"></li><li data-i18n="t1b"></li><li data-i18n="t1c"></li></ul>
+   </div>
+   <div class="tier">
+    <div class="n" data-i18n="t2n"></div>
+    <div class="p" data-i18n="t2p"></div>
+    <ul><li data-i18n="t2a"></li><li data-i18n="t2b"></li><li data-i18n="t2c"></li></ul>
+   </div>
+   <div class="tier hot" data-badge="">
+    <div class="n" data-i18n="t3n"></div>
+    <div class="p" data-i18n="t3p"></div>
+    <ul><li data-i18n="t3a"></li><li data-i18n="t3b"></li><li data-i18n="t3c"></li></ul>
+   </div>
+   <div class="tier">
+    <div class="n" data-i18n="t4n"></div>
+    <div class="p" data-i18n="t4p"></div>
+    <ul><li data-i18n="t4a"></li><li data-i18n="t4b"></li><li data-i18n="t4c"></li></ul>
+   </div>
   </div>
+ </div>
 </section>
 
-<!-- Pricing -->
-<section id="pricing">
-  <div class="section-inner">
-    <div class="section-label">Membership</div>
-    <h2 class="section-title">会员方案</h2>
-    <p class="section-desc">阶梯式会员体系，覆盖从初创到成熟企业的全生命周期财税需求。</p>
-    <div class="price-grid">
-      <div class="price-card">
-        <div class="tier">🆓 共享工具</div>
-        <div class="price">¥0</div>
-        <ul>
-          <li>4个在线财税自查工具</li>
-          <li>企业财务健康体检</li>
-          <li>企业税负自查</li>
-          <li>研发费用合规自查</li>
-          <li>发票合规案例库</li>
-        </ul>
-        <a href="https://sparrow528.github.io/checkup/" target="_blank" style="display:inline-block;padding:8px 24px;border:1px solid #00695c;color:#00695c;border-radius:6px;text-decoration:none;font-size:13px;">开始使用</a>
-      </div>
-      <div class="price-card">
-        <div class="tier">🥉 铜级</div>
-        <div class="price">¥5,999<span>/年</span></div>
-        <ul>
-          <li>10次专业咨询/年</li>
-          <li>3个铜级专属工具</li>
-          <li>税务风险健康体检</li>
-          <li>利润税负测算器</li>
-          <li>社保个税合规检查</li>
-        </ul>
-        <a href="https://sparrow528.github.io/tax-membership/" target="_blank" style="display:inline-block;padding:8px 24px;background:#00695c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;">了解详情</a>
-      </div>
-      <div class="price-card featured">
-        <div class="tier">🥈 银级</div>
-        <div class="price">¥29,999<span>/年</span></div>
-        <ul>
-          <li>不限次咨询+顾问群</li>
-          <li>季度1天上门服务</li>
-          <li>7个银级专属工具</li>
-          <li>2项专项筹划/年</li>
-          <li>优先响应</li>
-        </ul>
-        <a href="https://sparrow528.github.io/tax-membership/" target="_blank" style="display:inline-block;padding:8px 24px;background:#00695c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;">了解详情</a>
-      </div>
-      <div class="price-card">
-        <div class="tier">🥇 金级</div>
-        <div class="price">¥69,999<span>/年</span></div>
-        <ul>
-          <li>不限次咨询+专属群</li>
-          <li>每月上门服务</li>
-          <li>10个金级专属工具</li>
-          <li>紧急4h书面意见</li>
-          <li>稽查现场陪护</li>
-        </ul>
-        <a href="https://sparrow528.github.io/tax-membership/" target="_blank" style="display:inline-block;padding:8px 24px;background:#00695c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;">了解详情</a>
-      </div>
-    </div>
+<section id="partners" class="alt">
+ <div class="wrap">
+  <div class="label" data-i18n="pt_label"></div>
+  <h2 data-i18n="pt_title"></h2>
+  <p class="sub" data-i18n="pt_sub"></p>
+  <div class="grid2">
+   <div class="card"><h3 data-i18n="p1t"></h3><p data-i18n="p1d"></p></div>
+   <div class="card"><h3 data-i18n="p2t"></h3><p data-i18n="p2d"></p></div>
+   <div class="card"><h3 data-i18n="p3t"></h3><p data-i18n="p3d"></p></div>
+   <div class="card"><h3 data-i18n="p4t"></h3><p data-i18n="p4d"></p></div>
   </div>
+ </div>
 </section>
 
-<!-- Tools -->
-<section id="tools" style="background:#fff;">
-  <div class="section-inner">
-    <div class="section-label">Tools</div>
-    <h2 class="section-title">在线财税工具</h2>
-    <p class="section-desc">20个自主研发的在线工具，覆盖税务体检、合规自查、风险自测等核心场景。</p>
-    <div class="tool-grid">
-      <a href="https://sparrow528.github.io/checkup/" target="_blank" class="tool-card"><div class="icon">🏥</div><div class="info"><h4>企业财务健康体检</h4><p>6维雷达图 · 3分钟出报告</p></div></a>
-      <a href="https://sparrow528.github.io/tax-checkup/" target="_blank" class="tool-card"><div class="icon">📊</div><div class="info"><h4>企业税负自查</h4><p>比对行业参考线 · 判断税负合理性</p></div></a>
-      <a href="https://sparrow528.github.io/rd-checkup/" target="_blank" class="tool-card"><div class="icon">🔬</div><div class="info"><h4>研发费用合规自查</h4><p>23项合规自检 · 高新企业必备</p></div></a>
-      <a href="https://sparrow528.github.io/invoice-red-line/" target="_blank" class="tool-card"><div class="icon">📋</div><div class="info"><h4>发票合规44条红线</h4><p>正面+负面清单 · 附处罚案例</p></div></a>
-      <a href="https://sparrow528.github.io/tax-risk-check/" target="_blank" class="tool-card"><div class="icon">⚠️</div><div class="info"><h4>税务稽查风险自测</h4><p>评估稽查风险等级 · 银级专属</p></div></a>
-      <a href="https://sparrow528.github.io/invoice-case-db/" target="_blank" class="tool-card"><div class="icon">📂</div><div class="info"><h4>发票合规案例库</h4><p>真实处罚案例 · 免费查阅</p></div></a>
-    </div>
+<section id="contact">
+ <div class="wrap">
+  <div class="label" data-i18n="ct_label"></div>
+  <h2 data-i18n="ct_title"></h2>
+  <p class="sub" data-i18n="ct_sub"></p>
+  <div class="contact">
+   <div>
+    <div class="citem"><div class="ic">👤</div><div><strong data-i18n="ct_person"></strong><br><span style="font-size:13px;color:#888" data-i18n="ct_role"></span></div></div>
+    <div class="citem"><div class="ic">📞</div><div><strong>186-0129-4989</strong><br><span style="font-size:13px;color:#888" data-i18n="ct_tel"></span></div></div>
+    <div class="citem"><div class="ic">💬</div><div><strong>hongchunyu042896</strong><br><span style="font-size:13px;color:#888" data-i18n="ct_wx"></span></div></div>
+    <div class="citem"><div class="ic">🌐</div><div><a href="products/" style="color:var(--brand)" data-i18n="ct_site"></a><br><span style="font-size:13px;color:#888" data-i18n="ct_site_sub"></span></div></div>
+   </div>
+   <div class="qrbox">
+    <p style="font-size:14px;color:#555;margin-bottom:14px"><strong data-i18n="qr_title"></strong></p>
+    <img src="assets/wechat-qr.jpg" alt="WeChat QR">
+    <p style="font-size:13px;color:#888" data-i18n="qr_note"></p>
+    <div style="margin-top:8px;font-size:12px;color:#aaa">hongchunyu042896</div>
+   </div>
   </div>
+ </div>
 </section>
 
-<!-- About -->
-<section id="about">
-  <div class="section-inner">
-    <div class="section-label">About</div>
-    <h2 class="section-title">关于宇守信</h2>
-    <div class="about-grid">
-      <div>
-        <p style="font-size:16px;color:#555;margin-bottom:20px;">宇守信投资管理咨询（北京）有限公司，由资深财税顾问洪淳宇创立，专注为企业提供可落地的财税解决方案。</p>
-        <p style="font-size:14px;color:#666;margin-bottom:20px;"><strong>洪淳宇</strong> — 高级管理会计师、税务师、国际审计师。18年+财税实战经验（2008年入行），协会监事，《乾坤财税观察》主编。服务过商贸、制造、科技、文化传媒、国际货代、健康管理等多个行业。</p>
-        <p style="font-size:14px;color:#666;">服务理念：结果导向而非理论导向 · 先诊断后开方 · 全程本人服务</p>
-      </div>
-      <div class="stats">
-        <div class="stat-card"><div class="num">18+</div><div class="label">年实战经验</div></div>
-        <div class="stat-card"><div class="num">20</div><div class="label">在线工具</div></div>
-        <div class="stat-card"><div class="num">4</div><div class="label">会员层级</div></div>
-        <div class="stat-card"><div class="num">7+</div><div class="label">行业覆盖</div></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Contact -->
-<section id="contact" style="background:#fff;">
-  <div class="section-inner">
-    <div class="section-label">Contact</div>
-    <h2 class="section-title">联系我</h2>
-    <p class="section-desc">免费初诊 · 需求沟通 · 方案定制 · 24小时内回复</p>
-    <div class="contact-grid">
-      <div>
-        <div class="contact-item"><div class="icon">👤</div><div><strong>洪淳宇</strong><br><span style="font-size:13px;color:#888;">首席财税顾问</span></div></div>
-        <div class="contact-item"><div class="icon">📞</div><div><strong>186-0129-4989</strong><br><span style="font-size:13px;color:#888;">电话/微信同号</span></div></div>
-        <div class="contact-item"><div class="icon">💬</div><div><strong>hongchunyu042896</strong><br><span style="font-size:13px;color:#888;">个人微信</span></div></div>
-        <div class="contact-item"><div class="icon">🌐</div><div><a href="https://sparrow528.github.io/tax-membership/" target="_blank" style="color:#00695c;">会员方案详情页</a><br><span style="font-size:13px;color:#888;">查看完整服务介绍</span></div></div>
-      </div>
-      <div style="background:#f0f7f0;border-radius:16px;padding:32px;text-align:center;">
-        <p style="font-size:14px;color:#555;margin-bottom:16px;"><strong>扫一扫添加微信</strong></p>
-        <img src="assets/wechat-qr.jpg" alt="宇守信微信" style="width:180px;height:180px;border-radius:8px;margin-bottom:12px;">
-        <p style="font-size:13px;color:#888;">免费获取财税自查工具入口<br>或预约30分钟线上沟通</p>
-        <div style="margin-top:8px;font-size:12px;color:#aaa;">微信号：hongchunyu042896</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
 <footer>
-  <div style="margin-bottom:12px;"><strong style="font-size:18px;letter-spacing:2px;">宇守信咨询</strong></div>
-  <p style="margin-bottom:4px;">宇你同行 · 信守承诺</p>
-  <p style="margin-bottom:16px;">财税合规 · 管理咨询</p>
-  <p>宇守信投资管理咨询（北京）有限公司<br>© 2026 宇守信 · All Rights Reserved</p>
+ <div class="wrap">
+  <div style="margin-bottom:10px"><strong style="font-size:17px;letter-spacing:2px" data-i18n="brand"></strong></div>
+  <p data-i18n="foot_slogan"></p>
+  <p style="margin-bottom:14px" data-i18n="foot_biz"></p>
+  <p data-i18n="foot_co"></p>
+ </div>
 </footer>
 
+<script>
+var DICT={
+zh:{
+ brand:'云桥国际',
+ nav_service:'服务',nav_member:'会员',nav_partner:'合作伙伴',nav_contact:'联系我们',
+ hero_label:'YUNQIAO INTERNATIONAL',
+ hero_title:'双向进出口贸易服务平台',
+ hero_lead:'帮中国企业走出去，也帮外国企业走进来。财税、培训、物流、检测四大板块协同，为会员企业提供全链条服务保障。',
+ hero_cta1:'进入会员平台',hero_cta2:'了解服务',
+ f1n:'18年',f1t:'财税实战经验',f2n:'4大',f2t:'核心服务板块',f3n:'双向',f3t:'出海与入华并重',f4n:'多国',f4t:'物流与检测网络',
+ svc_label:'Services',svc_title:'四大核心服务',svc_sub:'从财税合规到物流落地，一个平台对接全部环节。',
+ s1t:'出海财税',s1d:'四条业务线覆盖产品出海、资本出海、产品入华、资本入华的全周期服务。',s1a:'产品出海：目标国关税与合规评估',s1b:'资本出海：架构设计与税务模拟',s1c:'产品入华 / 资本入华',
+ s2t:'研学培训',s2d:'国内与国际双线并行，面向政府机构、企事业单位与院校群体。',s2a:'国内研学：各地线路组织与课程定制',s2b:'国际研学：东南亚、日韩、欧美',s2c:'政企培训与教育咨询',
+ s3t:'国际物流货代',s3d:'海运、国际铁路、空运进出口，商品预归类前置管控申报风险。',s3a:'海运进出口：整柜与拼箱',s3b:'国际铁路：中欧与中亚班列',s3c:'HS 编码预归类与归类复核',
+ s4t:'检测认证',s4d:'面向出口目标市场的检测、检验与认证服务，打通准入环节。',s4a:'产品检测与工厂审核',s4b:'目标市场准入认证',s4c:'证书与合规文件支持',
+ mb_label:'Membership',mb_title:'会员体系',mb_sub:'按年度加入，获得产品展示位、平台资源对接与优先服务。',
+ t1n:'基础会员',t1p:'免费',t1a:'10 个产品展示位',t1b:'平台基础曝光',t1c:'参与平台对接活动',
+ t2n:'银牌会员',t2p:'¥2,980<small>/年</small>',t2a:'20 个产品展示位',t2b:'排名优先于基础会员',t2c:'专属对接服务',
+ t3n:'金牌会员',t3p:'¥6,980<small>/年</small>',t3a:'30 个产品展示位',t3b:'首页推荐位',t3c:'优先响应与定制服务',
+ t4n:'钻石会员',t4p:'¥19,800<small>/年</small>',t4a:'不限产品展示位',t4b:'最高优先级展示',t4c:'专属顾问全程陪跑',
+ pt_label:'Partners',pt_title:'核心合作伙伴',pt_sub:'精选行业服务商，共同为会员企业提供落地执行能力。',
+ p1t:'宇守信财税咨询',p1d:'创始人洪淳宇，18 年财税实战经验，北京乾坤生会计师事务所创始人。',
+ p2t:'山西大道必达',p2d:'面向政企与院校的研学培训机构，国内国际双线并行。',
+ p3t:'四川三原国际货运',p3d:'2008 年设立于成都，海运、国际铁路、空运进出口，含 HS 编码预归类风控。',
+ p4t:'优测华检 U-TESTING',p4d:'检测认证服务机构，支持出口目标市场准入。',
+ ct_label:'Contact',ct_title:'联系我们',ct_sub:'免费初诊 · 需求沟通 · 方案定制 · 24 小时内回复',
+ ct_person:'洪淳宇',ct_role:'云桥国际 · 财税顾问',
+ ct_tel:'电话 / 微信同号',ct_wx:'个人微信',
+ ct_site:'云桥国际会员平台',ct_site_sub:'查看会员企业优质产品',
+ qr_title:'扫一扫添加微信',qr_note:'获取合作方案或预约线上沟通',
+ foot_slogan:'帮中国企业走出去，也帮外国企业走进来',
+ foot_biz:'出海财税 · 研学培训 · 国际物流 · 检测认证',
+ foot_co:'云桥国际文化交流有限公司 © 2026'
+},
+en:{
+ brand:'Yunqiao International',
+ nav_service:'Services',nav_member:'Membership',nav_partner:'Partners',nav_contact:'Contact',
+ hero_label:'YUNQIAO INTERNATIONAL',
+ hero_title:'Two-way import & export trade service platform',
+ hero_lead:'We help Chinese companies go global, and overseas companies enter China. Tax, training, logistics and certification work together to support our members end to end.',
+ hero_cta1:'Enter member platform',hero_cta2:'Explore services',
+ f1n:'18 yrs',f1t:'Hands-on tax experience',f2n:'4',f2t:'Core service lines',f3n:'Two-way',f4t:'Logistics & lab network',f3t:'Outbound and inbound',
+ svc_label:'Services',svc_title:'Four core services',svc_sub:'From tax compliance to cargo delivery, one platform connects every step.',
+ s1t:'Cross-border tax',s1d:'Four business lines covering product export, capital export, product import and capital import.',s1a:'Product export: tariff and compliance review',s1b:'Capital export: structuring and tax modelling',s1c:'Product import / capital import',
+ s2t:'Study & training',s2d:'Domestic and international programmes for government bodies, enterprises and schools.',s2a:'Domestic programmes and custom curricula',s2b:'International: SE Asia, Japan, Korea, Europe, US',s2c:'Executive training and education consulting',
+ s3t:'International freight',s3d:'Sea, rail and air freight, with pre-classification control on declaration risk.',s3a:'Sea freight: FCL and LCL',s3b:'Rail: China-Europe and Central Asia',s3c:'HS code pre-classification and review',
+ s4t:'Testing & certification',s4d:'Testing, inspection and certification for your target export markets.',s4a:'Product testing and factory audit',s4b:'Market access certification',s4c:'Certificates and compliance documents',
+ mb_label:'Membership',mb_title:'Membership tiers',mb_sub:'Annual plans with product slots, platform resources and priority service.',
+ t1n:'Basic',t1p:'Free',t1a:'10 product slots',t1b:'Standard platform exposure',t1c:'Access to matchmaking events',
+ t2n:'Silver',t2p:'¥2,980<small>/yr</small>',t2a:'20 product slots',t2b:'Ranked above Basic',t2c:'Dedicated matchmaking',
+ t3n:'Gold',t3p:'¥6,980<small>/yr</small>',t3a:'30 product slots',t3b:'Homepage featuring',t3c:'Priority response',
+ t4n:'Diamond',t4p:'¥19,800<small>/yr</small>',t4a:'Unlimited product slots',t4b:'Highest display priority',t4c:'Dedicated advisor',
+ pt_label:'Partners',pt_title:'Core partners',pt_sub:'Selected service providers delivering execution capability to our members.',
+ p1t:'Yushouxin Tax Consulting',p1d:'Founder Hong Chunyu, 18 years of tax practice, founder of Beijing Qiankusheng CPA firm.',
+ p2t:'Shanxi Dadaobida',p2d:'Study and training provider for government, enterprise and school clients, domestic and abroad.',
+ p3t:'Sichuan Sanyuan Freight',p3d:'Established in Chengdu in 2008. Sea, rail and air freight with HS code pre-classification control.',
+ p4t:'U-TESTING',p4d:'Testing and certification body supporting access to target export markets.',
+ ct_label:'Contact',ct_title:'Get in touch',ct_sub:'Free initial consultation · 24-hour response',
+ ct_person:'Hong Chunyu',ct_role:'Yunqiao International · Tax advisor',
+ ct_tel:'Phone / WeChat',ct_wx:'WeChat ID',
+ ct_site:'Yunqiao member platform',ct_site_sub:'Browse products from member companies',
+ qr_title:'Scan to add on WeChat',qr_note:'Request a proposal or book an online meeting',
+ foot_slogan:'Helping Chinese companies go global, and overseas companies enter China',
+ foot_biz:'Cross-border tax · Study & training · International freight · Testing & certification',
+ foot_co:'Yunqiao International Cultural Exchange Co., Ltd. © 2026'
+},
+fr:{
+ brand:'Yunqiao International',
+ nav_service:'Services',nav_member:'Adhésion',nav_partner:'Partenaires',nav_contact:'Contact',
+ hero_label:'YUNQIAO INTERNATIONAL',
+ hero_title:'Plateforme de services pour le commerce bidirectionnel',
+ hero_lead:'Nous aidons les entreprises chinoises à l’international et les entreprises étrangères à entrer en Chine. Fiscalité, formation, logistique et certification réunis sur une seule plateforme.',
+ hero_cta1:'Espace membres',hero_cta2:'Découvrir les services',
+ f1n:'18 ans',f1t:'Expérience fiscale',f2n:'4',f2t:'Pôles de services',f3n:'Bidirectionnel',f3t:'Export et import',f4n:'Multi-pays',f4t:'Réseau logistique et laboratoires',
+ svc_label:'Services',svc_title:'Quatre services clés',svc_sub:'De la conformité fiscale à la livraison, une plateforme pour chaque étape.',
+ s1t:'Fiscalité transfrontalière',s1d:'Quatre lignes couvrant l’export de produits, l’export de capitaux, l’import de produits et l’import de capitaux.',s1a:'Export produits : droits de douane et conformité',s1b:'Export capitaux : structuration et modélisation',s1c:'Import produits / import capitaux',
+ s2t:'Études & formation',s2d:'Programmes nationaux et internationaux pour administrations, entreprises et établissements.',s2a:'Programmes nationaux sur mesure',s2b:'International : Asie du Sud-Est, Japon, Corée, Europe',s2c:'Formation cadres et conseil pédagogique',
+ s3t:'Fret international',s3d:'Fret maritime, ferroviaire et aérien avec contrôle préalable du classement tarifaire.',s3a:'Maritime : FCL et LCL',s3b:'Ferroviaire : Chine-Europe et Asie centrale',s3c:'Pré-classement et révision des codes SH',
+ s4t:'Essais & certification',s4d:'Essais, inspection et certification pour vos marchés cibles.',s4a:'Essais produits et audit d’usine',s4b:'Certification d’accès au marché',s4c:'Certificats et documents de conformité',
+ mb_label:'Adhésion',mb_title:'Formules d’adhésion',mb_sub:'Formules annuelles avec emplacements produit, ressources et service prioritaire.',
+ t1n:'Basic',t1p:'Gratuit',t1a:'10 emplacements produit',t1b:'Visibilité standard',t1c:'Accès aux événements de mise en relation',
+ t2n:'Silver',t2p:'¥2 980<small>/an</small>',t2a:'20 emplacements produit',t2b:'Classement supérieur à Basic',t2c:'Mise en relation dédiée',
+ t3n:'Gold',t3p:'¥6 980<small>/an</small>',t3a:'30 emplacements produit',t3b:'Mise en avant en page d’accueil',t3c:'Réponse prioritaire',
+ t4n:'Diamond',t4p:'¥19 800<small>/an</small>',t4a:'Emplacements illimités',t4b:'Priorité d’affichage maximale',t4c:'Conseiller dédié',
+ pt_label:'Partenaires',pt_title:'Partenaires clés',pt_sub:'Prestataires sélectionnés pour leur capacité d’exécution.',
+ p1t:'Yushouxin Conseil Fiscal',p1d:'Fondateur Hong Chunyu, 18 ans de pratique fiscale, fondateur du cabinet Beijing Qiankusheng.',
+ p2t:'Shanxi Dadaobida',p2d:'Organisme d’études et de formation pour administrations, entreprises et écoles.',
+ p3t:'Sichuan Sanyuan Fret',p3d:'Créé à Chengdu en 2008. Fret maritime, ferroviaire et aérien avec contrôle des codes SH.',
+ p4t:'U-TESTING',p4d:'Organisme d’essais et de certification pour l’accès aux marchés cibles.',
+ ct_label:'Contact',ct_title:'Nous contacter',ct_sub:'Première consultation gratuite · Réponse sous 24 h',
+ ct_person:'Hong Chunyu',ct_role:'Yunqiao International · Conseiller fiscal',
+ ct_tel:'Téléphone / WeChat',ct_wx:'Identifiant WeChat',
+ ct_site:'Espace membres Yunqiao',ct_site_sub:'Découvrir les produits des membres',
+ qr_title:'Scannez pour ajouter sur WeChat',qr_note:'Demander une proposition ou réserver une réunion',
+ foot_slogan:'Aider les entreprises chinoises à l’international et les entreprises étrangères en Chine',
+ foot_biz:'Fiscalité · Formation · Fret international · Certification',
+ foot_co:'Yunqiao International Cultural Exchange Co., Ltd. © 2026'
+},
+ar:{
+ brand:'يونتسياو الدولية',
+ nav_service:'الخدمات',nav_member:'العضوية',nav_partner:'الشركاء',nav_contact:'اتصل بنا',
+ hero_label:'YUNQIAO INTERNATIONAL',
+ hero_title:'منصة خدمات للتجارة المتبادلة بين الصين والعالم',
+ hero_lead:'نساعد الشركات الصينية على التوسع خارجياً، والشركات الأجنبية على دخول السوق الصينية. الضرائب والتدريب والشحن والاعتماد تعمل معاً في منصة واحدة.',
+ hero_cta1:'منصة الأعضاء',hero_cta2:'تعرّف على الخدمات',
+ f1n:'18 سنة',f1t:'خبرة ضريبية عملية',f2n:'4',f2t:'خطوط خدمة رئيسية',f3n:'اتجاهان',f3t:'تصدير واستيراد',f4n:'دول متعددة',f4t:'شبكة شحن وفحص',
+ svc_label:'الخدمات',svc_title:'أربع خدمات رئيسية',svc_sub:'من الامتثال الضريبي إلى وصول البضائع، منصة واحدة لكل خطوة.',
+ s1t:'الضرائب العابرة للحدود',s1d:'أربعة خطوط تغطي تصدير المنتجات وتصدير رأس المال واستيراد المنتجات واستيراد رأس المال.',s1a:'تصدير المنتجات: الرسوم والامتثال',s1b:'تصدير رأس المال: الهيكلة والنمذجة الضريبية',s1c:'استيراد المنتجات / استيراد رأس المال',
+ s2t:'الدراسة والتدريب',s2d:'برامج محلية ودولية للجهات الحكومية والشركات والمدارس.',s2a:'برامج محلية ومناهج مخصصة',s2b:'دولياً: جنوب شرق آسيا واليابان وكوريا وأوروبا',s2c:'تدريب تنفيذي واستشارات تعليمية',
+ s3t:'الشحن الدولي',s3d:'شحن بحري وسككي وجوي مع تحكم مسبق في التصنيف الجمركي.',s3a:'بحري: حاوية كاملة أو جزئية',s3b:'سككي: الصين-أوروبا وآسيا الوسطى',s3c:'تصنيف مسبق ومراجعة رموز النظام المنسق',
+ s4t:'الفحص والاعتماد',s4d:'فحص ومعاينة واعتماد لأسواق التصدير المستهدفة.',s4a:'فحص المنتجات وتدقيق المصنع',s4b:'اعتماد الوصول إلى السوق',s4c:'الشهادات ووثائق الامتثال',
+ mb_label:'العضوية',mb_title:'فئات العضوية',mb_sub:'خطط سنوية تشمل مساحات عرض المنتجات وموارد المنصة وخدمة ذات أولوية.',
+ t1n:'أساسية',t1p:'مجانية',t1a:'10 مساحات للمنتجات',t1b:'ظهور قياسي على المنصة',t1c:'المشاركة في فعاليات التوفيق',
+ t2n:'فضية',t2p:'¥2,980<small>/سنة</small>',t2a:'20 مساحة للمنتجات',t2b:'ترتيب أعلى من الأساسية',t2c:'توفيق مخصص',
+ t3n:'ذهبية',t3p:'¥6,980<small>/سنة</small>',t3a:'30 مساحة للمنتجات',t3b:'إبراز على الصفحة الرئيسية',t3c:'استجابة ذات أولوية',
+ t4n:'ماسية',t4p:'¥19,800<small>/سنة</small>',t4a:'مساحات غير محدودة',t4b:'أعلى أولوية عرض',t4c:'مستشار مخصص',
+ pt_label:'الشركاء',pt_title:'الشركاء الأساسيون',pt_sub:'مزودو خدمات مختارون لقدرتهم على التنفيذ.',
+ p1t:'يوشوشين للاستشارات الضريبية',p1d:'المؤسس هونغ تشونيو، 18 عاماً من الخبرة الضريبية العملية، ومؤسس شركة بكين تشيانكوشينغ للمحاسبة.',
+ p2t:'شانشي داداويدا',p2d:'جهة دراسات وتدريب للجهات الحكومية والشركات والمدارس، محلياً ودولياً.',
+ p3t:'سيشوان سانيوان للشحن',p3d:'تأسست في تشنغدو عام 2008. شحن بحري وسككي وجوي مع تحكم في رموز النظام المنسق.',
+ p4t:'U-TESTING',p4d:'جهة فحص واعتماد تدعم الوصول إلى أسواق التصدير المستهدفة.',
+ ct_label:'اتصل بنا',ct_title:'تواصل معنا',ct_sub:'استشارة أولية مجانية · رد خلال 24 ساعة',
+ ct_person:'هونغ تشونيو',ct_role:'يونتسياو الدولية · مستشار ضريبي',
+ ct_tel:'هاتف / وي تشات',ct_wx:'معرف وي تشات',
+ ct_site:'منصة أعضاء يونتسياو',ct_site_sub:'تصفح منتجات الشركات الأعضاء',
+ qr_title:'امسح للإضافة على وي تشات',qr_note:'اطلب مقترحاً أو احجز اجتماعاً عبر الإنترنت',
+ foot_slogan:'نساعد الشركات الصينية على الخروج، والشركات الأجنبية على الدخول',
+ foot_biz:'الضرائب · التدريب · الشحن الدولي · الاعتماد',
+ foot_co:'شركة يونتسياو الدولية للتبادل الثقافي المحدودة © 2026'
+}};
+
+var RTL={ar:1};
+var TITLES={zh:'云桥国际 | 双向进出口贸易服务平台',en:'Yunqiao International | Two-way Trade Service Platform',fr:'Yunqiao International | Plateforme de commerce bidirectionnel',ar:'يونتسياو الدولية | منصة خدمات التجارة المتبادلة'};
+var DESCS={
+ zh:'出海财税 · 研学培训 · 国际物流 · 检测认证 — 帮中国企业走出去，也帮外国企业走进来。',
+ en:'Cross-border tax, study programmes, international freight and certification — helping Chinese companies go global and overseas companies enter China.',
+ fr:'Fiscalité, formation, fret international et certification — pour les entreprises chinoises à l’international et les étrangères en Chine.',
+ ar:'الضرائب والتدريب والشحن الدولي والاعتماد — نساعد الشركات الصينية على التوسع والأجنبية على دخول الصين.'
+};
+
+function setLang(l){
+ var d=DICT[l]||DICT.zh;
+ document.documentElement.lang=l;
+ document.documentElement.dir=RTL[l]?'rtl':'ltr';
+ document.title=TITLES[l]||TITLES.zh;
+ var m=document.querySelector('meta[name="description"]'); if(m) m.setAttribute('content',DESCS[l]||DESCS.zh);
+ var og=document.querySelector('meta[property="og:title"]'); if(og) og.setAttribute('content',TITLES[l]||TITLES.zh);
+ var ogd=document.querySelector('meta[property="og:description"]'); if(ogd) ogd.setAttribute('content',DESCS[l]||DESCS.zh);
+ document.querySelectorAll('[data-i18n]').forEach(function(el){
+  var k=el.getAttribute('data-i18n');
+  if(d[k]!==undefined) el.innerHTML=d[k];
+ });
+ document.querySelectorAll('.langs button').forEach(function(b){
+  b.classList.toggle('on',b.getAttribute('data-lang')===l);
+ });
+ try{ localStorage.setItem('yq_lang',l); }catch(e){}
+}
+
+document.querySelectorAll('.langs button').forEach(function(b){
+ b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')); });
+});
+
+var saved='zh';
+try{ saved=localStorage.getItem('yq_lang')||'zh'; }catch(e){}
+if(!DICT[saved]) saved='zh';
+setLang(saved);
+</script>
 </body>
 </html>

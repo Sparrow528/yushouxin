@@ -38,9 +38,22 @@ def load_raw():
     return data
 
 
+def is_junk(r):
+    """过滤测试脏数据：无归属且名为 test 的记录"""
+    name = (r.get('name') or '').strip().lower()
+    mid = (r.get('member_id') or '').strip()
+    if name in ('test', 'test1', '测试', 'demo', 'xxx'):
+        return True
+    if not mid and name in ('test', ''):
+        return True
+    return False
+
+
 def slim(rows):
     out = []
     for r in rows:
+        if is_junk(r):
+            continue
         item = {}
         for k in KEEP:
             v = r.get(k)

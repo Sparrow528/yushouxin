@@ -469,5 +469,126 @@ window.PRODUCT_I18N = {
     en: { name: "Women's Handbag Elegant Series (8 styles)", desc: "Elegant women's handbag, multiple options, elegant and versatile." },
     fr: { name: "Sac à main femme élégant (8 modèles)", desc: "Sac à main femme élégant, options multiples, élégant et polyvalent." },
     ar: { name: "حقيبة يد نسائية أنيقة (8 موديلات)", desc: "حقيبة يد نسائية أنيقة، خيارات متعددة، أنيقة ومتعددة الاستخدامات." }
-  }
+  },
+  // ===== 世农种苗（种子品类）=====
+  240: {
+    en: { name: "Onion Seed No.1", desc: "Onion seed variety No.1 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Oignon n°1", desc: "Variété de Oignon n°1 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور بصل رقم 1", desc: "صنف بصل رقم 1 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  241: {
+    en: { name: "Onion Seed No.2", desc: "Onion seed variety No.2 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Oignon n°2", desc: "Variété de Oignon n°2 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور بصل رقم 2", desc: "صنف بصل رقم 2 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  242: {
+    en: { name: "Onion Seed No.3", desc: "Onion seed variety No.3 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Oignon n°3", desc: "Variété de Oignon n°3 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور بصل رقم 3", desc: "صنف بصل رقم 3 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  192: {
+    en: { name: "Carrot Seed No.3", desc: "Carrot seed variety No.3 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Carotte n°3", desc: "Variété de Carotte n°3 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور جزر رقم 3", desc: "صنف جزر رقم 3 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  190: {
+    en: { name: "Carrot Seed No.1", desc: "Carrot seed variety No.1 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Carotte n°1", desc: "Variété de Carotte n°1 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور جزر رقم 1", desc: "صنف جزر رقم 1 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  191: {
+    en: { name: "Carrot Seed No.2", desc: "Carrot seed variety No.2 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Carotte n°2", desc: "Variété de Carotte n°2 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور جزر رقم 2", desc: "صنف جزر رقم 2 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  202: {
+    en: { name: "Radish Seed No.3", desc: "Radish seed variety No.3 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Radis n°3", desc: "Variété de Radis n°3 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور فجل رقم 3", desc: "صنف فجل رقم 3 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  201: {
+    en: { name: "Radish Seed No.2", desc: "Radish seed variety No.2 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Radis n°2", desc: "Variété de Radis n°2 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور فجل رقم 2", desc: "صنف فجل رقم 2 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  200: {
+    en: { name: "Radish Seed No.1", desc: "Radish seed variety No.1 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Radis n°1", desc: "Variété de Radis n°1 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور فجل رقم 1", desc: "صنف فجل رقم 1 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  150: {
+    en: { name: "Squash Seed No.1", desc: "Squash seed variety No.1 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Courge n°1", desc: "Variété de Courge n°1 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور قرع رقم 1", desc: "صنف قرع رقم 1 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  151: {
+    en: { name: "Squash Seed No.2", desc: "Squash seed variety No.2 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Courge n°2", desc: "Variété de Courge n°2 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور قرع رقم 2", desc: "صنف قرع رقم 2 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  152: {
+    en: { name: "Squash Seed No.3", desc: "Squash seed variety No.3 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Courge n°3", desc: "Variété de Courge n°3 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور قرع رقم 3", desc: "صنف قرع رقم 3 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  172: {
+    en: { name: "Cucumber Seed No.3", desc: "Cucumber seed variety No.3 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Concombre n°3", desc: "Variété de Concombre n°3 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور خيار رقم 3", desc: "صنف خيار رقم 3 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  171: {
+    en: { name: "Cucumber Seed No.2", desc: "Cucumber seed variety No.2 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Concombre n°2", desc: "Variété de Concombre n°2 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور خيار رقم 2", desc: "صنف خيار رقم 2 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  170: {
+    en: { name: "Cucumber Seed No.1", desc: "Cucumber seed variety No.1 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Concombre n°1", desc: "Variété de Concombre n°1 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور خيار رقم 1", desc: "صنف خيار رقم 1 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  130: {
+    en: { name: "Watermelon Seed No.1", desc: "Watermelon seed variety No.1 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Pastèque n°1", desc: "Variété de Pastèque n°1 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور بطيخ رقم 1", desc: "صنف بطيخ رقم 1 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  132: {
+    en: { name: "Watermelon Seed No.3", desc: "Watermelon seed variety No.3 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Pastèque n°3", desc: "Variété de Pastèque n°3 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور بطيخ رقم 3", desc: "صنف بطيخ رقم 3 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  131: {
+    en: { name: "Watermelon Seed No.2", desc: "Watermelon seed variety No.2 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Pastèque n°2", desc: "Variété de Pastèque n°2 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور بطيخ رقم 2", desc: "صنف بطيخ رقم 2 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  122: {
+    en: { name: "Pepper Seed No.3", desc: "Pepper seed variety No.3 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Piment n°3", desc: "Variété de Piment n°3 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور فلفل رقم 3", desc: "صنف فلفل رقم 3 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  121: {
+    en: { name: "Pepper Seed No.2", desc: "Pepper seed variety No.2 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Piment n°2", desc: "Variété de Piment n°2 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور فلفل رقم 2", desc: "صنف فلفل رقم 2 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  120: {
+    en: { name: "Pepper Seed No.1", desc: "Pepper seed variety No.1 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Piment n°1", desc: "Variété de Piment n°1 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور فلفل رقم 1", desc: "صنف فلفل رقم 1 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  112: {
+    en: { name: "Tomato Seed No.3", desc: "Tomato seed variety No.3 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Tomate n°3", desc: "Variété de Tomate n°3 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور طماطم رقم 3", desc: "صنف طماطم رقم 3 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  111: {
+    en: { name: "Tomato Seed No.2", desc: "Tomato seed variety No.2 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Tomate n°2", desc: "Variété de Tomate n°2 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور طماطم رقم 2", desc: "صنف طماطم رقم 2 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
+  110: {
+    en: { name: "Tomato Seed No.1", desc: "Tomato seed variety No.1 from Shinong Seed. Selected for commercial cultivation, stable germination and field performance." },
+    fr: { name: "Tomate n°1", desc: "Variété de Tomate n°1 de Shinong Seed. Sélectionnée pour la culture commerciale, germination stable et bon comportement au champ." },
+    ar: { name: "بذور طماطم رقم 1", desc: "صنف طماطم رقم 1 من بذور شينونغ. مختار للزراعة التجارية، إنبات مستقر وأداء جيد في الحقل." }
+  },
 };
