@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品爆炸图 · 爆米花视角 | 云桥国际会员平台</title>
+<style>
+  :root{
+    --silk:#F2ECDE;   /* 缟素 */
+    --ink:#41555D;    /* 黛 */
+    --cinnabar:#FF461F; /* 朱砂 */
+    --paper:#FBF8F1;
+    --ease:cubic-bezier(.22,.9,.35,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    background:radial-gradient(120% 120% at 50% 0%,#FBF8F1 0%,var(--silk) 70%);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* ---------- top bar ---------- */
+  header{
+    display:flex;align-items:center;gap:14px;
+    padding:16px 22px;
+    border-bottom:1px solid rgba(65,85,93,.12);
+    position:sticky;top:0;z-index:30;
+    background:rgba(251,248,241,.82);backdrop-filter:blur(8px);
+  }
+  .brand{font-weight:700;font-size:17px;letter-spacing:.5px}
+  .brand .dot{color:var(--cinnabar)}
+  .spacer{flex:1}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{
+    border:1px solid rgba(65,85,93,.25);
+    background:transparent;color:var(--ink);
+    padding:7px 14px;border-radius:999px;cursor:pointer;
+    font-size:13px;transition:all .25s var(--ease);
+  }
+  .chip:hover{border-color:var(--cinnabar)}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .lang{display:flex;border:1px solid rgba(65,85,93,.25);border-radius:999px;overflow:hidden}
+  .lang button{
+    border:none;background:transparent;color:var(--ink);
+    padding:7px 12px;cursor:pointer;font-size:13px;transition:all .2s var(--ease);
+  }
+  .lang button.on{background:var(--cinnabar);color:#fff}
+  /* ---------- stage ---------- */
+  .stage{
+    position:relative;
+    max-width:1100px;margin:0 auto;
+    min-height:72vh;
+    padding:30px 22px 60px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hintbar{
+    text-align:center;color:var(--ink);opacity:.7;
+    font-size:14px;margin-top:6px;
+  }
+  /* before layer (real product) */
+  .before{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:22px;
+    transition:opacity .55s var(--ease),transform .55s var(--ease),filter .55s var(--ease);
+    z-index:5;
+  }
+  .real-photo{
+    width:min(300px,60vw);height:min(420px,80vw);
+    border-radius:18px;overflow:hidden;
+    box-shadow:0 18px 50px rgba(65,85,93,.25);
+    cursor:pointer;
+    border:1px solid rgba(65,85,93,.12);
+    animation:floaty 4s ease-in-out infinite;
+    transition:transform .4s var(--ease);
+  }
+  .real-photo:hover{transform:scale(1.03)}
+  .real-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .explode-btn{
+    border:none;cursor:pointer;
+    background:var(--cinnabar);color:#fff;
+    padding:13px 30px;border-radius:999px;font-size:15px;font-weight:600;
+    box-shadow:0 10px 26px rgba(255,70,31,.35);
+    transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+  }
+  .explode-btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(255,70,31,.45)}
+  .before .label{font-size:13px;opacity:.6}
+  /* after layer (exploded) */
+  .after{
+    position:relative;width:100%;
+    display:flex;align-items:center;justify-content:center;gap:30px;
+    opacity:0;pointer-events:none;
+    transition:opacity .5s var(--ease) .15s;
+    z-index:8;
+  }
+  .imgwrap{position:relative;flex:1;display:flex;justify-content:center}
+  .imgwrap img{
+    max-height:68vh;max-width:100%;object-fit:contain;
+    filter:drop-shadow(0 20px 40px rgba(65,85,93,.22));
+    transform:scale(.92);opacity:0;
+    transition:transform .6s var(--ease),opacity .6s var(--ease);
+  }
+  .cards{width:300px;display:flex;flex-direction:column;gap:14px;flex-shrink:0}
+  .card{
+    background:var(--paper);
+    border:1px solid rgba(65,85,93,.15);
+    border-left:4px solid var(--cinnabar);
+    border-radius:12px;padding:13px 15px;
+    box-shadow:0 8px 22px rgba(65,85,93,.12);
+    opacity:0;transform:translate(40px,0) scale(.9);
+    transition:opacity .5s var(--ease),transform .5s var(--ease);
+  }
+  .card .nm{font-weight:700;font-size:15px;margin-bottom:6px}
+  .card .mt{font-size:12.5px;line-height:1.55;color:var(--ink);opacity:.82}
+  .card .mt b{color:var(--cinnabar);font-weight:600}
+  /* exploded state */
+  .stage.exploded .before{opacity:0;transform:scale(1.15);filter:blur(8px);pointer-events:none}
+  .stage.exploded .after{opacity:1;pointer-events:auto}
+  .stage.exploded .imgwrap img{transform:scale(1);opacity:1}
+  .stage.exploded .card{opacity:1;transform:none}
+  .stage.exploded .card:nth-child(1){transition-delay:.18s}
+  .stage.exploded .card:nth-child(2){transition-delay:.28s}
+  .stage.exploded .card:nth-child(3){transition-delay:.38s}
+  .stage.exploded .card:nth-child(4){transition-delay:.48s}
+  /* leader lines */
+  svg.lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:7;overflow:visible}
+  svg.lines line{
+    stroke:var(--ink);stroke-width:1.4;stroke-dasharray:240;stroke-dashoffset:240;opacity:.55;
+    transition:stroke-dashoffset .7s var(--ease);
+  }
+  .stage.exploded svg.lines line{stroke-dashoffset:0}
+  /* reset btn */
+  .reset{
+    position:fixed;right:26px;bottom:26px;z-index:40;
+    border:1px solid var(--ink);background:var(--paper);color:var(--ink);
+    padding:12px 22px;border-radius:999px;cursor:pointer;font-size:14px;font-weight:600;
+    box-shadow:0 10px 26px rgba(65,85,93,.2);
+    opacity:0;transform:translateY(12px);pointer-events:none;
+    transition:all .35s var(--ease);
+  }
+  .reset:hover{background:var(--ink);color:#fff}
+  .stage.exploded ~ .reset{opacity:1;transform:none;pointer-events:auto}
+  /* missing photo state */
+  .missing{
+    text-align:center;max-width:440px;padding:40px 30px;
+    border:2px dashed rgba(65,85,93,.3);border-radius:20px;background:rgba(255,255,255,.5);
+  }
+  .missing .ic{font-size:46px;margin-bottom:14px}
+  .missing h2{font-size:19px;margin-bottom:10px}
+  .missing p{font-size:14px;line-height:1.7;opacity:.8}
+  .missing .tag{display:inline-block;margin-top:16px;background:var(--cinnabar);color:#fff;padding:8px 18px;border-radius:999px;font-size:13px}
+  .footnote{text-align:center;font-size:12px;opacity:.5;padding:10px 0 30px}
+  @media (max-width:760px){
+    .after{flex-direction:column;gap:18px}
+    .cards{width:100%;flex-direction:row;flex-wrap:wrap;justify-content:center}
+    .card{width:calc(50% - 8px)}
+    .imgwrap img{max-height:46vh}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">云桥国际<span class="dot">·</span><span id="h-title">爆米花视角</span></div>
+  <div class="spacer"></div>
+  <div class="chips" id="chips"></div>
+  <div class="lang">
+    <button id="bz" class="on" onclick="setLang('zh')">中</button>
+    <button id="be" onclick="setLang('en')">EN</button>
+  </div>
+</header>
+
+<div class="stage" id="stage">
+  <!-- before / missing injected by JS -->
+  <div class="after" id="after">
+    <div class="imgwrap">
+      <img id="expImg" src="" alt="exploded">
+    </div>
+    <div class="cards" id="cards"></div>
+    <svg class="lines" id="lines"></svg>
+  </div>
+</div>
+<button class="reset" id="reset" onclick="resetView()">合回</button>
+<div class="footnote" id="foot"></div>
+
+<script>
+const I18N = {
+  zh:{
+    title:"爆米花视角", hint:"点击产品，看它「啪」地炸开", explode:"炸开 ▸", reset:"合回",
+    realphoto:"实拍产品图", missingTitle:"正品图缺失", missingIc:"📷",
+    missingDesc:"该产品的实拍产品图尚未到位，暂时无法生成爆炸图。把产品实拍图发给我，我立刻生成对应的爆炸分解图。",
+    missingTag:"待补：OKF 苹果醋含气饮料 实拍图",
+    foot:"爆米花技能 · 点一下炸开 · 文字不进图 · 中/EN 双语标注"
+  },
+  en:{
+    title:"Popcorn View", hint:"Tap the product — watch it pop open", explode:"Explode ▸", reset:"Close",
+    realphoto:"Real product photo", missingTitle:"Product Photo Missing", missingIc:"📷",
+    missingDesc:"The real product photo for this item is not yet available, so the exploded view can't be generated. Send me the product shot and I'll build the exploded diagram right away.",
+    missingTag:"Pending: OKF Apple Cider real photo",
+    foot:"Popcorn skill · tap to explode · no text in image · zh/EN bilingual labels"
+  }
+};
+let LANG='zh';
+
+const PRODUCTS = {
+  herun:{
+    name:{zh:"斑兰水（原味 / 柠檬风味）",en:"Pandan Water (Original / Lemon)"},
+    real:"../images/herun/herun-9.jpg",
+    exploded:"herun-water-exploded.png",
+    cards:[
+      {ay:9,  title:{zh:"食品级金盖",en:"Food-grade Gold Cap"},
+        mat:{zh:"食品级铝合金 · 电镀金",en:"Food-grade aluminum · gold plating"},
+        craft:{zh:"螺纹旋盖 · 密封防漏",en:"Threaded screw cap · leak-proof"}},
+      {ay:26, title:{zh:"透明瓶颈环",en:"Transparent Neck Ring"},
+        mat:{zh:"食品级 PET",en:"Food-grade PET"},
+        craft:{zh:"一体注塑 · 高通透",en:"One-piece molding · high clarity"}},
+      {ay:50, title:{zh:"高透瓶身 + 斑兰标签",en:"Clear Bottle + Pandan Label"},
+        mat:{zh:"高透玻璃 · 合成纸不干胶",en:"Clear glass · synthetic paper label"},
+        craft:{zh:"吹制成型 · 圆标模切烫印",en:"Blow-molded · die-cut foil label"}},
+      {ay:82, title:{zh:"斑兰风味液",en:"Pandan Flavored Liquid"},
+        mat:{zh:"斑兰提取液 + 水",en:"Pandan extract + water"},
+        craft:{zh:"低温萃取 · 无菌冷灌",en:"Low-temp extraction · aseptic fill"}},
+    ]
+  },
+  okf:{
+    name:{zh:"OKF 苹果醋含气饮料（无糖）",en:"OKF Apple Cider Sparkling (Sugar-free)"},
+    real:null, exploded:null, cards:[]
+  }
+};
+// deep-link: ?p=281 / ?p=82
+const params=new URLSearchParams(location.search);
+const PLINK={'281':'herun','82':'okf'};
+let CURRENT=PLINK[params.get('p')]||'herun';
+
+function t(k){return I18N[LANG][k];}
+
+function buildChips(){
+  const wrap=document.getElementById('chips');wrap.innerHTML='';
+  Object.keys(PRODUCTS).forEach(k=>{
+    const b=document.createElement('button');
+    b.className='chip'+(k===CURRENT?' on':'');
+    b.textContent=PRODUCTS[k].name[LANG];
+    b.onclick=()=>{CURRENT=k;resetView(true);buildChips();render();};
+    wrap.appendChild(b);
+  });
+}
+function setLang(l){
+  LANG=l;document.getElementById('bz').classList.toggle('on',l==='zh');
+  document.getElementById('be').classList.toggle('on',l==='en');
+  document.getElementById('h-title').textContent=t('title');
+  document.getElementById('foot').textContent=t('foot');
+  buildChips();render();
+}
+function resetView(silent){
+  const s=document.getElementById('stage');
+  s.classList.remove('exploded');
+  if(!silent) drawLines(false);
+}
+function render(){
+  const p=PRODUCTS[CURRENT];
+  const s=document.getElementById('stage');
+  s.classList.remove('exploded');
+  // remove old before
+  const old=s.querySelector('.before'); if(old) old.remove();
+  const stage=document.getElementById('stage');
+  if(!p.real){
+    // missing state
+    const m=document.createElement('div');
+    m.className='before';m.style.position='relative';m.style.opacity='1';
+    m.innerHTML=`<div class="missing"><div class="ic">${t('missingIc')}</div>
+      <h2>${t('missingTitle')}</h2>
+      <p><b>${p.name[LANG]}</b><br><br>${t('missingDesc')}</p>
+      <div class="tag">${t('missingTag')}</div></div>`;
+    stage.insertBefore(m,document.getElementById('after'));
+    document.getElementById('after').style.display='none';
+    document.getElementById('expImg').src='';
+    document.getElementById('cards').innerHTML='';
+    document.getElementById('lines').innerHTML='';
+    return;
+  }
+  document.getElementById('after').style.display='';
+  // before layer
+  const b=document.createElement('div');b.className='before';
+  b.innerHTML=`<div class="real-photo" onclick="explode()"><img src="${p.real}" alt="${p.name[LANG]}"></div>
+    <button class="explode-btn" onclick="explode()">${t('explode')}</button>
+    <div class="label">${t('hint')}</div>`;
+  stage.insertBefore(b,document.getElementById('after'));
+  // after
+  document.getElementById('expImg').src=p.exploded;
+  const cw=document.getElementById('cards');cw.innerHTML='';
+  p.cards.forEach((c,i)=>{
+    const d=document.createElement('div');d.className='card';
+    d.innerHTML=`<div class="nm">${c.title[LANG]}</div>
+      <div class="mt"><b>${LANG==='zh'?'材质':'Material'}</b>：${c.mat[LANG]}<br>
+      <b>${LANG==='zh'?'工艺':'Craft'}</b>：${c.craft[LANG]}</div>`;
+    cw.appendChild(d);
+  });
+}
+function explode(){
+  const p=PRODUCTS[CURRENT];
+  if(!p.real) return;
+  document.getElementById('stage').classList.add('exploded');
+  setTimeout(()=>drawLines(true),260);
+}
+function drawLines(on){
+  const svg=document.getElementById('lines');
+  if(!on||!PRODUCTS[CURRENT].cards.length){svg.innerHTML='';return;}
+  const stage=document.getElementById('stage').getBoundingClientRect();
+  const img=document.getElementById('expImg').getBoundingClientRect();
+  const cards=document.getElementById('cards').children;
+  let h='';
+  PRODUCTS[CURRENT].cards.forEach((c,i)=>{
+    const card=cards[i]; if(!card) return;
+    const cr=card.getBoundingClientRect();
+    const sx=img.right-stage.left-2;            // image right edge
+    const sy=img.top-stage.top+(img.height*(c.ay/100));
+    const ex=cr.left-stage.left;               // card left edge
+    const ey=cr.top-stage.top+cr.height/2;
+    h+=`<line x1="${sx}" y1="${sy}" x2="${ex}" y2="${ey}"/>`;
+  });
+  svg.innerHTML=h;
+  // force reflow for dash animation
+  void svg.offsetWidth;
+}
+window.addEventListener('resize',()=>{if(document.getElementById('stage').classList.contains('exploded'))drawLines(true);});
+document.getElementById('h-title').textContent=t('title');
+document.getElementById('foot').textContent=t('foot');
+buildChips();render();
+</script>
+</body>
+</html>

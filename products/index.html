@@ -106,6 +106,8 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .sheet .lbl{font-size:11px;color:var(--muted);margin:12px 0 4px}
 .sheet .desc{font-size:14px;color:var(--ink);line-height:1.7}
 .sheet .close{width:calc(100% - 40px);margin:18px 20px 0;padding:13px;border:none;border-radius:10px;background:linear-gradient(135deg,#ff5000,#ff7a1f);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
+.sheet .pop-btn{display:block;width:calc(100% - 40px);margin:14px 20px 0;padding:11px;border:1px solid var(--navy);border-radius:10px;background:#fff;color:var(--navy);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s var(--ease)}
+.sheet .pop-btn:hover{background:var(--navy);color:#fff}
 /* 会员企业页 */
 .members{display:none}
 .members.show{display:block}
@@ -268,7 +270,7 @@ const I18N = {
  sec_design_tag:'设计', design_title:'设计能力', design_sub:'自有设计团队，支持来样定制',
  sec_cert_tag:'证书', cert_title:'认证证书', cert_sub:'通过国际社会责任与商业道德认证',
  foot_co:'云桥国际文化交流有限公司 · 会员专属平台', foot:'为会员企业提供产品展示服务',
- by:'由 {name} 提供', view_member:'查看企业介绍',
+ by:'由 {name} 提供', view_member:'查看企业介绍', popcorn_view:'爆米花视角',
  member_list_title:'会员企业', back_to_list:'返回列表',
  label_products:'款产品', label_members:'家会员',
  pc_cosmetic:'化妆包', pc_bags:'包类产品', pc_school:'书包', pc_backpack:'背包', pc_woman:'女包',
@@ -292,7 +294,7 @@ const I18N = {
  sec_design_tag:'DESIGN', design_title:'Design Capability', design_sub:'In-house design team, sample customization supported',
  sec_cert_tag:'CERTIFICATES', cert_title:'Certificates', cert_sub:'BSCI & SMETA certified',
  foot_co:'Yunqiao International Cultural Exchange Co., Ltd. · Members Platform', foot:'Product display service for member enterprises',
- by:'Provided by {name}', view_member:'View Company',
+ by:'Provided by {name}', view_member:'View Company', popcorn_view:'Popcorn View',
  member_list_title:'Member Enterprises', back_to_list:'Back to List',
  pc_cosmetic:'Cosmetic Bags', pc_bags:'Bag Products', pc_school:'School Bags', pc_backpack:'Backpacks', pc_woman:'Woman Bags',
  pc_clothing:'Clothing & Textile', pc_beauty:'Beauty & Personal Care', pc_home:'Home & Living', pc_food:'Food & Beverage', pc_fd_freeze:'Freeze-dried Fruit', pc_fd_snack:'Snacks', pc_fd_tea:'Tea', pc_fd_drink:'Beverages', pc_fd_raw:'Raw Materials',
@@ -315,7 +317,7 @@ const I18N = {
  sec_design_tag:'DESIGN', design_title:'Capacité de Design', design_sub:'Équipe de design interne, personnalisation sur échantillon',
  sec_cert_tag:'CERTIFICATS', cert_title:'Certificats', cert_sub:'Certifié BSCI & SMETA',
  foot_co:'Yunqiao International Culture Exchange Co., Ltd. · Plateforme Membres', foot:'Service de présentation de produits pour les entreprises membres',
- by:'Fourni par {name}', view_member:'Voir l\'Entreprise',
+ by:'Fourni par {name}', view_member:'Voir l\'Entreprise', popcorn_view:'Vue Popcorn',
  member_list_title:'Entreprises Membres', back_to_list:'Retour à la liste',
  pc_cosmetic:'Sacs Cosmétiques', pc_bags:'Sacs', pc_school:'Cartables', pc_backpack:'Sacs à Dos', pc_woman:'Sacs Femme',
  pc_clothing:'Vêtements & Textile', pc_beauty:'Beauté & Soins', pc_home:'Maison & Vie', pc_food:'Alimentation', pc_fd_freeze:'Fruits Lyophilisés', pc_fd_snack:'Collations', pc_fd_tea:'Thé', pc_fd_drink:'Boissons', pc_fd_raw:'Matières Premières',
@@ -338,7 +340,7 @@ const I18N = {
  sec_design_tag:'التصميم', design_title:'قدرة التصميم', design_sub:'فريق تصميم داخلي، تخصيص حسب العينة',
  sec_cert_tag:'الشهادات', cert_title:'شهادات الاعتماد', cert_sub:'حاصل على شهادات BSCI و SMETA',
  foot_co:'شركة يونتشياو الدولية للتبادل الثقافي · منصة الأعضاء', foot:'خدمة عرض المنتجات للشركات الأعضاء',
- by:'مقدم من {name}', view_member:'عرض الشركة',
+ by:'مقدم من {name}', view_member:'عرض الشركة', popcorn_view:'عرض البوب كورن',
  member_list_title:'الشركات الأعضاء', back_to_list:'العودة إلى القائمة',
  pc_cosmetic:'حقائب مستحضرات', pc_bags:'حقائب', pc_school:'حقائب مدرسية', pc_backpack:'حقائب ظهر', pc_woman:'حقائب نسائية',
  pc_clothing:'ملابس ونسيج', pc_beauty:'تجميل وعناية', pc_home:'منزل ومعيشة', pc_food:'أغذية ومشروبات', pc_fd_freeze:'فواكه مجففة', pc_fd_snack:'وجبات خفيفة', pc_fd_tea:'شاي', pc_fd_drink:'مشروبات', pc_fd_raw:'مواد خام',
@@ -698,7 +700,8 @@ function openDetail(p, m){
  }
  var desc=pdesc?'<div class="lbl">'+t('label_desc')+'</div><div class="desc">'+pdesc+'</div>':'<div class="lbl">'+t('label_desc')+'</div><div class="desc" style="color:#999">'+t('desc_placeholder')+'</div>';
  var specs=p.specs?'<div class="lbl">'+t('label_specs')+'</div><div class="specs">'+p.specs+'</div>':'';
- sheet.innerHTML=img+'<div class="pd"><h2>'+pname+'</h2><div class="by">'+t('by').replace('{name}',getMemberName(m))+' · <a onclick="closeDetail();showMembers();selectedMember=MEMBERS.find(function(x){return x.id===\''+m.id+'\'});renderMHero();renderMemberProducts();renderFactory();renderQuality();renderDesign();renderCert();">'+t('view_member')+'</a></div>'+priceHtml+desc+specs+'</div><button class="close" onclick="closeDetail()">'+t('close')+'</button>';
+ var popcornLink=(p.id===281||p.id===82)?'<button class="pop-btn" onclick="openFrame(\'popcorn/index.html?p='+p.id+'\',\''+t('popcorn_view')+'\')">🔍 '+t('popcorn_view')+'</button>':'';
+ sheet.innerHTML=img+'<div class="pd"><h2>'+pname+'</h2><div class="by">'+t('by').replace('{name}',getMemberName(m))+' · <a onclick="closeDetail();showMembers();selectedMember=MEMBERS.find(function(x){return x.id===\''+m.id+'\'});renderMHero();renderMemberProducts();renderFactory();renderQuality();renderDesign();renderCert();">'+t('view_member')+'</a></div>'+priceHtml+desc+specs+popcornLink+'</div><button class="close" onclick="closeDetail()">'+t('close')+'</button>';
  document.getElementById('mask').classList.add('show');
  document.body.style.overflow='hidden';
 }
