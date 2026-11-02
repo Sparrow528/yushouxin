@@ -481,7 +481,17 @@ const MEMBERS = [
  introEn:'Founded in 1994, a wholly-owned Chinese subsidiary of NONGWOO BIO (Korea, part of the National Agricultural Cooperative Federation). Specialized in vegetable seed breeding, production and sales, covering 16 categories: tomato, pepper, watermelon, rootstock, squash, melon, cucumber, bitter gourd, carrot, radish, cabbage, Chinese cabbage, cauliflower, onion, bunching onion and leafy greens.',
  introFr:'Fondée en 1994, filiale chinoise à 100% de NONGWOO BIO (Corée, groupe de la Fédération Nationale Coopérative Agricole). Spécialisée en sélection, production et vente de semences maraîchères, couvrant 16 catégories: tomate, poivron, pastèque, porte-greffe, courge, melon, concombre, concombre amer, carotte, radis, chou, chou chinois, chou-fleur, oignon, ciboule et légumes-feuilles.',
  introAr:'تأسست عام 1994، وهي شركة تابعة مملوكة بالكامل لشركة نونغوو بايو الكورية (التابعة للاتحاد التعاوني الزراعي الوطني). متخصصة في تربية وإنتاج وبيع بذور الخضروات، وتغطي 16 فئة: طماطم، فلفل، بطيخ، أصل التطعيم، قرع، شمام، خيار، قرع مر، جزر، فجل، ملفوف، ملفوف صيني، قرنبيط، بصل، بصل أخضر، وخضروات ورقية.',
- hasDetail:false,
+  hasDetail:false,
+ },
+ {
+  id:'herun-bolan', name:'海南禾润斑兰生物科技有限公司', nameEn:'Hainan Herun Bolan Biotechnology Co., Ltd.',
+  nameFr:'Hainan Herun Bolan Biotechnology Co., Ltd.', nameAr:'شركة هاينان هيرون بولان للتكنولوجيا الحيوية',
+  category:'食品饮料 / 斑兰特产', categoryEn:'Food & Beverage / Pandan Specialty', categoryFr:'Alimentation / Spécialité Pandan', categoryAr:'أغذية ومشروبات / خاصية البندان',
+  intro:'海南禾润斑兰生物专注斑兰（香露兜）系列产品研发，涵盖冻干水果、斑兰零食、斑兰茶饮、斑兰饮品与斑兰原料五大类，将海南热带特色植物与茶饮、烘焙场景结合。',
+  introEn:'Hainan Herun Bolan Biotechnology specializes in pandan (Pandanus amaryllifolius) product series: freeze-dried fruits, pandan snacks, pandan teas, pandan drinks and pandan raw materials.',
+  introFr:'Hainan Herun Bolan Biotechnology spécialisée dans la série pandan: fruits lyophilisés, snacks pandan, thés pandan, boissons pandan et matières premières pandan.',
+  introAr:'متخصصة في سلسلة البندان: فواكه مجففة بالتجميد، وجبات خفيفة، شاي، مشروبات ومواد خام البندان.',
+  hasDetail:false,
  },
 ];
 
@@ -577,7 +587,7 @@ function loadProducts(){
   var remainFb=FALLBACK.filter(function(p){return !pcats[p.category];});
   allProducts=prods.concat(remainFb);
   /* 每个会员企业产品不超过10个 */
-  var memberLimit={'liangzi-dongli':30,'shinong-seed':200};var memberCount={};
+  var memberLimit={'liangzi-dongli':30,'shinong-seed':200,'herun-bolan':12};var memberCount={};
   allProducts=allProducts.filter(function(p){var mid=p.member_id||'unknown';var lim=memberLimit[mid]||10;memberCount[mid]=(memberCount[mid]||0)+1;return memberCount[mid]<=lim;});
   try{ localStorage.setItem('yq_products', JSON.stringify(allProducts)); }catch(e){}
   finish();
