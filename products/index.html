@@ -56,6 +56,14 @@ body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background
 .card .price .rmb{font-size:12px;font-weight:700}
 .card .by{display:inline-block;font-size:11px;color:#999;margin-top:8px;background:#f5f5f5;padding:2px 8px;border-radius:4px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card .inquiry{display:inline-block;margin-left:6px;font-size:11px;color:#ff5000;border:1px solid #ff5000;border-radius:4px;padding:2px 8px;font-weight:600}
+/* ===== 爆米花效果（原型：仅饮料类2张，扩展只需往 POPCORN_IDS 加 id） ===== */
+.card.has-popcorn .thumb::after{content:'🍿 爆';position:absolute;top:8px;left:8px;z-index:3;background:rgba(255,80,0,.92);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;pointer-events:none}
+.popcorn-kernel{position:absolute;left:50%;bottom:10px;z-index:4;font-size:18px;line-height:1;pointer-events:none;will-change:transform,opacity;animation:popcornPop var(--dur,900ms) ease-out forwards}
+@keyframes popcornPop{
+ 0%{transform:translate(-50%,0) scale(.2) rotate(0);opacity:0}
+ 12%{opacity:1;transform:translate(-50%,-16px) scale(1.15)}
+ 100%{transform:translate(calc(-50% + var(--dx,0px)),var(--dy,-80px)) scale(.65) rotate(var(--rot,0deg));opacity:0}
+}
 /* 侧边栏布局 */
 .layout{display:flex;gap:20px;align-items:flex-start}
 .sidebar{width:220px;flex-shrink:0;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow-y:auto;background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.05);padding:6px 0}
@@ -663,6 +671,30 @@ function renderSidebar(){
   box.appendChild(group);
  });
 }
+/* ===== 爆米花效果：原型仅饮料类 2 张，扩展往数组加产品 id 即可 ===== */
+var POPCORN_IDS=[281,82]; /* 281=斑兰水(饮品) | 82=OKF苹果醋含气饮料(量子动力饮料) */
+function attachPopcorn(card){
+ var thumb=card.querySelector('.thumb'); if(!thumb) return;
+ var busy=false;
+ card.addEventListener('mouseenter',function(){
+  if(busy) return; busy=true;
+  for(var i=0;i<12;i++){
+   (function(){
+    var k=document.createElement('span');
+    k.className='popcorn-kernel'; k.textContent='🍿';
+    k.style.left=(34+Math.random()*32)+'%';
+    k.style.setProperty('--dx',(Math.random()*120-60).toFixed(0)+'px');
+    k.style.setProperty('--dy',(-(60+Math.random()*90)).toFixed(0)+'px');
+    k.style.setProperty('--rot',(Math.random()*360-180).toFixed(0)+'deg');
+    k.style.setProperty('--dur',(700+Math.random()*500).toFixed(0)+'ms');
+    k.style.animationDelay=(Math.random()*120).toFixed(0)+'ms';
+    thumb.appendChild(k);
+    setTimeout(function(){ if(k.parentNode) k.parentNode.removeChild(k); },1700);
+   })();
+  }
+  setTimeout(function(){busy=false;},900);
+ });
+}
 function renderProducts(){
  var grid=document.getElementById('pgrid');
  var prods=allProducts.filter(function(p){return p.category===curCat;});
@@ -681,6 +713,7 @@ function renderProducts(){
   var pname=getProductName(p);
   d.innerHTML=thumbHtml(p)+'<div class="info"><div class="nm">'+pname+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
   grid.appendChild(d);
+  if(POPCORN_IDS.indexOf(p.id)>=0){ d.classList.add('has-popcorn'); attachPopcorn(d); }
  });
 }
 
@@ -759,6 +792,7 @@ function renderMemberProducts(){
   var pname=getProductName(p);
   d.innerHTML=thumbHtml(p)+'<div class="info"><div class="nm">'+pname+'</div>'+priceHtml+'<div style="display:flex;align-items:center;gap:6px;margin-top:8px"><span class="by">'+getMemberName(m)+'</span><span class="inquiry">询价</span></div></div>';
   grid.appendChild(d);
+  if(POPCORN_IDS.indexOf(p.id)>=0){ d.classList.add('has-popcorn'); attachPopcorn(d); }
  });
 }
 const FACTORY = [{n:3,cap:'fc_sample'},{n:2,cap:'fc_warehouse'},{n:2,cap:'fc_cut'},{n:2,cap:'fc_sew'},{n:2,cap:'fc_inspect'}];
