@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>云桥国际 · 沉浸式展厅</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- 场景0 · 门外 -->
+  <section class="scene active" id="scene-outside">
+    <div class="layer" data-parallax="0.04">
+      <div class="vignette"></div>
+      <div class="brand-mark">云桥国际 · <b>YUNQIAO</b></div>
+      <div class="facade" id="facade" role="button" aria-label="点击推门进入" tabindex="0">
+        <div class="door-glow"></div>
+        <div class="door door-l"><span class="handle"></span></div>
+        <div class="door door-r"><span class="handle"></span></div>
+        <div class="floor"></div>
+      </div>
+      <div class="hint">点击推门进入</div>
+    </div>
+  </section>
+
+  <!-- 场景2 · 大厅 -->
+  <section class="scene" id="scene-hall">
+    <div class="layer" data-parallax="0.06">
+      <div class="atrium">
+        <div class="skylight"></div>
+        <div class="side-shops left">
+          <div class="shop"></div><div class="shop"></div><div class="shop"></div>
+        </div>
+        <div class="side-shops right">
+          <div class="shop"></div><div class="shop"></div><div class="shop"></div>
+        </div>
+        <div class="hall-floor"></div>
+      </div>
+      <div class="vignette"></div>
+    </div>
+    <button class="back-btn" data-go="outside">← 返回门外</button>
+    <div id="hotspots"></div>
+  </section>
+
+  <!-- 场景3 · 展厅 -->
+  <section class="scene" id="scene-showroom">
+    <div class="layer showroom-bg" id="showroomBg" data-parallax="0.03"></div>
+    <div class="sh-head">
+      <button class="back-btn" data-go="hall" style="position:static">← 返回大厅</button>
+      <div class="sh-title" id="shTitle">展厅<small>HALL</small></div>
+    </div>
+    <div class="subtabs" id="subtabs"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- 场景4 · 详情 -->
+  <div class="modal" id="modal">
+    <button class="m-close" id="mClose">×</button>
+    <div class="m-card" id="mCard"></div>
+  </div>
+
+</div>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

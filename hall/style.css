@@ -1,0 +1,205 @@
+/* 云桥国际 · 沉浸式展厅  v1  | 纯 CSS 伪3D场景（无外部图片） */
+:root{
+  --bg:#161d28;          /* 深蓝灰底（非纯黑） */
+  --bg2:#1f2a3a;         /* 面板 */
+  --bg3:#283549;         /* 浅一阶面板 */
+  --gold:#d9a441;        /* 暖金主点缀 */
+  --gold-soft:#e8c074;   /* 暖金亮 */
+  --stone:#cfd6df;       /* 石材/玻璃中性 */
+  --txt:#eef2f7;
+  --muted:#9fb0c3;
+  --line:rgba(255,255,255,.08);
+  --line-gold:rgba(217,164,65,.32);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --ease-out:cubic-bezier(.22,.9,.35,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg);color:var(--txt);overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+#app{position:fixed;inset:0;overflow:hidden}
+
+/* ===== 场景通用 ===== */
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;
+  transform:scale(.96);transition:opacity .6s var(--ease),transform .6s var(--ease),visibility .6s;}
+.scene.active{opacity:1;visibility:visible;transform:scale(1)}
+.scene.leaving{opacity:0;transform:scale(1.04);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.layer{position:absolute;inset:0;will-change:transform}
+
+/* 背景光晕（金） */
+.glow-gold{position:absolute;pointer-events:none;
+  background:radial-gradient(circle at 50% 0%,rgba(217,164,65,.22),rgba(217,164,65,0) 60%);
+  filter:blur(8px);}
+.vignette{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%);}
+
+/* 返回按钮 */
+.back-btn{position:absolute;top:18px;left:18px;z-index:30;
+  background:rgba(31,42,58,.7);border:1px solid var(--line);color:var(--txt);
+  padding:9px 15px;border-radius:999px;font-size:13px;cursor:pointer;
+  backdrop-filter:blur(8px);transition:transform .25s var(--ease),border-color .25s,background .25s}
+.back-btn:hover{transform:translateY(-1px);border-color:var(--line-gold);background:rgba(31,42,58,.9)}
+
+/* ===== 场景0 · 门外 ===== */
+#scene-outside{display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(120% 90% at 50% 18%,#223047 0%,#161d28 60%,#10151d 100%);}
+.facade{position:relative;width:min(440px,86vw);aspect-ratio:3/4;
+  border-radius:10px 10px 4px 4px;
+  background:linear-gradient(160deg,#26344a,#1a2433);
+  box-shadow:0 40px 90px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.05);
+  cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s;
+  overflow:hidden;perspective:1000px;}
+.facade::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 64px);
+  opacity:.5;}
+.facade:hover{transform:scale(1.02);box-shadow:0 46px 110px rgba(0,0,0,.6),inset 0 0 0 1px var(--line-gold)}
+/* 门后暖金光 */
+.door-glow{position:absolute;left:50%;top:42%;width:62%;height:60%;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at 50% 50%,rgba(232,192,116,.5),rgba(217,164,65,.12) 55%,transparent 72%);
+  filter:blur(6px);opacity:.9;transition:opacity .8s var(--ease)}
+/* 两扇玻璃门 */
+.door{position:absolute;top:8%;height:84%;width:50%;overflow:hidden;
+  background:linear-gradient(135deg,rgba(180,200,220,.20),rgba(120,140,165,.08));
+  box-shadow:inset 0 0 0 1px rgba(217,164,65,.30),inset 0 0 40px rgba(255,255,255,.05);
+  transition:transform .8s var(--ease);transform-style:preserve-3d;backface-visibility:hidden}
+.door-l{left:0;transform-origin:left center;border-radius:6px 0 0 4px}
+.door-r{right:0;transform-origin:right center;border-radius:0 6px 4px 0}
+.door::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg,rgba(255,255,255,.18) 0 12%,transparent 40%)}
+/* 黄铜门把手（呼吸光） */
+.handle{position:absolute;top:46%;width:6px;height:74px;border-radius:6px;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold));
+  box-shadow:0 0 10px rgba(217,164,65,.7);animation:breathe 2.4s var(--ease) infinite}
+.door-l .handle{right:14px}
+.door-r .handle{left:14px}
+@keyframes breathe{0%,100%{box-shadow:0 0 6px rgba(217,164,65,.45);opacity:.8}
+  50%{box-shadow:0 0 16px rgba(232,192,116,.95);opacity:1}}
+/* 地面反射 */
+.floor{position:absolute;left:50%;bottom:-2%;width:120%;height:26%;transform:translateX(-50%) rotateX(62deg);
+  transform-origin:bottom center;
+  background:linear-gradient(180deg,rgba(207,214,223,.16),rgba(207,214,223,0));
+  border-top:1px solid rgba(217,164,65,.18)}
+.hint{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);
+  color:var(--gold-soft);font-size:15px;letter-spacing:.18em;white-space:nowrap;
+  animation:breathe 2.4s var(--ease) infinite;pointer-events:none}
+/* 开门状态 */
+#scene-outside.opening .facade{overflow:visible;transform:scale(1.15);opacity:0;transition:transform .8s var(--ease),opacity .8s var(--ease)}
+#scene-outside.opening .door-l{transform:rotateY(-105deg)}
+#scene-outside.opening .door-r{transform:rotateY(105deg)}
+#scene-outside.opening .door-glow{opacity:0}
+.brand-mark{position:absolute;top:7%;left:50%;transform:translateX(-50%);
+  font-size:13px;letter-spacing:.32em;color:var(--muted);text-align:center}
+.brand-mark b{color:var(--gold-soft);font-weight:600}
+
+/* ===== 场景2 · 大厅 ===== */
+#scene-hall{background:radial-gradient(120% 80% at 50% 0%,#243449 0%,#161d28 58%,#0f141c 100%)}
+.atrium{position:absolute;inset:0;perspective:1200px}
+.skylight{position:absolute;left:50%;top:-10%;width:60%;height:55%;transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 0%,rgba(232,192,116,.38),rgba(217,164,65,.06) 50%,transparent 70%);
+  filter:blur(4px)}
+.side-shops{position:absolute;top:18%;height:64%;width:18%;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.side-shops.left{left:2%}
+.side-shops.right{right:2%;align-items:flex-end}
+.shop{width:100%;height:64px;border-radius:8px;
+  background:linear-gradient(160deg,rgba(40,53,73,.9),rgba(22,29,40,.9));
+  box-shadow:inset 0 0 0 1px var(--line),0 8px 20px rgba(0,0,0,.4);
+  position:relative;overflow:hidden}
+.shop::before{content:"";position:absolute;left:10px;top:10px;width:18px;height:18px;border-radius:4px;
+  background:linear-gradient(160deg,rgba(232,192,116,.5),rgba(217,164,65,.15));box-shadow:0 0 10px rgba(217,164,65,.4)}
+.hall-floor{position:absolute;left:0;right:0;bottom:0;height:34%;
+  background:linear-gradient(180deg,rgba(207,214,223,.10),rgba(207,214,223,0));
+  transform:perspective(600px) rotateX(55deg);transform-origin:bottom;
+  border-top:1px solid rgba(217,164,65,.14)}
+/* 热区 */
+.hotspot{position:absolute;border-radius:12px;cursor:pointer;z-index:20;
+  background:linear-gradient(160deg,rgba(40,53,73,.55),rgba(22,29,40,.55));
+  box-shadow:inset 0 0 0 1px var(--line);backdrop-filter:blur(6px);
+  display:flex;flex-direction:column;justify-content:center;padding:8px 10px;
+  transition:transform .25s var(--ease),box-shadow .25s,background .25s;
+  will-change:transform;min-height:46px;min-width:64px;
+  animation:hot-breathe 3s var(--ease) infinite}
+.hotspot:hover,.hotspot:active{transform:scale(1.04);background:linear-gradient(160deg,rgba(50,66,90,.75),rgba(28,38,54,.75));
+  box-shadow:inset 0 0 0 1px var(--line-gold),0 0 22px rgba(217,164,65,.28)}
+.hotspot .hn{font-size:14px;font-weight:600;letter-spacing:.04em}
+.hotspot .hc{font-size:11px;color:var(--gold-soft);margin-top:3px}
+@keyframes hot-breathe{0%,100%{box-shadow:inset 0 0 0 1px var(--line)}
+  50%{box-shadow:inset 0 0 0 1px rgba(217,164,65,.22)}}
+
+/* ===== 场景3 · 展厅 ===== */
+#scene-showroom{background:#141a24;display:flex;flex-direction:column}
+.showroom-bg{position:absolute;inset:0;z-index:0;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 2px,transparent 2px 84px),
+    linear-gradient(180deg,#202c3d 0%,#161d28 100%);}
+.showroom-bg::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 120px)}
+.showroom-bg::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;
+  background:linear-gradient(90deg,transparent,rgba(232,192,116,.5),transparent)}
+.sh-head{position:relative;z-index:10;display:flex;align-items:center;gap:14px;
+  padding:16px 18px 10px;flex-wrap:wrap}
+.sh-title{font-size:20px;font-weight:700}
+.sh-title small{display:block;font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.14em;margin-top:2px}
+.subtabs{position:relative;z-index:10;display:flex;gap:8px;overflow-x:auto;padding:4px 18px 12px;
+  scrollbar-width:none}
+.subtabs::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;padding:7px 13px;border-radius:999px;font-size:13px;cursor:pointer;
+  background:rgba(31,42,58,.7);border:1px solid var(--line);color:var(--muted);white-space:nowrap;
+  transition:all .2s var(--ease)}
+.chip.on{background:linear-gradient(160deg,var(--gold-soft),var(--gold));color:#1a1305;border-color:transparent;font-weight:600}
+.grid{position:relative;z-index:10;flex:1;overflow-y:auto;display:grid;gap:14px;padding:4px 18px 28px;
+  grid-template-columns:repeat(2,1fr);align-content:start}
+@media(min-width:760px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:linear-gradient(160deg,rgba(40,53,73,.55),rgba(22,29,40,.65));
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;
+  display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;
+  will-change:transform,opacity;opacity:0;transform:translateY(20px)}
+.card.in{opacity:1;transform:translateY(0)}
+.card:hover{transform:translateY(-4px);border-color:var(--line-gold);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.card .ph{aspect-ratio:1/1;background:#0e131b;position:relative;overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.card .ph .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:12px;background:repeating-linear-gradient(45deg,#1a2331 0 10px,#161e2a 10px 20px)}
+.card .body{padding:11px 12px 13px;display:flex;flex-direction:column;gap:5px}
+.card .pname{font-size:14px;font-weight:600;line-height:1.3}
+.card .pco{font-size:11.5px;color:var(--muted);line-height:1.3}
+.card .pinq{margin-top:6px;align-self:flex-start;font-size:12px;font-weight:600;color:#1a1305;
+  background:linear-gradient(160deg,var(--gold-soft),var(--gold));border:none;border-radius:8px;
+  padding:6px 12px;cursor:pointer;transition:transform .2s var(--ease)}
+.card .pinq:hover{transform:translateY(-1px)}
+
+/* ===== 场景4 · 详情弹层 ===== */
+.modal{position:absolute;inset:0;z-index:60;display:none;align-items:center;justify-content:center;
+  background:rgba(8,11,16,.72);backdrop-filter:blur(6px);padding:18px}
+.modal.open{display:flex;animation:fade .3s var(--ease)}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.m-card{width:min(520px,94vw);max-height:90vh;overflow-y:auto;border-radius:18px;
+  background:linear-gradient(160deg,var(--bg2),var(--bg));border:1px solid var(--line);
+  box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(14px) scale(.98);animation:pop .35s var(--ease-out) forwards}
+@keyframes pop{to{transform:translateY(0) scale(1)}}
+.m-img{width:100%;aspect-ratio:16/10;background:#0e131b;object-fit:cover;display:block}
+.m-img.fb{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;
+  background:repeating-linear-gradient(45deg,#1a2331 0 12px,#161e2a 12px 24px)}
+.m-info{padding:16px 18px 20px}
+.m-info h3{font-size:19px;margin-bottom:6px}
+.m-co{font-size:13px;color:var(--gold-soft);margin-bottom:10px}
+.m-spec{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.m-btn{display:inline-block;text-decoration:none;font-size:14px;font-weight:600;color:#1a1305;
+  background:linear-gradient(160deg,var(--gold-soft),var(--gold));border-radius:10px;padding:10px 18px;
+  transition:transform .2s var(--ease)}
+.m-btn:hover{transform:translateY(-1px)}
+.m-close{position:absolute;top:10px;right:12px;z-index:62;width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line);background:rgba(31,42,58,.8);color:var(--txt);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center}
+
+/* ===== 性能/无障碍 ===== */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .scene{transition:none}
+}
+@media(max-width:380px){
+  .hotspot .hn{font-size:12px}.hotspot .hc{font-size:10px}
+  .sh-title{font-size:17px}
+}
