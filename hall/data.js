@@ -143,8 +143,8 @@ const HALL = {
     "name": "外墙清洗机器人",
     "zone": "electronics",
     "subcat": "电子电器",
-    "company": "智能保温杯厂商",
-    "img": "images/robot/robot4.jpg",
+    "company": "史河机器人",
+    "img": "images/robot/robot_facade_clean.jpg",
     "specs": "负压吸附 · 锁水自清洁 · 物业清洗标准",
     "price": "",
     "desc": "史河外墙清洗机器人，索式多腔负压吸附，锁水式自清洁，满足物业清洗标准，用于高层建筑外墙清洗。"
@@ -154,8 +154,8 @@ const HALL = {
     "name": "风电塔筒检测机器人",
     "zone": "electronics",
     "subcat": "电子电器",
-    "company": "智能保温杯厂商",
-    "img": "images/robot/robot3.jpg",
+    "company": "史河机器人",
+    "img": "images/robot/robot_wind_inspect.jpg",
     "specs": "立面定位±1cm · 多机协同 · 无损检测",
     "price": "",
     "desc": "史河风电塔筒检测机器人，立面自主定位导航，多机协同无损检测，用于风电塔筒检测维护。"
@@ -165,8 +165,8 @@ const HALL = {
     "name": "化工罐防腐机器人",
     "zone": "electronics",
     "subcat": "电子电器",
-    "company": "智能保温杯厂商",
-    "img": "images/robot/robot2.jpg",
+    "company": "史河机器人",
+    "img": "images/robot/robot_tank_anticorrosion.jpg",
     "specs": "防爆认证 · 化工罐体防腐 · 第三代产品",
     "price": "",
     "desc": "史河化工罐防腐机器人，第三代防爆除锈机器人，获首个防爆合格证，用于化工罐体防腐除锈作业。"
@@ -176,8 +176,8 @@ const HALL = {
     "name": "船舶除锈机器人",
     "zone": "electronics",
     "subcat": "电子电器",
-    "company": "智能保温杯厂商",
-    "img": "images/robot/robot1.jpg",
+    "company": "史河机器人",
+    "img": "images/robot/robot_ship_derust.jpg",
     "specs": "超高压水射流 · 作业高度200m · 效率提升3-5倍",
     "price": "",
     "desc": "史河船舶除锈机器人，超高压水射流除锈，效率较人工提升3-5倍，作业高度200m，船舶行业市占率超70%。"
