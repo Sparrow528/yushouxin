@@ -93,7 +93,7 @@ button{font-family:inherit}
 .panel-search input{height:36px}
 .panel-all{display:flex;align-items:center;justify-content:space-between;width:100%;padding:10px 14px;border:0;background:var(--green);color:#fff;font-size:13px;font-weight:700;cursor:pointer}
 .panel-all .n{font-size:12px;color:rgba(255,255,255,.85)}
-.panel-body{max-height:336px;overflow-y:auto;padding:6px 14px 10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 20px;align-items:start}
+.panel-body{max-height:min(58vh,420px);overflow-y:auto;padding:6px 14px 10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 20px;align-items:start;scrollbar-width:thin}
 .panel-body::-webkit-scrollbar{width:6px}
 .panel-body::-webkit-scrollbar-thumb{background:var(--rule);border-radius:3px}
 .pgrp{margin-bottom:12px}
@@ -500,6 +500,7 @@ const UI_EXTRA = {
     view:'查看产品', inquire:'邮件询价', drawer_title:'产品详情', copy_link:'复制产品链接',
     copied:'链接已复制', specs:'规格参数', inquire_to:'询价将发送至', send:'发送询价',
     no_results:'没有符合条件的产品', total_cats:'共 {n} 个品类', items_range:'第 {a}–{b} 条，共 {t} 条',
+    cat_search_ph:'搜索品类名称',
     back_home:'返回主站', nav_contact:'联系我们', need_email:'请先填写邮箱', mail_body:'产品询价',
     col_industry:'行业', col_count:'产品数', n_products:'{n} 个产品', n_cats:'{n} 个品类',
     view_company:'查看企业', back_catalog:'返回产品目录', filter_member:'在目录中筛选该企业'
@@ -513,6 +514,7 @@ const UI_EXTRA = {
     copied:'Link copied', specs:'Specifications', inquire_to:'Enquiry goes to', send:'Send enquiry',
     label_desc:'Description', label_specs:'Specifications',
     no_results:'No products match these filters', total_cats:'{n} categories', items_range:'{a}–{b} of {t}',
+    cat_search_ph:'Search categories',
     back_home:'Main site', nav_contact:'Contact us', need_email:'Enter your email first', mail_body:'Product enquiry',
     col_industry:'Industry', col_count:'Products', n_products:'{n} products', n_cats:'{n} categories',
     n_products_one:'{n} product', n_cats_one:'{n} category',
@@ -528,6 +530,7 @@ const UI_EXTRA = {
     copied:'Lien copié', specs:'Spécifications', inquire_to:'Demande envoyée à', send:'Envoyer',
     label_desc:'Description', label_specs:'Spécifications',
     no_results:'Aucun produit ne correspond', total_cats:'{n} catégories', items_range:'{a}–{b} sur {t}',
+    cat_search_ph:'Rechercher une catégorie',
     back_home:'Site principal', nav_contact:'Contact', need_email:'Saisissez votre e-mail', mail_body:'Demande de produit',
     col_industry:'Secteur', col_count:'Produits', n_products:'{n} produits', n_cats:'{n} catégories',
     n_products_one:'{n} produit', n_cats_one:'{n} catégorie',
@@ -543,6 +546,7 @@ const UI_EXTRA = {
     copied:'تم نسخ الرابط', specs:'المواصفات', inquire_to:'يُرسل الاستفسار إلى', send:'إرسال',
     label_desc:'الوصف', label_specs:'المواصفات',
     no_results:'لا توجد منتجات مطابقة', total_cats:'{n} فئة', items_range:'{a}–{b} من {t}',
+    cat_search_ph:'بحث في الفئات',
     back_home:'الموقع الرئيسي', nav_contact:'اتصل بنا', need_email:'أدخل بريدك الإلكتروني', mail_body:'استفسار عن منتج',
     col_industry:'القطاع', col_count:'المنتجات', n_products:'{n} منتج', n_cats:'{n} فئة',
     view_company:'عرض الشركة', back_catalog:'العودة إلى الدليل', filter_member:'تصفية الدليل حسب هذا العضو',
@@ -713,13 +717,18 @@ function renderCatBar(){
             g.label + '<span class="n">' + n + '</span></button>';
   });
   $('catBar').innerHTML = html;
-  Array.prototype.forEach.call($('catBar').children, function(btn){
-    btn.onclick = function(){
-      var g = groups.filter(function(x){ return x.key === btn.getAttribute('data-group'); })[0];
-      setCat(g && g.items.length === 1 ? g.items[0] : '');
-      if(g && g.items.length > 1) openPanel();
-    };
-  });
+  /* 固定一层监听：#catBar 重建后依然有效，避免「重渲染 + 文档级关闭」同时触发导致面板闪退 */
+  if(!$('catBar').getAttribute('data-bound')){
+    $('catBar').setAttribute('data-bound', '1');
+    $('catBar').addEventListener('click', function(e){
+      var btn = e.target.closest && e.target.closest('.cat-chip');
+      if(!btn) return;
+      var g = buildTree().filter(function(x){ return x.key === btn.getAttribute('data-group'); })[0];
+      if(!g) return;
+      if(g.items.length === 1){ setCat(g.items[0]); return; }
+      openPanel(g.key);
+    });
+  }
 }
 function renderPanel(){
   var groups = buildTree();
@@ -729,7 +738,7 @@ function renderPanel(){
     var items = g.items.filter(function(c){ return !q || catLabel(c).toLowerCase().indexOf(q) !== -1; });
     if(!items.length) return;
     var n = g.items.reduce(function(s, c){ return s + countIn(c); }, 0);
-    html += '<div class="pgrp"><div class="pgrp-h"><span>' + g.label + '</span>' +
+    html += '<div class="pgrp" data-g="' + g.key + '"><div class="pgrp-h"><span>' + g.label + '</span>' +
             (q ? '' : '<span class="n">' + n + '</span>') + '</div>';
     items.forEach(function(c){
       html += '<button class="pitem' + (c === curCat ? ' on' : '') + '" data-cat="' + c + '">' +
@@ -941,12 +950,15 @@ function setCat(cat){
   curPage = 1;
   renderCatBar(); renderPanel(); renderCond(); renderRows(); syncURL();
 }
-function openPanel(){
+function openPanel(groupKey){
   $('catPanel').classList.add('show');
   $('btnAllCats').setAttribute('aria-expanded', 'true');
+  $('chipCat').setAttribute('aria-expanded', 'true');
   $('catQ').value = '';
   renderPanel();
-  $('catQ').focus();
+  var target = groupKey ? $('panelBody').querySelector('.pgrp[data-g="' + groupKey + '"]') : null;
+  if(target) target.scrollIntoView({ block:'nearest' });
+  else $('catQ').focus();
 }
 function closePanel(){
   $('catPanel').classList.remove('show');
@@ -969,7 +981,7 @@ function applyText(){
     el.textContent = t(el.getAttribute('data-i18n'));
   });
   var ph = document.querySelector('#q'); if(ph) ph.placeholder = t('search_ph');
-  var cp = document.querySelector('#catQ'); if(cp) cp.placeholder = t('search_ph');
+  var cp = document.querySelector('#catQ'); if(cp) cp.placeholder = t('cat_search_ph');
   buildLangs();
 }
 function switchLang(l){
@@ -1194,6 +1206,8 @@ function bind(){
   $('frameClose').onclick = closeFrame;
   $('backBtn').onclick = function(){ selectedMember = null; showCatalog(); };
   document.addEventListener('click', function(e){
+    /* 目标节点已从 DOM 移除（重渲染导致）时不算「点外面」，否则面板会被自己关掉 */
+    if(!document.contains(e.target)) return;
     if(!e.target.closest('.catbar-wrap') && !e.target.closest('#chipCat')) closePanel();
   });
   document.addEventListener('keydown', function(e){
